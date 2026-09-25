@@ -1,0 +1,121 @@
+"""Train the universal perturbation once, without victim training or full materialization."""
+
+import argparse
+import hashlib
+import json
+import os
+import shutil
+import sys
+import time
+import traceback
+
+import numpy as np
+import torch
+from PIL import Image
+from ultralytics import YOLO
+
+from ue_framework.config import load_config
+from ue_framework.data_utils import label_path_for_image, load_image_rgb_float, read_yolo_annotations
+from ue_framework.methods.legacy_kproto_ret import LegacyKProtoGenerator, LegacyKProtoTrainer
+
+
+def _sha256(path):
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def _write_json(path, value):
+    with open(path, "w", encoding="utf-8") as handle:
+        json.dump(value, handle, ensure_ascii=False, indent=2)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", required=True)
+    parser.add_argument("--output", required=True)
+    parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--smoke-max-images", type=int, default=0)
+    parser.add_argument("--smoke-max-steps", type=int, default=0)
+    args = parser.parse_args()
+    if os.path.exists(args.output):
+        raise FileExistsError(f"Refusing to overwrite existing run: {args.output}")
+    cfg = load_config(args.config)
+    method_cfg = cfg["methods"]["legacy_kproto_ret"]
+    is_smoke = bool(args.smoke_max_images or args.smoke_max_steps)
+    if is_smoke:
+        if args.smoke_max_images < 1 or args.smoke_max_steps < 1:
+            raise ValueError("Both smoke limits must be positive")
+        method_cfg["kproto"]["max_images"] = args.smoke_max_images
+        method_cfg["kproto"]["max_steps"] = args.smoke_max_steps
+    elif method_cfg["kproto"].get("max_images") or method_cfg["kproto"].get("max_steps"):
+        raise ValueError("Official noise training requires the unbounded method config")
+    if args.seed not in cfg["experiment"]["seeds"]:
+        raise ValueError("Seed is not in experiment.seeds")
+    os.makedirs(args.output)
+    shutil.copyfile(args.config, os.path.join(args.output, "source_config.yaml"))
+    _write_json(os.path.join(args.output, "resolved_config.json"), cfg)
+    status_path = os.path.join(args.output, "status.json")
+    model_path = cfg["surrogate"]["ckpt"]
+    data_root = cfg["data"]["dataset_root"]
+    image_dir = os.path.join(data_root, cfg["data"]["train_images"])
+    label_dir = os.path.join(data_root, cfg["data"]["train_labels"])
+    code_path = os.path.join(os.path.dirname(__file__), "..", "ue_framework", "methods", "legacy_kproto_ret.py")
+    support_parent_path = os.path.join(os.path.dirname(__file__), "..", "ue_framework", "methods", "tausb_universal.py")
+    started = time.time()
+    status = {
+        "state": "running", "started_at_unix": started, "seed": args.seed,
+        "smoke": is_smoke, "official_metrics_disabled": True,
+        "artifact_ingest_disabled": True, "checkpoint_cleanup_completed": False,
+        "deleted_paths": [], "code_sha256": _sha256(code_path),
+        "support_parent_sha256": _sha256(support_parent_path),
+        "config_sha256": _sha256(args.config), "surrogate_sha256": _sha256(model_path),
+        "output": args.output,
+    }
+    _write_json(status_path, status)
+    try:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        model = YOLO(model_path).model.to(device)
+        if int(model.nc) != int(cfg["surrogate"]["num_classes"]):
+            raise ValueError("Surrogate class count differs from VOC20 config")
+        trainer = LegacyKProtoTrainer(cfg, method_cfg, device, model)
+        params_path = os.path.join(args.output, "global_params.pt")
+        csv_path = os.path.join(args.output, "diagnostics.csv")
+        json_path = os.path.join(args.output, "diagnostics.json")
+        trainer.train_universal(image_dir, label_dir, params_path, csv_path, json_path, args.seed)
+        generator = LegacyKProtoGenerator(cfg, method_cfg, device, model, params_path)
+        images = trainer._collect_target_images(image_dir, label_dir)[:8]
+        preview_dir = os.path.join(args.output, "preview")
+        os.makedirs(preview_dir)
+        previews = []
+        for path in images:
+            clean = load_image_rgb_float(path)
+            annotations = read_yolo_annotations(label_path_for_image(path, label_dir))
+            result = generator.generate(clean, annotations, args.seed, 40, trainer.eps, "mask", image_path=path)
+            delta = result.perturbation
+            out_path = os.path.join(preview_dir, os.path.basename(path).rsplit(".", 1)[0] + ".png")
+            Image.fromarray(np.rint(np.clip(result.poisoned_image, 0, 1) * 255).astype(np.uint8)).save(out_path)
+            previews.append({"path": out_path, "linf": float(np.abs(delta).max()),
+                             "outside_support_max": float(np.abs(delta * (result.support_mask == 0)[:, :, None]).max())})
+        _write_json(os.path.join(args.output, "preview_manifest.json"), previews)
+        with open(json_path, "r", encoding="utf-8") as handle:
+            latest = json.load(handle)["latest"]
+        status.update(state="complete", completed_at_unix=time.time(),
+                      duration_seconds=time.time() - started, steps=latest["step"] + 1,
+                      epochs_completed=latest["epoch"], latest=latest,
+                      checkpoint_paths_remaining=[params_path,
+                          os.path.join(args.output, "background_prototypes.pt")])
+        _write_json(status_path, status)
+        print(json.dumps({"state": "complete", "steps": status["steps"],
+                          "epochs": status["epochs_completed"], "latest": latest}, ensure_ascii=False))
+    except BaseException as error:
+        status.update(state="failed", completed_at_unix=time.time(),
+                      error=repr(error), traceback=traceback.format_exc())
+        _write_json(status_path, status)
+        raise
+
+
+if __name__ == "__main__":
+    main()
