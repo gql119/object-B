@@ -52,6 +52,14 @@ def main():
     if not source.is_file():
         raise FileNotFoundError(source)
     cfg = load_config(args.config)
+    adaptive_enabled = bool(cfg["methods"]["legacy_kproto_ret"].get("adaptive", {}).get("enabled", False))
+    if adaptive_enabled != bool(status.get("adaptive_enabled", False)):
+        raise RuntimeError("Adaptive method identity differs from noise optimization")
+    if adaptive_enabled:
+        for name, key in (("adaptive_learner.py", "adaptive_code_sha256"),
+                          ("b2_adaptive.py", "adaptive_trainer_sha256")):
+            if status.get(key) != sha256(ROOT / "ue_framework" / "methods" / name):
+                raise RuntimeError(f"Adaptive method code differs: {name}")
     dataset = Path(cfg["data"]["dataset_root"])
     originals = list_images(str(dataset / cfg["data"]["train_images"]))
     if len({Path(image).stem for image in originals}) != len(originals):
@@ -61,7 +69,10 @@ def main():
         if not label.is_file():
             raise FileNotFoundError(label)
     cfg["platform"]["resume"] = True
-    paths = build_run_paths(cfg["platform"]["run_root"], "legacy_kproto_ret", 40, args.seed)
+    epochs = int(cfg["methods"]["legacy_kproto_ret"]["universal_epochs"])
+    if cfg["experiment"]["steps"] != [epochs]:
+        raise ValueError("B2 steps and universal_epochs must match")
+    paths = build_run_paths(cfg["platform"]["run_root"], "legacy_kproto_ret", epochs, args.seed)
     if not Path(paths.run_root).resolve().is_relative_to(ROOT.resolve()):
         raise ValueError("Materialization outputs must be inside the isolated project")
     ensure_run_dirs(paths)
@@ -78,7 +89,7 @@ def main():
             raise RuntimeError("An existing materialization uses different noise parameters")
     else:
         shutil.copy2(source, dest)
-    ctx = RunContext(cfg=cfg, method="legacy_kproto_ret", steps=40, seed=args.seed,
+    ctx = RunContext(cfg=cfg, method="legacy_kproto_ret", steps=epochs, seed=args.seed,
                      stage="generate_poisoned_dataset", gpu_id=0, platform_mode="cloud", paths=paths)
     from ue_framework.stages.generate import run_generate_poisoned_dataset
     run_generate_poisoned_dataset(ctx)
@@ -87,6 +98,8 @@ def main():
         "noise_config_sha256": status["config_sha256"],
         "noise_method_sha256": status["code_sha256"],
         "noise_support_parent_sha256": status["support_parent_sha256"],
+        "noise_adaptive_code_sha256": status.get("adaptive_code_sha256"),
+        "noise_adaptive_trainer_sha256": status.get("adaptive_trainer_sha256"),
         "materializer_sha256": sha256(__file__),
         "generator_stage_sha256": sha256(ROOT / "ue_framework" / "stages" / "generate.py"),
         "seed": args.seed,

@@ -30,6 +30,20 @@ VOC_NAMES = (
 )
 
 
+def _summarize_clean_box_metrics(box, target_id=14):
+    class_ids = np.asarray(box.ap_class_index, dtype=int).reshape(-1).tolist()
+    ap = np.asarray(box.ap50, dtype=float).reshape(-1)
+    recall = np.asarray(box.r, dtype=float).reshape(-1)
+    if (class_ids != list(range(len(VOC_NAMES))) or len(ap) != len(VOC_NAMES)
+            or len(recall) != len(VOC_NAMES) or not np.isfinite(ap).all()
+            or not np.isfinite(recall).all() or np.any((recall < 0) | (recall > 1))):
+        raise RuntimeError(f"Incomplete or unordered per-class AP50/Recall: class_ids={class_ids}")
+    return {"mAP50_all": float(box.map50), "mAP50_target": float(ap[target_id]),
+            "mAP50_non_target": float(compute_non_target_map(ap.tolist(), target_id)),
+            "AP50_per_class": ap.tolist(), "Recall_target": float(recall[target_id]),
+            "Recall_per_class": recall.tolist()}
+
+
 def _sha256(path):
     digest = hashlib.sha256()
     with open(path, "rb") as handle:
@@ -89,7 +103,10 @@ def _full_data(cfg, seed, noise_dir, config_path):
     if seed != 0:
         raise ValueError("Only the completed seed-0 noise run is available")
     dataset = Path(cfg["data"]["dataset_root"])
-    paths = build_run_paths(cfg["platform"]["run_root"], "legacy_kproto_ret", 40, seed)
+    epochs = int(cfg["methods"]["legacy_kproto_ret"]["universal_epochs"])
+    if cfg["experiment"]["steps"] != [epochs]:
+        raise ValueError("B2 steps and universal_epochs must match")
+    paths = build_run_paths(cfg["platform"]["run_root"], "legacy_kproto_ret", epochs, seed)
     root = _within_root(paths.poisoned_root)
     noise_status = noise_dir / "status.json"
     with open(noise_status, encoding="utf-8") as handle:
@@ -98,6 +115,14 @@ def _full_data(cfg, seed, noise_dir, config_path):
         raise RuntimeError("Official noise optimization is incomplete")
     if _sha256(config_path) != noise["config_sha256"]:
         raise RuntimeError("Victim config differs from the optimized-noise config")
+    adaptive_enabled = bool(cfg["methods"]["legacy_kproto_ret"].get("adaptive", {}).get("enabled", False))
+    if adaptive_enabled != bool(noise.get("adaptive_enabled", False)):
+        raise RuntimeError("Victim adaptive method differs from optimized noise")
+    if adaptive_enabled:
+        for name, key in (("adaptive_learner.py", "adaptive_code_sha256"),
+                          ("b2_adaptive.py", "adaptive_trainer_sha256")):
+            if noise.get(key) != _sha256(ROOT / "ue_framework" / "methods" / name):
+                raise RuntimeError(f"Victim adaptive code differs: {name}")
     with open(root / "materialization_identity.json", encoding="utf-8") as handle:
         identity = json.load(handle)
     noise_params = noise_dir / "global_params.pt"
@@ -109,6 +134,8 @@ def _full_data(cfg, seed, noise_dir, config_path):
             or identity["noise_method_sha256"] != noise["code_sha256"]
             or identity["noise_support_parent_sha256"] != noise["support_parent_sha256"]
             or identity["noise_support_parent_sha256"] != _sha256(ROOT / "ue_framework" / "methods" / "tausb_universal.py")
+            or identity.get("noise_adaptive_code_sha256") != noise.get("adaptive_code_sha256")
+            or identity.get("noise_adaptive_trainer_sha256") != noise.get("adaptive_trainer_sha256")
             or identity["seed"] != seed
             or identity["generator_stage_sha256"] != _sha256(ROOT / "ue_framework" / "stages" / "generate.py")):
         raise RuntimeError("Materialized dataset does not match this noise run and generation code")
@@ -262,14 +289,9 @@ def main():
                                                       batch=int(victim["batch"]), workers=int(victim["workers"]),
                                                       device="0", verbose=False,
                                                       project=str(output), name="clean_val", exist_ok=True)
-            ap = np.asarray(metrics.box.ap50, dtype=float).reshape(-1).tolist()
-            class_ids = np.asarray(getattr(metrics.box, "ap_class_index", []), dtype=int).tolist()
-            if class_ids != list(range(20)) or len(ap) != 20 or not np.isfinite(ap).all():
-                raise RuntimeError(f"Incomplete or unordered per-class AP50: class_ids={class_ids}")
-            result = {"mAP50_all": float(metrics.box.map50), "mAP50_target": float(ap[14]),
-                      "mAP50_non_target": float(compute_non_target_map(ap, 14)),
-                      "AP50_per_class": ap, "checkpoint": str(checkpoint),
-                      "validation_split": "original clean VOC validation copied byte-for-byte"}
+            result = _summarize_clean_box_metrics(metrics.box)
+            result.update(checkpoint=str(checkpoint),
+                          validation_split="original clean VOC validation copied byte-for-byte")
             (output / "clean_val_metrics.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
             status["clean_val_metrics"] = str(output / "clean_val_metrics.json")
         status.update(state="complete", completed_at_unix=time.time())
