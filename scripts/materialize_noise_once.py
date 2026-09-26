@@ -8,6 +8,7 @@ import shutil
 from pathlib import Path
 
 from ue_framework.config import load_config
+from ue_framework.methods.semantic_coordinates import semantic_identity
 from ue_framework.data_utils import list_images
 from ue_framework.paths import build_run_paths, ensure_run_dirs
 from ue_framework.runtime import RunContext
@@ -52,6 +53,8 @@ def main():
     if not source.is_file():
         raise FileNotFoundError(source)
     cfg = load_config(args.config)
+    if semantic_identity(cfg, ROOT) != status.get("semantic_identity"):
+        raise RuntimeError("Semantic code/artifact identity differs from optimized noise")
     adaptive_enabled = bool(cfg["methods"]["legacy_kproto_ret"].get("adaptive", {}).get("enabled", False))
     if adaptive_enabled != bool(status.get("adaptive_enabled", False)):
         raise RuntimeError("Adaptive method identity differs from noise optimization")
@@ -94,7 +97,7 @@ def main():
     from ue_framework.stages.generate import run_generate_poisoned_dataset
     run_generate_poisoned_dataset(ctx)
     identity = {
-        "noise_run": str(noise), "noise_global_params_sha256": sha256(source),
+        "noise_run": str(noise), "semantic_identity": status.get("semantic_identity"), "noise_global_params_sha256": sha256(source),
         "noise_config_sha256": status["config_sha256"],
         "noise_method_sha256": status["code_sha256"],
         "noise_support_parent_sha256": status["support_parent_sha256"],

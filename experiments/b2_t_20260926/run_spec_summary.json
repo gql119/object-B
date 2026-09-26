@@ -1,0 +1,16 @@
+{
+  "train_count": 16551,
+  "val_count": 4952,
+  "init_model": "YOLOv8n",
+  "init_yaml_sha256": "ce7ae30a91e838a1d53fd4773afc3b56454591701e3f83d37f404cc946af10a2",
+  "train_args": {
+    "epochs": 200,
+    "imgsz": 640,
+    "batch": 36,
+    "workers": 16,
+    "optimizer": "SGD",
+    "seed": 0,
+    "pretrained": false,
+    "val": true
+  }
+}

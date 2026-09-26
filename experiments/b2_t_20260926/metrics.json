@@ -1,0 +1,289 @@
+{
+  "schema": "object-b.b2-t-results.v1",
+  "experiment": "B2-T (TSFL semantic specificity; orthogonality weight disabled)",
+  "run_id": "victim_b2_t_seed0_20260926",
+  "source_commits": {
+    "scientific_method": "76c8bc93ecb89e41e1fc1a4f01c8f4db7c9b6972",
+    "pipeline_and_preflight": "9fb1f9dea5d43ccf847d61c7c106275e4c9f09b2"
+  },
+  "protocol": {
+    "noise_epochs": 24,
+    "noise_steps": 9144,
+    "noise_duration_seconds": 12982.679203987122,
+    "noise_duration_hours": 3.6062997788853117,
+    "materialized_train_images": 16551,
+    "clean_validation_images": 4952,
+    "victim_model": "YOLOv8n",
+    "victim_initialization": "random (pretrained=false)",
+    "victim_epochs": 200,
+    "victim_seed": 0,
+    "victim_batch": 36,
+    "image_size": 640,
+    "optimizer": "SGD",
+    "selected_checkpoint": "best.pt",
+    "victim_exit_code": 0,
+    "clean_validation_split": "original clean VOC validation, copied byte-for-byte"
+  },
+  "method": {
+    "selected_semantic_channels": 48,
+    "semantic_channel_pool": 64,
+    "target_channel_fraction": 0.75,
+    "specificity_weight": 1.0,
+    "lambda_orth": 0.0,
+    "adaptive_batch_size": 1,
+    "adaptive_inner_lr": 0.0001,
+    "lambda_adapt": 1.0,
+    "lambda_nt": 0.25,
+    "target_region": "all person bounding-box pixels",
+    "overlap_strength": "one half of the same perturbation",
+    "global_budget": "16/255",
+    "overlap_budget": "8/255"
+  },
+  "hashes": {
+    "noise_global_params_sha256": "35930106aa027e1e2766d78e57965f73f24db8c4282e913124c748c3e9c19749",
+    "experiment_config_sha256": "511507187a0dfe00c6e80385b98948be50c6dec940278203f4d48fa7add07946",
+    "random_init_yaml_sha256": "ce7ae30a91e838a1d53fd4773afc3b56454591701e3f83d37f404cc946af10a2",
+    "noise_code_sha256": "e6203909a21d1ac50ba7e41c80219dc69bac9499ad41b2649f9368d8052dabe3",
+    "adaptive_code_sha256": "02cd607b8c3e389c639bbf82859952dfb5c9528524e6ebc18a373860e7954518",
+    "adaptive_trainer_sha256": "6e4ee77df49e60b546dfa180deaf1cd61a657a46417c1283066a098759caac36",
+    "semantic_code_sha256": "7d092296b5c5fe5766cefd2da771fbc0b227611753d3a5335b175ac3167bfbf1",
+    "coordinate_code_sha256": "654cb9996126887e0de14b8839c30ef3ec1c23ac04806cd3352d6811d3cb6025",
+    "target_specific_channels_sha256": "bb93c27e2e6229842191bba404a8f1e942f20044f87f8da2019239940f8c35b9",
+    "non_target_subspaces_sha256": "e4736ad071cbfb52e8114a316a2b31727c27467914a744cc5e997009c8d4f99a",
+    "coordinates_identity_sha256": "fda4fe9755005191c686e89884107f5d8558ed64ec18ee432090031a41279e33"
+  },
+  "preflight": {
+    "state": "passed",
+    "checks": "All stems, labels bytes, noise/config/core/adaptive/semantic/artifact hashes; all target pixels changed; outside0; global16/255 overlap8/255; non-target-only unchanged; clean val byte-identical",
+    "train_count": 16551,
+    "clean_val_count": 4952
+  },
+  "metrics": {
+    "mAP50_target": 0.03301231387301257,
+    "mAP50_non_target": 0.6905033152732581,
+    "mAP50_all": 0.6576287652032459,
+    "Recall_target": 0.0,
+    "AP50_per_class": [
+      0.8362897009361557,
+      0.6634793224158758,
+      0.6517616248843009,
+      0.6711254562724539,
+      0.4712986616378384,
+      0.8103119535766166,
+      0.881333311657212,
+      0.8038702864746522,
+      0.5244503691992636,
+      0.6821644908590029,
+      0.6795497364610948,
+      0.5749773538748035,
+      0.7317220029680656,
+      0.7048351957339799,
+      0.03301231387301257,
+      0.44943734086805676,
+      0.7173292817069818,
+      0.7037336086959228,
+      0.8273996974813562,
+      0.7344935944882707
+    ],
+    "Recall_per_class": [
+      0.7017543859649122,
+      0.5608308605341247,
+      0.5947712418300654,
+      0.5779467680608364,
+      0.4136460554371002,
+      0.7247750733268116,
+      0.7760199833472107,
+      0.7541899441340782,
+      0.4399360262384134,
+      0.6554215074501579,
+      0.5603878644508489,
+      0.6687116564417178,
+      0.7037801623987703,
+      0.6892307692307692,
+      0.0,
+      0.32708333333333334,
+      0.6983471074380165,
+      0.6588057729691724,
+      0.7907801418439716,
+      0.6033536552870865
+    ]
+  },
+  "comparison_to_B2": {
+    "baseline_run_id": "victim_b2_seed0_20260926",
+    "mAP50_target": 0.022018136609624102,
+    "mAP50_non_target": 0.6943360003498512,
+    "mAP50_all": 0.6607201071628398,
+    "Recall_target": 0.0,
+    "delta_mAP50_target": 0.010994177263388472,
+    "delta_mAP50_non_target": -0.0038326850765930676,
+    "delta_mAP50_all": -0.0030913419595939295,
+    "delta_Recall_target": 0.0,
+    "per_class": [
+      {
+        "id": 0,
+        "class": "aeroplane",
+        "AP50": 0.8362897009361557,
+        "Recall": 0.7017543859649122,
+        "B2_AP50": 0.8399693800443943,
+        "delta_AP50_vs_B2": -0.0036796791082385205
+      },
+      {
+        "id": 1,
+        "class": "bicycle",
+        "AP50": 0.6634793224158758,
+        "Recall": 0.5608308605341247,
+        "B2_AP50": 0.6460433344703604,
+        "delta_AP50_vs_B2": 0.017435987945515374
+      },
+      {
+        "id": 2,
+        "class": "bird",
+        "AP50": 0.6517616248843009,
+        "Recall": 0.5947712418300654,
+        "B2_AP50": 0.6510329160757133,
+        "delta_AP50_vs_B2": 0.0007287088085875526
+      },
+      {
+        "id": 3,
+        "class": "boat",
+        "AP50": 0.6711254562724539,
+        "Recall": 0.5779467680608364,
+        "B2_AP50": 0.6864993699889594,
+        "delta_AP50_vs_B2": -0.015373913716505538
+      },
+      {
+        "id": 4,
+        "class": "bottle",
+        "AP50": 0.4712986616378384,
+        "Recall": 0.4136460554371002,
+        "B2_AP50": 0.4753743235487209,
+        "delta_AP50_vs_B2": -0.004075661910882489
+      },
+      {
+        "id": 5,
+        "class": "bus",
+        "AP50": 0.8103119535766166,
+        "Recall": 0.7247750733268116,
+        "B2_AP50": 0.8326851732748695,
+        "delta_AP50_vs_B2": -0.0223732196982529
+      },
+      {
+        "id": 6,
+        "class": "car",
+        "AP50": 0.881333311657212,
+        "Recall": 0.7760199833472107,
+        "B2_AP50": 0.8865876055254669,
+        "delta_AP50_vs_B2": -0.005254293868254933
+      },
+      {
+        "id": 7,
+        "class": "cat",
+        "AP50": 0.8038702864746522,
+        "Recall": 0.7541899441340782,
+        "B2_AP50": 0.8092588574386785,
+        "delta_AP50_vs_B2": -0.00538857096402634
+      },
+      {
+        "id": 8,
+        "class": "chair",
+        "AP50": 0.5244503691992636,
+        "Recall": 0.4399360262384134,
+        "B2_AP50": 0.5325464129051478,
+        "delta_AP50_vs_B2": -0.008096043705884237
+      },
+      {
+        "id": 9,
+        "class": "cow",
+        "AP50": 0.6821644908590029,
+        "Recall": 0.6554215074501579,
+        "B2_AP50": 0.6875774899864722,
+        "delta_AP50_vs_B2": -0.005412999127469287
+      },
+      {
+        "id": 10,
+        "class": "diningtable",
+        "AP50": 0.6795497364610948,
+        "Recall": 0.5603878644508489,
+        "B2_AP50": 0.6806748609637892,
+        "delta_AP50_vs_B2": -0.001125124502694308
+      },
+      {
+        "id": 11,
+        "class": "dog",
+        "AP50": 0.5749773538748035,
+        "Recall": 0.6687116564417178,
+        "B2_AP50": 0.5874931718007825,
+        "delta_AP50_vs_B2": -0.012515817925979
+      },
+      {
+        "id": 12,
+        "class": "horse",
+        "AP50": 0.7317220029680656,
+        "Recall": 0.7037801623987703,
+        "B2_AP50": 0.7237318652526765,
+        "delta_AP50_vs_B2": 0.007990137715389034
+      },
+      {
+        "id": 13,
+        "class": "motorbike",
+        "AP50": 0.7048351957339799,
+        "Recall": 0.6892307692307692,
+        "B2_AP50": 0.720110287941291,
+        "delta_AP50_vs_B2": -0.015275092207311047
+      },
+      {
+        "id": 14,
+        "class": "person",
+        "AP50": 0.03301231387301257,
+        "Recall": 0.0,
+        "B2_AP50": 0.022018136609624102,
+        "delta_AP50_vs_B2": 0.010994177263388472
+      },
+      {
+        "id": 15,
+        "class": "pottedplant",
+        "AP50": 0.44943734086805676,
+        "Recall": 0.32708333333333334,
+        "B2_AP50": 0.4417287012812605,
+        "delta_AP50_vs_B2": 0.00770863958679624
+      },
+      {
+        "id": 16,
+        "class": "sheep",
+        "AP50": 0.7173292817069818,
+        "Recall": 0.6983471074380165,
+        "B2_AP50": 0.7195999951260179,
+        "delta_AP50_vs_B2": -0.0022707134190360634
+      },
+      {
+        "id": 17,
+        "class": "sofa",
+        "AP50": 0.7037336086959228,
+        "Recall": 0.6588057729691724,
+        "B2_AP50": 0.7180025560903234,
+        "delta_AP50_vs_B2": -0.014268947394400544
+      },
+      {
+        "id": 18,
+        "class": "train",
+        "AP50": 0.8273996974813562,
+        "Recall": 0.7907801418439716,
+        "B2_AP50": 0.8347110735353291,
+        "delta_AP50_vs_B2": -0.007311376053972918
+      },
+      {
+        "id": 19,
+        "class": "tvmonitor",
+        "AP50": 0.7344935944882707,
+        "Recall": 0.6033536552870865,
+        "B2_AP50": 0.7187566313969176,
+        "delta_AP50_vs_B2": 0.015736963091353084
+      }
+    ]
+  },
+  "caveats": [
+    "Single seed only; this result does not establish causal background absorption.",
+    "No protocol-matched clean victim baseline is included.",
+    "Recall_target=0 is evaluator operating-point recall; person AP50 is nonzero."
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "object-b.b2-t-provenance.v1",
+  "run_id": "victim_b2_t_seed0_20260926",
+  "status": "complete",
+  "noise_status": "complete",
+  "exit_codes": {
+    "noise": 0,
+    "materialization": 0,
+    "full_data_preflight": 0,
+    "victim": 0,
+    "pipeline": 0
+  },
+  "epochs_completed": 24,
+  "noise_steps": 9144,
+  "noise_duration_seconds": 12982.679203987122,
+  "noise_config_sha256": "511507187a0dfe00c6e80385b98948be50c6dec940278203f4d48fa7add07946",
+  "global_params_sha256": "35930106aa027e1e2766d78e57965f73f24db8c4282e913124c748c3e9c19749",
+  "frozen_state_unchanged": true,
+  "adaptive_state_unchanged": true,
+  "preflight_state": "passed",
+  "train_images": 16551,
+  "clean_validation_images": 4952,
+  "semantic_identity": {
+    "artifacts": {
+      "target_specific_channels.pt": "bb93c27e2e6229842191bba404a8f1e942f20044f87f8da2019239940f8c35b9",
+      "non_target_subspaces.pt": "e4736ad071cbfb52e8114a316a2b31727c27467914a744cc5e997009c8d4f99a",
+      "coordinates_identity.json": "fda4fe9755005191c686e89884107f5d8558ed64ec18ee432090031a41279e33"
+    },
+    "semantic_code_sha256": "7d092296b5c5fe5766cefd2da771fbc0b227611753d3a5335b175ac3167bfbf1",
+    "coordinate_code_sha256": "654cb9996126887e0de14b8839c30ef3ec1c23ac04806cd3352d6811d3cb6025",
+    "lambda_orth": 0.0
+  },
+  "source_commits": {
+    "scientific_method": "76c8bc93ecb89e41e1fc1a4f01c8f4db7c9b6972",
+    "pipeline_and_preflight": "9fb1f9dea5d43ccf847d61c7c106275e4c9f09b2"
+  },
+  "excluded_artifacts": [
+    "datasets",
+    "training checkpoints and weights",
+    "teacher checkpoint",
+    "absolute server paths"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "ue_framework/methods/legacy_kproto_ret.py": "e6203909a21d1ac50ba7e41c80219dc69bac9499ad41b2649f9368d8052dabe3",
+  "ue_framework/methods/tausb_universal.py": "d62757e31c5832c675a525889d71589e1bb2621c2c7d05693eb39f0f5dff000a",
+  "ue_framework/methods/b2_adaptive.py": "6e4ee77df49e60b546dfa180deaf1cd61a657a46417c1283066a098759caac36",
+  "ue_framework/methods/adaptive_learner.py": "02cd607b8c3e389c639bbf82859952dfb5c9528524e6ebc18a373860e7954518"
+}

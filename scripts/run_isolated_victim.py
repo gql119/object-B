@@ -16,6 +16,7 @@ import torch
 import cv2
 
 from ue_framework.config import load_config
+from ue_framework.methods.semantic_coordinates import semantic_identity
 from ue_framework.data_utils import image_has_target, list_images, read_yolo_annotations
 from ue_framework.metrics_utils import compute_non_target_map
 from ue_framework.methods.legacy_kproto_ret import _rectangle
@@ -115,6 +116,8 @@ def _full_data(cfg, seed, noise_dir, config_path):
         raise RuntimeError("Official noise optimization is incomplete")
     if _sha256(config_path) != noise["config_sha256"]:
         raise RuntimeError("Victim config differs from the optimized-noise config")
+    if semantic_identity(cfg, ROOT) != noise.get("semantic_identity"):
+        raise RuntimeError("Victim semantic code/artifact identity differs from noise")
     adaptive_enabled = bool(cfg["methods"]["legacy_kproto_ret"].get("adaptive", {}).get("enabled", False))
     if adaptive_enabled != bool(noise.get("adaptive_enabled", False)):
         raise RuntimeError("Victim adaptive method differs from optimized noise")
@@ -136,6 +139,7 @@ def _full_data(cfg, seed, noise_dir, config_path):
             or identity["noise_support_parent_sha256"] != _sha256(ROOT / "ue_framework" / "methods" / "tausb_universal.py")
             or identity.get("noise_adaptive_code_sha256") != noise.get("adaptive_code_sha256")
             or identity.get("noise_adaptive_trainer_sha256") != noise.get("adaptive_trainer_sha256")
+            or identity.get("semantic_identity") != noise.get("semantic_identity")
             or identity["seed"] != seed
             or identity["generator_stage_sha256"] != _sha256(ROOT / "ue_framework" / "stages" / "generate.py")):
         raise RuntimeError("Materialized dataset does not match this noise run and generation code")

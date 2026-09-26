@@ -1,0 +1,17 @@
+{
+  "state": "passed",
+  "train_count": 16551,
+  "clean_val_count": 4952,
+  "noise_global_params_sha256": "35930106aa027e1e2766d78e57965f73f24db8c4282e913124c748c3e9c19749",
+  "semantic_identity": {
+    "artifacts": {
+      "target_specific_channels.pt": "bb93c27e2e6229842191bba404a8f1e942f20044f87f8da2019239940f8c35b9",
+      "non_target_subspaces.pt": "e4736ad071cbfb52e8114a316a2b31727c27467914a744cc5e997009c8d4f99a",
+      "coordinates_identity.json": "fda4fe9755005191c686e89884107f5d8558ed64ec18ee432090031a41279e33"
+    },
+    "semantic_code_sha256": "7d092296b5c5fe5766cefd2da771fbc0b227611753d3a5335b175ac3167bfbf1",
+    "coordinate_code_sha256": "654cb9996126887e0de14b8839c30ef3ec1c23ac04806cd3352d6811d3cb6025",
+    "lambda_orth": 0.0
+  },
+  "checks": "All stems, labels bytes, noise/config/core/adaptive/semantic/artifact hashes; all target pixels changed; outside0; global16/255 overlap8/255; non-target-only unchanged; clean val byte-identical"
+}
