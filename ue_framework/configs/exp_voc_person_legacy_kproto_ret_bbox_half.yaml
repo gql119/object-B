@@ -11,7 +11,7 @@ experiment:
   reference_non_target_map50: 0.78
 
 data:
-  dataset_root: ./data/VOC
+  dataset_root: /data/guoqinglong/datasets/VOC_0712_Kaggle_Ready
   train_images: images/train
   train_labels: labels/train
   val_images: images/val
@@ -21,7 +21,7 @@ data:
 
 platform:
   mode: cloud
-  run_root: ./runs_bbox_half
+  run_root: /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/bbox_half_dev_20260925/runs_bbox_half
   resume: false
   zip_after_stage: false
   save_every_n_images: 50
@@ -31,7 +31,7 @@ platform:
 
 surrogate:
   model: yolov8n
-  ckpt: ./checkpoints/voc20_surrogate.pt
+  ckpt: /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/checkpoints/voc20_surrogate.pt
   num_classes: 20
   imgsz: 640
   eot_samples: 4

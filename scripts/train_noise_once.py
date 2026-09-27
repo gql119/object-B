@@ -17,6 +17,7 @@ from ultralytics import YOLO
 from ue_framework.config import load_config
 from ue_framework.data_utils import label_path_for_image, load_image_rgb_float, read_yolo_annotations
 from ue_framework.methods.legacy_kproto_ret import LegacyKProtoGenerator, LegacyKProtoTrainer
+from ue_framework.methods.b2_adaptive import B2AdaptiveTrainer
 
 
 def _sha256(path):
@@ -24,6 +25,14 @@ def _sha256(path):
     with open(path, "rb") as handle:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
+    return digest.hexdigest()
+
+
+def _model_state_sha256(model):
+    digest = hashlib.sha256()
+    for name, value in model.state_dict().items():
+        digest.update(name.encode())
+        digest.update(value.detach().cpu().contiguous().numpy().tobytes())
     return digest.hexdigest()
 
 
@@ -44,6 +53,7 @@ def main():
         raise FileExistsError(f"Refusing to overwrite existing run: {args.output}")
     cfg = load_config(args.config)
     method_cfg = cfg["methods"]["legacy_kproto_ret"]
+    adaptive_enabled = bool(method_cfg.get("adaptive", {}).get("enabled", False))
     is_smoke = bool(args.smoke_max_images or args.smoke_max_steps)
     if is_smoke:
         if args.smoke_max_images < 1 or args.smoke_max_steps < 1:
@@ -64,6 +74,8 @@ def main():
     label_dir = os.path.join(data_root, cfg["data"]["train_labels"])
     code_path = os.path.join(os.path.dirname(__file__), "..", "ue_framework", "methods", "legacy_kproto_ret.py")
     support_parent_path = os.path.join(os.path.dirname(__file__), "..", "ue_framework", "methods", "tausb_universal.py")
+    adaptive_path = os.path.join(os.path.dirname(__file__), "..", "ue_framework", "methods", "adaptive_learner.py")
+    adaptive_trainer_path = os.path.join(os.path.dirname(__file__), "..", "ue_framework", "methods", "b2_adaptive.py")
     started = time.time()
     status = {
         "state": "running", "started_at_unix": started, "seed": args.seed,
@@ -71,6 +83,9 @@ def main():
         "artifact_ingest_disabled": True, "checkpoint_cleanup_completed": False,
         "deleted_paths": [], "code_sha256": _sha256(code_path),
         "support_parent_sha256": _sha256(support_parent_path),
+        "adaptive_enabled": adaptive_enabled,
+        "adaptive_code_sha256": _sha256(adaptive_path) if adaptive_enabled else None,
+        "adaptive_trainer_sha256": _sha256(adaptive_trainer_path) if adaptive_enabled else None,
         "config_sha256": _sha256(args.config), "surrogate_sha256": _sha256(model_path),
         "output": args.output,
     }
@@ -80,11 +95,28 @@ def main():
         model = YOLO(model_path).model.to(device)
         if int(model.nc) != int(cfg["surrogate"]["num_classes"]):
             raise ValueError("Surrogate class count differs from VOC20 config")
-        trainer = LegacyKProtoTrainer(cfg, method_cfg, device, model)
+        frozen_before = _model_state_sha256(model)
+        if adaptive_enabled:
+            adaptive_model = YOLO(model_path).model.to(device)
+            trainer = B2AdaptiveTrainer(cfg, method_cfg, device, model, adaptive_model)
+            adaptive_before = _model_state_sha256(adaptive_model)
+        else:
+            trainer = LegacyKProtoTrainer(cfg, method_cfg, device, model)
         params_path = os.path.join(args.output, "global_params.pt")
         csv_path = os.path.join(args.output, "diagnostics.csv")
         json_path = os.path.join(args.output, "diagnostics.json")
         trainer.train_universal(image_dir, label_dir, params_path, csv_path, json_path, args.seed)
+        frozen_after = _model_state_sha256(model)
+        if frozen_after != frozen_before:
+            raise RuntimeError("Frozen reference parameters or buffers changed")
+        status.update(frozen_state_sha256_before=frozen_before, frozen_state_sha256_after=frozen_after)
+        if adaptive_enabled:
+            adaptive_after = _model_state_sha256(adaptive_model)
+            if adaptive_after != adaptive_before:
+                raise RuntimeError("Adaptive base model changed outside the virtual inner update")
+            status.update(adaptive_state_sha256_before=adaptive_before,
+                          adaptive_state_sha256_after=adaptive_after,
+                          adaptive_batch_size=trainer.adaptive_batch_size)
         generator = LegacyKProtoGenerator(cfg, method_cfg, device, model, params_path)
         images = trainer._collect_target_images(image_dir, label_dir)[:8]
         preview_dir = os.path.join(args.output, "preview")
@@ -93,7 +125,10 @@ def main():
         for path in images:
             clean = load_image_rgb_float(path)
             annotations = read_yolo_annotations(label_path_for_image(path, label_dir))
-            result = generator.generate(clean, annotations, args.seed, 40, trainer.eps, "mask", image_path=path)
+            result = generator.generate(
+                clean, annotations, args.seed, trainer.universal_epochs,
+                trainer.eps, "mask", image_path=path,
+            )
             delta = result.perturbation
             out_path = os.path.join(preview_dir, os.path.basename(path).rsplit(".", 1)[0] + ".png")
             Image.fromarray(np.rint(np.clip(result.poisoned_image, 0, 1) * 255).astype(np.uint8)).save(out_path)

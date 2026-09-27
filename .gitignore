@@ -27,3 +27,11 @@ env/
 
 # 排除系统文件
 .DS_Store
+# Recovery archive excludes experiment assets
+*.pt
+*.ckpt
+*.npy
+*.npz
+.ipynb_checkpoints/
+runs*/
+checkpoints/

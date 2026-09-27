@@ -1,4 +1,4 @@
-import copy
+﻿import copy
 import os
 from typing import Any, Dict
 
@@ -30,7 +30,7 @@ def _default_config() -> Dict[str, Any]:
             "reference_non_target_map50": 0.78,
         },
         "data": {
-            "dataset_root": "/kaggle/input/voc-0712-kaggle-ready/VOC",
+            "dataset_root": "/kaggle/input/voc-0712-kaggle-ready/VOC_0712_Kaggle_Ready",
             "train_images": "images/train",
             "train_labels": "labels/train",
             "val_images": "images/val",
