@@ -1,0 +1,15 @@
+{
+  "state": "complete",
+  "stage": "victim",
+  "started_at_unix": 1790503986.2194555,
+  "noise": "$EXPERIMENT_ROOT/noise_full_b2_to_lr001_orth0005_seed0_20260927",
+  "victim": "$EXPERIMENT_ROOT/victim_b2_to_lr001_orth0005_seed0_20260927",
+  "config_sha256": "95747041ad671b716b0cffa66af68fe434f94281a841f3a0bb376d5be7cbb24a",
+  "admitted_commit": "aeb88b075a3e40446f96d982637d44cad5fe5a62",
+  "failed_pipeline_preserved": "$EXPERIMENT_ROOT/pipeline_b2_to_lr001_orth0005_seed0_20260927.json",
+  "continuation_code_sha256": "56c843c4e2fad4c6ebcdb50f366130a0e6736b5766b01fd0f783be565ae86666",
+  "noise_retrained": false,
+  "cleanup_policy": "retain_all",
+  "updated_at_unix": 1790504374.6227505,
+  "completed_at_unix": 1790514008.5057945
+}

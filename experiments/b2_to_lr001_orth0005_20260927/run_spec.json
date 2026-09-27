@@ -1,0 +1,32 @@
+{
+  "train_count": 16551,
+  "val_count": 4952,
+  "data_yaml": "$EXPERIMENT_ROOT/victim_b2_to_lr001_orth0005_seed0_20260927/train_data.yaml",
+  "init_yaml": "$EXPERIMENT_ROOT/configs/voc_yolov8n_20cls.yaml",
+  "init_yaml_sha256": "ce7ae30a91e838a1d53fd4773afc3b56454591701e3f83d37f404cc946af10a2",
+  "train_args": {
+    "data": "$EXPERIMENT_ROOT/victim_b2_to_lr001_orth0005_seed0_20260927/train_data.yaml",
+    "epochs": 200,
+    "imgsz": 640,
+    "batch": 36,
+    "workers": 16,
+    "project": "$EXPERIMENT_ROOT/victim_b2_to_lr001_orth0005_seed0_20260927",
+    "name": "victim",
+    "exist_ok": true,
+    "optimizer": "SGD",
+    "cos_lr": true,
+    "close_mosaic": 100,
+    "cache": true,
+    "amp": true,
+    "save_period": 10,
+    "device": "0",
+    "lr0": 0.01,
+    "lrf": 0.01,
+    "momentum": 0.937,
+    "weight_decay": 0.0005,
+    "seed": 0,
+    "pretrained": false,
+    "val": true
+  },
+  "noise_status": "$EXPERIMENT_ROOT/noise_full_b2_to_lr001_orth0005_seed0_20260927/status.json"
+}

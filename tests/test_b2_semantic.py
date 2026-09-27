@@ -1,6 +1,7 @@
 import unittest
 import torch
-from ue_framework.methods.semantic_coordinates import select_channels, class_subspace, normalized_orth, gt_evidence
+from ue_framework.methods.semantic_coordinates import (select_channels, class_subspace,
+    normalized_orth, project_bases_to_channels, gt_evidence)
 from ue_framework.methods.adaptive_learner import AdaptiveLearner
 
 
@@ -30,6 +31,29 @@ class SemanticTests(unittest.TestCase):
         self.assertEqual(worst,[2,1])
         torch.testing.assert_close(loss,torch.tensor(13/14))
         self.assertGreater(float(torch.autograd.grad(loss,displacement)[0].norm()),0.)
+
+    def test_orthogonal_subspaces_use_same_tsfl_coordinates(self):
+        # The full-space basis also has a direction exclusively in a channel
+        # excluded by TSFL. That direction must not affect the selected-space
+        # orthogonality loss.
+        basis = torch.tensor([[1., 0.], [0., 1.], [0., 0.]])
+        projected = project_bases_to_channels({7: basis}, torch.tensor([0, 2]))
+        self.assertEqual(tuple(projected[7].shape), (2, 1))
+        torch.testing.assert_close(projected[7].T @ projected[7], torch.ones(1, 1))
+        selected = torch.tensor([[1., 1.]], requires_grad=True)
+        loss, conflicts, _ = normalized_orth(selected, projected, torch.ones(1), worst_k=1)
+        torch.testing.assert_close(loss, torch.tensor(.5))
+        torch.testing.assert_close(conflicts, torch.tensor([.5]))
+        self.assertGreater(float(torch.autograd.grad(loss, selected)[0].norm()), 0.)
+
+    def test_worst_classes_follow_overlap_weighted_objective(self):
+        displacement = torch.tensor([[1., 0.], [.1, 1.]], requires_grad=True)
+        bases = {3: torch.tensor([[1.], [0.]]), 8: torch.tensor([[0.], [1.]])}
+        loss, conflicts, worst = normalized_orth(displacement, bases, torch.tensor([1., 4.]), worst_k=1)
+        self.assertEqual(worst, [8])
+        torch.testing.assert_close(conflicts, torch.tensor([(1. + 4. * .01 / 1.01) / 2., 4. / 1.01 / 2.]))
+        torch.testing.assert_close(loss, conflicts[1])
+        self.assertGreater(float(torch.autograd.grad(loss, displacement)[0].norm()), 0.)
 
     def test_baseline_files_identical(self):
         import hashlib

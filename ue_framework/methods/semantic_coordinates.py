@@ -75,16 +75,52 @@ def class_subspace(features, variance=.90, min_rank=4, max_rank_fraction=.25):
 
 
 def normalized_orth(displacement, bases, overlap_weights, worst_k=3, eps=1e-12):
-    """Full-C displacement. Class conflict -> top-k classes -> weighted instance mean."""
+    """Rank worst classes with the same overlap-weighted objective that is optimized."""
     classes = sorted(bases)
-    energy = displacement.square().sum(-1).clamp_min(eps)
+    if displacement.ndim != 2 or overlap_weights.ndim != 1 or overlap_weights.shape[0] != displacement.shape[0]:
+        raise ValueError('Invalid displacement or overlap-weight dimensions')
+    if not torch.isfinite(overlap_weights).all() or (overlap_weights < 0).any() or overlap_weights.sum() <= 0:
+        raise ValueError('Overlap weights must be finite, nonnegative, and nonzero')
     ratios = torch.stack([(displacement @ bases[c]).square().sum(-1)/
                           (displacement.square().sum(-1)+eps) for c in classes], -1)
-    # Equal instance averaging chooses worst classes; overlap then weights their instances.
-    class_conflicts = ratios.mean(0)
+    # Rank by the actual weighted objective. Previously classes were ranked on
+    # the unweighted mean, while only the final scalar applied overlap weights.
+    weighted_ratios = ratios * overlap_weights[:, None]
+    class_conflicts = weighted_ratios.mean(0)
     order = torch.argsort(class_conflicts.detach(), descending=True, stable=True)[:min(worst_k, len(classes))]
-    value = (ratios[:, order].mean(-1)*overlap_weights).mean()
+    value = class_conflicts[order].mean()
     return value, class_conflicts, [classes[int(i)] for i in order]
+
+
+def project_bases_to_channels(bases, channel_indices, rank_rtol=1e-6):
+    """Represent each full feature subspace in the selected TSFL coordinates.
+
+    Restricting the rows of a basis changes its columns' orthogonality. SVD
+    therefore returns an orthonormal basis for the projected span and drops
+    directions that vanish (or are numerically negligible) after restriction.
+    """
+    if not 0 < rank_rtol < 1:
+        raise ValueError('rank_rtol must be between 0 and 1')
+    projected = {}
+    if not bases:
+        raise ValueError('At least one semantic subspace is required')
+    first_basis = next(iter(bases.values()))
+    indices = torch.as_tensor(channel_indices, dtype=torch.long, device=first_basis.device)
+    if indices.ndim != 1 or indices.numel() == 0:
+        raise ValueError('Invalid channel indices')
+    for cls, basis in bases.items():
+        if basis.ndim != 2 or basis.device != indices.device or int(indices.min()) < 0 or int(indices.max()) >= basis.shape[0]:
+            raise ValueError('Invalid channel projection for semantic subspace')
+        restricted = basis.index_select(0, indices)
+        u, singular_values, _ = torch.linalg.svd(restricted, full_matrices=False)
+        if singular_values.numel() == 0 or not torch.isfinite(singular_values).all():
+            raise ValueError('Invalid projected semantic subspace')
+        threshold = singular_values.max() * rank_rtol
+        keep = singular_values > threshold
+        if not bool(keep.any()):
+            raise ValueError(f'Projected semantic subspace is rank zero for class {cls}')
+        projected[int(cls)] = u[:, keep].contiguous()
+    return projected
 
 
 def semantic_identity(cfg, root):
@@ -99,6 +135,10 @@ def semantic_identity(cfg, root):
             raise ValueError('Semantic artifacts must stay in isolated project')
         artifacts[name] = sha256(p)
     methods = root / 'ue_framework' / 'methods'
-    return {'artifacts': artifacts, 'semantic_code_sha256': sha256(methods/'b2_semantic.py'),
+    result = {'artifacts': artifacts, 'semantic_code_sha256': sha256(methods/'b2_semantic.py'),
             'coordinate_code_sha256': sha256(methods/'semantic_coordinates.py'),
+            'reference_orth_code_sha256': sha256(methods/'orth_reference_design.py'),
             'lambda_orth': float(s['lambda_orth'])}
+    if s.get('orth_objective', 'angular') != 'angular':
+        result['orth_objective'] = s['orth_objective']
+    return result

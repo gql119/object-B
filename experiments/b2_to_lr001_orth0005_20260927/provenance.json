@@ -1,0 +1,47 @@
+{
+  "schema": "object-b.experiment-provenance.v1",
+  "experiment": "B2-TO",
+  "run_id": "victim_b2_to_lr001_orth0005_seed0_20260927",
+  "source_commits": {
+    "scientific": "aeb88b075a3e40446f96d982637d44cad5fe5a62",
+    "pipeline_recovery": "7906bc5fe4338eb40774412bb838b6ecefddd06a"
+  },
+  "configuration": {
+    "path": "ue_framework/configs/exp_voc_person_b2_to_lr001_orth0005_20260927.yaml",
+    "sha256": "95747041ad671b716b0cffa66af68fe434f94281a841f3a0bb376d5be7cbb24a",
+    "published_sanitized_template_sha256": "890c3524d23639624df0a542e25212ab5046a7d48e936bcd15fa5418e4df19b6"
+  },
+  "server_evidence": {
+    "noise_global_params_sha256": "4ae28d877b41c457e121bcc9597671133f789bfe6e484d4691d958ec073c1714",
+    "noise_code_sha256": "e6203909a21d1ac50ba7e41c80219dc69bac9499ad41b2649f9368d8052dabe3",
+    "noise_seconds": 13069.949442,
+    "noise_epochs": 24,
+    "noise_steps": 9144,
+    "materialized_images": 16551,
+    "clean_validation_images": 4952,
+    "victim_exit_code": 0,
+    "victim_epochs": 200,
+    "victim_seed": 0,
+    "pretrained": false,
+    "selected_checkpoint": "best.pt",
+    "recovery_pipeline_status": "complete",
+    "reused_noise": true
+  },
+  "published_file_sha256": {
+    "ue_framework\\methods\\b2_semantic.py": "80fb2355e6a9cd9d09f58925779f7fb8859672825d17a42434fd184266011a88",
+    "ue_framework\\methods\\semantic_coordinates.py": "e28bd05b8dc45b3ca90504c4f297e8e377987ea8bb02df01956627bca662b665",
+    "ue_framework\\methods\\orth_reference_design.py": "895a8bdbb252b222c10e4635d6806175a4f6ce7c147cbe72ff8b9913b07bb812",
+    "ue_framework\\configs\\exp_voc_person_b2_to_lr001_orth0005_20260927.yaml": "890c3524d23639624df0a542e25212ab5046a7d48e936bcd15fa5418e4df19b6",
+    "scripts\\run_b2_to_auto_pipeline.py": "2d7ad721e258151186fa999e79dd836467422eecbbfd9d591a0f7aa2add23fcb",
+    "scripts\\run_b2_to_continue_after_noise_20260927.py": "56c843c4e2fad4c6ebcdb50f366130a0e6736b5766b01fd0f783be565ae86666",
+    "tests\\test_b2_semantic.py": "7897035cde97b8cfce5d520ac8a8d352543c7efee3509f7c1c431af35c103758",
+    "tests\\test_b2_to_auto_pipeline.py": "c4892dca43d8689ce272ca4ae0d333e01711f5676c63748858a4cd8b4c1b2a4d",
+    "tests\\test_orth_reference_design.py": "f0d2c7b7b103d40e7f0c0574b30e7cdc664ddd91fe6823d35ae82029c7010323"
+  },
+  "limitations": [
+    "single seed",
+    "no matched clean victim baseline",
+    "Fourier LR changed to 0.001, confounding a pure orthogonality ablation",
+    "AP50 is not evidence of causal background absorption"
+  ]
+}

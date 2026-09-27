@@ -7,7 +7,8 @@ import torch.nn.functional as F
 from .b2_adaptive import B2AdaptiveTrainer
 from .legacy_kproto_ret import (LegacyKProtoTrainer, _rectangle, select_prototype,
                                 kproto_losses, non_target_retention_loss)
-from .semantic_coordinates import normalized_orth, CLASSES, sha256
+from .semantic_coordinates import normalized_orth, project_bases_to_channels, CLASSES, sha256
+from .orth_reference_design import reference_energy_orth
 
 
 class SemanticFrozenTrainer(LegacyKProtoTrainer):
@@ -32,7 +33,7 @@ class SemanticFrozenTrainer(LegacyKProtoTrainer):
         clean = self._feature(clean_aug, grad=False).detach()
         poisoned = self._feature(poison_aug, grad=True)
         image_losses, non_target_pairs = [], []
-        selected_losses, displacements, overlap_weights = [], [], []
+        selected_losses, displacements, clean_targets, overlap_weights = [], [], [], []
         class_drifts = {c: [] for c in self.bases}
         target_drift, proto_ids, proto_similarity, context_norm = [], [], [], []
         for b, (image, annotations, support) in enumerate(items):
@@ -67,6 +68,7 @@ class SemanticFrozenTrainer(LegacyKProtoTrainer):
             selected_losses.append(kproto_losses(hp[:, self.channels], h0[:, self.channels],
                                     selected[:, self.channels], ntp, nt0, self.margin))
             displacements.append(hp - h0.detach())
+            clean_targets.append(h0.detach())
             overlap_weights.extend(overlaps)
             for ann, mask in zip(nt_anns, non_targets):
                 a = self._pooled(h0_map, [mask]); p = self._pooled(hp_map, [mask])
@@ -93,17 +95,24 @@ class SemanticFrozenTrainer(LegacyKProtoTrainer):
         bg_full, rel_full, cos_clean_full, cos_bg_full = bg, rel, cos_clean, cos_bg
         bg, rel, _, cos_clean, cos_bg = [torch.stack([x[i] for x in selected_losses]).mean() for i in range(5)]
         displacement = torch.cat(displacements)
-        orth, conflicts, worst = normalized_orth(displacement, self.bases,
+        selected_displacement = displacement.index_select(1, self.channels)
+        orth, conflicts, worst = normalized_orth(selected_displacement, self.orth_bases,
             displacement.new_tensor(overlap_weights), self.worst_k, self.orth_eps)
+        orth_full, _, _ = normalized_orth(displacement, self.bases,
+            displacement.new_tensor(overlap_weights), self.worst_k, self.orth_eps)
+        reference_orth, _, _ = reference_energy_orth(selected_displacement,
+            torch.cat(clean_targets).index_select(1, self.channels), self.orth_bases,
+            displacement.new_tensor(overlap_weights), self.worst_k, self.orth_eps)
+        orth_objective = reference_orth if self.orth_objective == 'reference_energy' else orth
         tv = self._tv_loss(raw)
         budget = F.relu(raw.abs().max() - self.eps)
         weighted_bg = self.lambda_bg * bg
         weighted_rel = self.lambda_rel * rel
         weighted_ret = self.lambda_ret * ret
-        total = weighted_bg + weighted_rel + weighted_ret + self.lambda_orth * orth + self.lambda_tv * tv + self.lambda_budget * budget
+        total = weighted_bg + weighted_rel + weighted_ret + self.lambda_orth * orth_objective + self.lambda_tv * tv + self.lambda_budget * budget
         self._semantic_terms = {"BG_sel": weighted_bg, "rel_sel": weighted_rel,
-                                "ret": weighted_ret, "orth": self.lambda_orth * orth}
-        self._orth_raw = orth
+                                "ret": weighted_ret, "orth": self.lambda_orth * orth_objective}
+        self._orth_raw = orth_objective
         self._frozen_total = total
         metrics = {
             "L_BG": bg, "L_rel": rel, "L_ret": ret,
@@ -126,8 +135,15 @@ class SemanticFrozenTrainer(LegacyKProtoTrainer):
             "cos_target_bg_full": cos_bg_full, "cos_target_clean_full": cos_clean_full,
             "L_BG_sel": bg, "L_rel_sel": rel, "cos_target_bg_sel": cos_bg,
             "cos_target_clean_sel": cos_clean, "L_orth_worst": orth,
-            "weighted_L_orth": self.lambda_orth * orth,
+            "L_orth_worst_tsfl_channels": orth,
+            "L_orth_worst_full_channels": orth_full,
+            "L_orth_reference_energy": reference_orth,
+            "L_orth_objective": orth_objective,
+            "orth_objective_reference_energy": poisoned.new_tensor(float(self.orth_objective == 'reference_energy')),
+            "weighted_L_orth": self.lambda_orth * orth_objective,
             "target_displacement_norm": displacement.norm(dim=-1).mean(),
+            "target_displacement_tsfl_norm": selected_displacement.norm(dim=-1).mean(),
+            "orth_coordinate_channels": poisoned.new_tensor(float(self.channels.numel())),
             "mean_non_target_feature_drift": ret,
         })
         for j, c in enumerate(sorted(self.bases)):
@@ -171,7 +187,11 @@ class B2SemanticTrainer(B2AdaptiveTrainer, SemanticFrozenTrainer):
         self.bases = {int(c): item["basis"].to(device) for c, item in sub["classes"].items()}
         if sorted(self.bases) != [c for c in range(self.num_classes) if c != self.target_class_id]:
             raise ValueError("Incomplete non-target class subspaces")
+        self.orth_bases = project_bases_to_channels(self.bases, self.channels)
         self.lambda_orth = float(settings["lambda_orth"])
+        self.orth_objective = settings.get('orth_objective', 'angular')
+        if self.orth_objective not in ('angular', 'reference_energy'):
+            raise ValueError('Unknown orthogonality objective')
         self.overlap_weight = float(settings["overlap_orth_weight"])
         self.worst_k = int(settings["orth_worst_k"])
         self.orth_eps = float(settings.get("orth_eps", 1e-12))

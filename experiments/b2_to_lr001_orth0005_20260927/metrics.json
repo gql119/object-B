@@ -1,0 +1,309 @@
+{
+  "schema": "object-b.b2-to-results.v1",
+  "experiment": "B2-TO",
+  "run_id": "victim_b2_to_lr001_orth0005_seed0_20260927",
+  "status": "complete",
+  "protocol": {
+    "noise_epochs": 24,
+    "noise_steps": 9144,
+    "noise_duration_seconds": 13069.949442,
+    "noise_duration_hours": 3.630542,
+    "materialized_train_images": 16551,
+    "clean_validation_images": 4952,
+    "victim_model": "YOLOv8n",
+    "victim_initialization": "random (pretrained=false)",
+    "victim_epochs": 200,
+    "victim_seed": 0,
+    "victim_batch": 36,
+    "image_size": 640,
+    "optimizer": "SGD",
+    "selected_checkpoint": "best.pt",
+    "victim_stage_exit_code": 0,
+    "victim_results_csv_rows": 200,
+    "clean_validation_split": "original clean VOC validation copied byte-for-byte"
+  },
+  "method": {
+    "selected_semantic_channels": 48,
+    "semantic_channel_pool": 64,
+    "target_channel_fraction": 0.75,
+    "specificity_weight": 1.0,
+    "lambda_orth": 0.0005,
+    "fourier_lr": 0.001,
+    "adaptive_batch_size": 1,
+    "adaptive_inner_lr": 0.0001,
+    "lambda_adapt": 1.0,
+    "lambda_nt": 0.25,
+    "orth_reference_energy": "diagnostic only",
+    "target_region": "all person bounding-box pixels",
+    "overlap_strength": "half perturbation",
+    "global_budget": "16/255",
+    "overlap_budget": "8/255"
+  },
+  "results": {
+    "mAP50_target": 0.04153991039293605,
+    "Recall_target": 0.0,
+    "mAP50_non_target": 0.6946393868756432,
+    "mAP50_all": 0.6619844130515079,
+    "non_target_macro_recomputed": 0.6946393868756434
+  },
+  "comparison": {
+    "B2": {
+      "mAP50_target": 0.022018136609624102,
+      "Recall_target": 0.0,
+      "mAP50_non_target": 0.6943360003498512,
+      "mAP50_all": 0.6607201071628398
+    },
+    "B2_T": {
+      "mAP50_target": 0.03301231387301257,
+      "Recall_target": 0.0,
+      "mAP50_non_target": 0.6905033152732581,
+      "mAP50_all": 0.6576287652032459
+    },
+    "deltas_B2_TO_vs_B2": {
+      "mAP50_target": 0.01952177378331195,
+      "Recall_target": 0.0,
+      "mAP50_non_target": 0.0003033865257919821,
+      "mAP50_all": 0.0012643058886681047
+    },
+    "deltas_B2_TO_vs_B2_T": {
+      "mAP50_target": 0.008527596519923478,
+      "Recall_target": 0.0,
+      "mAP50_non_target": 0.00413607160238505,
+      "mAP50_all": 0.004355647848262034
+    },
+    "non_target_macro": {
+      "B2": 0.694336000349851,
+      "B2_T": 0.6905033152732581,
+      "B2_TO": 0.6946393868756434,
+      "delta_B2_TO_vs_B2": 0.0003033865257924262,
+      "delta_B2_TO_vs_B2_T": 0.004136071602385272
+    }
+  },
+  "per_class": [
+    {
+      "id": 0,
+      "class": "aeroplane",
+      "AP50_B2": 0.8399693800443943,
+      "AP50_B2_T": 0.8362897009361557,
+      "AP50_B2_TO": 0.8385016059823014,
+      "Recall_B2_TO": 0.698060723414102,
+      "delta_TO_vs_B2": -0.0014677740620928637,
+      "delta_TO_vs_B2_T": 0.002211905046145657
+    },
+    {
+      "id": 1,
+      "class": "bicycle",
+      "AP50_B2": 0.6460433344703604,
+      "AP50_B2_T": 0.6634793224158758,
+      "AP50_B2_TO": 0.6485464193902705,
+      "Recall_B2_TO": 0.5311572700296736,
+      "delta_TO_vs_B2": 0.002503084919910026,
+      "delta_TO_vs_B2_T": -0.014932903025605349
+    },
+    {
+      "id": 2,
+      "class": "bird",
+      "AP50_B2": 0.6510329160757133,
+      "AP50_B2_T": 0.6517616248843009,
+      "AP50_B2_TO": 0.6676482025583574,
+      "Recall_B2_TO": 0.6034858387799564,
+      "delta_TO_vs_B2": 0.016615286482644098,
+      "delta_TO_vs_B2_T": 0.015886577674056546
+    },
+    {
+      "id": 3,
+      "class": "boat",
+      "AP50_B2": 0.6864993699889594,
+      "AP50_B2_T": 0.6711254562724539,
+      "AP50_B2_TO": 0.667548220584974,
+      "Recall_B2_TO": 0.596958174904943,
+      "delta_TO_vs_B2": -0.018951149403985457,
+      "delta_TO_vs_B2_T": -0.0035772356874799183
+    },
+    {
+      "id": 4,
+      "class": "bottle",
+      "AP50_B2": 0.4753743235487209,
+      "AP50_B2_T": 0.4712986616378384,
+      "AP50_B2_TO": 0.5119839460678226,
+      "Recall_B2_TO": 0.4200426439232409,
+      "delta_TO_vs_B2": 0.036609622519101714,
+      "delta_TO_vs_B2_T": 0.0406852844299842
+    },
+    {
+      "id": 5,
+      "class": "bus",
+      "AP50_B2": 0.8326851732748695,
+      "AP50_B2_T": 0.8103119535766166,
+      "AP50_B2_TO": 0.8270246946570906,
+      "Recall_B2_TO": 0.7322959920063125,
+      "delta_TO_vs_B2": -0.005660478617778852,
+      "delta_TO_vs_B2_T": 0.016712741080474047
+    },
+    {
+      "id": 6,
+      "class": "car",
+      "AP50_B2": 0.8865876055254669,
+      "AP50_B2_T": 0.881333311657212,
+      "AP50_B2_TO": 0.8798615094238926,
+      "Recall_B2_TO": 0.7743547044129891,
+      "delta_TO_vs_B2": -0.006726096101574264,
+      "delta_TO_vs_B2_T": -0.0014718022333193304
+    },
+    {
+      "id": 7,
+      "class": "cat",
+      "AP50_B2": 0.8092588574386785,
+      "AP50_B2_T": 0.8038702864746522,
+      "AP50_B2_TO": 0.8044509165777556,
+      "Recall_B2_TO": 0.7813706840755423,
+      "delta_TO_vs_B2": -0.004807940860922955,
+      "delta_TO_vs_B2_T": 0.0005806301031033856
+    },
+    {
+      "id": 8,
+      "class": "chair",
+      "AP50_B2": 0.5325464129051478,
+      "AP50_B2_T": 0.5244503691992636,
+      "AP50_B2_TO": 0.5404300586942679,
+      "Recall_B2_TO": 0.4656084656084656,
+      "delta_TO_vs_B2": 0.007883645789120042,
+      "delta_TO_vs_B2_T": 0.01597968949500428
+    },
+    {
+      "id": 9,
+      "class": "cow",
+      "AP50_B2": 0.6875774899864722,
+      "AP50_B2_T": 0.6821644908590029,
+      "AP50_B2_TO": 0.6804451066583553,
+      "Recall_B2_TO": 0.6270491803278688,
+      "delta_TO_vs_B2": -0.007132383328116831,
+      "delta_TO_vs_B2_T": -0.0017193842006475446
+    },
+    {
+      "id": 10,
+      "class": "diningtable",
+      "AP50_B2": 0.6806748609637892,
+      "AP50_B2_T": 0.6795497364610948,
+      "AP50_B2_TO": 0.6780296165322333,
+      "Recall_B2_TO": 0.5728155339805825,
+      "delta_TO_vs_B2": -0.002645244431555893,
+      "delta_TO_vs_B2_T": -0.0015201199288615852
+    },
+    {
+      "id": 11,
+      "class": "dog",
+      "AP50_B2": 0.5874931718007825,
+      "AP50_B2_T": 0.5749773538748035,
+      "AP50_B2_TO": 0.5833502335470672,
+      "Recall_B2_TO": 0.6728016359918201,
+      "delta_TO_vs_B2": -0.004142938253715367,
+      "delta_TO_vs_B2_T": 0.008372879672263633
+    },
+    {
+      "id": 12,
+      "class": "horse",
+      "AP50_B2": 0.7237318652526765,
+      "AP50_B2_T": 0.7317220029680656,
+      "AP50_B2_TO": 0.7330481957237561,
+      "Recall_B2_TO": 0.6609195402298851,
+      "delta_TO_vs_B2": 0.009316330471079604,
+      "delta_TO_vs_B2_T": 0.0013261927556905695
+    },
+    {
+      "id": 13,
+      "class": "motorbike",
+      "AP50_B2": 0.720110287941291,
+      "AP50_B2_T": 0.7048351957339799,
+      "AP50_B2_TO": 0.6977729686441199,
+      "Recall_B2_TO": 0.6615384615384615,
+      "delta_TO_vs_B2": -0.022337319297171088,
+      "delta_TO_vs_B2_T": -0.00706222708986004
+    },
+    {
+      "id": 14,
+      "class": "person",
+      "AP50_B2": 0.022018136609624102,
+      "AP50_B2_T": 0.03301231387301257,
+      "AP50_B2_TO": 0.04153991039293605,
+      "Recall_B2_TO": 0.0,
+      "delta_TO_vs_B2": 0.01952177378331195,
+      "delta_TO_vs_B2_T": 0.008527596519923478
+    },
+    {
+      "id": 15,
+      "class": "pottedplant",
+      "AP50_B2": 0.4417287012812605,
+      "AP50_B2_T": 0.44943734086805676,
+      "AP50_B2_TO": 0.42907953835183954,
+      "Recall_B2_TO": 0.30416666666666664,
+      "delta_TO_vs_B2": -0.012649162929420976,
+      "delta_TO_vs_B2_T": -0.020357802516217216
+    },
+    {
+      "id": 16,
+      "class": "sheep",
+      "AP50_B2": 0.7195999951260179,
+      "AP50_B2_T": 0.7173292817069818,
+      "AP50_B2_TO": 0.723455051583221,
+      "Recall_B2_TO": 0.6652892561983471,
+      "delta_TO_vs_B2": 0.0038550564572030765,
+      "delta_TO_vs_B2_T": 0.00612576987623914
+    },
+    {
+      "id": 17,
+      "class": "sofa",
+      "AP50_B2": 0.7180025560903234,
+      "AP50_B2_T": 0.7037336086959228,
+      "AP50_B2_TO": 0.698527944207247,
+      "Recall_B2_TO": 0.6527196652719666,
+      "delta_TO_vs_B2": -0.01947461188307642,
+      "delta_TO_vs_B2_T": -0.005205664488675876
+    },
+    {
+      "id": 18,
+      "class": "train",
+      "AP50_B2": 0.8347110735353291,
+      "AP50_B2_T": 0.8273996974813562,
+      "AP50_B2_TO": 0.847567248251404,
+      "Recall_B2_TO": 0.8049645390070922,
+      "delta_TO_vs_B2": 0.012856174716074809,
+      "delta_TO_vs_B2_T": 0.020167550770047726
+    },
+    {
+      "id": 19,
+      "class": "tvmonitor",
+      "AP50_B2": 0.7187566313969176,
+      "AP50_B2_T": 0.7344935944882707,
+      "AP50_B2_TO": 0.7408768732012485,
+      "Recall_B2_TO": 0.6116456670924658,
+      "delta_TO_vs_B2": 0.02212024180433092,
+      "delta_TO_vs_B2_T": 0.006383278712977836
+    }
+  ],
+  "hashes": {
+    "scientific_commit": "aeb88b075a3e40446f96d982637d44cad5fe5a62",
+    "pipeline_recovery_commit": "7906bc5fe4338eb40774412bb838b6ecefddd06a",
+    "config_sha256": "95747041ad671b716b0cffa66af68fe434f94281a841f3a0bb376d5be7cbb24a",
+    "noise_global_params_sha256": "4ae28d877b41c457e121bcc9597671133f789bfe6e484d4691d958ec073c1714",
+    "files": {
+      "ue_framework\\methods\\b2_semantic.py": "80fb2355e6a9cd9d09f58925779f7fb8859672825d17a42434fd184266011a88",
+      "ue_framework\\methods\\semantic_coordinates.py": "e28bd05b8dc45b3ca90504c4f297e8e377987ea8bb02df01956627bca662b665",
+      "ue_framework\\methods\\orth_reference_design.py": "895a8bdbb252b222c10e4635d6806175a4f6ce7c147cbe72ff8b9913b07bb812",
+      "ue_framework\\configs\\exp_voc_person_b2_to_lr001_orth0005_20260927.yaml": "890c3524d23639624df0a542e25212ab5046a7d48e936bcd15fa5418e4df19b6",
+      "scripts\\run_b2_to_auto_pipeline.py": "2d7ad721e258151186fa999e79dd836467422eecbbfd9d591a0f7aa2add23fcb",
+      "scripts\\run_b2_to_continue_after_noise_20260927.py": "56c843c4e2fad4c6ebcdb50f366130a0e6736b5766b01fd0f783be565ae86666",
+      "tests\\test_b2_semantic.py": "7897035cde97b8cfce5d520ac8a8d352543c7efee3509f7c1c431af35c103758",
+      "tests\\test_b2_to_auto_pipeline.py": "c4892dca43d8689ce272ca4ae0d333e01711f5676c63748858a4cd8b4c1b2a4d",
+      "tests\\test_orth_reference_design.py": "f0d2c7b7b103d40e7f0c0574b30e7cdc664ddd91fe6823d35ae82029c7010323"
+    },
+    "published_config_sha256": "890c3524d23639624df0a542e25212ab5046a7d48e936bcd15fa5418e4df19b6"
+  },
+  "caveats": [
+    "Single seed; AP50 changes do not establish causal background absorption.",
+    "Not a pure orthogonality ablation: Fourier learning rate was changed to 0.001 during gate tuning.",
+    "No protocol-matched clean victim baseline is included.",
+    "Recall_target=0 at the evaluator operating point; person AP50 remains nonzero.",
+    "Comparisons to B2 and B2-T are descriptive, not paired-seed estimates."
+  ]
+}

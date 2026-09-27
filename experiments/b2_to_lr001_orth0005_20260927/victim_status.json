@@ -1,0 +1,10 @@
+{
+  "state": "complete",
+  "smoke": false,
+  "seed": 0,
+  "started_at_unix": 1790504375.4758575,
+  "best_checkpoint": "$EXPERIMENT_ROOT/victim_b2_to_lr001_orth0005_seed0_20260927/victim/weights/best.pt",
+  "last_checkpoint": "$EXPERIMENT_ROOT/victim_b2_to_lr001_orth0005_seed0_20260927/victim/weights/last.pt",
+  "clean_val_metrics": "$EXPERIMENT_ROOT/victim_b2_to_lr001_orth0005_seed0_20260927/clean_val_metrics.json",
+  "completed_at_unix": 1790514006.2468488
+}

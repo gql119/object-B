@@ -1,0 +1,13 @@
+{
+  "state": "failed",
+  "stage": "noise",
+  "started_at_unix": 1790487361.9683383,
+  "noise": "$EXPERIMENT_ROOT/noise_full_b2_to_lr001_orth0005_seed0_20260927",
+  "victim": "$EXPERIMENT_ROOT/victim_b2_to_lr001_orth0005_seed0_20260927",
+  "config_sha256": "95747041ad671b716b0cffa66af68fe434f94281a841f3a0bb376d5be7cbb24a",
+  "admitted_commit": "aeb88b075a3e40446f96d982637d44cad5fe5a62",
+  "cleanup_policy": "retain_all",
+  "updated_at_unix": 1790487362.0012305,
+  "error": "No module named 'ue_framework'",
+  "completed_at_unix": 1790500433.6732497
+}
