@@ -1,0 +1,82 @@
+{
+  "original_B2_TO_eps_target": 0.06274509803921569,
+  "new_eps_target": 0.031372549,
+  "original_B2_TO_eps_overlap": 0.03137254901960784,
+  "new_eps_overlap": 0.0156862745,
+  "sample_count": 256,
+  "sample_seed": 0,
+  "sample_stems_sha256": "06ae150f834edd930837becf5f62036374e778f70f6a07eda975d13d97d12334",
+  "B2_TO": {
+    "max_abs_delta_byte": {
+      "global": 16,
+      "target_non_overlap": 16,
+      "overlap": 8,
+      "outside_target": 0
+    },
+    "max_abs_delta": {
+      "global": 0.06274509803921569,
+      "target_non_overlap": 0.06274509803921569,
+      "overlap": 0.03137254901960784,
+      "outside_target": 0.0
+    },
+    "mean_abs_delta": {
+      "global": 0.009287596927180038,
+      "target_non_overlap": 0.02816131183636007,
+      "overlap": 0.01458143566220376
+    },
+    "saturation_ratio": {
+      "target_non_overlap": 0.29028004546709296,
+      "overlap": 0.3316292967531212
+    },
+    "perturbed_pixel_ratio": 0.36301429599726975,
+    "perturbed_pixels": 16520023,
+    "all_pixels": 45507913,
+    "l2_norm_byte": 57116.71729012444,
+    "region_pixels": {
+      "target_non_overlap": 13385505,
+      "overlap": 3134518
+    }
+  },
+  "B2_TO_E8": {
+    "max_abs_delta_byte": {
+      "global": 8,
+      "target_non_overlap": 8,
+      "overlap": 4,
+      "outside_target": 0
+    },
+    "max_abs_delta": {
+      "global": 0.03137254901960784,
+      "target_non_overlap": 0.03137254901960784,
+      "overlap": 0.01568627450980392,
+      "outside_target": 0.0
+    },
+    "mean_abs_delta": {
+      "global": 0.007906813977920259,
+      "target_non_overlap": 0.024016998897204805,
+      "overlap": 0.01223248480016694
+    },
+    "saturation_ratio": {
+      "target_non_overlap": 0.8328683153904167,
+      "overlap": 0.8544053663115031
+    },
+    "perturbed_pixel_ratio": 0.36301429599726975,
+    "perturbed_pixels": 16520023,
+    "all_pixels": 45507913,
+    "l2_norm_byte": 43006.15494321714,
+    "region_pixels": {
+      "target_non_overlap": 13385505,
+      "overlap": 3134518
+    }
+  },
+  "mean_abs_delta_ratio_E8_over_B2_TO": {
+    "global": 0.8513304399312448,
+    "target_non_overlap": 0.8528366518137698,
+    "overlap": 0.8389081215009927
+  },
+  "L2_perturbation_ratio_E8_over_B2_TO": 0.7529521475256941,
+  "saturation_ratio_E8_over_B2_TO": {
+    "target_non_overlap": 2.869189006947545,
+    "overlap": 2.5763868713552123
+  },
+  "perturbed_area_ratio_E8_over_B2_TO": 1.0
+}

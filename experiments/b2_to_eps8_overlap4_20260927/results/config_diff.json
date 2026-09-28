@@ -1,0 +1,8 @@
+{
+  "baseline": "B2-TO eps16/255; overlap8/255",
+  "candidate": "B2-TO E8 eps8/255; overlap4/255",
+  "change": "Only epsilon and isolated run root changed in config",
+  "baseline_config_sha256": "95747041ad671b716b0cffa66af68fe434f94281a841f3a0bb376d5be7cbb24a",
+  "candidate_config_sha256": "597871ef9dc8e8044bd64659feca4efb3506e38575cc3cc18ab44aa20a722790",
+  "all_other_config_values_equal": true
+}

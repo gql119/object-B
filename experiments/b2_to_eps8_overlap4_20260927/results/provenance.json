@@ -1,0 +1,46 @@
+{
+  "experiment": "B2-TO E8 half-budget ablation",
+  "published_branch": "codex/b2-to-e8-budget-ablation-20260928",
+  "base_commit": "225fa4dfb612af3c7a6741635e5e60fc11e5081d",
+  "source_candidate_commit": "0cce7d6e787220fc4a4fd3b30c68bf4c61fc68c5",
+  "run_ids": [
+    "noise_full_b2_to_eps8_overlap4_seed0_20260927",
+    "victim_b2_to_eps8_overlap4_seed0_20260927"
+  ],
+  "config_sha256": "597871ef9dc8e8044bd64659feca4efb3506e38575cc3cc18ab44aa20a722790",
+  "budget": {
+    "target": "8/255",
+    "overlap": "4/255",
+    "overlap_scale": 0.5
+  },
+  "noise": {
+    "steps": 9144,
+    "epochs": 24,
+    "duration_seconds": 13065.944688796997,
+    "seed": 0
+  },
+  "victim": {
+    "pretrained": false,
+    "imgsz": 640,
+    "clean_val_images": 4952,
+    "seed": 0,
+    "epochs": 200,
+    "batch": 36,
+    "architecture": "YOLOv8n"
+  },
+  "train_images": 16551,
+  "exit_codes": {
+    "materialization": 0,
+    "pipeline": 0,
+    "noise": 0,
+    "victim": 0
+  },
+  "scientific_review": "scientifically_correct",
+  "excluded_from_publish": [
+    "weights",
+    "datasets",
+    "images",
+    "teacher checkpoints",
+    "sample image identifiers"
+  ]
+}

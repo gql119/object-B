@@ -100,7 +100,98 @@ def _smoke_data(cfg, output):
     return root, len(train_images), val_count
 
 
-def _full_data(cfg, seed, noise_dir, config_path):
+def _bbox_masks(shape, annotations):
+    height, width = shape[:2]
+    target = np.zeros((height, width), dtype=bool)
+    other = np.zeros((height, width), dtype=bool)
+    for ann in annotations:
+        if ann.get("bbox") is None:
+            continue
+        box = _rectangle((height, width), ann["bbox"])[0, 0].numpy().astype(bool)
+        if int(ann["cls"]) == 14:
+            target |= box
+        else:
+            other |= box
+    return target, other
+
+
+def _budget_image_stats(clean_pixels, poison_pixels, annotations, eps, overlap_scale):
+    clean_i = clean_pixels.astype(np.int16)
+    poison_i = poison_pixels.astype(np.int16)
+    delta = np.abs(clean_i - poison_i)
+    per_pixel = delta.max(axis=2)
+    target, other = _bbox_masks(clean_pixels.shape, annotations)
+    regions = {"target_non_overlap": target & ~other, "overlap": target & other,
+               "outside_target": ~target}
+    target_limit = int(round(float(eps) * 255))
+    overlap_limit = int(round(float(eps) * float(overlap_scale) * 255))
+    limits = {"target_non_overlap": target_limit, "overlap": overlap_limit}
+    maxima = {"global": int(per_pixel.max(initial=0))}
+    for name, mask in regions.items():
+        maxima[name] = int(per_pixel[mask].max(initial=0))
+    if maxima["global"] > target_limit:
+        raise RuntimeError(f"Global decoded-pixel budget exceeded: {maxima['global']} > {target_limit}")
+    for name, limit in limits.items():
+        if maxima[name] > limit:
+            raise RuntimeError(f"{name} decoded-pixel budget exceeded: {maxima[name]} > {limit}")
+    if maxima["outside_target"] != 0:
+        raise RuntimeError(f"Decoded perturbation outside target boxes: {maxima['outside_target']}")
+    if np.any(per_pixel[target] == 0):
+        raise RuntimeError("Unchanged pixel inside a target rectangle")
+    return delta, per_pixel, regions, limits, maxima
+
+
+def _new_budget_accumulator():
+    return {"max_abs_delta_byte": {"global": 0, "target_non_overlap": 0,
+                                   "overlap": 0, "outside_target": 0},
+            "sum_abs_delta_byte": {"global": 0, "target_non_overlap": 0, "overlap": 0},
+            "channel_values": {"global": 0, "target_non_overlap": 0, "overlap": 0},
+            "saturated_pixels": {"target_non_overlap": 0, "overlap": 0},
+            "region_pixels": {"target_non_overlap": 0, "overlap": 0},
+            "perturbed_pixels": 0, "all_pixels": 0, "l2_squared_byte": 0}
+
+
+def _accumulate_budget(acc, delta, per_pixel, regions, limits):
+    acc["all_pixels"] += int(per_pixel.size)
+    acc["perturbed_pixels"] += int(np.count_nonzero(per_pixel))
+    acc["l2_squared_byte"] += float(np.square(delta.astype(np.float64)).sum())
+    for name in ("global", "target_non_overlap", "overlap"):
+        values = delta if name == "global" else delta[regions[name]]
+        if values.size:
+            acc["max_abs_delta_byte"][name] = max(
+                acc["max_abs_delta_byte"][name], int(values.max()))
+            acc["sum_abs_delta_byte"][name] += int(values.astype(np.int64).sum())
+            acc["channel_values"][name] += int(values.size)
+    acc["max_abs_delta_byte"]["outside_target"] = max(
+        acc["max_abs_delta_byte"]["outside_target"],
+        int(per_pixel[regions["outside_target"]].max(initial=0)))
+    for name in ("target_non_overlap", "overlap"):
+        mask = regions[name]
+        acc["region_pixels"][name] += int(mask.sum())
+        acc["saturated_pixels"][name] += int(np.count_nonzero(per_pixel[mask] >= limits[name]))
+
+
+def _finish_budget_accumulator(acc):
+    result = {"max_abs_delta_byte": acc["max_abs_delta_byte"],
+              "max_abs_delta": {k: v / 255.0 for k, v in acc["max_abs_delta_byte"].items()},
+              "mean_abs_delta": {}, "saturation_ratio": {},
+              "perturbed_pixel_ratio": (acc["perturbed_pixels"] / acc["all_pixels"]
+                                         if acc["all_pixels"] else 0.0),
+              "perturbed_pixels": acc["perturbed_pixels"], "all_pixels": acc["all_pixels"],
+              "l2_norm_byte": float(np.sqrt(acc["l2_squared_byte"]))}
+    for name in ("global", "target_non_overlap", "overlap"):
+        count = acc["channel_values"][name]
+        result["mean_abs_delta"][name] = (
+            acc["sum_abs_delta_byte"][name] / count / 255.0 if count else None)
+    for name in ("target_non_overlap", "overlap"):
+        count = acc["region_pixels"][name]
+        result["saturation_ratio"][name] = (
+            acc["saturated_pixels"][name] / count if count else None)
+    result["region_pixels"] = acc["region_pixels"]
+    return result
+
+
+def _full_data(cfg, seed, noise_dir, config_path, budget_reference_root=None):
     if seed != 0:
         raise ValueError("Only the completed seed-0 noise run is available")
     dataset = Path(cfg["data"]["dataset_root"])
@@ -157,6 +248,7 @@ def _full_data(cfg, seed, noise_dir, config_path):
     manifest_stems = {r["stem"] for r in rows}
     poisoned_images = list_images(str(root / "images" / "train"))
     poisoned_stems = {Path(image).stem for image in poisoned_images}
+    poisoned_by_stem = {Path(image).stem: Path(image) for image in poisoned_images}
     source_stems_sha256 = hashlib.sha256("\n".join(sorted(source_by_stem)).encode("utf-8")).hexdigest()
     if (len(rows) != expected or manifest_stems != set(source_by_stem)
             or len(poisoned_images) != expected or poisoned_stems != set(source_by_stem)
@@ -164,6 +256,16 @@ def _full_data(cfg, seed, noise_dir, config_path):
             or identity["source_image_count"] != expected):
         raise RuntimeError(f"Poisoned manifest incomplete: {len(rows)} rows, expected {expected}")
     eps = float(cfg["experiment"]["eps"])
+    method_cfg = cfg["methods"]["legacy_kproto_ret"]
+    overlap_scale = float(method_cfg.get("overlap_scale", 0.5))
+    if not 0.0 <= overlap_scale <= 1.0:
+        raise ValueError(f"Invalid overlap_scale: {overlap_scale}")
+    target_byte_limit = int(round(eps * 255))
+    overlap_byte_limit = int(round(eps * overlap_scale * 255))
+    if abs(eps * 255 - target_byte_limit) > 1e-4 or abs(
+            eps * overlap_scale * 255 - overlap_byte_limit) > 1e-4:
+        raise ValueError("This decoded-PNG audit requires integer-valued channel budgets")
+    target_stems = []
     for row in rows:
         image = Path(row["image_path"])
         if (image.resolve().parent != (root / "images" / "train").resolve()
@@ -186,34 +288,106 @@ def _full_data(cfg, seed, noise_dir, config_path):
         poison_pixels = cv2.imread(str(image), cv2.IMREAD_COLOR)
         if clean_pixels is None or poison_pixels is None or clean_pixels.shape != poison_pixels.shape:
             raise RuntimeError(f"Image cannot be compared: {row['stem']}")
-        pixel_linf = int(np.abs(clean_pixels.astype(np.int16) - poison_pixels.astype(np.int16)).max())
-        if pixel_linf > 16 or (row["has_target"] == "0" and pixel_linf != 0):
-            raise RuntimeError(f"Decoded-pixel budget or clean non-target violated: {row['stem']}, {pixel_linf}")
+        delta, per_pixel, regions, limits, maxima = _budget_image_stats(
+            clean_pixels, poison_pixels, annotations, eps, overlap_scale)
+        pixel_linf = maxima["global"]
+        if row["has_target"] == "0" and pixel_linf != 0:
+            raise RuntimeError(f"Clean non-target-only image changed: {row['stem']}, {pixel_linf}")
         if cfg["methods"]["legacy_kproto_ret"].get("support_mode") == "bbox_half_overlap":
-            height, width = clean_pixels.shape[:2]
-            target = np.zeros((height, width), dtype=bool)
-            other = np.zeros((height, width), dtype=bool)
-            for ann in annotations:
-                if ann.get("bbox") is None:
-                    continue
-                box = _rectangle((height, width), ann["bbox"])[0, 0].numpy().astype(bool)
-                if int(ann["cls"]) == 14:
-                    target |= box
-                else:
-                    other |= box
-            difference = np.abs(clean_pixels.astype(np.int16) - poison_pixels.astype(np.int16)).max(axis=2)
-            if np.any(difference[~target] != 0):
-                raise RuntimeError(f"Noise outside target rectangles: {row['stem']}")
-            if np.any(difference[target] == 0):
-                raise RuntimeError(f"Unchanged pixel inside target rectangle: {row['stem']}")
-            if np.any(difference[target & other] > 8):
-                raise RuntimeError(f"Half-strength overlap budget violated: {row['stem']}")
             if has_target and row["is_poisoned"] != "1":
                 raise RuntimeError(f"Target image not marked poisoned: {row['stem']}")
         if float(row["linf"]) > eps + 1e-6:
             raise RuntimeError(f"Perturbation exceeds epsilon: {row['stem']}")
         if row["has_target"] == "0" and row["is_poisoned"] != "0":
             raise RuntimeError(f"Non-target-only image was poisoned: {row['stem']}")
+        if has_target:
+            target_stems.append(row["stem"])
+
+    # Deterministic random audit over decoded, materialized PNGs. This happens
+    # before the caller can construct or train the victim model.
+    sample_count = 256
+    if len(target_stems) < sample_count:
+        raise RuntimeError(f"Need at least {sample_count} person images for the pixel audit")
+    sample_stems = sorted(random.Random(seed).sample(sorted(target_stems), sample_count))
+    new_acc = _new_budget_accumulator()
+    old_acc = _new_budget_accumulator() if budget_reference_root else None
+    reference_root = Path(budget_reference_root).resolve() if budget_reference_root else None
+    if reference_root and not reference_root.is_relative_to(ROOT.resolve()):
+        raise ValueError(f"Budget reference root outside isolated project: {reference_root}")
+    reference_by_stem = ({Path(path).stem: Path(path) for path in
+                          list_images(str(reference_root / "images" / "train"))}
+                         if reference_root else {})
+    for stem in sample_stems:
+        source_image = source_by_stem[stem]
+        source_label = dataset / cfg["data"]["train_labels"] / (stem + ".txt")
+        annotations = read_yolo_annotations(str(source_label))
+        clean_pixels = cv2.imread(str(source_image), cv2.IMREAD_COLOR)
+        current_image = poisoned_by_stem.get(stem)
+        if current_image is None:
+            raise RuntimeError(f"Materialized image missing from stem index: {stem}")
+        poison_pixels = cv2.imread(str(current_image), cv2.IMREAD_COLOR)
+        if clean_pixels is None or poison_pixels is None:
+            raise RuntimeError(f"Cannot decode sampled budget audit image: {stem}")
+        delta, per_pixel, regions, limits, maxima = _budget_image_stats(
+            clean_pixels, poison_pixels, annotations, eps, overlap_scale)
+        _accumulate_budget(new_acc, delta, per_pixel, regions, limits)
+        if reference_root:
+            old_image = reference_by_stem.get(stem)
+            old_label = reference_root / "labels" / "train" / (stem + ".txt")
+            if (old_image is None or not old_image.is_file() or not old_label.is_file()
+                    or not filecmp.cmp(source_label, old_label, shallow=False)):
+                raise RuntimeError(f"B2-TO paired audit reference missing/different labels: {stem}")
+            old_pixels = cv2.imread(str(old_image), cv2.IMREAD_COLOR)
+            if old_pixels is None or old_pixels.shape != clean_pixels.shape:
+                raise RuntimeError(f"Cannot decode paired B2-TO audit image: {stem}")
+            old_delta, old_per_pixel, old_regions, old_limits, _ = _budget_image_stats(
+                clean_pixels, old_pixels, annotations, 16 / 255, 0.5)
+            _accumulate_budget(old_acc, old_delta, old_per_pixel, old_regions, old_limits)
+    new_stats = _finish_budget_accumulator(new_acc)
+    audit = {"sample_count": sample_count, "sample_seed": seed,
+             "sample_stems_sha256": hashlib.sha256("\n".join(sample_stems).encode()).hexdigest(),
+             "sample_stems": sample_stems, "eps_target": eps,
+             "eps_overlap": eps * overlap_scale, "overlap_scale": overlap_scale,
+             "budget_units": "decoded uint8 channel differences; normalized values divide by 255",
+             "saturation_definition": "fraction of spatial region pixels whose max absolute RGB-channel delta reaches that region's integer budget",
+             "perturbed_pixel_ratio_definition": "changed spatial pixels / all spatial pixels in the sampled images",
+             "max_abs_delta_global": new_stats["max_abs_delta"]["global"],
+             "max_abs_delta_target_non_overlap": new_stats["max_abs_delta"]["target_non_overlap"],
+             "max_abs_delta_overlap": new_stats["max_abs_delta"]["overlap"],
+             "max_abs_delta_outside_target": new_stats["max_abs_delta"]["outside_target"],
+             "mean_abs_delta_target_non_overlap": new_stats["mean_abs_delta"]["target_non_overlap"],
+             "mean_abs_delta_overlap": new_stats["mean_abs_delta"]["overlap"],
+             "saturation_ratio_target": new_stats["saturation_ratio"]["target_non_overlap"],
+             "saturation_ratio_overlap": new_stats["saturation_ratio"]["overlap"],
+             **new_stats}
+    if old_acc:
+        old_stats = _finish_budget_accumulator(old_acc)
+        comparison = {"original_B2_TO_eps_target": 16 / 255,
+                      "new_eps_target": eps,
+                      "original_B2_TO_eps_overlap": 8 / 255,
+                      "new_eps_overlap": eps * overlap_scale,
+                      "sample_count": sample_count,
+                      "sample_seed": seed,
+                      "sample_stems_sha256": audit["sample_stems_sha256"],
+                      "B2_TO": old_stats, "B2_TO_E8": new_stats,
+                      "mean_abs_delta_ratio_E8_over_B2_TO": {
+                          key: (new_stats["mean_abs_delta"][key] / old_stats["mean_abs_delta"][key]
+                                if old_stats["mean_abs_delta"][key] else None)
+                          for key in ("global", "target_non_overlap", "overlap")},
+                      "L2_perturbation_ratio_E8_over_B2_TO": (
+                          new_stats["l2_norm_byte"] / old_stats["l2_norm_byte"]
+                          if old_stats["l2_norm_byte"] else None),
+                      "saturation_ratio_E8_over_B2_TO": {
+                          key: (new_stats["saturation_ratio"][key] / old_stats["saturation_ratio"][key]
+                                if old_stats["saturation_ratio"][key] else None)
+                          for key in ("target_non_overlap", "overlap")},
+                      "perturbed_area_ratio_E8_over_B2_TO": (
+                          new_stats["perturbed_pixel_ratio"] / old_stats["perturbed_pixel_ratio"]
+                          if old_stats["perturbed_pixel_ratio"] else None)}
+        (root / "perturbation_budget_comparison.json").write_text(
+            json.dumps(comparison, indent=2), encoding="utf-8")
+    (root / "perturbation_budget_audit.json").write_text(
+        json.dumps(audit, indent=2), encoding="utf-8")
     val_count = _copy_split(dataset / cfg["data"]["val_images"],
                             dataset / cfg["data"]["val_labels"], root)
     return root, expected, val_count
@@ -232,6 +406,8 @@ def main():
     parser.add_argument("--config", required=True)
     parser.add_argument("--output", required=True)
     parser.add_argument("--noise", help="Completed official noise-run directory; required outside smoke mode")
+    parser.add_argument("--budget-reference-poison-root",
+                        help="Optional matched B2-TO materialized train root for paired E8 pixel statistics")
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--smoke", action="store_true")
     args = parser.parse_args()
@@ -249,7 +425,8 @@ def main():
     status_path.write_text(json.dumps(status, indent=2), encoding="utf-8")
     try:
         data_root, train_count, val_count = (
-            _smoke_data(cfg, output) if args.smoke else _full_data(cfg, args.seed, noise_dir, args.config)
+            _smoke_data(cfg, output) if args.smoke else _full_data(
+                cfg, args.seed, noise_dir, args.config, args.budget_reference_poison_root)
         )
         data_yaml = _write_data_yaml(data_root, output)
         init_yaml = ROOT / cfg["victim"]["init"]

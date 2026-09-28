@@ -110,6 +110,8 @@ def main():
     parser.add_argument('--noise', required=True)
     parser.add_argument('--victim', required=True)
     parser.add_argument('--status', required=True)
+    parser.add_argument('--budget-reference-poison-root',
+                        help='Optional matched B2-TO materialized train root for paired pixel statistics')
     parser.add_argument('--seed', type=int, default=0)
     parser.add_argument('--check-only', action='store_true')
     args = parser.parse_args()
@@ -144,7 +146,10 @@ def main():
         # run_isolated_victim performs the production full-data preflight itself.
         # It then trains the victim on this exact materialized config/noise identity.
         run_stage('victim', [sys.executable, 'scripts/run_isolated_victim.py', *common,
-                            '--noise', str(noise), '--output', str(victim)], status_path, status, env)
+                            '--noise', str(noise), '--output', str(victim),
+                            *(['--budget-reference-poison-root', args.budget_reference_poison_root]
+                              if args.budget_reference_poison_root else [])],
+                  status_path, status, env)
         status.update(state='complete', completed_at_unix=time.time())
     except BaseException as exc:
         status.update(state='failed', error=str(exc), completed_at_unix=time.time())
