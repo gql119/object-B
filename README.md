@@ -17,3 +17,6 @@ The B2-T implementation and its completed single-seed run are recorded in [`expe
 ## B2-TO angular-orthogonality variant (2026-09-27)
 
 The admitted B2-TO candidate and its completed single-seed run are recorded in [`experiments/b2_to_lr001_orth0005_20260927/`](experiments/b2_to_lr001_orth0005_20260927/README.md). The package contains clean VOC AP50 and recall for all 20 classes, compact run evidence, config/source hashes, and the 200-epoch results CSV; it excludes datasets and checkpoints. This run changed the Fourier learning rate as well as the angular orthogonality weight, so it is not a pure orthogonality ablation.
+# Detection baseline budget-8 experiment
+
+The self-contained detection-baseline source snapshot and the completed four-method result are in [comparison_baselines](comparison_baselines/README.md). This addition preserves the existing B2, B2-T, B2-TO, and B2-TO E8 experiments on this branch. The four-method formal result is documented in [RESULTS.md](comparison_baselines/experiments/baseline_budget8_20260930/RESULTS.md).
