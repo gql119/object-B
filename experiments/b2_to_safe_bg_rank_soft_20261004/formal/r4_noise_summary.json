@@ -1,0 +1,12 @@
+{
+  "run_id": "b2_to_safe_r4_eps8_person_seed0_20261004",
+  "state": "complete",
+  "epochs": 24,
+  "outer_steps": 9144,
+  "rank": 4,
+  "alpha": 1.0,
+  "wall_clock_seconds": 20486.786227941513,
+  "min_step_median_retention": 0.5523550808429718,
+  "global_params_sha256": "cd64691d2bf8ffc50a2ad9cce0aca882e0a4fc9b74ee205a7335f0699df926c0",
+  "diagnostics_sha256": "c0d3f3e3ab9d7aaa8c6030395481241dabce470d40377b413fe1d5be78418eb2"
+}

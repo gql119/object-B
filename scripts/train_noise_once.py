@@ -107,6 +107,13 @@ def main():
             adaptive_before = _model_state_sha256(adaptive_model)
         else:
             trainer = LegacyKProtoTrainer(cfg, method_cfg, device, model)
+        triplet_cache = getattr(trainer, "safe_bg_cache", None)
+        if triplet_cache is not None:
+            status.update(safe_bg_triplet_count=len(triplet_cache.entries),
+                          safe_bg_projector_variants=sum(len(v) for v in triplet_cache.entries.values()),
+                          safe_bg_projector_sha256=triplet_cache.sha256,
+                          safe_bg_cache_precompute_seconds=triplet_cache.precompute_seconds)
+            _write_json(status_path, status)
         params_path = os.path.join(args.output, "global_params.pt")
         csv_path = os.path.join(args.output, "diagnostics.csv")
         json_path = os.path.join(args.output, "diagnostics.json")

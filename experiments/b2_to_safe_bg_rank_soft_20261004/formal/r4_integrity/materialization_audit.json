@@ -1,0 +1,18 @@
+{
+  "state": "passed",
+  "train_images": 16551,
+  "labels_byte_identical": true,
+  "person_boxes_with_changed_pixels": 13256,
+  "pixel_maxima": {
+    "global": 8,
+    "target_only": 8,
+    "overlap": 4,
+    "outside": 0
+  },
+  "global_cap": 8,
+  "person_only_cap": 8,
+  "overlap_cap": 4,
+  "outside_person_max": 0,
+  "noise_status_sha256": "094c1a72dbe0cfc63b678898502196a02c32dd6ee5a57cb37f0bf336e7586917",
+  "manifest_sha256": "4d669ddc6e7592fb0f2120eb8b7f0fc454aa94b19ec9148942f4c638244b3308"
+}

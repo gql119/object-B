@@ -1,0 +1,12 @@
+{
+  "run_id": "b2_to_safe_soft05_eps8_person_seed0_20261004",
+  "state": "complete",
+  "epochs": 24,
+  "outer_steps": 9144,
+  "rank": 8,
+  "alpha": 0.5,
+  "wall_clock_seconds": 20577.293003559113,
+  "min_step_median_retention": 0.5924970209598541,
+  "global_params_sha256": "2490dd1ef1b95d1a1df9b8f32ce69555ec2516f55eac832ef6ff40003c1f2a77",
+  "diagnostics_sha256": "43f9d84ab3e79bee62b17858f9e4ce438e632f4140fbaf7fb8d5f65c7d605f9d"
+}

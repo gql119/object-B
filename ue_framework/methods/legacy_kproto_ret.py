@@ -31,6 +31,22 @@ def non_target_retention_loss(poisoned, clean):
     return poisoned.sum() * 0.0
 
 
+def _snapshot_metrics(metrics):
+    """Copy scalar GPU diagnostics in one transfer without changing CSV values."""
+    tensor_items = [(key, value.detach().reshape(())) for key, value in metrics.items()
+                    if torch.is_tensor(value)]
+    if not tensor_items:
+        return dict(metrics)
+    device = tensor_items[0][1].device
+    if any(value.device != device for _, value in tensor_items):
+        return {key: float(value.detach()) if torch.is_tensor(value) else value
+                for key, value in metrics.items()}
+    values = torch.stack([value for _, value in tensor_items]).cpu().tolist()
+    scalars = dict(zip((key for key, _ in tensor_items), values))
+    return {key: float(scalars[key]) if torch.is_tensor(value) else value
+            for key, value in metrics.items()}
+
+
 def kproto_losses(target_poison, target_clean, selected_bg, non_target_poison, non_target_clean, margin):
     bg_similarity = F.cosine_similarity(target_poison, selected_bg.detach(), dim=-1)
     clean_similarity = F.cosine_similarity(target_poison, target_clean.detach(), dim=-1)
@@ -490,8 +506,7 @@ class LegacyKProtoTrainer(_StrictTargetSupport, TAUSBUniversalTrainer):
                                 continue
                             loss, metrics = result
                             loss.backward()
-                            batch_metrics.append({key: float(value.detach()) if torch.is_tensor(value) else value
-                                                  for key, value in metrics.items()})
+                            batch_metrics.append(_snapshot_metrics(metrics))
                     if not batch_metrics:
                         continue
                     self.fourier_coeff.grad.div_(len(batch_metrics))

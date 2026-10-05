@@ -1,5 +1,6 @@
 """Fixed clean-training semantic coordinates for B2-T/TO; no adaptive changes."""
 import hashlib
+import json
 import math
 from pathlib import Path
 
@@ -129,7 +130,20 @@ def semantic_identity(cfg, root):
         return None
     root = Path(root).resolve()
     artifacts = {}
-    for name in ('target_specific_channels.pt', 'non_target_subspaces.pt', 'coordinates_identity.json'):
+    names = ['target_specific_channels.pt', 'non_target_subspaces.pt', 'coordinates_identity.json']
+    strict = bool(s.get('strict_tsfl', {}).get('enabled', False))
+    safe_bg = bool(s.get('safe_bg', {}).get('enabled', False))
+    if strict != safe_bg:
+        raise ValueError('Strict TSFL and Safe-BG must be enabled together for this ablation')
+    if safe_bg:
+        names.extend(('tsfl_summary.json', 'subspace_summary.json',
+                      'strict_tsfl_channels.pt', 'safe_bg_selected_subspaces.pt',
+                      'strict_tsfl_summary.json', 'tsfl_sensitivity_stats.json',
+                      'orth_target_specific_channels.pt'))
+        if s['strict_tsfl'].get('strict_tsfl_feature_level'):
+            names.extend(('orth_non_target_subspaces.pt', 'strict_tsfl_selected_layer.pt',
+                          'strict_tsfl_selected_layer_summary.json'))
+    for name in names:
         p = Path(s['artifact_dir']) / name
         if not p.resolve().is_relative_to(root):
             raise ValueError('Semantic artifacts must stay in isolated project')
@@ -141,4 +155,19 @@ def semantic_identity(cfg, root):
             'lambda_orth': float(s['lambda_orth'])}
     if s.get('orth_objective', 'angular') != 'angular':
         result['orth_objective'] = s['orth_objective']
+    if safe_bg:
+        result['safe_bg_code_sha256'] = sha256(methods/'safebg.py')
+        result['strict_tsfl_settings'] = s['strict_tsfl']
+        result['safe_bg_settings'] = s['safe_bg']
+        identity_path = Path(s['artifact_dir']) / 'coordinates_identity.json'
+        identity_data = json.loads(identity_path.read_text(encoding='utf-8'))
+        reference_dir = Path(s['safe_bg']['reference_artifact_dir'])
+        reference_hashes = {
+            'reference_target_channels_sha256': sha256(reference_dir/'target_specific_channels.pt'),
+            'reference_non_target_subspaces_sha256': sha256(reference_dir/'non_target_subspaces.pt'),
+        }
+        for key, actual in reference_hashes.items():
+            if identity_data.get(key) != actual:
+                raise ValueError(f'Formal B2-TO reference artifact changed: {key}')
+        result['reference_artifacts'] = reference_hashes
     return result

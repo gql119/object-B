@@ -9,6 +9,7 @@ from .legacy_kproto_ret import (LegacyKProtoTrainer, _rectangle, select_prototyp
                                 kproto_losses, non_target_retention_loss)
 from .semantic_coordinates import normalized_orth, project_bases_to_channels, CLASSES, sha256
 from .orth_reference_design import reference_energy_orth
+from .safebg import SafeBGTripletCache, safe_background_direction
 
 
 class SemanticFrozenTrainer(LegacyKProtoTrainer):
@@ -31,20 +32,46 @@ class SemanticFrozenTrainer(LegacyKProtoTrainer):
         )
         clean_aug, poison_aug = self._apply_shared_eot_pair_batched(tensor, poison)
         clean = self._feature(clean_aug, grad=False).detach()
+        orth_clean = self.multi_features["model.15"].detach() if self.orth_feature_layer else None
         poisoned = self._feature(poison_aug, grad=True)
+        orth_poisoned = self.multi_features["model.15"] if self.orth_feature_layer else None
         image_losses, non_target_pairs = [], []
-        selected_losses, displacements, clean_targets, overlap_weights = [], [], [], []
+        selected_losses, raw_selected_losses, displacements, clean_targets, overlap_weights = [], [], [], [], []
+        orth_displacements, orth_clean_targets, orth_overlap_weights = [], [], []
+        safe_bg_diagnostics = []
+        clean_raw_bg_cosines, clean_safe_bg_cosines = [], []
         class_drifts = {c: [] for c in self.bases}
         target_drift, proto_ids, proto_similarity, context_norm = [], [], [], []
         for b, (image, annotations, support) in enumerate(items):
             h0_map, hp_map = clean[b:b + 1], poisoned[b:b + 1]
+            target_anns = [a for a in annotations if int(a["cls"]) == self.target_class_id]
+            nt_anns = [a for a in annotations if int(a["cls"]) != self.target_class_id]
+            if self.orth_feature_layer:
+                orth_h0_map = orth_clean[b:b + 1]
+                orth_hp_map = orth_poisoned[b:b + 1]
+                orth_targets, orth_contexts, orth_non_targets = self._masks(
+                    annotations, support, image.shape[:2], orth_hp_map, (pad_h, pad_w))
+                orth_valid = False
+                for ann, target_mask, context_mask in zip(target_anns, orth_targets, orth_contexts):
+                    h0_orth = self._pooled(orth_h0_map, [target_mask])
+                    hp_orth = self._pooled(orth_hp_map, [target_mask])
+                    ct_orth = self._pooled(orth_h0_map, [context_mask])
+                    if h0_orth and hp_orth and ct_orth:
+                        orth_valid = True
+                        orth_clean_targets.append(h0_orth[0])
+                        orth_displacements.append(hp_orth[0] - h0_orth[0])
+                        box = _rectangle(image.shape[:2], ann["bbox"])
+                        overlap = any(bool((box * _rectangle(image.shape[:2], a["bbox"])).any()) for a in nt_anns)
+                        orth_overlap_weights.append(self.overlap_weight if overlap else 1.)
+                orth_nt0 = self._pooled(orth_h0_map, orth_non_targets)
+                orth_ntp = self._pooled(orth_hp_map, orth_non_targets)
+                if orth_valid and orth_nt0 and orth_ntp:
+                    non_target_pairs.append((torch.stack(orth_ntp), torch.stack(orth_nt0)))
             targets, contexts, non_targets = self._masks(
                 annotations, support, image.shape[:2], hp_map, (pad_h, pad_w)
             )
             h0, hp, ct = [], [], []
             overlaps = []
-            target_anns = [a for a in annotations if int(a["cls"]) == self.target_class_id]
-            nt_anns = [a for a in annotations if int(a["cls"]) != self.target_class_id]
             for ann, target_mask, context_mask in zip(target_anns, targets, contexts):
                 clean_target = self._pooled(h0_map, [target_mask])
                 poison_target = self._pooled(hp_map, [target_mask])
@@ -65,8 +92,28 @@ class SemanticFrozenTrainer(LegacyKProtoTrainer):
             nt0 = torch.stack(nt0) if nt0 else hp_map.new_zeros((0, hp_map.shape[1]))
             ntp = torch.stack(ntp) if ntp else hp_map.new_zeros((0, hp_map.shape[1]))
             image_losses.append(kproto_losses(hp, h0, selected, ntp, nt0, self.margin))
-            selected_losses.append(kproto_losses(hp[:, self.channels], h0[:, self.channels],
-                                    selected[:, self.channels], ntp, nt0, self.margin))
+            selected_clean = h0.index_select(1, self.channels)
+            selected_poison = hp.index_select(1, self.channels)
+            selected_raw_bg = selected.index_select(1, self.channels)
+            if self.safe_bg_enabled:
+                raw_selected_losses.append(kproto_losses(selected_poison, selected_clean,
+                    selected_raw_bg, ntp, nt0, self.margin))
+                safe_bg, safe_diag = safe_background_direction(
+                    selected_clean.detach(), selected_raw_bg.detach(), self.safe_bases,
+                    active_k=self.safe_bg_active_k,
+                    projector_rtol=self.safe_bg_projector_rtol, eps=self.orth_eps,
+                    mode=self.safe_bg_mode, safe_rank=self.safe_bg_rank,
+                    triplet_cache=self.safe_bg_cache,
+                    removal_alpha=self.safe_bg_removal_alpha,
+                )
+                selected_losses.append(kproto_losses(selected_poison, selected_clean,
+                    safe_bg.detach(), ntp, nt0, self.margin))
+                safe_bg_diagnostics.append(safe_diag)
+                clean_raw_bg_cosines.append(F.cosine_similarity(selected_clean, selected_raw_bg, dim=-1).mean())
+                clean_safe_bg_cosines.append(F.cosine_similarity(selected_clean, safe_bg, dim=-1).mean())
+            else:
+                selected_losses.append(kproto_losses(selected_poison, selected_clean,
+                    selected_raw_bg, ntp, nt0, self.margin))
             displacements.append(hp - h0.detach())
             clean_targets.append(h0.detach())
             overlap_weights.extend(overlaps)
@@ -74,7 +121,7 @@ class SemanticFrozenTrainer(LegacyKProtoTrainer):
                 a = self._pooled(h0_map, [mask]); p = self._pooled(hp_map, [mask])
                 if a and p:
                     class_drifts[int(ann["cls"])].append((p[0]-a[0]).square().sum())
-            if ntp.numel():
+            if ntp.numel() and not self.orth_feature_layer:
                 non_target_pairs.append((ntp, nt0))
             target_drift.append((hp - h0).square().sum(dim=-1).mean())
             proto_ids.extend(indices.detach().cpu().tolist())
@@ -93,16 +140,27 @@ class SemanticFrozenTrainer(LegacyKProtoTrainer):
         else:
             ret = poisoned.sum() * 0.0
         bg_full, rel_full, cos_clean_full, cos_bg_full = bg, rel, cos_clean, cos_bg
+        if raw_selected_losses:
+            bg_raw, rel_raw, _, _, cos_raw_bg = [
+                torch.stack([loss[i] for loss in raw_selected_losses]).mean() for i in range(5)
+            ]
+        else:
+            bg_raw, rel_raw, cos_raw_bg = bg, rel, cos_bg
         bg, rel, _, cos_clean, cos_bg = [torch.stack([x[i] for x in selected_losses]).mean() for i in range(5)]
         displacement = torch.cat(displacements)
         selected_displacement = displacement.index_select(1, self.channels)
-        orth, conflicts, worst = normalized_orth(selected_displacement, self.orth_bases,
-            displacement.new_tensor(overlap_weights), self.worst_k, self.orth_eps)
-        orth_full, _, _ = normalized_orth(displacement, self.bases,
-            displacement.new_tensor(overlap_weights), self.worst_k, self.orth_eps)
-        reference_orth, _, _ = reference_energy_orth(selected_displacement,
-            torch.cat(clean_targets).index_select(1, self.channels), self.orth_bases,
-            displacement.new_tensor(overlap_weights), self.worst_k, self.orth_eps)
+        orth_source = torch.stack(orth_displacements) if self.orth_feature_layer else displacement
+        orth_weights = (orth_overlap_weights if self.orth_feature_layer else overlap_weights)
+        orth_clean_source = (torch.stack(orth_clean_targets) if self.orth_feature_layer
+                             else torch.cat(clean_targets))
+        orth_displacement = orth_source.index_select(1, self.orth_channels)
+        orth, conflicts, worst = normalized_orth(orth_displacement, self.orth_bases,
+            orth_source.new_tensor(orth_weights), self.worst_k, self.orth_eps)
+        orth_full, _, _ = normalized_orth(orth_source, self.orth_full_bases,
+            orth_source.new_tensor(orth_weights), self.worst_k, self.orth_eps)
+        reference_orth, _, _ = reference_energy_orth(orth_displacement,
+            orth_clean_source.index_select(1, self.orth_channels), self.orth_bases,
+            orth_source.new_tensor(orth_weights), self.worst_k, self.orth_eps)
         orth_objective = reference_orth if self.orth_objective == 'reference_energy' else orth
         tv = self._tv_loss(raw)
         budget = F.relu(raw.abs().max() - self.eps)
@@ -131,6 +189,7 @@ class SemanticFrozenTrainer(LegacyKProtoTrainer):
             "outside_support_max": (delta * (support_t == 0)).abs().max(),
         }
         metrics.update({
+            "L_BG_safe": bg, "L_rel_safe": rel,
             "L_BG_full": bg_full, "L_rel_full": rel_full,
             "cos_target_bg_full": cos_bg_full, "cos_target_clean_full": cos_clean_full,
             "L_BG_sel": bg, "L_rel_sel": rel, "cos_target_bg_sel": cos_bg,
@@ -143,9 +202,72 @@ class SemanticFrozenTrainer(LegacyKProtoTrainer):
             "weighted_L_orth": self.lambda_orth * orth_objective,
             "target_displacement_norm": displacement.norm(dim=-1).mean(),
             "target_displacement_tsfl_norm": selected_displacement.norm(dim=-1).mean(),
-            "orth_coordinate_channels": poisoned.new_tensor(float(self.channels.numel())),
+            "orth_coordinate_channels": poisoned.new_tensor(float(self.orth_channels.numel())),
             "mean_non_target_feature_drift": ret,
         })
+        if self.safe_bg_enabled:
+            retentions = torch.cat([d["retention"] for d in safe_bg_diagnostics])
+            bg_norms = torch.cat([d["d_bg_norm"] for d in safe_bg_diagnostics])
+            safe_norms = torch.cat([d["d_safe_norm"] for d in safe_bg_diagnostics])
+            removed_norms = torch.cat([d["removed_norm"] for d in safe_bg_diagnostics])
+            removed_ratios = torch.cat([d["removed_ratio"] for d in safe_bg_diagnostics])
+            orth_cosines = torch.cat([d["orth_cosine"] for d in safe_bg_diagnostics])
+            active_ratios = torch.cat([d["active_projection_ratios"] for d in safe_bg_diagnostics])
+            active_classes = [row for d in safe_bg_diagnostics for row in d["active_classes"]]
+            metrics.update({
+                "L_BG_safe_lr": bg if self.safe_bg_mode == "low_rank" else poisoned.new_zeros(()),
+                "L_rel_safe_lr": rel if self.safe_bg_mode == "low_rank" else poisoned.new_zeros(()),
+                "L_BG_raw": bg_raw, "L_rel_raw": rel_raw,
+                "cos_poison_raw_bg": cos_raw_bg, "cos_poison_safe_bg": cos_bg,
+                "cos_clean_raw_bg": torch.stack(clean_raw_bg_cosines).mean(),
+                "cos_clean_safe_bg": torch.stack(clean_safe_bg_cosines).mean(),
+                "bg_direction_norm": bg_norms.mean(), "safe_direction_norm": safe_norms.mean(),
+                "safe_direction_scaled_norm": torch.cat([d["d_safe_scaled_norm"] for d in safe_bg_diagnostics]).mean(),
+                "safe_direction_retention": retentions.median(),
+                "safe_direction_retention_raw": retentions.median(),
+                "safe_retention_q10": torch.quantile(retentions, 0.10),
+                "safe_retention_q25": torch.quantile(retentions, 0.25),
+                "safe_retention_q75": torch.quantile(retentions, 0.75),
+                "safe_retention_q90": torch.quantile(retentions, 0.90),
+                "removed_nt_component_norm": removed_norms.mean(),
+                "removed_nt_component_ratio": removed_ratios.mean(),
+                "removed_component_ratio": removed_ratios.mean(),
+                "projected_component_norm": torch.cat([d["projected_component_norm"] for d in safe_bg_diagnostics]).mean(),
+                "removed_component_norm": removed_norms.mean(),
+                "retained_projected_component_norm": torch.cat([d["retained_projected_component_norm"] for d in safe_bg_diagnostics]).mean(),
+                "effective_removal_ratio": removed_ratios.mean(),
+                "safe_bg_removal_alpha": poisoned.new_tensor(self.safe_bg_removal_alpha),
+                "collapsed_safe_direction_count": torch.cat([d["collapsed"] for d in safe_bg_diagnostics]).float().sum(),
+                "collapsed_safe_direction_ratio": torch.cat([d["collapsed"] for d in safe_bg_diagnostics]).float().mean(),
+                "cos_d_safe_projected_nt": orth_cosines.mean(),
+                "decomposition_error": torch.cat([d["decomposition_error"] for d in safe_bg_diagnostics]).max(),
+                "safe_projector_rank": torch.cat([d["projector_rank"] for d in safe_bg_diagnostics]).float().mean(),
+                "safe_projector_basis_columns": torch.cat([d["projector_basis_columns"] for d in safe_bg_diagnostics]).float().mean(),
+                "safe_projector_orthonormal_error": torch.cat([d["orthonormal_error"] for d in safe_bg_diagnostics]).max(),
+                "safe_projector_top8_energy_ratio": torch.cat([d["top8_energy_ratio"] for d in safe_bg_diagnostics]).mean(),
+                "safe_bg_rank_configured": poisoned.new_tensor(float(self.safe_bg_rank or 0)),
+                "safe_bg_feature_layer_id": poisoned.new_tensor(21.),
+                "orth_feature_layer_id": poisoned.new_tensor(15.),
+                "adaptive_feature_layer_id": poisoned.new_tensor(15.),
+                "strict_tsfl_total_channels": poisoned.new_tensor(self.strict_summary["total_channels"]),
+                "strict_tsfl_target_candidate_count": poisoned.new_tensor(self.strict_summary["target_candidates"]),
+                "strict_tsfl_safe_candidate_count": poisoned.new_tensor(self.strict_summary["safe_candidates"]),
+                "strict_tsfl_final_selected_count": poisoned.new_tensor(self.strict_summary["final_selected_channels"]),
+                "mean_target_sensitivity_selected": poisoned.new_tensor(self.strict_summary["mean_target_sensitivity_selected_raw"]),
+                "mean_worst_nt_sensitivity_selected": poisoned.new_tensor(self.strict_summary["mean_S_nt_worst_selected"]),
+                "mean_target_sensitivity_unselected": poisoned.new_tensor(self.strict_summary["mean_target_sensitivity_unselected_raw"]),
+                "mean_worst_nt_sensitivity_unselected": poisoned.new_tensor(self.strict_summary["mean_S_nt_worst_unselected"]),
+                "target_to_nt_ratio_selected": poisoned.new_tensor(self.strict_summary["mean_ratio_selected"]),
+            })
+            class_frequency = {}
+            spectrum = torch.cat([d["singular_values_top16"] for d in safe_bg_diagnostics]).mean(0)
+            for j, value in enumerate(spectrum):
+                metrics[f"safe_projector_singular_{j + 1}"] = value
+            for rank in range(self.safe_bg_active_k):
+                values = [row[rank] for row in active_classes]
+                class_frequency[rank] = max(sorted(set(values)), key=lambda c: values.count(c))
+                metrics[f"active_nt_class_{rank + 1}"] = poisoned.new_tensor(class_frequency[rank])
+                metrics[f"projection_ratio_class_{rank + 1}"] = active_ratios[:, rank].mean()
         for j, c in enumerate(sorted(self.bases)):
             metrics["L_orth_"+CLASSES[c]] = conflicts[j]
             metrics["feature_drift_"+CLASSES[c]] = (torch.stack(class_drifts[c]).mean()
@@ -184,10 +306,64 @@ class B2SemanticTrainer(B2AdaptiveTrainer, SemanticFrozenTrainer):
         if identity["data_root"] != cfg["data"]["dataset_root"] or identity["train_images"] != cfg["data"]["train_images"] or identity["train_labels"] != cfg["data"]["train_labels"]:
             raise ValueError("Calibration dataset mismatch")
         self.channels = self.tsfl["indices"].to(device)
+        self.orth_channels = self.channels
+        self.orth_feature_layer = None
+        if bool(settings.get("safe_bg", {}).get("enabled", False)):
+            orth_tsfl = torch.load(artifacts/"orth_target_specific_channels.pt", weights_only=True)
+            self.orth_channels = orth_tsfl["indices"].long().to(device)
         self.bases = {int(c): item["basis"].to(device) for c, item in sub["classes"].items()}
         if sorted(self.bases) != [c for c in range(self.num_classes) if c != self.target_class_id]:
             raise ValueError("Incomplete non-target class subspaces")
-        self.orth_bases = project_bases_to_channels(self.bases, self.channels)
+        self.orth_full_bases = self.bases
+        if settings.get("strict_tsfl", {}).get("strict_tsfl_feature_level"):
+            if (settings["strict_tsfl"]["strict_tsfl_feature_level"] != "P5"
+                    or self.feature_layer != "model.21"
+                    or self.adaptive_feature_layer != "model.15"):
+                raise ValueError("Layer-selected Safe protocol changed")
+            orth_sub = torch.load(artifacts/"orth_non_target_subspaces.pt", weights_only=True)
+            if (orth_sub["identity"]["feature_layer"] != "model.15"
+                    or orth_sub["identity"]["checkpoint_sha256"] != identity["checkpoint_sha256"]
+                    or orth_sub["identity"]["clean_train_manifest_sha256"] != identity["clean_train_manifest_sha256"]):
+                raise ValueError("Formal P3 orthogonality reference identity changed")
+            self.orth_full_bases = {int(c): item["basis"].to(device)
+                                    for c, item in orth_sub["classes"].items()}
+            self.orth_feature_layer = "model.15"
+        self.orth_bases = project_bases_to_channels(self.orth_full_bases, self.orth_channels)
+        self.safe_bg_enabled = bool(settings.get("safe_bg", {}).get("enabled", False))
+        self.safe_bg_active_k = 0
+        self.safe_bg_projector_rtol = 1e-6
+        self.safe_bg_mode = "full_rank"
+        self.safe_bg_rank = None
+        self.safe_bg_removal_alpha = 1.0
+        self.safe_bg_cache = None
+        self.safe_bases = {}
+        self.strict_summary = {}
+        if self.safe_bg_enabled:
+            safe_file = torch.load(artifacts/"safe_bg_selected_subspaces.pt", weights_only=True)
+            if safe_file["identity"] != identity:
+                raise ValueError("Safe-BG selected subspaces do not match Strict TSFL artifact identity")
+            self.safe_bases = {int(c): item["basis"].to(device) for c, item in safe_file["classes"].items()}
+            if sorted(self.safe_bases) != sorted(self.bases) or any(
+                basis.shape[0] != self.channels.numel() for basis in self.safe_bases.values()
+            ):
+                raise ValueError("Safe-BG bases are incomplete or not in Strict TSFL selected space")
+            with open(artifacts/"strict_tsfl_summary.json", encoding="utf-8") as f:
+                self.strict_summary = json.load(f)
+            self.safe_bg_active_k = int(settings["safe_bg"]["active_k"])
+            self.safe_bg_projector_rtol = float(settings["safe_bg"]["projector_rank_rtol"])
+            self.safe_bg_mode = settings["safe_bg"].get("mode", "full_rank")
+            self.safe_bg_rank = settings["safe_bg"].get("rank")
+            self.safe_bg_removal_alpha = float(settings["safe_bg"].get("removal_alpha", 1.0))
+            if self.safe_bg_mode == "low_rank":
+                if ((self.safe_bg_rank, self.safe_bg_removal_alpha) not in ((4, 1.0), (8, 0.5), (8, 1.0))
+                        or self.channels.numel() != 24
+                        or self.safe_bg_active_k != 3 or self.feature_layer != "model.21"):
+                    raise ValueError("Safe-BG preregistered P5/24D/active-3 rank/alpha protocol changed")
+            if not 1 <= self.safe_bg_active_k <= len(self.safe_bases):
+                raise ValueError("Invalid Safe-BG active_k")
+            if self.safe_bg_mode == "low_rank":
+                self.safe_bg_cache = SafeBGTripletCache(
+                    self.safe_bases, self.safe_bg_projector_rtol, self.safe_bg_rank)
         self.lambda_orth = float(settings["lambda_orth"])
         self.orth_objective = settings.get('orth_objective', 'angular')
         if self.orth_objective not in ('angular', 'reference_energy'):
@@ -220,9 +396,16 @@ class B2SemanticTrainer(B2AdaptiveTrainer, SemanticFrozenTrainer):
         for key in names + ["attack"]:
             metrics["grad_"+key+"_norm"] = grads[key].norm() if active else total.new_zeros(())
         metrics["grad_orth_raw_norm"] = raw_grad.norm() if active else total.new_zeros(())
+        if self.safe_bg_enabled:
+            metrics["grad_BG_safe_norm"] = grads["BG_sel"].norm() if active else total.new_zeros(())
+            metrics["grad_rel_safe_norm"] = grads["rel_sel"].norm() if active else total.new_zeros(())
         for key in ["attack", "adapt", "ret"]:
             metrics["cos_grad_"+key+"_orth"] = ((grads[key]*grads["orth"]).sum() /
                 (grads[key].norm()*grads["orth"].norm()).clamp_min(1e-12)) if active else total.new_zeros(())
+        if self.safe_bg_enabled:
+            metrics["cos_grad_BG_safe_orth"] = ((grads["BG_sel"]*grads["orth"]).sum() /
+                (grads["BG_sel"].norm()*grads["orth"].norm()).clamp_min(1e-12)) if active else total.new_zeros(())
+            metrics["cos_grad_BGrel_safe_orth"] = metrics["cos_grad_attack_orth"]
         return total, metrics
 
     def train_universal(self, train_img_dir, train_label_dir, global_params_path,

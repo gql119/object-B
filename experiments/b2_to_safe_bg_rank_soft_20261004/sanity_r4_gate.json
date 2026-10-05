@@ -1,0 +1,68 @@
+{
+  "state": "passed",
+  "variant": "r4",
+  "config_sha256": "2b14fa3f4b365182744d4680e2d3805ea60d13ac2a6c865832be39af9935c01d",
+  "noise_status_sha256": "916e707661ea5dafb4abcb130185edcbedb9bf68c38a09e0a97ee2da439be0c7",
+  "steps": 5,
+  "seed": 0,
+  "selected_layer": "P5",
+  "selected_channel_indices": [
+    0,
+    6,
+    10,
+    29,
+    41,
+    68,
+    77,
+    86,
+    89,
+    112,
+    116,
+    125,
+    128,
+    133,
+    140,
+    167,
+    173,
+    184,
+    220,
+    229,
+    237,
+    238,
+    239,
+    240
+  ],
+  "rank": 4,
+  "Q_shape": [
+    24,
+    4
+  ],
+  "alpha": 1.0,
+  "median_retention": 0.811816930770874,
+  "removed_ratio": 0.5989248156547546,
+  "effective_removal_ratio": 0.5989248156547546,
+  "retained_projected_ratio": 0.0,
+  "L_BG_first_last": [
+    0.47634440660476685,
+    0.4748007655143738
+  ],
+  "L_rel_first_last": [
+    0.6762649416923523,
+    0.6742987632751465
+  ],
+  "attack_orth_cosine": 0.0156257301568985,
+  "grad_BG": 0.17193831503391266,
+  "grad_rel": 0.1691938191652298,
+  "projector_orthonormal_error": 5.841255187988281e-06,
+  "decomposition_error": 2.7375181232969226e-08,
+  "pixel_maxima": {
+    "global": 4,
+    "target": 4,
+    "overlap": 2,
+    "outside": 0
+  },
+  "lambda_orth_unchanged": true,
+  "adaptive_unchanged": true,
+  "epsilon_unchanged": true,
+  "final_validation_used_for_selection": false
+}

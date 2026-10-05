@@ -1,0 +1,74 @@
+{
+  "schema": "prerun.scientific-review.blocker-closure.v1",
+  "review_mode": "scientific_review",
+  "review_count": 1,
+  "independent_review_verdict": "scientifically_incorrect",
+  "independent_review_decision": "do_not_run",
+  "blockers_closed": true,
+  "decision": "allow_run_after_blocker_closure",
+  "pre_run_result": "pass",
+  "commit_deferred_by_user_until_after_experiment": true,
+  "candidate_file_sha256": {
+    "ue_framework/methods/safebg.py": "9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+    "ue_framework/methods/b2_semantic.py": "f890a83c71164e570535508a553dc683b016bc0a4c519335f9e202c1d7ec28e8",
+    "scripts/train_noise_once.py": "c5fd3e47b5967b1f3c14c93252527e58556ae671bedfbb23f05c57954c00f26a",
+    "scripts/materialize_noise_once.py": "4f8c848ddb2a5bd8b02662f1ec9478646b2dac9b76f701d438e593a35fc453c1",
+    "scripts/run_isolated_victim.py": "d967338805bc43c3b81be60f2ae1929ae0d83997f1df414b91f69d8bb36139aa",
+    "scripts/audit_b2_to_safe_lr_materialization_20261002.py": "eb39681b3163f4aa2e7f31570a3112be9d2096429ba12aa9a69f31146468ccbe",
+    "scripts/evaluate_b2_to_safebg_checkpoints.py": "69dc77c261029598188e85d5cd79c8393c1346c09c77c6822bb6aa48f2f22c0c",
+    "scripts/evaluate_safe_lr_reference_last_20261002.py": "950345fdd11294b7cb3b54c5ca36e8c69511dccccadc7feafba737831847acfa",
+    "scripts/analyze_safe_bg_rank_ablation_20261004.py": "55c8adcb919db901ab03c9e07d8f3bf08f8de0ce9c64fdd9c0c9073ee33b0f4f",
+    "scripts/run_safe_bg_rank_ablation_pipeline_20261004.py": "124e23170804523a6732a2ed4a23c1ee1f997c5d5ffc786a73e6b274c024db6f",
+    "scripts/audit_safe_bg_ablation_fingerprint_20261004.py": "692255bd8eb762657d5f9a93ea56aaacc5738b4eb25ed0e05ac2f7581124f323"
+  },
+  "config_sha256": {
+    "r4": "2b14fa3f4b365182744d4680e2d3805ea60d13ac2a6c865832be39af9935c01d",
+    "soft05": "80cffe012aa6bfefcbe66f7c8e880e680da1c1885f5d0a7fcb01a77be6697894"
+  },
+  "closure_evidence": {
+    "channel_identity": "Formal validate() loads the exact 24 indices from target_specific_channels.pt and matches the five-step gate's ordered indices and status SHA; semantic_identity(cfg, ROOT) must equal the production smoke status.",
+    "channel_identity_code_sha256": "124e23170804523a6732a2ed4a23c1ee1f997c5d5ffc786a73e6b274c024db6f",
+    "dataset_fingerprint": {
+      "state": "passed",
+      "source_root": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready",
+      "clean_protocol_lock_sha256": "b328a4a74b6a6f637217f3e20f3d94151c7d55c51b29461d4d67c1bbf9627671",
+      "train_split_fingerprint": "a42debb9c71d73a4b164f58736f01e367807b7b1259c7f23da0d0f9a6cb33606",
+      "val_split_fingerprint": "d59429973640d7b4ede35be11c1967287ddf5959b5eb59138839b5ef55e8b330",
+      "dataset_fingerprint": "29b131dfca2e3636e9c47502961caa6297acf0450f646ff6409b7b3bfb21b3fa",
+      "train_count": 16551,
+      "val_count": 4952
+    },
+    "dataset_fingerprint_receipt_sha256": "7cd361d5823ac52720ad571b58363dc762df8bd6245a41f21df4093b731625d9",
+    "production_smoke": {
+      "r4": {
+        "production_entrypoint_reached": true,
+        "status_sha256": "916e707661ea5dafb4abcb130185edcbedb9bf68c38a09e0a97ee2da439be0c7",
+        "diagnostics_sha256": "973d1487dd6bafa81cac98f8b1ad20e058082409e610599904441057d5005192",
+        "fixed_pair_sha256": "85b1ff375feea464a4583360ea7fff044fddeb0bbc187c279c7d4fbee027f5eb",
+        "gate_sha256": "90af7cefdce4ea12a7fda97726534e790a481f318c00649ac4ae3e92daaf2f2f",
+        "steps": 5,
+        "finite_loss": true,
+        "last_L_frozen": 1.0881597399711609,
+        "last_L_BG_safe_lr": 0.4748007655143738,
+        "last_L_rel_safe_lr": 0.6742987632751465
+      },
+      "soft05": {
+        "production_entrypoint_reached": true,
+        "status_sha256": "df2299caab12e142011c872c8479c42865f394cfeea9671e0bc24deea0ceea35",
+        "diagnostics_sha256": "4fb2f97256c99d367e7c775380ce265c2caa05de5817349981aa24b6002a5d92",
+        "fixed_pair_sha256": "5fcb4dbaf751ce68ca9a8384bef039b8e9b77d081f997786fe3b8e3def89272f",
+        "gate_sha256": "f2c45a4aef5dc1254ae8bedefbb08ad909a7d446d8fc8bbaefb954aa6cf43b16",
+        "steps": 5,
+        "finite_loss": true,
+        "last_L_frozen": 1.1431220173835754,
+        "last_L_BG_safe_lr": 0.5038673877716064,
+        "last_L_rel_safe_lr": 0.7031043171882629
+      }
+    },
+    "baseline_equivalence_claimed": false,
+    "independent_review_blockers": [
+      "Formal entrypoint checked only selected channel count, not exact ordered indices or smoke semantic identity.",
+      "Full VOC source image-byte fingerprint was not checked against the completed clean baseline lock."
+    ]
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "state": "complete",
+  "stage": "complete",
+  "started_at_unix": 1791111516.133605,
+  "order": [
+    "r4_noise",
+    "soft05_noise",
+    "r4_materialization",
+    "soft05_materialization",
+    "r4_integrity",
+    "soft05_integrity",
+    "r4_victim",
+    "soft05_victim",
+    "evaluation"
+  ],
+  "primary_checkpoint": "last.pt",
+  "secondary_checkpoint": "best.pt",
+  "cleanup_policy": "retain_all",
+  "updated_at_unix": 1791175302.654356,
+  "stages": {
+    "locked_source_fingerprint": {
+      "exitcode": 0,
+      "peak_gpu_memory_mib": 0,
+      "completed_at_unix": 1791111536.1680896
+    },
+    "r4_noise": {
+      "exitcode": 0,
+      "peak_gpu_memory_mib": 11002,
+      "completed_at_unix": 1791132043.0393991
+    },
+    "soft05_noise": {
+      "exitcode": 0,
+      "peak_gpu_memory_mib": 5752,
+      "completed_at_unix": 1791152630.599979
+    },
+    "r4_materialization": {
+      "exitcode": 0,
+      "peak_gpu_memory_mib": 382,
+      "completed_at_unix": 1791153091.6843946
+    },
+    "soft05_materialization": {
+      "exitcode": 0,
+      "peak_gpu_memory_mib": 382,
+      "completed_at_unix": 1791153612.3639297
+    },
+    "r4_integrity": {
+      "exitcode": 0,
+      "peak_gpu_memory_mib": 0,
+      "completed_at_unix": 1791153872.8177276
+    },
+    "soft05_integrity": {
+      "exitcode": 0,
+      "peak_gpu_memory_mib": 0,
+      "completed_at_unix": 1791154133.264935
+    },
+    "locked_source_fingerprint_before_victims": {
+      "exitcode": 0,
+      "peak_gpu_memory_mib": 0,
+      "completed_at_unix": 1791154153.3134549
+    },
+    "r4_victim": {
+      "exitcode": 0,
+      "peak_gpu_memory_mib": 9752,
+      "completed_at_unix": 1791164707.7501073
+    },
+    "soft05_victim": {
+      "exitcode": 0,
+      "peak_gpu_memory_mib": 9752,
+      "completed_at_unix": 1791175182.3731925
+    },
+    "r4_checkpoint_evaluation": {
+      "exitcode": 0,
+      "peak_gpu_memory_mib": 2684,
+      "completed_at_unix": 1791175222.4503179
+    },
+    "soft05_checkpoint_evaluation": {
+      "exitcode": 0,
+      "peak_gpu_memory_mib": 2674,
+      "completed_at_unix": 1791175262.5618935
+    },
+    "reference_last_evaluation": {
+      "exitcode": 0,
+      "peak_gpu_memory_mib": 2678,
+      "completed_at_unix": 1791175302.654085
+    },
+    "four_method_analysis": {
+      "exitcode": 0,
+      "peak_gpu_memory_mib": 0,
+      "completed_at_unix": 1791175322.6862018
+    }
+  },
+  "completed_at_unix": 1791175322.6868498,
+  "final_report": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/experiments/safe_bg_ablation_20261004/formal/comparison/ablation_metrics.json"
+}

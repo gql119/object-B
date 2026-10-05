@@ -19,8 +19,11 @@ class B2AdaptiveTrainer(LegacyKProtoTrainer):
         if self.adaptive_batch_size < 1 or self.adaptive_batch_size > self.universal_batch_size:
             raise ValueError("Invalid adaptive inner batch size")
         self._adaptive_calls = 0
+        self.adaptive_feature_layer = str(adaptive_cfg.get("feature_layer", self.feature_layer))
+        if self.adaptive_feature_layer not in self.shape_layers:
+            raise ValueError("Unknown adaptive feature layer")
         self.adaptive = AdaptiveLearner(
-            adaptive_model, self.feature_layer, self.target_class_id,
+            adaptive_model, self.adaptive_feature_layer, self.target_class_id,
             self.imgsz, float(adaptive_cfg["inner_lr"]),
         )
         frozen_state = frozen_reference.state_dict()
@@ -45,7 +48,7 @@ class B2AdaptiveTrainer(LegacyKProtoTrainer):
         poison = self._last_poison
         pad_h, pad_w = poison.shape[-2:]
         clean_images, nt_masks, selected_items = [], [], []
-        frozen_feature = self.multi_features[self.feature_layer]
+        frozen_feature = self.multi_features[self.adaptive_feature_layer]
         start = self._adaptive_calls % len(items)
         selected_indices = [(start + offset) % len(items) for offset in range(
             min(self.adaptive_batch_size, len(items))
