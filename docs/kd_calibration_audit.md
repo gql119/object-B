@@ -1,6 +1,6 @@
 # Safe-Soft05-KDcls gradient calibration audit
 
-Status: **GPU gradient distribution pending**. This document separates the completed loss-scale audit from the 16-query delta-gradient audit. It is not a formal poison or victim result.
+Status: **KD_TOO_WEAK** after the locked 16-query delta-gradient audit. This is not a formal poison or victim result. Neither the fixed KD factor nor any other scientific setting was changed after observing these results.
 
 ## Fixed scale and sample identity
 
@@ -36,6 +36,38 @@ It was a ratio of **weighted gradients with respect to the composed poisoned-ima
 
 The frozen Teacher is the pre-update model on the existing clean query; the Student is that model after the existing differentiable one-step Adaptive update, evaluated on the **same clean query**. Teacher-only, non-target-GT TAL positives determine a common `(batch, location)` index for both raw-logit tensors. Person GT is masked before TAL. Person logit is removed from both 20-class vectors, leaving 19 non-target logits normalized by softmax at temperature 2. The loss is classification KL(T||S) only. No box, DFL or objectness KD was added.
 
-## Delta-gradient distribution and gate
+## Locked delta-gradient audit
 
-Pending the locked 16-query GPU audit. The run will write `kd_gradient_calibration_batches.csv`, `kd_gradient_calibration_batch_summary.csv` and `kd_gradient_calibration_summary.json` in a fresh, collision-checked RunID. It will not update noise or train a victim. The final verdict will use distinct KD/ret, KD/attack and utility/attack ratios and the predeclared weak/strong thresholds; no coefficient changes will be applied automatically.
+RunID `gradient_audit_mb16_a270038_seed0_20261007` exited 0 on an NVIDIA RTX A6000 (peak allocated memory 4.41 GiB). It used the four original 16-image support batches, the same 16 query stems in the same order, seed 0, the same Teacher/Student checkpoint, and the same parent prototype cache. It performed **zero optimizer updates**. Teacher, Adaptive base and noise state checks all passed before/after; person GT/logits were excluded and the Teacher's TAL location indices were shared with the Student. The audit reads the production KD term and differentiates three **already weighted** expressions against one identical composed `delta` tensor for each query:
+
+- `g_ret = grad_delta(0.25 * L_ret)`;
+- `g_KD = grad_delta(0.25 * 1 * 0.080854865 * L_KD_cls_nt)`;
+- `g_attack = grad_delta(1 * L_BG + 1 * L_rel + 1 * L_adaptive)`;
+- `g_util = g_ret + g_KD`.
+
+The per-query raw `L_BG`, `L_rel`, `L_ret`, `L_KD`, weighted `L_adaptive`, and raw `L_orth_worst` are in `experiments/safe_soft05_kdcls_20261007/gradient_audit_mb16_a270038_seed0_20261007/kd_gradient_calibration_batches.csv`. Four batch-level means, each over its four predeclared queries, are in `kd_gradient_calibration_batch_summary.csv`. The primary distributions below use all **16 query observations**, not the four batch means. Full precision and all checks are in `kd_gradient_calibration_summary.json`.
+
+| Metric | Min | Q10 | Q25 | Median | Q75 | Q90 | Max | Mean | Std |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `||g_ret||` | 0.0005694 | 0.0008619 | 0.0009839 | 0.001539 | 0.003245 | 0.006680 | 0.006802 | 0.002647 | 0.002365 |
+| `||g_KD||` | 1.961e-8 | 2.403e-7 | 1.443e-6 | 6.971e-6 | 9.940e-5 | 0.0006064 | 0.004708 | 0.0003932 | 0.001139 |
+| `||g_util||` | 0.0005733 | 0.0008623 | 0.0009990 | 0.001768 | 0.003252 | 0.006738 | 0.008176 | 0.002775 | 0.002525 |
+| `||g_attack||` | 0.3071 | 0.3183 | 0.3226 | 0.3407 | 0.3626 | 0.4061 | 0.4106 | 0.3500 | 0.03445 |
+| `r_KD_ret` | 9.806e-6 | 0.0001205 | 0.0003125 | **0.006025** | 0.09924 | 0.4519 | 0.9645 | 0.1360 | 0.2734 |
+| `r_KD_attack` | 4.899e-8 | 6.946e-7 | 4.398e-6 | **2.142e-5** | 0.0002790 | 0.001524 | 0.01407 | 0.001132 | 0.003392 |
+| `r_util_attack` | 0.001396 | 0.002644 | 0.002782 | 0.004739 | 0.009504 | 0.02078 | **0.02444** | 0.008210 | 0.007748 |
+| `cos_KD_ret` | -0.01009 | -0.009138 | -0.003619 | 0.001380 | 0.02950 | 0.1013 | 0.1751 | 0.02677 | 0.05207 |
+| `cos_KD_attack` | -0.2357 | -0.07272 | -0.02580 | 0.0008701 | 0.02707 | 0.09716 | 0.1368 | -0.001088 | 0.08349 |
+| `cos_util_attack` | -0.03836 | -0.03013 | -0.02520 | -0.01752 | 0.002936 | 0.01351 | 0.02967 | -0.01129 | 0.01863 |
+
+`r_KD_ret = ||g_KD||/(||g_ret||+1e-12)`, `r_KD_attack = ||g_KD||/(||g_attack||+1e-12)`, and `r_util_attack = ||g_ret+g_KD||/(||g_attack||+1e-12)`. These are distinct quantities. Median cosines are near zero, so this short fixed-set audit does not show a stable strong alignment or conflict. It cannot establish victim-level utility preservation.
+
+The registered long-tail test is true for all three requested metrics. Their maximum/median and Q90/median ratios are respectively `675.3 / 87.0` for `||g_KD||`, `160.1 / 75.0` for `r_KD_ret`, and `656.8 / 71.1` for `r_KD_attack`, each above the predeclared limits of 10 or 5. Query `000133` in batch 1 is the largest KD-gradient outlier: `||g_KD||=0.004708`, `r_KD_ret=0.7043`, `r_KD_attack=0.01407`, and `r_util_attack=0.02444`; its KD-positive class is horse (VOC class 12). Query `000372` is another horse-dominated KD/ret outlier (`r_KD_ret=0.9645`). The batch-1 mean raw KD loss is `0.004839`; the other batch means are `2.728e-5`, `1.321e-5`, and `0.0003413`.
+
+The fixed sample identities, ordering and raw `L_ret` values reproduced exactly. Raw KD is not bitwise identical on re-evaluation: maximum per-query absolute difference is `7.776e-5`, and its 16-query mean changed by `+0.48%` (`0.0012989568` to `0.0013051901`). The fixed calibration artifact and coefficient were **not** recomputed. Thus the protocol/sample selection is reproducible, while exact floating-point KD equality was not observed on this GPU; this limits any claim of bitwise replay.
+
+## Gate and coefficient implication
+
+The predeclared weak criterion is met: median `r_KD_ret=0.006025 < 0.1` **and** median `r_KD_attack=2.142e-5 < 0.02`. The strong criterion is not met: median `r_KD_attack` is below 0.5, Q90 `r_util_attack=0.02078 < 1`, and max `r_util_attack=0.02444 < 10`. This is **KD_TOO_WEAK**, despite a few nonzero outliers. It is not `KD_CALIBRATION_PASS`; do not start formal poison generation or victim training.
+
+For a future **user-approved new candidate only**, linear rescaling of the measured fixed-set gradients to the lower target median `r_KD_ret=0.25` would multiply the effective KD coefficient by `0.25/0.006025113 = 41.493`, from `0.020213716` to approximately **`0.8387`** (equivalent KD-only scale `3.3549` while `lambda_ret=0.25`, `beta=1`). This is a suggested diagnostic starting value, **not applied or validated**; it would still project median `r_KD_attack` to only `0.000889`, below the desired 0.05. Conversely, a scalar large enough to project median KD/attack to 0.05 would be about 2,334 times the current coefficient and project the observed worst KD/attack ratio to about 32.8, violating the hard safety cap. The measured long tail therefore offers no single fixed scalar that meets both suggested median targets and the existing worst-case safety line on this fixed set. No coefficient or method change is authorized by this audit.
