@@ -21,7 +21,7 @@ data:
 
 platform:
   mode: cloud
-  run_root: /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/kdcls_20261007/runs_b2_to_safe_soft05_kdcls_eps8_person_seed0_20261007
+  run_root: /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/kdcls_20261007/ue_project/runs_b2_to_safe_soft05_kdcls_eps8_person_seed0_20261007
   resume: false
   zip_after_stage: false
   save_every_n_images: 50
@@ -195,7 +195,7 @@ methods:
         scale_mode: fixed_reference_scale
         calibration_artifact: /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/kdcls_20261007/probe_fixed_fp64_1_seed0_20261007/fixed_batch_probe.json
         calibration_sha256: 9f2990b3ce5678289572ec1f0959c32233101eb678672dbcfadfb8fff6ee2b1d
-      artifact_dir: /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/artifacts_b2_to_safe_ls_p5_eps8_seed0_20261002
+      artifact_dir: /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/kdcls_20261007/ue_project/artifacts_b2_to_safe_ls_p5_eps8_seed0_20261002
       target_channel_fraction: 0.75
       lambda_specificity: 1.0
       subspace_variance: 0.90
