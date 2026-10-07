@@ -184,6 +184,8 @@ def main():
                 "kd_gt_object_count": float(metrics["kd_gt_object_count"].detach()),
                 "L_ret_raw": float(metrics["L_ret"].detach()),
                 "L_KD_raw": float(metrics["L_KD_cls_nt_raw"].detach()),
+                "calibration_L_ret_raw": float(expected["L_ret_raw"]),
+                "calibration_L_KD_raw": float(expected["L_KD_raw"]),
                 "L_BG": float(metrics["L_BG"].detach()),
                 "L_rel": float(metrics["L_rel"].detach()),
                 "L_adapt": float(metrics["L_adaptive"].detach()),
@@ -232,6 +234,12 @@ def main():
     distributions = {key: _distribution([row[key] for row in rows]) for key in METRICS}
     tails = {key: _tail(distributions[key]) for key in
              ("grad_KD_norm", "KD_ret_ratio", "KD_attack_ratio")}
+    reproduction = {
+        "max_abs_L_ret_difference": max(abs(row["L_ret_raw"] - row["calibration_L_ret_raw"])
+                                        for row in rows),
+        "max_abs_L_KD_difference": max(abs(row["L_KD_raw"] - row["calibration_L_KD_raw"])
+                                       for row in rows),
+    }
     frozen_after, adaptive_after = _state_sha256(frozen), _state_sha256(adaptive)
     checks = {
         "same_calibration_queries": len(rows) == 16,
@@ -260,6 +268,8 @@ def main():
         "gradient_variable": "composed delta tensor, same tensor for all four gradients",
         "statistics": "16 query observations; linear quantiles; population std (ddof=0)",
         "distributions": distributions, "long_tail": tails,
+        "raw_loss_reproduction": reproduction,
+        "gpu": torch.cuda.get_device_name(device),
         "checks": checks,
         "frozen_state_sha256_before": frozen_before,
         "frozen_state_sha256_after": frozen_after,
