@@ -1,0 +1,86 @@
+{
+  "sample_count": 8,
+  "all_pass": true,
+  "rows": [
+    {
+      "stem": "000009",
+      "target_pixels": 20412,
+      "changed_target_pixels": 20412,
+      "nonoverlap_max_uint8": 3,
+      "overlap_max_uint8": 2,
+      "outside_target_max_uint8": 0,
+      "global_max_uint8": 3,
+      "pass": true
+    },
+    {
+      "stem": "000017",
+      "target_pixels": 13066,
+      "changed_target_pixels": 13066,
+      "nonoverlap_max_uint8": 3,
+      "overlap_max_uint8": 2,
+      "outside_target_max_uint8": 0,
+      "global_max_uint8": 3,
+      "pass": true
+    },
+    {
+      "stem": "000021",
+      "target_pixels": 105164,
+      "changed_target_pixels": 105164,
+      "nonoverlap_max_uint8": 3,
+      "overlap_max_uint8": 1,
+      "outside_target_max_uint8": 0,
+      "global_max_uint8": 3,
+      "pass": true
+    },
+    {
+      "stem": "000023",
+      "target_pixels": 155952,
+      "changed_target_pixels": 155952,
+      "nonoverlap_max_uint8": 4,
+      "overlap_max_uint8": 2,
+      "outside_target_max_uint8": 0,
+      "global_max_uint8": 4,
+      "pass": true
+    },
+    {
+      "stem": "000030",
+      "target_pixels": 36915,
+      "changed_target_pixels": 36915,
+      "nonoverlap_max_uint8": 3,
+      "overlap_max_uint8": 2,
+      "outside_target_max_uint8": 0,
+      "global_max_uint8": 3,
+      "pass": true
+    },
+    {
+      "stem": "000032",
+      "target_pixels": 1832,
+      "changed_target_pixels": 1832,
+      "nonoverlap_max_uint8": 2,
+      "overlap_max_uint8": 1,
+      "outside_target_max_uint8": 0,
+      "global_max_uint8": 2,
+      "pass": true
+    },
+    {
+      "stem": "000035",
+      "target_pixels": 104937,
+      "changed_target_pixels": 104937,
+      "nonoverlap_max_uint8": 3,
+      "overlap_max_uint8": 0,
+      "outside_target_max_uint8": 0,
+      "global_max_uint8": 3,
+      "pass": true
+    },
+    {
+      "stem": "000041",
+      "target_pixels": 24193,
+      "changed_target_pixels": 24193,
+      "nonoverlap_max_uint8": 3,
+      "overlap_max_uint8": 0,
+      "outside_target_max_uint8": 0,
+      "global_max_uint8": 3,
+      "pass": true
+    }
+  ]
+}
