@@ -19,6 +19,7 @@ from ue_framework.data_utils import label_path_for_image, load_image_rgb_float, 
 from ue_framework.methods.legacy_kproto_ret import LegacyKProtoGenerator, LegacyKProtoTrainer
 from ue_framework.methods.b2_adaptive import B2AdaptiveTrainer
 from ue_framework.methods.b2_semantic import B2SemanticTrainer
+from ue_framework.methods.b2_safe_kd import SafeSoft05KDTrainer
 from ue_framework.methods.semantic_coordinates import semantic_identity
 
 
@@ -66,6 +67,8 @@ def main():
         raise ValueError("Official noise training requires the unbounded method config")
     if args.seed not in cfg["experiment"]["seeds"]:
         raise ValueError("Seed is not in experiment.seeds")
+    if method_cfg.get("semantic", {}).get("kd_cls", {}).get("enabled", False) and args.seed != 0:
+        raise ValueError("The fixed KD calibration artifact is locked to seed 0")
     os.makedirs(args.output)
     shutil.copyfile(args.config, os.path.join(args.output, "source_config.yaml"))
     _write_json(os.path.join(args.output, "resolved_config.json"), cfg)
@@ -78,6 +81,9 @@ def main():
     support_parent_path = os.path.join(os.path.dirname(__file__), "..", "ue_framework", "methods", "tausb_universal.py")
     adaptive_path = os.path.join(os.path.dirname(__file__), "..", "ue_framework", "methods", "adaptive_learner.py")
     adaptive_trainer_path = os.path.join(os.path.dirname(__file__), "..", "ue_framework", "methods", "b2_adaptive.py")
+    kd_enabled = bool(method_cfg.get("semantic", {}).get("kd_cls", {}).get("enabled", False))
+    kd_utility_path = os.path.join(os.path.dirname(__file__), "..", "ue_framework", "methods", "kd_utility.py")
+    kd_trainer_path = os.path.join(os.path.dirname(__file__), "..", "ue_framework", "methods", "b2_safe_kd.py")
     started = time.time()
     status = {
         "state": "running", "started_at_unix": started, "seed": args.seed,
@@ -88,6 +94,10 @@ def main():
         "adaptive_enabled": adaptive_enabled,
         "adaptive_code_sha256": _sha256(adaptive_path) if adaptive_enabled else None,
         "adaptive_trainer_sha256": _sha256(adaptive_trainer_path) if adaptive_enabled else None,
+        "kd_enabled": kd_enabled,
+        "kd_utility_sha256": _sha256(kd_utility_path) if kd_enabled else None,
+        "kd_trainer_sha256": _sha256(kd_trainer_path) if kd_enabled else None,
+        "kd_calibration_sha256": method_cfg.get("semantic", {}).get("kd_cls", {}).get("calibration_sha256") if kd_enabled else None,
         "config_sha256": _sha256(args.config), "surrogate_sha256": _sha256(model_path),
         "output": args.output,
         "worst_class_logging": "provisional while running; recomputed from EOT-mean class conflicts on completion",
@@ -102,7 +112,13 @@ def main():
         frozen_before = _model_state_sha256(model)
         if adaptive_enabled:
             adaptive_model = YOLO(model_path).model.to(device)
-            trainer_class = B2SemanticTrainer if method_cfg.get("semantic", {}).get("enabled", False) else B2AdaptiveTrainer
+            semantic_cfg = method_cfg.get("semantic", {})
+            if semantic_cfg.get("kd_cls", {}).get("enabled", False):
+                if not semantic_cfg.get("enabled", False):
+                    raise ValueError("KDcls requires the Safe-Soft05 semantic method")
+                trainer_class = SafeSoft05KDTrainer
+            else:
+                trainer_class = B2SemanticTrainer if semantic_cfg.get("enabled", False) else B2AdaptiveTrainer
             trainer = trainer_class(cfg, method_cfg, device, model, adaptive_model)
             adaptive_before = _model_state_sha256(adaptive_model)
         else:
@@ -120,6 +136,11 @@ def main():
         initial_coeff = trainer.fourier_coeff.detach().clone() if is_smoke else None
         initial_suppress = trainer.suppress_small.detach().clone() if is_smoke else None
         trainer.train_universal(image_dir, label_dir, params_path, csv_path, json_path, args.seed)
+        if isinstance(trainer, SafeSoft05KDTrainer):
+            status.update(kd_scale_mode="fixed_reference_scale",
+                          kd_fixed_scale=float(trainer.kd_scale.detach()),
+                          kd_beta=trainer.kd_beta, kd_tau=2.0)
+            _write_json(status_path, status)
         if is_smoke:
             from semantic_sanity_probe import fixed_pair
             fixed_pair(trainer, image_dir, label_dir, initial_coeff, initial_suppress, params_path, args.seed)
