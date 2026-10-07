@@ -41,13 +41,20 @@ class SafeSoft05KDTrainer(B2SemanticTrainer):
         if hashlib.sha256(artifact_bytes).hexdigest() != kd_cfg["calibration_sha256"]:
             raise ValueError("KD calibration artifact hash changed")
         calibration = json.loads(artifact_bytes)
-        if (calibration["seed"] != 0 or calibration["optimizer_step_count"] != 0
+        if (calibration.get("schema") != "safe-soft05-kdcls-multibatch-calibration-v1"
+                or calibration["seed"] != 0 or calibration["optimizer_step_count"] != 0
+                or calibration["batch_size"] != 16
+                or calibration["query_indices_per_batch"] != [0, 4, 8, 12]
+                or len(calibration["selected_stems"]) != 64
+                or len(calibration["rows"]) != 16
                 or not all(calibration["checks"].values())):
-            raise ValueError("KD calibration is not a passing seed-0 no-update probe")
+            raise ValueError("KD calibration is not the passing preregistered 16-query probe")
         ret_ref = float(calibration["metrics"]["L_ret_raw"])
         kd_ref = float(calibration["metrics"]["L_KD_raw"])
         if not (ret_ref > 1e-12 and kd_ref > 1e-12):
             raise ValueError("KD calibration loss scales must be positive")
+        if abs(float(calibration["metrics"]["kd_fixed_scale"]) - ret_ref / kd_ref) > 1e-9:
+            raise ValueError("KD fixed scale is inconsistent with preregistered raw means")
         self.kd_scale = torch.tensor(ret_ref / kd_ref, device=device).detach()
         # The existing pre-update adaptive parameters equal the frozen reference
         # checkpoint; only the student receives the differentiable virtual step.
