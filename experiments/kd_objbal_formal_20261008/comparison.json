@@ -1,0 +1,310 @@
+{
+  "primary_checkpoint": "last.pt",
+  "secondary_checkpoint": "best.pt",
+  "comparison": [
+    {
+      "Metric": "person AP50",
+      "Safe-Soft05": 0.028993419332965346,
+      "Safe-Soft05-KD-ObjBal": 0.039584283154292174,
+      "Delta": 0.010590863821326828
+    },
+    {
+      "Metric": "person Recall",
+      "Safe-Soft05": 0.0006625441696113075,
+      "Safe-Soft05-KD-ObjBal": 0.0006922437772351243,
+      "Delta": 2.9699607623816823e-05
+    },
+    {
+      "Metric": "NT mAP50",
+      "Safe-Soft05": 0.6916980897616373,
+      "Safe-Soft05-KD-ObjBal": 0.6907011703005026,
+      "Delta": -0.000996919461134671
+    },
+    {
+      "Metric": "all mAP50",
+      "Safe-Soft05": 0.6585628562402036,
+      "Safe-Soft05-KD-ObjBal": 0.658145325943192,
+      "Delta": -0.0004175302970116368
+    },
+    {
+      "Metric": "P",
+      "Safe-Soft05": 0.9665952579796269,
+      "Safe-Soft05-KD-ObjBal": 0.9543930037487135,
+      "Delta": -0.012202254230913367
+    },
+    {
+      "Metric": "U",
+      "Safe-Soft05": 0.9024559274736852,
+      "Safe-Soft05-KD-ObjBal": 0.9011552503571345,
+      "Delta": -0.0013006771165506859
+    },
+    {
+      "Metric": "S",
+      "Safe-Soft05": 0.9334250734498785,
+      "Safe-Soft05-KD-ObjBal": 0.9270104017281011,
+      "Delta": -0.006414671721777343
+    },
+    {
+      "Metric": "WCD",
+      "Safe-Soft05": 0.2810323798542793,
+      "Safe-Soft05-KD-ObjBal": 0.3466976996494734,
+      "Delta": 0.06566531979519408
+    },
+    {
+      "Metric": "TCD3",
+      "Safe-Soft05": 0.2578511679110964,
+      "Safe-Soft05-KD-ObjBal": 0.27169016243070954,
+      "Delta": 0.013838994519613124
+    }
+  ],
+  "per_class": [
+    {
+      "class": "aeroplane",
+      "Safe-Soft05_AP50": 0.8157275982245968,
+      "KD-ObjBal_AP50": 0.8350937148494856,
+      "Delta_AP50": 0.01936611662488874,
+      "Safe-Soft05_Recall": 0.6832833619803621,
+      "KD-ObjBal_Recall": 0.7368421052631579,
+      "Delta_Recall": 0.05355874328279575
+    },
+    {
+      "class": "bicycle",
+      "Safe-Soft05_AP50": 0.6406775422378295,
+      "KD-ObjBal_AP50": 0.6555055460896351,
+      "Delta_AP50": 0.014828003851805605,
+      "Safe-Soft05_Recall": 0.5220245022657745,
+      "KD-ObjBal_Recall": 0.5192878338278932,
+      "Delta_Recall": -0.002736668437881229
+    },
+    {
+      "class": "bird",
+      "Safe-Soft05_AP50": 0.6566699560034597,
+      "KD-ObjBal_AP50": 0.660182791340423,
+      "Delta_AP50": 0.003512835336963338,
+      "Safe-Soft05_Recall": 0.6078431372549019,
+      "KD-ObjBal_Recall": 0.599128540305011,
+      "Delta_Recall": -0.008714596949890963
+    },
+    {
+      "class": "boat",
+      "Safe-Soft05_AP50": 0.6758461780241662,
+      "KD-ObjBal_AP50": 0.6758376706887361,
+      "Delta_AP50": -8.507335430119056e-06,
+      "Safe-Soft05_Recall": 0.5802252082870735,
+      "KD-ObjBal_Recall": 0.5703422053231939,
+      "Delta_Recall": -0.009883002963879561
+    },
+    {
+      "class": "bottle",
+      "Safe-Soft05_AP50": 0.5091056377912253,
+      "KD-ObjBal_AP50": 0.5139137457305797,
+      "Delta_AP50": 0.004808107939354378,
+      "Safe-Soft05_Recall": 0.4157782515991471,
+      "KD-ObjBal_Recall": 0.42593122501948877,
+      "Delta_Recall": 0.01015297342034166
+    },
+    {
+      "class": "bus",
+      "Safe-Soft05_AP50": 0.7886512029666823,
+      "KD-ObjBal_AP50": 0.8353706490466897,
+      "Delta_AP50": 0.04671944608000733,
+      "Safe-Soft05_Recall": 0.7358368596759065,
+      "KD-ObjBal_Recall": 0.7370892018779343,
+      "Delta_Recall": 0.0012523422020277453
+    },
+    {
+      "class": "car",
+      "Safe-Soft05_AP50": 0.8863273577210498,
+      "KD-ObjBal_AP50": 0.8886177632681722,
+      "Delta_AP50": 0.002290405547122454,
+      "Safe-Soft05_Recall": 0.7845068369308749,
+      "KD-ObjBal_Recall": 0.7801831806827644,
+      "Delta_Recall": -0.004323656248110486
+    },
+    {
+      "class": "cat",
+      "Safe-Soft05_AP50": 0.8008603856177374,
+      "KD-ObjBal_AP50": 0.7949490480807648,
+      "Delta_AP50": -0.005911337536972594,
+      "Safe-Soft05_Recall": 0.770949720670391,
+      "KD-ObjBal_Recall": 0.7625698324022346,
+      "Delta_Recall": -0.008379888268156388
+    },
+    {
+      "class": "chair",
+      "Safe-Soft05_AP50": 0.5315732764610095,
+      "KD-ObjBal_AP50": 0.5148612320865886,
+      "Delta_AP50": -0.016712044374420865,
+      "Safe-Soft05_Recall": 0.46296296296296297,
+      "KD-ObjBal_Recall": 0.42724867724867727,
+      "Delta_Recall": -0.0357142857142857
+    },
+    {
+      "class": "cow",
+      "Safe-Soft05_AP50": 0.6898869024235045,
+      "KD-ObjBal_AP50": 0.6884614221302934,
+      "Delta_AP50": -0.001425480293211101,
+      "Safe-Soft05_Recall": 0.6598360655737705,
+      "KD-ObjBal_Recall": 0.6639344262295082,
+      "Delta_Recall": 0.004098360655737654
+    },
+    {
+      "class": "diningtable",
+      "Safe-Soft05_AP50": 0.6763768545682468,
+      "KD-ObjBal_AP50": 0.6747092611362316,
+      "Delta_AP50": -0.0016675934320151686,
+      "Safe-Soft05_Recall": 0.5631067961165048,
+      "KD-ObjBal_Recall": 0.5388349514563107,
+      "Delta_Recall": -0.024271844660194164
+    },
+    {
+      "class": "dog",
+      "Safe-Soft05_AP50": 0.5800539517523676,
+      "KD-ObjBal_AP50": 0.5270760050785448,
+      "Delta_AP50": -0.05297794667382283,
+      "Safe-Soft05_Recall": 0.6707566462167689,
+      "KD-ObjBal_Recall": 0.6756016292896769,
+      "Delta_Recall": 0.004844983072908038
+    },
+    {
+      "class": "horse",
+      "Safe-Soft05_AP50": 0.733716885109188,
+      "KD-ObjBal_AP50": 0.708246637858765,
+      "Delta_AP50": -0.025470247250423017,
+      "Safe-Soft05_Recall": 0.6925287356321839,
+      "KD-ObjBal_Recall": 0.6724137931034483,
+      "Delta_Recall": -0.02011494252873558
+    },
+    {
+      "class": "motorbike",
+      "Safe-Soft05_AP50": 0.7118212232231674,
+      "KD-ObjBal_AP50": 0.7303023661864464,
+      "Delta_AP50": 0.018481142963278963,
+      "Safe-Soft05_Recall": 0.6646153846153846,
+      "KD-ObjBal_Recall": 0.6892307692307692,
+      "Delta_Recall": 0.024615384615384595
+    },
+    {
+      "class": "person",
+      "Safe-Soft05_AP50": 0.028993419332965346,
+      "KD-ObjBal_AP50": 0.039584283154292174,
+      "Delta_AP50": 0.010590863821326828,
+      "Safe-Soft05_Recall": 0.0006625441696113075,
+      "KD-ObjBal_Recall": 0.0006922437772351243,
+      "Delta_Recall": 2.9699607623816823e-05
+    },
+    {
+      "class": "pottedplant",
+      "Safe-Soft05_AP50": 0.4444709918714463,
+      "KD-ObjBal_AP50": 0.45973636333452456,
+      "Delta_AP50": 0.01526537146307827,
+      "Safe-Soft05_Recall": 0.3645833333333333,
+      "KD-ObjBal_Recall": 0.35625,
+      "Delta_Recall": -0.008333333333333304
+    },
+    {
+      "class": "sheep",
+      "Safe-Soft05_AP50": 0.7462344086217267,
+      "KD-ObjBal_AP50": 0.7306274460688129,
+      "Delta_AP50": -0.015606962552913828,
+      "Safe-Soft05_Recall": 0.6611570247933884,
+      "KD-ObjBal_Recall": 0.6694214876033058,
+      "Delta_Recall": 0.008264462809917328
+    },
+    {
+      "class": "sofa",
+      "Safe-Soft05_AP50": 0.6901403048677602,
+      "KD-ObjBal_AP50": 0.6897521540711496,
+      "Delta_AP50": -0.0003881507966105868,
+      "Safe-Soft05_Recall": 0.6778242677824268,
+      "KD-ObjBal_Recall": 0.6651915854927172,
+      "Delta_Recall": -0.012632682289709596
+    },
+    {
+      "class": "train",
+      "Safe-Soft05_AP50": 0.8342965303627382,
+      "KD-ObjBal_AP50": 0.8283906461601526,
+      "Delta_AP50": -0.005905884202585643,
+      "Safe-Soft05_Recall": 0.776595744680851,
+      "KD-ObjBal_Recall": 0.75177304964539,
+      "Delta_Recall": -0.024822695035460973
+    },
+    {
+      "class": "tvmonitor",
+      "Safe-Soft05_AP50": 0.7298265176232037,
+      "KD-ObjBal_AP50": 0.711687772503554,
+      "Delta_AP50": -0.018138745119649746,
+      "Safe-Soft05_Recall": 0.6038961038961039,
+      "KD-ObjBal_Recall": 0.5844155844155844,
+      "Delta_Recall": -0.019480519480519543
+    }
+  ],
+  "safe_soft05": {
+    "person AP50": 0.028993419332965346,
+    "person Recall": 0.0006625441696113075,
+    "NT mAP50": 0.6916980897616373,
+    "all mAP50": 0.6585628562402036,
+    "P": 0.9665952579796269,
+    "U": 0.9024559274736852,
+    "S": 0.9334250734498785,
+    "WCD": 0.2810323798542793,
+    "TCD3": 0.2578511679110964
+  },
+  "kd_objbal": {
+    "person AP50": 0.039584283154292174,
+    "person Recall": 0.0006922437772351243,
+    "NT mAP50": 0.6907011703005026,
+    "all mAP50": 0.658145325943192,
+    "P": 0.9543930037487135,
+    "U": 0.9011552503571345,
+    "S": 0.9270104017281011,
+    "WCD": 0.3466976996494734,
+    "TCD3": 0.27169016243070954
+  },
+  "kd_best_secondary": {
+    "person AP50": 0.04170719280667226,
+    "person Recall": 0.00044169611307420494,
+    "NT mAP50": 0.6943251050882283,
+    "all mAP50": 0.6616942094741505,
+    "P": 0.9519470953011477,
+    "U": 0.9058833846087243,
+    "S": 0.9283441799293576,
+    "WCD": 0.33745474539432213,
+    "TCD3": 0.26823804761088416
+  },
+  "current_worst_three_classes": [
+    "dog",
+    "bicycle",
+    "bottle"
+  ],
+  "bicycle_dog_horse": {
+    "bicycle": {
+      "class": "bicycle",
+      "Safe-Soft05_AP50": 0.6406775422378295,
+      "KD-ObjBal_AP50": 0.6555055460896351,
+      "Delta_AP50": 0.014828003851805605,
+      "Safe-Soft05_Recall": 0.5220245022657745,
+      "KD-ObjBal_Recall": 0.5192878338278932,
+      "Delta_Recall": -0.002736668437881229
+    },
+    "dog": {
+      "class": "dog",
+      "Safe-Soft05_AP50": 0.5800539517523676,
+      "KD-ObjBal_AP50": 0.5270760050785448,
+      "Delta_AP50": -0.05297794667382283,
+      "Safe-Soft05_Recall": 0.6707566462167689,
+      "KD-ObjBal_Recall": 0.6756016292896769,
+      "Delta_Recall": 0.004844983072908038
+    },
+    "horse": {
+      "class": "horse",
+      "Safe-Soft05_AP50": 0.733716885109188,
+      "KD-ObjBal_AP50": 0.708246637858765,
+      "Delta_AP50": -0.025470247250423017,
+      "Safe-Soft05_Recall": 0.6925287356321839,
+      "KD-ObjBal_Recall": 0.6724137931034483,
+      "Delta_Recall": -0.02011494252873558
+    }
+  },
+  "interpretation": "Descriptive matched-clean-val comparison; no causal claim."
+}

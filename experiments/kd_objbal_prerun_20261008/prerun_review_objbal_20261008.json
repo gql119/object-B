@@ -1,0 +1,32 @@
+{
+  "review_id": "PRERUN-REVIEW-1",
+  "review_mode": "scientific_review",
+  "reviewer": "independent read-only subagent",
+  "verdict": "scientifically_correct",
+  "decision": "allow_run",
+  "scope": "Safe-Soft05-KDcls object-balanced KD, locked seed-0 24-epoch formal run",
+  "approval_basis": "C:/Users/20272/.codex/attachments/b5657b1b-8255-41f5-949c-bab68a48b008/已粘贴的文本.txt",
+  "git_base_commit": "448b2d2b65153dd3468a6bc70597a0e97dcdfb21",
+  "git_snapshot_note": "Working-tree code is deliberately uncommitted per user's experiment-before-commit instruction. Exact SHA256 values bind the reviewed source.",
+  "config_sha256": "8107f4a3f7859b3d775cfa3c37d461a774bc379b2782206ec7b0c39b363fc741",
+  "calibration_sha256": "0ff854235663215da69b4fe04215c4a172885f165423b300f2864977903c9532",
+  "sanity_gate_sha256": "bce7db06e43b0c28c348bf4cc2c132a4fc7f500e9f07ebea5d4b6252c996cf03",
+  "parent_equivalence_sha256": "80eb87ba2ce0961d93141a4f5ed9acd061b15e766ef9b58708f5bbb0831d937a",
+  "file_sha256": {
+    "ue_framework/methods/kd_utility.py": "882306bec59d9146230707caff584544a838bcf903ec8d528cd23ef5d23ef40c",
+    "ue_framework/methods/b2_safe_kd.py": "a598fc8cf38f77b92514b21da51b031a3cfe73fc8f69867f46ab63423c288ab2",
+    "ue_framework/methods/b2_semantic.py": "f890a83c71164e570535508a553dc683b016bc0a4c519335f9e202c1d7ec28e8",
+    "ue_framework/methods/adaptive_learner.py": "02cd607b8c3e389c639bbf82859952dfb5c9528524e6ebc18a373860e7954518",
+    "ue_framework/methods/legacy_kproto_ret.py": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb",
+    "scripts/train_noise_once.py": "1b2bde0b9a769da776adfdb1fb4bbc7d2784d468e3d52ac327f7460c3a32e9a2",
+    "ue_framework/configs/exp_voc_person_b2_to_safe_soft05_kdcls_objbal_eps8_seed0_20261008_locked.yaml": "8107f4a3f7859b3d775cfa3c37d461a774bc379b2782206ec7b0c39b363fc741"
+  },
+  "evidence": {
+    "calibration": "calibration_objbal_seed0_20261008/kd_preregistered_lambda.json",
+    "smoke": "runs_safe_soft05_kdcls_objbal_eps8_person_seed0_20261008/smoke5_objbal_seed0_20261008_det1/status.json",
+    "sanity": "objbal_sanity_gate_det1_20261008.json",
+    "parent_equivalence": "probe_parent_ret_objbal_seed0_20261008_det1.json"
+  },
+  "interpretation_limit": "All 24 valid objects in the fixed 16-query calibration set have exactly 10 TAL positives, so object-balanced and positive-unit means coincide there. Tail-factor 1.0627 is not attributable to the reduction itself.",
+  "reviewed_outcome": "No scientific correctness blocker or missing pre-run evidence found. Formal run permitted only while all file SHA256 values and config/calibration hashes match."
+}

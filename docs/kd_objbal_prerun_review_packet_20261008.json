@@ -1,0 +1,79 @@
+{
+  "schema_version": "prerun.scientific-review.v1",
+  "review_mode": "scientific_review",
+  "review_snapshot": "uncommitted working tree, user requires Git commit only after completed experiment",
+  "base_commit": "448b2d2b65153dd3468a6bc70597a0e97dcdfb21",
+  "approved_basis": "C:/Users/20272/.codex/attachments/b5657b1b-8255-41f5-949c-bab68a48b008/已粘贴的文本.txt",
+  "implementation_intent": "Only new non-target classification KD reduction changes from positive-unit mean to object-balanced mean. Fixed 16-query gradient calibration binds lambda_KD; parent Safe-Soft05, original L_ret and all other scientific settings remain fixed.",
+  "remote_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/kdcls_20261007/ue_project",
+  "local_root": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/safe_soft05_kdcls_20261007",
+  "local_evidence": "experiments/kd_objbal_prerun_20261008",
+  "source_sha256": {
+    "ue_framework/methods/kd_utility.py": "882306bec59d9146230707caff584544a838bcf903ec8d528cd23ef5d23ef40c",
+    "ue_framework/methods/b2_safe_kd.py": "a598fc8cf38f77b92514b21da51b031a3cfe73fc8f69867f46ab63423c288ab2",
+    "ue_framework/methods/b2_semantic.py": "f890a83c71164e570535508a553dc683b016bc0a4c519335f9e202c1d7ec28e8",
+    "ue_framework/methods/adaptive_learner.py": "02cd607b8c3e389c639bbf82859952dfb5c9528524e6ebc18a373860e7954518",
+    "ue_framework/methods/legacy_kproto_ret.py": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb",
+    "scripts/train_noise_once.py": "1b2bde0b9a769da776adfdb1fb4bbc7d2784d468e3d52ac327f7460c3a32e9a2",
+    "locked_config": "8107f4a3f7859b3d775cfa3c37d461a774bc379b2782206ec7b0c39b363fc741"
+  },
+  "calibration": {
+    "run_id": "calibration_objbal_seed0_20261008",
+    "gate": "KD_OBJECT_BALANCED_CALIBRATION_PASS",
+    "lambda_KD": 0.7160846249749698,
+    "sha256": "0ff854235663215da69b4fe04215c4a172885f165423b300f2864977903c9532",
+    "query_count": 16,
+    "optimizer_steps": 0
+  },
+  "smoke": {
+    "run_id": "smoke5_objbal_seed0_20261008_det1",
+    "steps": 5,
+    "state": "complete",
+    "sanity_gate": "passed",
+    "sanity_gate_sha256": "bce7db06e43b0c28c348bf4cc2c132a4fc7f500e9f07ebea5d4b6252c996cf03",
+    "pixel_preview_all_pass": true
+  },
+  "baseline_equivalence": {
+    "first_probe": "failed: L_adaptive absolute difference 2.571381628513336e-6 > 1e-6 tolerance",
+    "deterministic_probe": "passed: all six parent terms exactly equal under deterministic CUDA",
+    "evidence": "probe_parent_ret_objbal_seed0_20261008_det1.json",
+    "sha256": "80eb87ba2ce0961d93141a4f5ed9acd061b15e766ef9b58708f5bbb0831d937a"
+  },
+  "proposed_formal": {
+    "noise_run_id": "noise_full_safe_soft05_kdcls_objbal_seed0_20261008",
+    "victim_run_id": "victim_safe_soft05_kdcls_objbal_seed0_20261008",
+    "report_run_id": "formal_safe_soft05_kdcls_objbal_seed0_20261008",
+    "epochs_noise": 24,
+    "steps_noise": 9144,
+    "noise_wall_clock_cap_hours": 8,
+    "victim_epochs": 200,
+    "primary_checkpoint": "last.pt",
+    "secondary_checkpoint": "best.pt"
+  },
+  "critical_values": [
+    {
+      "name": "KD reduction",
+      "source": "teacher_aligned_non_target_kd matched_gt and gt_pair_id",
+      "sink": "object_balanced_mean per-object mean then valid-object mean",
+      "evidence": "tests/test_kd_object_balanced.py; calibration object_diagnostics.csv"
+    },
+    {
+      "name": "KD gradient coefficient",
+      "source": "locked 16-query calibration min(lambda_from_ret,lambda_from_q90,lambda_from_max)",
+      "sink": "SafeSoft05KDTrainer weighted_kd and L_total",
+      "evidence": "calibration JSON; five-step diagnostics lambda_KD"
+    },
+    {
+      "name": "parent retention preservation",
+      "source": "B2SemanticTrainer._batch_loss and AdaptiveLearner",
+      "sink": "L_ret and weighted_L_ret in new trainer",
+      "evidence": "deterministic parent equivalence JSON; five-step sanity gate"
+    },
+    {
+      "name": "teacher-student assignment and target exclusion",
+      "source": "frozen teacher TAL on non-person GT",
+      "sink": "same prediction index logits over 19 non-person classes",
+      "evidence": "kd_utility.py; calibration person counts; five-step diagnostics"
+    }
+  ]
+}

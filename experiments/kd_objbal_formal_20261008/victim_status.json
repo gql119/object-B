@@ -1,0 +1,10 @@
+{
+  "state": "complete",
+  "smoke": false,
+  "seed": 0,
+  "started_at_unix": 1791457952.2381227,
+  "best_checkpoint": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/kdcls_20261007/ue_project/runs_safe_soft05_kdcls_objbal_eps8_person_seed0_20261008/victim_safe_soft05_kdcls_objbal_seed0_20261008/victim/weights/best.pt",
+  "last_checkpoint": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/kdcls_20261007/ue_project/runs_safe_soft05_kdcls_objbal_eps8_person_seed0_20261008/victim_safe_soft05_kdcls_objbal_seed0_20261008/victim/weights/last.pt",
+  "clean_val_metrics": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/kdcls_20261007/ue_project/runs_safe_soft05_kdcls_objbal_eps8_person_seed0_20261008/victim_safe_soft05_kdcls_objbal_seed0_20261008/clean_val_metrics.json",
+  "completed_at_unix": 1791468577.2701485
+}

@@ -5,6 +5,7 @@ The inherited frozen-reference feature retention term is deliberately untouched.
 
 import hashlib
 import json
+import math
 from pathlib import Path
 
 import torch
@@ -25,8 +26,8 @@ class SafeSoft05KDTrainer(B2SemanticTrainer):
         super().__init__(cfg, method_cfg, device, frozen_reference, adaptive_model)
         kd_cfg = method_cfg["semantic"]["kd_cls"]
         if (not kd_cfg.get("enabled") or float(kd_cfg["tau"]) != 2.0
-                or float(kd_cfg["beta"]) != 1.0
-                or kd_cfg["scale_mode"] != "fixed_reference_scale"):
+                or kd_cfg["scale_mode"] != "fixed_gradient_lambda"
+                or kd_cfg.get("reduction") != "object_balanced"):
             raise ValueError("Safe-Soft05-KDcls scientific settings changed")
         if (self.target_class_id != 14 or self.safe_bg_rank != 8
                 or self.safe_bg_active_k != 3 or self.safe_bg_removal_alpha != 0.5
@@ -35,27 +36,28 @@ class SafeSoft05KDTrainer(B2SemanticTrainer):
                 or abs(self.eps - 8 / 255) > 1e-9
                 or method_cfg["support_mode"] != "bbox_half_overlap"):
             raise ValueError("Safe-Soft05 parent scientific settings changed")
-        self.kd_beta = 1.0
         calibration_path = Path(kd_cfg["calibration_artifact"])
         artifact_bytes = calibration_path.read_bytes()
         if hashlib.sha256(artifact_bytes).hexdigest() != kd_cfg["calibration_sha256"]:
             raise ValueError("KD calibration artifact hash changed")
         calibration = json.loads(artifact_bytes)
-        if (calibration.get("schema") != "safe-soft05-kdcls-multibatch-calibration-v1"
+        if (calibration.get("schema") != "safe-soft05-kdcls-object-balanced-lambda-v1"
                 or calibration["seed"] != 0 or calibration["optimizer_step_count"] != 0
                 or calibration["batch_size"] != 16
                 or calibration["query_indices_per_batch"] != [0, 4, 8, 12]
                 or len(calibration["selected_stems"]) != 64
-                or len(calibration["rows"]) != 16
+                or calibration["query_count"] != 16
+                or calibration["gate"] != "KD_OBJECT_BALANCED_CALIBRATION_PASS"
                 or not all(calibration["checks"].values())):
             raise ValueError("KD calibration is not the passing preregistered 16-query probe")
-        ret_ref = float(calibration["metrics"]["L_ret_raw"])
-        kd_ref = float(calibration["metrics"]["L_KD_raw"])
-        if not (ret_ref > 1e-12 and kd_ref > 1e-12):
-            raise ValueError("KD calibration loss scales must be positive")
-        if abs(float(calibration["metrics"]["kd_fixed_scale"]) - ret_ref / kd_ref) > 1e-9:
-            raise ValueError("KD fixed scale is inconsistent with preregistered raw means")
-        self.kd_scale = torch.tensor(ret_ref / kd_ref, device=device).detach()
+        candidate_lambdas = [float(calibration[name]) for name in
+                             ("lambda_from_ret", "lambda_from_q90", "lambda_from_max")]
+        final_lambda = float(calibration["final_lambda_KD"])
+        if (not all(math.isfinite(value) and value > 0 for value in candidate_lambdas)
+                or not math.isfinite(final_lambda) or final_lambda <= 0
+                or abs(final_lambda - min(candidate_lambdas)) > 1e-8):
+            raise ValueError("KD lambda does not match the locked gradient rule")
+        self.lambda_kd = final_lambda
         # The existing pre-update adaptive parameters equal the frozen reference
         # checkpoint; only the student receives the differentiable virtual step.
         self.adaptive = KDAdaptiveLearner(
@@ -70,25 +72,22 @@ class SafeSoft05KDTrainer(B2SemanticTrainer):
         old_total, metrics = result
         ret = metrics["L_ret"]
         kd = metrics["L_KD_cls_nt_raw"]
-        scale = self.kd_scale
-        weighted_kd = self.lambda_ret * self.kd_beta * scale * kd
+        weighted_kd = self.lambda_kd * kd
         total = old_total + weighted_kd
         if not bool(torch.isfinite(total)):
             raise FloatingPointError("Non-finite Safe-Soft05-KDcls total loss")
 
         # Parent L_ret, weighted_L_ret and its computation graph stay identical.
-        # A hashed no-update train-only probe fixes the KD-only scale for this run.
+        # A hashed no-update train-only gradient calibration fixes KD-only lambda.
         metrics.update({
             "L_ret_raw": ret,
             "L_KD_raw": kd,
-            "kd_fixed_scale": scale,
-            "L_KD_scaled": scale * kd,
+            "lambda_KD": kd.new_tensor(self.lambda_kd),
             "L_KD_weighted": weighted_kd,
-            "L_util_diagnostic": ret + self.kd_beta * scale * kd,
+            "L_util_diagnostic": self.lambda_ret * ret + weighted_kd,
             "L_total": total,
-            "kd_beta": kd.new_tensor(self.kd_beta),
             "kd_tau": kd.new_tensor(2.0),
-            "kd_scale_calibrated": kd.new_ones(()),
+            "kd_gradient_calibrated": kd.new_ones(()),
         })
         poison = self._last_poison
         g_kd = torch.autograd.grad(weighted_kd, poison, retain_graph=True)[0]

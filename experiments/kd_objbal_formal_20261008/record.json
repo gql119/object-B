@@ -1,0 +1,43 @@
+{
+  "schema": "research-result-v1",
+  "exp_id": "safe-soft05-kd-objbal-20261008",
+  "run_id": "safe_soft05_kdcls_objbal_seed0_20261008",
+  "state": "complete",
+  "completed_at_utc": "2026-10-08T14:10:45Z",
+  "source_branch": "codex/safe-soft05-kdcls-20261007",
+  "source_base_commit": "448b2d2b65153dd3468a6bc70597a0e97dcdfb21",
+  "config_sha256": "8107f4a3f7859b3d775cfa3c37d461a774bc379b2782206ec7b0c39b363fc741",
+  "calibration_sha256": "0ff854235663215da69b4fe04215c4a172885f165423b300f2864977903c9532",
+  "noise_status_sha256": "2ee3d09743298d90d59caa3a27175cb0988efdcd820d0397d973c2334a2b4cbc",
+  "dataset_audit_sha256": "a85851f000d4ba5e07d0ff5ee898787b3e122053ca97315dfb720fe30a7ffea3",
+  "lambda_kd": 0.7160846249749698,
+  "poison_epochs": 24,
+  "poison_steps": 9144,
+  "poison_duration_seconds": 28404.33025097847,
+  "train_images": 16551,
+  "clean_val_images": 4952,
+  "victim_epochs": 200,
+  "victim_seed": 0,
+  "victim_pretrained": false,
+  "primary_checkpoint": "last.pt",
+  "secondary_checkpoint": "best.pt",
+  "primary_metrics": {
+    "person_AP50": 0.039584283154292174,
+    "person_recall": 0.0006922437772351243,
+    "non_target_mAP50": 0.6907011703005026,
+    "all_mAP50": 0.658145325943192
+  },
+  "matched_parent_primary_metrics": {
+    "person_AP50": 0.028993419332965346,
+    "person_recall": 0.0006625441696113075,
+    "non_target_mAP50": 0.6916980897616373,
+    "all_mAP50": 0.6585628562402036
+  },
+  "secondary_metrics": {
+    "person_AP50": 0.04170719280667226,
+    "person_recall": 0.00044169611307420494,
+    "non_target_mAP50": 0.6943251050882283,
+    "all_mAP50": 0.6616942094741505
+  },
+  "interpretation": "Single-seed descriptive clean-VOC20 comparison; no causal claim. Calibration objects each had ten TAL positives, so the reduction change is algebraically invisible on that fixed calibration set."
+}

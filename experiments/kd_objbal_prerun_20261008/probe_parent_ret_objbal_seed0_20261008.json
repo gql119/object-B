@@ -1,0 +1,38 @@
+{
+  "reference_id": "formal Safe-Soft05 parent implementation",
+  "reference_weights_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/checkpoints/voc20_surrogate.pt",
+  "candidate_weights_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/checkpoints/voc20_surrogate.pt",
+  "evaluation_setting": {
+    "dataset": "same locked first 16 mixed training images",
+    "seed": 0,
+    "sample_count": 16,
+    "query_index": 0,
+    "optimizer_steps": 0
+  },
+  "reference": {
+    "L_BG": 0.46754780411720276,
+    "L_rel": 0.6674180626869202,
+    "L_ret": 7.316342816920951e-05,
+    "weighted_L_ret": 1.8290857042302378e-05,
+    "L_orth_objective": 1.1609745025634766,
+    "L_adaptive": 0.014960306696593761
+  },
+  "candidate": {
+    "L_BG": 0.46754780411720276,
+    "L_rel": 0.6674180626869202,
+    "L_ret": 7.316342816920951e-05,
+    "weighted_L_ret": 1.8290857042302378e-05,
+    "L_orth_objective": 1.1609745025634766,
+    "L_adaptive": 0.014957735314965248
+  },
+  "absolute_differences": {
+    "L_BG": 0.0,
+    "L_rel": 0.0,
+    "L_ret": 0.0,
+    "weighted_L_ret": 0.0,
+    "L_orth_objective": 0.0,
+    "L_adaptive": 2.571381628513336e-06
+  },
+  "tolerance": 1e-06,
+  "pass": false
+}

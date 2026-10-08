@@ -137,9 +137,9 @@ def main():
         initial_suppress = trainer.suppress_small.detach().clone() if is_smoke else None
         trainer.train_universal(image_dir, label_dir, params_path, csv_path, json_path, args.seed)
         if isinstance(trainer, SafeSoft05KDTrainer):
-            status.update(kd_scale_mode="fixed_reference_scale",
-                          kd_fixed_scale=float(trainer.kd_scale.detach()),
-                          kd_beta=trainer.kd_beta, kd_tau=2.0)
+            status.update(kd_scale_mode="fixed_gradient_lambda",
+                          kd_reduction="object_balanced",
+                          lambda_KD=trainer.lambda_kd, kd_tau=2.0)
             _write_json(status_path, status)
         if is_smoke:
             from semantic_sanity_probe import fixed_pair

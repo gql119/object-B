@@ -1,0 +1,12 @@
+/scripts/*kd_objbal* text eol=lf
+/scripts/calibrate_safe_soft05_kdcls_objbal_gradients.py text eol=lf
+/scripts/compare_safe_soft05_kd_objbal.py text eol=lf
+/scripts/train_noise_once.py text eol=lf
+/ue_framework/methods/b2_safe_kd.py text eol=lf
+/ue_framework/methods/kd_utility.py text eol=lf
+/ue_framework/methods/legacy_kproto_ret.py -text
+/ue_framework/configs/*kdcls_objbal* text eol=lf
+/tests/test_kd_object_balanced.py text eol=lf
+/docs/kd_objbal* text eol=lf
+/experiments/kd_objbal_prerun_20261008/** text eol=lf
+/experiments/kd_objbal_formal_20261008/** text eol=lf

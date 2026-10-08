@@ -16,9 +16,24 @@ from .legacy_kproto_ret import non_target_retention_loss
 FOCUS_CLASSES = {1: "bicycle", 11: "dog", 12: "horse"}
 
 
+def object_balanced_mean(per_positive, pair_ids):
+    """Mean within each assigned GT object, then mean across valid objects."""
+    if per_positive.ndim != 1 or pair_ids.shape != per_positive.shape:
+        raise ValueError("KD values and teacher GT pair IDs must align")
+    if per_positive.numel() == 0:
+        return per_positive.sum() * 0.0, pair_ids, per_positive, pair_ids
+    unique_ids, inverse, counts = torch.unique(
+        pair_ids, sorted=True, return_inverse=True, return_counts=True)
+    object_sums = torch.zeros(unique_ids.numel(), device=per_positive.device,
+                              dtype=per_positive.dtype).scatter_add(0, inverse, per_positive)
+    object_means = object_sums / counts.to(per_positive.dtype)
+    return object_means.mean(), unique_ids, object_means, counts
+
+
 def teacher_aligned_non_target_kd(criterion, teacher_raw, student_raw, batch,
-                                  target_class_id=14, tau=2.0):
-    """Return KL(T||S) at the teacher's non-target GT TAL positives only."""
+                                  target_class_id=14, tau=2.0,
+                                  collect_object_diagnostics=False):
+    """Return object-balanced KL(T||S) at frozen-teacher TAL positives."""
     if tau != 2.0 or target_class_id != 14:
         raise ValueError("Safe-Soft05-KDcls has fixed tau=2 and person class=14")
     if set(teacher_raw) != {"boxes", "scores", "feats"} or set(student_raw) != set(teacher_raw):
@@ -41,8 +56,9 @@ def teacher_aligned_non_target_kd(criterion, teacher_raw, student_raw, batch,
                                    scale_tensor=size[[1, 0, 1, 0]])
     gt_labels, gt_bboxes = targets.split((1, 4), 2)
     mask_nt = gt_bboxes.sum(2, keepdim=True).gt(0) & gt_labels.long().ne(target_class_id)
+    non_target_count = mask_nt.sum()
     if not bool(mask_nt.any()):
-        return zero, _empty_diagnostics(zero)
+        return zero, _empty_diagnostics(zero, non_target_count), []
 
     anchor_points, stride_tensor = make_anchors(teacher_raw["feats"], criterion.stride, 0.5)
     t_dist = teacher_raw["boxes"].permute(0, 2, 1).contiguous().detach()
@@ -54,7 +70,7 @@ def teacher_aligned_non_target_kd(criterion, teacher_raw, student_raw, batch,
     )
     positive_b, positive_i = torch.nonzero(fg_mask, as_tuple=True)
     if positive_b.numel() == 0:
-        return zero, _empty_diagnostics(zero)
+        return zero, _empty_diagnostics(zero, non_target_count), []
     gt_index = matched_gt[positive_b, positive_i].long()
     matched_class = gt_labels[positive_b, gt_index, 0].long()
     if bool((matched_class == target_class_id).any()) or bool((matched_class < 0).any()):
@@ -70,14 +86,19 @@ def teacher_aligned_non_target_kd(criterion, teacher_raw, student_raw, batch,
     log_student = (student / tau).log_softmax(-1)
     p_teacher = log_teacher.exp()
     per_positive = ((p_teacher * (log_teacher - log_student)).sum(-1) * tau**2).clamp_min(0.0)
-    kd = per_positive.mean().float()
+    gt_pair_id = positive_b * gt_labels.shape[1] + gt_index
+    balanced, object_ids, object_means, object_counts = object_balanced_mean(
+        per_positive, gt_pair_id)
+    kd = balanced.float()
     if not bool(torch.isfinite(kd)):
         raise FloatingPointError("Non-finite non-target classification KD")
     p_student = log_student.exp()
-    gt_pair_id = positive_b * gt_labels.shape[1] + gt_index
     diagnostics = {
         "kd_positive_count": kd.new_tensor(float(positive_b.numel())),
-        "kd_gt_object_count": kd.new_tensor(float(torch.unique(gt_pair_id).numel())),
+        "kd_gt_object_count": object_ids.numel() * kd.new_ones(()),
+        "non_target_gt_count": non_target_count.to(kd.dtype),
+        "valid_kd_object_count": object_ids.numel() * kd.new_ones(()),
+        "zero_positive_object_count": (non_target_count - object_ids.numel()).to(kd.dtype),
         "kd_teacher_entropy": -(p_teacher * log_teacher).sum(-1).mean().float(),
         "kd_student_entropy": -(p_student * log_student).sum(-1).mean().float(),
         "kd_kl_mean": kd,
@@ -87,27 +108,42 @@ def teacher_aligned_non_target_kd(criterion, teacher_raw, student_raw, batch,
         "kd_teacher_student_index_identical": kd.new_ones(()),
     }
     class_means = []
+    object_classes = gt_labels[object_ids // gt_labels.shape[1],
+                               object_ids % gt_labels.shape[1], 0].long()
     for class_id, name in FOCUS_CLASSES.items():
-        selected = matched_class == class_id
-        diagnostics["KD_" + name] = per_positive[selected].mean().float() if bool(selected.any()) else kd.new_zeros(())
-        diagnostics["KD_count_" + name] = kd.new_tensor(float(selected.sum()))
-    for class_id in matched_class.unique().tolist():
-        selected = matched_class == class_id
-        class_means.append((int(class_id), float(per_positive[selected].detach().mean())))
+        selected = object_classes == class_id
+        diagnostics["KD_" + name] = object_means[selected].mean().float() if bool(selected.any()) else kd.new_zeros(())
+        diagnostics["KD_count_" + name] = selected.sum().to(kd.dtype)
+    for class_id in object_classes.unique().tolist():
+        selected = object_classes == class_id
+        class_means.append((int(class_id), float(object_means[selected].detach().mean())))
     class_means.sort(key=lambda item: (-item[1], item[0]))
     for rank in range(3):
         class_id, value = class_means[rank] if rank < len(class_means) else (-1, 0.0)
         diagnostics[f"kd_worst_class_{rank + 1}"] = kd.new_tensor(float(class_id))
         diagnostics[f"kd_worst_class_loss_{rank + 1}"] = kd.new_tensor(value)
-    return kd, diagnostics
+    object_rows = []
+    if collect_object_diagnostics:
+        for object_id, class_id, count, value in zip(
+                object_ids.detach().cpu().tolist(), object_classes.detach().cpu().tolist(),
+                object_counts.detach().cpu().tolist(), object_means.detach().cpu().tolist()):
+            object_rows.append({
+                "class_label": int(class_id),
+                "batch_index": int(object_id // gt_labels.shape[1]),
+                "object_index": int(object_id % gt_labels.shape[1]),
+                "positive_count": int(count), "object_KD": float(value),
+            })
+    return kd, diagnostics, object_rows
 
 
-def _empty_diagnostics(zero):
+def _empty_diagnostics(zero, non_target_count):
     keys = ("kd_positive_count", "kd_gt_object_count", "kd_teacher_entropy",
             "kd_student_entropy", "kd_kl_mean", "teacher_student_top1_agreement",
             "kd_target_gt_count", "kd_person_logit_in_distribution",
-            "kd_teacher_student_index_identical")
+            "kd_teacher_student_index_identical", "valid_kd_object_count")
     result = {key: zero.detach().clone() for key in keys}
+    result["non_target_gt_count"] = non_target_count.to(zero.dtype)
+    result["zero_positive_object_count"] = non_target_count.to(zero.dtype)
     for name in FOCUS_CLASSES.values():
         result["KD_" + name] = zero.detach().clone()
         result["KD_count_" + name] = zero.detach().clone()
@@ -176,9 +212,10 @@ class KDAdaptiveLearner(AdaptiveLearner):
             nt_loss = non_target_retention_loss(torch.stack(after_nt), torch.stack(before_nt))
         else:
             nt_loss = after_feat.sum() * 0.0
-        kd, kd_metrics = teacher_aligned_non_target_kd(
+        kd, kd_metrics, self.kd_object_rows = teacher_aligned_non_target_kd(
             self.model.criterion, teacher_raw, student_raw, clean_batch,
             target_class_id=self.target_class_id, tau=2.0,
+            collect_object_diagnostics=getattr(self, "collect_kd_object_diagnostics", False),
         )
         metrics = {
             "L_adapt_target": after_score,
