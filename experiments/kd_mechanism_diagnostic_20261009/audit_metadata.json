@@ -1,0 +1,16 @@
+{
+  "config_sha256": "8107f4a3f7859b3d775cfa3c37d461a774bc379b2782206ec7b0c39b363fc741",
+  "fixed_set_sha256": "f203bde588023fb932d2667fb2c02c5e8a5653ab97eb1b4135fa54e636f8959a",
+  "global_params_sha256": "43f8a8a9fb1e4fe589d4201a7f81ad20016b00f78ff5c18dc2483df4f5595d2a",
+  "parent_cache_sha256": "12889ba0f80b29c194a59bd9eb2a6d8b137e9aa4977fdb94ad84444628b316a7",
+  "query_count": 16,
+  "object_count": 24,
+  "teacher_positive_count": 240,
+  "lambda_KD": 0.7160846249749698,
+  "tau": 2.0,
+  "no_optimizer_steps": true,
+  "raw_to_decoded_sigmoid_max_abs_error": 0.0,
+  "raw_logit_min": -69.93321990966797,
+  "raw_logit_max": 2.813190460205078,
+  "comparison_source": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/kdcls_20261007/ue_project/runs_safe_soft05_kdcls_objbal_eps8_person_seed0_20261008/formal_safe_soft05_kdcls_objbal_seed0_20261008/comparison/comparison.json"
+}
