@@ -127,3 +127,19 @@ Experimental Evidence: retained full-cache failure and small annotation-size JSO
 Impact on Comparability: old initial/locked configs, source commits and all old outputs retained. New candidate uses new config, cache and RunIDs; old partial cache is not relabeled under new identity. eta/gamma/Q/smoothing unchanged. Single original review is preserved; main-agent production evidence must document this later coverage correction, without inventing a second independent verdict.
 
 Final Decision: candidate pending train-only coverage proof; formal noise/victim blocked.
+
+## PROBE-009 — float32 coverage-rule comparisons
+
+Original Design: CSB-008 diagnostic demanded bitwise equality with a prior CUDA sensitivity cache and a second input-gradient call.
+
+Observed Problem: probev1 had complete49GT coverage and recovered one validGT, but float32 budget difference5.59e-9; probev2 direct repeat difference7.45e-9. All are below the existing1e-7 spatial tolerance. Enabling all CUDA deterministic algorithms in diagnosticv3 made current direct comparison0 but changed historical budgets by up to.00536747; that global algorithm-policy change is rejected.
+
+Modification: preserve original sensitivity-cache CUDA settings (cudnn deterministic, no global deterministic-algorithm switch), and use the already established1e-7 spatial numerical tolerance for both covered-rule comparisons. Parent optimization's original deterministic policy stays unchanged. Record actual differences, never claim bitwise sensitivity-cache reproducibility. Classification: BUG_FIX (diagnostic numerical contract); no scientific eta/gamma/Q/gain tuning.
+
+Scientific Justification: switching numerical kernels to satisfy an unnecessary bitwise cache comparison changes budget allocation more than the intended correction. The frozen cache is computed once and bound by immutable per-image checksum throughout optimization; resume must reuse committed maps, not assume freshly recomputed float32 maps have identical bytes.
+
+Experimental Evidence: retained dev33v1/v2/v3 summaries, coverage49GT/recovered1, finite input gradients and unchanged Teacher. Recovered carGT has10positives and class-gradientL2=1.388469. Original covered32 images differ only within the existing spatial tolerance under the original policy. Final dev33v4 and full coverage remain pending.
+
+Impact on Comparability: no production kernel flag, parent loss/optimizer/RNG, CSB formula or parameters changed; initial configurations and failed evidence retained. This is not a claim that CSB improves non-target AP.
+
+Final Decision: retain original numerical policy and transparent tolerance; reject global deterministic switch.
