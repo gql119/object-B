@@ -38,3 +38,6 @@ execution/state/
 execution/parent_source_bytes.json
 remote_artifacts/
 Ultralytics/
+.harness-local/
+.agents/harness/config/research-memory.json
+.agents/harness/.memory/

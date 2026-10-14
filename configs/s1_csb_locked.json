@@ -1,0 +1,18 @@
+{
+  "schema": "s1.csb.v1",
+  "sensitivity_mode": "CLASSWISE_SENSITIVITY",
+  "sensitivity_input": "frozen_teacher_clean_train_only",
+  "assignment": "native_all_original_gt_detached_TAL",
+  "reduction": "positive_score_weighted_mean_within_gt_then_mean_within_class",
+  "components": "native_gain_box_CIoU_cls_BCE19_DFL; no Person logit; no background anchors",
+  "aggregation": "classwise_Person_domain_normalization_then_equal_class_mean",
+  "q_low": 0.1,
+  "q_high": 0.9,
+  "smooth_kernel": 3,
+  "eta": 0.25,
+  "gamma": 1.0,
+  "epsilon_max": 0.031372549,
+  "degenerate_policy": "constant_midpoint_0.5",
+  "no_nt_gt_policy": "full_Person_bbox8",
+  "png_projection": "integer_floor_of_per_pixel_continuous_budget"
+}

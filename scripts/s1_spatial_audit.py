@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import random
 import subprocess
+import shutil
 import sys
 import time
 
@@ -75,6 +76,8 @@ def main():
     p.add_argument('--output', required=True)
     p.add_argument('--count', type=int, default=32)
     p.add_argument('--selection', help='Reuse a previously frozen train selection; never select by gradient')
+    p.add_argument('--full-cache', action='store_true')
+    p.add_argument('--resume-from', help='Existing partial cache; preserve it and recover into a fresh output')
     a = p.parse_args()
     out = Path(a.output); out.mkdir(parents=True, exist_ok=False)
     for name in ['yolo', 'mpl', 'cache']:
@@ -94,10 +97,12 @@ def main():
     cfg = load_config(a.config)
     settings = json.loads(Path(a.csb_config).read_text())
     root = Path(cfg['data']['dataset_root'])
-    paths, selection = fixed_selection(root, a.count) if not a.selection else (
+    paths, selection = fixed_selection(root, 6095 if a.full_cache else a.count) if not a.selection else (
         [str(root / 'images/train' / q) for q in json.loads(Path(a.selection).read_text())['filenames']],
         json.loads(Path(a.selection).read_text())['selection'])
     selection_file = dict(selection=selection, filenames=[Path(x).name for x in paths], ids=[Path(x).stem for x in paths])
+    if a.full_cache and (selection['eligible_person_images'] != 6095 or len(paths) != 6095):
+        raise ValueError('Full CSB cache must cover exactly all6095 Person images')
     (out / 'selection.json').write_text(json.dumps(selection_file, indent=2))
     random.seed(0); np.random.seed(0); torch.manual_seed(0); torch.cuda.manual_seed_all(0)
     torch.backends.cudnn.benchmark = False; torch.backends.cudnn.deterministic = True
@@ -113,10 +118,28 @@ def main():
                 'sensitivity_source_sha256': digest(Path(__file__).resolve().parents[1] / 'ue_framework/methods/csb_sensitivity.py')}
     (out / 'maps').mkdir(); (out / 'heatmaps').mkdir()
     manifest_rows, stats, object_rows, seconds = [], [], [], []
+    recovered = {}
+    if a.resume_from:
+        prior = Path(a.resume_from)
+        progress = json.loads((prior / 'progress.json').read_text())
+        if progress['identity'] != identity or progress['selection'] != selection_file:
+            raise ValueError('Sensitivity cache resume identity/selection mismatch')
+        recovered = {r['id']: r for r in progress['images']}
+        stats = progress['stats']; object_rows = progress['object_rows']
+        for row in progress['images']:
+            old = prior / row['map_file']; new = out / row['map_file']
+            if digest(old) != row['map_sha256']: raise ValueError('Recovered map changed')
+            shutil.copyfile(old, new)
+            manifest_rows.append(row)
     for path in paths:
         im = load_image_rgb_float(path)
         label = Path(label_path_for_image(path, str(root / 'labels/train')))
         annotations = read_yolo_annotations(str(label))
+        if Path(path).stem in recovered:
+            row = recovered[Path(path).stem]
+            if digest(path) != row['image_sha256'] or digest(label) != row['annotation_sha256']:
+                raise ValueError('Recovered cache source bytes changed')
+            continue
         target, other = domains(im.shape, annotations)
         torch.cuda.synchronize(); start = time.perf_counter()
         g, rows = gradients(model, im, annotations)
@@ -147,6 +170,14 @@ def main():
         manifest_rows.append({'id': row['id'], 'item_key': item_key(im, annotations), 'image_sha256': digest(path),
             'annotation_sha256': digest(label), 'map_file': str(file.relative_to(out)), 'map_sha256': digest(file),
             'normalization': nstats, 'no_nt_gt': not bool(rows)})
+        progress = {'state': 'partial', 'identity': identity, 'selection': selection_file, 'images': manifest_rows,
+                    'stats': stats, 'object_rows': object_rows}
+        if not a.full_cache or len(stats) == 1 or len(stats) % 50 == 0 or len(stats) == len(paths):
+            temporary = out / 'progress.writing'
+            temporary.write_text(json.dumps(progress, indent=2)); temporary.replace(out / 'progress.json')
+        if a.full_cache:
+            print(json.dumps({'state': 'running', 'images': len(stats), 'id': row['id'], 'seconds': elapsed}), flush=True)
+            continue
         # Heatmaps are retained server-side, not raw-data transfers.
         import matplotlib
         matplotlib.use('Agg')
@@ -177,10 +208,12 @@ def main():
         'checkpoint_cleanup_completed': False, 'deleted_paths': [], 'checkpoint_paths_remaining': [],
         'identity': identity, 'selection': selection_file, 'sensitivity_mode': settings['sensitivity_mode'],
         'stats': stats, 'teacher_unchanged': True, 'frozen_state_sha256': before,
-        'mean_seconds_per_image': float(np.mean(seconds)), 'estimated_6095_seconds': float(np.mean(seconds) * 6095),
+        'mean_seconds_per_image': float(np.mean([s['seconds'] for s in stats])),
+        'estimated_6095_seconds': float(np.mean([s['seconds'] for s in stats]) * 6095),
         'peak_torch_allocated_bytes': torch.cuda.max_memory_allocated(),
         'cache_bytes': sum(q.stat().st_size for q in (out / 'maps').iterdir()),
-        'images_completed': len(stats), 'map_manifest_sha256': digest(out / 'manifest.json')}
+        'images_completed': len(stats), 'full_cache': a.full_cache,
+        'recovered_images': len(recovered), 'map_manifest_sha256': digest(out / 'manifest.json')}
     (out / 'smoke_summary.json').write_text(json.dumps(summary, indent=2, allow_nan=False))
 
 
