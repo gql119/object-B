@@ -12,6 +12,7 @@ class SpatialProjection:
         raw, old_delta, old_poison, binary, jnd = super()._compose_delta_batched(
             img_t, inner_t, ring_t, *args, **kwargs)
         if self.budget_mode == 'parent_fixed':
+            self._projection_base = old_delta
             return raw, old_delta, old_poison, binary, jnd
         budget = self._batch_budget.to(device=img_t.device, dtype=img_t.dtype)
         if budget.shape != inner_t.shape or not torch.isfinite(budget).all():
@@ -23,6 +24,7 @@ class SpatialProjection:
         # Undo only the parent's final overlap amplitude multiplier. The latent
         # tanh/JND/dropout/clamp/ST-floor is unchanged, including its RNG usage.
         base = old_delta / torch.where(inner_t > 0, inner_t, torch.ones_like(inner_t))
+        self._projection_base = base
         delta = torch.maximum(torch.minimum(base, budget), -budget) * (inner_t > 0)
         # Keep raw TV/budget regularization and all loss masks exactly parent-defined.
         return raw, delta, (img_t + delta).clamp(0, 1), binary, jnd
@@ -58,5 +60,9 @@ class S1CSBGenerator(SpatialProjection, LegacyKProtoGenerator):
         super().__init__(*args, **kwargs)
 
     def generate(self, image, annotations, *args, **kwargs):
-        self._batch_budget = torch.from_numpy(self.budget_store.get(image, annotations))[None, None]
+        b = self.budget_store.get(image, annotations)
+        if self.budget_mode == 'uniform_matched':
+            target = self._bbox_half_support(image.shape, annotations) > 0
+            b = np.where(target, b[target].mean(), 0).astype(np.float32)
+        self._batch_budget = torch.from_numpy(b)[None, None]
         return super().generate(image, annotations, *args, **kwargs)
