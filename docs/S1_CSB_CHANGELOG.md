@@ -15,3 +15,19 @@ Experimental Evidence: parent_remote_identity.json; numerical equivalence still 
 Impact on Comparability: restores reference source identity; no CSB yet.
 
 Final Decision: retain; do not claim loss/gradient equivalence before measured probe.
+
+## PROBE-002 — absolute worker config binding
+
+Original Design: parent equivalence subprocesses receive the same config argv.
+
+Observed Problem: v1 failed before model computation because changing worker cwd to the new output made a relative config path unavailable.
+
+Modification: resolve config/prototype paths before spawning workers; fresh probe RunID v2. Classification: BUG_FIX (launcher binding only).
+
+Scientific Justification: both workers must consume identical existing config bytes.
+
+Experimental Evidence: retained v1 rrctl console traceback; no loss or optimization result from v1.
+
+Impact on Comparability: no loss, RNG or optimization setting changes.
+
+Final Decision: retain; v1 failure preserved.

@@ -106,6 +106,8 @@ def main():
     if a.worker:
         worker(a); return
     import torch
+    a.config = str(Path(a.config).resolve())
+    a.prototypes = str(Path(a.prototypes).resolve())
     out = Path(a.output)
     out.mkdir(parents=True, exist_ok=False)
     runtime = out / 'runtime'
