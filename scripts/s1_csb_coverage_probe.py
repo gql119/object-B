@@ -45,13 +45,19 @@ def main():
             if reference.exists():
                 with np.load(reference) as old:
                     diff=float(np.max(np.abs(budget-old['budget'])))
-                comparisons.append(dict(id=Path(path).stem,budget_max_difference=diff))
+                strict_g,_=gradients(model,im,ann,coverage_policy='strict_native_TAL')
+                strict_budget,_,_=construct_budget(strict_g,target,settings,no_nt_gt=not any(int(q['cls'])!=14 for q in ann))
+                comparisons.append(dict(id=Path(path).stem,budget_max_difference=diff,
+                    current_strict_rule_max_difference=float(np.max(np.abs(budget-strict_budget)))))
             else:
                 comparisons.append(dict(id=Path(path).stem,recovered_objects=[r for r in records if r['native_positive_count']==0],
                     gradient_l2_by_class={str(k):float(np.linalg.norm(v)) for k,v in g.items()},budget_min=float(budget[target].min()),budget_max=float(budget[target].max())))
         if number%50==0 or not a.full_coverage:print(json.dumps({'images_done':number,'id':Path(path).stem,'errors':len(errors)}),flush=True)
     unchanged=model_hash(model)==before
-    same=all(q.get('budget_max_difference',0)==0 for q in comparisons)
+    # Historical cache was produced in a separate CUDA process. Use the already
+    # declared spatial-bound tolerance for its float32 values; the current
+    # covered-path rule comparison must be exact and cannot invoke rematching.
+    same=all(q.get('budget_max_difference',0)<=1e-7 and q.get('current_strict_rule_max_difference',0)==0 for q in comparisons)
     passed=not errors and unchanged and same
     with (out/'coverage.csv').open('w',newline='') as f:
         keys=list(dict.fromkeys(k for r in rows for k in r));w=csv.DictWriter(f,fieldnames=keys);w.writeheader();w.writerows(rows)
@@ -64,7 +70,8 @@ def main():
         full_coverage=a.full_coverage,image_count=len(paths),nt_gt_count=len(rows),
         native_uncovered_gt=sum(r['native_positive_count']==0 for r in rows),
         recovered_gt=sum(r['coverage_mode']=='independent_same_TAL_rematch' and r['coverage_status']=='COVERED' for r in rows),
-        remaining_uncovered_gt=len(errors),errors=errors,comparisons=comparisons,elapsed_seconds=time.perf_counter()-start)
+        remaining_uncovered_gt=len(errors),errors=errors,comparisons=comparisons,historical_cache_tolerance=1e-7,
+        current_covered_rule_tolerance=0,elapsed_seconds=time.perf_counter()-start)
     (out/'smoke_summary.json').write_text(json.dumps(summary,indent=2,allow_nan=False))
     if not passed:raise ValueError('CSB coverage admission failed; no perturbation/victim allowed')
 
