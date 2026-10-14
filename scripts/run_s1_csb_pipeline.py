@@ -96,6 +96,8 @@ def main():
     from ue_framework.methods.semantic_coordinates import semantic_identity
     from scripts.audit_safe_bg_ablation_fingerprint_20261004 import split_fingerprint
     from scripts.analyze_b2_to_safe_lr_results_20261002 import NAMES, pus, collateral
+    if review.get('csb_config_sha256') != digest(a.csb_config) or review.get('admission_sha256') != digest(a.admission):
+        raise ValueError('Reviewed spatial config or admission receipt changed')
     cfg = load_config(a.config); mc = cfg['methods']['legacy_kproto_ret']
     parent = Path(a.parent_root).resolve()
     provenance = json.loads((ROOT / 'docs/s1_evidence/parent_remote_identity.json').read_text())

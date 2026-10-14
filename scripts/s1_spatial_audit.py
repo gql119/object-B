@@ -142,7 +142,10 @@ def main():
             continue
         target, other = domains(im.shape, annotations)
         torch.cuda.synchronize(); start = time.perf_counter()
-        g, rows = gradients(model, im, annotations)
+        try:
+            g, rows = gradients(model, im, annotations)
+        except Exception as error:
+            raise RuntimeError(f'CSB input {Path(path).stem}: {error}') from error
         budget, norm, nstats = construct_budget(g, target, settings, no_nt_gt=not any(int(x['cls']) != 14 for x in annotations))
         torch.cuda.synchronize(); elapsed = time.perf_counter() - start
         seconds.append(elapsed)
