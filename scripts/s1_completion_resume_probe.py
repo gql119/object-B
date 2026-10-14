@@ -87,6 +87,10 @@ def main():
     from ue_framework.methods.s1_csb import S1CSBTrainer
     from ue_framework.methods.s1_optimization import optimize
     cfg=load_config(a.config);mc=cfg['methods']['legacy_kproto_ret'];root=Path(cfg['data']['dataset_root'])
+    from ue_framework.methods.semantic_coordinates import semantic_identity
+    provenance=json.loads((Path(__file__).resolve().parents[1]/'docs/s1_evidence/parent_remote_identity.json').read_text())
+    if semantic_identity(cfg, a.parent_root)!=provenance['formal_status']['semantic_identity']:
+        raise ValueError('Read-only canonical parent artifact identity mismatch')
     if mc['universal_epochs']!=24 or mc['universal_batch_size']!=16 or mc['eot_samples']!=2:
         raise ValueError('Original formal parameters must not be modified for B1 test')
     random.seed(0);np.random.seed(0);torch.manual_seed(0);torch.cuda.manual_seed_all(0)

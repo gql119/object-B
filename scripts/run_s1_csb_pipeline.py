@@ -130,7 +130,9 @@ def main():
         raise ValueError('Original formal Safe-Soft05 config changed')
     if digest(cfg['surrogate']['ckpt']) != provenance['formal_status']['surrogate_sha256']:
         raise ValueError('Different frozen/Adaptive checkpoint')
-    if semantic_identity(cfg, ROOT) != provenance['formal_status']['semantic_identity']:
+    # Canonical bytes above bind the new source. Original TSFL/Safe-BG artifacts
+    # are intentionally reused read-only within the authoritative parent root.
+    if semantic_identity(cfg, parent) != provenance['formal_status']['semantic_identity']:
         raise ValueError('Parent TSFL/orth/Safe-BG artifact or source identity changed')
     if torch.__version__ != provenance['environment']['torch']:
         raise ValueError('Parent PyTorch environment changed')

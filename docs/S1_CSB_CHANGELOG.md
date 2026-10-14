@@ -95,3 +95,19 @@ Experimental Evidence: local5targeted tests passed; current-source GPU completio
 Impact on Comparability: all parent numerical updates and CSB parameters unchanged. No second scientific review; main-agent closure requires measured zero differences and complete output.
 
 Final Decision: retain fix pending production proof; formal remains blocked until B1 is closed.
+
+## BINDING-007 — formal receipt/artifact roots
+
+Original Design: formal command uses a local post-commit review JSON and passes the new worktree to the canonical semantic identity function.
+
+Observed Problem: formalv1 failed before computation because rrctl source bundles contain committed files, not the untracked post-commit review JSON. Formalv2 then failed before cache/noise because the inherited identity function correctly rejects original TSFL artifacts outside the supplied new worktree root. Both failed RunIDs and logs are retained; neither updated perturbations or trained a victim.
+
+Modification: explicitly transport the small review JSON to S1/receipts with SHA verification and bind an absolute CLI path; pass the authoritative read-only parent root to semantic_identity after separately checking all45new-source hashes. Include that exact parent identity in the bounded completion/recovery probe. Classification: BUG_FIX (deterministic identity/path binding only).
+
+Scientific Justification: original semantic artifacts must be reused, not copied/rebuilt or silently replaced; new computing source is independently bound to the parent fingerprints. Receipts cannot be assumed present from permission-to-have-dirty-paths.
+
+Experimental Evidence: v1 FileNotFoundError and v2 semantic-root ValueError; B1 completion probev1 passed with all parameter/checkpoint differences0 and diagnostic bytes identical. New-source parent identity and completion probe pending before fresh formalv3.
+
+Impact on Comparability: no canonical mathematical file, artifact, parameter, loss, update or budget changes. No second reviewer.
+
+Final Decision: retain binding corrections; preserve prior failures, use new RunIDs.
