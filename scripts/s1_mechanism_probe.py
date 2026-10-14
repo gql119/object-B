@@ -100,7 +100,9 @@ def worker(a):
             'ret_gradient_norm': float(values['grad_ret_norm'].detach()), 'attack_gradient_norm': float(values['grad_attack_norm'].detach()),
             'mean_abs_delta': float(values['mean_abs_delta'].detach()), 'max_abs_delta': float(values['max_abs_delta'].detach())})
     identity = dict(parent_config_sha256=digest(a.config), cache_manifest_sha256=digest(Path(a.cache) / 'manifest.json'),
-                    budget_mode=a.mode, optimization_source_sha256=digest(Path(__file__).resolve().parents[1] / 'ue_framework/methods/s1_optimization.py'))
+                    budget_mode=a.mode, optimization_source_sha256=digest(Path(__file__).resolve().parents[1] / 'ue_framework/methods/s1_optimization.py'),
+                    projection_source_sha256=digest(Path(__file__).resolve().parents[1] / 'ue_framework/methods/s1_csb.py'),
+                    prototypes_sha256=digest(a.prototypes))
     started = time.perf_counter()
     status = optimize(trainer, images, label_dir, prototypes, output, identity,
                       stop_after=a.stop_after, resume=a.resume, observe=None if a.production_benchmark else observe)

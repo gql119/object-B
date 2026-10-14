@@ -170,7 +170,11 @@ def main():
             raise ValueError('Parent background prototypes changed')
         prototypes = torch.load(prototypes_path, map_location='cuda:0', weights_only=True)['prototypes']
         identity = dict(parent_config_sha256=digest(a.config), cache_manifest_sha256=digest(cache / 'manifest.json'),
-                        budget_mode='csb', optimization_source_sha256=digest(ROOT / 'ue_framework/methods/s1_optimization.py'))
+                        budget_mode='csb', optimization_source_sha256=digest(ROOT / 'ue_framework/methods/s1_optimization.py'),
+                        projection_source_sha256=digest(ROOT / 'ue_framework/methods/s1_csb.py'),
+                        prototypes_sha256=digest(prototypes_path))
+        if a.resume_noise and not Path(a.resume_noise).resolve().is_relative_to(ALLOWED):
+            raise ValueError('Only a trusted S1-isolated checkpoint may be loaded')
         mark('noise_generation')
         noise = out / 'noise'
         noise_status = optimize(trainer, images, source / 'labels/train', prototypes, noise, identity, resume=a.resume_noise)
