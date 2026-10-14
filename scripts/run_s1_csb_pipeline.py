@@ -49,6 +49,7 @@ def main():
     p.add_argument('--output', required=True)
     p.add_argument('--review')
     p.add_argument('--admission')
+    p.add_argument('--blocker-closure')
     p.add_argument('--admission-mode', action='store_true')
     p.add_argument('--cache-existing')
     p.add_argument('--cache-resume-from')
@@ -74,8 +75,27 @@ def main():
     if not a.review or not a.admission: raise ValueError('Formal pipeline requires review AND passing admission')
     review = json.loads(Path(a.review).read_text()); admission = json.loads(Path(a.admission).read_text())
     commit = subprocess.check_output(['git', '-C', str(ROOT), 'rev-parse', 'HEAD'], text=True).strip()
-    if review.get('result') != 'scientifically_correct' or review.get('decision') != 'allow_run' or review.get('code_snapshot') != commit:
+    if review.get('code_snapshot') != commit:
         raise ValueError('Single scientific review has not allowed this exact source snapshot')
+    direct_pass = review.get('result') == 'scientifically_correct' and review.get('decision') == 'allow_run'
+    closed_pass = review.get('result') == 'scientifically_incorrect' and review.get('decision') == 'allow_run_after_blocker_closure'
+    if closed_pass:
+        if not a.blocker_closure or review.get('blockers') != [{'id': 'B1', 'status': 'closed'}]:
+            raise ValueError('Every original reviewer blocker needs explicit main-agent closure')
+        closure = json.loads(Path(a.blocker_closure).read_text())
+        if closure.get('source_commit') != commit or closure.get('passed') is not True:
+            raise ValueError('Missing current-source production completion/resume proof')
+        for mode in ['resume_warmup', 'resume_last', 'resume_complete']:
+            check = closure.get('checks', {}).get(mode, {})
+            if not (check.get('global_params_max_difference') == 0 and check.get('checkpoint_state_max_difference') == 0
+                    and check.get('diagnostics_byte_identical') is True and check.get('complete') is True
+                    and check.get('steps') == 24 and check.get('epochs') == 24
+                    and check.get('frozen_model_unchanged') is True and check.get('adaptive_model_unchanged') is True):
+                raise ValueError('Completion/frequency-freeze recovery evidence failed: ' + mode)
+        if any(closure['checks'][mode]['added_optimizer_updates'] != 0 for mode in ['resume_last', 'resume_complete']):
+            raise ValueError('Completed checkpoint recovery unexpectedly updated parameters')
+    if not direct_pass and not closed_pass:
+        raise ValueError('Independent review is blocked or not evaluable')
     if admission.get('passed') is not True or admission.get('formal_generation_enabled') is not False:
         raise ValueError('Missing bounded admission evidence')
     if admission.get('csb_checkpoint_rng_optimizer_cursor_replay_max_difference') != 0:
@@ -98,6 +118,8 @@ def main():
     from scripts.analyze_b2_to_safe_lr_results_20261002 import NAMES, pus, collateral
     if review.get('csb_config_sha256') != digest(a.csb_config) or review.get('admission_sha256') != digest(a.admission):
         raise ValueError('Reviewed spatial config or admission receipt changed')
+    if closed_pass and review.get('blocker_closure_sha256') != digest(a.blocker_closure):
+        raise ValueError('Blocker closure artifact changed')
     cfg = load_config(a.config); mc = cfg['methods']['legacy_kproto_ret']
     parent = Path(a.parent_root).resolve()
     provenance = json.loads((ROOT / 'docs/s1_evidence/parent_remote_identity.json').read_text())

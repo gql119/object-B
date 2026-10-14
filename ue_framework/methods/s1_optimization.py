@@ -67,7 +67,11 @@ def optimize(trainer, images, label_dir, prototypes, output, identity, *, stop_a
             if opt.state[p] and not torch.isfinite(opt.state[p]['exp_avg']).all():
                 raise ValueError('Restored Adam state nonfinite')
     start = time.perf_counter()
-    checkpoint = None
+    checkpoint = Path(resume).resolve() if resume else None
+    status = dict(state='running', epoch=min(state['epoch'] + 1, trainer.universal_epochs),
+        steps=state['step'], epoch_image_cursor=state['cursor'], elapsed_seconds=0.,
+        identity=identity, latest=state['diagnostics'][-1] if state['diagnostics'] else {},
+        resume_from=str(resume) if resume else None)
 
     def save_checkpoint():
         nonlocal checkpoint
@@ -171,6 +175,7 @@ def optimize(trainer, images, label_dir, prototypes, output, identity, *, stop_a
         margin=trainer.margin)
     torch.save(pack, output / 'global_params.pt')
     status.update(state='complete', steps=state['step'], epochs_completed=state['epoch'], schedule_complete=True,
-                  checkpoint=str(checkpoint), frozen_model_unchanged=True, adaptive_model_unchanged=True)
+                  epoch=state['epoch'], checkpoint=str(checkpoint), frozen_model_unchanged=True,
+                  adaptive_model_unchanged=True, elapsed_seconds=time.perf_counter() - start)
     (output / 'status.json').write_text(json.dumps(status, indent=2))
     return status

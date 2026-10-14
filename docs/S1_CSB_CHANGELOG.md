@@ -79,3 +79,19 @@ Experimental Evidence: passing final v5 probe required; prior disabled-mode chec
 Impact on Comparability: eta/gamma/Q/sensitivity unchanged; old-map numerical behavior and canonical losses are preserved.
 
 Final Decision: retain pending measured old-map equivalence; formal still blocked.
+
+## RESUME-006 — completed-checkpoint export
+
+Original Design: resumable parent-equivalent Adam/EOT loop initializes the reporting status inside each optimizer step.
+
+Observed Problem: the single independent reviewer on commit7a910ce identified B1: final-batch or epoch24-complete recovery performs zero new steps and reaches an uninitialized status variable. Prior3→5 replay did not cover epoch5 frequency freeze or production completion.
+
+Modification: initialize status from saved cursor/diagnostics and retain the input checkpoint reference before entering the loop. Completion records actual restored epoch/steps. Add a production24-epoch diagnostic on two already-fixed train images: full export, epoch4→24 recovery, epoch23→last-batch interruption, zero-step last-batch recovery, zero-step complete recovery. Classification: BUG_FIX (checkpoint/reporting semantics); no loss, update, RNG, scheduler or spatial parameter changes.
+
+Scientific Justification: exact recovery must also work when the registered optimization is already finished. The formal schedule remains24epochs/9144steps/6095images; two-image24-step fixture tests stage boundaries without claiming full-data generation.
+
+Experimental Evidence: local5targeted tests passed; current-source GPU completion/frequency-freeze probe pending. The original independent scientifically_incorrect/do_not_run verdict is preserved in execution/independent_review_7a910ce.json.
+
+Impact on Comparability: all parent numerical updates and CSB parameters unchanged. No second scientific review; main-agent closure requires measured zero differences and complete output.
+
+Final Decision: retain fix pending production proof; formal remains blocked until B1 is closed.
