@@ -26,8 +26,13 @@ class SpatialProjection:
         base = old_delta / torch.where(inner_t > 0, inner_t, torch.ones_like(inner_t))
         self._projection_base = base
         delta = torch.maximum(torch.minimum(base, budget), -budget) * (inner_t > 0)
+        poison = (img_t + delta).clamp(0, 1)
+        if hasattr(self, '_last_poison'):
+            # B2 caches the result inside its inherited compose call. Replace
+            # that cache with THIS final projected tensor before either loss.
+            self._last_poison = poison
         # Keep raw TV/budget regularization and all loss masks exactly parent-defined.
-        return raw, delta, (img_t + delta).clamp(0, 1), binary, jnd
+        return raw, delta, poison, binary, jnd
 
 
 class S1CSBTrainer(SpatialProjection, B2SemanticTrainer):

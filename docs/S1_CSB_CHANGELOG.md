@@ -31,3 +31,19 @@ Experimental Evidence: retained v1 rrctl console traceback; no loss or optimizat
 Impact on Comparability: no loss, RNG or optimization setting changes.
 
 Final Decision: retain; v1 failure preserved.
+
+## CSB-003 — shared final poison binding
+
+Original Design: override only final spatial projection, retaining inherited B2 losses.
+
+Observed Problem: mechanism v1 completed native/fixed arms, then failed in CSB at B2's frozen-gradient diagnostic. MRO had cached the parent's old poison before S1 projected it; the frozen branch consumed the new tensor while Adaptive cached the old one. Traceback: autograd tensor unused.
+
+Modification: S1's projection wrapper binds `_last_poison` to its final projected poison. Original B2/Adaptive/Frozen code is unchanged. New mechanism RunID v2. Classification: BUG_FIX, not a CSB parameter/design adjustment.
+
+Scientific Justification: both parent branches must consume the same constrained support image.
+
+Experimental Evidence: v1 console/failed status retained. Numerical closure requires the v2 production probe.
+
+Impact on Comparability: corrects intended shared input; q10/q90, eta.25, gamma1, losses and optimizer unchanged.
+
+Final Decision: retain pending passing production probe; formal blocked.
