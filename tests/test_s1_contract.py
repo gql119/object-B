@@ -3,6 +3,7 @@ from pathlib import Path
 from types import SimpleNamespace
 import numpy as np
 import pytest
+import subprocess
 from scripts.run_s1_csb_pipeline import summarize
 from ue_framework.methods.csb_budget import digest
 
@@ -13,6 +14,8 @@ def test_original_parent_runtime_bytes_untouched():
     receipt = json.loads((ROOT / 'docs/s1_evidence/parent_remote_identity.json').read_text())
     for name, expected in receipt['source_sha256'].items():
         assert digest(ROOT / name) == expected, name
+        import hashlib
+        assert hashlib.sha256(subprocess.check_output(['git', 'show', 'HEAD:' + name], cwd=ROOT)).hexdigest() == expected, name
     old = json.loads((ROOT / 'configs/s1_csb_initial.json').read_text())
     new = json.loads((ROOT / 'configs/s1_csb_locked.json').read_text())
     assert new == {k: v for k, v in old.items() if k not in ['status', 'formal_generation_enabled', 'victim_training_enabled']}

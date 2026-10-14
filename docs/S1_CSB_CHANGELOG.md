@@ -47,3 +47,19 @@ Experimental Evidence: v1 console/failed status retained. Numerical closure requ
 Impact on Comparability: corrects intended shared input; q10/q90, eta.25, gamma1, losses and optimizer unchanged.
 
 Final Decision: retain pending passing production probe; formal blocked.
+
+## RECOVERY-004 — committed blob byte identity
+
+Original Design: restored worktree source bytes preserved by -text attributes.
+
+Observed Problem: the production v3 config hash was133d3c rather than historical80cffe. Worktree bytes matched, but Git's unchanged-file index cache had retained LF blobs for5files despite new attributes (adaptive learner, orth reference, formal config, materializer, victim). Numeric tests passed because differences were line endings, but formal source/config identity checks would correctly refuse to run.
+
+Modification: explicitly renormalize only those5files under -text attributes, preserving exact historical bytes in committed blobs; targeted test now checks both workingtree and Git HEAD bytes. Classification: BUG_FIX, transport/source identity only.
+
+Scientific Justification: the deployed source and formal config must match historical identities.
+
+Experimental Evidence: v3 actual config hash and local git-show SHA comparison;5matching committed blobs are required before the final probe.
+
+Impact on Comparability: no source statements, configuration values, loss, RNG or scientific settings changed.
+
+Final Decision: retain; v3 remains separate evidence and final exact-source admission uses fresh v4.
