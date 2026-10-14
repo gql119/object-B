@@ -1,4 +1,4 @@
-from typing import List, Optional
+﻿from typing import List, Optional
 
 import cv2
 import numpy as np

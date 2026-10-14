@@ -27,3 +27,14 @@ env/
 
 # 排除系统文件
 .DS_Store
+
+# S1: retain locally; never publish weights, datasets, runtime or source transfer payloads.
+*.pt
+*.pt.gz
+*.npz
+*.npy
+.s1_runtime/
+execution/state/
+execution/parent_source_bytes.json
+remote_artifacts/
+Ultralytics/
