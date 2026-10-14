@@ -14,6 +14,7 @@ def main():
     import numpy as np,torch
     torch.manual_seed(0);torch.cuda.manual_seed_all(0);np.random.seed(0)
     torch.backends.cudnn.benchmark=False;torch.backends.cudnn.deterministic=True
+    torch.use_deterministic_algorithms(True)
     from ultralytics import YOLO
     from ue_framework.config import load_config
     from ue_framework.data_utils import load_image_rgb_float,read_yolo_annotations,label_path_for_image
@@ -72,6 +73,7 @@ def main():
         recovered_gt=sum(r['coverage_mode']=='independent_same_TAL_rematch' and r['coverage_status']=='COVERED' for r in rows),
         remaining_uncovered_gt=len(errors),errors=errors,comparisons=comparisons,historical_cache_tolerance=1e-7,
         current_covered_rule_tolerance=0,elapsed_seconds=time.perf_counter()-start)
+    summary['deterministic_cuda_algorithms']=torch.are_deterministic_algorithms_enabled()
     (out/'smoke_summary.json').write_text(json.dumps(summary,indent=2,allow_nan=False))
     if not passed:raise ValueError('CSB coverage admission failed; no perturbation/victim allowed')
 
