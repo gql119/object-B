@@ -143,7 +143,8 @@ def main():
         target, other = domains(im.shape, annotations)
         torch.cuda.synchronize(); start = time.perf_counter()
         try:
-            g, rows = gradients(model, im, annotations)
+            g, rows = gradients(model, im, annotations,
+                coverage_policy=settings.get('coverage_policy', 'strict_native_TAL'))
         except Exception as error:
             raise RuntimeError(f'CSB input {Path(path).stem}: {error}') from error
         budget, norm, nstats = construct_budget(g, target, settings, no_nt_gt=not any(int(x['cls']) != 14 for x in annotations))

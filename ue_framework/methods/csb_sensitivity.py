@@ -14,14 +14,16 @@ from ultralytics.utils.metrics import bbox_iou
 from ultralytics.utils.tal import make_anchors, bbox2dist
 
 
-def gradients(model, image, annotations, imgsz=640):
+def gradients(model, image, annotations, imgsz=640, *, coverage_policy='strict_native_TAL', coverage_only=False):
+    if coverage_policy not in ['strict_native_TAL', 'independent_same_TAL_for_uncovered_valid_GT']:
+        raise ValueError('Unknown predeclared CSB supervision coverage policy')
     if model.training or any(p.requires_grad for p in model.parameters()):
         raise ValueError('CSB teacher must be eval/frozen, with input gradient enabled')
     nt = [a for a in annotations if int(a['cls']) != 14]
     if not nt:
         return {}, []
     device = next(model.parameters()).device
-    x = torch.from_numpy(image).permute(2, 0, 1)[None].to(device).float().requires_grad_(True)
+    x = torch.from_numpy(image).permute(2, 0, 1)[None].to(device).float().requires_grad_(not coverage_only)
     h, w = image.shape[:2]
     ratio = min(imgsz / h, imgsz / w)
     nh, nw = round(h * ratio), round(w * ratio)
@@ -60,14 +62,39 @@ def gradients(model, image, annotations, imgsz=640):
         if cls == 14:
             continue
         hit = fg[0] & (gi[0] == j)
+        native_count = int(hit.sum())
+        object_boxes, object_scores = assigned_boxes, scores
+        mode = 'native_all_GT_competition'
+        if not bool(hit.any()) and coverage_policy == 'independent_same_TAL_for_uncovered_valid_GT':
+            # Budget-estimation supervision only: retain native matching for every
+            # covered GT. A valid uncovered GT competes alone in the SAME TAL,
+            # without stealing another object's matches or using zero sensitivity.
+            with torch.no_grad():
+                _, object_boxes, object_scores, object_fg, _ = criterion.assigner(
+                    ps.detach().sigmoid(), decoded.detach() * stride, anchors * stride,
+                    labels[:, j:j+1], gtboxes[:, j:j+1], gtboxes[:, j:j+1].sum(-1, keepdim=True) > 0)
+            hit = object_fg[0]
+            mode = 'independent_same_TAL_rematch'
         if not bool(hit.any()):
+            if coverage_only:
+                records.append({'gt_index': j, 'cls': cls, 'native_positive_count': native_count,
+                    'positive_count': 0, 'coverage_mode': mode, 'coverage_status': 'NO_VALID_POSITIVE'})
+                continue
             raise ValueError(f'NO_VALID_POSITIVE: GT index={j}, class={cls}')
-        weight = scores[0, hit].sum(-1).detach()
+        weight = object_scores[0, hit].sum(-1).detach()
         if not bool(torch.isfinite(weight).all()) or float(weight.sum()) <= 0:
+            if coverage_only:
+                records.append({'gt_index': j, 'cls': cls, 'native_positive_count': native_count,
+                    'positive_count': int(hit.sum()), 'coverage_mode': mode, 'coverage_status': 'NO_FOREGROUND_EVIDENCE'})
+                continue
             raise ValueError(f'NO_FOREGROUND_EVIDENCE: GT={j}, class={cls}')
+        if coverage_only:
+            records.append({'gt_index': j, 'cls': cls, 'native_positive_count': native_count,
+                'positive_count': int(hit.sum()), 'coverage_mode': mode, 'coverage_status': 'COVERED'})
+            continue
         weight = weight / weight.sum()
-        bce = F.binary_cross_entropy_with_logits(ps[0, hit][:, keep], scores[0, hit][:, keep], reduction='none').sum(-1)
-        truth = assigned_boxes / stride
+        bce = F.binary_cross_entropy_with_logits(ps[0, hit][:, keep], object_scores[0, hit][:, keep], reduction='none').sum(-1)
+        truth = object_boxes / stride
         ciou = 1 - bbox_iou(decoded[0, hit], truth[0, hit], xywh=False, CIoU=True).flatten()
         if criterion.bbox_loss.dfl_loss is None:
             raise ValueError('Parent YOLOv8 reference requires DFL')
@@ -81,6 +108,7 @@ def gradients(model, image, annotations, imgsz=640):
             raise FloatingPointError('Nonfinite NT detection loss')
         losses.setdefault(cls, []).append(loss)
         records.append({'gt_index': j, 'cls': cls, 'positive_count': int(hit.sum()),
+                        'native_positive_count': native_count, 'coverage_mode': mode, 'coverage_status': 'COVERED',
                         'box': float(terms[0].detach()), 'cls_bce19': float(terms[1].detach()),
                         'dfl': float(terms[2].detach()), 'gains': gains.tolist(),
                         'weighted_loss': float(loss.detach())})

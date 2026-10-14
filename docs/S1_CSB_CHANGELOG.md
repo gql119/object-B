@@ -111,3 +111,19 @@ Experimental Evidence: v1 FileNotFoundError and v2 semantic-root ValueError; B1 
 Impact on Comparability: no canonical mathematical file, artifact, parameter, loss, update or budget changes. No second reviewer.
 
 Final Decision: retain binding corrections; preserve prior failures, use new RunIDs.
+
+## CSB-008 — valid GT supervision coverage (independent candidate)
+
+Original Design: every original GT competes in native TAL, and each NT GT must receive at least one positive before computing its object-balanced detection sensitivity.
+
+Observed Problem: full frozen cachev3 failed at train2011_001260, GTindex5car, while200maps were committed. The valid GT measures168.96×60.16 pixels at640, overlapping a second car GT174.08×64. Native TAL resolves competing anchors to highest-IoU GT and can leave one valid object with no positive. No noise update or victim occurred.
+
+Modification: new configs/s1_csb_gt_coverage_v2.json retains old locked config and all spatial settings. Only for an uncovered valid NT GT, call the same native TAL with that GT alone; retain its native soft scores, box/clsBCE19/DFL gains and object/class means. Existing covered GT assignments stay untouched. If the independent call still yields no positive/evidence, abort; no zero map, nearest-anchor hack or no-NT fallback. Classification: CSB_DESIGN_ADJUSTMENT, not a loss/update Bug Fix.
+
+Scientific Justification: sensitivity estimates should include the supplied valid NT GT rather than erase it through assignment competition. This changes only frozen budget-estimation supervision; Safe-Soft05 losses/Teacher/Adaptive/optimizer and schedule remain unchanged. It may alter budget for previously unsupervised images and must be disclosed.
+
+Experimental Evidence: retained full-cache failure and small annotation-size JSON. Require a new33-image probe (the same fixed32 plus failed train case), zero budget difference on the original covered cohort, finite nonzero recovered gradient, followed by full6095coverage admission. Not yet measured. No validation AP involved.
+
+Impact on Comparability: old initial/locked configs, source commits and all old outputs retained. New candidate uses new config, cache and RunIDs; old partial cache is not relabeled under new identity. eta/gamma/Q/smoothing unchanged. Single original review is preserved; main-agent production evidence must document this later coverage correction, without inventing a second independent verdict.
+
+Final Decision: candidate pending train-only coverage proof; formal noise/victim blocked.
