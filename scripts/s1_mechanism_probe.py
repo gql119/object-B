@@ -55,11 +55,16 @@ def worker(a):
             'steps': 5, 'production_entrypoint': 'B2SemanticTrainer.train_universal (original parent loop)',
             'fixed_prototypes_read_only': a.prototypes, 'ids': selection['ids']}))
         return
-    from ue_framework.methods.csb_budget import BudgetStore, digest, item_key, png_project, domains
+    from ue_framework.methods.csb_budget import BudgetStore, digest, config_hash, item_key, png_project, domains
     from ue_framework.methods.s1_csb import S1CSBTrainer, S1CSBGenerator
     from ue_framework.methods.s1_optimization import optimize
     manifest = json.loads((Path(a.cache) / 'manifest.json').read_text())
-    store = BudgetStore(a.cache, manifest['identity'])
+    current = Path(__file__).resolve().parents[1]
+    settings = json.loads((current / 'configs/s1_csb_initial.json').read_text())
+    expected = {'teacher_sha256': digest(cfg['surrogate']['ckpt']), 'csb_config_sha256': config_hash(settings),
+        'source_dataset_root': str(root), 'csb_source_sha256': digest(current / 'ue_framework/methods/csb_budget.py'),
+        'sensitivity_source_sha256': digest(current / 'ue_framework/methods/csb_sensitivity.py')}
+    store = BudgetStore(a.cache, expected)
     trainer = S1CSBTrainer(cfg, mc, device, model, learner, budget_store=store, budget_mode=a.mode)
     trainer.max_steps = 5  # diagnostics only; optimize stop_after controls the bounded step count
     records = []
