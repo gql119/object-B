@@ -63,3 +63,19 @@ Experimental Evidence: v3 actual config hash and local git-show SHA comparison;5
 Impact on Comparability: no source statements, configuration values, loss, RNG or scientific settings changed.
 
 Final Decision: retain; v3 remains separate evidence and final exact-source admission uses fresh v4.
+
+## PROJECTION-005 — actual old-map compatibility
+
+Original Design: parent_fixed mode returned the parent tensor before consuming a supplied map; CSB used post-floor clamp.
+
+Observed Problem: numeric no-op did not prove the task's stronger requirement that passing the actual old budget map through the new interface recovers historical amplitude scaling.
+
+Modification: every mode now supplies a map. Exact old-map content (epsilon×original1/.5/0support) selects legacy amplitude scaling; other frozen maps use CSB clipping. Shared final poison is always bound. Add a separate csb-mode arm receiving old maps, compared to the actual original loop. Classification: BUG_FIX (required compatibility), not parameter tuning. No original source changed.
+
+Scientific Justification: old overlap amplitude scaling cannot be reproduced by a generic clamp for sub-budget amplitudes; explicit content-based compatibility is needed, including legal noNT full8maps.
+
+Experimental Evidence: passing final v5 probe required; prior disabled-mode checks remain separate.
+
+Impact on Comparability: eta/gamma/Q/sensitivity unchanged; old-map numerical behavior and canonical losses are preserved.
+
+Final Decision: retain pending measured old-map equivalence; formal still blocked.

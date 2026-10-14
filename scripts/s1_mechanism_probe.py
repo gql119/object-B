@@ -66,6 +66,12 @@ def worker(a):
         'source_dataset_root': str(root), 'csb_source_sha256': digest(current / 'ue_framework/methods/csb_budget.py'),
         'sensitivity_source_sha256': digest(current / 'ue_framework/methods/csb_sensitivity.py')}
     store = BudgetStore(a.cache, expected)
+    if a.old_map_probe:
+        def old_map(image, annotations):
+            target, other = domains(image.shape, annotations)
+            eps = float(cfg['experiment']['eps'])
+            return np.where(target & other, eps * .5, np.where(target, eps, 0)).astype(np.float32)
+        store.get = old_map
     trainer = S1CSBTrainer(cfg, mc, device, model, learner, budget_store=store, budget_mode=a.mode)
     trainer.max_steps = 0 if a.production_benchmark else 5
     records = []
@@ -191,6 +197,7 @@ def main():
     p.add_argument('--stop-after', type=int, default=5)
     p.add_argument('--resume')
     p.add_argument('--production-benchmark', action='store_true')
+    p.add_argument('--old-map-probe', action='store_true')
     a = p.parse_args()
     if a.worker: worker(a); return
     import torch
@@ -202,15 +209,17 @@ def main():
     for name in ['config', 'csb_config', 'prototypes', 'cache']: setattr(a, name, str(Path(getattr(a, name)).resolve()))
     busy = subprocess.check_output(['nvidia-smi', '--query-compute-apps=pid', '--format=csv,noheader'], text=True).strip()
     if busy: raise RuntimeError('GPU occupied; no concurrent S1 probe')
-    def launch(mode, suffix, limit=5, resume=None, benchmark=False):
+    def launch(mode, suffix, limit=5, resume=None, benchmark=False, old_map=False):
         cmd = [sys.executable, str(Path(__file__).resolve()), '--worker', '--parent-root', a.parent_root,
             '--config', a.config, '--prototypes', a.prototypes, '--cache', a.cache, '--mode', mode,
             '--csb-config', a.csb_config,
             '--output', str(out / suffix), '--stop-after', str(limit)]
         if resume: cmd += ['--resume', resume]
         if benchmark: cmd += ['--production-benchmark']
+        if old_map: cmd += ['--old-map-probe']
         subprocess.run(cmd, check=True, env=env, cwd=str(out))
     for mode in ['native', 'parent_fixed', 'csb', 'uniform_matched']: launch(mode, mode)
+    launch('csb', 'old_map_through_csb', old_map=True)
     launch('csb', 'interrupted', limit=3)
     interrupted = json.loads((out / 'interrupted/receipt.json').read_text())
     launch('csb', 'resumed', resume=interrupted['checkpoint'])
@@ -218,6 +227,8 @@ def main():
     native = torch.load(out / 'native/final_tensors.pt', map_location='cpu', weights_only=True)
     fixed = torch.load(out / 'parent_fixed/final_tensors.pt', map_location='cpu', weights_only=True)
     equivalence = compare_tree(native, fixed)
+    old_map_tensors = torch.load(out / 'old_map_through_csb/final_tensors.pt', map_location='cpu', weights_only=True)
+    old_map_difference = compare_tree(native, old_map_tensors)
     receipts = {x: json.loads((out / x / 'receipt.json').read_text()) for x in ['parent_fixed', 'csb', 'uniform_matched', 'resumed']}
     full = torch.load(receipts['csb']['checkpoint'], map_location='cpu', weights_only=False)
     resumed = torch.load(receipts['resumed']['checkpoint'], map_location='cpu', weights_only=False)
@@ -230,12 +241,13 @@ def main():
     with (out / 'parent_fixed/diagnostics.csv').open() as f: fixed_rows = list(csv.DictReader(f))
     loss_diff = max(abs(float(x[k]) - float(y[k])) for x, y in zip(native_rows, fixed_rows)
         for k in x if k.startswith(('L_', 'weighted_', 'grad_')))
-    passed = equivalence <= 1e-6 and loss_diff <= 1e-6 and replay == 0 and benchmark_difference <= 1e-6
+    passed = equivalence <= 1e-6 and old_map_difference <= 1e-6 and loss_diff <= 1e-6 and replay == 0 and benchmark_difference <= 1e-6
     summary = dict(state='complete' if passed else 'failed', passed=passed, finite_loss=True,
         production_entrypoint_reached=True, official_metrics_disabled=True, artifact_ingest_disabled=True,
         formal_generation_enabled=False, victim_training_enabled=False, cleanup_policy='retain_all',
         checkpoint_cleanup_completed=False, deleted_paths=[], checkpoint_paths_remaining=[v['checkpoint'] for v in receipts.values()],
         original_loop_fixed_budget_max_difference=equivalence, original_loop_loss_max_difference=loss_diff,
+        old_map_through_csb_parameter_difference=old_map_difference,
         csb_checkpoint_rng_optimizer_cursor_replay_max_difference=replay, steps_per_arm=5, receipts=receipts,
         production_benchmark=bench_receipt, benchmark_parameter_difference=benchmark_difference)
     (out / 'smoke_summary.json').write_text(json.dumps(summary, indent=2))

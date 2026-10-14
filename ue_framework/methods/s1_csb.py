@@ -11,9 +11,6 @@ class SpatialProjection:
     def _compose_delta_batched(self, img_t, inner_t, ring_t, *args, **kwargs):
         raw, old_delta, old_poison, binary, jnd = super()._compose_delta_batched(
             img_t, inner_t, ring_t, *args, **kwargs)
-        if self.budget_mode == 'parent_fixed':
-            self._projection_base = old_delta
-            return raw, old_delta, old_poison, binary, jnd
         budget = self._batch_budget.to(device=img_t.device, dtype=img_t.dtype)
         if budget.shape != inner_t.shape or not torch.isfinite(budget).all():
             raise ValueError('Invalid padded CSB map')
@@ -25,7 +22,14 @@ class SpatialProjection:
         # tanh/JND/dropout/clamp/ST-floor is unchanged, including its RNG usage.
         base = old_delta / torch.where(inner_t > 0, inner_t, torch.ones_like(inner_t))
         self._projection_base = base
-        delta = torch.maximum(torch.minimum(base, budget), -budget) * (inner_t > 0)
+        projected = torch.maximum(torch.minimum(base, budget), -budget) * (inner_t > 0)
+        # The old method scales amplitudes by1/.5 rather than merely clipping.
+        # An actually supplied old budget map must recover that behavior, even
+        # when it arrives through the CSB interface (including no-NT bbox8).
+        legacy_map = inner_t * self.eps
+        legacy_image = (budget == legacy_map).flatten(1).all(1)[:, None, None, None]
+        legacy_delta = base * (budget / self.eps)
+        delta = torch.where(legacy_image, legacy_delta, projected)
         poison = (img_t + delta).clamp(0, 1)
         if hasattr(self, '_last_poison'):
             # B2 caches the result inside its inherited compose call. Replace
@@ -44,17 +48,16 @@ class S1CSBTrainer(SpatialProjection, B2SemanticTrainer):
         super().__init__(*args, **kwargs)
 
     def _batch_loss(self, items, prototypes):
-        if self.budget_mode != 'parent_fixed':
-            h = (max(im.shape[0] for im, _, _ in items) + 31) // 32 * 32
-            w = (max(im.shape[1] for im, _, _ in items) + 31) // 32 * 32
-            budgets = []
-            for im, anns, support in items:
-                b = self.budget_store.get(im, anns)
-                if self.budget_mode == 'uniform_matched':
-                    target = support > 0
-                    b = np.where(target, b[target].mean(), 0).astype(np.float32)
-                budgets.append(F.pad(torch.from_numpy(b)[None], (0, w - im.shape[1], 0, h - im.shape[0])))
-            self._batch_budget = torch.stack(budgets)
+        h = (max(im.shape[0] for im, _, _ in items) + 31) // 32 * 32
+        w = (max(im.shape[1] for im, _, _ in items) + 31) // 32 * 32
+        budgets = []
+        for im, anns, support in items:
+            b = support.astype(np.float32) * self.eps if self.budget_mode == 'parent_fixed' else self.budget_store.get(im, anns)
+            if self.budget_mode == 'uniform_matched':
+                target = support > 0
+                b = np.where(target, b[target].mean(), 0).astype(np.float32)
+            budgets.append(F.pad(torch.from_numpy(b)[None], (0, w - im.shape[1], 0, h - im.shape[0])))
+        self._batch_budget = torch.stack(budgets)
         return super()._batch_loss(items, prototypes)
 
 
@@ -66,6 +69,8 @@ class S1CSBGenerator(SpatialProjection, LegacyKProtoGenerator):
 
     def generate(self, image, annotations, *args, **kwargs):
         b = self.budget_store.get(image, annotations)
+        if self.budget_mode == 'parent_fixed':
+            b = self._bbox_half_support(image.shape, annotations) * self.eps
         if self.budget_mode == 'uniform_matched':
             target = self._bbox_half_support(image.shape, annotations) > 0
             b = np.where(target, b[target].mean(), 0).astype(np.float32)
