@@ -48,13 +48,18 @@ def worker(a):
         holder={}
         trainer=S2S3FixedParentTrainer(cfg,mc,torch.device('cuda:0'),model,learner,
             cnlp_config=CNLPConfig(cal['selected_j'],float(mc['adaptive']['inner_lr']),lam,matching_policy=policy),
-            cup_config=CUPConfig(**cal['cup_candidate']) if a.mode.startswith('s3_') else None,
+            cup_config=CUPConfig(**cal['cup_candidate']) if a.mode.startswith('s3_') or a.mode=='cup_sink' else None,
             query_provider=lambda ids,step:holder['provider'](ids,step),support_batch_size=1)
         holder['provider']=TrainQueryProvider(a.manifest,cal['results'][0]['manifest_sha256'],trainer.adaptive,1,0)
         trainer.cnlp_query_provider=holder['provider']
     if (trainer.universal_epochs,trainer.universal_batch_size,trainer.eot_samples)!=(24,16,2):raise ValueError('Parent schedule changed')
     plan=json.loads(Path(a.plan).read_text())['cases'];images=plan[0]['support_ids']+plan[1]['support_ids']
     if len(set(images))!=32:raise ValueError('Probe requires actual fixed32 unique train images')
+    if a.mode=='cup_sink':
+        candidates={r['query_id'] for r in cal['results'][0]['cases'] if len(r['damage'])>=2 and r['query_id'] not in set(images)}
+        selected=sorted(candidates,key=lambda v:hashlib.sha256(('CUP sink seed0 '+Path(v).stem).encode()).hexdigest())[:4]
+        if len(selected)!=4:raise ValueError('Insufficient preregistered multiclass CUP sink inputs')
+        trainer.cnlp_query_provider.records=[r for r in trainer.cnlp_query_provider.records if r['image_id'] in selected]
     labels=Path(cfg['data']['dataset_root'])/'labels/train'
     proto=parent/'noise_full_b2_to_safe_soft05_eps8_person_seed0_20261004/background_prototypes.pt'
     if sha(proto)!=provenance['noise_artifacts']['background_prototypes.pt']['sha256']:raise ValueError('Prototypes changed')
@@ -124,14 +129,27 @@ def worker(a):
         from ue_framework.methods.counterfactual_optimization import optimize_counterfactual,model_hash
         before=(model_hash(model),model_hash(learner))
         def observe(t,items,loss,values,step,eot):
-            rows.append(dict(step=step,eot=eot,loss=float(loss.detach()),cnlp_loss=float(values['L_CNLP'].detach()),
+            valid=[c for c in range(20) if c!=14 and float(values[f'cnlp_class_{c}_valid'])>0]
+            uniform=torch.stack([values[f'cnlp_class_{c}_damage'].relu() for c in valid]).mean()
+            g_uniform=torch.autograd.grad(uniform,t.fourier_coeff,retain_graph=True)[0]
+            g_weighted=t._cnlp_gradient_vectors['cnlp']
+            attack=t._semantic_terms['BG_sel']+t._semantic_terms['rel_sel']+t.lambda_adapt*values['L_adapt_target']
+            g_attack=torch.autograd.grad(attack,t.fourier_coeff,retain_graph=True)[0]
+            denom=g_attack.norm()*g_weighted.norm()
+            full_attack_cosine=float((g_attack*g_weighted).sum()/denom) if float(denom)>0 else None
+            ratio=float(g_weighted.norm()*cal['lambda_candidate']/t._cnlp_gradient_vectors['parent'].norm().clamp_min(1e-12))
+            weights=torch.stack([values[f'cnlp_class_{c}_weight'] for c in valid])
+            if abs(float(weights.sum())-1)>1e-6 or float(weights.min())<.5/len(valid)-1e-6 or float(weights.max())>2./len(valid)+1e-6:
+                raise ValueError('Actual CUP sink weight normalization/bounds failed')
+            rows.append(dict(step=step,eot=eot,uniform_cnlp_loss=float(uniform.detach()),weighted_uniform_gradient_difference=float((g_weighted-g_uniform).norm()),weighted_cnlp_to_parent_norm=ratio,cosine_full_attack_cnlp=full_attack_cosine,relative_weight_min=float(weights.min())*len(valid),relative_weight_max=float(weights.max())*len(valid),loss=float(loss.detach()),cnlp_loss=float(values['L_CNLP'].detach()),
                 cup_min=float(values['cup_weight_min']),cup_max=float(values['cup_weight_max']),
                 valid_classes=float(values['cnlp_valid_classes']),**budget(items)))
+        target_steps=3 if a.mode.endswith('_pause') else (10 if a.mode=='cup_sink' else 5)
         state=optimize_counterfactual(trainer,images,labels,prototypes,out,
-            dict(parent_selection_sha256=sha(ROOT/'parent_selection.json'),calibration_sha256=sha(a.calibration),source_commit=a.commit),
-            stop_after=3 if a.mode.endswith('_pause') else 5,resume=a.resume,observe=observe)
+            dict(parent_selection_sha256=sha(ROOT/'parent_selection.json'),calibration_sha256=sha(a.calibration),source_commit=a.commit,diagnostic_query_subset=selected if a.mode=='cup_sink' else None),
+            stop_after=target_steps,resume=a.resume,observe=observe)
         if (model_hash(model),model_hash(learner))!=before:raise ValueError('Frozen/Adaptive model changed')
-        if state['steps']!=(3 if a.mode.endswith('_pause') else 5):raise ValueError('Incorrect bounded production step count')
+        if state['steps']!=target_steps:raise ValueError('Incorrect bounded production step count')
         if trainer.cnlp.completed_steps!=state['steps']:raise ValueError('CUP/CNLP commit counter mismatch')
         if trainer.cnlp.cup and trainer.cnlp.cup.steps!=state['steps']:raise ValueError('CUP EMA updated other than once per actual optimizer step')
         png_checks=[]
@@ -158,7 +176,7 @@ def worker(a):
                 png_checks.append(dict(image_id=image_path,max_delta_byte=int(delta.max()),budget_violation=violation,outside_max=outside,label_unchanged=True))
         dump(out/'receipt.json',dict(mode=a.mode,status=state,rows=rows,finite_loss=True,base_models_unchanged=True,
             added_optimizer_steps=len(rows)//trainer.eot_samples,cnlp_commits=trainer.cnlp.completed_steps,
-            cup_steps=trainer.cnlp.cup.steps if trainer.cnlp.cup else None,png_checks=png_checks))
+            cup_steps=trainer.cnlp.cup.steps if trainer.cnlp.cup else None,diagnostic_query_subset=selected if a.mode=='cup_sink' else None,png_checks=png_checks))
 
 def main():
     p=argparse.ArgumentParser()
@@ -180,7 +198,7 @@ def main():
         official_metrics_disabled=True,artifact_ingest_disabled=True)
     def mark(stage,**kw):status.update(stage=stage,**kw);dump(out/'status.json',status);print(json.dumps(status),flush=True)
     try:
-        for mode in ['matching_edges','reference','disabled','s2_full','s2_pause','s2_resume','s3_full','s3_pause','s3_resume']:
+        for mode in ['matching_edges','reference','disabled','s2_full','s2_pause','s2_resume','s3_full','s3_pause','s3_resume','cup_sink']:
             if subprocess.check_output(['nvidia-smi','--query-compute-apps=pid','--format=csv,noheader'],text=True).strip():raise RuntimeError('GPU occupied between probes')
             mark(mode)
             cmd=[sys.executable,str(Path(__file__).resolve()),'--worker','--mode',mode,'--commit',commit,'--output',str(out/mode)]
@@ -204,11 +222,14 @@ def main():
             checks[method]=dict(checkpoint_max_difference=difference,diagnostics_byte_identical=same,full_steps=f['status']['steps'],resumed_steps=r['status']['steps'],
                 base_models_unchanged=f['base_models_unchanged'] and r['base_models_unchanged'],decoded_png_checks=f['png_checks'],cnlp_commits=r['cnlp_commits'],cup_steps=r['cup_steps'])
             if difference!=0 or not same:raise ValueError('Production continuation mismatch: '+method)
+        cup=json.loads((out/'cup_sink/receipt.json').read_text())
+        active=sum(r['weighted_uniform_gradient_difference']>1e-12 for r in cup['rows'])
+        if cup['cup_steps']!=10 or active==0:raise ValueError('Real CUP aggregation did not affect Fourier gradient on fixed multiclass probe')
         summary=dict(status,state='complete',passed=True,finite_loss=True,computation_kind='training',production_entrypoint_reached=True,
-            production_entrypoint='S2S3FixedParentTrainer._batch_loss + optimize_counterfactual',production_optimizer_steps=30,eot_batches=60,matching_edge_batches=12,
+            production_entrypoint='S2S3FixedParentTrainer._batch_loss + optimize_counterfactual',production_optimizer_steps=40,eot_batches=80,matching_edge_batches=12,
             baseline_equivalence_probe=dict(passed=True,reference_id=str(Path(a.parent_root)),reference_computation=rr['imported_parent_file'],candidate_computation='S2S3FixedParentTrainer lambda_CNLP=0',
                 reference_weights_path=rr['reference_checkpoint_path'],candidate_weights_path=nr['reference_checkpoint_path'],reference_value=rr['rows'][0]['parent_loss'],candidate_value=nr['rows'][0]['parent_loss'],absolute_difference=ld,tolerance=1e-6,all_tensor_max_difference=diff),
-            checks=checks,proposal_sha256=sha(a.proposal),matching_policy=json.loads(Path(a.proposal).read_text())['cnlp_config']['matching_policy'],calibration_sha256=sha(a.calibration),cleanup_policy='retain_all',checkpoint_cleanup_completed=False,deleted_paths=[],
+            checks=checks,cup_sink=dict(optimizer_steps=10,eot_batches=20,weighted_gradient_difference_nonzero_batches=active,rows=cup['rows']),proposal_sha256=sha(a.proposal),matching_policy=json.loads(Path(a.proposal).read_text())['cnlp_config']['matching_policy'],calibration_sha256=sha(a.calibration),cleanup_policy='retain_all',checkpoint_cleanup_completed=False,deleted_paths=[],
             checkpoint_paths_remaining=[str(x) for x in out.rglob('*.pt')])
         dump(out/'smoke_summary.json',summary);mark('complete',state='complete',passed=True)
     except BaseException as e:mark(status['stage'],state='failed',error=repr(e));raise
