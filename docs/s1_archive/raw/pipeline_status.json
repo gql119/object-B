@@ -1,0 +1,11 @@
+{
+  "state": "complete",
+  "stage": "complete",
+  "started_at_unix": 1791970430.2572482,
+  "run_id": "s1_csb_gtcoverage_eps8_person_seed0_20261014_v3",
+  "source_commit": "16e0733227e32910cf8b480bd3497dff169c92f3",
+  "primary": "last.pt@200",
+  "secondary": "best.pt",
+  "noise_time_policy": "finish_registered_24_epochs",
+  "completed_at_unix": 1792018081.0533764
+}

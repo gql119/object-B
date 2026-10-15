@@ -1,0 +1,15 @@
+{
+  "status": "CPU_TESTS_PASSED",
+  "tests": 58,
+  "failures": 0,
+  "errors": 0,
+  "source_base": "16e0733227e32910cf8b480bd3497dff169c92f3",
+  "current_changes": "uncommitted",
+  "changes": [
+    "initial query learning-gain diagnostic on shared matching; not an added loss",
+    "bounded real-train calibration entrypoint, no outer updates/victim"
+  ],
+  "gpu": "NOT_RUN",
+  "parent": "S0",
+  "formal_enabled": false
+}

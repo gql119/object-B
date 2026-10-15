@@ -1,4 +1,8 @@
 ue_framework/** -text
+parent_selection.json -text
+docs/s1_archive/** -text
+configs/s2_s3_counterfactual_draft.json -text
+scripts/cnlp_train_admission.py -text
 scripts/train_noise_once.py -text
 scripts/materialize_noise_once.py -text
 scripts/run_isolated_victim.py -text
