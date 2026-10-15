@@ -44,7 +44,7 @@ def worker(a):
         if sha(ROOT/'parent_selection.json')!=cal['parent_selection_sha256']:raise ValueError('Parent binding changed')
         proposal=json.loads(Path(a.proposal).read_text());policy=proposal['cnlp_config']['matching_policy']
         if proposal['calibration_sha256']!=sha(a.calibration):raise ValueError('Proposal/calibration mismatch')
-        lam=0. if a.mode=='disabled' else cal['lambda_candidate']
+        lam=0. if a.mode in ('disabled','parent_loop') else cal['lambda_candidate']
         holder={}
         trainer=S2S3FixedParentTrainer(cfg,mc,torch.device('cuda:0'),model,learner,
             cnlp_config=CNLPConfig(cal['selected_j'],float(mc['adaptive']['inner_lr']),lam,matching_policy=policy),
@@ -137,11 +137,11 @@ def worker(a):
             g_attack=torch.autograd.grad(attack,t.fourier_coeff,retain_graph=True)[0]
             denom=g_attack.norm()*g_weighted.norm()
             full_attack_cosine=float((g_attack*g_weighted).sum()/denom) if float(denom)>0 else None
-            ratio=float(g_weighted.norm()*cal['lambda_candidate']/t._cnlp_gradient_vectors['parent'].norm().clamp_min(1e-12))
+            ratio=float(g_weighted.norm()*t.cnlp.adapter.config.lambda_cnlp/t._cnlp_gradient_vectors['parent'].norm().clamp_min(1e-12))
             weights=torch.stack([values[f'cnlp_class_{c}_weight'] for c in valid])
             if abs(float(weights.sum())-1)>1e-6 or float(weights.min())<.5/len(valid)-1e-6 or float(weights.max())>2./len(valid)+1e-6:
                 raise ValueError('Actual CUP sink weight normalization/bounds failed')
-            rows.append(dict(step=step,eot=eot,uniform_cnlp_loss=float(uniform.detach()),weighted_uniform_gradient_difference=float((g_weighted-g_uniform).norm()),weighted_cnlp_to_parent_norm=ratio,cosine_full_attack_cnlp=full_attack_cosine,relative_weight_min=float(weights.min())*len(valid),relative_weight_max=float(weights.max())*len(valid),loss=float(loss.detach()),cnlp_loss=float(values['L_CNLP'].detach()),
+            rows.append(dict(step=step,eot=eot,support_ids=list(t.cnlp_support_ids),query_ids=sorted({r['image_id'] for r in t._cnlp_last_evidence['objects']}),target_proxy=float(values['target_score_clean_after'].detach()),uniform_cnlp_loss=float(uniform.detach()),weighted_uniform_gradient_difference=float((g_weighted-g_uniform).norm()),weighted_cnlp_to_parent_norm=ratio,cosine_full_attack_cnlp=full_attack_cosine,relative_weight_min=float(weights.min())*len(valid),relative_weight_max=float(weights.max())*len(valid),loss=float(loss.detach()),cnlp_loss=float(values['L_CNLP'].detach()),
                 cup_min=float(values['cup_weight_min']),cup_max=float(values['cup_weight_max']),
                 valid_classes=float(values['cnlp_valid_classes']),**budget(items)))
         target_steps=3 if a.mode.endswith('_pause') else (10 if a.mode=='cup_sink' else 5)
@@ -181,6 +181,7 @@ def worker(a):
 def main():
     p=argparse.ArgumentParser()
     for k in ['config','parent-root','output','calibration','plan','manifest','edge-evidence','proposal']:p.add_argument('--'+k,required=True)
+    p.add_argument('--proxy-only',action='store_true')
     p.add_argument('--worker',action='store_true');p.add_argument('--mode');p.add_argument('--resume');p.add_argument('--commit')
     a=p.parse_args()
     if a.worker:return worker(a)
@@ -198,7 +199,8 @@ def main():
         official_metrics_disabled=True,artifact_ingest_disabled=True)
     def mark(stage,**kw):status.update(stage=stage,**kw);dump(out/'status.json',status);print(json.dumps(status),flush=True)
     try:
-        for mode in ['matching_edges','reference','disabled','s2_full','s2_pause','s2_resume','s3_full','s3_pause','s3_resume','cup_sink']:
+        modes=['parent_loop','s2_full','s3_full'] if a.proxy_only else ['matching_edges','reference','disabled','s2_full','s2_pause','s2_resume','s3_full','s3_pause','s3_resume','cup_sink']
+        for mode in modes:
             if subprocess.check_output(['nvidia-smi','--query-compute-apps=pid','--format=csv,noheader'],text=True).strip():raise RuntimeError('GPU occupied between probes')
             mark(mode)
             cmd=[sys.executable,str(Path(__file__).resolve()),'--worker','--mode',mode,'--commit',commit,'--output',str(out/mode)]
@@ -206,6 +208,23 @@ def main():
             if mode.endswith('_resume'):
                 saved=json.loads((out/(mode[:2]+'_pause')/'receipt.json').read_text())['status']['checkpoint'];cmd+=['--resume',saved]
             subprocess.run(cmd,check=True,env=env,cwd=out)
+        if a.proxy_only:
+            import statistics
+            receipts={m:json.loads((out/m/'receipt.json').read_text()) for m in modes}
+            ref=receipts['parent_loop']['rows'];checks={}
+            for m in modes:
+                rows=receipts[m]['rows']
+                if len(rows)!=10 or any(a['support_ids']!=b['support_ids'] or a['query_ids']!=b['query_ids'] for a,b in zip(ref,rows)):
+                    raise ValueError('Person proxy comparison requires IDENTICAL support/query/order/EOT')
+                avg=statistics.mean(r['target_proxy'] for r in rows);baseline=statistics.mean(r['target_proxy'] for r in ref)
+                checks[m]=dict(target_proxy_mean=avg,target_proxy_median=statistics.median(r['target_proxy'] for r in rows),relative_mean_change=avg/baseline-1 if baseline else None,
+                    checkpoint_steps=receipts[m]['status']['steps'],actual_lambda=0. if m=='parent_loop' else json.loads(Path(a.calibration).read_text())['lambda_candidate'],
+                    base_models_unchanged=receipts[m]['base_models_unchanged'],png_checks=receipts[m]['png_checks'])
+            summary=dict(status,state='complete',passed=True,finite_loss=True,computation_kind='training',production_entrypoint_reached=True,
+                production_entrypoint='S2S3FixedParentTrainer._batch_loss + optimize_counterfactual',production_optimizer_steps=15,eot_batches=30,
+                matched_parent_proxy_checks=checks,proposal_sha256=sha(a.proposal),calibration_sha256=sha(a.calibration),
+                cleanup_policy='retain_all',checkpoint_cleanup_completed=False,deleted_paths=[],checkpoint_paths_remaining=[str(v) for v in out.rglob('*.pt')])
+            dump(out/'smoke_summary.json',summary);mark('complete',state='complete',passed=True);return
         import torch
         from scripts.s1_mechanism_probe import compare_tree
         ref=torch.load(out/'reference/trajectory.pt',map_location='cpu',weights_only=True)
