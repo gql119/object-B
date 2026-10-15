@@ -1,6 +1,6 @@
 # S2/S3 模块变更记录
 
-原 S0/S1 源码及其正在运行的文件均未修改。父版本未选择，所有新设计仍需真实 train 准入。
+原 S0/S1 源码及其运行产物均未修改。2026-10-15 完整 S1 归档后已按原规则选 S0；所有新设计仍需真实 train 准入。
 
 | ID | 类别 | 改动及理由 | 数值/验证范围 | 原机制与可比性 |
 |---|---|---|---|---|
@@ -12,4 +12,6 @@
 | CODE-003 | BUG_FIX | Windows 长路径用 extended path+Python 文件句柄保存；恢复 Adam completed-step 时还原 scheduler ordering marker | 长路径 CPU 恢复测试通过，LR/Adam 不变 | IO/恢复状态修复，不改损失/训练日程 |
 | TEST-001 | BUG_FIX | 权重下界允许相等，测试改为非严格有序断言 | bounded-simplex tests通过 | 测试错误修复，无方法变更 |
 
-当前未选择 J/lambda/CUP 参数，未完成真实 GPU 耗时/显存/类间覆盖/正式审查，未启动 S2/S3 或重新跑 S1。
+| CODE-004 | BUG_FIX | unit-gradient 诊断新增 EOT 向量平均后的范数/方向；原 v1 只保存各 EOT 范数，不能用于预注册平均梯度标定 | CPU 反向相消/非平行向量/非 finite 三个测试；v1 全部保留，使用新 RunID 测量 | 不改损失、样本、随机数、梯度或更新；仍无 outer step/victim |
+
+当前未选择 J/lambda/CUP 参数，未完成正式科学审查，未启动 S2/S3 或重新跑 S1。J1 v1 已完成 38 case/76 EOT，finite/模型/Fourier不变；它缺少平均梯度记录，仅作初步诊断，不能当成最终准入标定。

@@ -20,6 +20,23 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def average_eot_gradients(samples):
+    """Measure the gradient actually used by Parent's mean-EOT update."""
+    import torch
+    if not samples:
+        raise ValueError('EOT gradient samples required')
+    keys=('parent','cnlp','attack','ret')
+    averaged={key:torch.stack([sample[key] for sample in samples]).mean(0) for key in keys}
+    if any(not bool(torch.isfinite(value).all()) for value in averaged.values()):
+        raise FloatingPointError('Nonfinite mean-EOT gradient')
+    norms={key:float(value.norm()) for key,value in averaged.items()}
+    valid={key:norms[key]>0 and norms['cnlp']>0 for key in keys if key!='cnlp'}
+    cosines={key:(float((averaged[key]*averaged['cnlp']).sum() /
+                          (averaged[key].norm()*averaged['cnlp'].norm())) if valid[key] else None)
+             for key in valid}
+    return dict(eot_samples=len(samples),norm=norms,cosine=cosines,cosine_valid=valid)
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config',required=True)
@@ -79,6 +96,8 @@ def main():
         mark('train_manifest')
         manifest=train_manifest(source/'images/train',source/'labels/train',source/'images/val')
         write('train_query_manifest.json',manifest)
+        if subprocess.check_output(['nvidia-smi','--query-compute-apps=pid','--format=csv,noheader'],text=True).strip():
+            raise RuntimeError('GPU occupied before model allocation; do not compete')
         random.seed(0);np.random.seed(0);torch.manual_seed(0);torch.cuda.manual_seed_all(0)
         torch.backends.cudnn.benchmark=False;torch.backends.cudnn.deterministic=True;torch.use_deterministic_algorithms(True)
         reference=YOLO(cfg['surrogate']['ckpt']).model.to('cuda:0')
@@ -116,7 +135,7 @@ def main():
         frozen_hash=model_hash(trainer.surrogate);adaptive_hash=model_hash(trainer.adaptive.model)
         initial_coeff=trainer.fourier_coeff.detach().clone()
         random.seed(0);np.random.seed(0);torch.manual_seed(0);torch.cuda.manual_seed_all(0)
-        rows=[];start=time.perf_counter();torch.cuda.reset_peak_memory_stats()
+        rows=[];case_gradients=[];start=time.perf_counter();torch.cuda.reset_peak_memory_stats()
         mark('unit_gradient_calibration',cases_total=38,source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip())
         for item in plan:
             holder['case']=item['case'];provider.records=[item['query']]
@@ -129,6 +148,7 @@ def main():
             trainer._epoch=0;trainer._active_idx=trainer._get_active_freq_indices(0,item['case'])
             trainer._active_coords=[tuple(trainer.freq_candidate_coords[int(j)]) for j in trainer._active_idx.cpu().tolist()]
             trainer.cnlp_begin_step(0);trainer.cnlp_bind_support(item['support_ids'])
+            eot_vectors=[]
             for eot in range(trainer.eot_samples):
                 trainer.fourier_coeff.grad=None
                 torch.cuda.synchronize();begin=time.perf_counter()
@@ -136,6 +156,7 @@ def main():
                 total.backward();torch.cuda.synchronize()
                 if not torch.isfinite(trainer.fourier_coeff.grad).all():raise FloatingPointError('Nonfinite total Fourier gradient')
                 vectors=trainer._cnlp_gradient_vectors
+                eot_vectors.append({key:value.clone() for key,value in vectors.items()})
                 valid=[c for c in range(20) if c!=14 and float(metrics[f'cnlp_class_{c}_valid'])>0]
                 row=dict(case=item['case'],eot=eot,query_id=item['query']['image_id'],class_stratum=item['class_stratum'],seconds=time.perf_counter()-begin,
                          damage={str(c):float(metrics[f'cnlp_class_{c}_damage'].detach()) for c in valid},
@@ -147,6 +168,9 @@ def main():
                          outside_max=float(metrics['outside_support_max'].detach()))
                 if row['max_abs_delta']>float(cfg['experiment']['eps'])+1e-6 or row['outside_max']!=0:raise ValueError('Parent spatial budget violated')
                 rows.append(row);write('calibration_rows.json',rows)
+            case_gradients.append(dict(case=item['case'],query_id=item['query']['image_id'],
+                                       **average_eot_gradients(eot_vectors)))
+            write('case_gradients.json',case_gradients)
             trainer.cnlp.abort_step()
             mark('unit_gradient_calibration',cases_completed=item['case']+1,eot_batches_completed=len(rows))
         if not torch.equal(initial_coeff,trainer.fourier_coeff):raise ValueError('Diagnostic changed Fourier coefficients')
@@ -154,6 +178,7 @@ def main():
         summary=dict(status,state='complete',passed=True,computation_kind='training',finite_loss=True,
                      production_entrypoint_reached=True,production_entrypoint='S2S3FixedParentTrainer._batch_loss',
                      cases=38,eot_batches=len(rows),virtual_sgd_updates=2*args.inner_steps*len(rows),outer_optimizer_updates=0,
+                     gradient_aggregation='norm_and_cosine_of_vector_mean_over_EOT',case_gradient_count=len(case_gradients),
                      source_commit=status['source_commit'],parent_selection_sha256=sha(args.parent_selection),
                      fixed_plan_sha256=sha(output/'fixed_train_plan.json'),manifest_sha256=sha(output/'train_query_manifest.json'),
                      duration_seconds=time.perf_counter()-start,peak_allocated_bytes=torch.cuda.max_memory_allocated(),
