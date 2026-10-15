@@ -59,7 +59,7 @@ def require_formal_lock(lock):
         raise ValueError('Unexpected formal method')
     from .counterfactual_utility import CNLPConfig,CUPConfig
     cfg=lock['cnlp_config']
-    CNLPConfig(cfg['inner_steps'],cfg['inner_lr'],cfg['lambda_cnlp'])
+    CNLPConfig(cfg['inner_steps'],cfg['inner_lr'],cfg['lambda_cnlp'],matching_policy=cfg.get('matching_policy','strict_native_all_GT'))
     if cfg['lambda_cnlp']<=0:
         raise ValueError('Formal CNLP requires a positive train-calibrated lambda')
     for key in ('parent_selection_sha256','parent_config_sha256','reference_checkpoint_sha256',

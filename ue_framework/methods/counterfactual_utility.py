@@ -21,6 +21,7 @@ class CNLPConfig:
     lambda_cnlp: float
     target_class_id: int = 14
     num_classes: int = 20
+    matching_policy: str = 'strict_native_all_GT'
 
     def __post_init__(self):
         if type(self.inner_steps) is not int or self.inner_steps not in (1, 3, 5):
@@ -31,6 +32,8 @@ class CNLPConfig:
             raise ValueError('lambda_CNLP requires an explicit nonnegative value (zero only for equivalence probes)')
         if not 0 <= self.target_class_id < self.num_classes:
             raise ValueError('Invalid target class')
+        if self.matching_policy not in ('strict_native_all_GT','native_shared_gt_coverage_v2'):
+            raise ValueError('Unknown explicit CNLP matching policy')
 
 
 @dataclass(frozen=True)

@@ -166,7 +166,7 @@ def main():
         if lock['cup_config'] and lock['cup_config']!=calibration['cup_candidate']:
             raise ValueError('CUP parameters differ from train calibration')
         trainer=S2S3FixedParentTrainer(cfg,mc,torch.device('cuda:0'),model,learner,
-            cnlp_config=CNLPConfig(c['inner_steps'],c['inner_lr'],c['lambda_cnlp']),
+            cnlp_config=CNLPConfig(c['inner_steps'],c['inner_lr'],c['lambda_cnlp'],matching_policy=c['matching_policy']),
             cup_config=CUPConfig(**lock['cup_config']) if lock['cup_config'] else None,
             query_provider=lambda ids,step:provider_holder['provider'](ids,step),support_batch_size=1)
         provider_holder['provider']=TrainQueryProvider(a.query_manifest,lock['train_query_manifest_sha256'],trainer.adaptive,1,0)

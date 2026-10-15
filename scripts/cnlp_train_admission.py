@@ -44,6 +44,7 @@ def main():
     parser.add_argument('--parent-root',required=True)
     parser.add_argument('--output',required=True)
     parser.add_argument('--inner-steps',type=int,choices=[1,3,5],required=True)
+    parser.add_argument('--matching-policy',choices=['strict_native_all_GT','native_shared_gt_coverage_v2'],default='strict_native_all_GT')
     args=parser.parse_args()
     output=Path(args.output).resolve()
     if not output.is_relative_to(ALLOWED) or not ROOT.is_relative_to(ALLOWED):
@@ -104,7 +105,7 @@ def main():
         adaptive_model=YOLO(cfg['surrogate']['ckpt']).model.to('cuda:0')
         holder={}
         trainer=S2S3FixedParentTrainer(cfg,mc,torch.device('cuda:0'),reference,adaptive_model,
-            cnlp_config=CNLPConfig(args.inner_steps,float(mc['adaptive']['inner_lr']),1.),
+            cnlp_config=CNLPConfig(args.inner_steps,float(mc['adaptive']['inner_lr']),1.,matching_policy=args.matching_policy),
             query_provider=lambda ids,step:holder['provider'](ids,holder['case']),support_batch_size=1)
         if trainer.eot_samples!=2 or trainer.universal_batch_size!=16:
             raise ValueError('Parent batch16/EOT2 changed')
@@ -178,7 +179,7 @@ def main():
         summary=dict(status,state='complete',passed=True,computation_kind='training',finite_loss=True,
                      production_entrypoint_reached=True,production_entrypoint='S2S3FixedParentTrainer._batch_loss',
                      cases=38,eot_batches=len(rows),virtual_sgd_updates=2*args.inner_steps*len(rows),outer_optimizer_updates=0,
-                     gradient_aggregation='norm_and_cosine_of_vector_mean_over_EOT',case_gradient_count=len(case_gradients),
+                     gradient_aggregation='norm_and_cosine_of_vector_mean_over_EOT',case_gradient_count=len(case_gradients),matching_policy=args.matching_policy,
                      source_commit=status['source_commit'],parent_selection_sha256=sha(args.parent_selection),
                      fixed_plan_sha256=sha(output/'fixed_train_plan.json'),manifest_sha256=sha(output/'train_query_manifest.json'),
                      duration_seconds=time.perf_counter()-start,peak_allocated_bytes=torch.cuda.max_memory_allocated(),

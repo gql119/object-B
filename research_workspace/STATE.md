@@ -11,3 +11,5 @@ S2/S3独立实现与CPU正确性已有记录，当前仅执行train-only CNLP准
 
 
 2026-10-15连接恢复：J5已核验正常完成，三J均过门槛；按原规则候选J1/lambda0.058485507823134296。提案在configs/s2_s3_train_proposal_20261015.json，正式生成仍关闭；下一步原Parent等价/12GT边界覆盖/生产续跑/像素/CUP审计。
+
+生产准入v1真实失败：003396 GT1 motorbike无native query positives。已报告并保存失败；只在CNLP新增显式coverage-v2候选，CPU8passed；需fresh RunID GPU重放后才能继续。原Parent/S1无改动，正式S2/S3仍NOT_RUN。

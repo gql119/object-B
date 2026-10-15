@@ -42,10 +42,12 @@ def worker(a):
         if cal['status']!='TRAIN_ONLY_ADMISSION_ANALYZED' or not cal['attack_conflict_gate_passed']:raise ValueError('Unpassed calibration')
         if sha(a.manifest)!=cal['results'][0]['manifest_sha256'] or sha(a.plan)!=cal['results'][0]['fixed_plan_sha256']:raise ValueError('Calibrated train plan/manifest changed')
         if sha(ROOT/'parent_selection.json')!=cal['parent_selection_sha256']:raise ValueError('Parent binding changed')
+        proposal=json.loads(Path(a.proposal).read_text());policy=proposal['cnlp_config']['matching_policy']
+        if proposal['calibration_sha256']!=sha(a.calibration):raise ValueError('Proposal/calibration mismatch')
         lam=0. if a.mode=='disabled' else cal['lambda_candidate']
         holder={}
         trainer=S2S3FixedParentTrainer(cfg,mc,torch.device('cuda:0'),model,learner,
-            cnlp_config=CNLPConfig(cal['selected_j'],float(mc['adaptive']['inner_lr']),lam),
+            cnlp_config=CNLPConfig(cal['selected_j'],float(mc['adaptive']['inner_lr']),lam,matching_policy=policy),
             cup_config=CUPConfig(**cal['cup_candidate']) if a.mode.startswith('s3_') else None,
             query_provider=lambda ids,step:holder['provider'](ids,step),support_batch_size=1)
         holder['provider']=TrainQueryProvider(a.manifest,cal['results'][0]['manifest_sha256'],trainer.adaptive,1,0)
@@ -87,7 +89,7 @@ def worker(a):
             dump(out/'current_case.json',dict(case=i,query=row,full_support_ids=selected))
             total,metrics=trainer._batch_loss(items,prototypes);total.backward()
             if not torch.isfinite(trainer.fourier_coeff.grad).all():raise FloatingPointError('Edge gradient nonfinite')
-            rows.append(dict(case=i,query_id=row['image_id'],nt_objects=float(metrics['cnlp_valid_objects']),loss=float(total.detach()),**budget(items)))
+            rows.append(dict(objects=[{k:v for k,v in rec.items() if k not in ('clean_components','poison_components')} for rec in trainer._cnlp_last_evidence['objects']],case=i,query_id=row['image_id'],nt_objects=float(metrics['cnlp_valid_objects']),loss=float(total.detach()),**budget(items)))
             dump(out/'edge_rows.json',rows);trainer.cnlp.abort_step()
         dump(out/'receipt.json',dict(mode=a.mode,passed=True,rows=rows,outer_optimizer_updates=0,query_count=len(edge_rows)))
     elif a.mode in ('reference','disabled'):
@@ -160,13 +162,13 @@ def worker(a):
 
 def main():
     p=argparse.ArgumentParser()
-    for k in ['config','parent-root','output','calibration','plan','manifest','edge-evidence']:p.add_argument('--'+k,required=True)
+    for k in ['config','parent-root','output','calibration','plan','manifest','edge-evidence','proposal']:p.add_argument('--'+k,required=True)
     p.add_argument('--worker',action='store_true');p.add_argument('--mode');p.add_argument('--resume');p.add_argument('--commit')
     a=p.parse_args()
     if a.worker:return worker(a)
     out=Path(a.output).resolve()
     if not out.is_relative_to(ALLOWED) or not ROOT.resolve().is_relative_to(ALLOWED):raise ValueError('Unauthorized write root')
-    for k in ['config','parent_root','calibration','plan','manifest','edge_evidence']:setattr(a,k,str(Path(getattr(a,k)).resolve()))
+    for k in ['config','parent_root','calibration','plan','manifest','edge_evidence','proposal']:setattr(a,k,str(Path(getattr(a,k)).resolve()))
     if subprocess.check_output(['nvidia-smi','--query-compute-apps=pid','--format=csv,noheader'],text=True).strip():raise RuntimeError('GPU occupied')
     if shutil.disk_usage(ALLOWED).free<4*1024**3:raise RuntimeError('Insufficient isolated admission disk; no deletion')
     out.mkdir(parents=True,exist_ok=False)
@@ -182,7 +184,7 @@ def main():
             if subprocess.check_output(['nvidia-smi','--query-compute-apps=pid','--format=csv,noheader'],text=True).strip():raise RuntimeError('GPU occupied between probes')
             mark(mode)
             cmd=[sys.executable,str(Path(__file__).resolve()),'--worker','--mode',mode,'--commit',commit,'--output',str(out/mode)]
-            for k in ['config','parent_root','calibration','plan','manifest','edge_evidence']:cmd+=['--'+k.replace('_','-'),getattr(a,k)]
+            for k in ['config','parent_root','calibration','plan','manifest','edge_evidence','proposal']:cmd+=['--'+k.replace('_','-'),getattr(a,k)]
             if mode.endswith('_resume'):
                 saved=json.loads((out/(mode[:2]+'_pause')/'receipt.json').read_text())['status']['checkpoint'];cmd+=['--resume',saved]
             subprocess.run(cmd,check=True,env=env,cwd=out)
@@ -206,7 +208,7 @@ def main():
             production_entrypoint='S2S3FixedParentTrainer._batch_loss + optimize_counterfactual',production_optimizer_steps=30,eot_batches=60,matching_edge_batches=12,
             baseline_equivalence_probe=dict(passed=True,reference_id=str(Path(a.parent_root)),reference_computation=rr['imported_parent_file'],candidate_computation='S2S3FixedParentTrainer lambda_CNLP=0',
                 reference_weights_path=rr['reference_checkpoint_path'],candidate_weights_path=nr['reference_checkpoint_path'],reference_value=rr['rows'][0]['parent_loss'],candidate_value=nr['rows'][0]['parent_loss'],absolute_difference=ld,tolerance=1e-6,all_tensor_max_difference=diff),
-            checks=checks,calibration_sha256=sha(a.calibration),cleanup_policy='retain_all',checkpoint_cleanup_completed=False,deleted_paths=[],
+            checks=checks,proposal_sha256=sha(a.proposal),matching_policy=json.loads(Path(a.proposal).read_text())['cnlp_config']['matching_policy'],calibration_sha256=sha(a.calibration),cleanup_policy='retain_all',checkpoint_cleanup_completed=False,deleted_paths=[],
             checkpoint_paths_remaining=[str(x) for x in out.rglob('*.pt')])
         dump(out/'smoke_summary.json',summary);mark('complete',state='complete',passed=True)
     except BaseException as e:mark(status['stage'],state='failed',error=repr(e));raise

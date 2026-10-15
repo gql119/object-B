@@ -23,3 +23,6 @@
 - ENTRY-001 / CNLP_DESIGN_CHANGE：新增独立cnlp_production_admission.py，准备真实canonical Parent进程对比、lambda0、S2/S3五步与3→5续跑、8/4/0像素预算和12个历史train GT边界检查。当前仅syntax检查，真实GPU NOT_RUN。
 - ENTRY-002 / CNLP_DESIGN_CHANGE：新增独立run_s2_s3_pipeline.py；两锁+单次review+当前source准入+原Parent身份绑定，顺序独立完整生成/审计/随机victim200/last&best/VOC20评价。当前仅syntax检查，没有formal配置锁，不得因入口存在就启动正式工作。
 - 所有科学新入口仍需当前最终candidate真实smoke和一次独立科学审查；本轮没有审查pass或正式S2/S3结果。
+
+
+CNLP-003 / CNLP_DESIGN_CHANGE：严格native query在真实train003396 GT1/class13失败后，新增显式same-native-TAL uncovered GT覆盖候选；原Parent不变。完整理由/失败RunID/验证计划见CNLP_COVERAGE_DESIGN_ADJUSTMENT_20261015.md。新模式GPU仍NOT_RUN。

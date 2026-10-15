@@ -80,20 +80,40 @@ class YOLOCounterfactual:
                     continue
                 cls = int(labels[image_idx, gt, 0])
                 hit = foreground[image_idx] & (gt_idx[image_idx] == gt)
+                native_count = int(hit.sum())
+                object_scores = scores[image_idx]
+                object_truth = truth_grid[image_idx]
+                object_distance = distance[image_idx]
+                mode = 'native_all_GT_competition'
+                if not bool(hit.any()) and self.config.matching_policy == 'native_shared_gt_coverage_v2':
+                    # Explicit GT-conditioned query design adjustment: only an
+                    # uncovered valid NT GT competes alone in the SAME native TAL.
+                    # Clean-updated logits define ONE detached assignment shared
+                    # by clean/poison/initial paths; covered objects are unchanged.
+                    with torch.no_grad():
+                        _, recovered_truth, recovered_scores, recovered_fg, _ = self.criterion.assigner(
+                            cs[image_idx:image_idx+1].sigmoid(), cb[image_idx:image_idx+1] * stride,
+                            anchors * stride, labels[image_idx:image_idx+1,gt:gt+1],
+                            boxes[image_idx:image_idx+1,gt:gt+1], valid[image_idx:image_idx+1,gt:gt+1])
+                    hit = recovered_fg[0]
+                    object_scores = recovered_scores[0]
+                    object_truth = recovered_truth[0] / stride
+                    object_distance = bbox2dist(anchors, object_truth.unsqueeze(0), regmax - 1)[0]
+                    mode = 'independent_same_TAL_for_uncovered_valid_GT'
                 if not bool(hit.any()):
                     raise ValueError(f'CNLP_NO_VALID_POSITIVE: image={batch["image_ids"][image_idx]},GT={gt},class={cls}')
-                weights = scores[image_idx, hit].sum(-1).detach()
+                weights = object_scores[hit].sum(-1).detach()
                 if not torch.isfinite(weights).all() or float(weights.sum()) <= 0:
                     raise ValueError('CNLP_NO_FOREGROUND_EVIDENCE')
                 weights = weights / weights.sum()
                 components = []
                 for path_idx, (logits, dist, decoded, _, _) in enumerate((clean, poison)):
                     bce = F.binary_cross_entropy_with_logits(logits[image_idx, hit][:, keep],
-                                    scores[image_idx, hit][:, keep], reduction='none').sum(-1)
-                    ciou = 1 - bbox_iou(decoded[image_idx, hit], truth_grid[image_idx, hit],
+                                    object_scores[hit][:, keep], reduction='none').sum(-1)
+                    ciou = 1 - bbox_iou(decoded[image_idx, hit], object_truth[hit],
                                        xywh=False, CIoU=True).flatten()
                     dfl = self.criterion.bbox_loss.dfl_loss(dist[image_idx, hit].reshape(-1, regmax),
-                                                          distance[image_idx, hit]).flatten()
+                                                          object_distance[hit]).flatten()
                     terms = torch.stack([(x * weights).sum() for x in (ciou, bce, dfl)])
                     value = (terms * gain).sum()
                     if not torch.isfinite(value):
@@ -101,12 +121,12 @@ class YOLOCounterfactual:
                     object_losses[path_idx].setdefault(cls, []).append(value)
                     components.append(terms.detach())
                 records.append(dict(image_id=batch['image_ids'][image_idx], gt_index=gt,
-                                    cls=cls, positive_count=int(hit.sum()),
+                                    cls=cls, positive_count=int(hit.sum()),native_positive_count=native_count,coverage_mode=mode,
                                     clean_components=components[0], poison_components=components[1]))
         c_loss, p_loss = [{c: torch.stack(rows).mean() for c, rows in path.items()}
                           for path in object_losses]
         return c_loss, p_loss, dict(objects=records, gains=gain.detach(),
-                                  matching='clean_updated_native_all_GT_TAL_shared',
+                                  matching=self.config.matching_policy,
                                   reduction='softscore_positive_mean_then_object_mean_per_class',
                                   legal_no_nt_gt=not bool(c_loss))
 

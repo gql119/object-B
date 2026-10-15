@@ -73,6 +73,7 @@ class CNLPTrainerMixin:
         if set(query['image_ids']) & set(self.cnlp_support_ids):
             raise ValueError('CNLP query overlaps full Parent support batch')
         total,result=self.cnlp.add(parent_loss,clean_batch,poison_batch,query)
+        self._cnlp_last_evidence = result['evidence']
         raw=result['loss']
         # Measurements use the SAME original Fourier optimization variable.
         g_parent=torch.autograd.grad(parent_loss,self.fourier_coeff,retain_graph=True)[0]
