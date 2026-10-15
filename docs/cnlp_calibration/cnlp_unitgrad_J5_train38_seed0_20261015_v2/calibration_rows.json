@@ -1,0 +1,2270 @@
+[
+  {
+    "case": 0,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_005218.jpg",
+    "class_stratum": 0,
+    "seconds": 6.606511264108121,
+    "damage": {
+      "0": -2.956390380859375e-05
+    },
+    "clean_learning_gain": {
+      "0": -0.002190709114074707
+    },
+    "norm": {
+      "parent": 0.07784494757652283,
+      "cnlp": 0.0,
+      "attack": 0.07810690999031067,
+      "ret": 0.0011500230757519603
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.106048822402954,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.027146177366375923,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 0,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_005218.jpg",
+    "class_stratum": 0,
+    "seconds": 4.674117473885417,
+    "damage": {
+      "0": -2.956390380859375e-05
+    },
+    "clean_learning_gain": {
+      "0": -0.002190709114074707
+    },
+    "norm": {
+      "parent": 0.079408660531044,
+      "cnlp": 0.0,
+      "attack": 0.07960157096385956,
+      "ret": 0.0008330682176165283
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.1718283891677856,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.07639622688293457,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 1,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_003066.jpg",
+    "class_stratum": 0,
+    "seconds": 4.761613118927926,
+    "damage": {
+      "0": 0.0010592937469482422
+    },
+    "clean_learning_gain": {
+      "0": -0.004334807395935059
+    },
+    "norm": {
+      "parent": 0.05378129705786705,
+      "cnlp": 0.05387893319129944,
+      "attack": 0.05393463745713234,
+      "ret": 0.00020584378216881305
+    },
+    "cosine": {
+      "parent": 0.22690613567829132,
+      "attack": 0.2295081615447998,
+      "ret": 0.004502439871430397
+    },
+    "parent_loss": 1.1237865686416626,
+    "cnlp_unit_loss": 0.0010592937469482422,
+    "target_proxy": 0.038508567959070206,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 1,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_003066.jpg",
+    "class_stratum": 0,
+    "seconds": 4.817300038412213,
+    "damage": {
+      "0": 0.0010592937469482422
+    },
+    "clean_learning_gain": {
+      "0": -0.004334807395935059
+    },
+    "norm": {
+      "parent": 0.05717015638947487,
+      "cnlp": 0.04781000316143036,
+      "attack": 0.05699019134044647,
+      "ret": 0.00019283662550151348
+    },
+    "cosine": {
+      "parent": 0.0008601760491728783,
+      "attack": 0.0008743535727262497,
+      "ret": -0.07342322915792465
+    },
+    "parent_loss": 1.1334540843963623,
+    "cnlp_unit_loss": 0.0010592937469482422,
+    "target_proxy": 0.05556363984942436,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 2,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/003589.jpg",
+    "class_stratum": 1,
+    "seconds": 4.776198599953204,
+    "damage": {
+      "1": 0.00010395050048828125
+    },
+    "clean_learning_gain": {
+      "1": 0.0030412673950195312
+    },
+    "norm": {
+      "parent": 0.05749448016285896,
+      "cnlp": 0.008443772792816162,
+      "attack": 0.057771746069192886,
+      "ret": 0.0012096454156562686
+    },
+    "cosine": {
+      "parent": -0.21212074160575867,
+      "attack": -0.20241285860538483,
+      "ret": -0.0008515907102264464
+    },
+    "parent_loss": 1.1881651878356934,
+    "cnlp_unit_loss": 0.00010395050048828125,
+    "target_proxy": 0.024861101061105728,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 2,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/003589.jpg",
+    "class_stratum": 1,
+    "seconds": 4.789240692276508,
+    "damage": {
+      "1": 0.00010395050048828125
+    },
+    "clean_learning_gain": {
+      "1": 0.0030412673950195312
+    },
+    "norm": {
+      "parent": 0.055947598069906235,
+      "cnlp": 0.007677348796278238,
+      "attack": 0.056085020303726196,
+      "ret": 0.0012026260374113917
+    },
+    "cosine": {
+      "parent": -0.4328998327255249,
+      "attack": -0.4295107126235962,
+      "ret": -0.041295554488897324
+    },
+    "parent_loss": 1.247726321220398,
+    "cnlp_unit_loss": 0.00010395050048828125,
+    "target_proxy": 0.08340030163526535,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 3,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002180.jpg",
+    "class_stratum": 1,
+    "seconds": 4.8556978311389685,
+    "damage": {
+      "1": 9.834766387939453e-05
+    },
+    "clean_learning_gain": {
+      "1": -0.0015856027603149414
+    },
+    "norm": {
+      "parent": 0.08271206170320511,
+      "cnlp": 0.020623723044991493,
+      "attack": 0.08140504360198975,
+      "ret": 0.0004202581476420164
+    },
+    "cosine": {
+      "parent": -0.13511869311332703,
+      "attack": -0.11823352426290512,
+      "ret": -0.34742286801338196
+    },
+    "parent_loss": 1.2725634574890137,
+    "cnlp_unit_loss": 9.834766387939453e-05,
+    "target_proxy": 0.0678987205028534,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 3,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002180.jpg",
+    "class_stratum": 1,
+    "seconds": 5.057053674943745,
+    "damage": {
+      "1": 9.834766387939453e-05
+    },
+    "clean_learning_gain": {
+      "1": -0.0015856027603149414
+    },
+    "norm": {
+      "parent": 0.07604926079511642,
+      "cnlp": 0.014914995059370995,
+      "attack": 0.06974625587463379,
+      "ret": 0.0004320437728893012
+    },
+    "cosine": {
+      "parent": -0.03379891812801361,
+      "attack": -0.1578068882226944,
+      "ret": -0.23356527090072632
+    },
+    "parent_loss": 1.2492809295654297,
+    "cnlp_unit_loss": 9.834766387939453e-05,
+    "target_proxy": 0.04086322709918022,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 4,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_002776.jpg",
+    "class_stratum": 2,
+    "seconds": 6.896113191731274,
+    "damage": {
+      "2": 0.0005407333374023438
+    },
+    "clean_learning_gain": {
+      "2": -0.007380962371826172
+    },
+    "norm": {
+      "parent": 0.06160864233970642,
+      "cnlp": 0.011568063870072365,
+      "attack": 0.05964774638414383,
+      "ret": 0.000325207132846117
+    },
+    "cosine": {
+      "parent": 0.35875800251960754,
+      "attack": 0.41319364309310913,
+      "ret": -0.0041956244967877865
+    },
+    "parent_loss": 1.1683437824249268,
+    "cnlp_unit_loss": 0.0005407333374023438,
+    "target_proxy": 0.06061052531003952,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 4,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_002776.jpg",
+    "class_stratum": 2,
+    "seconds": 6.372991905082017,
+    "damage": {
+      "2": 0.0005407333374023438
+    },
+    "clean_learning_gain": {
+      "2": -0.007380962371826172
+    },
+    "norm": {
+      "parent": 0.07665830850601196,
+      "cnlp": 0.012137966230511665,
+      "attack": 0.0734868124127388,
+      "ret": 0.0003029828949365765
+    },
+    "cosine": {
+      "parent": 0.33058732748031616,
+      "attack": 0.30810874700546265,
+      "ret": 0.08571480214595795
+    },
+    "parent_loss": 1.1772956848144531,
+    "cnlp_unit_loss": 0.0005407333374023438,
+    "target_proxy": 0.06925974041223526,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 5,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008380.jpg",
+    "class_stratum": 2,
+    "seconds": 5.990893544163555,
+    "damage": {
+      "2": -0.00010955333709716797
+    },
+    "clean_learning_gain": {
+      "2": 0.0001735687255859375
+    },
+    "norm": {
+      "parent": 0.10306904464960098,
+      "cnlp": 0.0,
+      "attack": 0.10329052805900574,
+      "ret": 0.0009398515103384852
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.1634811162948608,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.059913814067840576,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 5,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008380.jpg",
+    "class_stratum": 2,
+    "seconds": 5.840112183708698,
+    "damage": {
+      "2": -0.00010955333709716797
+    },
+    "clean_learning_gain": {
+      "2": 0.0001735687255859375
+    },
+    "norm": {
+      "parent": 0.08356739580631256,
+      "cnlp": 0.0,
+      "attack": 0.08714260905981064,
+      "ret": 0.001059529953636229
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.1676347255706787,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.07219299674034119,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 6,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_006720.jpg",
+    "class_stratum": 3,
+    "seconds": 6.0091423233971,
+    "damage": {
+      "3": -1.2040138244628906e-05
+    },
+    "clean_learning_gain": {
+      "3": 0.0031794309616088867
+    },
+    "norm": {
+      "parent": 0.05047249048948288,
+      "cnlp": 0.0,
+      "attack": 0.05041336640715599,
+      "ret": 0.0005549938650801778
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.0154176950454712,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.0052523063495755196,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 6,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_006720.jpg",
+    "class_stratum": 3,
+    "seconds": 5.663691577967256,
+    "damage": {
+      "3": -1.2040138244628906e-05
+    },
+    "clean_learning_gain": {
+      "3": 0.0031794309616088867
+    },
+    "norm": {
+      "parent": 0.06257323920726776,
+      "cnlp": 0.0,
+      "attack": 0.059784092009067535,
+      "ret": 0.0008090404444374144
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.04270601272583,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.03309236466884613,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 7,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_002492.jpg",
+    "class_stratum": 3,
+    "seconds": 5.706082658842206,
+    "damage": {
+      "3": -3.170967102050781e-05
+    },
+    "clean_learning_gain": {
+      "3": -0.002809762954711914
+    },
+    "norm": {
+      "parent": 0.0780055820941925,
+      "cnlp": 0.0,
+      "attack": 0.07599394768476486,
+      "ret": 0.00036928633926436305
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.2439483404159546,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.021852120757102966,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 7,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_002492.jpg",
+    "class_stratum": 3,
+    "seconds": 5.777231613174081,
+    "damage": {
+      "3": -3.170967102050781e-05
+    },
+    "clean_learning_gain": {
+      "3": -0.002809762954711914
+    },
+    "norm": {
+      "parent": 0.08299300819635391,
+      "cnlp": 0.0,
+      "attack": 0.08106376230716705,
+      "ret": 0.0002497932000551373
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.2453497648239136,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.022949857637286186,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 8,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002388.jpg",
+    "class_stratum": 4,
+    "seconds": 5.574548075441271,
+    "damage": {
+      "4": -0.00023567676544189453
+    },
+    "clean_learning_gain": {
+      "4": -0.0005058050155639648
+    },
+    "norm": {
+      "parent": 0.09046057611703873,
+      "cnlp": 0.0,
+      "attack": 0.080215223133564,
+      "ret": 0.0005574327078647912
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 0.9790918231010437,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.07078101485967636,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 8,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002388.jpg",
+    "class_stratum": 4,
+    "seconds": 6.106288901064545,
+    "damage": {
+      "4": -0.00023567676544189453
+    },
+    "clean_learning_gain": {
+      "4": -0.0005058050155639648
+    },
+    "norm": {
+      "parent": 0.0762796625494957,
+      "cnlp": 0.0,
+      "attack": 0.07570121437311172,
+      "ret": 0.0005945048178546131
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 0.9870144724845886,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.0820433497428894,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 9,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_005236.jpg",
+    "class_stratum": 4,
+    "seconds": 8.24564220290631,
+    "damage": {
+      "4": 0.0007109642028808594
+    },
+    "clean_learning_gain": {
+      "4": -0.0006449222564697266
+    },
+    "norm": {
+      "parent": 0.12009651958942413,
+      "cnlp": 0.01895555667579174,
+      "attack": 0.11585406213998795,
+      "ret": 0.0010030193952843547
+    },
+    "cosine": {
+      "parent": -0.08199095726013184,
+      "attack": -0.06332145631313324,
+      "ret": -0.16837143898010254
+    },
+    "parent_loss": 1.1173202991485596,
+    "cnlp_unit_loss": 0.0007109642028808594,
+    "target_proxy": 0.08686498552560806,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 9,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_005236.jpg",
+    "class_stratum": 4,
+    "seconds": 4.722723028156906,
+    "damage": {
+      "4": 0.0007109642028808594
+    },
+    "clean_learning_gain": {
+      "4": -0.0006449222564697266
+    },
+    "norm": {
+      "parent": 0.10981044918298721,
+      "cnlp": 0.01719159074127674,
+      "attack": 0.11001061648130417,
+      "ret": 0.0011467132717370987
+    },
+    "cosine": {
+      "parent": -0.1338665932416916,
+      "attack": -0.1314004510641098,
+      "ret": 0.00383678893558681
+    },
+    "parent_loss": 1.104567289352417,
+    "cnlp_unit_loss": 0.0007109642028808594,
+    "target_proxy": 0.07309664785861969,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 10,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000768.jpg",
+    "class_stratum": 5,
+    "seconds": 4.70943324174732,
+    "damage": {
+      "5": 5.698204040527344e-05
+    },
+    "clean_learning_gain": {
+      "5": -0.0041387081146240234
+    },
+    "norm": {
+      "parent": 0.07611218839883804,
+      "cnlp": 0.04693708196282387,
+      "attack": 0.07621777802705765,
+      "ret": 0.0002854839840438217
+    },
+    "cosine": {
+      "parent": -0.16419574618339539,
+      "attack": -0.16110017895698547,
+      "ret": 0.17795948684215546
+    },
+    "parent_loss": 1.150412678718567,
+    "cnlp_unit_loss": 5.698204040527344e-05,
+    "target_proxy": 0.0042398786172270775,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 10,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000768.jpg",
+    "class_stratum": 5,
+    "seconds": 4.706258215010166,
+    "damage": {
+      "5": 5.698204040527344e-05
+    },
+    "clean_learning_gain": {
+      "5": -0.0041387081146240234
+    },
+    "norm": {
+      "parent": 0.09135401993989944,
+      "cnlp": 0.05807752534747124,
+      "attack": 0.090750552713871,
+      "ret": 0.00038784771459177136
+    },
+    "cosine": {
+      "parent": -0.1588895171880722,
+      "attack": -0.15322907269001007,
+      "ret": 0.13693875074386597
+    },
+    "parent_loss": 1.2092843055725098,
+    "cnlp_unit_loss": 5.698204040527344e-05,
+    "target_proxy": 0.06135151535272598,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 11,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/008793.jpg",
+    "class_stratum": 5,
+    "seconds": 4.684174883179367,
+    "damage": {
+      "5": -5.352497100830078e-05
+    },
+    "clean_learning_gain": {
+      "5": 0.0006426572799682617
+    },
+    "norm": {
+      "parent": 0.07362866401672363,
+      "cnlp": 0.0,
+      "attack": 0.07350938022136688,
+      "ret": 0.0008045888389460742
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.1588151454925537,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.030632412061095238,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 11,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/008793.jpg",
+    "class_stratum": 5,
+    "seconds": 4.686579048167914,
+    "damage": {
+      "5": -5.352497100830078e-05
+    },
+    "clean_learning_gain": {
+      "5": 0.0006426572799682617
+    },
+    "norm": {
+      "parent": 0.07104607671499252,
+      "cnlp": 0.0,
+      "attack": 0.0617414228618145,
+      "ret": 0.0008318393374793231
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.20127272605896,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.06436718255281448,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 12,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_000457.jpg",
+    "class_stratum": 6,
+    "seconds": 4.722691847011447,
+    "damage": {
+      "6": -0.00014209747314453125
+    },
+    "clean_learning_gain": {
+      "6": 0.00018477439880371094
+    },
+    "norm": {
+      "parent": 0.11692753434181213,
+      "cnlp": 0.0,
+      "attack": 0.11553406715393066,
+      "ret": 0.0001145662390626967
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.1772154569625854,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.060148704797029495,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 12,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_000457.jpg",
+    "class_stratum": 6,
+    "seconds": 4.730695063713938,
+    "damage": {
+      "6": -0.00014209747314453125
+    },
+    "clean_learning_gain": {
+      "6": 0.00018477439880371094
+    },
+    "norm": {
+      "parent": 0.10282009840011597,
+      "cnlp": 0.0,
+      "attack": 0.10257503390312195,
+      "ret": 8.434124174527824e-05
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.1570974588394165,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.038618966937065125,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 13,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008177.jpg",
+    "class_stratum": 6,
+    "seconds": 4.842403966002166,
+    "damage": {
+      "6": -0.000561833381652832,
+      "13": -0.0006462335586547852
+    },
+    "clean_learning_gain": {
+      "6": -9.870529174804688e-05,
+      "13": 0.004701972007751465
+    },
+    "norm": {
+      "parent": 0.056920126080513,
+      "cnlp": 0.0,
+      "attack": 0.056816574186086655,
+      "ret": 3.914014814654365e-05
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.0638957023620605,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.06934674829244614,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 13,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008177.jpg",
+    "class_stratum": 6,
+    "seconds": 4.847853489220142,
+    "damage": {
+      "6": -0.000561833381652832,
+      "13": -0.0006462335586547852
+    },
+    "clean_learning_gain": {
+      "6": -9.870529174804688e-05,
+      "13": 0.004701972007751465
+    },
+    "norm": {
+      "parent": 0.06932193785905838,
+      "cnlp": 0.0,
+      "attack": 0.06915691494941711,
+      "ret": 3.665780968731269e-05
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.053074598312378,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.05765480548143387,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 14,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_003190.jpg",
+    "class_stratum": 7,
+    "seconds": 6.309926155954599,
+    "damage": {
+      "7": -0.00021445751190185547
+    },
+    "clean_learning_gain": {
+      "7": 0.0012617111206054688
+    },
+    "norm": {
+      "parent": 0.08226671069860458,
+      "cnlp": 0.0,
+      "attack": 0.08228905498981476,
+      "ret": 0.0002203953918069601
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.2287986278533936,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.08451759815216064,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 14,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_003190.jpg",
+    "class_stratum": 7,
+    "seconds": 5.932862710207701,
+    "damage": {
+      "7": -0.00021445751190185547
+    },
+    "clean_learning_gain": {
+      "7": 0.0012617111206054688
+    },
+    "norm": {
+      "parent": 0.0895458534359932,
+      "cnlp": 0.0,
+      "attack": 0.08950112015008926,
+      "ret": 0.0002694052818696946
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.210318684577942,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.06988058984279633,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 15,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_003771.jpg",
+    "class_stratum": 7,
+    "seconds": 5.596740572247654,
+    "damage": {
+      "7": 0.0003616809844970703
+    },
+    "clean_learning_gain": {
+      "7": -0.039847493171691895
+    },
+    "norm": {
+      "parent": 0.05559971183538437,
+      "cnlp": 0.010809789411723614,
+      "attack": 0.056849926710128784,
+      "ret": 0.0004541653033811599
+    },
+    "cosine": {
+      "parent": 0.0013002622872591019,
+      "attack": 0.003470885567367077,
+      "ret": -0.1478017121553421
+    },
+    "parent_loss": 1.0923725366592407,
+    "cnlp_unit_loss": 0.0003616809844970703,
+    "target_proxy": 0.07836291193962097,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 15,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_003771.jpg",
+    "class_stratum": 7,
+    "seconds": 6.865853807888925,
+    "damage": {
+      "7": 0.0003616809844970703
+    },
+    "clean_learning_gain": {
+      "7": -0.039847493171691895
+    },
+    "norm": {
+      "parent": 0.0755767896771431,
+      "cnlp": 0.013284757733345032,
+      "attack": 0.07578868418931961,
+      "ret": 0.0004987097345292568
+    },
+    "cosine": {
+      "parent": 0.04753062129020691,
+      "attack": 0.0653584897518158,
+      "ret": -0.11685676872730255
+    },
+    "parent_loss": 1.0723557472229004,
+    "cnlp_unit_loss": 0.0003616809844970703,
+    "target_proxy": 0.06011296063661575,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 16,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+    "class_stratum": 8,
+    "seconds": 6.229805047158152,
+    "damage": {
+      "8": 0.004454612731933594,
+      "15": -0.000675201416015625,
+      "19": 0.0005781650543212891
+    },
+    "clean_learning_gain": {
+      "8": 0.013601541519165039,
+      "15": 0.002457857131958008,
+      "19": -0.002629995346069336
+    },
+    "norm": {
+      "parent": 0.08630284667015076,
+      "cnlp": 0.01845484785735607,
+      "attack": 0.08589489012956619,
+      "ret": 0.000169168648426421
+    },
+    "cosine": {
+      "parent": -0.009240301325917244,
+      "attack": -0.03335103392601013,
+      "ret": 0.09923353046178818
+    },
+    "parent_loss": 1.317657709121704,
+    "cnlp_unit_loss": 0.0016775926342234015,
+    "target_proxy": 0.08688712120056152,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 16,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+    "class_stratum": 8,
+    "seconds": 6.860668445006013,
+    "damage": {
+      "8": 0.004454612731933594,
+      "15": -0.000675201416015625,
+      "19": 0.0005781650543212891
+    },
+    "clean_learning_gain": {
+      "8": 0.013601541519165039,
+      "15": 0.002457857131958008,
+      "19": -0.002629995346069336
+    },
+    "norm": {
+      "parent": 0.1180485188961029,
+      "cnlp": 0.023126646876335144,
+      "attack": 0.11793211102485657,
+      "ret": 0.00022066976816859096
+    },
+    "cosine": {
+      "parent": -0.16315577924251556,
+      "attack": -0.16560781002044678,
+      "ret": 0.0327104851603508
+    },
+    "parent_loss": 1.297921061515808,
+    "cnlp_unit_loss": 0.0016775926342234015,
+    "target_proxy": 0.06835736334323883,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 17,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000632.jpg",
+    "class_stratum": 8,
+    "seconds": 6.123909058980644,
+    "damage": {
+      "8": -0.0004495382308959961,
+      "19": -7.033348083496094e-05
+    },
+    "clean_learning_gain": {
+      "8": -0.00032913684844970703,
+      "19": 0.008904457092285156
+    },
+    "norm": {
+      "parent": 0.052375152707099915,
+      "cnlp": 0.0,
+      "attack": 0.05201549828052521,
+      "ret": 0.0009362386190332472
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.0884392261505127,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.04141600802540779,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 17,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000632.jpg",
+    "class_stratum": 8,
+    "seconds": 6.095420462079346,
+    "damage": {
+      "8": -0.0004495382308959961,
+      "19": -7.033348083496094e-05
+    },
+    "clean_learning_gain": {
+      "8": -0.00032913684844970703,
+      "19": 0.008904457092285156
+    },
+    "norm": {
+      "parent": 0.045536670833826065,
+      "cnlp": 0.0,
+      "attack": 0.04588356614112854,
+      "ret": 0.000517195847351104
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.1289350986480713,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.07796725630760193,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 18,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009710.jpg",
+    "class_stratum": 9,
+    "seconds": 6.034501700196415,
+    "damage": {
+      "9": -0.0006787776947021484
+    },
+    "clean_learning_gain": {
+      "9": 0.003103971481323242
+    },
+    "norm": {
+      "parent": 0.07079200446605682,
+      "cnlp": 0.0,
+      "attack": 0.06931580603122711,
+      "ret": 0.00012618597247637808
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.0623284578323364,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.030516888946294785,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 18,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009710.jpg",
+    "class_stratum": 9,
+    "seconds": 5.917920532170683,
+    "damage": {
+      "9": -0.0006787776947021484
+    },
+    "clean_learning_gain": {
+      "9": 0.003103971481323242
+    },
+    "norm": {
+      "parent": 0.059376310557127,
+      "cnlp": 0.0,
+      "attack": 0.0591861866414547,
+      "ret": 0.00012696196790784597
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.051701545715332,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.020826568827033043,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 19,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_005081.jpg",
+    "class_stratum": 9,
+    "seconds": 5.742109326645732,
+    "damage": {
+      "9": 6.67572021484375e-06
+    },
+    "clean_learning_gain": {
+      "9": -0.0007194280624389648
+    },
+    "norm": {
+      "parent": 0.06589723378419876,
+      "cnlp": 0.0038653798401355743,
+      "attack": 0.06686659902334213,
+      "ret": 0.0002492746280040592
+    },
+    "cosine": {
+      "parent": 0.14273567497730255,
+      "attack": 0.13519878685474396,
+      "ret": -0.08870503306388855
+    },
+    "parent_loss": 1.1040246486663818,
+    "cnlp_unit_loss": 6.67572021484375e-06,
+    "target_proxy": 0.04591580852866173,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 19,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_005081.jpg",
+    "class_stratum": 9,
+    "seconds": 5.89833755698055,
+    "damage": {
+      "9": 6.67572021484375e-06
+    },
+    "clean_learning_gain": {
+      "9": -0.0007194280624389648
+    },
+    "norm": {
+      "parent": 0.06833328306674957,
+      "cnlp": 0.004157803487032652,
+      "attack": 0.053900595754384995,
+      "ret": 0.00021272221056278795
+    },
+    "cosine": {
+      "parent": 0.3447447121143341,
+      "attack": 0.27108803391456604,
+      "ret": -0.03594617918133736
+    },
+    "parent_loss": 1.125182032585144,
+    "cnlp_unit_loss": 6.67572021484375e-06,
+    "target_proxy": 0.06508789211511612,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 20,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/001563.jpg",
+    "class_stratum": 10,
+    "seconds": 5.612164335791022,
+    "damage": {
+      "4": -0.0002353191375732422,
+      "8": 0.0005222558975219727,
+      "10": 3.910064697265625e-05
+    },
+    "clean_learning_gain": {
+      "4": 0.0040585994720458984,
+      "8": -0.0035202503204345703,
+      "10": 0.005098819732666016
+    },
+    "norm": {
+      "parent": 0.042376887053251266,
+      "cnlp": 0.006238948088139296,
+      "attack": 0.04297024384140968,
+      "ret": 4.667964458349161e-05
+    },
+    "cosine": {
+      "parent": -0.04321812838315964,
+      "attack": -0.044426389038562775,
+      "ret": 0.14791518449783325
+    },
+    "parent_loss": 1.0853679180145264,
+    "cnlp_unit_loss": 0.00018711885786615312,
+    "target_proxy": 0.03426521643996239,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 20,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/001563.jpg",
+    "class_stratum": 10,
+    "seconds": 5.7672649109736085,
+    "damage": {
+      "4": -0.0002353191375732422,
+      "8": 0.0005222558975219727,
+      "10": 3.910064697265625e-05
+    },
+    "clean_learning_gain": {
+      "4": 0.0040585994720458984,
+      "8": -0.0035202503204345703,
+      "10": 0.005098819732666016
+    },
+    "norm": {
+      "parent": 0.05184631049633026,
+      "cnlp": 0.008207830600440502,
+      "attack": 0.051940131932497025,
+      "ret": 8.249415986938402e-05
+    },
+    "cosine": {
+      "parent": 0.055868688970804214,
+      "attack": 0.04715437442064285,
+      "ret": -0.06537015736103058
+    },
+    "parent_loss": 1.1394848823547363,
+    "cnlp_unit_loss": 0.00018711885786615312,
+    "target_proxy": 0.0865592211484909,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 21,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_000098.jpg",
+    "class_stratum": 10,
+    "seconds": 4.76137161673978,
+    "damage": {
+      "1": -0.001302957534790039,
+      "8": 1.4066696166992188e-05,
+      "10": 0.0006313323974609375
+    },
+    "clean_learning_gain": {
+      "1": -0.011488676071166992,
+      "8": 0.00768589973449707,
+      "10": 0.008960723876953125
+    },
+    "norm": {
+      "parent": 0.18851956725120544,
+      "cnlp": 0.021340269595384598,
+      "attack": 0.18840323388576508,
+      "ret": 0.00045787845738232136
+    },
+    "cosine": {
+      "parent": -0.2577970325946808,
+      "attack": -0.2571737766265869,
+      "ret": -0.2178160846233368
+    },
+    "parent_loss": 1.297308325767517,
+    "cnlp_unit_loss": 0.00021513304091058671,
+    "target_proxy": 0.03627792373299599,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 21,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_000098.jpg",
+    "class_stratum": 10,
+    "seconds": 4.734068572986871,
+    "damage": {
+      "1": -0.001302957534790039,
+      "8": 1.4066696166992188e-05,
+      "10": 0.0006313323974609375
+    },
+    "clean_learning_gain": {
+      "1": -0.011488676071166992,
+      "8": 0.00768589973449707,
+      "10": 0.008960723876953125
+    },
+    "norm": {
+      "parent": 0.10892999172210693,
+      "cnlp": 0.015055002644658089,
+      "attack": 0.1089668720960617,
+      "ret": 0.0003651193401310593
+    },
+    "cosine": {
+      "parent": -0.19774746894836426,
+      "attack": -0.19843925535678864,
+      "ret": -0.22126825153827667
+    },
+    "parent_loss": 1.2903600931167603,
+    "cnlp_unit_loss": 0.00021513304091058671,
+    "target_proxy": 0.025126909837126732,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 22,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002456.jpg",
+    "class_stratum": 11,
+    "seconds": 4.707995481789112,
+    "damage": {
+      "11": 0.0019922256469726562
+    },
+    "clean_learning_gain": {
+      "11": -0.009330272674560547
+    },
+    "norm": {
+      "parent": 0.0788377970457077,
+      "cnlp": 0.03872884437441826,
+      "attack": 0.07309924811124802,
+      "ret": 0.00020320045587141067
+    },
+    "cosine": {
+      "parent": 0.023859456181526184,
+      "attack": 0.024357188493013382,
+      "ret": 0.2277405560016632
+    },
+    "parent_loss": 1.011505126953125,
+    "cnlp_unit_loss": 0.0019922256469726562,
+    "target_proxy": 0.07972794771194458,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 22,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002456.jpg",
+    "class_stratum": 11,
+    "seconds": 4.712621504906565,
+    "damage": {
+      "11": 0.0019922256469726562
+    },
+    "clean_learning_gain": {
+      "11": -0.009330272674560547
+    },
+    "norm": {
+      "parent": 0.11315443366765976,
+      "cnlp": 0.0511845126748085,
+      "attack": 0.11293909698724747,
+      "ret": 0.0003042436146643013
+    },
+    "cosine": {
+      "parent": -0.020169397816061974,
+      "attack": -0.023981798440217972,
+      "ret": 0.17121905088424683
+    },
+    "parent_loss": 1.0046815872192383,
+    "cnlp_unit_loss": 0.0019922256469726562,
+    "target_proxy": 0.07276876270771027,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 23,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_001470.jpg",
+    "class_stratum": 11,
+    "seconds": 4.78676045499742,
+    "damage": {
+      "11": -0.0002658367156982422,
+      "17": 0.00018978118896484375
+    },
+    "clean_learning_gain": {
+      "11": -0.006108403205871582,
+      "17": 0.0039560794830322266
+    },
+    "norm": {
+      "parent": 0.045444197952747345,
+      "cnlp": 0.0044227903708815575,
+      "attack": 0.0453520305454731,
+      "ret": 7.292402005987242e-05
+    },
+    "cosine": {
+      "parent": -0.03936632350087166,
+      "attack": -0.06792933493852615,
+      "ret": -0.0012467358028516173
+    },
+    "parent_loss": 1.1067448854446411,
+    "cnlp_unit_loss": 9.489059448242188e-05,
+    "target_proxy": 0.03715081885457039,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 23,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_001470.jpg",
+    "class_stratum": 11,
+    "seconds": 4.738042952027172,
+    "damage": {
+      "11": -0.0002658367156982422,
+      "17": 0.00018978118896484375
+    },
+    "clean_learning_gain": {
+      "11": -0.006108403205871582,
+      "17": 0.0039560794830322266
+    },
+    "norm": {
+      "parent": 0.06276293098926544,
+      "cnlp": 0.004794368054717779,
+      "attack": 0.06252451241016388,
+      "ret": 7.806850044289604e-05
+    },
+    "cosine": {
+      "parent": 0.008664974942803383,
+      "attack": 0.006414040457457304,
+      "ret": 0.32856830954551697
+    },
+    "parent_loss": 1.0980143547058105,
+    "cnlp_unit_loss": 9.489059448242188e-05,
+    "target_proxy": 0.032020460814237595,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 24,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_003280.jpg",
+    "class_stratum": 12,
+    "seconds": 4.761751329060644,
+    "damage": {
+      "12": 0.0006555318832397461
+    },
+    "clean_learning_gain": {
+      "12": 0.004268169403076172
+    },
+    "norm": {
+      "parent": 0.052774518728256226,
+      "cnlp": 0.016030890867114067,
+      "attack": 0.05336909368634224,
+      "ret": 0.0009455569670535624
+    },
+    "cosine": {
+      "parent": -0.06153818964958191,
+      "attack": -0.071092389523983,
+      "ret": 0.12066091597080231
+    },
+    "parent_loss": 1.0951608419418335,
+    "cnlp_unit_loss": 0.0006555318832397461,
+    "target_proxy": 0.06681432574987411,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 24,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_003280.jpg",
+    "class_stratum": 12,
+    "seconds": 4.713689344003797,
+    "damage": {
+      "12": 0.0006555318832397461
+    },
+    "clean_learning_gain": {
+      "12": 0.004268169403076172
+    },
+    "norm": {
+      "parent": 0.07446189224720001,
+      "cnlp": 0.021911941468715668,
+      "attack": 0.07483262568712234,
+      "ret": 0.0011497263330966234
+    },
+    "cosine": {
+      "parent": -0.026694387197494507,
+      "attack": -0.02845306321978569,
+      "ret": 0.010010904632508755
+    },
+    "parent_loss": 1.114792823791504,
+    "cnlp_unit_loss": 0.0006555318832397461,
+    "target_proxy": 0.08997959643602371,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 25,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/008320.jpg",
+    "class_stratum": 12,
+    "seconds": 5.688112465199083,
+    "damage": {
+      "12": 0.0002855062484741211
+    },
+    "clean_learning_gain": {
+      "12": 0.008854269981384277
+    },
+    "norm": {
+      "parent": 0.11383873969316483,
+      "cnlp": 0.005095574539154768,
+      "attack": 0.11348066478967667,
+      "ret": 0.0004815107677131891
+    },
+    "cosine": {
+      "parent": -0.11990687251091003,
+      "attack": -0.11859147250652313,
+      "ret": -0.028036121279001236
+    },
+    "parent_loss": 1.123425006866455,
+    "cnlp_unit_loss": 0.0002855062484741211,
+    "target_proxy": 0.04810284823179245,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 25,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/008320.jpg",
+    "class_stratum": 12,
+    "seconds": 4.7214842503890395,
+    "damage": {
+      "12": 0.0002855062484741211
+    },
+    "clean_learning_gain": {
+      "12": 0.008854269981384277
+    },
+    "norm": {
+      "parent": 0.11001256108283997,
+      "cnlp": 0.00465818215161562,
+      "attack": 0.09249593317508698,
+      "ret": 0.00014189629291649908
+    },
+    "cosine": {
+      "parent": -0.22689157724380493,
+      "attack": -0.28612250089645386,
+      "ret": -0.17447850108146667
+    },
+    "parent_loss": 1.0987657308578491,
+    "cnlp_unit_loss": 0.0002855062484741211,
+    "target_proxy": 0.027205690741539,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 26,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/001688.jpg",
+    "class_stratum": 13,
+    "seconds": 5.300938508007675,
+    "damage": {
+      "13": -0.001542806625366211
+    },
+    "clean_learning_gain": {
+      "13": 0.049363136291503906
+    },
+    "norm": {
+      "parent": 0.031352125108242035,
+      "cnlp": 0.0,
+      "attack": 0.031373780220746994,
+      "ret": 0.0010578642832115293
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.006247639656067,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.033879995346069336,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 26,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/001688.jpg",
+    "class_stratum": 13,
+    "seconds": 5.768438864033669,
+    "damage": {
+      "13": -0.001542806625366211
+    },
+    "clean_learning_gain": {
+      "13": 0.049363136291503906
+    },
+    "norm": {
+      "parent": 0.08724717050790787,
+      "cnlp": 0.0,
+      "attack": 0.03333405777812004,
+      "ret": 0.0012690197909250855
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.0523630380630493,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.07882609963417053,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 27,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008177.jpg",
+    "class_stratum": 13,
+    "seconds": 5.922420117072761,
+    "damage": {
+      "6": 0.0001672506332397461,
+      "13": 0.00188446044921875
+    },
+    "clean_learning_gain": {
+      "6": -0.002600431442260742,
+      "13": -0.015380024909973145
+    },
+    "norm": {
+      "parent": 0.057937584817409515,
+      "cnlp": 0.06464187800884247,
+      "attack": 0.05807189270853996,
+      "ret": 0.00043740234104916453
+    },
+    "cosine": {
+      "parent": -0.24195599555969238,
+      "attack": -0.2416883409023285,
+      "ret": 0.040397513657808304
+    },
+    "parent_loss": 1.2006431818008423,
+    "cnlp_unit_loss": 0.001025855541229248,
+    "target_proxy": 0.07889508455991745,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 27,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008177.jpg",
+    "class_stratum": 13,
+    "seconds": 5.759479416068643,
+    "damage": {
+      "6": 0.0001672506332397461,
+      "13": 0.00188446044921875
+    },
+    "clean_learning_gain": {
+      "6": -0.002600431442260742,
+      "13": -0.015380024909973145
+    },
+    "norm": {
+      "parent": 0.07071693241596222,
+      "cnlp": 0.07823601365089417,
+      "attack": 0.07015543431043625,
+      "ret": 0.0004770290688611567
+    },
+    "cosine": {
+      "parent": -0.1586371660232544,
+      "attack": -0.17079801857471466,
+      "ret": 0.08683121204376221
+    },
+    "parent_loss": 1.1777172088623047,
+    "cnlp_unit_loss": 0.001025855541229248,
+    "target_proxy": 0.05835890769958496,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 28,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+    "class_stratum": 15,
+    "seconds": 5.588201282080263,
+    "damage": {
+      "8": -0.0005407333374023438,
+      "15": -9.036064147949219e-05,
+      "19": -0.0002224445343017578
+    },
+    "clean_learning_gain": {
+      "8": 0.012338876724243164,
+      "15": 0.0004534721374511719,
+      "19": 0.003592252731323242
+    },
+    "norm": {
+      "parent": 0.05642283335328102,
+      "cnlp": 0.0,
+      "attack": 0.05651625245809555,
+      "ret": 0.0013068116968497634
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.269242525100708,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.061730511486530304,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 28,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+    "class_stratum": 15,
+    "seconds": 5.543837320059538,
+    "damage": {
+      "8": -0.0005407333374023438,
+      "15": -9.036064147949219e-05,
+      "19": -0.0002224445343017578
+    },
+    "clean_learning_gain": {
+      "8": 0.012338876724243164,
+      "15": 0.0004534721374511719,
+      "19": 0.003592252731323242
+    },
+    "norm": {
+      "parent": 0.07727108895778656,
+      "cnlp": 0.0,
+      "attack": 0.07807519286870956,
+      "ret": 0.0015152606647461653
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.243327021598816,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.03573386371135712,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 29,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_006828.jpg",
+    "class_stratum": 15,
+    "seconds": 5.500263550784439,
+    "damage": {
+      "15": 0.0027365684509277344
+    },
+    "clean_learning_gain": {
+      "15": 0.029001951217651367
+    },
+    "norm": {
+      "parent": 0.048603735864162445,
+      "cnlp": 0.28113994002342224,
+      "attack": 0.048505354672670364,
+      "ret": 0.00029962777625769377
+    },
+    "cosine": {
+      "parent": 0.4104166328907013,
+      "attack": 0.4130423665046692,
+      "ret": -0.13014784455299377
+    },
+    "parent_loss": 0.9708261489868164,
+    "cnlp_unit_loss": 0.0027365684509277344,
+    "target_proxy": 0.004505421034991741,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 29,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_006828.jpg",
+    "class_stratum": 15,
+    "seconds": 6.336646945215762,
+    "damage": {
+      "15": 0.0027365684509277344
+    },
+    "clean_learning_gain": {
+      "15": 0.029001951217651367
+    },
+    "norm": {
+      "parent": 0.08752632141113281,
+      "cnlp": 0.2845744788646698,
+      "attack": 0.04140832647681236,
+      "ret": 0.00026510711177252233
+    },
+    "cosine": {
+      "parent": 0.30595967173576355,
+      "attack": 0.18937477469444275,
+      "ret": 0.014303158037364483
+    },
+    "parent_loss": 1.0541913509368896,
+    "cnlp_unit_loss": 0.0027365684509277344,
+    "target_proxy": 0.0684976652264595,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 30,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_000289.jpg",
+    "class_stratum": 16,
+    "seconds": 6.48872453533113,
+    "damage": {
+      "16": -0.0015518665313720703
+    },
+    "clean_learning_gain": {
+      "16": 0.004567980766296387
+    },
+    "norm": {
+      "parent": 0.09911324083805084,
+      "cnlp": 0.0,
+      "attack": 0.09979325532913208,
+      "ret": 0.00021309521980583668
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.040479063987732,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.014573809690773487,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 30,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_000289.jpg",
+    "class_stratum": 16,
+    "seconds": 17.01381905982271,
+    "damage": {
+      "16": -0.0015518665313720703
+    },
+    "clean_learning_gain": {
+      "16": 0.004567980766296387
+    },
+    "norm": {
+      "parent": 0.09934940189123154,
+      "cnlp": 0.0,
+      "attack": 0.09943519532680511,
+      "ret": 0.00020792755822185427
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.0609115362167358,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.03410537168383598,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 31,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_005633.jpg",
+    "class_stratum": 16,
+    "seconds": 8.90197901474312,
+    "damage": {
+      "16": -0.00017821788787841797
+    },
+    "clean_learning_gain": {
+      "16": 0.0025527477264404297
+    },
+    "norm": {
+      "parent": 0.09345519542694092,
+      "cnlp": 0.0,
+      "attack": 0.09332059323787689,
+      "ret": 3.96774776163511e-05
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.1426827907562256,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.05759355053305626,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 31,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_005633.jpg",
+    "class_stratum": 16,
+    "seconds": 4.775367997121066,
+    "damage": {
+      "16": -0.00017821788787841797
+    },
+    "clean_learning_gain": {
+      "16": 0.0025527477264404297
+    },
+    "norm": {
+      "parent": 0.06957905739545822,
+      "cnlp": 0.0,
+      "attack": 0.06972696632146835,
+      "ret": 3.6708566767629236e-05
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.140249252319336,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.060616619884967804,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 32,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_001470.jpg",
+    "class_stratum": 17,
+    "seconds": 6.591572320088744,
+    "damage": {
+      "11": -0.0011801719665527344,
+      "17": 0.0006792545318603516
+    },
+    "clean_learning_gain": {
+      "11": -0.0019307136535644531,
+      "17": -0.004677772521972656
+    },
+    "norm": {
+      "parent": 0.10875106602907181,
+      "cnlp": 0.009759924374520779,
+      "attack": 0.10756754130125046,
+      "ret": 0.001658539636991918
+    },
+    "cosine": {
+      "parent": 0.08817321062088013,
+      "attack": 0.09776505827903748,
+      "ret": 0.012243063189089298
+    },
+    "parent_loss": 1.1314016580581665,
+    "cnlp_unit_loss": 0.0003396272659301758,
+    "target_proxy": 0.05120440572500229,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 32,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_001470.jpg",
+    "class_stratum": 17,
+    "seconds": 4.803810704033822,
+    "damage": {
+      "11": -0.0011801719665527344,
+      "17": 0.0006792545318603516
+    },
+    "clean_learning_gain": {
+      "11": -0.0019307136535644531,
+      "17": -0.004677772521972656
+    },
+    "norm": {
+      "parent": 0.07963797450065613,
+      "cnlp": 0.009555828757584095,
+      "attack": 0.07953982055187225,
+      "ret": 0.0013079881900921464
+    },
+    "cosine": {
+      "parent": 0.06476806104183197,
+      "attack": 0.07271276414394379,
+      "ret": -0.11521751433610916
+    },
+    "parent_loss": 1.164284348487854,
+    "cnlp_unit_loss": 0.0003396272659301758,
+    "target_proxy": 0.08286411315202713,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 33,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_000344.jpg",
+    "class_stratum": 17,
+    "seconds": 4.7080573490820825,
+    "damage": {
+      "17": -0.00032138824462890625
+    },
+    "clean_learning_gain": {
+      "17": -0.00513768196105957
+    },
+    "norm": {
+      "parent": 0.07418346405029297,
+      "cnlp": 0.0,
+      "attack": 0.07387708127498627,
+      "ret": 0.0007495114696212113
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.0502808094024658,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.06430117785930634,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 33,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_000344.jpg",
+    "class_stratum": 17,
+    "seconds": 4.74131939932704,
+    "damage": {
+      "17": -0.00032138824462890625
+    },
+    "clean_learning_gain": {
+      "17": -0.00513768196105957
+    },
+    "norm": {
+      "parent": 0.06543802469968796,
+      "cnlp": 0.0,
+      "attack": 0.06523972749710083,
+      "ret": 0.0006680338992737234
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.0473984479904175,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.0599898099899292,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 34,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009377.jpg",
+    "class_stratum": 18,
+    "seconds": 4.644920827820897,
+    "damage": {
+      "18": -0.0010180473327636719
+    },
+    "clean_learning_gain": {
+      "18": -0.0010110139846801758
+    },
+    "norm": {
+      "parent": 0.10283777862787247,
+      "cnlp": 0.0,
+      "attack": 0.08020126074552536,
+      "ret": 0.0008145279716700315
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.2866164445877075,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.07355650514364243,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 34,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009377.jpg",
+    "class_stratum": 18,
+    "seconds": 4.718928276095539,
+    "damage": {
+      "18": -0.0010180473327636719
+    },
+    "clean_learning_gain": {
+      "18": -0.0010110139846801758
+    },
+    "norm": {
+      "parent": 0.07923893630504608,
+      "cnlp": 0.0,
+      "attack": 0.07717801630496979,
+      "ret": 0.000570809468626976
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 1.2636642456054688,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.04886683076620102,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 35,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000034.jpg",
+    "class_stratum": 18,
+    "seconds": 4.75085037574172,
+    "damage": {
+      "18": -0.0018579959869384766
+    },
+    "clean_learning_gain": {
+      "18": -0.03017258644104004
+    },
+    "norm": {
+      "parent": 0.054548025131225586,
+      "cnlp": 0.0,
+      "attack": 0.05330042541027069,
+      "ret": 0.0006024735630489886
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 0.9429316520690918,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.05452704802155495,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 35,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000034.jpg",
+    "class_stratum": 18,
+    "seconds": 7.086364386603236,
+    "damage": {
+      "18": -0.0018579959869384766
+    },
+    "clean_learning_gain": {
+      "18": -0.03017258644104004
+    },
+    "norm": {
+      "parent": 0.05847284942865372,
+      "cnlp": 0.0,
+      "attack": 0.055775925517082214,
+      "ret": 0.0005308002000674605
+    },
+    "cosine": {
+      "parent": 0.0,
+      "attack": 0.0,
+      "ret": 0.0
+    },
+    "parent_loss": 0.9392011761665344,
+    "cnlp_unit_loss": 0.0,
+    "target_proxy": 0.050976209342479706,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 36,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+    "class_stratum": 19,
+    "seconds": 5.645651536993682,
+    "damage": {
+      "8": -0.0019774436950683594,
+      "15": -0.0003769397735595703,
+      "19": 8.845329284667969e-05
+    },
+    "clean_learning_gain": {
+      "8": 0.035787343978881836,
+      "15": -6.532669067382812e-05,
+      "19": 0.0061376094818115234
+    },
+    "norm": {
+      "parent": 0.05765808746218681,
+      "cnlp": 0.012272659689188004,
+      "attack": 0.057063598185777664,
+      "ret": 0.0001520373480161652
+    },
+    "cosine": {
+      "parent": -0.09710290282964706,
+      "attack": -0.0925874337553978,
+      "ret": -0.08701395243406296
+    },
+    "parent_loss": 1.085134744644165,
+    "cnlp_unit_loss": 2.948443216155283e-05,
+    "target_proxy": 0.07613225281238556,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 36,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+    "class_stratum": 19,
+    "seconds": 7.111307740211487,
+    "damage": {
+      "8": -0.0019774436950683594,
+      "15": -0.0003769397735595703,
+      "19": 8.845329284667969e-05
+    },
+    "clean_learning_gain": {
+      "8": 0.035787343978881836,
+      "15": -6.532669067382812e-05,
+      "19": 0.0061376094818115234
+    },
+    "norm": {
+      "parent": 0.055449582636356354,
+      "cnlp": 0.013176534324884415,
+      "attack": 0.05503331497311592,
+      "ret": 0.0001688489137450233
+    },
+    "cosine": {
+      "parent": -0.18089966475963593,
+      "attack": -0.175773486495018,
+      "ret": -0.25464919209480286
+    },
+    "parent_loss": 1.0602527856826782,
+    "cnlp_unit_loss": 2.948443216155283e-05,
+    "target_proxy": 0.05032525956630707,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 37,
+    "eot": 0,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000632.jpg",
+    "class_stratum": 19,
+    "seconds": 6.3176446640864015,
+    "damage": {
+      "8": 0.0008718967437744141,
+      "19": -0.0018317699432373047
+    },
+    "clean_learning_gain": {
+      "8": 0.0015882253646850586,
+      "19": 0.003932952880859375
+    },
+    "norm": {
+      "parent": 0.05702197179198265,
+      "cnlp": 0.005396772641688585,
+      "attack": 0.05736897513270378,
+      "ret": 0.001552658504806459
+    },
+    "cosine": {
+      "parent": 0.09175223857164383,
+      "attack": 0.08199736475944519,
+      "ret": 0.2537359297275543
+    },
+    "parent_loss": 1.1130506992340088,
+    "cnlp_unit_loss": 0.00043594837188720703,
+    "target_proxy": 0.00853975024074316,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  },
+  {
+    "case": 37,
+    "eot": 1,
+    "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000632.jpg",
+    "class_stratum": 19,
+    "seconds": 6.891628387849778,
+    "damage": {
+      "8": 0.0008718967437744141,
+      "19": -0.0018317699432373047
+    },
+    "clean_learning_gain": {
+      "8": 0.0015882253646850586,
+      "19": 0.003932952880859375
+    },
+    "norm": {
+      "parent": 0.042687736451625824,
+      "cnlp": 0.004550455138087273,
+      "attack": 0.04270266368985176,
+      "ret": 0.00133612472563982
+    },
+    "cosine": {
+      "parent": 0.13741545379161835,
+      "attack": 0.12434207648038864,
+      "ret": 0.29905086755752563
+    },
+    "parent_loss": 1.178550124168396,
+    "cnlp_unit_loss": 0.00043594837188720703,
+    "target_proxy": 0.052424199879169464,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_max": 0.0
+  }
+]

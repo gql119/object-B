@@ -1,0 +1,3811 @@
+{
+  "parent_selection_sha256": "39a5efc58ebd57f0e606f6b10d6aa591b89076cea440d7d997ab8b1ee59e4885",
+  "status": "TRAIN_ONLY_ADMISSION_ANALYZED",
+  "formal_generation_enabled": false,
+  "victim_training_enabled": false,
+  "results": [
+    {
+      "run_id": "cnlp_unitgrad_J1_train38_seed0_20261015_v2",
+      "source_commit": "ca57a71d2a934946fe983620aefa2e41da8efc0a",
+      "fixed_plan_sha256": "b513e553afa03af6eff550eeefe8d5bdc94ddb6e9f7c6fbde70c4375657fa780",
+      "manifest_sha256": "7ea21929d1e1d89aff8e345ed1c7ddd58367c0bad4c9f71574487a19e33a831f",
+      "duration_seconds": 215.5919178808108,
+      "peak_allocated_bytes": 5961734656,
+      "cases": [
+        {
+          "case": 0,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_005218.jpg",
+          "damage": {
+            "0": -1.990795135498047e-05
+          },
+          "clean_learning_gain": {
+            "0": -0.000194549560546875
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.07745352387428284,
+            "cnlp": 0.0,
+            "attack": 0.07769770920276642,
+            "ret": 0.0009679148788563907
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 1,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_003066.jpg",
+          "damage": {
+            "0": 4.2557716369628906e-05
+          },
+          "clean_learning_gain": {
+            "0": -0.0006095170974731445
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05423493683338165,
+            "cnlp": 0.019042180851101875,
+            "attack": 0.054212093353271484,
+            "ret": 0.0001914760796353221
+          },
+          "cosine": {
+            "parent": 0.07973098009824753,
+            "attack": 0.08076364547014236,
+            "ret": 0.016318490728735924
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 2,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/003589.jpg",
+          "damage": {
+            "1": 0.0003713369369506836
+          },
+          "clean_learning_gain": {
+            "1": 0.0004616975784301758
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05317758023738861,
+            "cnlp": 0.006078656762838364,
+            "attack": 0.05336456745862961,
+            "ret": 0.0011850942391902208
+          },
+          "cosine": {
+            "parent": -0.21133849024772644,
+            "attack": -0.2027834802865982,
+            "ret": -0.07906290143728256
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 3,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002180.jpg",
+          "damage": {
+            "1": -0.000240325927734375
+          },
+          "clean_learning_gain": {
+            "1": -0.0001863241195678711
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.0765913650393486,
+            "cnlp": 0.0,
+            "attack": 0.07335695624351501,
+            "ret": 0.0004021387139800936
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 4,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_002776.jpg",
+          "damage": {
+            "2": 0.0011506080627441406
+          },
+          "clean_learning_gain": {
+            "2": 0.0005021095275878906
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06569026410579681,
+            "cnlp": 0.0024091233499348164,
+            "attack": 0.06519461423158646,
+            "ret": 0.0003096697328146547
+          },
+          "cosine": {
+            "parent": 0.38031288981437683,
+            "attack": 0.37504786252975464,
+            "ret": 0.026863552629947662
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 5,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008380.jpg",
+          "damage": {
+            "2": -0.00039005279541015625
+          },
+          "clean_learning_gain": {
+            "2": -0.00031757354736328125
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.08770395070314407,
+            "cnlp": 0.0,
+            "attack": 0.08993653953075409,
+            "ret": 0.0009693180909380317
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 6,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_006720.jpg",
+          "damage": {
+            "3": 0.0004191398620605469
+          },
+          "clean_learning_gain": {
+            "3": 0.0003294944763183594
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.053541671484708786,
+            "cnlp": 0.007692436221987009,
+            "attack": 0.05266901105642319,
+            "ret": 0.0006531996768899262
+          },
+          "cosine": {
+            "parent": 0.07039009779691696,
+            "attack": -0.02151481993496418,
+            "ret": 0.21780246496200562
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 7,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_002492.jpg",
+          "damage": {
+            "3": -0.00019073486328125
+          },
+          "clean_learning_gain": {
+            "3": 0.00030350685119628906
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.07796693593263626,
+            "cnlp": 0.0,
+            "attack": 0.07630381733179092,
+            "ret": 0.00029213924426585436
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 8,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002388.jpg",
+          "damage": {
+            "4": 0.00022852420806884766
+          },
+          "clean_learning_gain": {
+            "4": -0.0002846717834472656
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.07986472547054291,
+            "cnlp": 0.012087923474609852,
+            "attack": 0.07581184804439545,
+            "ret": 0.0005647170473821461
+          },
+          "cosine": {
+            "parent": 0.3105510473251343,
+            "attack": 0.1645190566778183,
+            "ret": -0.47740575671195984
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 9,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_005236.jpg",
+          "damage": {
+            "4": -0.00010347366333007812
+          },
+          "clean_learning_gain": {
+            "4": -8.726119995117188e-05
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.11050374805927277,
+            "cnlp": 0.0,
+            "attack": 0.11048833280801773,
+            "ret": 0.001033117063343525
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 10,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000768.jpg",
+          "damage": {
+            "5": 0.00011277198791503906
+          },
+          "clean_learning_gain": {
+            "5": -0.0003464221954345703
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.08226098865270615,
+            "cnlp": 0.020807985216379166,
+            "attack": 0.08212471008300781,
+            "ret": 0.0003270400920882821
+          },
+          "cosine": {
+            "parent": -0.16851204633712769,
+            "attack": -0.16336923837661743,
+            "ret": 0.14781014621257782
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 11,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/008793.jpg",
+          "damage": {
+            "5": -4.303455352783203e-05
+          },
+          "clean_learning_gain": {
+            "5": 6.842613220214844e-05
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06821471452713013,
+            "cnlp": 0.0,
+            "attack": 0.06515879184007645,
+            "ret": 0.0006468211649917066
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 12,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_000457.jpg",
+          "damage": {
+            "6": 0.0
+          },
+          "clean_learning_gain": {
+            "6": 8.606910705566406e-05
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.10802071541547775,
+            "cnlp": 0.0,
+            "attack": 0.10721591114997864,
+            "ret": 9.771848272066563e-05
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 13,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008177.jpg",
+          "damage": {
+            "6": -6.306171417236328e-05,
+            "13": -0.0005781650543212891
+          },
+          "clean_learning_gain": {
+            "6": -0.00011277198791503906,
+            "13": -0.0002663135528564453
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06103070080280304,
+            "cnlp": 0.0,
+            "attack": 0.0610077790915966,
+            "ret": 3.5870012652594596e-05
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 14,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_003190.jpg",
+          "damage": {
+            "7": -0.00022923946380615234
+          },
+          "clean_learning_gain": {
+            "7": 0.00029027462005615234
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.08367904275655746,
+            "cnlp": 0.0,
+            "attack": 0.08365770429372787,
+            "ret": 0.00023453167523257434
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 15,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_003771.jpg",
+          "damage": {
+            "7": -0.00039577484130859375
+          },
+          "clean_learning_gain": {
+            "7": -0.007864713668823242
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06323404610157013,
+            "cnlp": 0.0,
+            "attack": 0.06406794488430023,
+            "ret": 0.00046030821977183223
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 16,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+          "damage": {
+            "8": 0.000545501708984375,
+            "15": -0.00022721290588378906,
+            "19": -0.00039124488830566406
+          },
+          "clean_learning_gain": {
+            "8": 0.0013010501861572266,
+            "15": 0.00019502639770507812,
+            "19": -1.1920928955078125e-05
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.10072234272956848,
+            "cnlp": 0.006408287212252617,
+            "attack": 0.10051403194665909,
+            "ret": 0.0001916267938213423
+          },
+          "cosine": {
+            "parent": -0.11560661345720291,
+            "attack": -0.12465956062078476,
+            "ret": 0.00362887280061841
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 17,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000632.jpg",
+          "damage": {
+            "8": 0.000645756721496582,
+            "19": 0.0009415149688720703
+          },
+          "clean_learning_gain": {
+            "8": 0.0003942251205444336,
+            "19": 0.0014133453369140625
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.046943653374910355,
+            "cnlp": 0.0022133628372102976,
+            "attack": 0.04704275354743004,
+            "ret": 0.0006629295530728996
+          },
+          "cosine": {
+            "parent": 0.1695074588060379,
+            "attack": 0.17123593389987946,
+            "ret": -0.1631895899772644
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 18,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009710.jpg",
+          "damage": {
+            "9": 0.00045430660247802734
+          },
+          "clean_learning_gain": {
+            "9": 0.0007953643798828125
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05969691649079323,
+            "cnlp": 0.2551782429218292,
+            "attack": 0.05892474204301834,
+            "ret": 0.00011933460336877033
+          },
+          "cosine": {
+            "parent": 0.17337490618228912,
+            "attack": 0.17246630787849426,
+            "ret": -0.33200982213020325
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 19,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_005081.jpg",
+          "damage": {
+            "9": 0.0002372264862060547
+          },
+          "clean_learning_gain": {
+            "9": 0.00018310546875
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06281730532646179,
+            "cnlp": 0.0008476751972921193,
+            "attack": 0.05744416266679764,
+            "ret": 0.00022606694255955517
+          },
+          "cosine": {
+            "parent": 0.27572882175445557,
+            "attack": 0.21202503144741058,
+            "ret": -0.043107885867357254
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 20,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/001563.jpg",
+          "damage": {
+            "4": -0.0008084774017333984,
+            "8": -0.0005328655242919922,
+            "10": 0.0001506805419921875
+          },
+          "clean_learning_gain": {
+            "4": 0.0004146099090576172,
+            "8": -0.0005561113357543945,
+            "10": 0.0008952617645263672
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.045559436082839966,
+            "cnlp": 0.00229754694737494,
+            "attack": 0.04587467387318611,
+            "ret": 6.178610055940226e-05
+          },
+          "cosine": {
+            "parent": -0.32127657532691956,
+            "attack": -0.31670379638671875,
+            "ret": -0.03520377352833748
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 21,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_000098.jpg",
+          "damage": {
+            "1": -0.00015425682067871094,
+            "8": -2.5272369384765625e-05,
+            "10": -0.00039696693420410156
+          },
+          "clean_learning_gain": {
+            "1": -0.003668546676635742,
+            "8": 0.000804901123046875,
+            "10": 0.0013883113861083984
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.14413996040821075,
+            "cnlp": 0.0,
+            "attack": 0.14406895637512207,
+            "ret": 0.00036428586463443935
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 22,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002456.jpg",
+          "damage": {
+            "11": 0.00014019012451171875
+          },
+          "clean_learning_gain": {
+            "11": -0.0012469291687011719
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.0927898958325386,
+            "cnlp": 0.008895410224795341,
+            "attack": 0.0911809429526329,
+            "ret": 0.00024442101130262017
+          },
+          "cosine": {
+            "parent": 0.0005250272224657238,
+            "attack": -0.004475682508200407,
+            "ret": 0.1691485494375229
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 23,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_001470.jpg",
+          "damage": {
+            "11": -0.0001010894775390625,
+            "17": -0.00014090538024902344
+          },
+          "clean_learning_gain": {
+            "11": -0.0010012388229370117,
+            "17": 0.0010466575622558594
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05244632810354233,
+            "cnlp": 0.0,
+            "attack": 0.052096690982580185,
+            "ret": 6.88397340127267e-05
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 24,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_003280.jpg",
+          "damage": {
+            "12": 0.00033664703369140625
+          },
+          "clean_learning_gain": {
+            "12": 0.0011998414993286133
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06129923462867737,
+            "cnlp": 0.01274407934397459,
+            "attack": 0.06179486960172653,
+            "ret": 0.0010211163898929954
+          },
+          "cosine": {
+            "parent": -0.20867469906806946,
+            "attack": -0.2152140587568283,
+            "ret": 0.1514863818883896
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 25,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/008320.jpg",
+          "damage": {
+            "12": -0.0003453493118286133
+          },
+          "clean_learning_gain": {
+            "12": 0.0011025667190551758
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.10950351506471634,
+            "cnlp": 0.0,
+            "attack": 0.10117532312870026,
+            "ret": 0.000251718214713037
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 26,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/001688.jpg",
+          "damage": {
+            "13": -0.0012054443359375
+          },
+          "clean_learning_gain": {
+            "13": 0.009777069091796875
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.04762127622961998,
+            "cnlp": 0.0,
+            "attack": 0.0312188733369112,
+            "ret": 0.0011364520760253072
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 27,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008177.jpg",
+          "damage": {
+            "6": -6.80685043334961e-05,
+            "13": -0.0003682374954223633
+          },
+          "clean_learning_gain": {
+            "6": -0.00030815601348876953,
+            "13": -0.0023549795150756836
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06280369311571121,
+            "cnlp": 0.0,
+            "attack": 0.06245401129126549,
+            "ret": 0.0004469486011657864
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 28,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+          "damage": {
+            "8": -0.0005645751953125,
+            "15": -9.489059448242188e-05,
+            "19": -0.0006444454193115234
+          },
+          "clean_learning_gain": {
+            "8": -0.00020599365234375,
+            "15": -1.5735626220703125e-05,
+            "19": 0.00012683868408203125
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06439949572086334,
+            "cnlp": 0.0,
+            "attack": 0.064922995865345,
+            "ret": 0.0013484838418662548
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 29,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_006828.jpg",
+          "damage": {
+            "15": 0.0007488727569580078
+          },
+          "clean_learning_gain": {
+            "15": 0.007232666015625
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05916382372379303,
+            "cnlp": 0.05876161903142929,
+            "attack": 0.04270065575838089,
+            "ret": 0.00027392234187573195
+          },
+          "cosine": {
+            "parent": 0.464168906211853,
+            "attack": 0.31754204630851746,
+            "ret": -0.10887305438518524
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 30,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_000289.jpg",
+          "damage": {
+            "16": -0.00043582916259765625
+          },
+          "clean_learning_gain": {
+            "16": 0.0006356239318847656
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.09413158148527145,
+            "cnlp": 0.0,
+            "attack": 0.09460894018411636,
+            "ret": 0.0002016508369706571
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 31,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_005633.jpg",
+          "damage": {
+            "16": 0.00011181831359863281
+          },
+          "clean_learning_gain": {
+            "16": 0.0004901885986328125
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.07814647257328033,
+            "cnlp": 0.0037670424208045006,
+            "attack": 0.07813235372304916,
+            "ret": 3.65953310392797e-05
+          },
+          "cosine": {
+            "parent": 0.20540201663970947,
+            "attack": 0.20421071350574493,
+            "ret": 0.1318957358598709
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 32,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_001470.jpg",
+          "damage": {
+            "11": 0.00015437602996826172,
+            "17": 0.0002815723419189453
+          },
+          "clean_learning_gain": {
+            "11": 0.0004057884216308594,
+            "17": -0.0003476142883300781
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.09165527671575546,
+            "cnlp": 0.0028148028068244457,
+            "attack": 0.09089922904968262,
+            "ret": 0.0014295644359663129
+          },
+          "cosine": {
+            "parent": 0.07996417582035065,
+            "attack": 0.0886882096529007,
+            "ret": -0.10873500257730484
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 33,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_000344.jpg",
+          "damage": {
+            "17": 0.0006943941116333008
+          },
+          "clean_learning_gain": {
+            "17": -0.0005824565887451172
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06764962524175644,
+            "cnlp": 0.01089530624449253,
+            "attack": 0.06734529137611389,
+            "ret": 0.0006919803563505411
+          },
+          "cosine": {
+            "parent": -0.0641489177942276,
+            "attack": -0.06234147399663925,
+            "ret": -0.10501192510128021
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 34,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009377.jpg",
+          "damage": {
+            "18": 0.0003802776336669922
+          },
+          "clean_learning_gain": {
+            "18": -0.0003345012664794922
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.08547697961330414,
+            "cnlp": 0.0006184006342664361,
+            "attack": 0.07608301192522049,
+            "ret": 0.0006563444621860981
+          },
+          "cosine": {
+            "parent": 0.22990144789218903,
+            "attack": 0.20913587510585785,
+            "ret": -0.0897354856133461
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 35,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000034.jpg",
+          "damage": {
+            "18": 0.0012145042419433594
+          },
+          "clean_learning_gain": {
+            "18": -0.004438877105712891
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.0531555712223053,
+            "cnlp": 0.007551461923867464,
+            "attack": 0.0520227886736393,
+            "ret": 0.0005491357296705246
+          },
+          "cosine": {
+            "parent": 0.25270068645477295,
+            "attack": 0.2695332169532776,
+            "ret": -0.26750123500823975
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 36,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+          "damage": {
+            "8": 0.0008206367492675781,
+            "15": -1.7642974853515625e-05,
+            "19": 0.0009253025054931641
+          },
+          "clean_learning_gain": {
+            "8": 0.006314516067504883,
+            "15": 0.0002460479736328125,
+            "19": 0.0015289783477783203
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05470441281795502,
+            "cnlp": 0.020769884809851646,
+            "attack": 0.054194990545511246,
+            "ret": 0.00015414426161441952
+          },
+          "cosine": {
+            "parent": 0.5173913836479187,
+            "attack": 0.5147913098335266,
+            "ret": 0.04564352706074715
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 37,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000632.jpg",
+          "damage": {
+            "8": 1.823902130126953e-05,
+            "19": -0.0003669261932373047
+          },
+          "clean_learning_gain": {
+            "8": 0.0004621744155883789,
+            "19": 0.0009860992431640625
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.047226276248693466,
+            "cnlp": 0.0012304600095376372,
+            "attack": 0.04745430499315262,
+            "ret": 0.0014166655018925667
+          },
+          "cosine": {
+            "parent": 0.04516692832112312,
+            "attack": 0.03167181834578514,
+            "ret": 0.33503222465515137
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        }
+      ],
+      "median_clean_learning_gain": 7.724761962890625e-05,
+      "positive_learning_gain_cases": 22,
+      "nonzero_gradient_cases": 21,
+      "j_gate_passed": true,
+      "raw_gradient_norm": {
+        "parent": {
+          "q10": 0.050998812541365623,
+          "q25": 0.05581926554441452,
+          "median": 0.06666994467377663,
+          "q75": 0.08502749539911747,
+          "q90": 0.1029118545353413,
+          "max": 0.14413996040821075
+        },
+        "cnlp": {
+          "q10": 0.0,
+          "q25": 0.0,
+          "median": 0.0010390676034148782,
+          "q75": 0.007657192647457123,
+          "q90": 0.019560492038726816,
+          "max": 0.2551782429218292
+        },
+        "attack": {
+          "q10": 0.047330839559435844,
+          "q25": 0.054199266247451305,
+          "median": 0.06517670303583145,
+          "q75": 0.08327445574104786,
+          "q90": 0.10071241930127144,
+          "max": 0.14406895637512207
+        },
+        "ret": {
+          "q10": 8.905485810828395e-05,
+          "q25": 0.00020775486336788163,
+          "median": 0.0003832122893072665,
+          "q75": 0.0006847176555311307,
+          "q90": 0.0011510447249747815,
+          "max": 0.0014295644359663129
+        }
+      },
+      "cosine_to_cnlp": {
+        "parent": {
+          "q10": -0.20867469906806946,
+          "q25": -0.0641489177942276,
+          "median": 0.07996417582035065,
+          "q75": 0.25270068645477295,
+          "q90": 0.38031288981437683,
+          "max": 0.5173913836479187
+        },
+        "attack": {
+          "q10": -0.2027834802865982,
+          "q25": -0.06234147399663925,
+          "median": 0.0886882096529007,
+          "q75": 0.20913587510585785,
+          "q90": 0.31754204630851746,
+          "max": 0.5147913098335266
+        },
+        "ret": {
+          "q10": -0.26750123500823975,
+          "q25": -0.10873500257730484,
+          "median": -0.03520377352833748,
+          "q75": 0.1318957358598709,
+          "q90": 0.1691485494375229,
+          "max": 0.33503222465515137
+        }
+      },
+      "attack_strong_conflict_cases": 0,
+      "attack_valid_cases": 21,
+      "artifact_sha256": {
+        "smoke_summary.json": "23d8c801c36e267df799a5cc67b1a9b9a5ec27a14e78dc71dbb698ef08ed9c1d",
+        "calibration_rows.json": "6ad51fdc4b8b4087e45699d7903966b23f153e8da180448cf02c9e003372ffd4",
+        "case_gradients.json": "3112ae986b016eba12fb55eb3db326bf3e1f9c70fe802eb12d87e8d843394ec3",
+        "fixed_train_plan.json": "b513e553afa03af6eff550eeefe8d5bdc94ddb6e9f7c6fbde70c4375657fa780"
+      }
+    },
+    {
+      "run_id": "cnlp_unitgrad_J3_train38_seed0_20261015_v2",
+      "source_commit": "ca57a71d2a934946fe983620aefa2e41da8efc0a",
+      "fixed_plan_sha256": "b513e553afa03af6eff550eeefe8d5bdc94ddb6e9f7c6fbde70c4375657fa780",
+      "manifest_sha256": "7ea21929d1e1d89aff8e345ed1c7ddd58367c0bad4c9f71574487a19e33a831f",
+      "duration_seconds": 323.9121172246523,
+      "peak_allocated_bytes": 7164462080,
+      "cases": [
+        {
+          "case": 0,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_005218.jpg",
+          "damage": {
+            "0": -0.0002894401550292969
+          },
+          "clean_learning_gain": {
+            "0": -0.0010668039321899414
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.07745352387428284,
+            "cnlp": 0.0,
+            "attack": 0.07769770920276642,
+            "ret": 0.0009679148788563907
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 1,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_003066.jpg",
+          "damage": {
+            "0": 0.0010162591934204102
+          },
+          "clean_learning_gain": {
+            "0": -0.0023845434188842773
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05423493683338165,
+            "cnlp": 0.03938891366124153,
+            "attack": 0.054212093353271484,
+            "ret": 0.0001914760796353221
+          },
+          "cosine": {
+            "parent": 0.11251191794872284,
+            "attack": 0.11374060809612274,
+            "ret": 0.0074894060380756855
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 2,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/003589.jpg",
+          "damage": {
+            "1": -0.0001538991928100586
+          },
+          "clean_learning_gain": {
+            "1": 0.0016518831253051758
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05317758023738861,
+            "cnlp": 0.0,
+            "attack": 0.05336456745862961,
+            "ret": 0.0011850942391902208
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 3,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002180.jpg",
+          "damage": {
+            "1": -0.00016069412231445312
+          },
+          "clean_learning_gain": {
+            "1": -0.000937342643737793
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.0765913650393486,
+            "cnlp": 0.0,
+            "attack": 0.07335695624351501,
+            "ret": 0.0004021387139800936
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 4,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_002776.jpg",
+          "damage": {
+            "2": 0.00037288665771484375
+          },
+          "clean_learning_gain": {
+            "2": -0.004569292068481445
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06569026410579681,
+            "cnlp": 0.007363033015280962,
+            "attack": 0.06519461423158646,
+            "ret": 0.0003096697328146547
+          },
+          "cosine": {
+            "parent": 0.3749343156814575,
+            "attack": 0.36986804008483887,
+            "ret": 0.03469351306557655
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 5,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008380.jpg",
+          "damage": {
+            "2": -9.393692016601562e-05
+          },
+          "clean_learning_gain": {
+            "2": 8.96453857421875e-05
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.08770395070314407,
+            "cnlp": 0.0,
+            "attack": 0.08993653953075409,
+            "ret": 0.0009693180909380317
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 6,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_006720.jpg",
+          "damage": {
+            "3": -0.00033593177795410156
+          },
+          "clean_learning_gain": {
+            "3": 0.0013370513916015625
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.053541671484708786,
+            "cnlp": 0.0,
+            "attack": 0.05266901105642319,
+            "ret": 0.0006531996768899262
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 7,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_002492.jpg",
+          "damage": {
+            "3": 0.0016694068908691406
+          },
+          "clean_learning_gain": {
+            "3": -0.0004401206970214844
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.07796693593263626,
+            "cnlp": 0.009968590922653675,
+            "attack": 0.07630381733179092,
+            "ret": 0.00029213924426585436
+          },
+          "cosine": {
+            "parent": -0.10410363227128983,
+            "attack": -0.10495511442422867,
+            "ret": -0.0739222839474678
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 8,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002388.jpg",
+          "damage": {
+            "4": 0.0005112886428833008
+          },
+          "clean_learning_gain": {
+            "4": -0.00028121471405029297
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.07986472547054291,
+            "cnlp": 0.024366658180952072,
+            "attack": 0.07581184804439545,
+            "ret": 0.0005647170473821461
+          },
+          "cosine": {
+            "parent": 0.25850582122802734,
+            "attack": 0.12916384637355804,
+            "ret": -0.5305759310722351
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 9,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_005236.jpg",
+          "damage": {
+            "4": 0.0002722740173339844
+          },
+          "clean_learning_gain": {
+            "4": -0.0005121231079101562
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.11050374805927277,
+            "cnlp": 0.010939189232885838,
+            "attack": 0.11048833280801773,
+            "ret": 0.001033117063343525
+          },
+          "cosine": {
+            "parent": -0.16334392130374908,
+            "attack": -0.13630303740501404,
+            "ret": -0.04123540595173836
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 10,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000768.jpg",
+          "damage": {
+            "5": 0.0006513595581054688
+          },
+          "clean_learning_gain": {
+            "5": -0.001985788345336914
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.08226098865270615,
+            "cnlp": 0.042379289865493774,
+            "attack": 0.08212471008300781,
+            "ret": 0.0003270400920882821
+          },
+          "cosine": {
+            "parent": -0.18149545788764954,
+            "attack": -0.17591285705566406,
+            "ret": 0.1565425843000412
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 11,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/008793.jpg",
+          "damage": {
+            "5": 1.0967254638671875e-05
+          },
+          "clean_learning_gain": {
+            "5": 0.00025093555450439453
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06821471452713013,
+            "cnlp": 0.001100628636777401,
+            "attack": 0.06515879184007645,
+            "ret": 0.0006468211649917066
+          },
+          "cosine": {
+            "parent": -0.3769148290157318,
+            "attack": -0.3953547179698944,
+            "ret": 0.14700435101985931
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 12,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_000457.jpg",
+          "damage": {
+            "6": 7.033348083496094e-05
+          },
+          "clean_learning_gain": {
+            "6": 8.034706115722656e-05
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.10802071541547775,
+            "cnlp": 0.006265724077820778,
+            "attack": 0.10721591114997864,
+            "ret": 9.771848272066563e-05
+          },
+          "cosine": {
+            "parent": -0.03352075815200806,
+            "attack": -0.036420080810785294,
+            "ret": 0.09156081080436707
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 13,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008177.jpg",
+          "damage": {
+            "6": -0.00013148784637451172,
+            "13": -0.0009919404983520508
+          },
+          "clean_learning_gain": {
+            "6": -0.00020122528076171875,
+            "13": 0.002436041831970215
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06103070080280304,
+            "cnlp": 0.0,
+            "attack": 0.0610077790915966,
+            "ret": 3.5870012652594596e-05
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 14,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_003190.jpg",
+          "damage": {
+            "7": -0.00021076202392578125
+          },
+          "clean_learning_gain": {
+            "7": 0.0006926059722900391
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.08367904275655746,
+            "cnlp": 0.0,
+            "attack": 0.08365770429372787,
+            "ret": 0.00023453167523257434
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 15,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_003771.jpg",
+          "damage": {
+            "7": -0.0006693601608276367
+          },
+          "clean_learning_gain": {
+            "7": -0.029131412506103516
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06323404610157013,
+            "cnlp": 0.0,
+            "attack": 0.06406794488430023,
+            "ret": 0.00046030821977183223
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 16,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+          "damage": {
+            "8": 0.0040819644927978516,
+            "15": -0.0005390644073486328,
+            "19": 9.72747802734375e-05
+          },
+          "clean_learning_gain": {
+            "8": 0.008019685745239258,
+            "15": 0.0009846687316894531,
+            "19": -0.0012886524200439453
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.10072234272956848,
+            "cnlp": 0.016232362017035484,
+            "attack": 0.10051403194665909,
+            "ret": 0.0001916267938213423
+          },
+          "cosine": {
+            "parent": -0.10608870536088943,
+            "attack": -0.1171552911400795,
+            "ret": 0.05049499496817589
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 17,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000632.jpg",
+          "damage": {
+            "8": 7.796287536621094e-05,
+            "19": -3.552436828613281e-05
+          },
+          "clean_learning_gain": {
+            "8": 0.00028252601623535156,
+            "19": 0.004158973693847656
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.046943653374910355,
+            "cnlp": 0.006307397503405809,
+            "attack": 0.04704275354743004,
+            "ret": 0.0006629295530728996
+          },
+          "cosine": {
+            "parent": 0.15109437704086304,
+            "attack": 0.15013514459133148,
+            "ret": -0.08615973591804504
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 18,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009710.jpg",
+          "damage": {
+            "9": -0.0011092424392700195
+          },
+          "clean_learning_gain": {
+            "9": 0.0014592409133911133
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05969691649079323,
+            "cnlp": 0.0,
+            "attack": 0.05892474204301834,
+            "ret": 0.00011933460336877033
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 19,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_005081.jpg",
+          "damage": {
+            "9": 0.00011074542999267578
+          },
+          "clean_learning_gain": {
+            "9": -0.0002124309539794922
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06281730532646179,
+            "cnlp": 0.002464683959260583,
+            "attack": 0.05744416266679764,
+            "ret": 0.00022606694255955517
+          },
+          "cosine": {
+            "parent": 0.2722090482711792,
+            "attack": 0.21214912831783295,
+            "ret": -0.047875408083200455
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 20,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/001563.jpg",
+          "damage": {
+            "4": 0.0010783672332763672,
+            "8": 0.00035893917083740234,
+            "10": 0.0004011392593383789
+          },
+          "clean_learning_gain": {
+            "4": 0.002790212631225586,
+            "8": -0.0016454458236694336,
+            "10": 0.0056819915771484375
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.045559436082839966,
+            "cnlp": 0.010193927213549614,
+            "attack": 0.04587467387318611,
+            "ret": 6.178610055940226e-05
+          },
+          "cosine": {
+            "parent": -0.08231734484434128,
+            "attack": -0.08961221575737,
+            "ret": -0.2015695869922638
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 21,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_000098.jpg",
+          "damage": {
+            "1": -6.461143493652344e-05,
+            "8": 0.0005085468292236328,
+            "10": 1.1444091796875e-05
+          },
+          "clean_learning_gain": {
+            "1": -0.010207653045654297,
+            "8": 0.0037822723388671875,
+            "10": 0.005414009094238281
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.14413996040821075,
+            "cnlp": 0.014614700339734554,
+            "attack": 0.14406895637512207,
+            "ret": 0.00036428586463443935
+          },
+          "cosine": {
+            "parent": -0.20997747778892517,
+            "attack": -0.21003225445747375,
+            "ret": -0.22864706814289093
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 22,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002456.jpg",
+          "damage": {
+            "11": -0.0003647804260253906
+          },
+          "clean_learning_gain": {
+            "11": -0.004831075668334961
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.0927898958325386,
+            "cnlp": 0.0,
+            "attack": 0.0911809429526329,
+            "ret": 0.00024442101130262017
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 23,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_001470.jpg",
+          "damage": {
+            "11": 0.00016641616821289062,
+            "17": 0.0002543926239013672
+          },
+          "clean_learning_gain": {
+            "11": -0.0038170814514160156,
+            "17": 0.0032062530517578125
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05244632810354233,
+            "cnlp": 0.006525031756609678,
+            "attack": 0.052096690982580185,
+            "ret": 6.88397340127267e-05
+          },
+          "cosine": {
+            "parent": 0.22325897216796875,
+            "attack": 0.21849027276039124,
+            "ret": 0.298494428396225
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 24,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_003280.jpg",
+          "damage": {
+            "12": 0.0001252889633178711
+          },
+          "clean_learning_gain": {
+            "12": 0.0028939247131347656
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06129923462867737,
+            "cnlp": 0.014457219280302525,
+            "attack": 0.06179486960172653,
+            "ret": 0.0010211163898929954
+          },
+          "cosine": {
+            "parent": -0.10501419752836227,
+            "attack": -0.11119895428419113,
+            "ret": 0.11602392792701721
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 25,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/008320.jpg",
+          "damage": {
+            "12": 0.0002435445785522461
+          },
+          "clean_learning_gain": {
+            "12": 0.005213737487792969
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.10950351506471634,
+            "cnlp": 0.003093324601650238,
+            "attack": 0.10117532312870026,
+            "ret": 0.000251718214713037
+          },
+          "cosine": {
+            "parent": -0.1617613136768341,
+            "attack": -0.1825934797525406,
+            "ret": -0.0340578593313694
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 26,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/001688.jpg",
+          "damage": {
+            "13": -0.001585245132446289
+          },
+          "clean_learning_gain": {
+            "13": 0.033385276794433594
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.04762127622961998,
+            "cnlp": 0.0,
+            "attack": 0.0312188733369112,
+            "ret": 0.0011364520760253072
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 27,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008177.jpg",
+          "damage": {
+            "6": 0.0002053976058959961,
+            "13": 0.0013756752014160156
+          },
+          "clean_learning_gain": {
+            "6": -0.0013977289199829102,
+            "13": -0.009207367897033691
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06280369311571121,
+            "cnlp": 0.06064646318554878,
+            "attack": 0.06245401129126549,
+            "ret": 0.0004469486011657864
+          },
+          "cosine": {
+            "parent": -0.24972106516361237,
+            "attack": -0.25438448786735535,
+            "ret": 0.07879781723022461
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 28,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+          "damage": {
+            "8": -7.891654968261719e-05,
+            "15": -0.00010347366333007812,
+            "19": -5.1975250244140625e-05
+          },
+          "clean_learning_gain": {
+            "8": 0.005597829818725586,
+            "15": 0.0002281665802001953,
+            "19": 0.0020439624786376953
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06439949572086334,
+            "cnlp": 0.0,
+            "attack": 0.064922995865345,
+            "ret": 0.0013484838418662548
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 29,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_006828.jpg",
+          "damage": {
+            "15": 0.0007843971252441406
+          },
+          "clean_learning_gain": {
+            "15": 0.02562093734741211
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05916382372379303,
+            "cnlp": 0.1020016148686409,
+            "attack": 0.04270065575838089,
+            "ret": 0.00027392234187573195
+          },
+          "cosine": {
+            "parent": 0.4686257541179657,
+            "attack": 0.3303384482860565,
+            "ret": -0.11772570759057999
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 30,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_000289.jpg",
+          "damage": {
+            "16": -0.0011293888092041016
+          },
+          "clean_learning_gain": {
+            "16": 0.002015829086303711
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.09413158148527145,
+            "cnlp": 0.0,
+            "attack": 0.09460894018411636,
+            "ret": 0.0002016508369706571
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 31,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_005633.jpg",
+          "damage": {
+            "16": 8.225440979003906e-06
+          },
+          "clean_learning_gain": {
+            "16": 0.0013500452041625977
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.07814647257328033,
+            "cnlp": 0.008416862227022648,
+            "attack": 0.07813235372304916,
+            "ret": 3.65953310392797e-05
+          },
+          "cosine": {
+            "parent": 0.1943681836128235,
+            "attack": 0.19314880669116974,
+            "ret": 0.12969118356704712
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 32,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_001470.jpg",
+          "damage": {
+            "11": -0.0002511739730834961,
+            "17": 0.0005288124084472656
+          },
+          "clean_learning_gain": {
+            "11": -0.0005280971527099609,
+            "17": -0.002329111099243164
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.09165527671575546,
+            "cnlp": 0.006241615395992994,
+            "attack": 0.09089922904968262,
+            "ret": 0.0014295644359663129
+          },
+          "cosine": {
+            "parent": 0.07650638371706009,
+            "attack": 0.0859670639038086,
+            "ret": -0.04435589164495468
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 33,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_000344.jpg",
+          "damage": {
+            "17": 0.0012125968933105469
+          },
+          "clean_learning_gain": {
+            "17": -0.0022698640823364258
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06764962524175644,
+            "cnlp": 0.02103792130947113,
+            "attack": 0.06734529137611389,
+            "ret": 0.0006919803563505411
+          },
+          "cosine": {
+            "parent": 0.13643424212932587,
+            "attack": 0.13913632929325104,
+            "ret": 0.03275495022535324
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 34,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009377.jpg",
+          "damage": {
+            "18": 8.809566497802734e-05
+          },
+          "clean_learning_gain": {
+            "18": -0.00034308433532714844
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.08547697961330414,
+            "cnlp": 0.0017395224422216415,
+            "attack": 0.07608301192522049,
+            "ret": 0.0006563444621860981
+          },
+          "cosine": {
+            "parent": 0.24585771560668945,
+            "attack": 0.21876241266727448,
+            "ret": -0.0701182559132576
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 35,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000034.jpg",
+          "damage": {
+            "18": -0.0013170242309570312
+          },
+          "clean_learning_gain": {
+            "18": -0.019076824188232422
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.0531555712223053,
+            "cnlp": 0.0,
+            "attack": 0.0520227886736393,
+            "ret": 0.0005491357296705246
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 36,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+          "damage": {
+            "8": -0.006494760513305664,
+            "15": -0.0005753040313720703,
+            "19": -0.00036454200744628906
+          },
+          "clean_learning_gain": {
+            "8": 0.022439241409301758,
+            "15": -3.0994415283203125e-06,
+            "19": 0.004591941833496094
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05470441281795502,
+            "cnlp": 0.0,
+            "attack": 0.054194990545511246,
+            "ret": 0.00015414426161441952
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 37,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000632.jpg",
+          "damage": {
+            "8": 0.0004324913024902344,
+            "19": -0.0009894371032714844
+          },
+          "clean_learning_gain": {
+            "8": 0.0010333061218261719,
+            "19": 0.002190113067626953
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.047226276248693466,
+            "cnlp": 0.003172016004100442,
+            "attack": 0.04745430499315262,
+            "ret": 0.0014166655018925667
+          },
+          "cosine": {
+            "parent": 0.09204333275556564,
+            "attack": 0.0787527933716774,
+            "ret": 0.31859251856803894
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        }
+      ],
+      "median_clean_learning_gain": 8.499622344970703e-05,
+      "positive_learning_gain_cases": 20,
+      "nonzero_gradient_cases": 23,
+      "j_gate_passed": true,
+      "raw_gradient_norm": {
+        "parent": {
+          "q10": 0.050998812541365623,
+          "q25": 0.05581926554441452,
+          "median": 0.06666994467377663,
+          "q75": 0.08502749539911747,
+          "q90": 0.1029118545353413,
+          "max": 0.14413996040821075
+        },
+        "cnlp": {
+          "q10": 0.0,
+          "q25": 0.0,
+          "median": 0.00313267030287534,
+          "q75": 0.010752873728051782,
+          "q90": 0.028873334825038975,
+          "max": 0.1020016148686409
+        },
+        "attack": {
+          "q10": 0.047330839559435844,
+          "q25": 0.054199266247451305,
+          "median": 0.06517670303583145,
+          "q75": 0.08327445574104786,
+          "q90": 0.10071241930127144,
+          "max": 0.14406895637512207
+        },
+        "ret": {
+          "q10": 8.905485810828395e-05,
+          "q25": 0.00020775486336788163,
+          "median": 0.0003832122893072665,
+          "q75": 0.0006847176555311307,
+          "q90": 0.0011510447249747815,
+          "max": 0.0014295644359663129
+        }
+      },
+      "cosine_to_cnlp": {
+        "parent": {
+          "q10": -0.20428107380867003,
+          "q25": -0.13392500951886177,
+          "median": 0.07650638371706009,
+          "q75": 0.20881357789039612,
+          "q90": 0.26946840286254886,
+          "max": 0.4686257541179657
+        },
+        "attack": {
+          "q10": -0.20454449951648712,
+          "q25": -0.12672916427254677,
+          "median": 0.0787527933716774,
+          "q75": 0.1716419756412506,
+          "q90": 0.21870798468589783,
+          "max": 0.36986804008483887
+        },
+        "ret": {
+          "q10": -0.18480081111192703,
+          "q25": -0.0720202699303627,
+          "median": 0.0074894060380756855,
+          "q75": 0.10379236936569214,
+          "q90": 0.15463493764400482,
+          "max": 0.31859251856803894
+        }
+      },
+      "attack_strong_conflict_cases": 0,
+      "attack_valid_cases": 23,
+      "artifact_sha256": {
+        "smoke_summary.json": "5e3e9b0632d21edaae8bf6c8bf099cdffe23567d3a747885ebbb21a4925e03ac",
+        "calibration_rows.json": "ea0b4fc5c543c1c4b3aa080c30505ba9e50f9b6558e454cae9105f3681205a5c",
+        "case_gradients.json": "57c5910770aba87702f3b52b50cd34ba0229299987e0b703460d1bcf4b4d3c49",
+        "fixed_train_plan.json": "b513e553afa03af6eff550eeefe8d5bdc94ddb6e9f7c6fbde70c4375657fa780"
+      }
+    },
+    {
+      "run_id": "cnlp_unitgrad_J5_train38_seed0_20261015_v2",
+      "source_commit": "ca57a71d2a934946fe983620aefa2e41da8efc0a",
+      "fixed_plan_sha256": "b513e553afa03af6eff550eeefe8d5bdc94ddb6e9f7c6fbde70c4375657fa780",
+      "manifest_sha256": "7ea21929d1e1d89aff8e345ed1c7ddd58367c0bad4c9f71574487a19e33a831f",
+      "duration_seconds": 442.69072654191405,
+      "peak_allocated_bytes": 8369923072,
+      "cases": [
+        {
+          "case": 0,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_005218.jpg",
+          "damage": {
+            "0": -2.956390380859375e-05
+          },
+          "clean_learning_gain": {
+            "0": -0.002190709114074707
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.07745352387428284,
+            "cnlp": 0.0,
+            "attack": 0.07769770920276642,
+            "ret": 0.0009679148788563907
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 1,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_003066.jpg",
+          "damage": {
+            "0": 0.0010592937469482422
+          },
+          "clean_learning_gain": {
+            "0": -0.004334807395935059
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05423493683338165,
+            "cnlp": 0.04952085018157959,
+            "attack": 0.054212093353271484,
+            "ret": 0.0001914760796353221
+          },
+          "cosine": {
+            "parent": 0.12368124723434448,
+            "attack": 0.12518081068992615,
+            "ret": -0.025211196392774582
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 2,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/003589.jpg",
+          "damage": {
+            "1": 0.00010395050048828125
+          },
+          "clean_learning_gain": {
+            "1": 0.0030412673950195312
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05317758023738861,
+            "cnlp": 0.007911852560937405,
+            "attack": 0.05336456745862961,
+            "ret": 0.0011850942391902208
+          },
+          "cosine": {
+            "parent": -0.35124289989471436,
+            "attack": -0.3440810441970825,
+            "ret": -0.02341325767338276
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 3,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002180.jpg",
+          "damage": {
+            "1": 9.834766387939453e-05
+          },
+          "clean_learning_gain": {
+            "1": -0.0015856027603149414
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.0765913650393486,
+            "cnlp": 0.01733286865055561,
+            "attack": 0.07335695624351501,
+            "ret": 0.0004021387139800936
+          },
+          "cosine": {
+            "parent": -0.10120797902345657,
+            "attack": -0.1529512107372284,
+            "ret": -0.30037665367126465
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 4,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_002776.jpg",
+          "damage": {
+            "2": 0.0005407333374023438
+          },
+          "clean_learning_gain": {
+            "2": -0.007380962371826172
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06569026410579681,
+            "cnlp": 0.011555617675185204,
+            "attack": 0.06519461423158646,
+            "ret": 0.0003096697328146547
+          },
+          "cosine": {
+            "parent": 0.38249537348747253,
+            "attack": 0.37619549036026,
+            "ret": 0.04676545783877373
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 5,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008380.jpg",
+          "damage": {
+            "2": -0.00010955333709716797
+          },
+          "clean_learning_gain": {
+            "2": 0.0001735687255859375
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.08770395070314407,
+            "cnlp": 0.0,
+            "attack": 0.08993653953075409,
+            "ret": 0.0009693180909380317
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 6,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_006720.jpg",
+          "damage": {
+            "3": -1.2040138244628906e-05
+          },
+          "clean_learning_gain": {
+            "3": 0.0031794309616088867
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.053541671484708786,
+            "cnlp": 0.0,
+            "attack": 0.05266901105642319,
+            "ret": 0.0006531996768899262
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 7,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_002492.jpg",
+          "damage": {
+            "3": -3.170967102050781e-05
+          },
+          "clean_learning_gain": {
+            "3": -0.002809762954711914
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.07796693593263626,
+            "cnlp": 0.0,
+            "attack": 0.07630381733179092,
+            "ret": 0.00029213924426585436
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 8,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002388.jpg",
+          "damage": {
+            "4": -0.00023567676544189453
+          },
+          "clean_learning_gain": {
+            "4": -0.0005058050155639648
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.07986472547054291,
+            "cnlp": 0.0,
+            "attack": 0.07581184804439545,
+            "ret": 0.0005647170473821461
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 9,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_005236.jpg",
+          "damage": {
+            "4": 0.0007109642028808594
+          },
+          "clean_learning_gain": {
+            "4": -0.0006449222564697266
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.11050374805927277,
+            "cnlp": 0.017476988956332207,
+            "attack": 0.11048833280801773,
+            "ret": 0.001033117063343525
+          },
+          "cosine": {
+            "parent": -0.11701451241970062,
+            "attack": -0.09945850074291229,
+            "ret": -0.05769333988428116
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 10,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000768.jpg",
+          "damage": {
+            "5": 5.698204040527344e-05
+          },
+          "clean_learning_gain": {
+            "5": -0.0041387081146240234
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.08226098865270615,
+            "cnlp": 0.051758043467998505,
+            "attack": 0.08212471008300781,
+            "ret": 0.0003270400920882821
+          },
+          "cosine": {
+            "parent": -0.18135763704776764,
+            "attack": -0.17592744529247284,
+            "ret": 0.1625068187713623
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 11,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/008793.jpg",
+          "damage": {
+            "5": -5.352497100830078e-05
+          },
+          "clean_learning_gain": {
+            "5": 0.0006426572799682617
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06821471452713013,
+            "cnlp": 0.0,
+            "attack": 0.06515879184007645,
+            "ret": 0.0006468211649917066
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 12,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_000457.jpg",
+          "damage": {
+            "6": -0.00014209747314453125
+          },
+          "clean_learning_gain": {
+            "6": 0.00018477439880371094
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.10802071541547775,
+            "cnlp": 0.0,
+            "attack": 0.10721591114997864,
+            "ret": 9.771848272066563e-05
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 13,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008177.jpg",
+          "damage": {
+            "6": -0.000561833381652832,
+            "13": -0.0006462335586547852
+          },
+          "clean_learning_gain": {
+            "6": -9.870529174804688e-05,
+            "13": 0.004701972007751465
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06103070080280304,
+            "cnlp": 0.0,
+            "attack": 0.0610077790915966,
+            "ret": 3.5870012652594596e-05
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 14,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_003190.jpg",
+          "damage": {
+            "7": -0.00021445751190185547
+          },
+          "clean_learning_gain": {
+            "7": 0.0012617111206054688
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.08367904275655746,
+            "cnlp": 0.0,
+            "attack": 0.08365770429372787,
+            "ret": 0.00023453167523257434
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 15,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_003771.jpg",
+          "damage": {
+            "7": 0.0003616809844970703
+          },
+          "clean_learning_gain": {
+            "7": -0.039847493171691895
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06323404610157013,
+            "cnlp": 0.011649764142930508,
+            "attack": 0.06406794488430023,
+            "ret": 0.00046030821977183223
+          },
+          "cosine": {
+            "parent": 0.019938571378588676,
+            "attack": 0.029914623126387596,
+            "ret": -0.13112996518611908
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 16,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+          "damage": {
+            "8": 0.004454612731933594,
+            "15": -0.000675201416015625,
+            "19": 0.0005781650543212891
+          },
+          "clean_learning_gain": {
+            "8": 0.013601541519165039,
+            "15": 0.002457857131958008,
+            "19": -0.002629995346069336
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.10072234272956848,
+            "cnlp": 0.020534981042146683,
+            "attack": 0.10051403194665909,
+            "ret": 0.0001916267938213423
+          },
+          "cosine": {
+            "parent": -0.1005888283252716,
+            "attack": -0.11221244186162949,
+            "ret": 0.06892197579145432
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 17,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000632.jpg",
+          "damage": {
+            "8": -0.0004495382308959961,
+            "19": -7.033348083496094e-05
+          },
+          "clean_learning_gain": {
+            "8": -0.00032913684844970703,
+            "19": 0.008904457092285156
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.046943653374910355,
+            "cnlp": 0.0,
+            "attack": 0.04704275354743004,
+            "ret": 0.0006629295530728996
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 18,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009710.jpg",
+          "damage": {
+            "9": -0.0006787776947021484
+          },
+          "clean_learning_gain": {
+            "9": 0.003103971481323242
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05969691649079323,
+            "cnlp": 0.0,
+            "attack": 0.05892474204301834,
+            "ret": 0.00011933460336877033
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 19,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_005081.jpg",
+          "damage": {
+            "9": 6.67572021484375e-06
+          },
+          "clean_learning_gain": {
+            "9": -0.0007194280624389648
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06281730532646179,
+            "cnlp": 0.0038583739660680294,
+            "attack": 0.05744416266679764,
+            "ret": 0.00022606694255955517
+          },
+          "cosine": {
+            "parent": 0.25597357749938965,
+            "attack": 0.1920771598815918,
+            "ret": -0.07704467326402664
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 20,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/001563.jpg",
+          "damage": {
+            "4": -0.0002353191375732422,
+            "8": 0.0005222558975219727,
+            "10": 3.910064697265625e-05
+          },
+          "clean_learning_gain": {
+            "4": 0.0040585994720458984,
+            "8": -0.0035202503204345703,
+            "10": 0.005098819732666016
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.045559436082839966,
+            "cnlp": 0.007098850328475237,
+            "attack": 0.04587467387318611,
+            "ret": 6.178610055940226e-05
+          },
+          "cosine": {
+            "parent": 0.01592463068664074,
+            "attack": 0.00987524725496769,
+            "ret": 0.003862570272758603
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 21,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_000098.jpg",
+          "damage": {
+            "1": -0.001302957534790039,
+            "8": 1.4066696166992188e-05,
+            "10": 0.0006313323974609375
+          },
+          "clean_learning_gain": {
+            "1": -0.011488676071166992,
+            "8": 0.00768589973449707,
+            "10": 0.008960723876953125
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.14413996040821075,
+            "cnlp": 0.017955539748072624,
+            "attack": 0.14406895637512207,
+            "ret": 0.00036428586463443935
+          },
+          "cosine": {
+            "parent": -0.24138657748699188,
+            "attack": -0.24128147959709167,
+            "ret": -0.23773743212223053
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 22,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_002456.jpg",
+          "damage": {
+            "11": 0.0019922256469726562
+          },
+          "clean_learning_gain": {
+            "11": -0.009330272674560547
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.0927898958325386,
+            "cnlp": 0.04427119344472885,
+            "attack": 0.0911809429526329,
+            "ret": 0.00024442101130262017
+          },
+          "cosine": {
+            "parent": -0.004601683467626572,
+            "attack": -0.008069021627306938,
+            "ret": 0.19387604296207428
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 23,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_001470.jpg",
+          "damage": {
+            "11": -0.0002658367156982422,
+            "17": 0.00018978118896484375
+          },
+          "clean_learning_gain": {
+            "11": -0.006108403205871582,
+            "17": 0.0039560794830322266
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05244632810354233,
+            "cnlp": 0.00450302055105567,
+            "attack": 0.052096690982580185,
+            "ret": 6.88397340127267e-05
+          },
+          "cosine": {
+            "parent": -0.013453062623739243,
+            "attack": -0.028073640540242195,
+            "ret": 0.18034689128398895
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 24,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_003280.jpg",
+          "damage": {
+            "12": 0.0006555318832397461
+          },
+          "clean_learning_gain": {
+            "12": 0.004268169403076172
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06129923462867737,
+            "cnlp": 0.018690992146730423,
+            "attack": 0.06179486960172653,
+            "ret": 0.0010211163898929954
+          },
+          "cosine": {
+            "parent": -0.04671230539679527,
+            "attack": -0.05140448361635208,
+            "ret": 0.057622600346803665
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 25,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/008320.jpg",
+          "damage": {
+            "12": 0.0002855062484741211
+          },
+          "clean_learning_gain": {
+            "12": 0.008854269981384277
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.10950351506471634,
+            "cnlp": 0.004745970945805311,
+            "attack": 0.10117532312870026,
+            "ret": 0.000251718214713037
+          },
+          "cosine": {
+            "parent": -0.170217365026474,
+            "attack": -0.18955481052398682,
+            "ret": -0.031549058854579926
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 26,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/001688.jpg",
+          "damage": {
+            "13": -0.001542806625366211
+          },
+          "clean_learning_gain": {
+            "13": 0.049363136291503906
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.04762127622961998,
+            "cnlp": 0.0,
+            "attack": 0.0312188733369112,
+            "ret": 0.0011364520760253072
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 27,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_008177.jpg",
+          "damage": {
+            "6": 0.0001672506332397461,
+            "13": 0.00188446044921875
+          },
+          "clean_learning_gain": {
+            "6": -0.002600431442260742,
+            "13": -0.015380024909973145
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06280369311571121,
+            "cnlp": 0.07031021267175674,
+            "attack": 0.06245401129126549,
+            "ret": 0.0004469486011657864
+          },
+          "cosine": {
+            "parent": -0.20945465564727783,
+            "attack": -0.21645225584506989,
+            "ret": 0.06278443336486816
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 28,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+          "damage": {
+            "8": -0.0005407333374023438,
+            "15": -9.036064147949219e-05,
+            "19": -0.0002224445343017578
+          },
+          "clean_learning_gain": {
+            "8": 0.012338876724243164,
+            "15": 0.0004534721374511719,
+            "19": 0.003592252731323242
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06439949572086334,
+            "cnlp": 0.0,
+            "attack": 0.064922995865345,
+            "ret": 0.0013484838418662548
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 29,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_006828.jpg",
+          "damage": {
+            "15": 0.0027365684509277344
+          },
+          "clean_learning_gain": {
+            "15": 0.029001951217651367
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05916382372379303,
+            "cnlp": 0.27459076046943665,
+            "attack": 0.04270065575838089,
+            "ret": 0.00027392234187573195
+          },
+          "cosine": {
+            "parent": 0.45727115869522095,
+            "attack": 0.3439094126224518,
+            "ret": -0.07254159450531006
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 30,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_000289.jpg",
+          "damage": {
+            "16": -0.0015518665313720703
+          },
+          "clean_learning_gain": {
+            "16": 0.004567980766296387
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.09413158148527145,
+            "cnlp": 0.0,
+            "attack": 0.09460894018411636,
+            "ret": 0.0002016508369706571
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 31,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_005633.jpg",
+          "damage": {
+            "16": -0.00017821788787841797
+          },
+          "clean_learning_gain": {
+            "16": 0.0025527477264404297
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.07814647257328033,
+            "cnlp": 0.0,
+            "attack": 0.07813235372304916,
+            "ret": 3.65953310392797e-05
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 32,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_001470.jpg",
+          "damage": {
+            "11": -0.0011801719665527344,
+            "17": 0.0006792545318603516
+          },
+          "clean_learning_gain": {
+            "11": -0.0019307136535644531,
+            "17": -0.004677772521972656
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.09165527671575546,
+            "cnlp": 0.009312774986028671,
+            "attack": 0.09089922904968262,
+            "ret": 0.0014295644359663129
+          },
+          "cosine": {
+            "parent": 0.05215415358543396,
+            "attack": 0.060237251222133636,
+            "ret": -0.046287279576063156
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 33,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_000344.jpg",
+          "damage": {
+            "17": -0.00032138824462890625
+          },
+          "clean_learning_gain": {
+            "17": -0.00513768196105957
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.06764962524175644,
+            "cnlp": 0.0,
+            "attack": 0.06734529137611389,
+            "ret": 0.0006919803563505411
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 34,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009377.jpg",
+          "damage": {
+            "18": -0.0010180473327636719
+          },
+          "clean_learning_gain": {
+            "18": -0.0010110139846801758
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.08547697961330414,
+            "cnlp": 0.0,
+            "attack": 0.07608301192522049,
+            "ret": 0.0006563444621860981
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 35,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000034.jpg",
+          "damage": {
+            "18": -0.0018579959869384766
+          },
+          "clean_learning_gain": {
+            "18": -0.03017258644104004
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.0531555712223053,
+            "cnlp": 0.0,
+            "attack": 0.0520227886736393,
+            "ret": 0.0005491357296705246
+          },
+          "cosine": {
+            "parent": null,
+            "attack": null,
+            "ret": null
+          },
+          "cosine_valid": {
+            "parent": false,
+            "attack": false,
+            "ret": false
+          }
+        },
+        {
+          "case": 36,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_005930.jpg",
+          "damage": {
+            "8": -0.0019774436950683594,
+            "15": -0.0003769397735595703,
+            "19": 8.845329284667969e-05
+          },
+          "clean_learning_gain": {
+            "8": 0.035787343978881836,
+            "15": -6.532669067382812e-05,
+            "19": 0.0061376094818115234
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.05470441281795502,
+            "cnlp": 0.012499595992267132,
+            "attack": 0.054194990545511246,
+            "ret": 0.00015414426161441952
+          },
+          "cosine": {
+            "parent": -0.15653856098651886,
+            "attack": -0.1514723002910614,
+            "ret": -0.18157872557640076
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        },
+        {
+          "case": 37,
+          "query_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000632.jpg",
+          "damage": {
+            "8": 0.0008718967437744141,
+            "19": -0.0018317699432373047
+          },
+          "clean_learning_gain": {
+            "8": 0.0015882253646850586,
+            "19": 0.003932952880859375
+          },
+          "eot_samples": 2,
+          "norm": {
+            "parent": 0.047226276248693466,
+            "cnlp": 0.0047577437944710255,
+            "attack": 0.04745430499315262,
+            "ret": 0.0014166655018925667
+          },
+          "cosine": {
+            "parent": 0.11761248111724854,
+            "attack": 0.10516474395990372,
+            "ret": 0.3003280460834503
+          },
+          "cosine_valid": {
+            "parent": true,
+            "attack": true,
+            "ret": true
+          }
+        }
+      ],
+      "median_clean_learning_gain": 0.00041371583938598633,
+      "positive_learning_gain_cases": 21,
+      "nonzero_gradient_cases": 20,
+      "j_gate_passed": true,
+      "raw_gradient_norm": {
+        "parent": {
+          "q10": 0.050998812541365623,
+          "q25": 0.05581926554441452,
+          "median": 0.06666994467377663,
+          "q75": 0.08502749539911747,
+          "q90": 0.1029118545353413,
+          "max": 0.14413996040821075
+        },
+        "cnlp": {
+          "q10": 0.0,
+          "q25": 0.0,
+          "median": 0.00418069725856185,
+          "q75": 0.01612455048598349,
+          "q90": 0.0458460904657841,
+          "max": 0.27459076046943665
+        },
+        "attack": {
+          "q10": 0.047330839559435844,
+          "q25": 0.054199266247451305,
+          "median": 0.06517670303583145,
+          "q75": 0.08327445574104786,
+          "q90": 0.10071241930127144,
+          "max": 0.14406895637512207
+        },
+        "ret": {
+          "q10": 8.905485810828395e-05,
+          "q25": 0.00020775486336788163,
+          "median": 0.0003832122893072665,
+          "q75": 0.0006847176555311307,
+          "q90": 0.0011510447249747815,
+          "max": 0.0014295644359663129
+        }
+      },
+      "cosine_to_cnlp": {
+        "parent": {
+          "q10": -0.21264784783124924,
+          "q25": -0.15995826199650764,
+          "median": -0.030082684010267258,
+          "q75": 0.0685187354683876,
+          "q90": 0.26862575709819814,
+          "max": 0.45727115869522095
+        },
+        "attack": {
+          "q10": -0.21893517822027206,
+          "q25": -0.1586952693760395,
+          "median": -0.03973906207829714,
+          "q75": 0.07146912440657616,
+          "q90": 0.20726038515567802,
+          "max": 0.37619549036026
+        },
+        "ret": {
+          "q10": -0.18719459623098372,
+          "q25": -0.0736673641949892,
+          "median": -0.02431222703307867,
+          "q75": 0.0643188189715147,
+          "q90": 0.1816998064517975,
+          "max": 0.3003280460834503
+        }
+      },
+      "attack_strong_conflict_cases": 0,
+      "attack_valid_cases": 20,
+      "artifact_sha256": {
+        "smoke_summary.json": "ee9c169cc31346e6ed7f11d22fc0b85a99664ac4512b5de2c001acb54a1bbdd0",
+        "calibration_rows.json": "ba9dafcaa94fe062a86068811be38460d69f16ee66b4c56c439a1efaade82df0",
+        "case_gradients.json": "0f70bc328868db61cd7142dcedb6eda203852b2a4e4693c8972ca6f94850a29c",
+        "fixed_train_plan.json": "b513e553afa03af6eff550eeefe8d5bdc94ddb6e9f7c6fbde70c4375657fa780"
+      }
+    }
+  ],
+  "selected_j": 1,
+  "lambda_candidate": 0.058485507823134296,
+  "lambda_typical_reference": 0.81175321079131,
+  "lambda_all_cases_cap": 0.058485507823134296,
+  "weighted_norm_to_parent": {
+    "q10": 0.0015238143726366378,
+    "q25": 0.002757553795339747,
+    "median": 0.0066853987351454085,
+    "q75": 0.01215910698862101,
+    "q90": 0.022205471148636056,
+    "max": 0.25
+  },
+  "cup_candidate": {
+    "beta": 0.95,
+    "temperature": 0.0003758072853088379,
+    "damage_clip": 0.0010146975517272938,
+    "min_weight_factor": 0.5,
+    "max_weight_factor": 2.0
+  },
+  "attack_conflict_gate_passed": true,
+  "classwise": {
+    "0": {
+      "case_count": 2,
+      "damage": {
+        "q10": -1.366138458251953e-05,
+        "q25": -4.291534423828125e-06,
+        "median": 1.1324882507324219e-05,
+        "q75": 2.6941299438476562e-05,
+        "q90": 3.631114959716797e-05,
+        "max": 4.2557716369628906e-05
+      },
+      "clean_learning_gain": {
+        "q10": -0.0005680203437805175,
+        "q25": -0.0005057752132415771,
+        "median": -0.00040203332901000977,
+        "q75": -0.0002982914447784424,
+        "q90": -0.00023604631423950194,
+        "max": -0.000194549560546875
+      }
+    },
+    "1": {
+      "case_count": 3,
+      "damage": {
+        "q10": -0.00022311210632324218,
+        "q25": -0.00019729137420654297,
+        "median": -0.00015425682067871094,
+        "q75": 0.00010854005813598633,
+        "q90": 0.0002662181854248047,
+        "max": 0.0003713369369506836
+      },
+      "clean_learning_gain": {
+        "q10": -0.002972102165222168,
+        "q25": -0.0019274353981018066,
+        "median": -0.0001863241195678711,
+        "q75": 0.00013768672943115234,
+        "q90": 0.00033209323883056643,
+        "max": 0.0004616975784301758
+      }
+    },
+    "2": {
+      "case_count": 2,
+      "damage": {
+        "q10": -0.00023598670959472655,
+        "q25": -4.887580871582031e-06,
+        "median": 0.0003802776336669922,
+        "q75": 0.0007654428482055664,
+        "q90": 0.000996541976928711,
+        "max": 0.0011506080627441406
+      },
+      "clean_learning_gain": {
+        "q10": -0.00023560523986816407,
+        "q25": -0.00011265277862548828,
+        "median": 9.226799011230469e-05,
+        "q75": 0.00029718875885009766,
+        "q90": 0.00042014122009277345,
+        "max": 0.0005021095275878906
+      }
+    },
+    "3": {
+      "case_count": 2,
+      "damage": {
+        "q10": -0.00012974739074707032,
+        "q25": -3.826618194580078e-05,
+        "median": 0.00011420249938964844,
+        "q75": 0.00026667118072509766,
+        "q90": 0.0003581523895263672,
+        "max": 0.0004191398620605469
+      },
+      "clean_learning_gain": {
+        "q10": 0.0003061056137084961,
+        "q25": 0.00031000375747680664,
+        "median": 0.0003165006637573242,
+        "q75": 0.0003229975700378418,
+        "q90": 0.0003268957138061523,
+        "max": 0.0003294944763183594
+      }
+    },
+    "4": {
+      "case_count": 3,
+      "damage": {
+        "q10": -0.0006674766540527344,
+        "q25": -0.0004559755325317383,
+        "median": -0.00010347366333007812,
+        "q75": 6.252527236938477e-05,
+        "q90": 0.0001621246337890625,
+        "max": 0.00022852420806884766
+      },
+      "clean_learning_gain": {
+        "q10": -0.0002451896667480469,
+        "q25": -0.00018596649169921875,
+        "median": -8.726119995117188e-05,
+        "q75": 0.00016367435455322266,
+        "q90": 0.0003142356872558594,
+        "max": 0.0004146099090576172
+      }
+    },
+    "5": {
+      "case_count": 2,
+      "damage": {
+        "q10": -2.745389938354492e-05,
+        "q25": -4.082918167114258e-06,
+        "median": 3.4868717193603516e-05,
+        "q75": 7.382035255432129e-05,
+        "q90": 9.719133377075196e-05,
+        "max": 0.00011277198791503906
+      },
+      "clean_learning_gain": {
+        "q10": -0.00030493736267089844,
+        "q25": -0.00024271011352539062,
+        "median": -0.00013899803161621094,
+        "q75": -3.528594970703125e-05,
+        "q90": 2.694129943847657e-05,
+        "max": 6.842613220214844e-05
+      }
+    },
+    "6": {
+      "case_count": 3,
+      "damage": {
+        "q10": -6.706714630126953e-05,
+        "q25": -6.556510925292969e-05,
+        "median": -6.306171417236328e-05,
+        "q75": -3.153085708618164e-05,
+        "q90": -1.2612342834472654e-05,
+        "max": 0.0
+      },
+      "clean_learning_gain": {
+        "q10": -0.0002690792083740234,
+        "q25": -0.0002104640007019043,
+        "median": -0.00011277198791503906,
+        "q75": -1.33514404296875e-05,
+        "q90": 4.630088806152345e-05,
+        "max": 8.606910705566406e-05
+      }
+    },
+    "7": {
+      "case_count": 2,
+      "damage": {
+        "q10": -0.00037912130355834963,
+        "q25": -0.0003541409969329834,
+        "median": -0.00031250715255737305,
+        "q75": -0.0002708733081817627,
+        "q90": -0.00024589300155639646,
+        "max": -0.00022923946380615234
+      },
+      "clean_learning_gain": {
+        "q10": -0.0070492148399353026,
+        "q25": -0.0058259665966033936,
+        "median": -0.003787219524383545,
+        "q75": -0.0017484724521636963,
+        "q90": -0.000525224208831787,
+        "max": 0.00029027462005615234
+      }
+    },
+    "8": {
+      "case_count": 7,
+      "damage": {
+        "q10": -0.0005455493927001953,
+        "q25": -0.0002790689468383789,
+        "median": 1.823902130126953e-05,
+        "q75": 0.0005956292152404785,
+        "q90": 0.0007157087326049805,
+        "max": 0.0008206367492675781
+      },
+      "clean_learning_gain": {
+        "q10": -0.0003460407257080078,
+        "q25": 9.41157341003418e-05,
+        "median": 0.0004621744155883789,
+        "q75": 0.0010529756546020508,
+        "q90": 0.003306436538696291,
+        "max": 0.006314516067504883
+      }
+    },
+    "9": {
+      "case_count": 2,
+      "damage": {
+        "q10": 0.00025893449783325194,
+        "q25": 0.00029149651527404785,
+        "median": 0.000345766544342041,
+        "q75": 0.0004000365734100342,
+        "q90": 0.0004325985908508301,
+        "max": 0.00045430660247802734
+      },
+      "clean_learning_gain": {
+        "q10": 0.00024433135986328124,
+        "q25": 0.0003361701965332031,
+        "median": 0.0004892349243164062,
+        "q75": 0.0006422996520996094,
+        "q90": 0.0007341384887695312,
+        "max": 0.0007953643798828125
+      }
+    },
+    "10": {
+      "case_count": 2,
+      "damage": {
+        "q10": -0.00034220218658447265,
+        "q25": -0.0002600550651550293,
+        "median": -0.00012314319610595703,
+        "q75": 1.3768672943115234e-05,
+        "q90": 9.591579437255861e-05,
+        "max": 0.0001506805419921875
+      },
+      "clean_learning_gain": {
+        "q10": 0.0009445667266845704,
+        "q25": 0.001018524169921875,
+        "median": 0.0011417865753173828,
+        "q75": 0.0012650489807128906,
+        "q90": 0.0013390064239501953,
+        "max": 0.0013883113861083984
+      }
+    },
+    "11": {
+      "case_count": 3,
+      "damage": {
+        "q10": -5.283355712890625e-05,
+        "q25": 1.9550323486328125e-05,
+        "median": 0.00014019012451171875,
+        "q75": 0.00014728307723999023,
+        "q90": 0.00015153884887695313,
+        "max": 0.00015437602996826172
+      },
+      "clean_learning_gain": {
+        "q10": -0.0011977910995483398,
+        "q25": -0.0011240839958190918,
+        "median": -0.0010012388229370117,
+        "q75": -0.00029772520065307617,
+        "q90": 0.00012438297271728522,
+        "max": 0.0004057884216308594
+      }
+    },
+    "12": {
+      "case_count": 2,
+      "damage": {
+        "q10": -0.00027714967727661134,
+        "q25": -0.0001748502254486084,
+        "median": -4.351139068603516e-06,
+        "q75": 0.00016614794731140137,
+        "q90": 0.0002684473991394043,
+        "max": 0.00033664703369140625
+      },
+      "clean_learning_gain": {
+        "q10": 0.0011122941970825196,
+        "q25": 0.0011268854141235352,
+        "median": 0.0011512041091918945,
+        "q75": 0.001175522804260254,
+        "q90": 0.0011901140213012695,
+        "max": 0.0011998414993286133
+      }
+    },
+    "13": {
+      "case_count": 3,
+      "damage": {
+        "q10": -0.0010799884796142579,
+        "q25": -0.0008918046951293945,
+        "median": -0.0005781650543212891,
+        "q75": -0.00047320127487182617,
+        "q90": -0.0004102230072021484,
+        "max": -0.0003682374954223633
+      },
+      "clean_learning_gain": {
+        "q10": -0.0019372463226318359,
+        "q25": -0.0013106465339660645,
+        "median": -0.0002663135528564453,
+        "q75": 0.004755377769470215,
+        "q90": 0.007768392562866211,
+        "max": 0.009777069091796875
+      }
+    },
+    "15": {
+      "case_count": 4,
+      "damage": {
+        "q10": -0.0001875162124633789,
+        "q25": -0.00012797117233276367,
+        "median": -5.626678466796875e-05,
+        "q75": 0.00017398595809936523,
+        "q90": 0.0005189180374145509,
+        "max": 0.0007488727569580078
+      },
+      "clean_learning_gain": {
+        "q10": 4.749298095703126e-05,
+        "q25": 0.0001423358917236328,
+        "median": 0.0002205371856689453,
+        "q75": 0.0019927024841308594,
+        "q90": 0.0051366806030273444,
+        "max": 0.007232666015625
+      }
+    },
+    "16": {
+      "case_count": 2,
+      "damage": {
+        "q10": -0.00038106441497802733,
+        "q25": -0.000298917293548584,
+        "median": -0.00016200542449951172,
+        "q75": -2.5093555450439453e-05,
+        "q90": 5.7053565979003916e-05,
+        "max": 0.00011181831359863281
+      },
+      "clean_learning_gain": {
+        "q10": 0.0005047321319580078,
+        "q25": 0.0005265474319458008,
+        "median": 0.0005629062652587891,
+        "q75": 0.0005992650985717773,
+        "q90": 0.0006210803985595703,
+        "max": 0.0006356239318847656
+      }
+    },
+    "17": {
+      "case_count": 3,
+      "damage": {
+        "q10": -5.640983581542968e-05,
+        "q25": 7.033348083496094e-05,
+        "median": 0.0002815723419189453,
+        "q75": 0.00048798322677612305,
+        "q90": 0.0006118297576904298,
+        "max": 0.0006943941116333008
+      },
+      "clean_learning_gain": {
+        "q10": -0.0005354881286621094,
+        "q25": -0.00046503543853759766,
+        "median": -0.0003476142883300781,
+        "q75": 0.0003495216369628906,
+        "q90": 0.000767803192138672,
+        "max": 0.0010466575622558594
+      }
+    },
+    "18": {
+      "case_count": 2,
+      "damage": {
+        "q10": 0.00046370029449462893,
+        "q25": 0.000588834285736084,
+        "median": 0.0007973909378051758,
+        "q75": 0.0010059475898742676,
+        "q90": 0.0011310815811157227,
+        "max": 0.0012145042419433594
+      },
+      "clean_learning_gain": {
+        "q10": -0.004028439521789551,
+        "q25": -0.003412783145904541,
+        "median": -0.0023866891860961914,
+        "q75": -0.0013605952262878418,
+        "q90": -0.0007449388504028319,
+        "max": -0.0003345012664794922
+      }
+    },
+    "19": {
+      "case_count": 5,
+      "damage": {
+        "q10": -0.0005431652069091796,
+        "q25": -0.00039124488830566406,
+        "median": -0.0003669261932373047,
+        "q75": 0.0009253025054931641,
+        "q90": 0.0009350299835205079,
+        "max": 0.0009415149688720703
+      },
+      "clean_learning_gain": {
+        "q10": 4.358291625976563e-05,
+        "q25": 0.00012683868408203125,
+        "median": 0.0009860992431640625,
+        "q75": 0.0014133453369140625,
+        "q90": 0.0014827251434326172,
+        "max": 0.0015289783477783203
+      }
+    }
+  }
+}

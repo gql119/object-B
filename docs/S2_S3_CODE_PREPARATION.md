@@ -1,3 +1,11 @@
+# 2026-10-15 状态覆盖
+
+S1已完整验收并归档（docs/s1_archive/），Parent按原1pp规则锁S0（parent_selection.json）。J1v2/J3v2固定38case/76EOT标定数值/学习门槛通过，J5v2已唯一启动，其观察连接出现SSH超时，尚未读取完整结果，不能记为失败或完成。三J全部取得后才应用预注册规则。新增生产准入/正式入口仍未部署/未GPU运行；两正式配置、最终科学审查、S2/S3完整实验均NOT_RUN。候选commit ca57a71仅绑定已启动J5，工作树后续新文件不是当前远程运行代码。
+
+原下文是2026-10-14准备历史，UNSET/NOT_RUN字段由上文当前覆盖；不可误认为S1仍在跑。研发只在隔离S23树，原Parent/S1运行文件和结果不变。当前没有GitHub发布新CNLP代码。
+
+---
+
 # S2/S3 代码准备（2026-10-14）
 
 状态：LOCAL_IMPLEMENTATION_TESTED；Parent=UNSET；真实 VOC/GPU 准入=NOT_RUN；S2/S3 正式实验=NOT_RUN。

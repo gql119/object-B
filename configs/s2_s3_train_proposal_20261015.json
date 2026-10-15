@@ -1,0 +1,31 @@
+{
+  "status": "TRAIN_CALIBRATED_PENDING_PRODUCTION_ADMISSION",
+  "formal_generation_enabled": false,
+  "victim_training_enabled": false,
+  "parent": "S0",
+  "parent_selection_sha256": "39a5efc58ebd57f0e606f6b10d6aa591b89076cea440d7d997ab8b1ee59e4885",
+  "calibration_sha256": "2cb81873f41bb0d1c6eae7e31978efcfa282cca48155b2503f2e16519e8d5610",
+  "cnlp_config": {
+    "inner_steps": 1,
+    "inner_lr": 0.0001,
+    "lambda_cnlp": 0.058485507823134296
+  },
+  "cup_config": {
+    "beta": 0.95,
+    "temperature": 0.0003758072853088379,
+    "damage_clip": 0.0010146975517272938,
+    "min_weight_factor": 0.5,
+    "max_weight_factor": 2.0
+  },
+  "support_batch_size": 1,
+  "query_batch_size": 1,
+  "noise_schedule": {
+    "epochs": 24,
+    "optimizer_steps": 9144,
+    "batch": 16,
+    "eot_samples": 2,
+    "seed": 0
+  },
+  "budget": "original S0 person-exclusive8/255,overlap4/255,outside0; no CSB estimator/cache",
+  "train_query_manifest_sha256": "7ea21929d1e1d89aff8e345ed1c7ddd58367c0bad4c9f71574487a19e33a831f"
+}

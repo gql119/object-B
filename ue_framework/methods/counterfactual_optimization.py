@@ -204,7 +204,7 @@ def optimize_counterfactual(trainer, images, label_dir, prototypes, output, iden
     pack = dict(coords=[list(trainer.freq_candidate_coords[int(i)]) for i in saved_idx.cpu().tolist()],
         fourier_coeff=trainer.fourier_coeff.detach()[saved_idx].cpu(), suppress_small=trainer.suppress_small.detach().cpu(),
         method='legacy_kproto_ret', support_mode=trainer.support_mode, target_class_id=14, eps=trainer.eps,
-        feature_layer=trainer.feature_layer, csb_identity=identity, num_prototypes=trainer.num_prototypes,
+        feature_layer=trainer.feature_layer, counterfactual_identity=identity, num_prototypes=trainer.num_prototypes,
         margin=trainer.margin)
     with (output / 'global_params.pt').open('xb') as stream:
         torch.save(pack, stream)

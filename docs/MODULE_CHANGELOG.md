@@ -15,3 +15,11 @@
 | CODE-004 | BUG_FIX | unit-gradient 诊断新增 EOT 向量平均后的范数/方向；原 v1 只保存各 EOT 范数，不能用于预注册平均梯度标定 | CPU 反向相消/非平行向量/非 finite 三个测试；v1 全部保留，使用新 RunID 测量 | 不改损失、样本、随机数、梯度或更新；仍无 outer step/victim |
 
 当前未选择 J/lambda/CUP 参数，未完成正式科学审查，未启动 S2/S3 或重新跑 S1。J1 v1 已完成 38 case/76 EOT，finite/模型/Fourier不变；它缺少平均梯度记录，仅作初步诊断，不能当成最终准入标定。
+
+
+## 2026-10-15 后续入口准备（未部署/未执行）
+
+- CODE-005 / BUG_FIX：新counterfactual loop的global_params诊断元数据从误导性的csb_identity改为counterfactual_identity。S0预算与计算不变；1项synthetic完整连续/断点/完成边界恢复测试通过。首次测试未进入断言，因默认sandbox临时目录不可写；改用新的显式.local_runtime目录后通过，未删除任何旧产物。
+- ENTRY-001 / CNLP_DESIGN_CHANGE：新增独立cnlp_production_admission.py，准备真实canonical Parent进程对比、lambda0、S2/S3五步与3→5续跑、8/4/0像素预算和12个历史train GT边界检查。当前仅syntax检查，真实GPU NOT_RUN。
+- ENTRY-002 / CNLP_DESIGN_CHANGE：新增独立run_s2_s3_pipeline.py；两锁+单次review+当前source准入+原Parent身份绑定，顺序独立完整生成/审计/随机victim200/last&best/VOC20评价。当前仅syntax检查，没有formal配置锁，不得因入口存在就启动正式工作。
+- 所有科学新入口仍需当前最终candidate真实smoke和一次独立科学审查；本轮没有审查pass或正式S2/S3结果。

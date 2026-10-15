@@ -1,0 +1,116 @@
+{
+  "source": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/outputs/s1_csb_gt_coverage_full6095_seed0_20261014_v3/coverage.csv",
+  "sha256": "8beb76c0e9fbe91bb9446b801858278144c64af8da7c95b3a154df4d437403d2",
+  "total_objects": 8337,
+  "native_uncovered_train_objects": [
+    {
+      "id": "2011_001260",
+      "gt_index": "5",
+      "cls": "6",
+      "native_positive_count": "0",
+      "positive_count": "10",
+      "coverage_mode": "independent_same_TAL_rematch",
+      "coverage_status": "COVERED"
+    },
+    {
+      "id": "2008_007692",
+      "gt_index": "0",
+      "cls": "8",
+      "native_positive_count": "0",
+      "positive_count": "10",
+      "coverage_mode": "independent_same_TAL_rematch",
+      "coverage_status": "COVERED"
+    },
+    {
+      "id": "2009_003175",
+      "gt_index": "1",
+      "cls": "1",
+      "native_positive_count": "0",
+      "positive_count": "10",
+      "coverage_mode": "independent_same_TAL_rematch",
+      "coverage_status": "COVERED"
+    },
+    {
+      "id": "2009_002750",
+      "gt_index": "0",
+      "cls": "12",
+      "native_positive_count": "0",
+      "positive_count": "10",
+      "coverage_mode": "independent_same_TAL_rematch",
+      "coverage_status": "COVERED"
+    },
+    {
+      "id": "2008_008262",
+      "gt_index": "2",
+      "cls": "12",
+      "native_positive_count": "0",
+      "positive_count": "10",
+      "coverage_mode": "independent_same_TAL_rematch",
+      "coverage_status": "COVERED"
+    },
+    {
+      "id": "2011_001769",
+      "gt_index": "2",
+      "cls": "8",
+      "native_positive_count": "0",
+      "positive_count": "10",
+      "coverage_mode": "independent_same_TAL_rematch",
+      "coverage_status": "COVERED"
+    },
+    {
+      "id": "2009_004429",
+      "gt_index": "1",
+      "cls": "8",
+      "native_positive_count": "0",
+      "positive_count": "10",
+      "coverage_mode": "independent_same_TAL_rematch",
+      "coverage_status": "COVERED"
+    },
+    {
+      "id": "003396",
+      "gt_index": "1",
+      "cls": "13",
+      "native_positive_count": "0",
+      "positive_count": "10",
+      "coverage_mode": "independent_same_TAL_rematch",
+      "coverage_status": "COVERED"
+    },
+    {
+      "id": "2008_008691",
+      "gt_index": "7",
+      "cls": "1",
+      "native_positive_count": "0",
+      "positive_count": "10",
+      "coverage_mode": "independent_same_TAL_rematch",
+      "coverage_status": "COVERED"
+    },
+    {
+      "id": "007140",
+      "gt_index": "0",
+      "cls": "1",
+      "native_positive_count": "0",
+      "positive_count": "10",
+      "coverage_mode": "independent_same_TAL_rematch",
+      "coverage_status": "COVERED"
+    },
+    {
+      "id": "2010_005379",
+      "gt_index": "9",
+      "cls": "4",
+      "native_positive_count": "0",
+      "positive_count": "10",
+      "coverage_mode": "independent_same_TAL_rematch",
+      "coverage_status": "COVERED"
+    },
+    {
+      "id": "2011_001625",
+      "gt_index": "1",
+      "cls": "12",
+      "native_positive_count": "0",
+      "positive_count": "10",
+      "coverage_mode": "independent_same_TAL_rematch",
+      "coverage_status": "COVERED"
+    }
+  ],
+  "note": "Historical S1 training coverage, no validation selection; CNLP matching still requires separate actual clean-updated evidence"
+}

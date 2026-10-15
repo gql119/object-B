@@ -7,3 +7,8 @@ scripts/train_noise_once.py -text
 scripts/materialize_noise_once.py -text
 scripts/run_isolated_victim.py -text
 scripts/evaluate_b2_to_safebg_checkpoints.py -text
+
+scripts/cnlp_production_admission.py -text
+scripts/run_s2_s3_pipeline.py -text
+docs/cnlp_calibration/** -text
+docs/CNLP_MATCHING_EDGE_TRAIN_EVIDENCE.json -text
