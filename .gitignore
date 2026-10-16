@@ -27,3 +27,15 @@ env/
 
 # 排除系统文件
 .DS_Store
+# TFSS: retain private runtime locally, exclude data/weights/secrets.
+execution/
+remote_artifacts/
+*.pt
+*.ckpt
+*.safetensors
+*.npz
+*.npy
+*.log
+.env
+.env.*
+__pycache__/

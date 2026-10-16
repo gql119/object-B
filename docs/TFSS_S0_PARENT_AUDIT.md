@@ -1,0 +1,11 @@
+# S0 父版本审计
+
+Change：独立分支从后来的0d43da4归档建立，再从此前留存的原始source bytes恢复45个历史S0文件。每个实际磁盘文件SHA与历史parent_remote_identity逐一相符，见tfss/S0_CANONICAL_SOURCE_SHA256.json及S0_RESTORATION_AUDIT.json。.gitattributes保留原BOM/换行字节。0d43da4不是已知的历史运行时commit，运行时GitSHA仍未知。
+
+Result：源码身份检查通过；真实模型/损失/梯度/Delta/单步更新等价性 **NOT_RUN**。不能把源码哈希或CPU组件测试写成完整父版本等价。
+
+固定S0 YAML SHA80cffe012aa6bfefcbe66f7c8e880e680da1c1885f5d0a7fcb01a77be6697894；原Frozen/Adaptive checkpoint SHA8de8a0c78c6414ad0bf98052b3bc96c33d8e854a2a2a905d47c8195363975b89。P5/model.21通道有序24索引来自SOURCE_METADATA.json，不能重新选择。SafeBG rank8/alpha.5/active3；原L_BG/L_rel/L_ret/L_orth(.0005)、Fourier、Adam、EOT2、batch16、warmup5、cosine日程保持原计算。新入口不实例化CNLP/CUP/KD/XFP/Localization/CSB投影。
+
+Finding：仓库归档标签不足以证明运行源码身份，已按字节恢复；但仍须以真实当前源码探针证明恢复代码数值等价。
+
+Next：独立GPU资源门通过后，直接执行历史canonical B2SemanticTrainer与S0-noop包装器的相同模型/输入/RNG/优化器对照，测五项损失、Fourier梯度、参数单步、实际空间mask及delta；1e-7容差预先固定。失败不得继续候选比较。既有研究的等价性证据仅作来源参考，不冒充本轮新证据。

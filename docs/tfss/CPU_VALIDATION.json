@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "tests": 8,
+  "seconds": 2.476534499961417,
+  "static_ast_files": [
+    "ue_framework\\methods\\tfss_clean_maps.py",
+    "ue_framework\\methods\\tfss_nt_sensitivity.py",
+    "ue_framework\\methods\\tfss_probe_metrics.py",
+    "ue_framework\\methods\\tfss_spatial.py",
+    "scripts\\tfss_short_probe.py",
+    "scripts\\analyze_tfss_short_probe.py",
+    "tests\\test_tfss_spatial.py"
+  ],
+  "torch": "2.14.0+cpu",
+  "device": "CPU",
+  "canonical45_sha_verified": true,
+  "real_voc_equivalence": "NOT_RUN",
+  "real_training": "NOT_RUN",
+  "GPU": "NOT_RUN",
+  "source_sha256": {
+    "ue_framework\\methods\\tfss_clean_maps.py": "d2ad9bfe9d06cfca058a44f5222055b33dfad353b9500f0a31e887cd96cc7226",
+    "ue_framework\\methods\\tfss_nt_sensitivity.py": "e1fa911ea651259926972125a71565d3fe0080fe508f68f1f13b2f670d85a73d",
+    "ue_framework\\methods\\tfss_probe_metrics.py": "dbf43d1e367d3d1dfa2ba4f437d0321e7ee36b1518267edac7d6c08cd04a27ba",
+    "ue_framework\\methods\\tfss_spatial.py": "e324789f419c600473b544a81ee7e722d6736b374d19c0a871767f84004980c5",
+    "scripts\\tfss_short_probe.py": "6dcc8c6f975bb5c7c67ebc51c7921b56b2cbe5fa7cdb1fa066017f5d1e03d0c1",
+    "scripts\\analyze_tfss_short_probe.py": "99e1ba7ce6c2d2a90c12689419cc0c0e51936dde0d2bfc9d917dc628b5f0de3d",
+    "tests\\test_tfss_spatial.py": "88a976f55822a8208bf867724f65c25b24673ec200b364324a772e2368d9e969"
+  }
+}

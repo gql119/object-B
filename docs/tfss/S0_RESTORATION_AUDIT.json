@@ -1,0 +1,13 @@
+{
+  "restored_files": 45,
+  "all_expected_source_sha256_match": true,
+  "historical_runtime_git_commit": null,
+  "later_archive_base": "0d43da4",
+  "archive_base_is_runtime_commit": false,
+  "canonical_body_modified": false,
+  "runtime_equivalence": "NOT_RUN",
+  "new_losses": [],
+  "new_trainable_parameters": [],
+  "CNLP_CUP_KD_XFP_Loc_CSB_projection_in_active_path": false,
+  "TFSS_changes": "detached W after canonical a0 and upstream amplitude limit; actual poison cache replaced"
+}

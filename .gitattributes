@@ -1,0 +1,12 @@
+
+# Exact restored S0 runtime bytes (including original BOM/newlines).
+ue_framework/** -text
+scripts/train_noise_once.py -text
+scripts/materialize_noise_once.py -text
+scripts/run_isolated_victim.py -text
+scripts/evaluate_b2_to_safebg_checkpoints.py -text
+configs/voc_yolov8n_20cls.yaml -text
+
+# Preserve manifest and protocol file identities across Windows/Linux.
+docs/tfss/** -text
+configs/tfss_short_probe.json -text
