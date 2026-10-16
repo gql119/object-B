@@ -1,15 +1,20 @@
-# CNLP 梯度正确性记录
+# CNLP current training-development gradient evidence — 2026-10-15
 
-2026-10-14：CPU_CORRECTNESS_PASSED；真实 VOC 范数/余弦分位数、Person suppression proxy、GPU/生产 Parent 集成准入 NOT_RUN；lambda/J 未标定。
+All rows below use original Fourier variable; 38cases/33unique query images/67NTGT case-observations; no official noise/victim or validation AP. J1 chosen by preregistered smallest passing J.
 
-合成标量回归中，delta=-0.1；测试 inner LR=0.1，仅作为有限差分检查夹具：
+| raw gradient | Q10 | Q25 | median | Q75 | Q90 | max |
+|---|---:|---:|---:|---:|---:|---:|
+|parent|0.050998813|0.055819266|0.066669945|0.085027495|0.10291185|0.14413996|
+|cnlp|0|0|0.0010390676|0.0076571926|0.019560492|0.25517824|
+|attack|0.04733084|0.054199266|0.065176703|0.083274456|0.10071242|0.14406896|
+|ret|8.9054858e-05|0.00020775486|0.00038321229|0.00068471766|0.0011510447|0.0014295644|
 
-| J | autograd d(damage)/d(delta) | 有限差分 | 绝对误差 |
-|---|---:|---:|---:|
-| 1 | -0.025893504 | -0.025893504007612478 | 7.612476621288167e-12 |
-| 3 | -0.0726276981391617 | -0.0726276981402596 | 1.0978995490518173e-12 |
-| 5 | -0.11333601249741423 | -0.11333601247776048 | 1.965375084900245e-11 |
+Weighted CNLP/Parent norm median0.0066853987351454085,max0.25 on calibration only. Not a global clipping rule. Original unit attack=BG_sel+rel_sel proxy only; GPU production probe additionally measures full BG+rel+lambda_adapt*L_adapt_target.
 
-合成 native YOLOv8n/VOC20 head：J=1/3/5 的共享 query TAL/GT-positive box-BCE19-DFL loss 对 support delta 的梯度均 finite/nonzero；delta=0 的 clean/poison query loss 相等，base model 状态不变。此处查询 GT 不代表真实 VOC 覆盖；不证明监督覆盖、训练收益、收敛或 victim AP 改善。
+Actual canonical Parent lambda0 comparison: five optimizer steps, loss/poison/gradient/coefficient max difference0, tolerance1e-6; reference source is actual original canonical directory, not candidate relabeled. Original weights8de8a0... same. S2/S3 real five-step plus3to5 resume checkpoint maxdiff0 and CSV byte-identical; decoded PNGs obey8/4/0 labels unchanged.
 
-CUP 合法 no-NT 分支仍保留连通零梯度；lambda=0 等价探针保持 Parent loss 与其梯度。真实校准须按固定 train-only 集合报告原始/加权范数、方向余弦、冲突频率和分位数，不能从此表确定 lambda。
+CUP real sink:12of20 batches have weighted-vs-uniform Fourier gradient difference; full attack cosine<-.5:0of15 valid batches, cosine range[-.2528443933,.5954961181]; max observed lambdaCNLP*gCNLP/gParent norm0.01999184489 in this CUP probe. Not a universal future bound.
+
+CNLP coverage-v2:12fixed historical train-edge query images/51NTGT observations,9native-uncovered GT recovered, remainingzero0; no GT dropped. 38-case native-covered replay scalar/norm/cos maxdifference0; CPU full gradient difference0; do not claim complete GPU vector equality.
+
+Source4d0c635 GPU calculations allpassed. rrctl completion artifact contract had stale unit filenames; separate artifact-only recovery copied12JSON byte-identically, no GPU rerun. Raw receipts in BASE/cnlp_small_20261015/cnlp_admission_artifacts_seed0_20261015_v1. Final source adds a separate matched Person proxy probe; final review pending.

@@ -1,0 +1,3232 @@
+{
+  "seed": 0,
+  "split": "train",
+  "target_class": 14,
+  "count": 32,
+  "selection": "first two per predefined stratum by SHA256(seed|stratum|id), then SHA256(seed|fill|id); no model/loss/AP used",
+  "geometry": "original image pixel coordinates, continuous clipped GT boxes for selection; canonical rectangle for diagnostic masks",
+  "scale_definition": "original GT clipped area small<32^2, medium<96^2, otherwise large; descriptive, not resized COCO evaluation",
+  "high_overlap_definition": "any Person/NT intersection divided by that Person area >=0.25",
+  "adjacency_definition": "all Person/NT boxes nonoverlapping and any edge gap/Person diagonal<=0.1",
+  "coverage": {
+    "person_only": 8,
+    "person_dog": 3,
+    "person_horse": 5,
+    "person_bicycle": 4,
+    "high_overlap": 18,
+    "adjacent_no_overlap": 3,
+    "small_person": 4,
+    "medium_person": 16,
+    "large_person": 18,
+    "multiple_person": 15
+  },
+  "available_coverage": {
+    "person_only": 1715,
+    "person_dog": 360,
+    "person_horse": 436,
+    "person_bicycle": 459,
+    "high_overlap": 2887,
+    "adjacent_no_overlap": 165,
+    "small_person": 549,
+    "medium_person": 1949,
+    "large_person": 4827,
+    "multiple_person": 3005
+  },
+  "records": [
+    {
+      "image_id": "000470",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/000470.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/000470.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 12,
+          "bbox": [
+            0.607,
+            0.5626666666666666,
+            0.442,
+            0.656
+          ],
+          "xyxy": [
+            193.0,
+            87.99999999999999,
+            414.0,
+            334.0
+          ],
+          "area_pixels": 54366.0,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.316,
+            0.48,
+            0.056,
+            0.2613333333333333
+          ],
+          "xyxy": [
+            144.0,
+            131.0,
+            172.0,
+            229.0
+          ],
+          "area_pixels": 2744.0,
+          "scale": "medium"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 1,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.20604084592303354
+        }
+      ],
+      "strata": [
+        "person_horse",
+        "medium_person"
+      ],
+      "image_sha256": "2e9c82413261b595a08ebb1f1cfd6641670d0b7ab1259eccc7b1dfe01385fd05",
+      "label_sha256": "00043b943967420091d1459fd8edff80b561da97f5f03acf25f4beb32002a5c1"
+    },
+    {
+      "image_id": "002472",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/002472.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/002472.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 14,
+          "bbox": [
+            0.802,
+            0.5706666666666667,
+            0.048,
+            0.16533333333333333
+          ],
+          "xyxy": [
+            389.0,
+            183.0,
+            413.00000000000006,
+            245.0
+          ],
+          "area_pixels": 1488.0000000000036,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.863,
+            0.5626666666666666,
+            0.042,
+            0.18666666666666665
+          ],
+          "xyxy": [
+            421.0,
+            176.0,
+            442.0,
+            245.99999999999997
+          ],
+          "area_pixels": 1469.9999999999993,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 2,
+          "cls": 14,
+          "bbox": [
+            0.977,
+            0.564,
+            0.042,
+            0.16799999999999998
+          ],
+          "xyxy": [
+            478.0,
+            180.0,
+            499.0,
+            242.99999999999997
+          ],
+          "area_pixels": 1322.9999999999993,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 3,
+          "cls": 0,
+          "bbox": [
+            0.202,
+            0.508,
+            0.392,
+            0.2853333333333333
+          ],
+          "xyxy": [
+            3.0000000000000027,
+            137.0,
+            199.0,
+            244.00000000000003
+          ],
+          "area_pixels": 20972.000000000007,
+          "scale": "large"
+        },
+        {
+          "gt_index": 4,
+          "cls": 0,
+          "bbox": [
+            0.518,
+            0.5053333333333333,
+            0.496,
+            0.2373333333333333
+          ],
+          "xyxy": [
+            135.0,
+            145.0,
+            383.0,
+            234.0
+          ],
+          "area_pixels": 22072.0,
+          "scale": "large"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 0,
+          "nt_gt": 3,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 2.857869978581887
+        },
+        {
+          "person_gt": 0,
+          "nt_gt": 4,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.090248525639428
+        },
+        {
+          "person_gt": 1,
+          "nt_gt": 3,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 3.0376776474156526
+        },
+        {
+          "person_gt": 1,
+          "nt_gt": 4,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.5199628405486252
+        },
+        {
+          "person_gt": 2,
+          "nt_gt": 3,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 4.20131174850942
+        },
+        {
+          "person_gt": 2,
+          "nt_gt": 4,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 1.4305541795999819
+        }
+      ],
+      "strata": [
+        "adjacent_no_overlap",
+        "medium_person",
+        "multiple_person"
+      ],
+      "image_sha256": "ad9b7dddfeda1cb45b086360c9631f19d53f521c799d9143e5e03ca89e3b54e6",
+      "label_sha256": "d084d2214937f6445da5ff7e3faf7f7ab9a69ad38cbe0f9002ccdfbf405a92b9"
+    },
+    {
+      "image_id": "002804",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/002804.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/002804.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 6,
+          "bbox": [
+            0.969,
+            0.43066666666666664,
+            0.058,
+            0.072
+          ],
+          "xyxy": [
+            470.0,
+            148.0,
+            499.0,
+            174.99999999999997
+          ],
+          "area_pixels": 782.9999999999992,
+          "scale": "small"
+        },
+        {
+          "gt_index": 1,
+          "cls": 6,
+          "bbox": [
+            0.777,
+            0.40399999999999997,
+            0.23800000000000002,
+            0.11466666666666667
+          ],
+          "xyxy": [
+            329.0,
+            129.99999999999997,
+            448.0,
+            173.0
+          ],
+          "area_pixels": 5117.000000000004,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 2,
+          "cls": 6,
+          "bbox": [
+            0.17,
+            0.3773333333333333,
+            0.14,
+            0.06133333333333333
+          ],
+          "xyxy": [
+            50.0,
+            129.99999999999997,
+            120.00000000000001,
+            153.0
+          ],
+          "area_pixels": 1610.0000000000023,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 3,
+          "cls": 6,
+          "bbox": [
+            0.045,
+            0.3853333333333333,
+            0.09,
+            0.056
+          ],
+          "xyxy": [
+            0.0,
+            133.99999999999997,
+            45.0,
+            155.0
+          ],
+          "area_pixels": 945.0000000000013,
+          "scale": "small"
+        },
+        {
+          "gt_index": 4,
+          "cls": 14,
+          "bbox": [
+            0.924,
+            0.42,
+            0.036000000000000004,
+            0.10933333333333332
+          ],
+          "xyxy": [
+            453.0,
+            137.0,
+            471.00000000000006,
+            177.99999999999997
+          ],
+          "area_pixels": 738.0000000000018,
+          "scale": "small"
+        },
+        {
+          "gt_index": 5,
+          "cls": 14,
+          "bbox": [
+            0.018000000000000002,
+            0.516,
+            0.036000000000000004,
+            0.20533333333333334
+          ],
+          "xyxy": [
+            0.0,
+            155.0,
+            18.000000000000004,
+            232.0
+          ],
+          "area_pixels": 1386.0000000000002,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 6,
+          "cls": 14,
+          "bbox": [
+            0.481,
+            0.62,
+            0.09,
+            0.41333333333333333
+          ],
+          "xyxy": [
+            218.0,
+            155.0,
+            263.0,
+            310.0
+          ],
+          "area_pixels": 6975.0,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 7,
+          "cls": 14,
+          "bbox": [
+            0.748,
+            0.5573333333333333,
+            0.052000000000000005,
+            0.256
+          ],
+          "xyxy": [
+            361.0,
+            161.0,
+            387.0,
+            257.0
+          ],
+          "area_pixels": 2496.0,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 8,
+          "cls": 14,
+          "bbox": [
+            0.641,
+            0.4693333333333333,
+            0.07,
+            0.13866666666666666
+          ],
+          "xyxy": [
+            303.0,
+            150.0,
+            338.0,
+            201.99999999999997
+          ],
+          "area_pixels": 1819.999999999999,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 9,
+          "cls": 12,
+          "bbox": [
+            0.66,
+            0.5519999999999999,
+            0.108,
+            0.20266666666666666
+          ],
+          "xyxy": [
+            303.0,
+            168.99999999999997,
+            357.00000000000006,
+            245.0
+          ],
+          "area_pixels": 4104.0000000000055,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 10,
+          "cls": 12,
+          "bbox": [
+            0.42,
+            0.6466666666666666,
+            0.088,
+            0.2533333333333333
+          ],
+          "xyxy": [
+            188.0,
+            195.0,
+            231.99999999999997,
+            289.99999999999994
+          ],
+          "area_pixels": 4179.9999999999945,
+          "scale": "medium"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 4,
+          "nt_gt": 0,
+          "intersection_over_person": 0.036585365853660484,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 1,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.11166390612088835
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 2,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 7.436816147651164
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 3,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 9.111774739464488
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 9,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 2.1439469975210548
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 10,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 4.950125316431803
+        },
+        {
+          "person_gt": 5,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 5.716026327847807
+        },
+        {
+          "person_gt": 5,
+          "nt_gt": 1,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 3.932929619382009
+        },
+        {
+          "person_gt": 5,
+          "nt_gt": 2,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.40546403968540845
+        },
+        {
+          "person_gt": 5,
+          "nt_gt": 3,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 5,
+          "nt_gt": 9,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 3.6041316447712943
+        },
+        {
+          "person_gt": 5,
+          "nt_gt": 10,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 2.1498329109162104
+        },
+        {
+          "person_gt": 6,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 1.2825268963741947
+        },
+        {
+          "person_gt": 6,
+          "nt_gt": 1,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.4089216191338012
+        },
+        {
+          "person_gt": 6,
+          "nt_gt": 2,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.6073130779623532
+        },
+        {
+          "person_gt": 6,
+          "nt_gt": 3,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 1.0718703046992062
+        },
+        {
+          "person_gt": 6,
+          "nt_gt": 9,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.2478312843235159
+        },
+        {
+          "person_gt": 6,
+          "nt_gt": 10,
+          "intersection_over_person": 0.1906810035842289,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 7,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.8345186340557845
+        },
+        {
+          "person_gt": 7,
+          "nt_gt": 1,
+          "intersection_over_person": 0.125,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 7,
+          "nt_gt": 2,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 2.4244550331661596
+        },
+        {
+          "person_gt": 7,
+          "nt_gt": 3,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 3.177776143970629
+        },
+        {
+          "person_gt": 7,
+          "nt_gt": 9,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.04021776549666374
+        },
+        {
+          "person_gt": 7,
+          "nt_gt": 10,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 1.2970229372674245
+        },
+        {
+          "person_gt": 8,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 2.105876590110824
+        },
+        {
+          "person_gt": 8,
+          "nt_gt": 1,
+          "intersection_over_person": 0.11373626373626379,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 8,
+          "nt_gt": 2,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 2.919510727199097
+        },
+        {
+          "person_gt": 8,
+          "nt_gt": 3,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 4.116031517034792
+        },
+        {
+          "person_gt": 8,
+          "nt_gt": 9,
+          "intersection_over_person": 0.6346153846153849,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 8,
+          "nt_gt": 10,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 1.1327063477111254
+        }
+      ],
+      "strata": [
+        "person_horse",
+        "high_overlap",
+        "small_person",
+        "medium_person",
+        "multiple_person"
+      ],
+      "image_sha256": "6ce870d82e44e2ff5d789749a181214f099ebb904f7b83dfa3cd2de651ccd36e",
+      "label_sha256": "4a28340450ba967dea17d7402e3bf8da2fc11a00e53e65be5f6f011ddf2d938a"
+    },
+    {
+      "image_id": "005273",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/005273.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/005273.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 6,
+          "bbox": [
+            0.391,
+            0.2786666666666667,
+            0.354,
+            0.2693333333333333
+          ],
+          "xyxy": [
+            107.00000000000001,
+            54.00000000000001,
+            284.00000000000006,
+            155.0
+          ],
+          "area_pixels": 17877.000000000007,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 6,
+          "bbox": [
+            0.651,
+            0.3133333333333333,
+            0.366,
+            0.184
+          ],
+          "xyxy": [
+            234.0,
+            82.99999999999999,
+            417.00000000000006,
+            152.0
+          ],
+          "area_pixels": 12627.000000000007,
+          "scale": "large"
+        },
+        {
+          "gt_index": 2,
+          "cls": 14,
+          "bbox": [
+            0.749,
+            0.22666666666666666,
+            0.158,
+            0.39466666666666667
+          ],
+          "xyxy": [
+            335.0,
+            10.999999999999996,
+            414.0,
+            159.0
+          ],
+          "area_pixels": 11692.0,
+          "scale": "large"
+        },
+        {
+          "gt_index": 3,
+          "cls": 14,
+          "bbox": [
+            0.834,
+            0.2693333333333333,
+            0.084,
+            0.2773333333333333
+          ],
+          "xyxy": [
+            395.99999999999994,
+            48.99999999999999,
+            438.0,
+            153.0
+          ],
+          "area_pixels": 4368.0000000000055,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 4,
+          "cls": 1,
+          "bbox": [
+            0.304,
+            0.6226666666666666,
+            0.608,
+            0.6533333333333333
+          ],
+          "xyxy": [
+            0.0,
+            110.99999999999997,
+            304.0,
+            355.99999999999994
+          ],
+          "area_pixels": 74479.99999999999,
+          "scale": "large"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 2,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.30399717626387207
+        },
+        {
+          "person_gt": 2,
+          "nt_gt": 1,
+          "intersection_over_person": 0.4662162162162163,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 2,
+          "nt_gt": 4,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.1847825973368636
+        },
+        {
+          "person_gt": 3,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.9985681322700877
+        },
+        {
+          "person_gt": 3,
+          "nt_gt": 1,
+          "intersection_over_person": 0.3317307692307707,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 3,
+          "nt_gt": 4,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.8202523943647152
+        }
+      ],
+      "strata": [
+        "person_bicycle",
+        "high_overlap",
+        "medium_person",
+        "large_person",
+        "multiple_person"
+      ],
+      "image_sha256": "a59995888b056ba6c32bebcd7e507d70036388365c14eb49d794ec7028b55251",
+      "label_sha256": "8abeee55e2d5f3409a3a61ec68d28ceff12ea571284c6291ca974be286b8ec14"
+    },
+    {
+      "image_id": "005430",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/005430.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/005430.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 1,
+          "bbox": [
+            0.403,
+            0.5213333333333333,
+            0.37,
+            0.37066666666666664
+          ],
+          "xyxy": [
+            109.00000000000001,
+            125.99999999999999,
+            294.00000000000006,
+            265.0
+          ],
+          "area_pixels": 25715.000000000007,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.5670000000000001,
+            0.416,
+            0.28600000000000003,
+            0.6773333333333333
+          ],
+          "xyxy": [
+            212.00000000000003,
+            28.99999999999999,
+            355.00000000000006,
+            283.0
+          ],
+          "area_pixels": 36322.00000000001,
+          "scale": "large"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 1,
+          "nt_gt": 0,
+          "intersection_over_person": 0.31380430593029024,
+          "normalized_edge_gap": 0.0
+        }
+      ],
+      "strata": [
+        "person_bicycle",
+        "high_overlap",
+        "large_person"
+      ],
+      "image_sha256": "55d63f284cba54c9baf10010f75d373add11a4a1cc790ce53b9784d7af76787e",
+      "label_sha256": "6e8246e1d4855f2cf145ae3469804840eaa1098958e064dd40b83763fdf88d66"
+    },
+    {
+      "image_id": "005439",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/005439.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/005439.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 8,
+          "bbox": [
+            0.497,
+            0.372,
+            0.314,
+            0.5146666666666666
+          ],
+          "xyxy": [
+            169.99999999999997,
+            43.00000000000001,
+            327.0,
+            236.0
+          ],
+          "area_pixels": 30301.000000000007,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 8,
+          "bbox": [
+            0.136,
+            0.7626666666666666,
+            0.272,
+            0.4693333333333333
+          ],
+          "xyxy": [
+            0.0,
+            197.99999999999997,
+            136.0,
+            374.0
+          ],
+          "area_pixels": 23936.000000000004,
+          "scale": "large"
+        },
+        {
+          "gt_index": 2,
+          "cls": 14,
+          "bbox": [
+            0.494,
+            0.29333333333333333,
+            0.14400000000000002,
+            0.13866666666666666
+          ],
+          "xyxy": [
+            211.0,
+            84.0,
+            283.00000000000006,
+            136.0
+          ],
+          "area_pixels": 3744.0000000000027,
+          "scale": "medium"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 2,
+          "nt_gt": 0,
+          "intersection_over_person": 1.0,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 2,
+          "nt_gt": 1,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 1.0956418367709206
+        }
+      ],
+      "strata": [
+        "high_overlap",
+        "medium_person"
+      ],
+      "image_sha256": "2e41ef5e35457cc567896645267ffd5801ec795e2e066f39f1a31661b91d3b58",
+      "label_sha256": "4b3764932eb093bb3d81d5ff1aa06cd79724cb7f723c1b5b4686a5c93dc2eff4"
+    },
+    {
+      "image_id": "006320",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/006320.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/006320.txt",
+      "width": 500,
+      "height": 333,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 6,
+          "bbox": [
+            0.555,
+            0.515015015015015,
+            0.622,
+            0.7777777777777778
+          ],
+          "xyxy": [
+            122.00000000000003,
+            41.99999999999999,
+            433.00000000000006,
+            301.0
+          ],
+          "area_pixels": 80549.0,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.089,
+            0.47297297297297297,
+            0.078,
+            0.32732732732732733
+          ],
+          "xyxy": [
+            24.999999999999996,
+            103.00000000000001,
+            64.0,
+            212.0
+          ],
+          "area_pixels": 4250.999999999999,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 2,
+          "cls": 14,
+          "bbox": [
+            0.157,
+            0.524024024024024,
+            0.054,
+            0.23123123123123124
+          ],
+          "xyxy": [
+            65.0,
+            136.0,
+            92.0,
+            213.0
+          ],
+          "area_pixels": 2079.0,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 3,
+          "cls": 14,
+          "bbox": [
+            0.209,
+            0.5285285285285285,
+            0.05,
+            0.21621621621621623
+          ],
+          "xyxy": [
+            92.0,
+            140.0,
+            117.0,
+            212.0
+          ],
+          "area_pixels": 1800.0,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 4,
+          "cls": 14,
+          "bbox": [
+            0.9430000000000001,
+            0.3933933933933934,
+            0.03,
+            0.17417417417417416
+          ],
+          "xyxy": [
+            464.0,
+            102.00000000000001,
+            479.00000000000006,
+            160.0
+          ],
+          "area_pixels": 870.0000000000031,
+          "scale": "small"
+        },
+        {
+          "gt_index": 5,
+          "cls": 14,
+          "bbox": [
+            0.23800000000000002,
+            0.4264264264264264,
+            0.048,
+            0.1981981981981982
+          ],
+          "xyxy": [
+            107.00000000000001,
+            109.0,
+            131.0,
+            175.0
+          ],
+          "area_pixels": 1583.999999999999,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 6,
+          "cls": 14,
+          "bbox": [
+            0.129,
+            0.44294294294294295,
+            0.038,
+            0.23723723723723725
+          ],
+          "xyxy": [
+            55.0,
+            108.0,
+            74.0,
+            187.0
+          ],
+          "area_pixels": 1501.0,
+          "scale": "medium"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 1,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.5010062997023509
+        },
+        {
+          "person_gt": 2,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.36766251977456355
+        },
+        {
+          "person_gt": 3,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.06560233779408275
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.5174578320682687
+        },
+        {
+          "person_gt": 5,
+          "nt_gt": 0,
+          "intersection_over_person": 0.37499999999999906,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 6,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.5907496559570133
+        }
+      ],
+      "strata": [
+        "high_overlap",
+        "small_person",
+        "medium_person",
+        "multiple_person"
+      ],
+      "image_sha256": "6698caf1a7dbba7a9631ee170ba894b856331c6e483c6eb8222fd1aebb348b43",
+      "label_sha256": "8081dc8c2be9b75538ed1162caf1bff0d0473508c41059f2be786164ab7653a8"
+    },
+    {
+      "image_id": "006707",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/006707.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/006707.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 8,
+          "bbox": [
+            0.667,
+            0.35866666666666663,
+            0.33,
+            0.6906666666666667
+          ],
+          "xyxy": [
+            251.0,
+            4.99999999999999,
+            416.00000000000006,
+            264.0
+          ],
+          "area_pixels": 42735.000000000015,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.47800000000000004,
+            0.54,
+            0.488,
+            0.8026666666666666
+          ],
+          "xyxy": [
+            117.00000000000001,
+            52.00000000000002,
+            361.0,
+            353.0
+          ],
+          "area_pixels": 73444.0,
+          "scale": "large"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 1,
+          "nt_gt": 0,
+          "intersection_over_person": 0.31752083219868193,
+          "normalized_edge_gap": 0.0
+        }
+      ],
+      "strata": [
+        "high_overlap",
+        "large_person"
+      ],
+      "image_sha256": "51ca18999dd7a656995b81199715a186ee6e8c049db8d774f80d51189701f8de",
+      "label_sha256": "d19669aa6fcd4d81938af649054d62800f070d734e30adb05d56d96feae3df82"
+    },
+    {
+      "image_id": "007996",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/007996.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/007996.txt",
+      "width": 500,
+      "height": 333,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 14,
+          "bbox": [
+            0.424,
+            0.47897897897897895,
+            0.096,
+            0.36936936936936937
+          ],
+          "xyxy": [
+            188.0,
+            97.99999999999999,
+            236.0,
+            221.0
+          ],
+          "area_pixels": 5904.000000000001,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.315,
+            0.6786786786786787,
+            0.162,
+            0.24024024024024024
+          ],
+          "xyxy": [
+            117.0,
+            186.00000000000003,
+            198.0,
+            266.0
+          ],
+          "area_pixels": 6479.999999999997,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 2,
+          "cls": 14,
+          "bbox": [
+            0.28500000000000003,
+            0.8633633633633634,
+            0.20600000000000002,
+            0.26726726726726724
+          ],
+          "xyxy": [
+            91.00000000000001,
+            243.00000000000003,
+            194.0,
+            332.0
+          ],
+          "area_pixels": 9166.999999999996,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 3,
+          "cls": 14,
+          "bbox": [
+            0.553,
+            0.8273273273273273,
+            0.318,
+            0.33933933933933935
+          ],
+          "xyxy": [
+            197.0,
+            218.99999999999997,
+            356.00000000000006,
+            332.0
+          ],
+          "area_pixels": 17967.00000000001,
+          "scale": "large"
+        },
+        {
+          "gt_index": 4,
+          "cls": 14,
+          "bbox": [
+            0.895,
+            0.49399399399399396,
+            0.20600000000000002,
+            0.6276276276276276
+          ],
+          "xyxy": [
+            396.0,
+            60.0,
+            499.0,
+            268.99999999999994
+          ],
+          "area_pixels": 21526.999999999993,
+          "scale": "large"
+        },
+        {
+          "gt_index": 5,
+          "cls": 17,
+          "bbox": [
+            0.538,
+            0.527027027027027,
+            0.324,
+            0.3813813813813814
+          ],
+          "xyxy": [
+            188.0,
+            111.99999999999999,
+            350.00000000000006,
+            238.99999999999997
+          ],
+          "area_pixels": 20574.000000000004,
+          "scale": "large"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 0,
+          "nt_gt": 5,
+          "intersection_over_person": 0.8861788617886179,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 1,
+          "nt_gt": 5,
+          "intersection_over_person": 0.08179012345679007,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 2,
+          "nt_gt": 5,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.029384769046494768
+        },
+        {
+          "person_gt": 3,
+          "nt_gt": 5,
+          "intersection_over_person": 0.17031223910502583,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 5,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.19742307445186547
+        }
+      ],
+      "strata": [
+        "high_overlap",
+        "medium_person",
+        "large_person",
+        "multiple_person"
+      ],
+      "image_sha256": "73f389e4597fc35cfa74b07f5f3b1ab7b818aa54a779143bf1fe96f38a2a8b0b",
+      "label_sha256": "8c8cc8dfadfb3a06973da31556e710cc282f000fc543e140b7d5acfe95124d3f"
+    },
+    {
+      "image_id": "007998",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/007998.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/007998.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 14,
+          "bbox": [
+            0.5630000000000001,
+            0.5,
+            0.87,
+            0.9946666666666666
+          ],
+          "xyxy": [
+            64.00000000000003,
+            1.0000000000000147,
+            499.0,
+            374.0
+          ],
+          "area_pixels": 162255.0,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.11800000000000001,
+            0.328,
+            0.23600000000000002,
+            0.656
+          ],
+          "xyxy": [
+            0.0,
+            0.0,
+            118.00000000000001,
+            246.0
+          ],
+          "area_pixels": 29028.000000000004,
+          "scale": "large"
+        }
+      ],
+      "pairs": [],
+      "strata": [
+        "person_only",
+        "large_person",
+        "multiple_person"
+      ],
+      "image_sha256": "678c73d1aa16b2d0a54f0a00f7b414704a19768fb6855e93f384e048f31097f3",
+      "label_sha256": "6ea1b807fd87daae299e7337dd12010686556a0ef21c09c4fa0d83ad05a26760"
+    },
+    {
+      "image_id": "009251",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009251.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/009251.txt",
+      "width": 500,
+      "height": 333,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 12,
+          "bbox": [
+            0.487,
+            0.49099099099099097,
+            0.258,
+            0.8498498498498498
+          ],
+          "xyxy": [
+            179.0,
+            22.000000000000004,
+            308.0,
+            304.99999999999994
+          ],
+          "area_pixels": 36506.99999999999,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.353,
+            0.3963963963963964,
+            0.13,
+            0.35435435435435436
+          ],
+          "xyxy": [
+            144.0,
+            73.0,
+            209.0,
+            191.00000000000003
+          ],
+          "area_pixels": 7670.000000000002,
+          "scale": "medium"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 1,
+          "nt_gt": 0,
+          "intersection_over_person": 0.46153846153846156,
+          "normalized_edge_gap": 0.0
+        }
+      ],
+      "strata": [
+        "person_horse",
+        "high_overlap",
+        "medium_person"
+      ],
+      "image_sha256": "1a70e9c358afbb3c39aae71927dd6e0f226a805f4da9dffca42f7266c734177b",
+      "label_sha256": "b138c294c54d4630361f60f4f8a9483110712a728ce4a07162499c8766e64a93"
+    },
+    {
+      "image_id": "009496",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009496.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/009496.txt",
+      "width": 500,
+      "height": 333,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 14,
+          "bbox": [
+            0.489,
+            0.5735735735735735,
+            0.934,
+            0.7627627627627628
+          ],
+          "xyxy": [
+            10.999999999999982,
+            63.99999999999998,
+            478.0,
+            318.0
+          ],
+          "area_pixels": 118618.00000000001,
+          "scale": "large"
+        }
+      ],
+      "pairs": [],
+      "strata": [
+        "person_only",
+        "large_person"
+      ],
+      "image_sha256": "7a649b90eb71f9515a1b7afc937e75ca22411582326eee8b8002931c6f3ece51",
+      "label_sha256": "10d30ae200a217cdf3944cb129e43a935ac0185022a3bf6a9127717d84d7e1d1"
+    },
+    {
+      "image_id": "2008_000777",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_000777.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2008_000777.txt",
+      "width": 320,
+      "height": 387,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 14,
+          "bbox": [
+            0.4734375,
+            0.5400516795865633,
+            0.9281250000000001,
+            0.8992248062015504
+          ],
+          "xyxy": [
+            2.9999999999999893,
+            34.99999999999999,
+            300.0,
+            383.0
+          ],
+          "area_pixels": 103356.0,
+          "scale": "large"
+        }
+      ],
+      "pairs": [],
+      "strata": [
+        "person_only",
+        "large_person"
+      ],
+      "image_sha256": "34081613dcb4153cd43ed45db95e79e95bacc67a55e07cb3b38ba4033e918be4",
+      "label_sha256": "2494b99c8b94db17cd5d501624eed97d70e40e76e6806efac5a607295306a4c1"
+    },
+    {
+      "image_id": "2008_002543",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_002543.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2008_002543.txt",
+      "width": 375,
+      "height": 500,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 14,
+          "bbox": [
+            0.49066666666666664,
+            0.752,
+            0.576,
+            0.492
+          ],
+          "xyxy": [
+            76.0,
+            253.0,
+            292.0,
+            499.0
+          ],
+          "area_pixels": 53136.0,
+          "scale": "large"
+        }
+      ],
+      "pairs": [],
+      "strata": [
+        "person_only",
+        "large_person"
+      ],
+      "image_sha256": "9af416a43dda7340ac6a431570750cb9aa0a7ea823ffbca3a73c9469a7046635",
+      "label_sha256": "83d21b8eae7a47b3c2dd237aaee8323e1bb0ab9558c414a67b99448d107cfd5a"
+    },
+    {
+      "image_id": "2008_002641",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_002641.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2008_002641.txt",
+      "width": 500,
+      "height": 333,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 14,
+          "bbox": [
+            0.179,
+            0.6096096096096096,
+            0.33,
+            0.7747747747747747
+          ],
+          "xyxy": [
+            6.999999999999992,
+            74.00000000000001,
+            172.0,
+            332.0
+          ],
+          "area_pixels": 42570.0,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.791,
+            0.7597597597597597,
+            0.226,
+            0.4744744744744745
+          ],
+          "xyxy": [
+            339.0,
+            174.0,
+            452.0,
+            332.0
+          ],
+          "area_pixels": 17854.0,
+          "scale": "large"
+        }
+      ],
+      "pairs": [],
+      "strata": [
+        "person_only",
+        "large_person",
+        "multiple_person"
+      ],
+      "image_sha256": "c7096e99dba8f42f61b7bfc8f059739c1c90f114f90f672a9c85a7680e54299a",
+      "label_sha256": "8535b6e6d5ff0a310a45e6e7f964d32cd69bbee7de48caa8999e1019e95fc420"
+    },
+    {
+      "image_id": "2008_003802",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_003802.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2008_003802.txt",
+      "width": 500,
+      "height": 331,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 12,
+          "bbox": [
+            0.546,
+            0.5468277945619335,
+            0.384,
+            0.3806646525679758
+          ],
+          "xyxy": [
+            177.00000000000003,
+            118.00000000000001,
+            369.0,
+            244.0
+          ],
+          "area_pixels": 24191.999999999993,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 12,
+          "bbox": [
+            0.233,
+            0.513595166163142,
+            0.318,
+            0.4471299093655589
+          ],
+          "xyxy": [
+            37.00000000000001,
+            96.00000000000001,
+            196.0,
+            244.00000000000003
+          ],
+          "area_pixels": 23532.0,
+          "scale": "large"
+        },
+        {
+          "gt_index": 2,
+          "cls": 12,
+          "bbox": [
+            0.076,
+            0.5317220543806647,
+            0.152,
+            0.3806646525679758
+          ],
+          "xyxy": [
+            0.0,
+            113.00000000000001,
+            76.0,
+            239.0
+          ],
+          "area_pixels": 9575.999999999998,
+          "scale": "large"
+        },
+        {
+          "gt_index": 3,
+          "cls": 14,
+          "bbox": [
+            0.587,
+            0.4078549848942598,
+            0.106,
+            0.18126888217522658
+          ],
+          "xyxy": [
+            266.99999999999994,
+            105.00000000000001,
+            320.0,
+            165.0
+          ],
+          "area_pixels": 3180.0000000000027,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 4,
+          "cls": 14,
+          "bbox": [
+            0.23900000000000002,
+            0.37915407854984895,
+            0.122,
+            0.21450151057401812
+          ],
+          "xyxy": [
+            89.00000000000001,
+            90.0,
+            150.00000000000003,
+            161.0
+          ],
+          "area_pixels": 4331.000000000001,
+          "scale": "medium"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 3,
+          "nt_gt": 0,
+          "intersection_over_person": 0.7833333333333332,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 3,
+          "nt_gt": 1,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.8868766339418968
+        },
+        {
+          "person_gt": 3,
+          "nt_gt": 2,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 2.385823057505667
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.28844441857437764
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 1,
+          "intersection_over_person": 0.9154929577464787,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 2,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.13888064598025607
+        }
+      ],
+      "strata": [
+        "person_horse",
+        "high_overlap",
+        "medium_person",
+        "multiple_person"
+      ],
+      "image_sha256": "bd33e8f5ddf9824acb7170837a28f75ad2424ade38c40794cd70b954a0a2f8de",
+      "label_sha256": "eb7a546b0bd0d6946cdcaba5f695fc1ea25f7158c73401b3657d9dc0d0ec15c4"
+    },
+    {
+      "image_id": "2008_004522",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_004522.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2008_004522.txt",
+      "width": 303,
+      "height": 396,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 14,
+          "bbox": [
+            0.4867986798679868,
+            0.5833333333333334,
+            0.6501650165016502,
+            0.8282828282828284
+          ],
+          "xyxy": [
+            49.00000000000001,
+            66.99999999999999,
+            246.00000000000003,
+            395.00000000000006
+          ],
+          "area_pixels": 64616.00000000002,
+          "scale": "large"
+        }
+      ],
+      "pairs": [],
+      "strata": [
+        "person_only",
+        "large_person"
+      ],
+      "image_sha256": "37a82f50b3d9af8e21d971c313ca43960d929223afdb42c8447f163137c738ce",
+      "label_sha256": "619cf780e3272f94ba0501411219afe2e2f2abf689373a52dddf1e9ed981bd84"
+    },
+    {
+      "image_id": "2008_004930",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_004930.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2008_004930.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 19,
+          "bbox": [
+            0.498,
+            0.5,
+            0.904,
+            0.984
+          ],
+          "xyxy": [
+            22.999999999999993,
+            3.0000000000000027,
+            475.0,
+            372.0
+          ],
+          "area_pixels": 166788.0,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.555,
+            0.5053333333333333,
+            0.37,
+            0.44
+          ],
+          "xyxy": [
+            185.00000000000003,
+            107.0,
+            370.0,
+            272.0
+          ],
+          "area_pixels": 30524.999999999996,
+          "scale": "large"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 1,
+          "nt_gt": 0,
+          "intersection_over_person": 1.0,
+          "normalized_edge_gap": 0.0
+        }
+      ],
+      "strata": [
+        "high_overlap",
+        "large_person"
+      ],
+      "image_sha256": "dcab768df1cc655ca24bbb0ff348fa12b5099603c58fc20e66012c04a02a1745",
+      "label_sha256": "79cf3dfa9f3bbe7f4bd159bdf105cfa8e97bc904dc3583ee7b4a71fca568db12"
+    },
+    {
+      "image_id": "2008_006825",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_006825.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2008_006825.txt",
+      "width": 500,
+      "height": 254,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 3,
+          "bbox": [
+            0.444,
+            0.5826771653543307,
+            0.8,
+            0.14960629921259844
+          ],
+          "xyxy": [
+            21.999999999999993,
+            129.0,
+            422.00000000000006,
+            166.99999999999997
+          ],
+          "area_pixels": 15199.99999999999,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 11,
+          "bbox": [
+            0.391,
+            0.421259842519685,
+            0.122,
+            0.22834645669291337
+          ],
+          "xyxy": [
+            165.0,
+            78.0,
+            226.0,
+            135.99999999999997
+          ],
+          "area_pixels": 3537.999999999998,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 2,
+          "cls": 14,
+          "bbox": [
+            0.495,
+            0.3799212598425197,
+            0.214,
+            0.3188976377952756
+          ],
+          "xyxy": [
+            194.0,
+            56.0,
+            301.0,
+            136.99999999999997
+          ],
+          "area_pixels": 8666.999999999996,
+          "scale": "medium"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 2,
+          "nt_gt": 0,
+          "intersection_over_person": 0.09876543209876512,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 2,
+          "nt_gt": 1,
+          "intersection_over_person": 0.21414560978423905,
+          "normalized_edge_gap": 0.0
+        }
+      ],
+      "strata": [
+        "person_dog",
+        "medium_person"
+      ],
+      "image_sha256": "d08c0769c97a83df078e0afa21e0a8ef58088b33f059f9f0b1e63e3c0ea57685",
+      "label_sha256": "d680dc04c1722fc4bcce9ce7e4971dd2398e0e71e81a690c7f1f5d12474d1380"
+    },
+    {
+      "image_id": "2008_007514",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_007514.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2008_007514.txt",
+      "width": 275,
+      "height": 500,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 12,
+          "bbox": [
+            0.40545454545454546,
+            0.535,
+            0.28,
+            0.462
+          ],
+          "xyxy": [
+            73.0,
+            152.00000000000003,
+            150.0,
+            383.0
+          ],
+          "area_pixels": 17786.999999999996,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.6381818181818182,
+            0.543,
+            0.3018181818181818,
+            0.47800000000000004
+          ],
+          "xyxy": [
+            134.0,
+            152.00000000000003,
+            217.0,
+            391.0
+          ],
+          "area_pixels": 19836.999999999996,
+          "scale": "large"
+        },
+        {
+          "gt_index": 2,
+          "cls": 14,
+          "bbox": [
+            0.36363636363636365,
+            0.362,
+            0.38545454545454544,
+            0.384
+          ],
+          "xyxy": [
+            47.00000000000001,
+            84.99999999999999,
+            153.0,
+            277.0
+          ],
+          "area_pixels": 20352.0,
+          "scale": "large"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 1,
+          "nt_gt": 0,
+          "intersection_over_person": 0.1863184957402833,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 2,
+          "nt_gt": 0,
+          "intersection_over_person": 0.47292649371069173,
+          "normalized_edge_gap": 0.0
+        }
+      ],
+      "strata": [
+        "person_horse",
+        "high_overlap",
+        "large_person",
+        "multiple_person"
+      ],
+      "image_sha256": "574de06fba50231295031901c3c8a90c5d6e766b6ecb1b94e22651513d28bff4",
+      "label_sha256": "c5d418e574743048e3ac01c2592ad470d91c224b69791e84a2c7f457403daa17"
+    },
+    {
+      "image_id": "2008_007525",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_007525.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2008_007525.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 14,
+          "bbox": [
+            0.708,
+            0.7146666666666667,
+            0.06,
+            0.24
+          ],
+          "xyxy": [
+            338.99999999999994,
+            223.0,
+            369.0,
+            313.0
+          ],
+          "area_pixels": 2700.000000000005,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.651,
+            0.7053333333333333,
+            0.074,
+            0.248
+          ],
+          "xyxy": [
+            307.0,
+            217.99999999999997,
+            344.0,
+            310.99999999999994
+          ],
+          "area_pixels": 3440.999999999999,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 2,
+          "cls": 14,
+          "bbox": [
+            0.557,
+            0.6866666666666666,
+            0.074,
+            0.27466666666666667
+          ],
+          "xyxy": [
+            260.0,
+            206.0,
+            297.00000000000006,
+            309.0
+          ],
+          "area_pixels": 3811.000000000006,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 3,
+          "cls": 14,
+          "bbox": [
+            0.498,
+            0.696,
+            0.056,
+            0.22933333333333333
+          ],
+          "xyxy": [
+            235.0,
+            217.99999999999997,
+            263.0,
+            304.0
+          ],
+          "area_pixels": 2408.000000000001,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 4,
+          "cls": 14,
+          "bbox": [
+            0.123,
+            0.6493333333333333,
+            0.046,
+            0.12533333333333332
+          ],
+          "xyxy": [
+            50.0,
+            220.0,
+            73.0,
+            267.0
+          ],
+          "area_pixels": 1081.0,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 5,
+          "cls": 14,
+          "bbox": [
+            0.027,
+            0.6933333333333334,
+            0.054,
+            0.19733333333333333
+          ],
+          "xyxy": [
+            0.0,
+            223.0,
+            27.0,
+            297.0
+          ],
+          "area_pixels": 1998.0,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 6,
+          "cls": 15,
+          "bbox": [
+            0.871,
+            0.66,
+            0.254,
+            0.6746666666666666
+          ],
+          "xyxy": [
+            372.0,
+            121.00000000000001,
+            499.0,
+            374.0
+          ],
+          "area_pixels": 32131.0,
+          "scale": "large"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 0,
+          "nt_gt": 6,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.031622776601683784
+        },
+        {
+          "person_gt": 1,
+          "nt_gt": 6,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.2797483396905025
+        },
+        {
+          "person_gt": 2,
+          "nt_gt": 6,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.6852816599140769
+        },
+        {
+          "person_gt": 3,
+          "nt_gt": 6,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 1.2051742561866563
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 6,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 5.714187231750748
+        },
+        {
+          "person_gt": 5,
+          "nt_gt": 6,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 4.3797387137413395
+        }
+      ],
+      "strata": [
+        "adjacent_no_overlap",
+        "medium_person",
+        "multiple_person"
+      ],
+      "image_sha256": "6eb99a0134a9e150f5adf3cc9eac1db301542571382df9c2d3ee73554cbf434d",
+      "label_sha256": "fe4c2315bc49a39e0c3f236ea4490d4f2f222f080a13fd4fe3fa856f400641fc"
+    },
+    {
+      "image_id": "2009_000455",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_000455.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2009_000455.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 5,
+          "bbox": [
+            0.5630000000000001,
+            0.5306666666666666,
+            0.28200000000000003,
+            0.42666666666666664
+          ],
+          "xyxy": [
+            211.00000000000003,
+            118.99999999999999,
+            352.00000000000006,
+            279.0
+          ],
+          "area_pixels": 22560.000000000004,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.483,
+            0.5746666666666667,
+            0.038,
+            0.050666666666666665
+          ],
+          "xyxy": [
+            231.99999999999997,
+            206.0,
+            251.0,
+            225.0
+          ],
+          "area_pixels": 361.00000000000057,
+          "scale": "small"
+        },
+        {
+          "gt_index": 2,
+          "cls": 14,
+          "bbox": [
+            0.836,
+            0.5666666666666667,
+            0.02,
+            0.06133333333333333
+          ],
+          "xyxy": [
+            413.0,
+            201.0,
+            423.0,
+            223.99999999999997
+          ],
+          "area_pixels": 229.99999999999972,
+          "scale": "small"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 1,
+          "nt_gt": 0,
+          "intersection_over_person": 1.0,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 2,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 2.4322292796281455
+        }
+      ],
+      "strata": [
+        "high_overlap",
+        "small_person",
+        "multiple_person"
+      ],
+      "image_sha256": "b627c1598475cb676d86673b5c6a32abf1150178ae0b239d435e63ee9d79d232",
+      "label_sha256": "64d385bf16e4f7d92622343bf4e4fb7828f327300df88c10da0633e3279d8918"
+    },
+    {
+      "image_id": "2009_001479",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_001479.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2009_001479.txt",
+      "width": 339,
+      "height": 500,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 14,
+          "bbox": [
+            0.5206489675516224,
+            0.51,
+            0.8643067846607669,
+            0.704
+          ],
+          "xyxy": [
+            29.99999999999999,
+            79.00000000000001,
+            323.0,
+            431.0
+          ],
+          "area_pixels": 103136.0,
+          "scale": "large"
+        }
+      ],
+      "pairs": [],
+      "strata": [
+        "person_only",
+        "large_person"
+      ],
+      "image_sha256": "37690769ca0746b6c29490fd6e2d9f105a51c1c752a109301c5b609f9c332f6f",
+      "label_sha256": "6a575dd8d69f1a93ad9f25a16bf7892930e9916ffe51de99a59e494044f1e0ba"
+    },
+    {
+      "image_id": "2009_001865",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_001865.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2009_001865.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 14,
+          "bbox": [
+            0.812,
+            0.6613333333333333,
+            0.064,
+            0.224
+          ],
+          "xyxy": [
+            390.0,
+            206.0,
+            422.00000000000006,
+            290.0
+          ],
+          "area_pixels": 2688.0000000000045,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.758,
+            0.6906666666666667,
+            0.04,
+            0.192
+          ],
+          "xyxy": [
+            369.0,
+            223.0,
+            389.0,
+            295.0
+          ],
+          "area_pixels": 1440.0,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 2,
+          "cls": 18,
+          "bbox": [
+            0.499,
+            0.5373333333333333,
+            0.998,
+            0.27999999999999997
+          ],
+          "xyxy": [
+            0.0,
+            149.0,
+            499.0,
+            254.0
+          ],
+          "area_pixels": 52395.0,
+          "scale": "large"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 0,
+          "nt_gt": 2,
+          "intersection_over_person": 0.5714285714285715,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 1,
+          "nt_gt": 2,
+          "intersection_over_person": 0.4305555555555556,
+          "normalized_edge_gap": 0.0
+        }
+      ],
+      "strata": [
+        "high_overlap",
+        "medium_person",
+        "multiple_person"
+      ],
+      "image_sha256": "a8c9fcbaf378eeb230f2ae05ab0f76e399c7db39d3d7a3c81ba6a4ffddc3be90",
+      "label_sha256": "cdcf0dc71560d4d3fd49bb48a7114871e10aabc277b60a8734eb8f4dedf4c211"
+    },
+    {
+      "image_id": "2009_004645",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2009_004645.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2009_004645.txt",
+      "width": 372,
+      "height": 500,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 15,
+          "bbox": [
+            0.685483870967742,
+            0.136,
+            0.13978494623655915,
+            0.10400000000000001
+          ],
+          "xyxy": [
+            229.0,
+            42.0,
+            281.00000000000006,
+            94.0
+          ],
+          "area_pixels": 2704.0000000000027,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 1,
+          "cls": 15,
+          "bbox": [
+            0.6827956989247312,
+            0.233,
+            0.12903225806451613,
+            0.106
+          ],
+          "xyxy": [
+            230.00000000000006,
+            90.00000000000001,
+            278.0,
+            143.00000000000003
+          ],
+          "area_pixels": 2543.9999999999977,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 2,
+          "cls": 15,
+          "bbox": [
+            0.5860215053763441,
+            0.276,
+            0.08064516129032259,
+            0.06
+          ],
+          "xyxy": [
+            203.00000000000003,
+            123.00000000000001,
+            233.0,
+            153.00000000000003
+          ],
+          "area_pixels": 899.9999999999995,
+          "scale": "small"
+        },
+        {
+          "gt_index": 3,
+          "cls": 15,
+          "bbox": [
+            0.7983870967741936,
+            0.21,
+            0.10215053763440861,
+            0.10400000000000001
+          ],
+          "xyxy": [
+            278.00000000000006,
+            78.99999999999999,
+            316.0,
+            131.0
+          ],
+          "area_pixels": 1975.9999999999975,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 4,
+          "cls": 15,
+          "bbox": [
+            0.9193548387096775,
+            0.17300000000000001,
+            0.06451612903225806,
+            0.146
+          ],
+          "xyxy": [
+            330.00000000000006,
+            50.00000000000001,
+            354.0,
+            123.0
+          ],
+          "area_pixels": 1751.999999999996,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 5,
+          "cls": 14,
+          "bbox": [
+            0.7647849462365592,
+            0.72,
+            0.12634408602150538,
+            0.28800000000000003
+          ],
+          "xyxy": [
+            261.0,
+            288.0,
+            308.00000000000006,
+            432.0
+          ],
+          "area_pixels": 6768.000000000008,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 6,
+          "cls": 11,
+          "bbox": [
+            0.43817204301075274,
+            0.843,
+            0.08602150537634409,
+            0.058
+          ],
+          "xyxy": [
+            147.0,
+            407.0,
+            179.00000000000003,
+            436.0
+          ],
+          "area_pixels": 928.0000000000008,
+          "scale": "small"
+        },
+        {
+          "gt_index": 7,
+          "cls": 15,
+          "bbox": [
+            0.8575268817204301,
+            0.176,
+            0.08064516129032259,
+            0.12
+          ],
+          "xyxy": [
+            304.0,
+            57.99999999999999,
+            334.0,
+            118.0
+          ],
+          "area_pixels": 1800.0000000000002,
+          "scale": "medium"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 5,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 1.2807303429586678
+        },
+        {
+          "person_gt": 5,
+          "nt_gt": 1,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.9572469058196227
+        },
+        {
+          "person_gt": 5,
+          "nt_gt": 2,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.9101974287689159
+        },
+        {
+          "person_gt": 5,
+          "nt_gt": 3,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 1.036467339404695
+        },
+        {
+          "person_gt": 5,
+          "nt_gt": 4,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 1.0989208042313798
+        },
+        {
+          "person_gt": 5,
+          "nt_gt": 6,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.5413396294979934
+        },
+        {
+          "person_gt": 5,
+          "nt_gt": 7,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 1.1222894757885233
+        }
+      ],
+      "strata": [
+        "person_dog",
+        "medium_person"
+      ],
+      "image_sha256": "4f27dafe8d94b3d4a403d9a6cbde8f967fc49c707722edd3d35524a1d0ed11df",
+      "label_sha256": "a741c5455d1720b325494e4358b7fa8e73e73e8953a917fc5ca8e048b61e731e"
+    },
+    {
+      "image_id": "2010_001689",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_001689.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2010_001689.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 11,
+          "bbox": [
+            0.41100000000000003,
+            0.5533333333333333,
+            0.722,
+            0.7919999999999999
+          ],
+          "xyxy": [
+            25.00000000000002,
+            59.000000000000014,
+            386.0,
+            356.0
+          ],
+          "area_pixels": 107217.0,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.499,
+            0.4613333333333333,
+            0.998,
+            0.9226666666666666
+          ],
+          "xyxy": [
+            0.0,
+            0.0,
+            499.0,
+            346.0
+          ],
+          "area_pixels": 172654.0,
+          "scale": "large"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 1,
+          "nt_gt": 0,
+          "intersection_over_person": 0.6000845621879597,
+          "normalized_edge_gap": 0.0
+        }
+      ],
+      "strata": [
+        "person_dog",
+        "high_overlap",
+        "large_person"
+      ],
+      "image_sha256": "55286a34c19849b908b0806d68d8530d69593174b98c24b13e286471d6b5468a",
+      "label_sha256": "56a45389f6571e645fae1a111350cb50f01f27109b5f129e2ed3639de32d88dd"
+    },
+    {
+      "image_id": "2010_004838",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2010_004838.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2010_004838.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 14,
+          "bbox": [
+            0.442,
+            0.49866666666666665,
+            0.884,
+            0.9973333333333333
+          ],
+          "xyxy": [
+            0.0,
+            0.0,
+            442.0,
+            374.0
+          ],
+          "area_pixels": 165308.0,
+          "scale": "large"
+        }
+      ],
+      "pairs": [],
+      "strata": [
+        "person_only",
+        "large_person"
+      ],
+      "image_sha256": "9224e818bd30812d392180ec0c449626b0654af95e0c2525eaccc93d5cfd378e",
+      "label_sha256": "ebafc45b59f633bbc7e5e4c7be672ccb0d99ce1b8696615fb67d6391a147e8a0"
+    },
+    {
+      "image_id": "2011_001158",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_001158.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2011_001158.txt",
+      "width": 375,
+      "height": 500,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 0,
+          "bbox": [
+            0.124,
+            0.627,
+            0.248,
+            0.134
+          ],
+          "xyxy": [
+            0.0,
+            280.0,
+            93.0,
+            347.0
+          ],
+          "area_pixels": 6231.0,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 1,
+          "cls": 0,
+          "bbox": [
+            0.9133333333333333,
+            0.668,
+            0.16799999999999998,
+            0.052000000000000005
+          ],
+          "xyxy": [
+            311.0,
+            321.0,
+            374.0,
+            347.00000000000006
+          ],
+          "area_pixels": 1638.0000000000036,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 2,
+          "cls": 0,
+          "bbox": [
+            0.49866666666666665,
+            0.353,
+            0.9973333333333333,
+            0.55
+          ],
+          "xyxy": [
+            0.0,
+            38.99999999999998,
+            374.0,
+            314.0
+          ],
+          "area_pixels": 102850.0,
+          "scale": "large"
+        },
+        {
+          "gt_index": 3,
+          "cls": 14,
+          "bbox": [
+            0.44,
+            0.583,
+            0.4693333333333333,
+            0.65
+          ],
+          "xyxy": [
+            77.0,
+            128.99999999999997,
+            253.0,
+            453.99999999999994
+          ],
+          "area_pixels": 57200.0,
+          "scale": "large"
+        },
+        {
+          "gt_index": 4,
+          "cls": 14,
+          "bbox": [
+            0.6186666666666667,
+            0.617,
+            0.288,
+            0.586
+          ],
+          "xyxy": [
+            178.0,
+            162.0,
+            286.0,
+            454.99999999999994
+          ],
+          "area_pixels": 31643.999999999993,
+          "scale": "large"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 3,
+          "nt_gt": 0,
+          "intersection_over_person": 0.018741258741258742,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 3,
+          "nt_gt": 1,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.15692822201040366
+        },
+        {
+          "person_gt": 3,
+          "nt_gt": 2,
+          "intersection_over_person": 0.5692307692307693,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.27219971542580107
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 1,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.08005873983111797
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 2,
+          "intersection_over_person": 0.5187713310580206,
+          "normalized_edge_gap": 0.0
+        }
+      ],
+      "strata": [
+        "high_overlap",
+        "large_person",
+        "multiple_person"
+      ],
+      "image_sha256": "0ec1bcf4fcfc8773509775217aa7fb1b8dc56bac7c5e9a51b257e0fd91eaf9e5",
+      "label_sha256": "cb7e4a59998637f27dcd2ae4f3652e65c6d30d1bbd4341fffbbd0eab94213af3"
+    },
+    {
+      "image_id": "2011_001227",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_001227.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2011_001227.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 5,
+          "bbox": [
+            0.502,
+            0.5506666666666666,
+            0.636,
+            0.728
+          ],
+          "xyxy": [
+            92.0,
+            69.99999999999999,
+            410.00000000000006,
+            343.0
+          ],
+          "area_pixels": 86814.00000000001,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 5,
+          "bbox": [
+            0.196,
+            0.604,
+            0.164,
+            0.2906666666666667
+          ],
+          "xyxy": [
+            57.0,
+            172.0,
+            139.0,
+            281.0
+          ],
+          "area_pixels": 8938.0,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 2,
+          "cls": 6,
+          "bbox": [
+            0.041,
+            0.6453333333333333,
+            0.082,
+            0.27199999999999996
+          ],
+          "xyxy": [
+            0.0,
+            191.0,
+            41.0,
+            293.0
+          ],
+          "area_pixels": 4182.0,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 3,
+          "cls": 14,
+          "bbox": [
+            0.326,
+            0.496,
+            0.12,
+            0.11733333333333333
+          ],
+          "xyxy": [
+            133.0,
+            164.0,
+            193.0,
+            208.0
+          ],
+          "area_pixels": 2640.0,
+          "scale": "medium"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 3,
+          "nt_gt": 0,
+          "intersection_over_person": 1.0,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 3,
+          "nt_gt": 1,
+          "intersection_over_person": 0.08181818181818182,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 3,
+          "nt_gt": 2,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 1.2364876603120818
+        }
+      ],
+      "strata": [
+        "high_overlap",
+        "medium_person"
+      ],
+      "image_sha256": "287f690eb3f1ddeeddde529fccb067eddab4ca663df98f40f76dd66274f0970a",
+      "label_sha256": "8dc3bcc926537e53a602485239435266eae2d60e0437143c1b3742897d076885"
+    },
+    {
+      "image_id": "2011_001529",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_001529.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2011_001529.txt",
+      "width": 375,
+      "height": 500,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 1,
+          "bbox": [
+            0.5653333333333334,
+            0.425,
+            0.17066666666666666,
+            0.19
+          ],
+          "xyxy": [
+            180.0,
+            164.99999999999997,
+            244.00000000000003,
+            260.0
+          ],
+          "area_pixels": 6080.000000000005,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.5706666666666667,
+            0.369,
+            0.17066666666666666,
+            0.234
+          ],
+          "xyxy": [
+            182.0,
+            126.0,
+            246.0,
+            243.0
+          ],
+          "area_pixels": 7488.0,
+          "scale": "medium"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 1,
+          "nt_gt": 0,
+          "intersection_over_person": 0.6458333333333338,
+          "normalized_edge_gap": 0.0
+        }
+      ],
+      "strata": [
+        "person_bicycle",
+        "high_overlap",
+        "medium_person"
+      ],
+      "image_sha256": "505c09c56cdf544b3784733b41b702201df604d7d5be612309d293a15d1ceefe",
+      "label_sha256": "265302e52126a8cc90be2c8e7c6c3be25ff9ab38f5267a7009833ab206e2c70e"
+    },
+    {
+      "image_id": "2011_002455",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_002455.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2011_002455.txt",
+      "width": 333,
+      "height": 500,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 1,
+          "bbox": [
+            0.34534534534534533,
+            0.7000000000000001,
+            0.4264264264264264,
+            0.54
+          ],
+          "xyxy": [
+            44.0,
+            215.00000000000003,
+            185.99999999999997,
+            485.00000000000006
+          ],
+          "area_pixels": 38339.99999999999,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.5525525525525525,
+            0.536,
+            0.43843843843843844,
+            0.76
+          ],
+          "xyxy": [
+            111.0,
+            78.00000000000001,
+            257.0,
+            458.0
+          ],
+          "area_pixels": 55480.0,
+          "scale": "large"
+        },
+        {
+          "gt_index": 2,
+          "cls": 14,
+          "bbox": [
+            0.8933933933933934,
+            0.3,
+            0.08108108108108109,
+            0.12
+          ],
+          "xyxy": [
+            284.0,
+            120.0,
+            311.0,
+            180.0
+          ],
+          "area_pixels": 1620.0,
+          "scale": "medium"
+        },
+        {
+          "gt_index": 3,
+          "cls": 14,
+          "bbox": [
+            0.8423423423423423,
+            0.28500000000000003,
+            0.05105105105105105,
+            0.10200000000000001
+          ],
+          "xyxy": [
+            271.99999999999994,
+            117.00000000000001,
+            289.0,
+            168.0
+          ],
+          "area_pixels": 867.0000000000026,
+          "scale": "small"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 1,
+          "nt_gt": 0,
+          "intersection_over_person": 0.328496755587599,
+          "normalized_edge_gap": 0.0
+        },
+        {
+          "person_gt": 2,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 1.581613575277319
+        },
+        {
+          "person_gt": 3,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 1.8230549667425568
+        }
+      ],
+      "strata": [
+        "person_bicycle",
+        "high_overlap",
+        "small_person",
+        "medium_person",
+        "large_person",
+        "multiple_person"
+      ],
+      "image_sha256": "5207f221a609ab0f95d1cf80624f0987c7abb8bce84aa4e32dac930d697b0537",
+      "label_sha256": "30fb42d4302508490e143ca97b8b174fd8d93e2f0829c8291907d798ed6d3c2b"
+    },
+    {
+      "image_id": "2011_002511",
+      "image_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2011_002511.jpg",
+      "label_path": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/labels/train/2011_002511.txt",
+      "width": 500,
+      "height": 375,
+      "annotations": [
+        {
+          "gt_index": 0,
+          "cls": 19,
+          "bbox": [
+            0.872,
+            0.15733333333333333,
+            0.252,
+            0.31466666666666665
+          ],
+          "xyxy": [
+            373.0,
+            0.0,
+            499.0,
+            118.0
+          ],
+          "area_pixels": 14868.0,
+          "scale": "large"
+        },
+        {
+          "gt_index": 1,
+          "cls": 14,
+          "bbox": [
+            0.8140000000000001,
+            0.6626666666666666,
+            0.368,
+            0.6693333333333333
+          ],
+          "xyxy": [
+            315.00000000000006,
+            122.99999999999999,
+            499.0,
+            374.0
+          ],
+          "area_pixels": 46183.999999999985,
+          "scale": "large"
+        },
+        {
+          "gt_index": 2,
+          "cls": 14,
+          "bbox": [
+            0.5630000000000001,
+            0.256,
+            0.262,
+            0.4373333333333333
+          ],
+          "xyxy": [
+            216.00000000000003,
+            14.000000000000009,
+            347.00000000000006,
+            178.0
+          ],
+          "area_pixels": 21484.000000000004,
+          "scale": "large"
+        },
+        {
+          "gt_index": 3,
+          "cls": 14,
+          "bbox": [
+            0.203,
+            0.5626666666666666,
+            0.402,
+            0.6506666666666666
+          ],
+          "xyxy": [
+            1.0000000000000009,
+            89.0,
+            202.0,
+            332.99999999999994
+          ],
+          "area_pixels": 49043.999999999985,
+          "scale": "large"
+        },
+        {
+          "gt_index": 4,
+          "cls": 14,
+          "bbox": [
+            0.232,
+            0.49066666666666664,
+            0.332,
+            0.48533333333333334
+          ],
+          "xyxy": [
+            33.0,
+            92.99999999999999,
+            199.0,
+            275.0
+          ],
+          "area_pixels": 30212.0,
+          "scale": "large"
+        }
+      ],
+      "pairs": [
+        {
+          "person_gt": 1,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.01606587921939365
+        },
+        {
+          "person_gt": 2,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.12386992863891169
+        },
+        {
+          "person_gt": 3,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.5409198965010359
+        },
+        {
+          "person_gt": 4,
+          "nt_gt": 0,
+          "intersection_over_person": 0.0,
+          "normalized_edge_gap": 0.7063605925801387
+        }
+      ],
+      "strata": [
+        "adjacent_no_overlap",
+        "large_person",
+        "multiple_person"
+      ],
+      "image_sha256": "3d5b6013c4deade18a90b872d876583807d37d3ee020e2bddb57d72efd798cd3",
+      "label_sha256": "6d05a103ff2856c10de142dc42754fef702c04e9780463708be842990cc361df"
+    }
+  ],
+  "selector_sha256": "358c69521e8aa048536f25f6cd0bb5ce86709fcd30f4ffe851c442ed38d9c064"
+}

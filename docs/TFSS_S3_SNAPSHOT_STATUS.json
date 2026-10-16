@@ -1,0 +1,56 @@
+{
+  "observed_at_unix": 1792157453.3751442,
+  "run_id": "s3_cnlp_cup_s0_eps8_person_seed0_20261015_v1",
+  "source_commit": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+  "working_tree_clean": true,
+  "pipeline": {
+    "state": "running",
+    "stage": "noise_generation",
+    "started_at_unix": 1792114977.5712395,
+    "run_id": "s3_cnlp_cup_s0_eps8_person_seed0_20261015_v1",
+    "source_commit": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+    "primary": "last.pt@200",
+    "secondary": "best.pt",
+    "noise_time_policy": "finish_registered_24_epochs"
+  },
+  "noise": {
+    "state": "running",
+    "epoch": 17,
+    "steps": 6236,
+    "elapsed_seconds": 42368.02261579875,
+    "identity": {
+      "parent_config_sha256": "80cffe012aa6bfefcbe66f7c8e880e680da1c1885f5d0a7fcb01a77be6697894",
+      "parent_selection_sha256": "39a5efc58ebd57f0e606f6b10d6aa591b89076cea440d7d997ab8b1ee59e4885",
+      "budget_mode": "original_fixed8_4_0",
+      "source_commit": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+      "config_lock_sha256": "bd89244e22795b85139d1dee793b13c1faf44306557c083f546639ec666b6fb8",
+      "prototypes_sha256": "12889ba0f80b29c194a59bd9eb2a6d8b137e9aa4977fdb94ad84444628b316a7",
+      "calibration_sha256": "2cb81873f41bb0d1c6eae7e31978efcfa282cca48155b2503f2e16519e8d5610",
+      "ordered_images_sha256": "4e8a4d8bd2e04b0eb739a578f6722cbfb0eff26896380b62de8a93f0bc651ce7",
+      "counterfactual_config": {
+        "inner_steps": 1,
+        "inner_lr": 0.0001,
+        "lambda_cnlp": 0.058485507823134296,
+        "target_class_id": 14,
+        "num_classes": 20,
+        "matching_policy": "native_shared_gt_coverage_v2"
+      },
+      "cup_config": {
+        "beta": 0.95,
+        "temperature": 0.0003758072853088379,
+        "min_weight_factor": 0.5,
+        "max_weight_factor": 2.0,
+        "damage_clip": 0.0010146975517272938
+      },
+      "train_query": {
+        "manifest_sha256": "7ea21929d1e1d89aff8e345ed1c7ddd58367c0bad4c9f71574487a19e33a831f",
+        "batch_size": 1,
+        "seed": 0
+      }
+    }
+  },
+  "checkpoint_step": 6200,
+  "gpu_count": 1,
+  "gpu_name": "RTX A6000",
+  "source_process_cwd_matches_bound_repo": true
+}

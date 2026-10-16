@@ -41,3 +41,12 @@ Ultralytics/
 .harness-local/
 .agents/harness/config/research-memory.json
 .agents/harness/.memory/
+
+# TFSS isolated local control and generated large artifacts
+execution/
+*.safetensors
+*.onnx
+*.ckpt
+*.log
+.env
+.env.*

@@ -1,5 +1,11 @@
 # S2/S3 模块变更记录
 
+## 2026-10-16 当前状态覆盖
+
+下文UNSET/未部署/NOT_RUN为开发时历史记录，当前以本段、STATE、两份CONFIG_LOCK及验收证据为准。CNLP-003 native_shared_gt_coverage_v2已完成固定38case标定重放及实际生产匹配边界覆盖；原Parent45文件不变。J1/J3/J5全部准入，按冻结最小通过规则选J1；lambda=.058485507823134296，CUP beta=.95/temperature=.0003758072853088379/signedclip=.0010146975517272938/相对界[.5,2]已在S2前冻结。实际Parent-lambda0等价0、3→5生产恢复0、PNG/labels通过，一次独立审查scientifically_correct/allow_run（execution/lean_review_20261015/INDEPENDENT_REVIEW.md）。没有额外科学审查。
+
+S2已完整noise24/9144、全量数据审计、随机victim200、last主/best次全VOC20评价并归档至docs/s2_archive，报告docs/S2_TRAINING_REPORT.md。S2目标AP50比S0高1.137504pp、NT低.257547pp，不宣称改善或因果机制。S3仅在S2验收归档后按原锁独立初始化启动一次；source0175916和计算/参数完全不变，参见docs/S3_TRAINING_REPORT.md。2026-10-16本轮只新增结果归档/报告和未启动RunSpec的报告路径白名单，未新增算法修复、数值修复或效率优化，未修改已运行源代码/历史数据，未GitHub发布。
+
 原 S0/S1 源码及其运行产物均未修改。2026-10-15 完整 S1 归档后已按原规则选 S0；所有新设计仍需真实 train 准入。
 
 | ID | 类别 | 改动及理由 | 数值/验证范围 | 原机制与可比性 |

@@ -1,3 +1,11 @@
+# 2026-10-15 当前CUP提案（以下旧草案作为历史）
+
+beta=.95，temperature=0.0003758072853088379，damage_clip=0.0010146975517272938，有效类相对uniform权重[.5,2]。来自固定train-only损伤的预注册median/Q95规则，未用validation AP挑类或调参。与S2同Parent/SameCNLP/J1/lambda0.058485507823134296，S3独立原Fourier初始化，不接续S2噪声。历史全零起始，第一次观察直接初始化，缺席不变；每个成功Adam step之后提交一次EOT平均损伤，weights使用pre-step detached EMA，bounded simplex严格sum1。
+
+实际GPU作用：10步/20EOT固定多类别query中12批的weighted-vs-uniform Fourier梯度不同，CUP steps10；只证明sink可达，不证明最终utility/AP、稀有类性能或Person-to-Dog FP改善。真实5步/3→5恢复checkpoint差0/日志byte-identical；完整dataset/200epoch victim仍NOT_RUN。19类真实train damage CPU replay通过，属于CPU replay，不是19类GPU训练。
+
+---
+
 # CUP 实现草案
 
 状态：DRAFT；正式 CUP 参数和真实训练类间尺度/少样本审计 NOT_RUN。

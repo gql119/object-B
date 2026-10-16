@@ -1,0 +1,3195 @@
+{
+  "source_base": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 496,
+      "sha256": "fac2fded9e23444dcea8f3c96ecb76689fe7a337cf7f0f5dfa689fa7c985014c"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 839,
+      "sha256": "47ee8404a88a9a7fa38b447fe24c0b317c8fdec2266c4c1f85cf88af9317f522"
+    },
+    {
+      "path": ".local_runtime/.gitignore",
+      "bytes": 16,
+      "sha256": "4bb38be6d6d9ef0d2f9bcc339850ff48d821eccfa739369402b354c9ba946ea2"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2196,
+      "sha256": "9c2e3998eff601a6d77131db27f8c3ba7d06acfac2a71147d918450ec897fb65"
+    },
+    {
+      "path": "b2_frozen_source_manifest.json",
+      "bytes": 458,
+      "sha256": "ad7d022a9a8da4153c845e7364e4193925127e39f9f237a7e1fc224ce64e178d"
+    },
+    {
+      "path": "configs/s1_csb_gt_coverage_v2.json",
+      "bytes": 853,
+      "sha256": "e9e2cab397bd22b682476ab4f4e7e52ae4badf59461028e57736f146d37cd456"
+    },
+    {
+      "path": "configs/s1_csb_initial.json",
+      "bytes": 848,
+      "sha256": "a1d8cb35f19ab66a6e2f8c9b636227a4e05ed63a93a9d31bd88addb1282aec21"
+    },
+    {
+      "path": "configs/s1_csb_locked.json",
+      "bytes": 734,
+      "sha256": "d931617339b0c5ff94b202e6620dfe0ab4b8d297530015e6b8078f10b55eba58"
+    },
+    {
+      "path": "configs/s2_s3_counterfactual_draft.json",
+      "bytes": 2592,
+      "sha256": "ec4dbae15841d4b90c3840dcb8f67fdb9135a358e0e778a6cdd2088dbbd6c9c6"
+    },
+    {
+      "path": "configs/s2_s3_train_proposal_20261015.json",
+      "bytes": 1043,
+      "sha256": "7754b300620c79147d91a55d43b9cc8abd19ff5dbbd7ad0c401bed695008d5bc"
+    },
+    {
+      "path": "configs/s2_s3_train_proposal_coverage_v2_20261015.json",
+      "bytes": 1102,
+      "sha256": "a48806c4685b53193b219d9f727abdfda644d6ef31d3caa18b1c8df583e5ae7a"
+    },
+    {
+      "path": "configs/voc_yolov8n_20cls.yaml",
+      "bytes": 925,
+      "sha256": "ce7ae30a91e838a1d53fd4773afc3b56454591701e3f83d37f404cc946af10a2"
+    },
+    {
+      "path": "diagnostics/run_spatial.py",
+      "bytes": 36146,
+      "sha256": "acd55a6e321306a9510b904c5ed1650aff9b0b32620a7d39b9bd43f1bceb7edd"
+    },
+    {
+      "path": "diagnostics/select_spatial_samples.py",
+      "bytes": 5343,
+      "sha256": "358c69521e8aa048536f25f6cd0bb5ce86709fcd30f4ffe851c442ed38d9c064"
+    },
+    {
+      "path": "diagnostics/spatial_math.py",
+      "bytes": 6010,
+      "sha256": "43bcbecb042d1c2c64b605288c71798931e18a75fb73d037be405be06478d453"
+    },
+    {
+      "path": "docs/CNLP_ADMISSION_PREREGISTRATION_20261015.md",
+      "bytes": 3155,
+      "sha256": "de16e0ce5bef4e184ad0cf8af5fa8a4adf0a2f47bc7070ae434297d47ffd7cdf"
+    },
+    {
+      "path": "docs/CNLP_CALIBRATION_STATUS_20261015.md",
+      "bytes": 3476,
+      "sha256": "df355222e632c284b7fe5733e951120d1efd5334740967e6cbd8a88abfcd0e08"
+    },
+    {
+      "path": "docs/CNLP_COVERAGE_DESIGN_ADJUSTMENT_20261015.md",
+      "bytes": 2762,
+      "sha256": "b6e1a1126658bc35895a8751776564ece7bb897ca1635c045b58e09309f4b21d"
+    },
+    {
+      "path": "docs/CNLP_DESIGN.md",
+      "bytes": 3629,
+      "sha256": "96fd82971107760524fc4cf11bb84f8d04a9d978dba10571cc44560c030254f8"
+    },
+    {
+      "path": "docs/CNLP_GRADIENT_AUDIT.md",
+      "bytes": 2190,
+      "sha256": "052b2082edcb26b897b1a2400504039279d1542d136b09ee19ad6129b35738ff"
+    },
+    {
+      "path": "docs/CNLP_MATCHED_PROXY_PREREGISTRATION_20261015.md",
+      "bytes": 876,
+      "sha256": "41db557560e7fb4961e68e9a4f9c8b17866dfa8cf2cd741709ea7a40a977ec41"
+    },
+    {
+      "path": "docs/CNLP_MATCHING_EDGE_TRAIN_EVIDENCE.json",
+      "bytes": 3516,
+      "sha256": "c506d7853676fc871d947853eb686de0e8099a4c9e0c34ea06aa8a03da551646"
+    },
+    {
+      "path": "docs/CUP_CLASSWISE_AUDIT.md",
+      "bytes": 1744,
+      "sha256": "f87442fdaea9a18041e34f2836d92d3e2094aa7a4f07b3b2c8c557bb751cb23a"
+    },
+    {
+      "path": "docs/CUP_DESIGN.md",
+      "bytes": 2685,
+      "sha256": "f502aa9a456f897cf0cb39e2f95f1e35ce97090af54cc2c838b47d7cac4a2f4b"
+    },
+    {
+      "path": "docs/CUP_SINK_ADMISSION_20261015.md",
+      "bytes": 1663,
+      "sha256": "097dfde576aaf2254815fe1f04a308f504d12dace45357175b7a309c749bb9b6"
+    },
+    {
+      "path": "docs/MODULE_CHANGELOG.md",
+      "bytes": 5158,
+      "sha256": "d6ad6baa14e06ae7eae7cffa63451391f31ac8a57e052e896621514c934d0d0e"
+    },
+    {
+      "path": "docs/S1_CSB_CHANGELOG.md",
+      "bytes": 13111,
+      "sha256": "90d220d046f3d97529327324a9d0f6240957466345da38f8b198d6c194204e3c"
+    },
+    {
+      "path": "docs/S1_CSB_CORRECTNESS_AUDIT.md",
+      "bytes": 3097,
+      "sha256": "6ba910daa008904f12aae7b6f9664a5692eec5c03c664c41c4991d0aca47edb7"
+    },
+    {
+      "path": "docs/S1_CSB_DESIGN.md",
+      "bytes": 7501,
+      "sha256": "08e2cb2713b260d3360009697c34709e11a33ccac9cda09d3cd7ec87db2a5d58"
+    },
+    {
+      "path": "docs/S1_CSB_FINAL_REPORT.md",
+      "bytes": 3279,
+      "sha256": "11b473ca50ca9d16d5f494e3590d267aa021e6f618c66fd98419de5efa972a0c"
+    },
+    {
+      "path": "docs/S2_CONFIG_LOCK.json",
+      "bytes": 3436,
+      "sha256": "d408ee2d3a2cbd3b1945c64d414fd824f4d40e53db61899c7f3b4d65967b3b01"
+    },
+    {
+      "path": "docs/S2_S3_CODE_PREPARATION.md",
+      "bytes": 5349,
+      "sha256": "5e71c5ae13f99fa9c9ceddf0508c197266719369b7f07bb3a4b02bfa58136a83"
+    },
+    {
+      "path": "docs/S2_S3_CPU_VALIDATION.json",
+      "bytes": 2396,
+      "sha256": "7057da5580a5b7d296630a3fb065eb676fc095991c3c99353f8b46b10b8cc0de"
+    },
+    {
+      "path": "docs/S2_S3_CPU_VALIDATION_20261015.json",
+      "bytes": 434,
+      "sha256": "6b25739cea3503818e7f79681cfd71cf66311048df400ae3ee1a1ecb8074af48"
+    },
+    {
+      "path": "docs/S2_TRAINING_REPORT.md",
+      "bytes": 3718,
+      "sha256": "ceba63697b9ac488d23090d3dd982536fd229dd6f06227b5b55faa471a064e50"
+    },
+    {
+      "path": "docs/S3_CONFIG_LOCK.json",
+      "bytes": 3612,
+      "sha256": "bd89244e22795b85139d1dee793b13c1faf44306557c083f546639ec666b6fb8"
+    },
+    {
+      "path": "docs/S3_TRAINING_REPORT.md",
+      "bytes": 2016,
+      "sha256": "98a15e6da5d9dfeb4527b9d0dc6bd8c7a227608ab6ca8328bfff7526c52b8937"
+    },
+    {
+      "path": "docs/TFSS_S3_SNAPSHOT_STATUS.json",
+      "bytes": 2214,
+      "sha256": "9c2b404f55f0e28efb29ee0170d5ccb98dd87a49ca7e9c106ee64359f1e00cfb"
+    },
+    {
+      "path": "docs/cnlp_calibration/CNLP_TRAIN_CALIBRATION_ANALYSIS.json",
+      "bytes": 118698,
+      "sha256": "2cb81873f41bb0d1c6eae7e31978efcfa282cca48155b2503f2e16519e8d5610"
+    },
+    {
+      "path": "docs/cnlp_calibration/cnlp_unitgrad_J1_train38_seed0_20261015_v2/calibration_rows.json",
+      "bytes": 60697,
+      "sha256": "6ad51fdc4b8b4087e45699d7903966b23f153e8da180448cf02c9e003372ffd4"
+    },
+    {
+      "path": "docs/cnlp_calibration/cnlp_unitgrad_J1_train38_seed0_20261015_v2/case_gradients.json",
+      "bytes": 19093,
+      "sha256": "3112ae986b016eba12fb55eb3db326bf3e1f9c70fe802eb12d87e8d843394ec3"
+    },
+    {
+      "path": "docs/cnlp_calibration/cnlp_unitgrad_J1_train38_seed0_20261015_v2/fixed_train_plan.json",
+      "bytes": 78014,
+      "sha256": "b513e553afa03af6eff550eeefe8d5bdc94ddb6e9f7c6fbde70c4375657fa780"
+    },
+    {
+      "path": "docs/cnlp_calibration/cnlp_unitgrad_J1_train38_seed0_20261015_v2/smoke_summary.json",
+      "bytes": 1379,
+      "sha256": "23d8c801c36e267df799a5cc67b1a9b9a5ec27a14e78dc71dbb698ef08ed9c1d"
+    },
+    {
+      "path": "docs/cnlp_calibration/cnlp_unitgrad_J3_train38_seed0_20261015_v2/calibration_rows.json",
+      "bytes": 61033,
+      "sha256": "ea0b4fc5c543c1c4b3aa080c30505ba9e50f9b6558e454cae9105f3681205a5c"
+    },
+    {
+      "path": "docs/cnlp_calibration/cnlp_unitgrad_J3_train38_seed0_20261015_v2/case_gradients.json",
+      "bytes": 19206,
+      "sha256": "57c5910770aba87702f3b52b50cd34ba0229299987e0b703460d1bcf4b4d3c49"
+    },
+    {
+      "path": "docs/cnlp_calibration/cnlp_unitgrad_J3_train38_seed0_20261015_v2/fixed_train_plan.json",
+      "bytes": 78014,
+      "sha256": "b513e553afa03af6eff550eeefe8d5bdc94ddb6e9f7c6fbde70c4375657fa780"
+    },
+    {
+      "path": "docs/cnlp_calibration/cnlp_unitgrad_J3_train38_seed0_20261015_v2/smoke_summary.json",
+      "bytes": 1379,
+      "sha256": "5e3e9b0632d21edaae8bf6c8bf099cdffe23567d3a747885ebbb21a4925e03ac"
+    },
+    {
+      "path": "docs/cnlp_calibration/cnlp_unitgrad_J5_train38_seed0_20261015_v2/calibration_rows.json",
+      "bytes": 60486,
+      "sha256": "ba9dafcaa94fe062a86068811be38460d69f16ee66b4c56c439a1efaade82df0"
+    },
+    {
+      "path": "docs/cnlp_calibration/cnlp_unitgrad_J5_train38_seed0_20261015_v2/case_gradients.json",
+      "bytes": 19049,
+      "sha256": "0f70bc328868db61cd7142dcedb6eda203852b2a4e4693c8972ca6f94850a29c"
+    },
+    {
+      "path": "docs/cnlp_calibration/cnlp_unitgrad_J5_train38_seed0_20261015_v2/fixed_train_plan.json",
+      "bytes": 78014,
+      "sha256": "b513e553afa03af6eff550eeefe8d5bdc94ddb6e9f7c6fbde70c4375657fa780"
+    },
+    {
+      "path": "docs/cnlp_calibration/cnlp_unitgrad_J5_train38_seed0_20261015_v2/smoke_summary.json",
+      "bytes": 1380,
+      "sha256": "ee9c169cc31346e6ed7f11d22fc0b85a99664ac4512b5de2c001acb54a1bbdd0"
+    },
+    {
+      "path": "docs/s1_archive/S1_FINAL_REPORT.md",
+      "bytes": 3247,
+      "sha256": "2611602f65b527fd2e10c32fd34bc18b70e655bbdee4e2416edfe0f4c8e509c0"
+    },
+    {
+      "path": "docs/s1_archive/VOC20_FULL_METRICS.csv",
+      "bytes": 9293,
+      "sha256": "ba90a3a266cc2c89d83774f1305dfeff8e3e7d90e700a1b2c71fdc407bfa70aa"
+    },
+    {
+      "path": "docs/s1_archive/raw/artifact_manifest.json",
+      "bytes": 1141,
+      "sha256": "2058142279c302ff780a3aea8ca94bd40e2ecd1517e0450a18f0d8e1184512a1"
+    },
+    {
+      "path": "docs/s1_archive/raw/comparison.json",
+      "bytes": 23359,
+      "sha256": "b027eaf5a32219964df267e7eb75d128ee5d6427f7512509edad755950c82cf0"
+    },
+    {
+      "path": "docs/s1_archive/raw/dataset_integrity.json",
+      "bytes": 928769,
+      "sha256": "456f6241b7c28898989028da92e04e6df62678a9a2f8fe9ec70d4eb5b538ccc2"
+    },
+    {
+      "path": "docs/s1_archive/raw/pipeline_status.json",
+      "bytes": 366,
+      "sha256": "ac59505fb57769cdbe7c01ddcb649eb499089c7991db26037aa7f7475fb2f9c2"
+    },
+    {
+      "path": "docs/s1_archive/raw/source_audit.json",
+      "bytes": 294,
+      "sha256": "ca3a197db77e9f69704e9be30d80fe4fc5e9c8a6faf4c90a77cd478c5d8e50f7"
+    },
+    {
+      "path": "docs/s1_archive/raw/victim_run_spec.json",
+      "bytes": 1409,
+      "sha256": "f34f1ebffc55f6125f80fb642055a63710f4b6505c6a29689c936eac57b6d6f0"
+    },
+    {
+      "path": "docs/s1_archive/raw/voc20_comparison.csv",
+      "bytes": 6551,
+      "sha256": "329490748f5e71d1c8743be9391efd2ea3b37b46919032af4fb240b095fa385f"
+    },
+    {
+      "path": "docs/s1_archive/s0_history_verification_20261015.json",
+      "bytes": 5519,
+      "sha256": "de4b178ba560251979f424c9f47db5bdcd7dd75fca9baff5e61d6e0f0aa7c03e"
+    },
+    {
+      "path": "docs/s1_archive/verification_20261015.json",
+      "bytes": 23301,
+      "sha256": "2f9877b4867f5430772ebf3a4e896b2ef9effa66bc08ca65279b3847f190f389"
+    },
+    {
+      "path": "docs/s1_evidence/mechanism_v2.json",
+      "bytes": 94964,
+      "sha256": "87804fc295971bfd06636e9dbf0ec6dd2393b6f16ac54476ac6b9bf659122dc0"
+    },
+    {
+      "path": "docs/s1_evidence/parent_equivalence_v2.json",
+      "bytes": 231462,
+      "sha256": "aa3447065f7e0a2a2d0c51f42ea44cd5ff9d8faa2cab4a24c51f29d701a266ed"
+    },
+    {
+      "path": "docs/s1_evidence/parent_remote_identity.json",
+      "bytes": 27625,
+      "sha256": "46c02a8bb5cb53625aa9998dfdc4c3b14598508bfabf7af224457a301e8db07c"
+    },
+    {
+      "path": "docs/s1_evidence/spatial_v1_manifest.json",
+      "bytes": 23268,
+      "sha256": "6222ae9e669be487043a7f9e35a4821c757978856f59e768df85d79450c286c6"
+    },
+    {
+      "path": "docs/s1_evidence/spatial_v1_selection.json",
+      "bytes": 1727,
+      "sha256": "495a15aba53aaff145262c64ceed069ef28611cb89568687144a3428212a49be"
+    },
+    {
+      "path": "docs/s1_evidence/spatial_v1_sensitivity_objects.csv",
+      "bytes": 4876,
+      "sha256": "992291038a4f1b8aeb170ae7afb62acfbad057dccbcb2b674bc5298e466249c7"
+    },
+    {
+      "path": "docs/s1_evidence/spatial_v1_smoke_summary.json",
+      "bytes": 35530,
+      "sha256": "1a6abe4367c2c904a6c096053722204198fc810a759777bf217e4c325d9175ec"
+    },
+    {
+      "path": "docs/s1_evidence/spatial_v1_spatial_budget.csv",
+      "bytes": 11758,
+      "sha256": "ad2af1f87ccc7d2ec849814b74c571d159111cc80fee29e17873a9b51f0e3323"
+    },
+    {
+      "path": "docs/tsfl_diagnostic_reference/DIAGNOSTIC_CONFIG.json",
+      "bytes": 2296,
+      "sha256": "1aa0acc6048c8f8045c15d3e1faa3d7a52e2e8e9d75e2bb2bf2b8e63ec47eb5c"
+    },
+    {
+      "path": "docs/tsfl_diagnostic_reference/DIAGNOSTIC_SUMMARY.md",
+      "bytes": 10660,
+      "sha256": "3bc2843bb73f1081a690fe48b2fe53a8b5de7911945a6aea90fc815da2efb183"
+    },
+    {
+      "path": "docs/tsfl_diagnostic_reference/FINAL_RECOMMENDATION.md",
+      "bytes": 8315,
+      "sha256": "71815488da88678e7dd70e7861ac821c63689cf1561d4e1e855bc9fa0e2c733b"
+    },
+    {
+      "path": "docs/tsfl_diagnostic_reference/FIXED_TRAIN_SAMPLE_MANIFEST.json",
+      "bytes": 85186,
+      "sha256": "3becd3c5c9338dfb887da6163df8063a8ed44303dbacc4351f15e5ba376be5a1"
+    },
+    {
+      "path": "docs/tsfl_diagnostic_reference/SOURCE_AUDIT.md",
+      "bytes": 11642,
+      "sha256": "06ffc0fad3e75dff19eb123210fc6f56134ea625897c3b41210ac79e83625011"
+    },
+    {
+      "path": "docs/tsfl_diagnostic_reference/SOURCE_METADATA.json",
+      "bytes": 14813,
+      "sha256": "82f0ec7f834b35a9a899d0e13e4ed2584ce74699b783bc437de8b7f652ecf847"
+    },
+    {
+      "path": "experiments/b2_20260926/README.md",
+      "bytes": 3144,
+      "sha256": "628881b37dbff0f1a5b1e64626753b213ced9aa1ab29e197203bd401e7fbd1df"
+    },
+    {
+      "path": "experiments/b2_20260926/metrics.json",
+      "bytes": 4040,
+      "sha256": "bbec7d4395f931216070f46f0ec56446917b49cbad2281c27bd7cfc997f3af47"
+    },
+    {
+      "path": "experiments/b2_t_20260926/README.md",
+      "bytes": 3390,
+      "sha256": "9d17ba0881746d0ffdea49bdbef002ae9c0a1f3750a46a4201e7d6222ff7ca34"
+    },
+    {
+      "path": "experiments/b2_t_20260926/metrics.json",
+      "bytes": 9526,
+      "sha256": "d603be721fa14f56e822a3332cba7cdbe857162c054f80874adfec681e3debf4"
+    },
+    {
+      "path": "experiments/b2_t_20260926/preflight_summary.json",
+      "bytes": 982,
+      "sha256": "2eb856d72093c7fe056e24425a20d07f86428b78622364cbf130d6b64b0aa25d"
+    },
+    {
+      "path": "experiments/b2_t_20260926/provenance.json",
+      "bytes": 1651,
+      "sha256": "80107c5fac4a8df532025af132b6fdf95c8b0a30f9b51d03594fd9ef829f722d"
+    },
+    {
+      "path": "experiments/b2_t_20260926/results.csv",
+      "bytes": 25097,
+      "sha256": "aa7ec29f630f23b8b1c516bdf3f17efe945295f3cb2a361f4be2d3971b473ef6"
+    },
+    {
+      "path": "experiments/b2_t_20260926/run_spec_summary.json",
+      "bytes": 357,
+      "sha256": "fa15a2402c9f2343945c81e405b4e655e5ad481fcc256ebf036e1c0ccec2792c"
+    },
+    {
+      "path": "experiments/b2_to_lr001_orth0005_20260927/README.md",
+      "bytes": 3932,
+      "sha256": "008b9c897f26cd103d0e80cfd5854be62baf08ffbe1713527494e9b18503fde6"
+    },
+    {
+      "path": "experiments/b2_to_lr001_orth0005_20260927/clean_val_metrics.json",
+      "bytes": 1318,
+      "sha256": "076cc08daed37fa34cf475da1f401eb9fd4f76204dec7ae4d725c21023a4625d"
+    },
+    {
+      "path": "experiments/b2_to_lr001_orth0005_20260927/metrics.json",
+      "bytes": 10936,
+      "sha256": "1cf6f23e01d45048557b7583f5dee6bcc8fa01fdfa5174bc5bf94120780772d4"
+    },
+    {
+      "path": "experiments/b2_to_lr001_orth0005_20260927/noise_status.json",
+      "bytes": 8274,
+      "sha256": "ded6f2273b4a15785f08533f86a6fa12e3f3f6beed0f6d2ae6b2fb742427ce79"
+    },
+    {
+      "path": "experiments/b2_to_lr001_orth0005_20260927/original_pipeline_failed.json",
+      "bytes": 554,
+      "sha256": "5bf555cbdc32334d16d59624e3dabb840800871e4a0b4799eeb8b9bf19a5205d"
+    },
+    {
+      "path": "experiments/b2_to_lr001_orth0005_20260927/per_class_metrics.csv",
+      "bytes": 2986,
+      "sha256": "397f5a3d8ecd5b2a05998060479f30f824de3c4fe80097de9c20ebf400156588"
+    },
+    {
+      "path": "experiments/b2_to_lr001_orth0005_20260927/pipeline_b2_to_lr001_orth0005_seed0_recovery1_20260927.json",
+      "bytes": 739,
+      "sha256": "24433804761deb1902adc3c7f151fff5fb1928aca3e462da8bed9994aac5e451"
+    },
+    {
+      "path": "experiments/b2_to_lr001_orth0005_20260927/pipeline_b2_to_lr001_orth0005_seed0_recovery1_20260927.materialization.exitcode",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "path": "experiments/b2_to_lr001_orth0005_20260927/pipeline_b2_to_lr001_orth0005_seed0_recovery1_20260927.victim.exitcode",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "path": "experiments/b2_to_lr001_orth0005_20260927/provenance.json",
+      "bytes": 2549,
+      "sha256": "f6c50f7461876aca3754138968b7da51ad2a4ab73f55c04561eeaa1eedeeb85f"
+    },
+    {
+      "path": "experiments/b2_to_lr001_orth0005_20260927/results.csv",
+      "bytes": 25092,
+      "sha256": "e3cb4e5704957169257ba460ea91117c360b9d00374e46b368332673f4d6a500"
+    },
+    {
+      "path": "experiments/b2_to_lr001_orth0005_20260927/run_spec.json",
+      "bytes": 993,
+      "sha256": "b91bd23cbeaedfa2634e8d9f4bfe27e0ebfa5be98c0ebbd5e70ad573bf8e2613"
+    },
+    {
+      "path": "experiments/b2_to_lr001_orth0005_20260927/victim_status.json",
+      "bytes": 465,
+      "sha256": "92576075283a84baa0cb4e89257b111897d4f4008bec847487ab85d794faebd4"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/README.md",
+      "bytes": 3039,
+      "sha256": "d35044a2ca262ddae973392121252e3eeb4da3d00718b91d29ffd3fad86027d8"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/checkpoint_sha256.json",
+      "bytes": 620,
+      "sha256": "585743ae6aea78a32ca10ca991d98ce6bc3ef1ce522ee32627abf2ca3c702f98"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/comparison/ablation_metrics.json",
+      "bytes": 14971,
+      "sha256": "ffebc9639fc1ba48b7f1a0689330b079d31b6243bcac8b2a02dd2fcc912a1625"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/comparison/four_method_comparison.csv",
+      "bytes": 875,
+      "sha256": "a75e1f90ab011e928e16325a5f12694b8fec1410e3b801cc5e5ca350326032a4"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/comparison/voc20_per_class.csv",
+      "bytes": 3292,
+      "sha256": "996fd2e6fa5a3fb2a4b58afe037c6ff89694e614920fa246e2ffd6423859e796"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/pipeline_status.json",
+      "bytes": 2792,
+      "sha256": "7ac9d2c3bad63980c8052bdce4fd446ab77d12aedd0e427a06e7a52ecdc3ccf1"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/r4_checkpoint_evaluation/checkpoint_metrics.json",
+      "bytes": 4292,
+      "sha256": "f664ad389b7ca6b8b803f950cf424c42549fa8d5d1ab9e4084e9c1189d04b852"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/r4_checkpoint_evaluation/primary_last_metrics.json",
+      "bytes": 1944,
+      "sha256": "e201e3513cc6c3ff984730af228075f129bf4b796cc24f2ea85953330d1106ac"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/r4_checkpoint_evaluation/secondary_best_metrics.json",
+      "bytes": 1941,
+      "sha256": "b271dcbab66f7e7014f232ebe824b7e79e83d14ff39e6be19e8126e061076db5"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/r4_integrity/dataset_integrity.json",
+      "bytes": 63473,
+      "sha256": "34019b73bc4d1bcd1cf9078f037208d6c4feaf17a78fb7c78a37352a8339c201"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/r4_integrity/materialization_audit.json",
+      "bytes": 514,
+      "sha256": "4ffc7ca58ca7a954a028748056d2df85c5f9a3c77e11c9d85e1bd01d148a24d3"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/r4_noise_summary.json",
+      "bytes": 441,
+      "sha256": "7f69c1b8113b2d0cbb517d205b01096cb4a5ed0d34acb0824a2bb6b1ebb93ae3"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/reference_last_eval/b2to_last_metrics.json",
+      "bytes": 1881,
+      "sha256": "25059169ae1db1d2e06727c5d470766aecec14b331c51a62c207f4314d9a36b6"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/reference_last_eval/clean_last_metrics.json",
+      "bytes": 1918,
+      "sha256": "ede6c307574ed87d99ee2c29df7cb22aedc1be319d7954454b94b19b29e18ec4"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/reference_last_eval/safe_lr_last_metrics.json",
+      "bytes": 1947,
+      "sha256": "75a4946cae289916adcccfcc25323a8ce230708c94e68de7051ccd9d3833563d"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/soft05_checkpoint_evaluation/checkpoint_metrics.json",
+      "bytes": 4301,
+      "sha256": "30693a9a387bcba181346860f41e7761139e75d4256f8fe4157b919cc6d12fa7"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/soft05_checkpoint_evaluation/primary_last_metrics.json",
+      "bytes": 1951,
+      "sha256": "63efd3930a3b4389b2b5acc54c7442de0e3946a742946bb635bb01a2e831c290"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/soft05_checkpoint_evaluation/secondary_best_metrics.json",
+      "bytes": 1943,
+      "sha256": "1b8b6a0ec017287ef7fc425168f4cae1bb70ef15a2fb3e454639f54571ebf0c9"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/soft05_integrity/dataset_integrity.json",
+      "bytes": 63454,
+      "sha256": "83194f6e06222f11c9d960008d65f80503f537de417f7d18c3fefbaa313ee363"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/soft05_integrity/materialization_audit.json",
+      "bytes": 514,
+      "sha256": "404af29ca773d681aa25d7b585ff2b8c54f454d2ff0c7d6c9ad7fcca1617b9d5"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/soft05_noise_summary.json",
+      "bytes": 445,
+      "sha256": "5870c689dc416bcdf9a23e07931f985c9b3a27b5d0a081248cae71bc6e2b997e"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/source_fingerprint.json",
+      "bytes": 531,
+      "sha256": "df26640b613d04fa979dbc4ab344b6d7a82b03461e1fe9e36c7a56da2a814867"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/formal/source_fingerprint_before_victims.json",
+      "bytes": 531,
+      "sha256": "df26640b613d04fa979dbc4ab344b6d7a82b03461e1fe9e36c7a56da2a814867"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/prerun_review.json",
+      "bytes": 4675,
+      "sha256": "b381e04fad6d4d8d709cfaefdda020648b142c1ffa51b93291569acf9f645170"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/r4_noise/status.json",
+      "bytes": 15028,
+      "sha256": "eaa5c0fb2cb3f96843fc4a149d437281bdec676a18ebd998a3c7a17d8176fe3f"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/r4_victim/clean_val_metrics.json",
+      "bytes": 1564,
+      "sha256": "0e85605369ab7542bde695f077c86b47fefa380b765f0c5d49544e66a3189700"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/r4_victim/run_spec.json",
+      "bytes": 1842,
+      "sha256": "fe1a7d6109a8d86ae3a87a2028a0b24205a8b6fb7c91d1eadb56435df4f33e45"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/r4_victim/status.json",
+      "bytes": 966,
+      "sha256": "8ab1b379ca600aefa44da4d4e55cd3193652f805137d849520b5403d4cd3cfa1"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/r4_victim/victim/results.csv",
+      "bytes": 25083,
+      "sha256": "f73cab11b6419d738fd56f3175c14045795b0a53784727e3e1ef94b11f801574"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/sanity_r4_gate.json",
+      "bytes": 1413,
+      "sha256": "0073359dc081ecfdec1180ba6cef840f158ad3f2f89379d1b44da306fcc59482"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/sanity_soft05_gate.json",
+      "bytes": 1418,
+      "sha256": "179dcf7a427894bff61c1e6652d89c2038ec9421290122f7c4e70d6db98d17c2"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/soft05_noise/status.json",
+      "bytes": 15084,
+      "sha256": "fd1323ed52ca07f36c809cd6aa7cc83c91725ac83dcd8ef401bec81ece5a2f6a"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/soft05_victim/clean_val_metrics.json",
+      "bytes": 1566,
+      "sha256": "038e8aa78517d223c049ffcd7cf5353a289e8f902443f2cd1f37533e61242e5f"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/soft05_victim/run_spec.json",
+      "bytes": 1858,
+      "sha256": "fc35e16be5500c6bffb3448686f2670405bc323aedbdef3f80bdceeb240cfad5"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/soft05_victim/status.json",
+      "bytes": 978,
+      "sha256": "1dc74ebbdb855dc3a7b23caeddceeb6f6ecbe33c4a06ce7c27873fda9ad95279"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/soft05_victim/victim/results.csv",
+      "bytes": 25102,
+      "sha256": "5fd653fb9c84d7809593ef0be869df6cb845b90d452fec1b0f47de01c175e9a4"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/verification.json",
+      "bytes": 1428,
+      "sha256": "7a5467329dd4f644518e153793a2804bd08e2b8085df25794f93b6bc6c10705e"
+    },
+    {
+      "path": "experiments/b2_to_safe_bg_rank_soft_20261004/verify_results.py",
+      "bytes": 7410,
+      "sha256": "c582722722a12302ae6b3454eb24eb99a39ff57c83bcef289e6647fdfa543336"
+    },
+    {
+      "path": "parent_selection.json",
+      "bytes": 29186,
+      "sha256": "39a5efc58ebd57f0e606f6b10d6aa591b89076cea440d7d997ab8b1ee59e4885"
+    },
+    {
+      "path": "parent_selection_report.md",
+      "bytes": 406,
+      "sha256": "7ba7d467ace211215abe84136d1bf89889fa57b04bf79b95cb90efb0677609bb"
+    },
+    {
+      "path": "research_workspace/CONCLUSIONS.md",
+      "bytes": 7471,
+      "sha256": "357dbf84033e71081d5f84a4fe03395993cb41d349bcc1eb960542da700f2d72"
+    },
+    {
+      "path": "research_workspace/STATE.md",
+      "bytes": 8256,
+      "sha256": "f2a7d4c8d42def02117ab31bf94a03b0d44e3615dae9dfaa9a12c8d3c97bc777"
+    },
+    {
+      "path": "research_workspace/analysis/S1_PARENT_SELECTION_EVIDENCE.json",
+      "bytes": 29186,
+      "sha256": "39a5efc58ebd57f0e606f6b10d6aa591b89076cea440d7d997ab8b1ee59e4885"
+    },
+    {
+      "path": "research_workspace/analysis/s1_csb_20261014.md",
+      "bytes": 3900,
+      "sha256": "8cf854996be27a6938ff0ea083337f545feb0200d06964ae044afbd241509b43"
+    },
+    {
+      "path": "research_workspace/analysis/s2_s3_counterfactual_20261014.md",
+      "bytes": 3049,
+      "sha256": "2cfc0527bbe8e646939048d8e126e59e5bac0ee5a6b235f607491ba0be3e5256"
+    },
+    {
+      "path": "scripts/analyze_b2_to_safe_lr_results_20261002.py",
+      "bytes": 7188,
+      "sha256": "4cf501ece13e463d89713899b24e254229be9f1c2fd8a6844e5f63cfdc9bf566"
+    },
+    {
+      "path": "scripts/analyze_safe_bg_rank_ablation_20261004.py",
+      "bytes": 3981,
+      "sha256": "1de23b1d790504c5954554cd37ae4ed23ad7ea6663e7e1acf35d2a89f19f82e6"
+    },
+    {
+      "path": "scripts/audit_b2_to_safe_lr_materialization_20261002.py",
+      "bytes": 10663,
+      "sha256": "42595a22645236d3b256a570cbcbee9e0e10bca8fb4e19741f1f810cef16fb77"
+    },
+    {
+      "path": "scripts/audit_b2_to_safe_ls_config_20261002.py",
+      "bytes": 2640,
+      "sha256": "aede3ab61bc88086e8f2422b8b3271f75684f37e7ae1a3fed76d3e8fafb08380"
+    },
+    {
+      "path": "scripts/audit_b2_to_safe_ls_failed_sanity_20261002.py",
+      "bytes": 5063,
+      "sha256": "b263e82181aae8cf56a7e62872dffa32da278849087ac99d3bb288964cc4311f"
+    },
+    {
+      "path": "scripts/audit_b2_to_safebg_config.py",
+      "bytes": 2961,
+      "sha256": "448cac96446beecba2b41d6beab2278754e78258b3473aea559be113302dfc52"
+    },
+    {
+      "path": "scripts/audit_b2_to_safebg_materialization.py",
+      "bytes": 5851,
+      "sha256": "73efbbe720dd4cdbd1d8e977cd8644d1e71304ab3913d06164c1868f27d24cf4"
+    },
+    {
+      "path": "scripts/audit_bbox_half_dataset.py",
+      "bytes": 2700,
+      "sha256": "2d1dfd516dd9491e6f47e348035722be0a980532ac362322c045a7907226b79e"
+    },
+    {
+      "path": "scripts/audit_safe_bg_ablation_fingerprint_20261004.py",
+      "bytes": 3330,
+      "sha256": "740186165d5633033eded8fdbd1519209dd40ba87449ad23061b1d05d9ddbe8e"
+    },
+    {
+      "path": "scripts/audit_semantic_sanity.py",
+      "bytes": 5805,
+      "sha256": "f384e38dac72c559053d0ad68301011b1cb96afa01f72430238f2af50b74daea"
+    },
+    {
+      "path": "scripts/build_b2_to_safe_coordinates.py",
+      "bytes": 22841,
+      "sha256": "9d169c70f958b89461985d2652732825bd98946ff0a620b275dd32be5df6a65d"
+    },
+    {
+      "path": "scripts/build_semantic_coordinates.py",
+      "bytes": 8048,
+      "sha256": "46c0c95e28feba45628f53cd8fd8188078a759a93cc4a5d8b17616a78208395e"
+    },
+    {
+      "path": "scripts/check_b2_to_safe_lr_sanity_20261002.py",
+      "bytes": 8537,
+      "sha256": "c968b698f8c61e3df77f579712a989acd1040706a3b1e9b78a803bd82561cb1b"
+    },
+    {
+      "path": "scripts/check_b2_to_safebg_sanity.py",
+      "bytes": 12381,
+      "sha256": "bf80d6bbb6fd5cba8d3fb52f1d3087533707287d03f5bde55f927d8d9449e97c"
+    },
+    {
+      "path": "scripts/check_safe_bg_ablation_sanity_20261004.py",
+      "bytes": 7768,
+      "sha256": "fad3b7f6f5d62e23f3266af016cd0425865aded5be4d7a509d75a09c774e946f"
+    },
+    {
+      "path": "scripts/cnlp_production_admission.py",
+      "bytes": 24495,
+      "sha256": "17817a06315901cb026f8210c93f3f2c891b607b22456c44aa75e09e16dd0630"
+    },
+    {
+      "path": "scripts/cnlp_train_admission.py",
+      "bytes": 14276,
+      "sha256": "8cf684cc022fb7a99558284bc303d0e52e783e3b4c0fa78074f176dab48d23c5"
+    },
+    {
+      "path": "scripts/compare_b2_to_safe_fpn_feasibility_20261002.py",
+      "bytes": 8589,
+      "sha256": "6b7697942837ddea33934a41654e67eff15396c2987c6a30a10d6b29bd286ca6"
+    },
+    {
+      "path": "scripts/compare_b2_to_safebg_mechanisms.py",
+      "bytes": 2331,
+      "sha256": "6053a67d096952929309c0d1b869b9d364e1f5b437235c67518655c136847c87"
+    },
+    {
+      "path": "scripts/deterministic_noise_probe.py",
+      "bytes": 1051,
+      "sha256": "d01d206cf07f9f2d9c98fba71d52d0a75f3ec171cd3f59215741ed7a0ca107f3"
+    },
+    {
+      "path": "scripts/evaluate_b2_to_safebg_checkpoints.py",
+      "bytes": 4065,
+      "sha256": "69dc77c261029598188e85d5cd79c8393c1346c09c77c6822bb6aa48f2f22c0c"
+    },
+    {
+      "path": "scripts/evaluate_safe_lr_reference_last_20261002.py",
+      "bytes": 3713,
+      "sha256": "a4c5a1e2e9291307120514fa181d352400b08ef75ef89ede5a25e4c3006e4bc5"
+    },
+    {
+      "path": "scripts/launch_b2_to_safe_lr_20261002.sh",
+      "bytes": 2266,
+      "sha256": "795f6ec3cec488e1ab136dd8e643dbd061f222673ddba71a87998bceca8609b3"
+    },
+    {
+      "path": "scripts/launch_safe_bg_rank_ablation_20261004.sh",
+      "bytes": 1074,
+      "sha256": "2724ac96f9b6641adf06abacbe60154043aefb658e34888010484800db3450cc"
+    },
+    {
+      "path": "scripts/materialize_noise_once.py",
+      "bytes": 6644,
+      "sha256": "4f8c848ddb2a5bd8b02662f1ec9478646b2dac9b76f701d438e593a35fc453c1"
+    },
+    {
+      "path": "scripts/preflight_b2_t.py",
+      "bytes": 2173,
+      "sha256": "d8a435d7eac7ca4ba06534e8a1a5667c370661bd9c6ccf45c5c6767183e5aedf"
+    },
+    {
+      "path": "scripts/preflight_b2_to_safe_lr_20261002.py",
+      "bytes": 3498,
+      "sha256": "5f16ebded53e74900d43584ba594e7c707b40392d6112dddaf4c5bb426d40273"
+    },
+    {
+      "path": "scripts/prepare_counterfactual_inputs.py",
+      "bytes": 4091,
+      "sha256": "a7fc2ac0ae11e1b61456ebd8ade975ccd70d100245da9716a069a875c48a8f75"
+    },
+    {
+      "path": "scripts/reselect_semantic_coordinates.py",
+      "bytes": 3713,
+      "sha256": "7385a3376d1f9ca44c12a54414a0412febaac2ed3e7a44522fda52816d100338"
+    },
+    {
+      "path": "scripts/run_b2_sanity_20260926.sh",
+      "bytes": 1029,
+      "sha256": "6b232e656553ccd30174230837b78ff5340c7d596427b48022c54936a6ea112e"
+    },
+    {
+      "path": "scripts/run_b2_t_pipeline_20260926.sh",
+      "bytes": 965,
+      "sha256": "680579122cc462574ebd7559d06f32de0aef07862b2a66fac447b3f00e88e5a8"
+    },
+    {
+      "path": "scripts/run_b2_to_auto_pipeline.py",
+      "bytes": 7666,
+      "sha256": "2a8133fb4090b279978ae2db0788abd775eafd66904babfa82d31ca64940ece9"
+    },
+    {
+      "path": "scripts/run_b2_to_continue_after_noise_20260927.py",
+      "bytes": 4566,
+      "sha256": "ecc294aa41ea4e1acf4b31e7c0a29c2acc7681d8dc47290612d000c344eeec95"
+    },
+    {
+      "path": "scripts/run_b2_to_safe_feasibility_20261002.sh",
+      "bytes": 1290,
+      "sha256": "e85c0a8a257cc34e35abed29c08ca7260a1f50defcac40a769f8b01e30163418"
+    },
+    {
+      "path": "scripts/run_b2_to_safe_fpn_compare_20261002.sh",
+      "bytes": 1388,
+      "sha256": "0a4e68eb8d6f1e526db9f7ca9a4db7dfbca5016b6f660a485457c7e2f65ae65c"
+    },
+    {
+      "path": "scripts/run_b2_to_safe_lr_pipeline_20261002.py",
+      "bytes": 20038,
+      "sha256": "ded185712370f8d6bb99d4ca4d73a7d2555341697e962a12fc3123760a5065ee"
+    },
+    {
+      "path": "scripts/run_b2_to_safe_lr_sanity_20261002.sh",
+      "bytes": 1769,
+      "sha256": "1092ba65c3f1e87cd91c202402d8d64a85110ea56344bd54be15beef87c3c63c"
+    },
+    {
+      "path": "scripts/run_b2_to_safe_ls_coordinates_20261002.sh",
+      "bytes": 1260,
+      "sha256": "d96258b3babef41b72bbc58ffac5340ea3ef1f249cbd9b9e7dd56064e8693ec5"
+    },
+    {
+      "path": "scripts/run_b2_to_safe_ls_sanity_20261002.sh",
+      "bytes": 1759,
+      "sha256": "9a69bc7e4bece2388082aee3c42843c5489d2ff549952d834b9c77d309920d1d"
+    },
+    {
+      "path": "scripts/run_b2_to_safebg_pipeline.py",
+      "bytes": 16225,
+      "sha256": "e1485f78beef1a21e66e19332d4bbee5c0f9be684b5e109050c7d77d4f43553f"
+    },
+    {
+      "path": "scripts/run_full_noise_b2_20260926.sh",
+      "bytes": 872,
+      "sha256": "52a90fe9deccbacc80eb6093cfa9c0313f0052335411897908d63a3e61008921"
+    },
+    {
+      "path": "scripts/run_full_noise_b2_t_20260926.sh",
+      "bytes": 884,
+      "sha256": "2ceac1da7b204d5feff74d8627fac472b47ac32abb703a06c1ff953fd231fc81"
+    },
+    {
+      "path": "scripts/run_full_noise_bbox_half_20260925.sh",
+      "bytes": 704,
+      "sha256": "78d12238bca4c6bf577373e2d670619881d5188346bc6c69e7daf880d1bdc1de"
+    },
+    {
+      "path": "scripts/run_isolated_victim.py",
+      "bytes": 17160,
+      "sha256": "d967338805bc43c3b81be60f2ae1929ae0d83997f1df414b91f69d8bb36139aa"
+    },
+    {
+      "path": "scripts/run_materialization_b2_20260926.sh",
+      "bytes": 575,
+      "sha256": "1197875bae6baf9379f842bc52455110d6e0b497c947a344ba00a5b73893e47e"
+    },
+    {
+      "path": "scripts/run_materialization_b2_t_20260926.sh",
+      "bytes": 587,
+      "sha256": "7f88661de411ae7326f75f65b2275ed2c2b97cfc117a5f83545d0968672f8949"
+    },
+    {
+      "path": "scripts/run_materialization_bbox_half_20260925.sh",
+      "bytes": 750,
+      "sha256": "aa277202c33f46b4f100d69cbdd207421005047296b65661d2088d988fdf8669"
+    },
+    {
+      "path": "scripts/run_s1_csb_pipeline.py",
+      "bytes": 24080,
+      "sha256": "f73e74870ff3a409a548ab394ea34c3c72c5fc8c60da438aabce39a2dde8206e"
+    },
+    {
+      "path": "scripts/run_s2_s3_pipeline.py",
+      "bytes": 24023,
+      "sha256": "e88e13086aed3cb6a8b8ff51b07f7821e0cead1d6c02067e247f54965875d261"
+    },
+    {
+      "path": "scripts/run_safe_bg_ablation_sanity_20261004.sh",
+      "bytes": 2052,
+      "sha256": "5eef8e3fb638822da8d7f9becc67493547d319ae0d4caa01e99db0e0690cdb9e"
+    },
+    {
+      "path": "scripts/run_safe_bg_rank_ablation_pipeline_20261004.py",
+      "bytes": 15413,
+      "sha256": "c5d2fc31bfca45ba39bd1ae9571069bf23149485c836605f2d9b4f7f189b2fad"
+    },
+    {
+      "path": "scripts/run_semantic_sanity_20260926.sh",
+      "bytes": 1415,
+      "sha256": "e9b9d733259a3ce1adb2eeb03876b368dc1dbe2fbc6cdcf0d3ea34065f2e574d"
+    },
+    {
+      "path": "scripts/run_victim_b2_20260926.sh",
+      "bytes": 877,
+      "sha256": "7ee6ad997084e8958d05156e6b67757749f4bac86d81640c5ff1d52eb5c711c8"
+    },
+    {
+      "path": "scripts/run_victim_b2_t_20260926.sh",
+      "bytes": 891,
+      "sha256": "2181fed007bdbdab673c73ace7c100cf2e60ea957dafb6a9cb666ec95cf1d241"
+    },
+    {
+      "path": "scripts/run_victim_bbox_half_20260925.sh",
+      "bytes": 726,
+      "sha256": "45f5b13b3fa9f15d3e4e42e81c7f47ca70f260581c76080e61e79092b0b57163"
+    },
+    {
+      "path": "scripts/s1_completion_resume_probe.py",
+      "bytes": 8759,
+      "sha256": "69b365662c49d51d59d0f700d62c078edfc3e6af52315cb1e9adcf9a86b30b8e"
+    },
+    {
+      "path": "scripts/s1_csb_coverage_probe.py",
+      "bytes": 6275,
+      "sha256": "0002757a71c4c4b54cb245c2ccfec15c5df582671b85119432198aa373e936d2"
+    },
+    {
+      "path": "scripts/s1_health.py",
+      "bytes": 455,
+      "sha256": "ebf748211e8373da3815f5c3e3938fd1d4d0cae86826befd74d978194c7f6cba"
+    },
+    {
+      "path": "scripts/s1_mechanism_probe.py",
+      "bytes": 18194,
+      "sha256": "6641bb71f2013143fad6a5f5f3bff792167d1a6651bca3185d4b6ccbf5dd7897"
+    },
+    {
+      "path": "scripts/s1_parent_probe.py",
+      "bytes": 8151,
+      "sha256": "bf266018b1b357824ae371cd029b8a98a71ff968c0c87e8ffd734c97d4adc3b3"
+    },
+    {
+      "path": "scripts/s1_spatial_audit.py",
+      "bytes": 14303,
+      "sha256": "d53a84994f2bb51ba3ad84f3c4bc6095e37856e71085c6ebd9cb09ae525f89d7"
+    },
+    {
+      "path": "scripts/scan_b2_to_safe_feasibility_20261002.py",
+      "bytes": 20306,
+      "sha256": "76838e82c55526ed3df5fecfe365d96a848ed8b18a7c10da41d6be78a836a621"
+    },
+    {
+      "path": "scripts/select_b2_to_safe_layer_20261002.py",
+      "bytes": 7301,
+      "sha256": "2f6300936308ae6a6e91c44fd080f16d97234e7ad560113d5b962d3f3b10ca17"
+    },
+    {
+      "path": "scripts/semantic_sanity_probe.py",
+      "bytes": 2614,
+      "sha256": "f84cee4bd7d9b56541cca1a4d5f2a5d3bb07a1d9325450b64d95f2750353d26f"
+    },
+    {
+      "path": "scripts/test_safe_bg_rank_ablation_20261004.py",
+      "bytes": 2569,
+      "sha256": "f54574b151ef1e55151424d1cd33760291d06696d08a1bd3b25fddac0b94cc04"
+    },
+    {
+      "path": "scripts/test_safe_bg_triplet_cache_20261003.py",
+      "bytes": 4462,
+      "sha256": "81da6cb8d6e67122cb159d3caf2ede9709a412950c387b7c4a5a14ce061700e4"
+    },
+    {
+      "path": "scripts/train_noise_once.py",
+      "bytes": 9559,
+      "sha256": "c5fd3e47b5967b1f3c14c93252527e58556ae671bedfbb23f05c57954c00f26a"
+    },
+    {
+      "path": "scripts/wait_and_smoke_bbox_half_20260925.sh",
+      "bytes": 989,
+      "sha256": "d5d5cc52f793f3a1261e062af270013ba70364a720cc190b1ff194e519cedd98"
+    },
+    {
+      "path": "tests/test_b2_adaptive.py",
+      "bytes": 2863,
+      "sha256": "4d06ecc475c30e4c5b07a61799263342d45483f8f3636a658556fe75802d119b"
+    },
+    {
+      "path": "tests/test_b2_semantic.py",
+      "bytes": 3888,
+      "sha256": "e6f4a5e4fb50a536cdacddeb77bc1a0b8b0f7a4972b0b0f5728949fcb9968c7d"
+    },
+    {
+      "path": "tests/test_b2_to_auto_pipeline.py",
+      "bytes": 2847,
+      "sha256": "3d857819a20fe0d438b93cacaacb9d4921654d69eff0ae534b9f3b8946adef4c"
+    },
+    {
+      "path": "tests/test_bbox_half_overlap.py",
+      "bytes": 4614,
+      "sha256": "32aa3071fd4c43761b0405e5b0b473292549e3a84e6ad43d91fe10d79414ca28"
+    },
+    {
+      "path": "tests/test_cnlp_admission_recording.py",
+      "bytes": 1192,
+      "sha256": "47ac9d93afe8dd7d95f6e2e7c9a1d60c87b515d7cb7fa8d4933fdf0b431841a4"
+    },
+    {
+      "path": "tests/test_counterfactual_parent.py",
+      "bytes": 2023,
+      "sha256": "1d256b352e01f5c7fa1154418039f63eb1a816afb9db8c322a877db38869f4b6"
+    },
+    {
+      "path": "tests/test_counterfactual_query.py",
+      "bytes": 2502,
+      "sha256": "f28760e51dcb633a6b5330ce912159a07a1400072c850d68c09b4d2055c7ba77"
+    },
+    {
+      "path": "tests/test_counterfactual_resume.py",
+      "bytes": 5013,
+      "sha256": "b62b53d50f5ad62f57d03739564e37098cfed8e3a7812b1ef13ec6dc046833f0"
+    },
+    {
+      "path": "tests/test_counterfactual_utility.py",
+      "bytes": 10083,
+      "sha256": "86b7a3523ff66853358cc2281a1d2bff22c76c72bebb1344b5ddce5d12d0b582"
+    },
+    {
+      "path": "tests/test_counterfactual_yolo.py",
+      "bytes": 5561,
+      "sha256": "d803cd38e8eba04e3d919726e3a3b8dd22a196e12dcb1bbfffa99a18b2750095"
+    },
+    {
+      "path": "tests/test_legacy_kproto_ret.py",
+      "bytes": 8965,
+      "sha256": "3d75699a6d9cb56ca3749641436ec790f8282595331f50dc5bdaea3ff709ffae"
+    },
+    {
+      "path": "tests/test_orth_reference_design.py",
+      "bytes": 2135,
+      "sha256": "3b13a4ab9b2a5e04ecc36d52f05ac9671d6ef9dc6de5e4864d55c3680ad9a30e"
+    },
+    {
+      "path": "tests/test_s1_contract.py",
+      "bytes": 1461,
+      "sha256": "df3c4e07c5787d702a718c5efcdd84fb361f9cec14f7114bf1c2fd8fe0812607"
+    },
+    {
+      "path": "tests/test_s1_spatial_budget.py",
+      "bytes": 1615,
+      "sha256": "80f96f786b50340c4909f3847aa2e9bd0b8471136e7ed444f00f013adc6c8986"
+    },
+    {
+      "path": "ue_framework/__init__.py",
+      "bytes": 113,
+      "sha256": "9e4f749459a68091dec7693f946c26ba9aa4733b4645d2f5fa3c5a098fd5fc68"
+    },
+    {
+      "path": "ue_framework/config.py",
+      "bytes": 7391,
+      "sha256": "f11f37287afece94a71864b3ade15889760aed054baa75b0d31b5e332e4e6970"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_t.yaml",
+      "bytes": 4601,
+      "sha256": "511507187a0dfe00c6e80385b98948be50c6dec940278203f4d48fa7add07946"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to.yaml",
+      "bytes": 4604,
+      "sha256": "eea41939e9fc04d24575bbfb8fcd56051d74dd46abe9c290bd29b3e30b70915f"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to_lr001_orth0005_20260927.yaml",
+      "bytes": 4325,
+      "sha256": "890c3524d23639624df0a542e25212ab5046a7d48e936bcd15fa5418e4df19b6"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to_safe_lr_p5_rank8_eps8_seed0_20261002.yaml",
+      "bytes": 5542,
+      "sha256": "8a926b2962d68957215a942c32f9c53cce233e2d3b4958b781f3b3c8c3a9ebfb"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to_safe_ls_p5_eps8_seed0_20261002.yaml",
+      "bytes": 5497,
+      "sha256": "7a92fbcb629043cbb08ec2faf9991cdb7b92ee5f51b36edf70635e1bd4469671"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to_safe_r4_eps8_seed0_20261004.yaml",
+      "bytes": 5612,
+      "sha256": "aa3dcefe85bdc30513a474e05c9a0295c8b7b343d58a76c1b1bdeb183773cb54"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to_safe_soft05_eps8_seed0_20261004.yaml",
+      "bytes": 5861,
+      "sha256": "80cffe012aa6bfefcbe66f7c8e880e680da1c1885f5d0a7fcb01a77be6697894"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to_strict_tsfl_safebg_eps8_person_seed0_20261002.yaml",
+      "bytes": 5232,
+      "sha256": "4b3996b7b86a20fa8903b529cdd03a345917125106f5e5812635a87fc5b8c818"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_legacy_kproto_ret_b2.yaml",
+      "bytes": 4084,
+      "sha256": "b0865f9fe9f5959607fdf1c2014f8cfc1a41e39de3a0cd4f7248b581c3559d0b"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_legacy_kproto_ret_bbox_half.yaml",
+      "bytes": 3900,
+      "sha256": "441370245442a67193119a40d59aee8428262fc04e70400a066f28a29a6cf471"
+    },
+    {
+      "path": "ue_framework/data_utils.py",
+      "bytes": 3307,
+      "sha256": "aa260a5e65195a2f8b2ebb2725377810301984fdc13c33e91b89206a84551688"
+    },
+    {
+      "path": "ue_framework/env_utils.py",
+      "bytes": 1811,
+      "sha256": "9ccb067e1a345d1021b1b2ad369c0fce4782c0d878b57778f314c66c1ef9243e"
+    },
+    {
+      "path": "ue_framework/io_utils.py",
+      "bytes": 1652,
+      "sha256": "40ce021b2b99998444a3dae7d7b118541379bffcc8477b399378e355276134cb"
+    },
+    {
+      "path": "ue_framework/launch_one.py",
+      "bytes": 3764,
+      "sha256": "9b8d3b76831089b3ae8dd3bd3a4323c93fea15b5fe9ebc882b16778f9139f5cc"
+    },
+    {
+      "path": "ue_framework/methods/__init__.py",
+      "bytes": 72,
+      "sha256": "cff976374a3ce375a8bf05d008dc3acde8c28ad778ed602908c6aa1d2abd5b90"
+    },
+    {
+      "path": "ue_framework/methods/adaptive_learner.py",
+      "bytes": 9175,
+      "sha256": "02cd607b8c3e389c639bbf82859952dfb5c9528524e6ebc18a373860e7954518"
+    },
+    {
+      "path": "ue_framework/methods/alce_acgt.py",
+      "bytes": 15810,
+      "sha256": "58fb51fad7810cb5a39570c0943f43674fe202e5fc07e81ac08f0f1419f76552"
+    },
+    {
+      "path": "ue_framework/methods/alce_losses.py",
+      "bytes": 7863,
+      "sha256": "59cdf7177a72b19289aeff1b5ec17f749ec47b17b26f0c0053bc0fe96ede2752"
+    },
+    {
+      "path": "ue_framework/methods/alce_metrics.py",
+      "bytes": 628,
+      "sha256": "3ef71d71df9107588bdca9e08dd4b55b9aa3907e8f44a597d6a46f51d678f9b1"
+    },
+    {
+      "path": "ue_framework/methods/b2_adaptive.py",
+      "bytes": 4593,
+      "sha256": "429348b91ec4909b8806aa1b25daa81dc6adbb4318462f42b82167e5639ae145"
+    },
+    {
+      "path": "ue_framework/methods/b2_semantic.py",
+      "bytes": 29642,
+      "sha256": "f890a83c71164e570535508a553dc683b016bc0a4c519335f9e202c1d7ec28e8"
+    },
+    {
+      "path": "ue_framework/methods/base.py",
+      "bytes": 12375,
+      "sha256": "ed267de51c401e9b4b6206fcd335c2afcffba1bd738f5e3fc7fbb791892801c0"
+    },
+    {
+      "path": "ue_framework/methods/counterfactual_extension.py",
+      "bytes": 3234,
+      "sha256": "16415bb6f979a341ec9a7abbaccac312877213dcd50a28a449e53738e6829864"
+    },
+    {
+      "path": "ue_framework/methods/counterfactual_optimization.py",
+      "bytes": 13383,
+      "sha256": "59fb5ccf493b45f3c9613f5021bc641d4b7f10aa6c34e2c2b6f03e7cdea389bc"
+    },
+    {
+      "path": "ue_framework/methods/counterfactual_parent.py",
+      "bytes": 6229,
+      "sha256": "a063660ed2fd1b4bab84bcc445b6cc5aad82088236ae9ae3d3070aebb5131e48"
+    },
+    {
+      "path": "ue_framework/methods/counterfactual_query.py",
+      "bytes": 4180,
+      "sha256": "faac4b801c27d11e532bd71090d1da7970e64038d0146ff07aa8a87cd27c8dcb"
+    },
+    {
+      "path": "ue_framework/methods/counterfactual_trainer.py",
+      "bytes": 7357,
+      "sha256": "aa388a34fd6742cf710fa6ca6455f6427e4a8e1618b55ef6c3e6f870a6c4e974"
+    },
+    {
+      "path": "ue_framework/methods/counterfactual_utility.py",
+      "bytes": 13582,
+      "sha256": "bba6be07e78a97941bb61095217a7ba6edecd57d3f41aac4f8e955f12dddb74f"
+    },
+    {
+      "path": "ue_framework/methods/counterfactual_yolo.py",
+      "bytes": 8209,
+      "sha256": "436a4a6c8ff502b8a3276f9e5d310e4d811d26880be05972353f31519ec0f298"
+    },
+    {
+      "path": "ue_framework/methods/csb_budget.py",
+      "bytes": 6096,
+      "sha256": "b890a7ef36f331dd6b88e46716ae23886fad4692d23b801f5bc0b9849e369d7c"
+    },
+    {
+      "path": "ue_framework/methods/csb_sensitivity.py",
+      "bytes": 7521,
+      "sha256": "6ffa876785e318824d550ae363b486da7a606e51dda3522f114e714292ce7b18"
+    },
+    {
+      "path": "ue_framework/methods/em.py",
+      "bytes": 2747,
+      "sha256": "e32a40e26ac2fa7c1c07194f82892291b47eda3ebf1ddc2484dba9e1dda9db3c"
+    },
+    {
+      "path": "ue_framework/methods/factory.py",
+      "bytes": 765,
+      "sha256": "ea477b8628d304b48895510a601ee2f90d62b68d4b5f229595c236a6c2da9340"
+    },
+    {
+      "path": "ue_framework/methods/fourier.py",
+      "bytes": 2399,
+      "sha256": "a349b0b0b24fe92b34018fcd12fad0d4e95bb611f2dbf8549b8dfd7765da5884"
+    },
+    {
+      "path": "ue_framework/methods/legacy_kproto_ret.py",
+      "bytes": 30851,
+      "sha256": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb"
+    },
+    {
+      "path": "ue_framework/methods/orth_reference_design.py",
+      "bytes": 1686,
+      "sha256": "a41be2a269f40ef868bdfb978494e1acdff5efb4572a341721ceba25fb864e42"
+    },
+    {
+      "path": "ue_framework/methods/ours.py",
+      "bytes": 18061,
+      "sha256": "c3bb9c89e14456f82d023d191a2f37887090ed70b5f2e6d266c7b0545786be87"
+    },
+    {
+      "path": "ue_framework/methods/rem.py",
+      "bytes": 3880,
+      "sha256": "95c8ce13d04ee541441cdd392ad6c8ad8b4fdd6596af909a626f23447269fd06"
+    },
+    {
+      "path": "ue_framework/methods/s1_csb.py",
+      "bytes": 4177,
+      "sha256": "f5bd815ffe6de7e399a4419c1abc67d6b5e10b6529386f978fd2f4a39dfbea3b"
+    },
+    {
+      "path": "ue_framework/methods/s1_diagnostics.py",
+      "bytes": 3606,
+      "sha256": "f5e4d3c17e47212d5c8da58d6d3cfc47977906c65bc084ac9c118a23068499f9"
+    },
+    {
+      "path": "ue_framework/methods/s1_optimization.py",
+      "bytes": 11186,
+      "sha256": "1da75a8fbc2dc8620e598a7ac6ac3923d6a426fbebae421b9f6f175eeb26d907"
+    },
+    {
+      "path": "ue_framework/methods/safebg.py",
+      "bytes": 15542,
+      "sha256": "9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5"
+    },
+    {
+      "path": "ue_framework/methods/semantic_coordinates.py",
+      "bytes": 9027,
+      "sha256": "54798bb76dec96a6e160690ecbb3729e574169b00dd8439a5a4ae5c37cd38e05"
+    },
+    {
+      "path": "ue_framework/methods/shadow_tal.py",
+      "bytes": 6666,
+      "sha256": "b7240e2149c6a1b486e53aa65b74be6aceb189e721961448918bad8bf02f1a82"
+    },
+    {
+      "path": "ue_framework/methods/tausb_universal.py",
+      "bytes": 74769,
+      "sha256": "d62757e31c5832c675a525889d71589e1bb2621c2c7d05693eb39f0f5dff000a"
+    },
+    {
+      "path": "ue_framework/metrics_utils.py",
+      "bytes": 3314,
+      "sha256": "b1e35af4fbc055dfe7193d72162e09e0d3289e0e5f24ae5182761f36c2b8504b"
+    },
+    {
+      "path": "ue_framework/pack.py",
+      "bytes": 1310,
+      "sha256": "20bae0d2f42b738d6fd1ef7f25a9d736e908025c28cac6f32ede9a95a80b0e97"
+    },
+    {
+      "path": "ue_framework/paths.py",
+      "bytes": 2453,
+      "sha256": "39de91d8b7172cb88d1d0421f0b62e1f31d4fdbb911f64510a00e534d4184542"
+    },
+    {
+      "path": "ue_framework/runtime.py",
+      "bytes": 888,
+      "sha256": "bfe42dbdb8b37a1fafc5eb01e29a28851fda4e291f286a80ba7e86013418b5e9"
+    },
+    {
+      "path": "ue_framework/stages/__init__.py",
+      "bytes": 326,
+      "sha256": "87bb08911f3ecf7b39f3bdf1c0cc3d094100fe5bdafcff5707b1a75ed862647e"
+    },
+    {
+      "path": "ue_framework/stages/aggregate.py",
+      "bytes": 5024,
+      "sha256": "a63968f0100269be3afb8344810034d46d14927a6bc4e487912556df7f5d8f3a"
+    },
+    {
+      "path": "ue_framework/stages/evaluate.py",
+      "bytes": 10778,
+      "sha256": "632a30efaee07d9803d3b3da011b0f1105d906ad4c0cafaa5e8ec9c744d2641b"
+    },
+    {
+      "path": "ue_framework/stages/generate.py",
+      "bytes": 15850,
+      "sha256": "ed4395879b604a5e8cf69f8210e57903d0db07a0216ee690fec13b47df9666ea"
+    },
+    {
+      "path": "ue_framework/stages/train_victim.py",
+      "bytes": 7315,
+      "sha256": "09526de72e5f2a19fd9a024acce22de78e2c13a8d12500bb79adbdd6cf31454a"
+    },
+    {
+      "path": "ue_framework/status.py",
+      "bytes": 1661,
+      "sha256": "cbe2887d9ca572d9d945163c80d13706d28a6dc201f4f7a9c818e6f215a69b0c"
+    },
+    {
+      "path": "ue_framework/support.py",
+      "bytes": 3521,
+      "sha256": "e0b9813177c10d76ebaedf76bf56c9e2e9e2c9bb7bdeb4c3ac71e17b2d22dca0"
+    },
+    {
+      "path": "ue_framework/train_utils.py",
+      "bytes": 995,
+      "sha256": "c7434e675840d699e7d92f843a723e055af405f9d60b1aa32cb01492788f01ae"
+    },
+    {
+      "path": "ue_framework/ultra/__init__.py",
+      "bytes": 76,
+      "sha256": "87150a0a52566f183120bee1caf5385d7b6dbd4a75ba06a6634ffd0bc055dfdb"
+    },
+    {
+      "path": "ue_framework/ultra/hijacked_loss.py",
+      "bytes": 11140,
+      "sha256": "dbb7673a5e4918b0116e2d6d8de464d6882921439926817981a56c1bb1eb4ae3"
+    }
+  ],
+  "omitted_files": [
+    {
+      "path": ".local_runtime/toy_gradient_evidence_20261014.json",
+      "bytes": 710,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/validation_20261014.xml",
+      "bytes": 7267,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/validation_20261015.xml",
+      "bytes": 7705,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/analyze_cnlp_calibration.py",
+      "bytes": 5520,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/analyze_parallel_probe_20261015.py",
+      "bytes": 3155,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/automation_snapshot_20261015.json",
+      "bytes": 14723,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/change_manifest_6f757c9.json",
+      "bytes": 9629,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/cnlp_admission_artifacts_seed0_20261015_v1.json",
+      "bytes": 8548,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/cnlp_coverage_current_source_binding.json",
+      "bytes": 729,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/cnlp_coverage_v3_replay_verification.json",
+      "bytes": 586,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/cnlp_matched_person_proxy_seed0_20261015_v1.json",
+      "bytes": 7772,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/cnlp_matching_edge_train_evidence.json",
+      "bytes": 3516,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/cnlp_production_admission_draft.py",
+      "bytes": 16972,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/cnlp_production_admission_train32_seed0_20261015_coverage_v2.json",
+      "bytes": 8386,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/cnlp_production_admission_train32_seed0_20261015_v1.json",
+      "bytes": 8020,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/CNLP_TRAIN_CALIBRATION_ANALYSIS.json",
+      "bytes": 118698,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/cnlp_unitgrad_J1_train38_seed0_20261015_coverage_v3.json",
+      "bytes": 7353,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/cnlp_unitgrad_J1_train38_seed0_20261015_v1.json",
+      "bytes": 6976,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/cnlp_unitgrad_J1_train38_seed0_20261015_v2.json",
+      "bytes": 7122,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/cnlp_unitgrad_J3_train38_seed0_20261015_v2.json",
+      "bytes": 7122,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/cnlp_unitgrad_J5_train38_seed0_20261015_v2.json",
+      "bytes": 7122,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/CUP_TRAIN_DAMAGE_CPU_AUDIT.json",
+      "bytes": 21546,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/deploy_locked_receipts_20261015.py",
+      "bytes": 2052,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/gpu_parallel_question_20261015_155104.json",
+      "bytes": 1460,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/gpu_parallel_sampling30s_20261015.json",
+      "bytes": 2687,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/health_20261015T162723Z.json",
+      "bytes": 23343,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/health_20261015T182625Z.json",
+      "bytes": 23230,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/health_20261015T202432Z.json",
+      "bytes": 23299,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/health_20261015T222630Z.json",
+      "bytes": 23855,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/health_20261016T002830Z.json",
+      "bytes": 23853,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/health_resume_20261016T013657Z.json",
+      "bytes": 24347,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/memory_process_launch_20261015.json",
+      "bytes": 1090,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/monitor_20261015T024938Z.json",
+      "bytes": 1817,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/monitor_20261015T044621Z.json",
+      "bytes": 5374,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/monitor_20261015T064522Z.json",
+      "bytes": 4127,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/monitor_20261015T084824Z.json",
+      "bytes": 3081,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/monitor_20261015T142826Z.json",
+      "bytes": 5553,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/monitor_20261015T162723Z.json",
+      "bytes": 5339,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/monitor_20261015T182625Z.json",
+      "bytes": 5291,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/monitor_20261015T202432Z.json",
+      "bytes": 5287,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/monitor_20261015T222630Z.json",
+      "bytes": 7105,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/monitor_20261016T002830Z.json",
+      "bytes": 6533,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/parallel_probe_cpu_snapshot_20261015.json",
+      "bytes": 234,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/parallel_probe_other_gpu_preflight_20261015.json",
+      "bytes": 251,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/PARALLEL_PROBE_PARTIAL_ANALYSIS_20261015.json",
+      "bytes": 2603,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/parallel_probe_pending_20261015.json",
+      "bytes": 1466,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/parallel_probe_post_abort_20261015.json",
+      "bytes": 5249,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/PERFORMANCE_READONLY_ASSESSMENT_20261015.md",
+      "bytes": 3437,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/performance_readonly_snapshot_20261015.json",
+      "bytes": 1212,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/PRERUN_REVIEW.csv",
+      "bytes": 422,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/profiles.json",
+      "bytes": 244,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/receipt_deployment_20261015.json",
+      "bytes": 706,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/RUNTIME_ESTIMATE_20261015.json",
+      "bytes": 1701,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/runtime_estimate_inputs_20261015.json",
+      "bytes": 2711,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/runtime_estimate_recent_checkpoints_20261015.json",
+      "bytes": 867,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/run_s2_s3_pipeline_draft.py",
+      "bytes": 23986,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s2_cnlp_s0_eps8_person_seed0_20261015_v1.json",
+      "bytes": 9158,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s2_completion_health_20261016.json",
+      "bytes": 19822,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s2_finalization_20261016.json",
+      "bytes": 3455,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s2_final_pull_20261016.json",
+      "bytes": 278,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s2_final_verification_20261016.json",
+      "bytes": 15925,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s2_formal_first_observation_20261015.json",
+      "bytes": 17691,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s2_formal_latest_observation_20261015.json",
+      "bytes": 1027,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s2_noise_completion_verification_20261016.json",
+      "bytes": 13237,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s3_cnlp_cup_s0_eps8_person_seed0_20261015_v1.json",
+      "bytes": 10404,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s3_documentation_binding_update_20261016.json",
+      "bytes": 831,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s3_formal_first_observation_20261016.json",
+      "bytes": 1653,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s3_formal_latest_observation_20261016.json",
+      "bytes": 4212,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s3_formal_launch_20261016.json",
+      "bytes": 1389,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s3_formal_ready_20261016.json",
+      "bytes": 348,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s3_health_20261016T022502Z.json",
+      "bytes": 23526,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s3_health_20261016T080225Z.json",
+      "bytes": 23622,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s3_monitor_20261016T022502Z.json",
+      "bytes": 5875,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s3_monitor_20261016T080225Z.json",
+      "bytes": 5943,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s3_parallel_probe_20261015.py",
+      "bytes": 9155,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s3_parallel_resource_probe_seed0_20261015_v1.json",
+      "bytes": 9459,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/s3_prelaunch_resource_20261016.json",
+      "bytes": 357,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "Ultralytics/settings.json",
+      "bytes": 508,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/research_memory/index.json",
+      "bytes": 123,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/research_memory/index.lock",
+      "bytes": 0,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/Ultralytics/settings.json",
+      "bytes": 508,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-2ddec35fa46d4bd3b072cb783df64b2d/test_optimizer_scheduler_rng_f0/full/diagnostics.csv",
+      "bytes": 252,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-2ddec35fa46d4bd3b072cb783df64b2d/test_optimizer_scheduler_rng_f0/full/status.json",
+      "bytes": 941,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-2ddec35fa46d4bd3b072cb783df64b2d/test_optimizer_scheduler_rng_f0/images/0.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-2ddec35fa46d4bd3b072cb783df64b2d/test_optimizer_scheduler_rng_f0/images/1.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-2ddec35fa46d4bd3b072cb783df64b2d/test_optimizer_scheduler_rng_f0/labels/0.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-2ddec35fa46d4bd3b072cb783df64b2d/test_optimizer_scheduler_rng_f0/labels/1.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-68422323cbc5413faf4e3b69ffec1acd/test_optimizer_scheduler_rng_f0/full/diagnostics.csv",
+      "bytes": 252,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-68422323cbc5413faf4e3b69ffec1acd/test_optimizer_scheduler_rng_f0/full/status.json",
+      "bytes": 942,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-68422323cbc5413faf4e3b69ffec1acd/test_optimizer_scheduler_rng_f0/images/0.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-68422323cbc5413faf4e3b69ffec1acd/test_optimizer_scheduler_rng_f0/images/1.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-68422323cbc5413faf4e3b69ffec1acd/test_optimizer_scheduler_rng_f0/labels/0.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-68422323cbc5413faf4e3b69ffec1acd/test_optimizer_scheduler_rng_f0/labels/1.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/completed_resume/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/completed_resume/global_params.pt",
+      "bytes": 2533,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/completed_resume/status.json",
+      "bytes": 1673,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/full/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/full/global_params.pt",
+      "bytes": 2533,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/full/latest_checkpoint.json",
+      "bytes": 337,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/full/status.json",
+      "bytes": 1385,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/images/0.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/images/1.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/interrupted/diagnostics.csv",
+      "bytes": 252,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/interrupted/latest_checkpoint.json",
+      "bytes": 344,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/interrupted/status.json",
+      "bytes": 1303,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/labels/0.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/labels/1.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/resumed/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/resumed/global_params.pt",
+      "bytes": 2533,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/resumed/latest_checkpoint.json",
+      "bytes": 340,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-91ee6d21a3e04b18a88777896441b7d1/test_optimizer_scheduler_rng_f0/resumed/status.json",
+      "bytes": 1682,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_query_disjointne0/manifest.json",
+      "bytes": 4226,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_query_disjointne0/labels/train0.txt",
+      "bytes": 39,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_query_disjointne0/labels/train1.txt",
+      "bytes": 19,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_query_disjointne0/labels/train2.txt",
+      "bytes": 39,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_query_disjointne0/train/train0.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_query_disjointne0/train/train1.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_query_disjointne0/train/train2.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_query_disjointne0/val/val.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_label_si0/labels/train0.txt",
+      "bytes": 7,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_label_si0/labels/train1.txt",
+      "bytes": 39,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_label_si0/labels/train2.txt",
+      "bytes": 39,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_label_si0/train/train0.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_label_si0/train/train1.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_label_si0/train/train2.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_label_si0/val/val.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_validati0/labels/train0.txt",
+      "bytes": 39,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_validati0/labels/train1.txt",
+      "bytes": 39,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_validati0/labels/train2.txt",
+      "bytes": 39,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_validati0/train/train0.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_validati0/train/train1.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_validati0/train/train2.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_validati0/val/train0.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_manifest_rejects_validati0/val/val.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/completed_resume/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/completed_resume/global_params.pt",
+      "bytes": 2533,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/completed_resume/status.json",
+      "bytes": 1673,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/full/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/full/global_params.pt",
+      "bytes": 2533,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/full/latest_checkpoint.json",
+      "bytes": 337,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/full/status.json",
+      "bytes": 1383,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/images/0.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/images/1.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/interrupted/diagnostics.csv",
+      "bytes": 252,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/interrupted/latest_checkpoint.json",
+      "bytes": 344,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/interrupted/status.json",
+      "bytes": 1303,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/labels/0.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/labels/1.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/resumed/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/resumed/global_params.pt",
+      "bytes": 2533,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/resumed/latest_checkpoint.json",
+      "bytes": 340,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-991990f7724244dd8b41572f3bcfea82/test_optimizer_scheduler_rng_f0/resumed/status.json",
+      "bytes": 1682,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_query_disjointne0/manifest.json",
+      "bytes": 4226,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_query_disjointne0/labels/train0.txt",
+      "bytes": 39,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_query_disjointne0/labels/train1.txt",
+      "bytes": 39,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_query_disjointne0/labels/train2.txt",
+      "bytes": 19,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_query_disjointne0/train/train0.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_query_disjointne0/train/train1.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_query_disjointne0/train/train2.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_query_disjointne0/val/val.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_label_si0/labels/train0.txt",
+      "bytes": 7,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_label_si0/labels/train1.txt",
+      "bytes": 39,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_label_si0/labels/train2.txt",
+      "bytes": 39,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_label_si0/train/train0.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_label_si0/train/train1.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_label_si0/train/train2.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_label_si0/val/val.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_validati0/labels/train0.txt",
+      "bytes": 39,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_validati0/labels/train1.txt",
+      "bytes": 39,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_validati0/labels/train2.txt",
+      "bytes": 39,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_validati0/train/train0.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_validati0/train/train1.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_validati0/train/train2.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_validati0/val/train0.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_manifest_rejects_validati0/val/val.png",
+      "bytes": 112,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/completed_resume/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/completed_resume/global_params.pt",
+      "bytes": 2533,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/completed_resume/status.json",
+      "bytes": 1673,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/full/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/full/global_params.pt",
+      "bytes": 2533,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/full/latest_checkpoint.json",
+      "bytes": 337,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/full/status.json",
+      "bytes": 1385,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/images/0.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/images/1.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/interrupted/diagnostics.csv",
+      "bytes": 252,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/interrupted/latest_checkpoint.json",
+      "bytes": 344,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/interrupted/status.json",
+      "bytes": 1302,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/labels/0.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/labels/1.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/resumed/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/resumed/global_params.pt",
+      "bytes": 2533,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/resumed/latest_checkpoint.json",
+      "bytes": 340,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest-f8dad0f6373445f19bf66e04603edc8b/test_optimizer_scheduler_rng_f0/resumed/status.json",
+      "bytes": 1682,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/completed_resume/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/completed_resume/global_params.pt",
+      "bytes": 2597,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/completed_resume/status.json",
+      "bytes": 1723,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/full/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/full/global_params.pt",
+      "bytes": 2597,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/full/latest_checkpoint.json",
+      "bytes": 337,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/full/status.json",
+      "bytes": 1435,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/images/0.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/images/1.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/interrupted/diagnostics.csv",
+      "bytes": 252,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/interrupted/latest_checkpoint.json",
+      "bytes": 344,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/interrupted/status.json",
+      "bytes": 1352,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/labels/0.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/labels/1.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/resumed/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/resumed/global_params.pt",
+      "bytes": 2597,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/resumed/latest_checkpoint.json",
+      "bytes": 340,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_cnlp_coverage_resume_20261015_v2/test_optimizer_scheduler_rng_f0/resumed/status.json",
+      "bytes": 1732,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/completed_resume/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/completed_resume/global_params.pt",
+      "bytes": 2533,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/completed_resume/status.json",
+      "bytes": 1659,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/full/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/full/global_params.pt",
+      "bytes": 2533,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/full/latest_checkpoint.json",
+      "bytes": 330,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/full/status.json",
+      "bytes": 1378,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/images/0.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/images/1.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/interrupted/diagnostics.csv",
+      "bytes": 252,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/interrupted/latest_checkpoint.json",
+      "bytes": 337,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/interrupted/status.json",
+      "bytes": 1296,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/labels/0.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/labels/1.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/resumed/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/resumed/global_params.pt",
+      "bytes": 2533,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/resumed/latest_checkpoint.json",
+      "bytes": 333,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/pytest_resume_20261015_metadata1/test_optimizer_scheduler_rng_f0/resumed/status.json",
+      "bytes": 1668,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": ".local_runtime/research_memory/events/E6de2436afdf8f2f5910dcdae.json",
+      "bytes": 1082,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/LOCAL_ACCEPTANCE.json",
+      "bytes": 867,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/LOCAL_ARCHIVE_MANIFEST.json",
+      "bytes": 3531,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/s2_completion_health_20261016.json",
+      "bytes": 19822,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/s2_finalization_20261016.json",
+      "bytes": 3455,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/s2_final_pull_20261016.json",
+      "bytes": 278,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/s2_final_verification_20261016.json",
+      "bytes": 15925,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/s2_noise_completion_verification_20261016.json",
+      "bytes": 13237,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/artifact_manifest.json",
+      "bytes": 1520,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/comparison.json",
+      "bytes": 23620,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/config_lock_snapshot.json",
+      "bytes": 3436,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/dataset_integrity.json",
+      "bytes": 928620,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/pipeline_status.json",
+      "bytes": 358,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/review_snapshot.json",
+      "bytes": 1246,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/source_audit.json",
+      "bytes": 294,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/victim_run_spec.json",
+      "bytes": 1478,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/voc20_comparison.csv",
+      "bytes": 6540,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/evaluation/Clean_last_metrics.json",
+      "bytes": 3590,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/evaluation/S2_best_secondary_metrics.json",
+      "bytes": 3615,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/evaluation/S2_last_metrics.json",
+      "bytes": 3545,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/evaluation/Safe_Soft05_last_metrics.json",
+      "bytes": 3619,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/noise/status.json",
+      "bytes": 15557,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "docs/s2_archive/raw/victim_run/victim/results.csv",
+      "bytes": 24869,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/change_manifest.json",
+      "bytes": 16177,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/CNLP_ADMISSION_0175916.json",
+      "bytes": 9266,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/CNLP_CUP_REVIEW_0175916.json",
+      "bytes": 1247,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/console.log",
+      "bytes": 3272,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/formal_commands.json",
+      "bytes": 4636,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/FORMAL_SCHEDULE_AND_ADMISSION.md",
+      "bytes": 3015,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/INDEPENDENT_REVIEW.md",
+      "bytes": 14420,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/packet.json",
+      "bytes": 22750,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/PRELAUNCH_STATUS.json",
+      "bytes": 636,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/resources.json",
+      "bytes": 184,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/S2_CONFIG_LOCK.json",
+      "bytes": 3436,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/S3_CONFIG_LOCK.json",
+      "bytes": 3612,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/status.json",
+      "bytes": 282,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/current_smoke/console.log",
+      "bytes": 1555,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/current_smoke/status.json",
+      "bytes": 277,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/completed_resume/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/completed_resume/global_params.pt",
+      "bytes": 2597,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/completed_resume/status.json",
+      "bytes": 1721,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/full/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/full/global_params.pt",
+      "bytes": 2597,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/full/latest_checkpoint.json",
+      "bytes": 336,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/full/status.json",
+      "bytes": 1434,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/images/0.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/images/1.png",
+      "bytes": 77,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/interrupted/diagnostics.csv",
+      "bytes": 252,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/interrupted/latest_checkpoint.json",
+      "bytes": 343,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/interrupted/status.json",
+      "bytes": 1351,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/labels/0.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/labels/1.txt",
+      "bytes": 20,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/resumed/diagnostics.csv",
+      "bytes": 605,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/resumed/global_params.pt",
+      "bytes": 2597,
+      "reason": "weight/cache/archive prohibited"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/resumed/latest_checkpoint.json",
+      "bytes": 339,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/lean_review_20261015/reviewer_cpu_20261015/test_optimizer_scheduler_rng_f0/resumed/status.json",
+      "bytes": 1729,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_admission_artifacts_seed0_20261015_v1/last_status.json",
+      "bytes": 277,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_admission_artifacts_seed0_20261015_v1/run_ref.json",
+      "bytes": 1302,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_admission_artifacts_seed0_20261015_v1/run_spec.json",
+      "bytes": 8025,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_matched_person_proxy_seed0_20261015_v1/last_status.json",
+      "bytes": 277,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_matched_person_proxy_seed0_20261015_v1/run_ref.json",
+      "bytes": 1306,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_matched_person_proxy_seed0_20261015_v1/run_spec.json",
+      "bytes": 7255,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_production_admission_train32_seed0_20261015_coverage_v2/last_status.json",
+      "bytes": 282,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_production_admission_train32_seed0_20261015_coverage_v2/run_ref.json",
+      "bytes": 1374,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_production_admission_train32_seed0_20261015_coverage_v2/run_spec.json",
+      "bytes": 7660,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_production_admission_train32_seed0_20261015_v1/last_status.json",
+      "bytes": 236,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_production_admission_train32_seed0_20261015_v1/run_ref.json",
+      "bytes": 1338,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_production_admission_train32_seed0_20261015_v1/run_spec.json",
+      "bytes": 7361,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J1_train38_seed0_20261015_coverage_v3/last_status.json",
+      "bytes": 285,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J1_train38_seed0_20261015_coverage_v3/run_ref.json",
+      "bytes": 1338,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J1_train38_seed0_20261015_coverage_v3/run_spec.json",
+      "bytes": 6869,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J1_train38_seed0_20261015_v1/last_status.json",
+      "bytes": 276,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J1_train38_seed0_20261015_v1/run_ref.json",
+      "bytes": 1302,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J1_train38_seed0_20261015_v1/run_spec.json",
+      "bytes": 6559,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J1_train38_seed0_20261015_v2/last_status.json",
+      "bytes": 276,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J1_train38_seed0_20261015_v2/run_ref.json",
+      "bytes": 1302,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J1_train38_seed0_20261015_v2/run_spec.json",
+      "bytes": 6668,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J3_train38_seed0_20261015_v2/last_status.json",
+      "bytes": 276,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J3_train38_seed0_20261015_v2/run_ref.json",
+      "bytes": 1302,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J3_train38_seed0_20261015_v2/run_spec.json",
+      "bytes": 6668,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J5_train38_seed0_20261015_v2/last_status.json",
+      "bytes": 276,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J5_train38_seed0_20261015_v2/run_ref.json",
+      "bytes": 1302,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/cnlp_unitgrad_J5_train38_seed0_20261015_v2/run_spec.json",
+      "bytes": 6668,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/s2_cnlp_s0_eps8_person_seed0_20261015_v1/last_status.json",
+      "bytes": 274,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/s2_cnlp_s0_eps8_person_seed0_20261015_v1/run_ref.json",
+      "bytes": 1294,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/s2_cnlp_s0_eps8_person_seed0_20261015_v1/run_spec.json",
+      "bytes": 8717,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/s3_cnlp_cup_s0_eps8_person_seed0_20261015_v1/last_status.json",
+      "bytes": 223,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/s3_cnlp_cup_s0_eps8_person_seed0_20261015_v1/run_ref.json",
+      "bytes": 1310,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/s3_cnlp_cup_s0_eps8_person_seed0_20261015_v1/run_spec.json",
+      "bytes": 9699,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/s3_parallel_resource_probe_seed0_20261015_v1/last_status.json",
+      "bytes": 348,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/s3_parallel_resource_probe_seed0_20261015_v1/run_ref.json",
+      "bytes": 1310,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "execution/state/s3_parallel_resource_probe_seed0_20261015_v1/run_spec.json",
+      "bytes": 8989,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J1_train38_seed0_20261015_v1/artifact_manifest.json",
+      "bytes": 918,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J1_train38_seed0_20261015_v1/calibration_rows.json",
+      "bytes": 60699,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J1_train38_seed0_20261015_v1/fixed_train_plan.json",
+      "bytes": 78014,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J1_train38_seed0_20261015_v1/smoke_summary.json",
+      "bytes": 1282,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J1_train38_seed0_20261015_v1/status.json",
+      "bytes": 446,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J1_train38_seed0_20261015_v2/artifact_manifest.json",
+      "bytes": 1038,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J1_train38_seed0_20261015_v2/calibration_rows.json",
+      "bytes": 60697,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J1_train38_seed0_20261015_v2/case_gradients.json",
+      "bytes": 19093,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J1_train38_seed0_20261015_v2/fixed_train_plan.json",
+      "bytes": 78014,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J1_train38_seed0_20261015_v2/smoke_summary.json",
+      "bytes": 1379,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J1_train38_seed0_20261015_v2/status.json",
+      "bytes": 446,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J3_train38_seed0_20261015_v2/artifact_manifest.json",
+      "bytes": 1038,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J3_train38_seed0_20261015_v2/calibration_rows.json",
+      "bytes": 61033,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J3_train38_seed0_20261015_v2/case_gradients.json",
+      "bytes": 19206,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J3_train38_seed0_20261015_v2/fixed_train_plan.json",
+      "bytes": 78014,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J3_train38_seed0_20261015_v2/smoke_summary.json",
+      "bytes": 1379,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J3_train38_seed0_20261015_v2/status.json",
+      "bytes": 446,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J5_train38_seed0_20261015_v2/artifact_manifest.json",
+      "bytes": 1038,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J5_train38_seed0_20261015_v2/calibration_rows.json",
+      "bytes": 60486,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J5_train38_seed0_20261015_v2/case_gradients.json",
+      "bytes": 19049,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J5_train38_seed0_20261015_v2/fixed_train_plan.json",
+      "bytes": 78014,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J5_train38_seed0_20261015_v2/smoke_summary.json",
+      "bytes": 1380,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "remote_artifacts/cnlp_admission/cnlp_unitgrad_J5_train38_seed0_20261015_v2/status.json",
+      "bytes": 446,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "research_workspace/analysis/S1_S0_EXISTING_DIAGNOSTICS_AUDIT_20261015.json",
+      "bytes": 45358,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "research_workspace/analysis/S1_TARGET_REGRESSION_REVIEW_20261015.md",
+      "bytes": 7758,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "research_workspace/analysis/S2_CNLP_ADMISSION_AND_LAUNCH_EVIDENCE.json",
+      "bytes": 29286,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "research_workspace/analysis/S2_FINAL_ACCEPTANCE_20261016.json",
+      "bytes": 8228,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "research_workspace/analysis/S2_NOISE_COMPLETION_20261016.md",
+      "bytes": 2907,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "research_workspace/analysis/S2_S3_PARALLEL_RESOURCE_TEST_20261015.json",
+      "bytes": 2603,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "research_workspace/analysis/S2_S3_PARALLEL_RESOURCE_TEST_20261015.md",
+      "bytes": 2670,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    },
+    {
+      "path": "research_workspace/analysis/S3_FORMAL_LAUNCH_20261016.md",
+      "bytes": 1803,
+      "reason": "local execution/provenance or result not needed for source snapshot; no source file omitted"
+    }
+  ],
+  "diagnostic_code_source": "5bcae7233e03ebc6d2533f0ae311f67a68676899",
+  "source_code_changes_from_s3": false,
+  "hash_domain": "local snapshot disk bytes; Git may normalize text to LF; original code identities stored separately"
+}
