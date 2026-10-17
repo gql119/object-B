@@ -60,6 +60,13 @@ def _resource_snapshot(sample_seconds=5.0):
             fields=row.split()
             if fields and fields[0] in ('pswpin','pswpout'):out[fields[0]]=int(fields[1])
         return out
+    def cgroup_usage_seconds():
+        try:
+            rows=Path('/sys/fs/cgroup/cpu.stat').read_text().splitlines()
+            return next(int(x.split()[1]) for x in rows if x.startswith('usage_usec '))/1e6
+        except (OSError,ValueError,StopIteration):pass
+        try:return int(Path('/sys/fs/cgroup/cpuacct/cpuacct.usage').read_text().strip())/1e9
+        except (OSError,ValueError):return None
     def process_inventory():
         d_count=foreign=0;uid_set=set();me=os.getuid()
         for proc in Path('/proc').iterdir():
@@ -72,20 +79,22 @@ def _resource_snapshot(sample_seconds=5.0):
                 if uid!=me:foreign+=1
             except (OSError,ValueError,StopIteration):pass
         return {'d_state_count':d_count,'foreign_uid_process_count':foreign,'visible_uid_count':len(uid_set)}
-    before,host_before,capacity=cpu_counters();vm0=swap_pages();started=time.monotonic()
+    before,host_before,capacity=cpu_counters();vm0=swap_pages();cg0=cgroup_usage_seconds();started=time.monotonic()
     time.sleep(max(1.0,float(sample_seconds)))
-    elapsed=max(.001,time.monotonic()-started);after,host_after,_=cpu_counters();vm1=swap_pages()
+    elapsed=max(.001,time.monotonic()-started);after,host_after,_=cpu_counters();vm1=swap_pages();cg1=cgroup_usage_seconds()
     def rates(old,new):
         total=max(1,new[0]-old[0]);idle=max(0,new[1]-old[1]);io=max(0,new[2]-old[2])
         return max(0.,min(100.,100.*(total-idle)/total)),max(0.,min(100.,100.*io/total))
     busy,io_affinity=rates(before,after);host_busy,io_host=rates(host_before,host_after)
-    busy=max(busy,host_busy);io=max(io_affinity,io_host)
     quota=None
     try:
         value,period=Path('/sys/fs/cgroup/cpu.max').read_text().split()[:2]
         if value!='max':quota=float(value)/float(period)
     except (OSError,ValueError,ZeroDivisionError):pass
     effective_capacity=min(float(capacity),quota) if quota is not None else float(capacity)
+    cg_busy=(max(0.,min(100.,100.*(cg1-cg0)/(elapsed*effective_capacity)))
+             if cg0 is not None and cg1 is not None and effective_capacity>0 else None)
+    busy=max(busy,host_busy,cg_busy if cg_busy is not None else 0.);io=max(io_affinity,io_host)
     mem={}
     for row in Path('/proc/meminfo').read_text().splitlines():
         p=row.replace(':','').split()
@@ -101,6 +110,7 @@ def _resource_snapshot(sample_seconds=5.0):
         'loadavg_1_5_15':list(os.getloadavg()),
         'cpu_busy_percent_effective_sample':round(busy,2),
         'cpu_busy_percent_host_sample':round(host_busy,2),
+        'cgroup_cpu_busy_percent_of_effective_capacity':round(cg_busy,2) if cg_busy is not None else None,
         'cpu_headroom_logical_cores':round(effective_capacity*(1-busy/100),3),
         'io_wait_percent_sample':round(io,2),
         'swap_activity_pages':{'in':max(0,vm1.get('pswpin',0)-vm0.get('pswpin',0)),
