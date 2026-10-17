@@ -1,6 +1,7 @@
 """Bounded current-production admission; no official metrics or data ingestion."""
 import copy
 import csv
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -22,11 +23,16 @@ from ue_framework.methods.tfss_spatial import spatial_weights
 ROOT=Path(__file__).resolve().parents[1]
 
 
+def array_digest(value):
+    array=np.ascontiguousarray(value.detach().cpu().numpy() if torch.is_tensor(value) else value)
+    return hashlib.sha256(array.tobytes()).hexdigest()
+
+
 def smoke(cfg,setup_trainer,prototypes,lock,out):
     manifest=json.loads((ROOT/'docs/tfss/FIXED_TRAIN_SAMPLE_MANIFEST.json').read_text())
     records=manifest['records'];images=[r['image_path'] for r in records]
     identity=dict(smoke_fixed_manifest='original TRAIN32',seed=0,source='current production',cache_identity=setup_trainer.s4_cache.identity)
-    observed={};integrity=[]
+    observed={};integrity=[];training_spatial_observations=[]
     def create(cls):
         random.seed(0);np.random.seed(0);torch.manual_seed(0);torch.cuda.manual_seed_all(0)
         frozen=YOLO(cfg['surrogate']['ckpt']).model.to('cuda:0')
@@ -85,8 +91,32 @@ def smoke(cfg,setup_trainer,prototypes,lock,out):
         t=create(S4Trainer);t.tfss_mode='TFSS-U'
         t.s4_cache=setup_trainer.s4_cache
         return t
+
+    def observe_training_spatial(t,items,loss,metrics,step,eot):
+        if t.tfss_mode!='TFSS-U' or len(t.s4_maps)!=len(items) or len(t.s4_item_paths)!=len(items):
+            raise ValueError('Missing actual Utility training maps or image identity')
+        if t.tfss_applied_weight.ndim!=4 or t.tfss_applied_weight.shape[0]!=len(items):
+            raise ValueError('Missing actual Utility applied spatial weights')
+        for index,(item,path,(q,r,valid)) in enumerate(zip(items,t.s4_item_paths,t.s4_maps)):
+            image,annotations,support=item;h,w=image.shape[:2]
+            actual_weight=t.tfss_applied_weight[index,0,:h,:w]
+            support_t=torch.as_tensor(support,device=t.device)
+            formula_weight=spatial_weights(q,r,support_t,mode='TFSS-U',eta=.85)
+            if tuple(q.shape)!=(h,w) or tuple(r.shape)!=(h,w) or tuple(valid.shape)!=(h,w):
+                raise ValueError('Actual training map is not in original image coordinates')
+            weight_error=float((actual_weight-formula_weight).abs().max())
+            if weight_error>1e-7:
+                raise ValueError(f'Applied training Utility weight differs from locked formula: {weight_error}')
+            training_spatial_observations.append(dict(
+                image_id=Path(path).stem,image_path=str(Path(path).resolve()),step=int(step)+1,eot=int(eot)+1,
+                canvas_hw=list(canonical_map_canvas(image)),
+                Q_sha256=array_digest(q),R_sha256=array_digest(r),valid_sha256=array_digest(valid),
+                applied_W_sha256=array_digest(actual_weight),formula_W_sha256=array_digest(formula_weight),
+                applied_vs_formula_W_max_abs=weight_error,
+                actual_weight_min=float(actual_weight.min()),actual_weight_max=float(actual_weight.max())))
     u=utility()
-    status=optimize_s4(u,images,Path(records[0]['label_path']).parent,prototypes,out/'utility5',identity,stop_after=5)
+    status=optimize_s4(u,images,Path(records[0]['label_path']).parent,prototypes,out/'utility5',identity,
+        stop_after=5,observe=observe_training_spatial)
     with (out/'utility5'/'diagnostics.csv').open(newline='',encoding='utf-8') as stream:
         gradient_rows=list(csv.DictReader(stream))
     if len(gradient_rows)!=5:
@@ -111,7 +141,7 @@ def smoke(cfg,setup_trainer,prototypes,lock,out):
     exec(compile(source,'validated_tfss_clean_maps.py','exec'),module.__dict__)
     export_cache=CleanMapCache(out/'export_clean_maps',setup_trainer.s4_cache.identity)
     map_difference=0.
-    map_rows=[]
+    map_rows=[];training_export_rows=[]
     for start in (0,16):
         batch=items[start:start+16];paths=images[start:start+16]
         cached,_=u.s4_cache.get(u,batch,paths)
@@ -133,6 +163,26 @@ def smoke(cfg,setup_trainer,prototypes,lock,out):
                 pair_differences.append(values)
             differences=[max(row[column] for row in pair_differences) for column in range(4)]
             map_difference=max(map_difference,*differences)
+            actual_training=[row for row in training_spatial_observations if row['image_id']==Path(path).stem]
+            if not actual_training:
+                raise ValueError('Fixed TRAIN image lacks actual optimizer-step spatial-weight evidence: '+Path(path).stem)
+            export_q,export_r,export_valid=exported
+            export_weight=spatial_weights(export_q,export_r,support_t,mode='TFSS-U',eta=.85)
+            export_hashes=dict(Q_sha256=array_digest(export_q),R_sha256=array_digest(export_r),
+                valid_sha256=array_digest(export_valid),W_sha256=array_digest(export_weight))
+            used_hashes_ok=all(row['Q_sha256']==export_hashes['Q_sha256']
+                and row['R_sha256']==export_hashes['R_sha256']
+                and row['valid_sha256']==export_hashes['valid_sha256']
+                and row['applied_W_sha256']==export_hashes['W_sha256']
+                for row in actual_training)
+            if not used_hashes_ok:
+                raise ValueError('Actual training Q/R/W hashes differ from independent export maps: '+Path(path).stem)
+            training_export_rows.append(dict(image_id=Path(path).stem,
+                training_observation_count=len(actual_training),
+                training_steps=sorted({row['step'] for row in actual_training}),
+                training_eots=sorted({row['eot'] for row in actual_training}),
+                actual_training_hashes=actual_training,export_hashes=export_hashes,
+                exact_hash_match=True))
             map_rows.append(dict(image_id=Path(path).stem,
                 training_canvas=list(canonical_map_canvas(item[0])),
                 export_canvas=list(canonical_map_canvas(item[0])),
@@ -157,17 +207,31 @@ def smoke(cfg,setup_trainer,prototypes,lock,out):
     generator=LegacyKProtoGenerator(cfg,cfg['methods']['legacy_kproto_ret'],torch.device('cuda:0'),u.surrogate,str(out/'smoke_global.pt'))
     from PIL import Image
     exports=out/'PNG_smoke';exports.mkdir()
-    png_checks=[]
+    png_checks=[];exported_perturbation_rows=[]
     for index,(item,path) in enumerate(zip(items,images)):
         image,ann,support=item;maps,_=u.s4_cache.get(u,[item],[path]);q,r,_=maps[0]
-        weight=spatial_weights(q,r,torch.as_tensor(support,device=u.device),mode='TFSS-U',eta=.85).cpu().numpy()
+        weight_tensor=spatial_weights(q,r,torch.as_tensor(support,device=u.device),mode='TFSS-U',eta=.85)
+        exported_weight_hash=array_digest(weight_tensor)
+        training_row=next(row for row in training_export_rows if row['image_id']==Path(path).stem)
+        if exported_weight_hash!=training_row['export_hashes']['W_sha256']:
+            raise ValueError('PNG export did not use the audited train/export Utility weight: '+Path(path).stem)
+        weight=weight_tensor.cpu().numpy()
         result=generator.generate(image,ann,0,24,u.eps,'mask',image_path=path)
-        candidate=np.clip(image+weight[:,:,None]*result.perturbation,0,1)
+        weighted_perturbation=weight[:,:,None]*result.perturbation
+        candidate=np.clip(image+weighted_perturbation,0,1)
         clean=np.rint(image*255).astype(np.uint8);poison=png_project(clean,candidate,support*u.eps)
         file=exports/(str(index)+'.png');Image.fromarray(poison).save(file)
         decoded=np.asarray(Image.open(file));diff=np.abs(decoded.astype(np.int16)-clean.astype(np.int16)).max(2)
         if np.any(diff[support==0]) or np.any(diff/255>support*u.eps+1e-7):raise ValueError('Exported smoke PNG budget failed')
         png_checks.append(dict(image_id=Path(path).stem,passed=True,linf_byte=int(diff.max()),overlap_linf_byte=int(diff[support==.5].max()) if (support==.5).any() else 0))
+        exported_perturbation_rows.append(dict(image_id=Path(path).stem,
+            map_weight_sha256=exported_weight_hash,
+            actual_training_map_weight_sha256=training_row['export_hashes']['W_sha256'],
+            training_to_export_weight_exact=exported_weight_hash==training_row['export_hashes']['W_sha256'],
+            base_perturbation_sha256=array_digest(result.perturbation),
+            weighted_preclamp_perturbation_sha256=array_digest(weighted_perturbation),
+            actual_postclamp_delta_sha256=array_digest(candidate-image),
+            decoded_png_delta_sha256=array_digest(decoded.astype(np.int16)-clean.astype(np.int16))))
     del generator,u
     prefix=utility();prefix_status=optimize_s4(prefix,images,Path(records[0]['label_path']).parent,prototypes,out/'utility3',identity,stop_after=3)
     del prefix
@@ -189,6 +253,15 @@ def smoke(cfg,setup_trainer,prototypes,lock,out):
         optimizer_updates=20,optimizer_update_breakdown='canonical5+noop5+U5+prefix3+resume2',
         S0_noop_max_difference=maximum,parameter_update_difference=coefficient_difference,
         train_export_Q_R_W_max_difference=map_difference,train_export_map_rows=map_rows,
+        actual_training_to_export_map_weight_correspondence=dict(
+            passed=(len(training_export_rows)==len(records)
+                and all(row['exact_hash_match'] for row in training_export_rows)
+                and len(exported_perturbation_rows)==len(records)
+                and all(row['training_to_export_weight_exact'] for row in exported_perturbation_rows)),
+            fixed_train_images=len(records),observed_training_map_weight_rows=len(training_spatial_observations),
+            formula_weight_max_abs_difference=max(row['applied_vs_formula_W_max_abs'] for row in training_spatial_observations),
+            per_image=training_export_rows),
+        exported_weighted_perturbations=exported_perturbation_rows,
         effective_gradient_audit=gradient_audit,
         resume3to5_max_difference=replay,resume_CSV_byte_identical=True,
         Adam_scheduler_replay_exact=True,PNG_checks=png_checks,frozen_adaptive_unchanged=all(integrity),
