@@ -137,5 +137,22 @@
     "patience": 0,
     "reason": "Explicit full200 user requirement; disables AP early stopping only, original optimizer/LR/augmentations unchanged",
     "automatic_resume": "forbidden until native worker/prefetch RNG continuity separately verified; retained model/optimizer/scheduler/RNG snapshots are evidence, not an assumed exact continuation"
+  },
+  "direct_Person_Dog_diagnostic": {
+    "conf": 0.25,
+    "iou": 0.7,
+    "match_iou": 0.5,
+    "imgsz": 640,
+    "batch": 36,
+    "max_det": 300,
+    "agnostic_nms": false
+  },
+  "direct_Person_Dog_definition": "GT-wise Dog overlap atIoU>=.5 and Dog overlap without any Person overlap; each GT once; fixedconfidence .25, no native one-to-one confusion/causal migration claim",
+  "historical_S0_loss_reference": {
+    "path": "docs/S4_TFSS_UTILITY/S0_EPOCH_LOG_REFERENCE.json",
+    "original_CSV_sha256": "43f9d84ab3e79bee62b17858f9e4ce438e632f4140fbaf7fb8d5f65c7d605f9d",
+    "rows": 9144,
+    "epochs": 24,
+    "contemporaneous_runtime_GitSHA": null
   }
 }

@@ -38,6 +38,8 @@ def resource_gate():
         raise RuntimeError('CPU/disk resource gate failed; no cleanup')
     if float(subprocess.check_output(['nvidia-smi','--query-gpu=memory.free','--format=csv,noheader,nounits'],text=True).strip())<24000:
         raise RuntimeError('Need dedicated24GiB free GPU')
+    return dict(loadavg=os.getloadavg(),disk_free_bytes=shutil.disk_usage(BOUNDARY.parent).free,
+        gpu=subprocess.check_output(['nvidia-smi','--query-gpu=index,name,memory.free,memory.total','--format=csv,noheader,nounits'],text=True).strip())
 
 
 def setup(lock,out):
@@ -112,6 +114,10 @@ def materialize_and_audit(cfg,trainer,noise,out,source_splits):
     from ue_framework.methods.tfss_spatial import spatial_weights
     from scripts.audit_safe_bg_ablation_fingerprint_20261004 import split_fingerprint
     source=Path(cfg['data']['dataset_root']);data=out/'dataset';rows=[];audits=[]
+    metadata=json.loads((ROOT/'docs/tfss/SOURCE_METADATA.json').read_text())
+    s0_data=Path(metadata['s0_poison_data']['path'])
+    s0_images={Path(p).stem:Path(p) for p in list_images(str(s0_data/'images/train'))}
+    if len(s0_images)!=16551:raise ValueError('S0 decoded-RMS comparison dataset incomplete')
     gen=LegacyKProtoGenerator(cfg,cfg['methods']['legacy_kproto_ret'],torch.device('cuda:0'),trainer.surrogate,str(noise/'global_params.pt'))
     for split in ('train','val'):
         for folder in ('images','labels'):(data/folder/split).mkdir(parents=True,exist_ok=False)
@@ -141,7 +147,7 @@ def materialize_and_audit(cfg,trainer,noise,out,source_splits):
         else:shutil.copyfile(path,dest)
         shutil.copyfile(label,data/'labels/train'/label.name)
         if sha(label)!=sha(data/'labels/train'/label.name):raise ValueError('Label bytes changed')
-        row=dict(id=path.stem,has_target=has,source=str(path),output=str(dest))
+        row=dict(id=path.stem,has_target=has,source=str(path),output=str(dest),output_sha256=sha(dest),label_sha256=sha(label))
         rows.append(row)
         if not has:
             if sha(path)!=sha(dest):raise ValueError('Non-Person bytes changed')
@@ -158,9 +164,16 @@ def materialize_and_audit(cfg,trainer,noise,out,source_splits):
                     changed.append(bool(np.any(absolute[mask]>0)))
             if not all(changed):raise ValueError('Unchanged Person GT: '+path.stem)
             mse=float(np.mean(difference.astype(np.float64)**2))
+            if sha(s0_data/'labels/train'/label.name)!=sha(label):raise ValueError('S0 diagnostic label identity changed')
+            decoded0=np.rint(load_image_rgb_float(str(s0_images[path.stem]))*255).astype(np.uint8)
+            if decoded0.shape!=clean.shape:raise ValueError('S0 comparison image geometry changed')
+            diff0=decoded0.astype(np.int16)-clean.astype(np.int16)
             audits.append(dict(id=path.stem,changed_person_gt=sum(changed),linf_byte=int(absolute.max()),
                 overlap_linf_byte=int(absolute[target&other].max()) if (target&other).any() else 0,
-                rms_pixel=float(np.sqrt(mse)/255),psnr_db=float(10*np.log10(255**2/mse)) if mse else None,
+                rms_pixel=float(np.sqrt(mse)/255),S0_rms_pixel=float(np.sqrt(np.mean(diff0.astype(np.float64)**2))/255),
+                rms_Person=float(np.sqrt(np.mean(difference[target].astype(np.float64)**2))/255),
+                S0_rms_Person=float(np.sqrt(np.mean(diff0[target].astype(np.float64)**2))/255),
+                psnr_db=float(10*np.log10(255**2/mse)) if mse else None,
                 ssim=float(structural_similarity(clean,decoded,data_range=255,channel_axis=2)) if structural_similarity else None))
         if len(rows)%250==0:dump(out/'materialization_progress.json',dict(written=len(rows),remaining=16551-len(rows),audited_target=len(audits)))
     for path in list_images(str(source/'images/val')):
@@ -180,7 +193,7 @@ def materialize_and_audit(cfg,trainer,noise,out,source_splits):
     integrity=dict(state='passed',train=16551,val=4952,target_images=6095,non_target_images_unchanged=10456,
         person_gt=13256,changed_person_gt=13256,labels_byte_identical=True,clean_val_byte_identical=True,
         non_target_images_byte_identical=True,outside_target_zero=True,per_pixel_frozen_budget_passed=True,
-        decoded_PNG_audited=True,PSNR_scope='full-image per target image',SSIM='measured' if structural_similarity else 'NOT_RUN_missing_installed_tool',
+        decoded_PNG_audited=True,materialization_manifest_sha256=sha(out/'materialization_manifest.json'),PSNR_scope='full-image per target image',SSIM='measured' if structural_similarity else 'NOT_RUN_missing_installed_tool',
         LPIPS='NOT_RUN_no_validated_local_weight_binding',images=audits)
     dump(out/'dataset_integrity.json',integrity)
     return data
@@ -230,13 +243,19 @@ def train_evaluate(cfg,out,data,provenance,lock):
         metrics[role]=dict(summarize(result.box),checkpoint_sha256=sha(checkpoint),checkpoint_role='last.pt@200' if role=='S4' else 'best.pt',class_names=list(NAMES))
         dump(out/(role+'_evaluation.json'),metrics[role])
     for role,value in metrics.items():value.update(selectivity=pus(metrics['Clean'],value),collateral=collateral(metrics['Clean'],value))
+    from scripts.s4_detection_diagnostics import evaluate_person_dog
+    parent=Path(json.loads((ROOT/'docs/tfss/SOURCE_METADATA.json').read_text())['parent_root'])
+    s0_checkpoint=parent/'victim_b2_to_safe_soft05_eps8_person_seed0_20261004/victim/weights/last.pt'
+    if sha(s0_checkpoint)!=provenance['victim_last_sha256']:raise ValueError('S0 diagnostic checkpoint changed')
+    direct={role:evaluate_person_dog(checkpoint,data,out/(role+'_person_dog.json'),lock['direct_Person_Dog_diagnostic'])
+        for role,checkpoint in [('S0',s0_checkpoint),('S4',victim/'weights/last.pt')]}
     result=metrics['S4'];target_ok=result['mAP50_target']<=lock['success_gate']['target_max_literal']
     utility_ok=result['mAP50_non_target']>metrics['S0']['mAP50_non_target']
     category='SUCCESS_CANDIDATE' if target_ok and utility_ok else ('TARGET_REGRESSION' if not target_ok else 'UTILITY_NOT_IMPROVED')
     delta={name:{k:result[k]-metrics[name][k] for k in result if k.startswith(('mAP','Recall_','Precision_')) and isinstance(result[k],(float,int))} for name in ('S0','S1','S2','S3')}
     dump(out/'comparison.json',dict(state='complete',method='S4-TFSS-Utility',parent='S0',primary='last.pt@200',secondary='best.pt',
         metrics=metrics,delta=delta,outcome=category,single_seed_not_significance=True,causal_mechanism_established=False,
-        person_to_dog='NOT_RUN_no_matched_historical_detection_confusion_protocol'))
+        person_to_dog=direct,person_to_dog_definition='new predeclared fixed-threshold GT-overlap diagnostic, not native AP/causal migration'))
     with (out/'voc20_comparison.csv').open('w',newline='') as f:
         rows=[]
         for i,name in enumerate(NAMES):
@@ -262,11 +281,11 @@ def main():
         if review.get('source_commit')!=commit or review.get('pre_run_result')!='pass' or review.get('config_sha256')!=sha(a.lock):
             raise ValueError('Current scientific review/closure and frozen lock required')
         if out.name!=lock['run_id'] and not a.resume_noise:raise ValueError('Formal RunID differs')
-    resource_gate();out.mkdir(parents=True)
+    resource=resource_gate();out.mkdir(parents=True)
     for key,name in [('YOLO_CONFIG_DIR','yolo'),('MPLCONFIGDIR','mpl'),('XDG_CACHE_HOME','cache'),('TORCH_HOME','torch')]:
         d=out/'runtime'/name;d.mkdir(parents=True);os.environ[key]=str(d)
     os.environ.update(CUDA_VISIBLE_DEVICES='0',CUBLAS_WORKSPACE_CONFIG=':4096:8',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',WANDB_MODE='disabled',PYTHONDONTWRITEBYTECODE='1')
-    state=dict(state='running',stage='source_preflight',run_id=out.name,source_commit=commit,config_lock_sha256=sha(a.lock),started_at_unix=time.time())
+    state=dict(state='running',stage='source_preflight',run_id=out.name,source_commit=commit,config_lock_sha256=sha(a.lock),started_at_unix=time.time(),resource=resource)
     def mark(stage,**kw):state.update(stage=stage,**kw);dump(out/'pipeline_status.json',state);print(json.dumps(state),flush=True)
     mark('source_preflight')
     try:
@@ -290,6 +309,8 @@ def main():
         mark('materialization_and_pixel_audit');data=materialize_and_audit(cfg,trainer,noise,out,splits)
         if json.loads((out/'dataset_integrity.json').read_text()).get('state')!='passed':raise ValueError('No dataset audit admission')
         mark('victim_training_and_evaluation');train_evaluate(cfg,out,data,prov,lock)
+        from scripts.s4_report import finalize
+        finalize(out,ROOT,commit)
         mark('complete',state='complete',completed_at_unix=time.time())
     except BaseException as error:
         mark(state['stage'],state='failed',error=repr(error),failed_at_unix=time.time());raise
