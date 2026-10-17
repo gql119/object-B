@@ -1,4 +1,6 @@
-# TFSS-C / TFSS-U — WAIT_FOR_S3
+# TFSS-C / TFSS-U — CURRENT-SOURCE SMOKE REPAIR
+
+2026-10-17 latest state overrides earlier WAIT_FOR_S3 paragraphs below: S3 accepted/archived/exited, docs/s3_archive/LOCAL_ACCEPTANCE.json in the S23 worktree; local exact copy execution/S3_ACCEPTANCE_20261017.json. Resource gate passed (GPUempty/CPUload7.14/32logical). First unique TFSS smoke tfss_cu_gpu_smoke_train16_seed0_20261017_v1 sourceb6a01c8 exited1 at real S0/noop equivalence, maxdiff1.4722347259521484e-5>unchanged1e-7, two trials updated once; C/U/Uniform NOT_RUN. All checkpoints retained. No independent review called, no five-step or fullTFSS admitted. Paired deterministic CUDA controls omitted in initial probe are now explicitly bound identically to all trials; main-agent diagnosis and exact failure retained in docs/tfss/SMOKE_NUMERICAL_REPLAY_REPAIR_20261017.md. Local8CPUchecks/AST/45canonicalbytechecks pass after repair; a fresh current-source real smoke is still required. Original formulas and all scientific parameters/tolerances remain fixed. Current decision INSUFFICIENT_EVIDENCE; fullTFSS still needs future human confirmation.
 
 Latest user authorization: docs/tfss/USER_TASK_SOURCE.md, attachmentbf6f4d1e SHA2f4ffb33685d93ec868481680324f18bee14fdf2723520ff894f26eeb5dabdaa. It supersedes the former diagnostic-only/no-push restriction ONLY for explicitly requested archive and TFSS preparation/short comparisons. It does not authorize full TFSS noise/victim.
 

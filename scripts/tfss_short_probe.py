@@ -86,6 +86,10 @@ def main():
     os.environ['CUDA_VISIBLE_DEVICES'] = str(a.gpu)
     os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
     os.environ['OMP_NUM_THREADS'] = os.environ['MKL_NUM_THREADS'] = '1'
+    # Paired higher-order CUDA probes must replay the same numerical kernels as
+    # well as RNG draws. Apply identically to canonical reference and candidate;
+    # this does not change their losses, inputs, updates, or numerical tolerance.
+    os.environ['CUBLAS_WORKSPACE_CONFIG'] = ':4096:8'
     out = Path(a.output).resolve()
     allowed = Path(conf['remote_output_boundary']).resolve()
     if not out.is_relative_to(allowed) or out == allowed:
@@ -107,6 +111,9 @@ def main():
     from ue_framework.methods.tfss_probe_metrics import collect
     from ue_framework.methods.tfss_nt_sensitivity import gradients as nt_gradients
     torch.set_num_threads(1)
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.deterministic = True
+    torch.use_deterministic_algorithms(True)
     if ultralytics.__version__ != '8.4.150':
         raise ValueError('Pinned actual Parent raw-head version required; no environment changes')
     meta = json.loads((ROOT/'docs/tfss/SOURCE_METADATA.json').read_text())
@@ -180,7 +187,11 @@ def main():
                 'official_metrics_disabled': True, 'artifact_ingest_disabled': True,
                 'cleanup_policy': 'retain_all', 'deleted_paths': [], 'trials': [],
                 'started_at': time.time(), 'protocol_sha256': sha(a.protocol),
-                'environment': {'torch': torch.__version__, 'ultralytics': ultralytics.__version__}}
+                'environment': {'torch': torch.__version__, 'ultralytics': ultralytics.__version__,
+                    'deterministic_algorithms': torch.are_deterministic_algorithms_enabled(),
+                    'cudnn_deterministic': torch.backends.cudnn.deterministic,
+                    'cudnn_benchmark': torch.backends.cudnn.benchmark,
+                    'CUBLAS_WORKSPACE_CONFIG': os.environ['CUBLAS_WORKSPACE_CONFIG']}}
     write(out/'status.json', evidence)
     for batch_index, records in enumerate(batches):
         setup, model, adaptive = create(B2SemanticTrainer)

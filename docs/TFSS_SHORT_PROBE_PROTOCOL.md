@@ -15,3 +15,5 @@ Gate C：在A/B通过者之间比较Lret/NT drift/GT box/cls/DFL、逐类分布�
 运行入口scripts/tfss_short_probe.py，必须通过rrctl使用隔离新RunID；输出需在JSON指定独立边界下。脚本同时校验原45文件、本地恢复与历史目录、模型/数据/原型SHA、实际GPU occupancy/CPU load、review receipt。保留所有checkpoint/RNG/Adam/scheduler/频率状态，绝无cleanup。
 
 trace每step/EOT保存原loss、元梯度、selected image ID、逐图强度与保护梯度、原模型update范数。NTGT原生匹配/box/cls/DFL在最后记录的pre-update图像测量；不误称5步更新后的最终结果。NPZ仅保留derived Qt/R/delta/weight供热图；不转移原RGB/数据或权重。结束后仍须分析CSV/图形，成功smoke不会自动产生候选推荐。
+
+2026-10-17 配对数值重放修复：所有独立 reference/candidate/Uniform trial 一致设置 CUBLAS_WORKSPACE_CONFIG=:4096:8、cudnn benchmark=false/deterministic=true、deterministic_algorithms=true；不支持的算子必须报错。原首个 smoke 因 Gate A 差异1.4722e-5>1e-7失败并保留证据，不能当成正式结果。修复不改变公式/原45源码/精度/样本/超参数或 Gate A 容差；当前源码须重新 smoke 后才能调用唯一审查。
