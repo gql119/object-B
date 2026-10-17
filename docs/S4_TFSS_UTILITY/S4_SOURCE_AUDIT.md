@@ -1,0 +1,21 @@
+# S4 source identity and production wiring
+
+Direct human authorization: USER_TASK_SOURCE.md, attachment ffdefd79-6f20-4bbc-b5c2-f6c18d9c2fd8, SHA fbed49aa791c01bdd9c5b3b965781093eeda81ac4d3cfa7bfaf4b9470502ff67.
+
+Parent: S0 Safe-Soft05, exact45 retained original files SHA-checked against docs/tfss/S0_CANONICAL_SOURCE_SHA256.json. The contemporaneous historical S0 runtime Git SHA is unknown. The TFSS development base7cdcb382877496ee8be59b9099ede35fde672a56 is a later archive and diagnostic source, not that historical runtime commit. New branch codex/s4-tfss-utility-formal-20261017 and independent worktree; main/S0/S1/S2/S3/oldTFSS runs untouched.
+
+Method delta: only detached validated Utility W=1-(1-.85)*Rnt*(1-Qt) after the canonical a0-composed S0 delta. No CSB projection, KD/XFP/Loc/CNLP/CUP, additional losses, changed overlap budget, new frequency/Adaptive/TSFL/SafeBG logic. Original SoftSpatialProjection and native NT sensitivity/normalization remain unchanged. All45 S0 source bytes match. Selected P5/model.21 ordered24 channels, original reference/prototypes, rank8/alpha.5/active3 and all S0 loss weights are bound by the formal config and runtime audit.
+
+Production wiring additions:
+
+- `s4_tfss.py`: per-image clean cache keyed by teacher/code/input/GT/padded canvas. The existing map builder gains only an optional explicit canvas; its default and scalar/normalization/merging/fallback formulas are unchanged. Missing cache entries use exactly the original full-batch canvas. RNG is preserved around attribution forwards. Current-source GPU smoke compares against the exact retained old map builder snapshot on original TRAIN32.
+- `s4_optimization.py`: the original S0 outer shuffle/EOT/Adam/frequency/scheduler math, with exact checkpoint/cursor/counters/RNG and SHA-bound diagnostic journal. The reused full-run orchestration has all CNLP/CUP code/dependencies removed. Named every50step/epoch checkpoints remain; a compact atomic latest continuation checkpoint additionally saves every completed update. No completed noise is silently restarted.
+- `run_s4_tfss_pipeline.py`: source/manifest audit -> full noise -> actual PNG/GT/label/clean-val audit -> matched random-init victim200 -> last/best clean-val evaluation. Generator scales the pre-image-clamp S0 delta, then applies the original integer PNG safety projection. No victim starts on partial data.
+- Native victim arithmetic/data/loss/augmentation is unchanged. Finite-state guards stop instead of the installed trainer's NaN/EMA repair or reduced-batch OOM retry. Native epoch checkpoints are retained, plus full precision model/optimizer/scheduler/RNG snapshots. Native data-loader worker/prefetch RNG exact recovery is not assumed: any interrupted victim remains stopped until exact continuation is verified.
+- The original200epoch schedule is retained. `patience=0` explicitly disables validation-AP early stopping to honor the human full200 requirement; it does not change optimizer/LR/augmentations or extend the schedule. This termination setting is frozen before smoke, not selected after AP.
+
+Admission: 7 affected Python AST checks, existing3 directly relevant numerical contracts and exact45 SHA local checks passed. GPU production smoke and one new production scientific review are required on the final committed candidate. Prior short/static reviews are provenance only, not approval of this newly wired full entrypoint. Smoke retains all outputs and has no official AP/victim run/ingest.
+
+Resource policy: empty GPU, >=24GB free GPU memory, CPU one-minute load<=24 on32 logical cores, >=150GiB free disk before launch, >=64GiB remaining disk while caching. No old data cleanup. Initial read-only observation: RTX A6000 free45166MiB, no compute process, load18.2612, disk1402828132352 bytes. Fresh prelaunch checks remain mandatory. Full source maps are newly cached clean-only at each unique canvas; runtime can be longer than the previous CNLP run and has no wall-time stop cap.
+
+All missing efficacy/convergence/Person-to-Dog causal data remains NOT_RUN/INCOMPLETE. The literal target success threshold0.038993 is recorded exactly; NT improvement uses raw archived S0 .6916980897616373, not rounded display .691698. Single seed is descriptive, not significance. No extra seed/eta/combination is authorized.

@@ -20,3 +20,12 @@ research_workspace/CONCLUSIONS.md -text
 configs/tfss_utility_static_control_20261017.json -text
 scripts/tfss_utility_static_control.py -text
 scripts/analyze_tfss_utility_static_control.py -text
+
+# S4 production identity
+docs/S4_TFSS_UTILITY/USER_TASK_SOURCE.md -text
+docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json -text
+docs/S4_TFSS_UTILITY/VALIDATED_MAP_BUILDER.py -text
+scripts/run_s4_tfss_pipeline.py text eol=lf
+scripts/s4_production_smoke.py text eol=lf
+ue_framework/methods/s4_*.py text eol=lf
+ue_framework/s4_victim.py text eol=lf
