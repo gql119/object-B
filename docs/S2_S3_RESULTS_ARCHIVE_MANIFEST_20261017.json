@@ -76,7 +76,7 @@
     "research_workspace/analysis/S2_S3_PARALLEL_RESOURCE_TEST_20261015.md": "c095989eca6acc879ad5a50c38a17e80a6b0fa79783727ab5b485b05f25d1b53",
     "research_workspace/analysis/S3_FORMAL_LAUNCH_20261016.md": "d47a14ebbdda93079e969f6de5cd2b20aea0ea22fac049e3445f4c8f67d7d974",
     "research_workspace/analysis/S3_NOISE_COMPLETION_20261017.md": "78956cc01f11f9dd92cade78d3848e0830759adcf0d96784f3929acfa642a760",
-    ".gitattributes": "862de8c1902ebf69c7f9a3a3ec42b2491956e3514bcf6d6a61c82e5bb98d9992"
+    ".gitattributes": "fc4d1c25a3fbac695c35aa15f135f5c2f93fee9a7066bfcb5aa5726e260f6611"
   },
   "no_new_experiments": true,
   "limitations": "single seed; S0 runtime GitSHA unknown; no efficacy/causal/convergence claim beyond evidence",

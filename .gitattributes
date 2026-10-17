@@ -29,3 +29,5 @@ research_workspace/analysis/S0_S1_S2_S3_RESULTS_20261017_PROVENANCE.json -text
 research_workspace/analysis/S0_S1_S2_S3_VOC20_20261017.csv -text
 research_workspace/analysis/S1_S0_EXISTING_DIAGNOSTICS_AUDIT_20261015.json -text
 research_workspace/analysis/S2_FINAL_ACCEPTANCE_20261016.json -text
+
+/.gitattributes -text
