@@ -1,3 +1,13 @@
+# 2026-10-15 当前候选设计（以下旧草案作为历史）
+
+Parent=S0，J=1，innerLR=.0001继承原Adaptive，lambda_CNLP=0.058485507823134296；support/query各1，query从完整train manifest选择且排除整个16图Parent support。显式matching_policy=native_shared_gt_coverage_v2；覆盖native GT不变，仅合法无positive GT在同一clean-updated TAL中单GT恢复，两路径共享；仍缺证据就fail。不同GT可能共用anchor，这是GT-conditioned query设计，不是整图原生loss。不是S1预算，S0固定8/4/0且原Lret等损失不动。
+
+lambda按原固定训练开发规则计算，tail25%上限决定最终值，非零case加权/Parent梯度中位数仅0.66854%，不能描述成普遍10%。CUP提案与S2共用同一CNLP/lambda/J；只改聚合。严格模式原J1/3/5均通过，当前覆盖模式38case GPU重放记录数值差0（norm/cos/statistic，非完整GPU向量比较）；CPU完整向量差0。最终正式配置锁/一次独立科学审查仍待完成。没有最终AP或收敛结论。
+
+证据：docs/cnlp_calibration/；execution/cnlp_coverage_v3_replay_verification.json；BASE/cnlp_small_20261015/cnlp_admission_artifacts_seed0_20261015_v1/。旧损失推导见下文。
+
+---
+
 # CNLP 实现草案
 
 状态：DRAFT；真实训练开发审计和标定 NOT_RUN。原任务附件 SHA256：182a145937a888d489eaf232ca7229a0c252c46626f4cec65d2aea4581b50311。

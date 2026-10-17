@@ -1,0 +1,42 @@
+{
+  "state": "passed",
+  "accepted": true,
+  "run_id": "s3_cnlp_cup_s0_eps8_person_seed0_20261015_v1",
+  "scientific_source": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+  "scientific_source_diff_empty": true,
+  "metrics_recomputed": {
+    "S3_last": "VOC20 arrays/target/NT/all/AP50/AP75/AP50-95/R/P/signedPUS/WCD/TCD3 recomputed",
+    "S3_best_secondary": "VOC20 arrays/target/NT/all/AP50/AP75/AP50-95/R/P/signedPUS/WCD/TCD3 recomputed",
+    "Safe_Soft05_last": "VOC20 arrays/target/NT/all/AP50/AP75/AP50-95/R/P/signedPUS/WCD/TCD3 recomputed",
+    "Clean_last": "VOC20 arrays/target/NT/all/AP50/AP75/AP50-95/R/P/signedPUS/WCD/TCD3 recomputed",
+    "S2_last": "VOC20 arrays/target/NT/all/AP50/AP75/AP50-95/R/P/signedPUS/WCD/TCD3 recomputed"
+  },
+  "victim_protocol_equal_excluding_data_project_paths": true,
+  "noise_schedule_complete": true,
+  "dataset_audit_passed": true,
+  "victim_200_verified": true,
+  "process_exited_zero": true,
+  "rrctl_terminal_completed": true,
+  "last_sha256": "7b089c81f6d2244ed69990494cc211e20554e3f8edba013a9ad637a7dc1d03fb",
+  "best_sha256": "2c8ec15881511230dd2114dc953af8c3cae426eaabfb7b0603b6766bc4048b16",
+  "noise_checkpoint_sha256": "d9e1ec7d9d96572f67c4b171283cce0922ee9510fc0c286d2823013681c587d1",
+  "dataset_audit_sha256": "8491dec41c6e401ad42b09970d3c7124f3b0100ca7e9ca6846ed463d65fbbafa",
+  "checkpoint_epoch_note": "epoch=-1 optimizer-strip semantics; continuous results1..200 and embedded history200 plus actual evaluationSHA verified",
+  "evidence": [
+    "execution/s3_noise_completion_verification_20261017.json",
+    "execution/s3_final_verification_20261017.json",
+    "execution/s3_rrctl_completion_pull_20261017.json"
+  ],
+  "raw_files": {
+    "artifact_manifest.json": "28999279576b98b02a33961524d7fe5e975412469d8b4760f09144dc42286f80",
+    "comparison.json": "eb41456a66729752200ed998c793d899b583e864aba8ee5095f0cea8d8b4dedb",
+    "config_lock_snapshot.json": "bd89244e22795b85139d1dee793b13c1faf44306557c083f546639ec666b6fb8",
+    "dataset_integrity.json": "8491dec41c6e401ad42b09970d3c7124f3b0100ca7e9ca6846ed463d65fbbafa",
+    "pipeline_status.json": "769346d9734cef74cc3f95627762de5a36e63053b4adbd89e81be0fb164dde3c",
+    "review_snapshot.json": "5f436ec855916a3ac10dc8ac06ffcc7ebaede2e0cdbb27439596c87f870bd470",
+    "source_audit.json": "ca3a197db77e9f69704e9be30d80fe4fc5e9c8a6faf4c90a77cd478c5d8e50f7",
+    "victim_run_spec.json": "b3de2e1daf2d072dcf2e6f81320e2777d65a713b940455bbff33aa09cec44058",
+    "voc20_comparison.csv": "3ed9783fb8643156ed78aa8f1c413178389ff0c8117b2bff79501930267c1219",
+    "noise/status.json": "ce7d047507fffa99667689271bb3d3c1d74a7920cb0677d34ce7b61c621da913"
+  }
+}

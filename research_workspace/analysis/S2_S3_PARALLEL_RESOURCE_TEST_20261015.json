@@ -1,0 +1,62 @@
+{
+  "state": "ABORTED_PERFORMANCE_REGRESSION",
+  "planned_s3_steps": 15,
+  "completed_s3_steps": 3,
+  "s3_elapsed_seconds_at_last_completed_step": 301.3775844001211,
+  "finite_recorded_losses": true,
+  "all_outside_support_zero": true,
+  "peak_gpu_memory_MiB": 13588.0,
+  "checkpoint": {
+    "path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/outputs/s3_parallel_resource_probe_seed0_20261015_v1/rep_1/checkpoints/step_000002_epoch_01_cursor_00000.pt",
+    "step": 2,
+    "epoch": 1,
+    "cursor": 0
+  },
+  "phase_stats": {
+    "before": {
+      "duration_seconds": 90.47769165039062,
+      "s2_completed_steps": 5,
+      "s2_steps_per_minute": 3.3157344592655154,
+      "gpu_utilization_mean": 21.177777777777777,
+      "peak_gpu_memory_MiB": 6743.0,
+      "first_s2_step": 2685,
+      "last_s2_step": 2690
+    },
+    "parallel_1": {
+      "duration_seconds": 404.3990545272827,
+      "s2_completed_steps": 5,
+      "s2_steps_per_minute": 0.7418414970101286,
+      "gpu_utilization_mean": 11.82901554404145,
+      "peak_gpu_memory_MiB": 13588.0,
+      "first_s2_step": 2690,
+      "last_s2_step": 2695
+    }
+  },
+  "post_abort": {
+    "duration_seconds": 91.34042477607727,
+    "s2_steps": 2,
+    "s2_steps_per_minute": 1.3137666076568202,
+    "pipeline": {
+      "state": "running",
+      "stage": "noise_generation",
+      "started_at_unix": 1792032158.198484,
+      "run_id": "s2_cnlp_s0_eps8_person_seed0_20261015_v1",
+      "source_commit": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+      "primary": "last.pt@200",
+      "secondary": "best.pt",
+      "noise_time_policy": "finish_registered_24_epochs"
+    },
+    "gpu_processes": "457058, 6436 MiB\n"
+  },
+  "all_three_repetitions_completed": false,
+  "formal_s3_launched": false,
+  "recommendation": "KEEP_FORMAL_SERIAL_ORDER",
+  "limitations": [
+    "Only3of15plannedsteps completed; stoppedearly due observed slowdown, not a full replicated benchmark",
+    "Nonidentical S2 train batches and historical S3 single-worker timing are not a matched performance control",
+    "Post-stop S2 speed stayed below pretest baseline; cannot attribute all slowdown to parallel GPU competition",
+    "CPUload61.1 on32logicalCPUs suggests shared CPU pressure but does not establish rootcause",
+    "No OOM observed; full 3reps/finalPNG/Frozenmodelhashclosure notrun on interrupted probe",
+    "No formalS3, no victim, no method/config changes, no deletion, no S2signal"
+  ]
+}

@@ -12,3 +12,20 @@ scripts/cnlp_production_admission.py -text
 scripts/run_s2_s3_pipeline.py -text
 docs/cnlp_calibration/** -text
 docs/CNLP_MATCHING_EDGE_TRAIN_EVIDENCE.json -text
+
+# Preserve exact archived evidence bytes and recorded SHA256 across platforms.
+docs/s2_archive/** -text
+docs/s3_archive/** -text
+docs/cnlp_cup_admission_20261015/** -text
+docs/CNLP_DESIGN.md -text
+docs/CUP_DESIGN.md -text
+docs/S2_S3_COMPARISON.csv -text
+docs/S2_S3_VOC20_PER_CLASS.csv -text
+docs/S2_TRAINING_REPORT.md -text
+research_workspace/STATE.md -text
+research_workspace/analysis/S0_S1_S2_S3_RESULTS_20261017.csv -text
+research_workspace/analysis/S0_S1_S2_S3_RESULTS_20261017.md -text
+research_workspace/analysis/S0_S1_S2_S3_RESULTS_20261017_PROVENANCE.json -text
+research_workspace/analysis/S0_S1_S2_S3_VOC20_20261017.csv -text
+research_workspace/analysis/S1_S0_EXISTING_DIAGNOSTICS_AUDIT_20261015.json -text
+research_workspace/analysis/S2_FINAL_ACCEPTANCE_20261016.json -text

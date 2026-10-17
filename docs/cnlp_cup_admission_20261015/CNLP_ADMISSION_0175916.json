@@ -1,0 +1,232 @@
+{
+  "passed": true,
+  "source_commit": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+  "formal_generation_enabled": false,
+  "victim_training_enabled": false,
+  "current_smoke_run_id": "cnlp_matched_person_proxy_seed0_20261015_v1",
+  "current_smoke_sha256": "ab5f3db5fd89a1942abbc020516ffb775f28fe9b293755e1c1d2f79da584727b",
+  "current_smoke_source": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+  "production_continuation_run_id": "cnlp_production_admission_train32_seed0_20261015_coverage_v2",
+  "production_continuation_source": "4d0c635c5c75102523717d80c69c227b864676bd",
+  "production_summary_sha256": "2cadc23de9b32799101ac41be3ab156f407cfc5ed57a81e9728a3ea07952354f",
+  "core_source_byte_identical": {
+    "ue_framework/methods/counterfactual_utility.py": true,
+    "ue_framework/methods/counterfactual_yolo.py": true,
+    "ue_framework/methods/counterfactual_trainer.py": true,
+    "ue_framework/methods/counterfactual_extension.py": true,
+    "ue_framework/methods/counterfactual_query.py": true,
+    "ue_framework/methods/counterfactual_optimization.py": true,
+    "ue_framework/methods/counterfactual_parent.py": true,
+    "scripts/run_s2_s3_pipeline.py": true
+  },
+  "baseline_equivalence_probe": {
+    "passed": true,
+    "reference_id": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate",
+    "reference_computation": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/ue_framework/methods/b2_semantic.py",
+    "candidate_computation": "S2S3FixedParentTrainer lambda_CNLP=0",
+    "reference_weights_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/checkpoints/voc20_surrogate.pt",
+    "candidate_weights_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/checkpoints/voc20_surrogate.pt",
+    "reference_value": 1.106048822402954,
+    "candidate_value": 1.106048822402954,
+    "absolute_difference": 0.0,
+    "tolerance": 1e-06,
+    "all_tensor_max_difference": 0.0
+  },
+  "checks": {
+    "s2": {
+      "checkpoint_max_difference": 0.0,
+      "diagnostics_byte_identical": true,
+      "full_steps": 5,
+      "resumed_steps": 5,
+      "base_models_unchanged": true,
+      "decoded_png_checks": [
+        {
+          "image_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009377.jpg",
+          "max_delta_byte": 4,
+          "budget_violation": 0.0,
+          "outside_max": 0,
+          "label_unchanged": true
+        },
+        {
+          "image_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_002523.jpg",
+          "max_delta_byte": 3,
+          "budget_violation": 0.0,
+          "outside_max": 0,
+          "label_unchanged": true
+        }
+      ],
+      "cnlp_commits": 5,
+      "cup_steps": null
+    },
+    "s3": {
+      "checkpoint_max_difference": 0.0,
+      "diagnostics_byte_identical": true,
+      "full_steps": 5,
+      "resumed_steps": 5,
+      "base_models_unchanged": true,
+      "decoded_png_checks": [
+        {
+          "image_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009377.jpg",
+          "max_delta_byte": 4,
+          "budget_violation": 0.0,
+          "outside_max": 0,
+          "label_unchanged": true
+        },
+        {
+          "image_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_002523.jpg",
+          "max_delta_byte": 3,
+          "budget_violation": 0.0,
+          "outside_max": 0,
+          "label_unchanged": true
+        }
+      ],
+      "cnlp_commits": 5,
+      "cup_steps": 5
+    }
+  },
+  "cup_sink_nonzero_gradient_batches": 12,
+  "cup_sink_total_batches": 20,
+  "matched_parent_proxy": {
+    "parent_loop": {
+      "target_proxy_mean": 0.04946414232254028,
+      "target_proxy_median": 0.05608837306499481,
+      "relative_mean_change": 0.0,
+      "checkpoint_steps": 5,
+      "actual_lambda": 0.0,
+      "base_models_unchanged": true,
+      "png_checks": []
+    },
+    "s2_full": {
+      "target_proxy_mean": 0.04946637824177742,
+      "target_proxy_median": 0.056099552661180496,
+      "relative_mean_change": 4.520283041720141e-05,
+      "checkpoint_steps": 5,
+      "actual_lambda": 0.058485507823134296,
+      "base_models_unchanged": true,
+      "png_checks": [
+        {
+          "image_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009377.jpg",
+          "max_delta_byte": 4,
+          "budget_violation": 0.0,
+          "outside_max": 0,
+          "label_unchanged": true
+        },
+        {
+          "image_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_002523.jpg",
+          "max_delta_byte": 3,
+          "budget_violation": 0.0,
+          "outside_max": 0,
+          "label_unchanged": true
+        }
+      ]
+    },
+    "s3_full": {
+      "target_proxy_mean": 0.04946637824177742,
+      "target_proxy_median": 0.056099552661180496,
+      "relative_mean_change": 4.520283041720141e-05,
+      "checkpoint_steps": 5,
+      "actual_lambda": 0.058485507823134296,
+      "base_models_unchanged": true,
+      "png_checks": [
+        {
+          "image_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/009377.jpg",
+          "max_delta_byte": 4,
+          "budget_violation": 0.0,
+          "outside_max": 0,
+          "label_unchanged": true
+        },
+        {
+          "image_id": "/data/guoqinglong/datasets/VOC_0712_Kaggle_Ready/images/train/2008_002523.jpg",
+          "max_delta_byte": 3,
+          "budget_violation": 0.0,
+          "outside_max": 0,
+          "label_unchanged": true
+        }
+      ]
+    }
+  },
+  "artifact_transport_recovery": {
+    "state": "complete",
+    "passed": true,
+    "source_run_id": "cnlp_production_admission_train32_seed0_20261015_coverage_v2",
+    "source_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/outputs/cnlp_production_admission_train32_seed0_20261015_coverage_v2",
+    "source_commit": "4d0c635c5c75102523717d80c69c227b864676bd",
+    "operation": "byte-identical small JSON packaging ONLY; no computation repeated",
+    "files": [
+      {
+        "path": "smoke_summary.json",
+        "sha256": "2cadc23de9b32799101ac41be3ab156f407cfc5ed57a81e9728a3ea07952354f",
+        "bytes": 24663
+      },
+      {
+        "path": "status.json",
+        "sha256": "3b5bc3aa711a92b4e9e805d42961b36cc8be7c92f7e693e86a620e3ded1a4c5f",
+        "bytes": 276
+      },
+      {
+        "path": "matching_edges/receipt.json",
+        "sha256": "f9fb932d19fcb3ed29b02dcecfdcbed25be05ca73683a697fe06ba12f0b37c3e",
+        "bytes": 19108
+      },
+      {
+        "path": "reference/receipt.json",
+        "sha256": "688bf0c15af23899a4bb827c6c438099f92a5af5239037170ff52b3d0c1cf1e1",
+        "bytes": 10111
+      },
+      {
+        "path": "disabled/receipt.json",
+        "sha256": "c6bb113e4bb82f3a5ecd061f5078559046a6641afebdfac7102918118df46409",
+        "bytes": 10223
+      },
+      {
+        "path": "s2_full/receipt.json",
+        "sha256": "d5f90ecc2ee87d40482cebb3b88091b965e91e707a355e45f3390c048807eb55",
+        "bytes": 22122
+      },
+      {
+        "path": "s2_pause/receipt.json",
+        "sha256": "90c55c56eaf3bd1f0540cb981599f3348085b05ce170728366b6cf995b612fbd",
+        "bytes": 19401
+      },
+      {
+        "path": "s2_resume/receipt.json",
+        "sha256": "cffc20b1af96a0e254f4897e0772c41a7e7ea6aecfdf062c0fb3145ce67c529f",
+        "bytes": 18822
+      },
+      {
+        "path": "s3_full/receipt.json",
+        "sha256": "eff53483abcd35526cd0d6c3ee1081eb58fe50a81443beaf23167982a4de43b8",
+        "bytes": 22305
+      },
+      {
+        "path": "s3_pause/receipt.json",
+        "sha256": "fa18c02a1f9130a39cf8ca7d89119d3df6db5e5e361bb8ff4e96428b7e50ee57",
+        "bytes": 19584
+      },
+      {
+        "path": "s3_resume/receipt.json",
+        "sha256": "8b3ae4bc53f7087f6368ad4b9c291cb769ce200ed3fcc04a6f69538a3bdfe31c",
+        "bytes": 19005
+      },
+      {
+        "path": "cup_sink/receipt.json",
+        "sha256": "63bcd2bd18ae15765042028880dcbf879f51d6cf9d141a5218168d559b4b016e",
+        "bytes": 29396
+      }
+    ],
+    "original_completion_contract_issue": "stale calibration_rows.json/fixed_train_plan.json in adapter; original runtime numeric report passed"
+  },
+  "coverage_replay": {
+    "passed": true,
+    "old_run_id": "cnlp_unitgrad_J1_train38_seed0_20261015_v2",
+    "new_run_id": "cnlp_unitgrad_J1_train38_seed0_20261015_coverage_v3",
+    "current_core_source": "f6c778e1553f4c23096dfe4f1728a40ea7d13e57",
+    "fixed_plan_byte_identical": true,
+    "loss_damage_norm_cosine_statistic_max_difference": 0,
+    "mean_eot_gradient_statistic_max_difference": 0,
+    "note": "GPU recorded norms/cosines, not full gradient-vector equality; full vector equality CPU native-covered test0",
+    "lambda_unchanged": 0.058485507823134296,
+    "duration_seconds": 254.26397889340296
+  },
+  "proposal_deployed_sha256": "bb354f6dd0fad4c3ee3853fe5e1de6040561a0838a654808f4b792f3cfa2326d"
+}

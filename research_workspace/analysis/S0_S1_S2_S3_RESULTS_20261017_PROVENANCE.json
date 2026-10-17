@@ -1,0 +1,12 @@
+{
+  "derived_from": {
+    "s1": "b027eaf5a32219964df267e7eb75d128ee5d6427f7512509edad755950c82cf0",
+    "s2": "d041a0db2c8176d4747b853a62583b895af2df5a8a8a95a24f28cafb337888b4",
+    "s3": "eb41456a66729752200ed998c793d899b583e864aba8ee5095f0cea8d8b4dedb"
+  },
+  "shared_clean_S0_arrays_exact": true,
+  "aggregate_PUS_WCD_TCD3_recomputation": "PASS",
+  "seed": 0,
+  "primary": "last.pt@200",
+  "new_experiments": false
+}

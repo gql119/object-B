@@ -1,0 +1,11 @@
+{
+  "state": "complete",
+  "stage": "complete",
+  "started_at_unix": 1792114977.5712395,
+  "run_id": "s3_cnlp_cup_s0_eps8_person_seed0_20261015_v1",
+  "source_commit": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+  "primary": "last.pt@200",
+  "secondary": "best.pt",
+  "noise_time_policy": "finish_registered_24_epochs",
+  "completed_at_unix": 1792185492.067523
+}

@@ -1,0 +1,261 @@
+{
+  "state": "COMPLETE_VERIFIED_ARCHIVED",
+  "metrics": {
+    "S2_last": {
+      "mAP50_target": 0.04036846271358735,
+      "mAP50_non_target": 0.6891226224462725,
+      "mAP75_non_target": 0.509452875723384,
+      "selectivity": {
+        "P": 0.9534895119744223,
+        "P_percent": 95.34895119744223,
+        "U": 0.8990957248373492,
+        "U_percent": 89.90957248373492,
+        "S": 0.9254940899440578,
+        "S_percent": 92.54940899440578
+      },
+      "collateral": {
+        "relative_collateral_damage_by_class": {
+          "aeroplane": 0.01177816139263489,
+          "bicycle": 0.2597855128605913,
+          "bird": 0.11344317502177874,
+          "boat": -0.02872975205930995,
+          "bottle": 0.2549839496521882,
+          "bus": 0.0009694433662195062,
+          "car": 0.013295157141476593,
+          "cat": 0.06562406857497333,
+          "chair": 0.15878313743157835,
+          "cow": 0.08391178976953334,
+          "diningtable": 0.05803893544317151,
+          "dog": 0.3084263008262152,
+          "horse": 0.17977975859033404,
+          "motorbike": 0.15412774683310643,
+          "pottedplant": 0.12209022740670884,
+          "sheep": 0.0687326944948887,
+          "sofa": 0.08143356205401443,
+          "train": 0.004763812191656874,
+          "tvmonitor": 0.02018696035959525
+        },
+        "WCD": 0.3084263008262152,
+        "WCD_class": "dog",
+        "TCD3": 0.2743985877796649,
+        "top_three": [
+          [
+            "dog",
+            0.3084263008262152
+          ],
+          [
+            "bicycle",
+            0.2597855128605913
+          ],
+          [
+            "bottle",
+            0.2549839496521882
+          ]
+        ],
+        "bicycle_dog_horse": {
+          "bicycle": 0.2597855128605913,
+          "dog": 0.3084263008262152,
+          "horse": 0.17977975859033404
+        }
+      }
+    },
+    "S2_best_secondary": {
+      "mAP50_target": 0.04763960023417375,
+      "mAP50_non_target": 0.6929648318010871,
+      "mAP75_non_target": 0.5124805345716534,
+      "selectivity": {
+        "P": 0.9451120774165854,
+        "P_percent": 94.51120774165854,
+        "U": 0.9041086411055468,
+        "U_percent": 90.41086411055468,
+        "S": 0.9241557672882221,
+        "S_percent": 92.41557672882222
+      },
+      "collateral": {
+        "relative_collateral_damage_by_class": {
+          "aeroplane": 0.009917522250830896,
+          "bicycle": 0.26797103933659083,
+          "bird": 0.11920780859346299,
+          "boat": -0.026210350570057717,
+          "bottle": 0.23730097624103427,
+          "bus": -0.007875205119744698,
+          "car": 0.012188601748690736,
+          "cat": 0.06572920245863671,
+          "chair": 0.13492926639218875,
+          "cow": 0.07694387722340945,
+          "diningtable": 0.06050435481977358,
+          "dog": 0.2903766573400513,
+          "horse": 0.17665496149933088,
+          "motorbike": 0.15686923765658345,
+          "pottedplant": 0.12426856798129017,
+          "sheep": 0.046987144620438695,
+          "sofa": 0.07451030935706301,
+          "train": 0.0012053641594866823,
+          "tvmonitor": 0.008763670009730619
+        },
+        "WCD": 0.2903766573400513,
+        "WCD_class": "dog",
+        "TCD3": 0.26521622430589215,
+        "top_three": [
+          [
+            "dog",
+            0.2903766573400513
+          ],
+          [
+            "bicycle",
+            0.26797103933659083
+          ],
+          [
+            "bottle",
+            0.23730097624103427
+          ]
+        ],
+        "bicycle_dog_horse": {
+          "bicycle": 0.26797103933659083,
+          "dog": 0.2903766573400513,
+          "horse": 0.17665496149933088
+        }
+      }
+    },
+    "Safe_Soft05_last": {
+      "mAP50_target": 0.028993419332965346,
+      "mAP50_non_target": 0.6916980897616373,
+      "mAP75_non_target": 0.515898126283411,
+      "selectivity": {
+        "P": 0.9665952579796269,
+        "P_percent": 96.65952579796269,
+        "U": 0.9024559274736852,
+        "U_percent": 90.24559274736852,
+        "S": 0.9334250734498785,
+        "S_percent": 93.34250734498785
+      },
+      "collateral": {
+        "relative_collateral_damage_by_class": {
+          "aeroplane": 0.025225759650448404,
+          "bicycle": 0.2765440975395957,
+          "bird": 0.09391971797539503,
+          "boat": -0.011157962479247566,
+          "bottle": 0.21597702633941426,
+          "bus": 0.04282462592127592,
+          "car": 0.006997466893703228,
+          "cat": 0.05835651321037067,
+          "chair": 0.11337594899195598,
+          "cow": 0.09004653403921678,
+          "diningtable": 0.09749484665731685,
+          "dog": 0.2810323798542793,
+          "horse": 0.17018335541584237,
+          "motorbike": 0.1640576368886959,
+          "pottedplant": 0.07529784661572633,
+          "sheep": 0.01366387941840944,
+          "sofa": 0.08342548072983787,
+          "train": 0.010718543223642282,
+          "tvmonitor": 0.02391584593891667
+        },
+        "WCD": 0.2810323798542793,
+        "WCD_class": "dog",
+        "TCD3": 0.2578511679110964,
+        "top_three": [
+          [
+            "dog",
+            0.2810323798542793
+          ],
+          [
+            "bicycle",
+            0.2765440975395957
+          ],
+          [
+            "bottle",
+            0.21597702633941426
+          ]
+        ],
+        "bicycle_dog_horse": {
+          "bicycle": 0.2765440975395957,
+          "dog": 0.2810323798542793,
+          "horse": 0.17018335541584237
+        }
+      }
+    },
+    "Clean_last": {
+      "mAP50_target": 0.8679432194172523,
+      "mAP50_non_target": 0.7664619054561049,
+      "mAP75_non_target": 0.6193258614224387,
+      "selectivity": {
+        "P": 0.0,
+        "P_percent": 0.0,
+        "U": 1.0,
+        "U_percent": 100.0,
+        "S": 0.0,
+        "S_percent": 0.0
+      },
+      "collateral": {
+        "relative_collateral_damage_by_class": {
+          "aeroplane": 0.0,
+          "bicycle": 0.0,
+          "bird": 0.0,
+          "boat": 0.0,
+          "bottle": 0.0,
+          "bus": 0.0,
+          "car": 0.0,
+          "cat": 0.0,
+          "chair": 0.0,
+          "cow": 0.0,
+          "diningtable": 0.0,
+          "dog": 0.0,
+          "horse": 0.0,
+          "motorbike": 0.0,
+          "pottedplant": 0.0,
+          "sheep": 0.0,
+          "sofa": 0.0,
+          "train": 0.0,
+          "tvmonitor": 0.0
+        },
+        "WCD": 0.0,
+        "WCD_class": "aeroplane",
+        "TCD3": 0.0,
+        "top_three": [
+          [
+            "aeroplane",
+            0.0
+          ],
+          [
+            "bicycle",
+            0.0
+          ],
+          [
+            "bird",
+            0.0
+          ]
+        ],
+        "bicycle_dog_horse": {
+          "bicycle": 0.0,
+          "dog": 0.0,
+          "horse": 0.0
+        }
+      }
+    }
+  },
+  "comparisons": {
+    "delta_target_ap50": 0.011375043380622004,
+    "delta_nt_map50": -0.0025754673153647323,
+    "delta_nt_map75": -0.006445250560026983,
+    "target_below_5percent": true
+  },
+  "acceptance": {
+    "state": "passed",
+    "scientific_source_diff_empty": true,
+    "metrics_recomputed": {
+      "S2_last": "all VOC20 arrays, aggregates, signed P/U/S, WCD and TCD3 recomputed",
+      "S2_best_secondary": "all VOC20 arrays, aggregates, signed P/U/S, WCD and TCD3 recomputed",
+      "Safe_Soft05_last": "all VOC20 arrays, aggregates, signed P/U/S, WCD and TCD3 recomputed",
+      "Clean_last": "all VOC20 arrays, aggregates, signed P/U/S, WCD and TCD3 recomputed"
+    },
+    "victim_protocol_equal_excluding_data_project_paths": true,
+    "checkpoint_epoch_note": "Ultralytics stripped optimizer sets epoch=-1; completion proven by contiguous results1..200, embedded train_results200, pipeline source and matched checkpoint/evaluation SHA; not an unfinished checkpoint",
+    "archive": "docs/s2_archive",
+    "scientific_source": "017591686efb3675ee8d55debf1e2cd7da4e0e17"
+  },
+  "evidence": [
+    "docs/S2_TRAINING_REPORT.md",
+    "docs/s2_archive/LOCAL_ACCEPTANCE.json"
+  ]
+}

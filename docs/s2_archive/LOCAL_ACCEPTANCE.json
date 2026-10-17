@@ -1,0 +1,14 @@
+{
+  "state": "passed",
+  "scientific_source_diff_empty": true,
+  "metrics_recomputed": {
+    "S2_last": "all VOC20 arrays, aggregates, signed P/U/S, WCD and TCD3 recomputed",
+    "S2_best_secondary": "all VOC20 arrays, aggregates, signed P/U/S, WCD and TCD3 recomputed",
+    "Safe_Soft05_last": "all VOC20 arrays, aggregates, signed P/U/S, WCD and TCD3 recomputed",
+    "Clean_last": "all VOC20 arrays, aggregates, signed P/U/S, WCD and TCD3 recomputed"
+  },
+  "victim_protocol_equal_excluding_data_project_paths": true,
+  "checkpoint_epoch_note": "Ultralytics stripped optimizer sets epoch=-1; completion proven by contiguous results1..200, embedded train_results200, pipeline source and matched checkpoint/evaluation SHA; not an unfinished checkpoint",
+  "archive": "docs/s2_archive",
+  "scientific_source": "017591686efb3675ee8d55debf1e2cd7da4e0e17"
+}
