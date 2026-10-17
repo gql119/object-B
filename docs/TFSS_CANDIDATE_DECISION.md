@@ -1,29 +1,22 @@
-# INSUFFICIENT_EVIDENCE
+# INSUFFICIENT_EVIDENCE — TFSS 正式候选决策
 
-当前尚无完整真实5-step对照，不能选择TFSS-C或TFSS-U进入正式200epoch实验。源码/CPU正确性仅为部分Gate A，不能证明目标保持或非目标收益。eta_C/U均固定.85，无参数搜索。
+已批准数值修订完成并通过真实smoke/一个独立科学审查；当前比较59/60更新，U控制第5步不可达。C目标保护代理通过但非目标效用相对Uniform-C有分歧；U完整匹配对照缺失且NTGT代理未优于S0。没有足够证据推荐正式TFSS-C或TFSS-U。继续以S0作为已验证Parent，不把短测结论当AP或正式KEEP_S0消融定论。
 
-最终16问当前答复：
+1. **代码归档**：原快照a5aefbb及开发分支codex/tfss-conservative-utility-20261016已发布；当前训练源码e9623c78a27314c5f6f733abea90602d9415fb4a，主报告另以普通后继提交归档，不重写实验源码身份。
+2. **远端验证**：快照、数值修订和小GT修复源码均已git ls-remote复读；main保持b89147ee0e46cea3fbba10a8b6bd9af7e60a5b43。报告归档再单独验证，凭证不与源码SHA混淆。
+3. **S3影响**：TFSS模型计算全部在S3完整验收、归档、退出后执行；S3源码/参数/权重/RunSpec不变。S3本身已完整完成；不将观测夸大为共享服务器零影响因果证明。
+4. **S0来源**：确实恢复历史45文件原字节，并保持SHA；不是以S1/S2/S3损失开发。历史S0运行时GitSHA未知。
+5. **原loss/优化器**：保持不变；两batch各5步 S0/no-op损失、Fourier梯度及更新最大差0。当前源码10CPU测试和小GT真实smoke由主代理闭合，独立审查仍仅原一次。
+6. **C保护梯度**：有界支持；cos中位数0.997730，范数比0.954692，高保护算子能量0.930617，GateB通过。不是全训练/AP保证。
+7. **U是否更好减少NT敏感域干扰**：没有建立。高风险区域RMS平均下降C5.6293%、U5.5530%；U更少削弱整体扰动，但不能据此称实际非目标效用更好。
+8. **实际RMS下降**：逐图/步/EOT配对平均C9.1886%、U1.5160%；对应RMS均值0.00618208/0.00671336，S0为0.00681079。均值之比与逐图比率均值不同，明确采用后者。32图平均下降中位数C9.4698%、U1.9268%，U有7图非正/近零，不能宣称每图获益。
+9. **胜过Uniform否**：C保护高能区域明显多于同RMSUniform-C，但L_ret比控制高约8.76%，GT signed损失变化较低，证据分歧。U完整控制未完成；只报告现有窗口，不给完整优胜结论。
+10. **U风险图成本**：额外1.36858秒/32图，Qt本身3.55993秒；约额外38.44%构图时间。地图在短测预构建共享，不等同每步成本或正式运行开销。
+11. **目标保护代理更近S0**：U，cos0.999531/范数比0.988280/高能保留0.980258；C也通过预设阈值。只限已记录优化前向。
+12. **非目标效用更好者**：C的L_ret及GT代理均值比U低，但C的L_ret仍不如同RMS Uniform-C；U控制不完整。无统一赢家。
+13. **跨样本稳定**：保护cos中位数在两batch保持C0.99759/0.99795、U0.99959/0.99948；逐图强度和非目标效用有差异。两batch同seed、重复EOT不是独立随机重复，不能给显著性或长程稳定结论。
+14. **类别得失**：有；覆盖12NT类，C/U各6类GT signed损失变化较S0低、6类高。比如sofa降低而bicycle/boat/bus升高。不是逐类AP变化；余7NT类NOT_MEASURED。
+15. **正式200epoch候选**：当前不推荐；INSUFFICIENT_EVIDENCE。没有正式TFSS授权，未启动噪声/全数据/victim。
+16. **最低补充工作**：先解决独立Uniform-U轨迹下匹配目标不可达的对照定义问题，原异常未保存图ID/幅度；可先拟定并评估有界对照协议后交人类确认。不得自动放大alpha、重置到候选轨迹、丢弃控制、重试完成组件或再次放宽数值门。无需用昂贵victim训练来解决这个对照问题。
 
-1. 当前实验代码已隔离提交并推送object-B新分支，SHA a5aefbb1376cd5aacc0e2cefd73cebdbcf808f54。
-2. git ls-remote重新读取同SHA；main仍b89147ee0e46cea3fbba10a8b6bd9af7e60a5b43。
-3. S3目录/运行参数/检查点未修改，无新共享GPU任务；完整“零影响”不作因果保证。
-4. 从按实际历史45个文件SHA恢复的S0开发；不是从S1/S2/S3方法开发。
-5. 原loss/优化器计算体未改；source897cdfe真实首16单步 S0/noop 最大差0，非全部两batch/五步的等价证明。
-6. C首16/单步/EOT2的保护梯度cos中位数.997833、范数比中位数.952332；仅不完整smoke描述，不能替代正式Gate B。
-7. U减少NT干扰是否胜C：尚未完成匹配控制，不能判断。
-8. 首16/单步两EOT的逐图配对RMS平均下降 C9.5593%、U1.4312%；测的是记录的pre-update前向，非五步结果/最终AP。S0平均RMS.00704838，C.00637463，U.00695410。
-9. 优于各自Uniform：NOT_RUN；Uniform-C在首个forward的锁定数值配对门失败。
-10. U风险额外开销：地图计时原始证据在maps_batch0.json，尚未完成规定对照分析；不从总smoke运行时间推断增量成本。
-11. 首16单步描述中U梯度更近S0（cos中位数.999625、范数比.990035），无匹配Uniform和第二batch，不能据此选正式候选。
-12. 谁NT效用更好：完整配对证据不足。
-13. 跨样本稳定性：规定的两个独立batch/五步未完成。
-14. 类别间得失：已有首16记录，但完整逐类配对分析未完成；不填成收益。
-15. 当前不推荐任何正式200epoch候选；INSUFFICIENT_EVIDENCE。
-16. 最低下一步：先由用户确认RMS数值协议是否修订，再做相应求解器局部验证/新current-source smoke/唯一科学审查/原训练32五步对照。无需跑完整victim来解决此数值门问题。具体未批准提案见tfss/RMS_GATE_BLOCKER_20261017.md；不自动放宽门槛或重试。
-
-Change/Result/Finding/Next见SHORT_PROBE_RESULTS；所有可疑、undefined或冲突证据保留，可最终继续KEEP_S0/INSUFFICIENT_EVIDENCE，禁止靠反复调参制造成功。
-
-
-## 2026-10-17 latest measured status — overrides earlier NOT_RUN / WAIT_FOR_S3
-
-S3 fully accepted/archived/exited before TFSS started. Source897cdfe smokev2 passed actual canonical S0/noop equivalence maxdiff0; S0-reference/noop/C/U each completed1update/EOT2 on firstfixed16 with unchanged model hashes. It then failed the locked Uniform postclamp RMS error1e-9 gate; first complete six-method smoke and both-batch5step remain INCOMPLETE. No reviewer called and no formal TFSS. CPU saved-delta replay finds nearest float32 bracket error>1e-9 for11/16 first-EOT images, maximum7.5655e-9. Full evidence and a concrete **unapproved** numerical protocol proposal: [RMS_GATE_BLOCKER_20261017.md](tfss/RMS_GATE_BLOCKER_20261017.md). WAIT_FOR_HUMAN_NUMERICAL_PROTOCOL; no automatic retry or tolerance change. Original source45/formulas/budgets/eta/losses/optimizer/sample/EOT unchanged.
+详见[完整短程结果](TFSS_SHORT_PROBE_RESULTS.md)和[数值门/可达域区分](tfss/UNIFORM_REACHABILITY_BLOCKER_20261017.md)。全部模型和扰动检查点保留；无GPU重试或额外审查。

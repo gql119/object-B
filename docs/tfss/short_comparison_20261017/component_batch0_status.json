@@ -1,0 +1,97 @@
+{
+  "state": "running",
+  "source_commit": "2abe6544ab0e2701b94c961d6e06c59a66ee87e3",
+  "phase": "short",
+  "resource": {
+    "physical_gpu": 0,
+    "uuid": "GPU-2edae800-977b-e5fb-5bcd-ff97e31a8e5f",
+    "s3_stage": {
+      "state": "complete",
+      "stage": "complete",
+      "started_at_unix": 1792114977.5712395,
+      "run_id": "s3_cnlp_cup_s0_eps8_person_seed0_20261015_v1",
+      "source_commit": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+      "primary": "last.pt@200",
+      "secondary": "best.pt",
+      "noise_time_policy": "finish_registered_24_epochs",
+      "completed_at_unix": 1792185492.067523
+    },
+    "s3_alive": false
+  },
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "cleanup_policy": "retain_all",
+  "deleted_paths": [],
+  "trials": [
+    {
+      "batch": 0,
+      "method": "S0-reference",
+      "steps": 5,
+      "state": "complete",
+      "frozen_adaptive_before_after": [
+        "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+        "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+      ]
+    },
+    {
+      "batch": 0,
+      "method": "S0-noop",
+      "steps": 5,
+      "state": "complete",
+      "frozen_adaptive_before_after": [
+        "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+        "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+      ]
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-C",
+      "steps": 5,
+      "state": "complete",
+      "frozen_adaptive_before_after": [
+        "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+        "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+      ]
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-U",
+      "steps": 5,
+      "state": "complete",
+      "frozen_adaptive_before_after": [
+        "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+        "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+      ]
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-C",
+      "steps": 5,
+      "state": "complete",
+      "frozen_adaptive_before_after": [
+        "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+        "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+      ]
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-U",
+      "steps": 5,
+      "state": "complete",
+      "frozen_adaptive_before_after": [
+        "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+        "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+      ]
+    }
+  ],
+  "started_at": 1792215860.0444312,
+  "protocol_sha256": "c49b3e13e653c10d806c4e2f1076e0a2147a5186383b0d47e576f2c7aa3f3a5d",
+  "environment": {
+    "torch": "2.7.1+cu128",
+    "ultralytics": "8.4.150",
+    "deterministic_algorithms": true,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8"
+  }
+}

@@ -1,31 +1,21 @@
-# 当前正确性审计
+# TFSS 正确性与准入最终状态 — 2026-10-17
 
-|项目|实际状态|
+|核验|实际状态|
 |---|---|
-|隔离源码归档/远端重新读取|PASS，a5aefbb1376cd5aacc0e2cefd73cebdbcf808f54|
-|S0历史45文件SHA|PASS，运行时GitSHA未知|
-|C/U公式、无NT退化、原1/.5/0预算|CPU组件PASS|
-|裁剪后RMS配对、超出可达域失败|CPU组件PASS|
-|软缩放、地图detach、Adaptive实际poison缓存|CPU组件PASS|
-|诊断梯度保留图、完整backward仍可执行|CPU高阶数值探针PASS；非VOC模型|
-|真实VOC S0 loss/Fourier/single-step等价|NOT_RUN|
-|真实nativeTAL/所有NTGT覆盖|NOT_RUN|
-|真实CUDA高阶图/模型状态/资源测试|NOT_RUN|
-|新TFSS独立科学审查|NOT_RUN，等待当前commit GPU smoke|
-|GPU5-step/逐类/热图/曲线|NOT_RUN|
-|完整噪声/数据集/victim/正式AP|NOT_RUN且未授权|
+|历史S0原45文件/协议/参考模型|SHA保持，运行时S0 GitSHA未知|
+|当前CPU组件/静态检查|10通过；原科学计算不变|
+|真实S0/no-op等价|两独立batch各5步，最大差0|
+|批准RMS双门|608个完成配对通过，max abs1.01638e-8 / rel2.10198e-6|
+|真实smoke|v3第一批6方法1步通过；小GT修复后v4第二批6方法1步通过|
+|native NT覆盖/Qt有效域|本次32图/46NTGT；12NT类；2有效小PersonGT按invalidQt保留W1/归因排除|
+|独立科学审查|一次，source2abe科学正确/allow_run；小GT后sourcee962主代理真实闭合，不冒充新的独立通过|
+|完整C五步子比较|两批均完成；目标保护代理门通过，效用相对Uniform-C分歧|
+|完整U五步子比较|INCOMPLETE，Uniform-U batch1仅4步，step5可达域guard退出|
+|比较检查点|59个Adam步数/scheduler0/RNG/有限值CPU核验；全部保留|
+|Frozen/Adaptive最终哈希|11个完成trial通过；失败Uniform-U最终哈希检查NOT_RUN|
+|图像浮点预算|已完成前向outside0、原8/4/0检查通过；11个最终记录派生数组CPU复查通过；不是完整PNG数据集审计|
+|全TFSS噪声/PNG数据集/victim200/AP|NOT_RUN、未授权|
 
-本地Torch2.14.0+cpu用于轻量数值检查，服务器已知Torch2.7.1+cu128/Ultralytics8.4.150；不安装/更改环境，不声称本地数值代表server bitwise。首个新增序列化测试的C++ filename writer失败证据保留为CPU_VALIDATION_INITIAL_FILE_IO_FAILURE.json；改用Python二进制文件句柄并保留owned tiny artifacts后测试通过。未删除文件。全部失败与未运行项如实保留。
+原v1 CUDA重放和v2旧1e-9失败原证据保留；数值双门修订有人类直接批准。Uniform-U第5步匹配目标超出控制自身最大值是新结构性对照阻塞，不能用放宽误差或重复试验掩盖。没有额外审查、模型前向来补结果或新GPU任务。
 
-S3源目录/RunSpec/配置/receipt/checkpoint从未修改；只有只读rrctl观察。唯一物理GPU已被S3占用，所以没有上传TFSS脚本、没有新远程进程或模型前后向。源码独立是可验证事实；不把一段观察夸大成整个共享服务器零影响的因果证明。
-
-
-## 2026-10-17 latest measured status — overrides earlier NOT_RUN / WAIT_FOR_S3
-
-S3 fully accepted/archived/exited before TFSS started. Source897cdfe smokev2 passed actual canonical S0/noop equivalence maxdiff0; S0-reference/noop/C/U each completed1update/EOT2 on firstfixed16 with unchanged model hashes. It then failed the locked Uniform postclamp RMS error1e-9 gate; first complete six-method smoke and both-batch5step remain INCOMPLETE. No reviewer called and no formal TFSS. CPU saved-delta replay finds nearest float32 bracket error>1e-9 for11/16 first-EOT images, maximum7.5655e-9. Full evidence and a concrete **unapproved** numerical protocol proposal: [RMS_GATE_BLOCKER_20261017.md](tfss/RMS_GATE_BLOCKER_20261017.md). WAIT_FOR_HUMAN_NUMERICAL_PROTOCOL; no automatic retry or tolerance change. Original source45/formulas/budgets/eta/losses/optimizer/sample/EOT unchanged.
-
-
-2026-10-17 NUMERICAL_STABILITY/PROTOCOL_AMENDMENT（人类明确批准）：Uniform选择最接近的可达FP32 alpha端点，保持[0,1]与原FP32前向，裁剪后实际RMS误差同时满足absolute<=1e-7及relative<=1e-4，配置值必须到达实际求解器；实际误差逐图保存，任一门失败即停止。原1e-9检查及未批准/等待文字仅为保留的历史；配置/样本/eta/预算/损失/优化器及S0/noop1e-7不变。新测试覆盖浮点台阶、绝对与相对门独立失败。源码需新RunID smoke通过后再一次独立审查。
-
-
-2026-10-17 BUG_FIX / NUMERICAL_STABILITY: valid pixel GT below unchanged canonical S0 P5 pooling minimum follows the existing invalid-Qt preservation convention (W=1 on retained GT, validfalse/raw_normnull, excludedhighQt), not label rejection/zero evidence. No data/optimizer/loss/eta/budget change. Fresh --batch-index1 recovery avoids rerunning completedbatch0; results must disclose split-source provenance. Current-source batch1 smoke/main closure required, no second scientific reviewer. See tfss/SMALL_GT_REPAIR_20261017.md.
+来源：[逐组件状态](tfss/short_comparison_20261017/raw/status.json)、[CPU元数据](tfss/short_comparison_20261017/analysis/CPU_METADATA_AND_PROVENANCE.json)、[独立审查](tfss/short_comparison_20261017/evidence/INDEPENDENT_REVIEW.md)、[主代理闭合](tfss/short_comparison_20261017/evidence/TFSS_SMALL_GT_MAIN_CLOSURE_20261017.json)。

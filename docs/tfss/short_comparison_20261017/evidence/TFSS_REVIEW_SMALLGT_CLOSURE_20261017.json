@@ -1,0 +1,21 @@
+{
+  "source_commit": "e9623c78a27314c5f6f733abea90602d9415fb4a",
+  "pre_run_result": "pass",
+  "result": "scientifically_correct",
+  "decision": "allow_run",
+  "reviewer": "/root/tfss_scientific_review",
+  "independent": false,
+  "review_count": 1,
+  "report_sha256": "e18d93cba6dd1d1f46dbd97f228787471f7e0a081f867ad179dd826f9ba40306",
+  "packet_sha256": "7d30c0bd8b24813df867ff91eb65bd745571bd6a1f75e52276e330e0fefd7af3",
+  "config_sha256": "c49b3e13e653c10d806c4e2f1076e0a2147a5186383b0d47e576f2c7aa3f3a5d",
+  "smoke_run_id": "tfss_cu_gpu_smoke_train16_batch1_seed0_20261017_v4",
+  "scope": "recover only original second16 with6methods5updates; completedfirst16 retained at2abe, disclose split-source cohort; not full TFSS",
+  "full_TFSS_authorized": false,
+  "exact_command": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python scripts/tfss_short_probe.py --output /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_short_batch1_train16_seed0_20261017_v2 --gpu 0 --s3-control /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/control/s3_cnlp_cup_s0_eps8_person_seed0_20261015_v1 --s3-output /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/outputs/s3_cnlp_cup_s0_eps8_person_seed0_20261015_v1 --s3-acceptance /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/receipts/S3_ACCEPTANCE_20261017.json --phase short --batch-index 1 --review-receipt /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/receipts/TFSS_REVIEW_SMALLGT_CLOSURE_20261017.json",
+  "admission_basis": "original ONE independent review plus main-agent production closure of smallGT routing bug; no secondreview",
+  "main_closure_sha256": "5bd9ebc726460c34790af9b004df34e57ef4c9d1a7d8e2d44e97f39115b69667",
+  "independent_review_source": "2abe6544ab0e2701b94c961d6e06c59a66ee87e3",
+  "result_scope": "scientifically_correct is the original independent verdict at2abe; current-source pre_run_result pass is main-agent closure, not a new independentreview",
+  "original_independent": true
+}

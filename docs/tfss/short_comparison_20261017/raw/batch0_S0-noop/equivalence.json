@@ -1,0 +1,6 @@
+{
+  "max_difference": 0.0,
+  "tolerance": 1e-07,
+  "reference": "unchanged canonical B2SemanticTrainer, byte-bound historical S0",
+  "candidate": "SoftSpatialProjection(S0 no-op)+same canonical trainer"
+}

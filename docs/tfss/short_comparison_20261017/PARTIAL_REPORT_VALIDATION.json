@@ -1,0 +1,17 @@
+{
+  "state": "PASS_PARTIAL_REPORT_CONSISTENCY_ONLY",
+  "canonical45_SHA_unchanged": true,
+  "scientific_code_config_diff": [],
+  "intended_updates": 60,
+  "completed_updates": 59,
+  "EOT_rows": 118,
+  "RMS_pairs": 608,
+  "rendered_derived_PNG": 16,
+  "metadata_checkpoints": 59,
+  "missing_U_final_diagnostics": true,
+  "formal_TFSS_run": false,
+  "comparison_complete": false,
+  "archive_files_before_validation": 76,
+  "archive_bytes_before_validation": 8545332,
+  "max_file_bytes": 651919
+}

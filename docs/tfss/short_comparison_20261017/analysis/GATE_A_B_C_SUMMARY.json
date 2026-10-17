@@ -1,0 +1,214 @@
+{
+  "scope": "two fixed independent TRAIN batches, eachmethod freshseed0/5updates/EOT2; descriptive only, no victim/AP",
+  "source_commit": "SPLIT_SOURCE_RECOVERY",
+  "source_commits_by_batch": {
+    "0": "2abe6544ab0e2701b94c961d6e06c59a66ee87e3",
+    "1": "e9623c78a27314c5f6f733abea90602d9415fb4a"
+  },
+  "run_state": "PARTIAL_59_OF_60_UPDATES",
+  "candidate_decision": "INSUFFICIENT_EVIDENCE",
+  "methods": {
+    "S0-reference": {
+      "mean_person_RMS": 0.006810789141439358,
+      "mean_paired_person_RMS_reduction": 0.0,
+      "median_gradient_cosine": 0.9999999999999801,
+      "median_gradient_norm_retention": 1.0,
+      "median_high_protection_operator_energy_retention": 1.0,
+      "high_protection_undefined_observations": 37,
+      "mean_protection_relative_increase": 0.0,
+      "batch_protection_relative_increase": {
+        "0": 0.0,
+        "1": 0.0
+      },
+      "mean_L_ret": 6.329759880827624e-05,
+      "mean_non_target_feature_drift": 6.329759880827624e-05,
+      "GT_weighted_loss_delta_mean": 0.0022644815237625785,
+      "final_NT_batches": [
+        0,
+        1
+      ],
+      "recorded_EOT_rows": 20,
+      "NT_GT_observations": 46
+    },
+    "S0-noop": {
+      "mean_person_RMS": 0.006810789141439358,
+      "mean_paired_person_RMS_reduction": 0.0,
+      "median_gradient_cosine": 0.9999999999999801,
+      "median_gradient_norm_retention": 1.0,
+      "median_high_protection_operator_energy_retention": 1.0,
+      "high_protection_undefined_observations": 37,
+      "mean_protection_relative_increase": 0.0,
+      "batch_protection_relative_increase": {
+        "0": 0.0,
+        "1": 0.0
+      },
+      "mean_L_ret": 6.329759880827624e-05,
+      "mean_non_target_feature_drift": 6.329759880827624e-05,
+      "GT_weighted_loss_delta_mean": 0.0022644815237625785,
+      "final_NT_batches": [
+        0,
+        1
+      ],
+      "recorded_EOT_rows": 20,
+      "NT_GT_observations": 46
+    },
+    "TFSS-C": {
+      "mean_person_RMS": 0.006182082724673037,
+      "mean_paired_person_RMS_reduction": 0.09188625740412562,
+      "median_gradient_cosine": 0.9977296372257835,
+      "median_gradient_norm_retention": 0.9546918272972107,
+      "median_high_protection_operator_energy_retention": 0.9306167364120483,
+      "high_protection_undefined_observations": 37,
+      "mean_protection_relative_increase": 1.2819294083304955e-05,
+      "batch_protection_relative_increase": {
+        "0": 0.0002031707191546994,
+        "1": -0.0001775321309880895
+      },
+      "mean_L_ret": 5.22981938047451e-05,
+      "mean_non_target_feature_drift": 5.22981938047451e-05,
+      "GT_weighted_loss_delta_mean": 0.0017015389774156654,
+      "final_NT_batches": [
+        0,
+        1
+      ],
+      "recorded_EOT_rows": 20,
+      "NT_GT_observations": 46
+    },
+    "TFSS-U": {
+      "mean_person_RMS": 0.006713358479127984,
+      "mean_paired_person_RMS_reduction": 0.01516004485839928,
+      "median_gradient_cosine": 0.999530806997499,
+      "median_gradient_norm_retention": 0.9882797598838806,
+      "median_high_protection_operator_energy_retention": 0.9802581071853638,
+      "high_protection_undefined_observations": 37,
+      "mean_protection_relative_increase": -0.00017990338942714957,
+      "batch_protection_relative_increase": {
+        "0": -4.358134923188039e-06,
+        "1": -0.0003554486439311111
+      },
+      "mean_L_ret": 5.833980849274667e-05,
+      "mean_non_target_feature_drift": 5.833980849274667e-05,
+      "GT_weighted_loss_delta_mean": 0.0025633858597796898,
+      "final_NT_batches": [
+        0,
+        1
+      ],
+      "recorded_EOT_rows": 20,
+      "NT_GT_observations": 46
+    },
+    "Uniform-C": {
+      "mean_person_RMS": 0.006182082562467655,
+      "mean_paired_person_RMS_reduction": 0.09188634253821744,
+      "median_gradient_cosine": 0.9993639136923057,
+      "median_gradient_norm_retention": 0.9055938124656677,
+      "median_high_protection_operator_energy_retention": 0.8194901943206787,
+      "high_protection_undefined_observations": 37,
+      "mean_protection_relative_increase": 0.00013979148251020424,
+      "batch_protection_relative_increase": {
+        "0": 0.0003061686510214878,
+        "1": -2.6585686001079357e-05
+      },
+      "mean_L_ret": 4.808490184586845e-05,
+      "mean_non_target_feature_drift": 4.808490184586845e-05,
+      "GT_weighted_loss_delta_mean": 0.0018994367640951405,
+      "final_NT_batches": [
+        0,
+        1
+      ],
+      "recorded_EOT_rows": 20,
+      "NT_GT_observations": 46
+    },
+    "Uniform-U": {
+      "mean_person_RMS": 0.006740370976879206,
+      "mean_paired_person_RMS_reduction": 0.015068070257443791,
+      "median_gradient_cosine": 0.9999676837120731,
+      "median_gradient_norm_retention": 0.9821837544441223,
+      "median_high_protection_operator_energy_retention": 0.9619408249855042,
+      "high_protection_undefined_observations": 31,
+      "mean_protection_relative_increase": -1.115000465931912e-05,
+      "batch_protection_relative_increase": {
+        "0": 8.104126726837802e-06,
+        "1": -3.5217668892015275e-05
+      },
+      "mean_L_ret": 4.0115429126469986e-05,
+      "mean_non_target_feature_drift": 4.0115429126469986e-05,
+      "GT_weighted_loss_delta_mean": 0.00354855710809881,
+      "final_NT_batches": [
+        0
+      ],
+      "recorded_EOT_rows": 18,
+      "NT_GT_observations": 22
+    }
+  },
+  "GateA": {
+    "passed": false,
+    "completeness": "FAIL: batch1 Uniform-U step5 unreachable",
+    "equivalence_maxdiff": 0.0,
+    "RMS_max_absolute": 1.016375449081064e-08,
+    "RMS_max_relative": 2.1019758515197285e-06,
+    "RMS_pair_cases": 608
+  },
+  "GateB": {
+    "TFSS-C": {
+      "passed": true,
+      "checks": {
+        "mean_protection_objective": true,
+        "each_batch_objective": true,
+        "gradient_cosine": true,
+        "gradient_norm": true,
+        "high_protection_energy": true
+      }
+    },
+    "TFSS-U": {
+      "passed": true,
+      "checks": {
+        "mean_protection_objective": true,
+        "each_batch_objective": true,
+        "gradient_cosine": true,
+        "gradient_norm": true,
+        "high_protection_energy": true
+      }
+    }
+  },
+  "GateC": {
+    "TFSS-C": {
+      "completeness": "COMPLETE",
+      "mean_Lret_vs_S0": -1.099940500353114e-05,
+      "mean_Lret_vs_Uniform": 4.213291958876653e-06,
+      "GT_loss_delta_vs_S0": -0.0005629425463469131,
+      "GT_loss_delta_vs_Uniform": -0.00019789778667947508,
+      "interpretation": "negative is lower recorded proxy; native clean/poison GT assignments may differ; no statistical/causal/AP claim"
+    },
+    "TFSS-U": {
+      "completeness": "INCOMPLETE: batch1 Uniform-U final NTGT/step5 missing",
+      "mean_Lret_vs_S0": -4.9577903155295725e-06,
+      "mean_Lret_vs_Uniform": null,
+      "GT_loss_delta_vs_S0": 0.0002989043360171113,
+      "GT_loss_delta_vs_Uniform": null,
+      "interpretation": "negative is lower recorded proxy; native clean/poison GT assignments may differ; no statistical/causal/AP claim"
+    }
+  },
+  "map_costs": {
+    "Qt_seconds_total": 3.5599264120683074,
+    "extra_NT_risk_seconds_total": 1.368581676390022,
+    "no_NT_images": 8,
+    "Person_GT": 65,
+    "NT_GT": 46,
+    "NT_classes_observed": [
+      0,
+      1,
+      3,
+      5,
+      6,
+      8,
+      11,
+      12,
+      15,
+      17,
+      18,
+      19
+    ],
+    "Qt_invalid_GT": 2,
+    "NT_risk_degenerate_class_maps": 0
+  }
+}

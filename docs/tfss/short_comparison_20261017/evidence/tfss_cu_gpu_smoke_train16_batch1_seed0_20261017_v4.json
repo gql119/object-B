@@ -1,0 +1,168 @@
+{
+  "schema_version": "rrctl.run.v1",
+  "run_id": "tfss_cu_gpu_smoke_train16_batch1_seed0_20261017_v4",
+  "project": "tfss-conservative-utility-short",
+  "source": {
+    "repo_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\tfss_conservative_utility_20261016",
+    "branch": "codex/tfss-conservative-utility-20261016",
+    "commit": "e9623c78a27314c5f6f733abea90602d9415fb4a",
+    "allowed_post_commit_paths": [
+      "execution/"
+    ]
+  },
+  "remote": {
+    "profile": "school-s1",
+    "stage_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/stage/tfss_cu_gpu_smoke_train16_batch1_seed0_20261017_v4",
+    "repo_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/repos/tfss_cu_gpu_smoke_train16_batch1_seed0_20261017_v4",
+    "control_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/control/tfss_cu_gpu_smoke_train16_batch1_seed0_20261017_v4",
+    "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_gpu_smoke_train16_batch1_seed0_20261017_v4",
+    "python": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python"
+  },
+  "session": {
+    "backend": "tmux",
+    "name": "tfss_cu_gpu_smoke_train16_batch1_seed0_20261017_v4"
+  },
+  "environment": {
+    "kind": "conda",
+    "name": "cfbdm",
+    "conda_sh": "/project/guoqinglong/miniconda3/etc/profile.d/conda.sh"
+  },
+  "workload": {
+    "argv": [
+      "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+      "scripts/tfss_short_probe.py",
+      "--output",
+      "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_gpu_smoke_train16_batch1_seed0_20261017_v4",
+      "--gpu",
+      "0",
+      "--s3-control",
+      "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/control/s3_cnlp_cup_s0_eps8_person_seed0_20261015_v1",
+      "--s3-output",
+      "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/outputs/s3_cnlp_cup_s0_eps8_person_seed0_20261015_v1",
+      "--s3-acceptance",
+      "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/receipts/S3_ACCEPTANCE_20261017.json",
+      "--phase",
+      "smoke",
+      "--batch-index",
+      "1"
+    ],
+    "cwd": "."
+  },
+  "health": {
+    "first_step": {
+      "timeout_seconds": 1800,
+      "poll_interval_seconds": 5,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);r=Path(c['output_root']);p=r/'status.json';d=json.loads(p.read_text()) if p.exists() else {};print(json.dumps({'protocol':'rrctl.adapter.v1','healthy':d.get('state')!='failed','complete':d.get('state')=='complete','progress':{'stage':d.get('phase'),'trials':len(d.get('trials',[]))},'observations':{'status':d},'artifacts':['status.json', 'maps_batch1.json', 'batch1_S0-noop/equivalence.json', 'batch1_S0-reference/trace.json', 'batch1_S0-reference/nt_gt_diagnostics.json', 'batch1_S0-noop/trace.json', 'batch1_S0-noop/nt_gt_diagnostics.json', 'batch1_TFSS-C/trace.json', 'batch1_TFSS-C/nt_gt_diagnostics.json', 'batch1_TFSS-U/trace.json', 'batch1_TFSS-U/nt_gt_diagnostics.json', 'batch1_Uniform-C/trace.json', 'batch1_Uniform-C/nt_gt_diagnostics.json', 'batch1_Uniform-U/trace.json', 'batch1_Uniform-U/nt_gt_diagnostics.json'] if d.get('state')=='complete' else []}))"
+      ]
+    },
+    "periodic": {
+      "timeout_seconds": 7200,
+      "poll_interval_seconds": 30,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);r=Path(c['output_root']);p=r/'status.json';d=json.loads(p.read_text()) if p.exists() else {};print(json.dumps({'protocol':'rrctl.adapter.v1','healthy':d.get('state')!='failed','complete':d.get('state')=='complete','progress':{'stage':d.get('phase'),'trials':len(d.get('trials',[]))},'observations':{'status':d},'artifacts':['status.json', 'maps_batch1.json', 'batch1_S0-noop/equivalence.json', 'batch1_S0-reference/trace.json', 'batch1_S0-reference/nt_gt_diagnostics.json', 'batch1_S0-noop/trace.json', 'batch1_S0-noop/nt_gt_diagnostics.json', 'batch1_TFSS-C/trace.json', 'batch1_TFSS-C/nt_gt_diagnostics.json', 'batch1_TFSS-U/trace.json', 'batch1_TFSS-U/nt_gt_diagnostics.json', 'batch1_Uniform-C/trace.json', 'batch1_Uniform-C/nt_gt_diagnostics.json', 'batch1_Uniform-U/trace.json', 'batch1_Uniform-U/nt_gt_diagnostics.json'] if d.get('state')=='complete' else []}))"
+      ]
+    },
+    "completion": {
+      "timeout_seconds": 180,
+      "poll_interval_seconds": 5,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);r=Path(c['output_root']);p=r/'status.json';d=json.loads(p.read_text()) if p.exists() else {};print(json.dumps({'protocol':'rrctl.adapter.v1','healthy':d.get('state')!='failed','complete':d.get('state')=='complete','progress':{'stage':d.get('phase'),'trials':len(d.get('trials',[]))},'observations':{'status':d},'artifacts':['status.json', 'maps_batch1.json', 'batch1_S0-noop/equivalence.json', 'batch1_S0-reference/trace.json', 'batch1_S0-reference/nt_gt_diagnostics.json', 'batch1_S0-noop/trace.json', 'batch1_S0-noop/nt_gt_diagnostics.json', 'batch1_TFSS-C/trace.json', 'batch1_TFSS-C/nt_gt_diagnostics.json', 'batch1_TFSS-U/trace.json', 'batch1_TFSS-U/nt_gt_diagnostics.json', 'batch1_Uniform-C/trace.json', 'batch1_Uniform-C/nt_gt_diagnostics.json', 'batch1_Uniform-U/trace.json', 'batch1_Uniform-U/nt_gt_diagnostics.json'] if d.get('state')=='complete' else []}))"
+      ]
+    }
+  },
+  "artifacts": [
+    {
+      "path": "status.json",
+      "required": true
+    },
+    {
+      "path": "maps_batch1.json",
+      "required": true
+    },
+    {
+      "path": "batch1_S0-noop/equivalence.json",
+      "required": true
+    },
+    {
+      "path": "batch1_S0-reference/trace.json",
+      "required": true
+    },
+    {
+      "path": "batch1_S0-reference/nt_gt_diagnostics.json",
+      "required": true
+    },
+    {
+      "path": "batch1_S0-noop/trace.json",
+      "required": true
+    },
+    {
+      "path": "batch1_S0-noop/nt_gt_diagnostics.json",
+      "required": true
+    },
+    {
+      "path": "batch1_TFSS-C/trace.json",
+      "required": true
+    },
+    {
+      "path": "batch1_TFSS-C/nt_gt_diagnostics.json",
+      "required": true
+    },
+    {
+      "path": "batch1_TFSS-U/trace.json",
+      "required": true
+    },
+    {
+      "path": "batch1_TFSS-U/nt_gt_diagnostics.json",
+      "required": true
+    },
+    {
+      "path": "batch1_Uniform-C/trace.json",
+      "required": true
+    },
+    {
+      "path": "batch1_Uniform-C/nt_gt_diagnostics.json",
+      "required": true
+    },
+    {
+      "path": "batch1_Uniform-U/trace.json",
+      "required": true
+    },
+    {
+      "path": "batch1_Uniform-U/nt_gt_diagnostics.json",
+      "required": true
+    }
+  ],
+  "local_pull_root": "\\\\?\\C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\tfss_small_20261017",
+  "metadata": {
+    "execution_purpose": "pre_review_smoke",
+    "computation_kind": "training",
+    "candidate_commit": "e9623c78a27314c5f6f733abea90602d9415fb4a",
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "cleanup_policy": "retain_all",
+    "checkpoint_cleanup_completed": false,
+    "deleted_paths": [],
+    "formal_generation_enabled": false,
+    "victim_training_enabled": false,
+    "steps_per_independent_trial": 1,
+    "independent_trials": 6,
+    "total_optimizer_steps": 6,
+    "training_images": 16,
+    "seed": 0,
+    "S3_full_accepted": true,
+    "no_parallel_gpu": true,
+    "user_authorization": "attachment bf6f4d1e Phase8/14/18, bounded TFSS comparison only after S3 complete",
+    "recovery_reason": "main-agent closure of valid small-GT invalid-Qt routing, batch1 only; completed formal batch0 is preserved, not repeated",
+    "batch_index": 1
+  }
+}

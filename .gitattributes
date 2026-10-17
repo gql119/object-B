@@ -10,3 +10,8 @@ configs/voc_yolov8n_20cls.yaml -text
 # Preserve manifest and protocol file identities across Windows/Linux.
 docs/tfss/** -text
 configs/tfss_short_probe.json -text
+
+# Preserve scoped bounded-comparison report bytes.
+docs/TFSS_*.md -text
+research_workspace/STATE.md -text
+research_workspace/CONCLUSIONS.md -text

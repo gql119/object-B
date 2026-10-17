@@ -1,3 +1,11 @@
+# 真实短测等价补充 — 2026-10-17
+
+历史S0的45原文件字节/SHA仍保持。两个固定TRAIN batch的S0-reference与S0-noop各5步实际loss/Fourier梯度/更新最大差0。原Frozen/Adaptive初始化、原loss/Adam/EOT/预算不变，未使用S1/S2/S3噪声作为初始化。S0历史运行时commit依旧未知；不可用后来档案commit替代。TFSS当前整体59/60更新，U控制未完成，不从等价检查推出正式效用。
+
+---
+
+## 历史记录（以前的 NOT_RUN / 等待段落已被上文取代）
+
 # S0 父版本审计
 
 Change：独立分支从后来的0d43da4归档建立，再从此前留存的原始source bytes恢复45个历史S0文件。每个实际磁盘文件SHA与历史parent_remote_identity逐一相符，见tfss/S0_CANONICAL_SOURCE_SHA256.json及S0_RESTORATION_AUDIT.json。.gitattributes保留原BOM/换行字节。0d43da4不是已知的历史运行时commit，运行时GitSHA仍未知。

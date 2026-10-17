@@ -1,0 +1,1040 @@
+[
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 0.00020088398014195263,
+        "q90": 0.0015024960739538074,
+        "bbox": [
+          0.4867986798679868,
+          0.5833333333333334,
+          0.6501650165016502,
+          0.8282828282828284
+        ],
+        "raw_norm": 0.7409356236457825
+      }
+    ],
+    "risk_classes": [],
+    "nt_matching": [],
+    "no_nt_gt": true,
+    "q_target_seconds": 1.0013435729779303,
+    "extra_nt_risk_seconds": 0.028314869850873947
+  },
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 0.0006789800827391446,
+        "q90": 0.005047984886914492,
+        "bbox": [
+          0.555,
+          0.5053333333333333,
+          0.37,
+          0.44
+        ],
+        "raw_norm": 1.888607144355774
+      }
+    ],
+    "risk_classes": [
+      {
+        "valid": true,
+        "q10": 0.0014463666593655944,
+        "q90": 0.008166952058672905,
+        "cls": 19
+      }
+    ],
+    "nt_matching": [
+      {
+        "gt_index": 0,
+        "cls": 19,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.06532160937786102,
+        "cls_bce19": 0.5122954249382019,
+        "dfl": 0.8554189205169678,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.0291881561279297
+      }
+    ],
+    "no_nt_gt": false,
+    "q_target_seconds": 0.04145626211538911,
+    "extra_nt_risk_seconds": 0.1329536149278283
+  },
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 0.0003288001462351531,
+        "q90": 0.0016929620178416371,
+        "bbox": [
+          0.495,
+          0.3799212598425197,
+          0.214,
+          0.3188976377952756
+        ],
+        "raw_norm": 0.1403288096189499
+      }
+    ],
+    "risk_classes": [
+      {
+        "valid": true,
+        "q10": 0.001993814017623663,
+        "q90": 0.010609467513859272,
+        "cls": 3
+      },
+      {
+        "valid": true,
+        "q10": 0.0031803224701434374,
+        "q90": 0.05354732647538185,
+        "cls": 11
+      }
+    ],
+    "nt_matching": [
+      {
+        "gt_index": 0,
+        "cls": 3,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.11633877456188202,
+        "cls_bce19": 0.7793440222740173,
+        "dfl": 0.6311073303222656,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.208873748779297
+      },
+      {
+        "gt_index": 1,
+        "cls": 11,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.19645816087722778,
+        "cls_bce19": 0.5852726697921753,
+        "dfl": 0.8912370204925537,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 3.1029281616210938
+      }
+    ],
+    "no_nt_gt": false,
+    "q_target_seconds": 0.034148823004215956,
+    "extra_nt_risk_seconds": 0.05626855418086052
+  },
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 0.00016738008707761765,
+        "q90": 0.0013197575462982059,
+        "bbox": [
+          0.6381818181818182,
+          0.543,
+          0.3018181818181818,
+          0.47800000000000004
+        ],
+        "raw_norm": 0.17907832562923431
+      },
+      {
+        "valid": true,
+        "q10": 0.0002329469716642052,
+        "q90": 0.002343258587643504,
+        "bbox": [
+          0.36363636363636365,
+          0.362,
+          0.38545454545454544,
+          0.384
+        ],
+        "raw_norm": 0.2701874077320099
+      }
+    ],
+    "risk_classes": [
+      {
+        "valid": true,
+        "q10": 0.0005807639681734145,
+        "q90": 0.013779743574559689,
+        "cls": 12
+      }
+    ],
+    "nt_matching": [
+      {
+        "gt_index": 0,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.07978866249322891,
+        "cls_bce19": 0.4791642129421234,
+        "dfl": 0.46346402168273926,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.5331931114196777
+      }
+    ],
+    "no_nt_gt": false,
+    "q_target_seconds": 0.04786898288875818,
+    "extra_nt_risk_seconds": 0.035927205812186
+  },
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 0.0008849049336276948,
+        "q90": 0.008838840760290623,
+        "bbox": [
+          0.708,
+          0.7146666666666667,
+          0.06,
+          0.24
+        ],
+        "raw_norm": 0.7137809991836548
+      },
+      {
+        "valid": true,
+        "q10": 0.0004902204964309931,
+        "q90": 0.003507173154503107,
+        "bbox": [
+          0.651,
+          0.7053333333333333,
+          0.074,
+          0.248
+        ],
+        "raw_norm": 0.31447911262512207
+      },
+      {
+        "valid": true,
+        "q10": 0.0002960617421194911,
+        "q90": 0.0011370729189366102,
+        "bbox": [
+          0.557,
+          0.6866666666666666,
+          0.074,
+          0.27466666666666667
+        ],
+        "raw_norm": 0.13591721653938293
+      },
+      {
+        "valid": true,
+        "q10": 0.0006231394363567233,
+        "q90": 0.0028657293878495693,
+        "bbox": [
+          0.498,
+          0.696,
+          0.056,
+          0.22933333333333333
+        ],
+        "raw_norm": 0.2424086481332779
+      },
+      {
+        "valid": true,
+        "q10": 0.001034084241837263,
+        "q90": 0.003323265351355076,
+        "bbox": [
+          0.123,
+          0.6493333333333333,
+          0.046,
+          0.12533333333333332
+        ],
+        "raw_norm": 0.2931468188762665
+      },
+      {
+        "valid": true,
+        "q10": 0.003952022176235914,
+        "q90": 0.015093919821083546,
+        "bbox": [
+          0.027,
+          0.6933333333333334,
+          0.054,
+          0.19733333333333333
+        ],
+        "raw_norm": 0.8309382796287537
+      }
+    ],
+    "risk_classes": [
+      {
+        "valid": true,
+        "q10": 8.34324165310818e-09,
+        "q90": 0.009046709164977074,
+        "cls": 15
+      }
+    ],
+    "nt_matching": [
+      {
+        "gt_index": 6,
+        "cls": 15,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.12282498180866241,
+        "cls_bce19": 0.6178343296051025,
+        "dfl": 0.8389745950698853,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.4885663986206055
+      }
+    ],
+    "no_nt_gt": false,
+    "q_target_seconds": 0.11906587518751621,
+    "extra_nt_risk_seconds": 0.03719592513516545
+  },
+  {
+    "target_objects": [
+      {
+        "valid": false,
+        "reason": "canonical_P5_pool_undercoverage",
+        "q10": null,
+        "q90": null,
+        "raw_norm": null,
+        "feature_mask_sum": 0.5859375,
+        "bbox": [
+          0.483,
+          0.5746666666666667,
+          0.038,
+          0.050666666666666665
+        ]
+      },
+      {
+        "valid": false,
+        "reason": "canonical_P5_pool_undercoverage",
+        "q10": null,
+        "q90": null,
+        "raw_norm": null,
+        "feature_mask_sum": 0.328125,
+        "bbox": [
+          0.836,
+          0.5666666666666667,
+          0.02,
+          0.06133333333333333
+        ]
+      }
+    ],
+    "risk_classes": [
+      {
+        "valid": true,
+        "q10": 0.00012251247244421393,
+        "q90": 0.0055132051929831505,
+        "cls": 5
+      }
+    ],
+    "nt_matching": [
+      {
+        "gt_index": 0,
+        "cls": 5,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.02470763400197029,
+        "cls_bce19": 0.1934369057416916,
+        "dfl": 0.48963987827301025,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.016485571861267
+      }
+    ],
+    "no_nt_gt": false,
+    "q_target_seconds": 0.024438743013888597,
+    "extra_nt_risk_seconds": 0.04900752194225788
+  },
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 1.4853856555419043e-05,
+        "q90": 0.0001185465807793662,
+        "bbox": [
+          0.5206489675516224,
+          0.51,
+          0.8643067846607669,
+          0.704
+        ],
+        "raw_norm": 0.03861229866743088
+      }
+    ],
+    "risk_classes": [],
+    "nt_matching": [],
+    "no_nt_gt": true,
+    "q_target_seconds": 0.03243188513442874,
+    "extra_nt_risk_seconds": 0.001202304381877184
+  },
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 0.0015981827164068818,
+        "q90": 0.006152660585939884,
+        "bbox": [
+          0.812,
+          0.6613333333333333,
+          0.064,
+          0.224
+        ],
+        "raw_norm": 1.0119887590408325
+      },
+      {
+        "valid": true,
+        "q10": 0.0005326644750311971,
+        "q90": 0.001904500531964004,
+        "bbox": [
+          0.758,
+          0.6906666666666667,
+          0.04,
+          0.192
+        ],
+        "raw_norm": 0.1748914271593094
+      }
+    ],
+    "risk_classes": [
+      {
+        "valid": true,
+        "q10": 0.005709067452698946,
+        "q90": 0.03528376668691635,
+        "cls": 18
+      }
+    ],
+    "nt_matching": [
+      {
+        "gt_index": 2,
+        "cls": 18,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.046602025628089905,
+        "cls_bce19": 0.558772087097168,
+        "dfl": 0.5728824138641357,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.4882248640060425
+      }
+    ],
+    "no_nt_gt": false,
+    "q_target_seconds": 0.04878797801211476,
+    "extra_nt_risk_seconds": 0.04163655173033476
+  },
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 0.00026304752100259066,
+        "q90": 0.0013668780447915196,
+        "bbox": [
+          0.7647849462365592,
+          0.72,
+          0.12634408602150538,
+          0.28800000000000003
+        ],
+        "raw_norm": 0.15860092639923096
+      }
+    ],
+    "risk_classes": [
+      {
+        "valid": true,
+        "q10": 0.00033228364191018045,
+        "q90": 0.0022230299655348063,
+        "cls": 11
+      },
+      {
+        "valid": true,
+        "q10": 6.728902235408896e-07,
+        "q90": 0.00010255949746351689,
+        "cls": 15
+      }
+    ],
+    "nt_matching": [
+      {
+        "gt_index": 0,
+        "cls": 15,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.16848689317703247,
+        "cls_bce19": 1.971101999282837,
+        "dfl": 0.8950595259666443,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 3.591792106628418
+      },
+      {
+        "gt_index": 1,
+        "cls": 15,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.20507726073265076,
+        "cls_bce19": 1.4502460956573486,
+        "dfl": 0.9484807848930359,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 3.6859235763549805
+      },
+      {
+        "gt_index": 2,
+        "cls": 15,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.219326451420784,
+        "cls_bce19": 0.7732301354408264,
+        "dfl": 0.7633280754089355,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 3.1765553951263428
+      },
+      {
+        "gt_index": 3,
+        "cls": 15,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.35203099250793457,
+        "cls_bce19": 1.7800872325897217,
+        "dfl": 1.5237557888031006,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 5.8159098625183105
+      },
+      {
+        "gt_index": 4,
+        "cls": 15,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.12344921380281448,
+        "cls_bce19": 1.4693080186843872,
+        "dfl": 0.719029426574707,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.7390670776367188
+      },
+      {
+        "gt_index": 6,
+        "cls": 11,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.2311059981584549,
+        "cls_bce19": 0.924023449420929,
+        "dfl": 0.8200645446777344,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 3.425403594970703
+      },
+      {
+        "gt_index": 7,
+        "cls": 15,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.46358782052993774,
+        "cls_bce19": 1.8328816890716553,
+        "dfl": 2.1454646587371826,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 7.611546516418457
+      }
+    ],
+    "no_nt_gt": false,
+    "q_target_seconds": 0.04172764578834176,
+    "extra_nt_risk_seconds": 0.08579771872609854
+  },
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 5.734429942094721e-05,
+        "q90": 0.0004853478167206049,
+        "bbox": [
+          0.499,
+          0.4613333333333333,
+          0.998,
+          0.9226666666666666
+        ],
+        "raw_norm": 0.14871743321418762
+      }
+    ],
+    "risk_classes": [
+      {
+        "valid": true,
+        "q10": 0.0005101996357552707,
+        "q90": 0.008458982221782207,
+        "cls": 11
+      }
+    ],
+    "nt_matching": [
+      {
+        "gt_index": 0,
+        "cls": 11,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.07384021580219269,
+        "cls_bce19": 0.5313412547111511,
+        "dfl": 0.8705935478210449,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.1253623962402344
+      }
+    ],
+    "no_nt_gt": false,
+    "q_target_seconds": 0.035205939784646034,
+    "extra_nt_risk_seconds": 0.037302745040506124
+  },
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 3.6079476558370516e-05,
+        "q90": 0.00030092542874626815,
+        "bbox": [
+          0.442,
+          0.49866666666666665,
+          0.884,
+          0.9973333333333333
+        ],
+        "raw_norm": 0.09272768348455429
+      }
+    ],
+    "risk_classes": [],
+    "nt_matching": [],
+    "no_nt_gt": true,
+    "q_target_seconds": 0.0291943890042603,
+    "extra_nt_risk_seconds": 0.001206367276608944
+  },
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 0.00017207064956892282,
+        "q90": 0.0010957298800349236,
+        "bbox": [
+          0.44,
+          0.583,
+          0.4693333333333333,
+          0.65
+        ],
+        "raw_norm": 0.2505176067352295
+      },
+      {
+        "valid": true,
+        "q10": 0.0002391933958278969,
+        "q90": 0.0018542547477409244,
+        "bbox": [
+          0.6186666666666667,
+          0.617,
+          0.288,
+          0.586
+        ],
+        "raw_norm": 0.3495523929595947
+      }
+    ],
+    "risk_classes": [
+      {
+        "valid": true,
+        "q10": 0.0012477569980546832,
+        "q90": 0.014209798537194729,
+        "cls": 0
+      }
+    ],
+    "nt_matching": [
+      {
+        "gt_index": 0,
+        "cls": 0,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.1753048449754715,
+        "cls_bce19": 0.5950194597244263,
+        "dfl": 0.8025708198547363,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.8161520957946777
+      },
+      {
+        "gt_index": 1,
+        "cls": 0,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.4192565381526947,
+        "cls_bce19": 1.4628047943115234,
+        "dfl": 1.7809218168258667,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 6.547208786010742
+      },
+      {
+        "gt_index": 2,
+        "cls": 0,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.2309609353542328,
+        "cls_bce19": 0.9373467564582825,
+        "dfl": 1.3229999542236328,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 4.185380458831787
+      }
+    ],
+    "no_nt_gt": false,
+    "q_target_seconds": 0.05312133487313986,
+    "extra_nt_risk_seconds": 0.05099742719903588
+  },
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 0.0008377006743103266,
+        "q90": 0.004858233500272036,
+        "bbox": [
+          0.326,
+          0.496,
+          0.12,
+          0.11733333333333333
+        ],
+        "raw_norm": 0.23373548686504364
+      }
+    ],
+    "risk_classes": [
+      {
+        "valid": true,
+        "q10": 0.003947571385651827,
+        "q90": 0.07605651766061783,
+        "cls": 5
+      },
+      {
+        "valid": true,
+        "q10": 0.0012966885697096586,
+        "q90": 0.012801183387637138,
+        "cls": 6
+      }
+    ],
+    "nt_matching": [
+      {
+        "gt_index": 0,
+        "cls": 5,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.043573834002017975,
+        "cls_bce19": 0.3764587342739105,
+        "dfl": 0.5502194166183472,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.3403621912002563
+      },
+      {
+        "gt_index": 1,
+        "cls": 5,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.11667530238628387,
+        "cls_bce19": 1.02544105052948,
+        "dfl": 0.6322150230407715,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.3361079692840576
+      },
+      {
+        "gt_index": 2,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.06662844866514206,
+        "cls_bce19": 0.9863107204437256,
+        "dfl": 0.6121003031730652,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.911019206047058
+      }
+    ],
+    "no_nt_gt": false,
+    "q_target_seconds": 0.03611182002350688,
+    "extra_nt_risk_seconds": 0.060052859131246805
+  },
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 0.0013321763835847378,
+        "q90": 0.00707798358052969,
+        "bbox": [
+          0.5706666666666667,
+          0.369,
+          0.17066666666666666,
+          0.234
+        ],
+        "raw_norm": 0.5169705152511597
+      }
+    ],
+    "risk_classes": [
+      {
+        "valid": true,
+        "q10": 0.00747917452827096,
+        "q90": 0.08646383881568909,
+        "cls": 1
+      }
+    ],
+    "nt_matching": [
+      {
+        "gt_index": 0,
+        "cls": 1,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.21626752614974976,
+        "cls_bce19": 0.6542977094650269,
+        "dfl": 0.9363202452659607,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 3.353635787963867
+      }
+    ],
+    "no_nt_gt": false,
+    "q_target_seconds": 0.03533084178343415,
+    "extra_nt_risk_seconds": 0.037994747050106525
+  },
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 6.709660374326631e-05,
+        "q90": 0.0009618917829357088,
+        "bbox": [
+          0.5525525525525525,
+          0.536,
+          0.43843843843843844,
+          0.76
+        ],
+        "raw_norm": 0.1897314041852951
+      },
+      {
+        "valid": true,
+        "q10": 0.0004544771509245038,
+        "q90": 0.001722801593132317,
+        "bbox": [
+          0.8933933933933934,
+          0.3,
+          0.08108108108108109,
+          0.12
+        ],
+        "raw_norm": 0.20205368101596832
+      },
+      {
+        "valid": true,
+        "q10": 0.0007188227027654648,
+        "q90": 0.002325245412066579,
+        "bbox": [
+          0.8423423423423423,
+          0.28500000000000003,
+          0.05105105105105105,
+          0.10200000000000001
+        ],
+        "raw_norm": 0.28936049342155457
+      }
+    ],
+    "risk_classes": [
+      {
+        "valid": true,
+        "q10": 0.0006001759320497513,
+        "q90": 0.020879346877336502,
+        "cls": 1
+      }
+    ],
+    "nt_matching": [
+      {
+        "gt_index": 0,
+        "cls": 1,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.08640380203723907,
+        "cls_bce19": 0.6531198620796204,
+        "dfl": 0.6772346496582031,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.9904403686523438
+      }
+    ],
+    "no_nt_gt": false,
+    "q_target_seconds": 0.06722147902473807,
+    "extra_nt_risk_seconds": 0.03944313107058406
+  },
+  {
+    "target_objects": [
+      {
+        "valid": true,
+        "q10": 0.000178750793565996,
+        "q90": 0.0010316955158486962,
+        "bbox": [
+          0.8140000000000001,
+          0.6626666666666666,
+          0.368,
+          0.6693333333333333
+        ],
+        "raw_norm": 0.16433550417423248
+      },
+      {
+        "valid": true,
+        "q10": 0.00010323508467990905,
+        "q90": 0.0011429941514506936,
+        "bbox": [
+          0.5630000000000001,
+          0.256,
+          0.262,
+          0.4373333333333333
+        ],
+        "raw_norm": 0.2060241997241974
+      },
+      {
+        "valid": true,
+        "q10": 0.00014410096628125757,
+        "q90": 0.0008392237359657884,
+        "bbox": [
+          0.203,
+          0.5626666666666666,
+          0.402,
+          0.6506666666666666
+        ],
+        "raw_norm": 0.1453486531972885
+      },
+      {
+        "valid": true,
+        "q10": 0.0001936788612511009,
+        "q90": 0.0013654809445142746,
+        "bbox": [
+          0.232,
+          0.49066666666666664,
+          0.332,
+          0.48533333333333334
+        ],
+        "raw_norm": 0.20703275501728058
+      }
+    ],
+    "risk_classes": [
+      {
+        "valid": true,
+        "q10": 4.91589835505124e-09,
+        "q90": 0.0004215966328047216,
+        "cls": 19
+      }
+    ],
+    "nt_matching": [
+      {
+        "gt_index": 0,
+        "cls": 19,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.030337560921907425,
+        "cls_bce19": 0.2119055986404419,
+        "dfl": 0.5122076272964478,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.1017959117889404
+      }
+    ],
+    "no_nt_gt": false,
+    "q_target_seconds": 0.08313375478610396,
+    "extra_nt_risk_seconds": 0.04123724764212966
+  }
+]

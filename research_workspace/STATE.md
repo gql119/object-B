@@ -1,24 +1,13 @@
-# 最新：首批五步已完成；修复第二批有效小GT的 Qt 无效路由 — 2026-10-17
+# TFSS 当前状态 — 2026-10-17
 
-原shortv1/source2abe在batch0完成6方法各5步后，于batch1的有效小GT/P5低于1featurepixel检查退出1。原单次独立审查已allow，未调用新审查。按既定invalidQt保留强度/排除highQt统计修复，标签/GT/原45计算/超参数不变；新增--batch-index用于仅恢复未运行第二批。需当前源码batch1单步smoke与主代理闭合后才恢复第二批，不重跑已完成首批。证据docs/tfss/SMALL_GT_REPAIR_20261017.md及execution/TFSS_SMALL_GT_REPAIR_20261017.json。
+SHORT_INCOMPLETE_UNIFORM_REACHABILITY_BLOCKER / INSUFFICIENT_EVIDENCE。
 
-# 最新：数值修订已获人类批准，继续有界准入 — 2026-10-17
+人类批准RMS数值修订已落实，原smoke v3和小GT修复v4均通过。一次独立科学审查allow_run@2abe；sourcee962小GT修复由主代理真实smoke闭合，无第二审查。原45源码/公式/损失/优化器/参数不变。
 
-用户明确：同意你采取数值修订，然后继续工作。执行closest FP32 alpha端点及绝对1e-7/相对1e-4双门；旧1e-9及WAIT_FOR_HUMAN段落仅为历史。两个失败RunID永久保留，使用fresh当前源码smoke；通过后唯一新TFSS科学审查，再两独立batch各五步。完整TFSS仍未授权。授权凭证docs/tfss/NUMERICAL_AMENDMENT_AUTHORIZATION_20261017.json。
+完整复用原batch0六方法5步@2abe；恢复batch1五方法5步、Uniform-U4步@e962。59/60比较更新，两个总体控制器均failed；Uniform-U step5目标超出自身alpha≤1 RMS上限。608已完成RMS配对通过双门，两个batch各5步S0/no-op差0。59个更新检查点CPU元数据核验保留，16张派生图和所有小JSON/CSV已归档。不能将partial组件组合标成整体完成。
 
-# TFSS-C / TFSS-U — CURRENT-SOURCE SMOKE REPAIR
+C/U目标保护GateB通过；非目标效用代理混合，U最终匹配对照缺失。当前没有正式TFSS候选，不启动全噪声/数据集/victim。原异常未记录具体不可达图ID/幅度，UNKNOWN。禁止自动GPU重试、改alpha上限、重置轨迹、再放宽误差或AP调参；改变对照协议需要新的明确人类授权。
 
-2026-10-17 latest state overrides earlier WAIT_FOR_S3 paragraphs below: S3 accepted/archived/exited, docs/s3_archive/LOCAL_ACCEPTANCE.json in the S23 worktree; local exact copy execution/S3_ACCEPTANCE_20261017.json. Resource gate passed (GPUempty/CPUload7.14/32logical). First unique TFSS smoke tfss_cu_gpu_smoke_train16_seed0_20261017_v1 sourceb6a01c8 exited1 at real S0/noop equivalence, maxdiff1.4722347259521484e-5>unchanged1e-7, two trials updated once; C/U/Uniform NOT_RUN. All checkpoints retained. No independent review called, no five-step or fullTFSS admitted. Paired deterministic CUDA controls omitted in initial probe are now explicitly bound identically to all trials; main-agent diagnosis and exact failure retained in docs/tfss/SMOKE_NUMERICAL_REPLAY_REPAIR_20261017.md. Local8CPUchecks/AST/45canonicalbytechecks pass after repair; a fresh current-source real smoke is still required. Original formulas and all scientific parameters/tolerances remain fixed. Current decision INSUFFICIENT_EVIDENCE; fullTFSS still needs future human confirmation.
+最新报告docs/TFSS_SHORT_PROBE_RESULTS.md、docs/TFSS_CANDIDATE_DECISION.md（16问）、docs/tfss/UNIFORM_REACHABILITY_BLOCKER_20261017.md；全部小结果docs/tfss/short_comparison_20261017。执行权威状态execution/TFSS_CURRENT_STATE.json。
 
-Latest user authorization: docs/tfss/USER_TASK_SOURCE.md, attachmentbf6f4d1e SHA2f4ffb33685d93ec868481680324f18bee14fdf2723520ff894f26eeb5dabdaa. It supersedes the former diagnostic-only/no-push restriction ONLY for explicitly requested archive and TFSS preparation/short comparisons. It does not authorize full TFSS noise/victim.
-
-Source snapshot published to object-B/codex/tfss-source-snapshot-20261016 commit a5aefbb1376cd5aacc0e2cefd73cebdbcf808f54, independently reread from remote; main unchanged. Separate development branch codex/tfss-conservative-utility-20261016 restores exact45 historical S0 files, no CNLP/CUP/S1 projection in active path. Source identity pass; real model equivalence NOT_RUN.
-
-Local math/gradient CPU tests and AST pass; real model smoke/review/5step are NOT_RUN. configs/tfss_short_probe.json locks eta.85 and original fixed32/65GT. Two independent16-image trials, original EOT2/Adam/Adaptive/Fourier, eachmode5steps; two matched Uniform controls. No remote upload or new GPU process. Single server GPU belongs to ongoing S3. Keep S3 original source0175916 and all settings/checkpoints immutable.
-
-After full S3 noise/audit/victim200/evaluation/archive/exit, continue already-authorized bounded smoke/one new-TFSS scientific review/5step comparisons through rrctl with no competing user. If no independent resource, keep waiting. No probe retry from the prior aborted parallel test. Formal TFSS requires human confirmation after recommendation. Current decision INSUFFICIENT_EVIDENCE. Do not treat prior TSFL-only candidate/review as TFSS evidence.
-
-
-## 2026-10-17 latest measured status — overrides earlier NOT_RUN / WAIT_FOR_S3
-
-S3 fully accepted/archived/exited before TFSS started. Source897cdfe smokev2 passed actual canonical S0/noop equivalence maxdiff0; S0-reference/noop/C/U each completed1update/EOT2 on firstfixed16 with unchanged model hashes. It then failed the locked Uniform postclamp RMS error1e-9 gate; first complete six-method smoke and both-batch5step remain INCOMPLETE. No reviewer called and no formal TFSS. CPU saved-delta replay finds nearest float32 bracket error>1e-9 for11/16 first-EOT images, maximum7.5655e-9. Full evidence and a concrete **unapproved** numerical protocol proposal: [RMS_GATE_BLOCKER_20261017.md](../docs/tfss/RMS_GATE_BLOCKER_20261017.md). WAIT_FOR_HUMAN_NUMERICAL_PROTOCOL; no automatic retry or tolerance change. Original source45/formulas/budgets/eta/losses/optimizer/sample/EOT unchanged.
+S0/S1/S2/S3均已归档，S3原source017不变；S23小结果已发布并复读@583892c2f1f2a86770a3828d9512c66cd75f25bb。S3从未因TFSS重跑。TFSS源码e962已发布复读；本轮后继报告归档保持main不变。旧数据/权重不转移、不删除、所有检查点保留。

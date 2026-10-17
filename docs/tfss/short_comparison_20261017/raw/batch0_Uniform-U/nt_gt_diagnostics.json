@@ -1,0 +1,884 @@
+[
+  {
+    "image_id": "000470",
+    "clean": [
+      {
+        "gt_index": 0,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.09587575495243073,
+        "cls_bce19": 0.621694803237915,
+        "dfl": 0.7175833582878113,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.106290578842163
+      }
+    ],
+    "poison": [
+      {
+        "gt_index": 0,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.09465328603982925,
+        "cls_bce19": 0.6135562062263489,
+        "dfl": 0.7119874954223633,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.0846590995788574
+      }
+    ],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "002472",
+    "clean": [
+      {
+        "gt_index": 3,
+        "cls": 0,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.0905194878578186,
+        "cls_bce19": 0.5923144221305847,
+        "dfl": 0.7148851156234741,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.0473809242248535
+      },
+      {
+        "gt_index": 4,
+        "cls": 0,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.12699858844280243,
+        "cls_bce19": 0.8708511590957642,
+        "dfl": 0.7921938896179199,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.5762057304382324
+      }
+    ],
+    "poison": [
+      {
+        "gt_index": 3,
+        "cls": 0,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.09051819145679474,
+        "cls_bce19": 0.5923334360122681,
+        "dfl": 0.7148832082748413,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.047377824783325
+      },
+      {
+        "gt_index": 4,
+        "cls": 0,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.1262603998184204,
+        "cls_bce19": 0.8707884550094604,
+        "dfl": 0.7889790534973145,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.5658159255981445
+      }
+    ],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "002804",
+    "clean": [
+      {
+        "gt_index": 0,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.19639304280281067,
+        "cls_bce19": 0.78459233045578,
+        "dfl": 0.7495175004005432,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.989520311355591
+      },
+      {
+        "gt_index": 1,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.13854897022247314,
+        "cls_bce19": 0.5527911186218262,
+        "dfl": 0.6674976348876953,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.3167593479156494
+      },
+      {
+        "gt_index": 2,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.24851910769939423,
+        "cls_bce19": 0.6545261144638062,
+        "dfl": 0.8136584758758545,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 3.411644220352173
+      },
+      {
+        "gt_index": 3,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.13240289688110352,
+        "cls_bce19": 0.7122167944908142,
+        "dfl": 0.6233782172203064,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.2841973304748535
+      },
+      {
+        "gt_index": 9,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.1094314455986023,
+        "cls_bce19": 0.5974828600883484,
+        "dfl": 0.44752955436706543,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.7907716035842896
+      },
+      {
+        "gt_index": 10,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.11821801960468292,
+        "cls_bce19": 1.1629834175109863,
+        "dfl": 0.6334003210067749,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.418227195739746
+      }
+    ],
+    "poison": [
+      {
+        "gt_index": 0,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.19693893194198608,
+        "cls_bce19": 0.7931442260742188,
+        "dfl": 0.7501299977302551,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.9988090991973877
+      },
+      {
+        "gt_index": 1,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.1386709213256836,
+        "cls_bce19": 0.5533825159072876,
+        "dfl": 0.6681033372879028,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.318878173828125
+      },
+      {
+        "gt_index": 2,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.2484789788722992,
+        "cls_bce19": 0.654536783695221,
+        "dfl": 0.8130764961242676,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 3.410475492477417
+      },
+      {
+        "gt_index": 3,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.1338958889245987,
+        "cls_bce19": 0.7154710292816162,
+        "dfl": 0.62509685754776,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.299600124359131
+      },
+      {
+        "gt_index": 9,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.10970364511013031,
+        "cls_bce19": 0.6022822856903076,
+        "dfl": 0.44741570949554443,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.7950420379638672
+      },
+      {
+        "gt_index": 10,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.11604723334312439,
+        "cls_bce19": 1.16837739944458,
+        "dfl": 0.6311622858047485,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.4012863636016846
+      }
+    ],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "005273",
+    "clean": [
+      {
+        "gt_index": 0,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.04911942034959793,
+        "cls_bce19": 0.4030558466911316,
+        "dfl": 0.4970775246620178,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.3155399560928345
+      },
+      {
+        "gt_index": 1,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.11388862133026123,
+        "cls_bce19": 0.6541746854782104,
+        "dfl": 0.6391019821166992,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.1399049758911133
+      },
+      {
+        "gt_index": 4,
+        "cls": 1,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.19673152267932892,
+        "cls_bce19": 2.2005372047424316,
+        "dfl": 1.2216941118240356,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 4.408296585083008
+      }
+    ],
+    "poison": [
+      {
+        "gt_index": 0,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.049123264849185944,
+        "cls_bce19": 0.40246567130088806,
+        "dfl": 0.49703699350357056,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.3152128458023071
+      },
+      {
+        "gt_index": 1,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.11417564004659653,
+        "cls_bce19": 0.6375242471694946,
+        "dfl": 0.639729917049408,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.134674310684204
+      },
+      {
+        "gt_index": 4,
+        "cls": 1,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.19717614352703094,
+        "cls_bce19": 2.1999006271362305,
+        "dfl": 1.2233697175979614,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 4.413825988769531
+      }
+    ],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "005430",
+    "clean": [
+      {
+        "gt_index": 0,
+        "cls": 1,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.14543072879314423,
+        "cls_bce19": 0.566074013710022,
+        "dfl": 0.7112457752227783,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.440635919570923
+      }
+    ],
+    "poison": [
+      {
+        "gt_index": 0,
+        "cls": 1,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.14746499061584473,
+        "cls_bce19": 0.5635291337966919,
+        "dfl": 0.7167739868164062,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.4629130363464355
+      }
+    ],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "005439",
+    "clean": [
+      {
+        "gt_index": 0,
+        "cls": 8,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.05566732585430145,
+        "cls_bce19": 0.3196113705635071,
+        "dfl": 0.6768049001693726,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.5925178527832031
+      },
+      {
+        "gt_index": 1,
+        "cls": 8,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.14733779430389404,
+        "cls_bce19": 2.140327215194702,
+        "dfl": 0.7016074061393738,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 3.2276082038879395
+      }
+    ],
+    "poison": [
+      {
+        "gt_index": 0,
+        "cls": 8,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.05556200444698334,
+        "cls_bce19": 0.3183797299861908,
+        "dfl": 0.6766431331634521,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.5908695459365845
+      },
+      {
+        "gt_index": 1,
+        "cls": 8,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.1473303586244583,
+        "cls_bce19": 2.1407876014709473,
+        "dfl": 0.701467752456665,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 3.2275731563568115
+      }
+    ],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "006320",
+    "clean": [
+      {
+        "gt_index": 0,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.04672698304057121,
+        "cls_bce19": 0.4390854239463806,
+        "dfl": 0.6401100158691406,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.5301601886749268
+      }
+    ],
+    "poison": [
+      {
+        "gt_index": 0,
+        "cls": 6,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.04674835875630379,
+        "cls_bce19": 0.4281405806541443,
+        "dfl": 0.6398515701293945,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.5244603157043457
+      }
+    ],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "006707",
+    "clean": [
+      {
+        "gt_index": 0,
+        "cls": 8,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.20040921866893768,
+        "cls_bce19": 0.9780054688453674,
+        "dfl": 1.0152239799499512,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 3.5149078369140625
+      }
+    ],
+    "poison": [
+      {
+        "gt_index": 0,
+        "cls": 8,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.20130887627601624,
+        "cls_bce19": 0.9676097631454468,
+        "dfl": 1.0168970823287964,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 3.5189669132232666
+      }
+    ],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "007996",
+    "clean": [
+      {
+        "gt_index": 5,
+        "cls": 17,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.06202959269285202,
+        "cls_bce19": 0.5049403309822083,
+        "dfl": 0.6280093789100647,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.6597062349319458
+      }
+    ],
+    "poison": [
+      {
+        "gt_index": 5,
+        "cls": 17,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.07118048518896103,
+        "cls_bce19": 0.5065642595291138,
+        "dfl": 0.6349765062332153,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.739600419998169
+      }
+    ],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "007998",
+    "clean": [],
+    "poison": [],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "009251",
+    "clean": [
+      {
+        "gt_index": 0,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.05893178656697273,
+        "cls_bce19": 0.3661198914051056,
+        "dfl": 0.5512542724609375,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.4519298076629639
+      }
+    ],
+    "poison": [
+      {
+        "gt_index": 0,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.05871406942605972,
+        "cls_bce19": 0.3662182688713074,
+        "dfl": 0.5511285066604614,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.4501574039459229
+      }
+    ],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "009496",
+    "clean": [],
+    "poison": [],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "2008_000777",
+    "clean": [],
+    "poison": [],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "2008_002543",
+    "clean": [],
+    "poison": [],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "2008_002641",
+    "clean": [],
+    "poison": [],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  },
+  {
+    "image_id": "2008_003802",
+    "clean": [
+      {
+        "gt_index": 0,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.047881439328193665,
+        "cls_bce19": 0.31149470806121826,
+        "dfl": 0.693401575088501,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.5549604892730713
+      },
+      {
+        "gt_index": 1,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.04322369396686554,
+        "cls_bce19": 0.27617764472961426,
+        "dfl": 0.6047610640525818,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.369408130645752
+      },
+      {
+        "gt_index": 2,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.08775107562541962,
+        "cls_bce19": 0.5668355226516724,
+        "dfl": 0.7503835558891296,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.0671260356903076
+      }
+    ],
+    "poison": [
+      {
+        "gt_index": 0,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.04789680242538452,
+        "cls_bce19": 0.3125200867652893,
+        "dfl": 0.6932275295257568,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.555327296257019
+      },
+      {
+        "gt_index": 1,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.043667495250701904,
+        "cls_bce19": 0.2748357057571411,
+        "dfl": 0.6054822206497192,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 1.3731474876403809
+      },
+      {
+        "gt_index": 2,
+        "cls": 12,
+        "positive_count": 10,
+        "native_positive_count": 10,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "box": 0.08725865185260773,
+        "cls_bce19": 0.5666628479957581,
+        "dfl": 0.7502156496047974,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "weighted_loss": 2.0630948543548584
+      }
+    ],
+    "forward": "last recorded pre-update",
+    "assignment": "native allGT, uncovered sameTAL alone; assignments may change with image"
+  }
+]

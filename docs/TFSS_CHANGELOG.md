@@ -1,3 +1,15 @@
+# 最新执行与报告归档 — 2026-10-17
+
+- NUMERICAL_STABILITY：人类批准最近FP32端点及abs1e-7/rel1e-4双门，608个完成配对均通过。
+- BUG_FIX：配对CUDA确定性控制；有效小GT走既有invalidQt保留强度域；原45计算、公式、eta、样本及预算保持。一次独立审查后仅主代理闭合，无第二审查。
+- RESULT：原短测batch0六方法5步；修复后仅batch1恢复，五方法5步、Uniform-U4步，合计59/60，整体INCOMPLETE。原失败全部保留。
+- FINDING：C/U GateB工程门通过；C非目标效用相对Uniform-C混合，U匹配控制可达域阻塞。候选INSUFFICIENT_EVIDENCE。
+- REPORT_ONLY：CPU读取59个已有检查点元数据、渲染16张派生图，零新优化/模型前向，无数据/权重转移。新控制协议/完整TFSS未获授权，不自动运行。
+
+---
+
+## 历史记录（以前的 NOT_RUN / 等待段落已被上文取代）
+
 # TFSS Change Log
 
 - SOURCE_RESTORATION：从历史byte备份恢复45文件并验证其SHA，不把后来归档commit冒充运行commit；不修改原目录。

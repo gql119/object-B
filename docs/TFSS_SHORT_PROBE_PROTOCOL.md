@@ -1,3 +1,13 @@
+# 执行后状态，协议数值修订已批准 — 2026-10-17
+
+原32TRAIN/2批/每方法5步/EOT2、eta.85、独立Uniform轨迹alpha[0,1]保持。人类批准实际裁剪后RMS absolute≤1e-7且relative≤1e-4，最近可达FP32端点；配置c49b3e13e653c10d806c4e2f1076e0a2147a5186383b0d47e576f2c7aa3f3a5d。小GT按原invalidQt规范保强度，sourcee962后仅恢复未完成batch1，不重跑已完成batch0。
+
+执行59/60更新，Uniform-U batch1第5步目标超出自身可达域，整体INCOMPLETE。608个完成配对双门通过，C/U GateB通过仅为目标保护工程代理；GateC混合/部分缺失。新可达域阻塞不自动授权改变控制设计。完整TFSS仍需未来人类单独批准。详见TFSS_SHORT_PROBE_RESULTS及TFSS_CANDIDATE_DECISION。
+
+---
+
+## 历史记录（以前的 NOT_RUN / 等待段落已被上文取代）
+
 # 固定短程协议 — PREREGISTERED / WAIT_FOR_S3
 
 机器可读锁：configs/tfss_short_probe.json。复用旧固定32 train/65PersonGT清单及原顺序，前16与后16为两个独立trial；不扩大样本、不读验证集。

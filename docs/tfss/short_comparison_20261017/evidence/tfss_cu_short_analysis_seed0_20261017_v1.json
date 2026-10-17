@@ -1,0 +1,185 @@
+{
+  "schema_version": "rrctl.run.v1",
+  "run_id": "tfss_cu_short_analysis_seed0_20261017_v1",
+  "project": "tfss-conservative-utility-short",
+  "source": {
+    "repo_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\tfss_conservative_utility_20261016",
+    "branch": "codex/tfss-conservative-utility-20261016",
+    "commit": "e9623c78a27314c5f6f733abea90602d9415fb4a",
+    "allowed_post_commit_paths": [
+      "execution/",
+      "docs/tfss/short_comparison_20261017/"
+    ]
+  },
+  "remote": {
+    "profile": "school-s1",
+    "stage_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/stage/tfss_cu_short_analysis_seed0_20261017_v1",
+    "repo_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/repos/tfss_cu_short_analysis_seed0_20261017_v1",
+    "control_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/control/tfss_cu_short_analysis_seed0_20261017_v1",
+    "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_short_analysis_seed0_20261017_v1",
+    "python": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python"
+  },
+  "session": {
+    "backend": "tmux",
+    "name": "tfss_cu_short_analysis_seed0_20261017_v1"
+  },
+  "environment": {
+    "kind": "conda",
+    "name": "cfbdm",
+    "conda_sh": "/project/guoqinglong/miniconda3/etc/profile.d/conda.sh"
+  },
+  "workload": {
+    "argv": [
+      "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+      "-B",
+      "-c",
+      "import os,sys,json,hashlib\nfrom pathlib import Path\nos.environ['CUDA_VISIBLE_DEVICES']=''\nos.environ['OMP_NUM_THREADS']=os.environ['MKL_NUM_THREADS']=os.environ['OPENBLAS_NUM_THREADS']='1'\ninputs=json.loads(sys.argv[1]);out=Path(sys.argv[2]);out.mkdir(exist_ok=False,parents=True)\nos.environ['MPLCONFIGDIR']=str(out/'runtime/mpl');os.environ['XDG_CACHE_HOME']=str(out/'runtime/cache')\nimport torch\ntorch.set_num_threads(1)\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nmethods=['S0-reference','S0-noop','TFSS-C','TFSS-U','Uniform-C','Uniform-U']\nevidence={'state':'PARTIAL_59_OF_60_COMPARISON_UPDATES','new_optimizer_updates':0,'model_forward':False,'GPU_use':False,'inputs':inputs,'trials':[],'checkpoint_metadata':[],'raw_json_sha256':{},'missing':['batch1 Uniform-U step5','batch1 Uniform-U final NTGT diagnostics','batch1 Uniform-U final derived maps'],'limitations':'two sources, retained complete batch0 plus partial repaired batch1; no single complete whole experiment'}\ntraces={}\nfor key,comp in inputs.items():\n b=int(key);src=Path(comp['output_root']);control=Path(comp['control_root'])\n binding=json.loads((control/'binding.json').read_text());cs=json.loads((control/'status.json').read_text());status=json.loads((src/'status.json').read_text())\n assert cs['state']=='failed' and binding['commit']==comp['commit']==status['source_commit']\n evidence[f'batch{b}_environment']=status['environment']\n for m in methods:\n  trial=src/f'batch{b}_{m}';rows=json.loads((trial/'trace.json').read_text());n=4 if b==1 and m=='Uniform-U' else 5\n  assert len(rows)==2*n and [(r['step'],r['eot']) for r in rows]==[(s,e) for s in range(1,n+1) for e in [1,2]]\n  traces[b,m]=rows\n  record=next((x for x in status['trials'] if x['batch']==b and x['method']==m),None)\n  if record:\n   assert record['state']=='complete' and record['steps']==n and len(set(record['frozen_adaptive_before_after']))==1\n  evidence['trials'].append({'batch':b,'method':m,'completed_updates':n,'terminal_models_unchanged':True if record else None,'terminal_model_hash_check':'PASSED' if record else 'NOT_RUN: interrupted before final hash check'})\n  for file in [trial/'trace.json',trial/'nt_gt_diagnostics.json']:\n   if file.exists():evidence['raw_json_sha256'][f'batch{b}/{m}/{file.name}']=hashlib.sha256(file.read_bytes()).hexdigest()\n  for step in range(1,n+1):\n   path=trial/f'step{step}.pt';pack=torch.load(path,map_location='cpu',weights_only=False)\n   assert pack['step']==step and pack['scheduler']['last_epoch']==0 and len(pack['rng'])==4 and len(pack['rng'][3])>0\n   assert torch.isfinite(pack['fourier_coeff']).all() and torch.isfinite(pack['freq_score']).all()\n   adam=pack['optimizer']['state'];assert adam and all(float(v['step'])==step for v in adam.values())\n   assert all(torch.isfinite(v[k]).all() for v in adam.values() for k in ['exp_avg','exp_avg_sq'])\n   evidence['checkpoint_metadata'].append({'batch':b,'method':m,'step':step,'Adam_step':step,'scheduler_last_epoch':0,'RNG_present':True,'finite_coefficients_and_Adam':True,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})\n  assert not (trial/f'step{n+1}.pt').exists()\n assert json.loads((src/f'batch{b}_S0-noop/equivalence.json').read_text())['max_difference']==0\nassert len(evidence['checkpoint_metadata'])==59\nfor loss in ['L_BG','L_rel','L_ret','L_total']:\n fig,axes=plt.subplots(1,2,figsize=(10,3.2))\n for b,ax in enumerate(axes):\n  for m in methods:\n   rows=traces[b,m];steps=sorted({r['step'] for r in rows});ax.plot(steps,[np.mean([r[loss] for r in rows if r['step']==s]) for s in steps],marker='.',label=m)\n  ax.set(title=f'batch {b}: {loss}',xlabel='update index; pre-update forward');ax.set_xticks([1,2,3,4,5])\n axes[1].legend(fontsize=6);fig.suptitle('Partial cohort: Uniform-U batch1 stops at 4; no AP/victim',fontsize=9);fig.tight_layout();fig.savefig(out/(loss+'.png'),dpi=150);plt.close(fig)\nfor b,indices in [(0,[0,1]),(1,[0,1,8,15])]:\n src=Path(inputs[str(b)]['output_root'])\n with np.load(src/f'maps_batch{b}.npz') as maps:\n  for i in indices:\n   fig,axes=plt.subplots(1,3,figsize=(9,3))\n   for ax,key,title in zip(axes,['q','nt_risk','q_valid'],['Qt: invalid region strength preserved','NT risk','Qt valid attribution domain']):\n    ax.imshow(maps[f'{key}_{i}'],vmin=0,vmax=1,cmap='viridis');ax.set_title(title,fontsize=7);ax.axis('off')\n   fig.suptitle(f'fixed batch{b}, image index{i}; derived maps only',fontsize=9);fig.tight_layout();fig.savefig(out/f'heatmap_b{b}_i{i}.png',dpi=150);plt.close(fig)\n arrays={m:np.load(src/f'batch{b}_{m}/final_recorded_derived_maps.npz') for m in methods if not (b==1 and m=='Uniform-U')}\n for m,a in arrays.items():\n  delta=a['actual_delta'];support=a['support'];assert np.max(np.abs(delta)*np.equal(support,0))==0\n  assert (np.abs(delta)<=support*8/255+1e-7).all()\n for i in indices:\n  fig,axes=plt.subplots(1,6,figsize=(15,3.2));im=None\n  for ax,m in zip(axes,methods):\n   ax.set_title(m,fontsize=8);ax.axis('off')\n   if m not in arrays:ax.text(.5,.5,'NOT_RUN\\nstep5 incomplete',ha='center',va='center',transform=ax.transAxes,fontsize=9);continue\n   a=arrays[m];im=ax.imshow(np.ma.masked_where(a['support'][i,0]==0,a['actual_delta'][i].mean(0)),cmap='RdBu_r',vmin=-8/255,vmax=8/255)\n  fig.suptitle(f'batch{b}, image index{i}: signed RGB-mean actual perturbation; pre-update step5/EOT2',fontsize=9)\n  fig.colorbar(im,ax=axes.tolist(),fraction=.015,pad=.01,label='same fixed 8/255 color scale');fig.savefig(out/f'noise_b{b}_i{i}.png',dpi=150,bbox_inches='tight');plt.close(fig)\n for a in arrays.values():a.close()\n(out/'CPU_METADATA_AND_PROVENANCE.json').write_text(json.dumps(evidence,indent=2))\n(out/'RENDER_COMPLETE.json').write_text(json.dumps({'state':'complete','comparison_state':'PARTIAL_59_OF_60_UPDATES','optimizer_updates':0,'model_forward':False,'GPU_use':False,'source_RGB_exported':False,'derived_images_only':True,'figures':16}))\n",
+      "{\"0\": {\"output_root\": \"/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_short_train32_seed0_20261017_v1\", \"control_root\": \"/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/control/tfss_cu_short_train32_seed0_20261017_v1\", \"run_id\": \"tfss_cu_short_train32_seed0_20261017_v1\", \"commit\": \"2abe6544ab0e2701b94c961d6e06c59a66ee87e3\"}, \"1\": {\"output_root\": \"/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_short_batch1_train16_seed0_20261017_v2\", \"control_root\": \"/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/control/tfss_cu_short_batch1_train16_seed0_20261017_v2\", \"run_id\": \"tfss_cu_short_batch1_train16_seed0_20261017_v2\", \"commit\": \"e9623c78a27314c5f6f733abea90602d9415fb4a\"}}",
+      "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_short_analysis_seed0_20261017_v1"
+    ],
+    "cwd": "."
+  },
+  "health": {
+    "first_step": {
+      "timeout_seconds": 1800,
+      "poll_interval_seconds": 5,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'RENDER_COMPLETE.json';d=json.loads(p.read_text()) if p.exists() else {};print(json.dumps({'protocol':'rrctl.adapter.v1','healthy':True,'complete':d.get('state')=='complete','progress':{'stage':'partial_output_only_CPU_render'},'observations':d,'artifacts':['CPU_METADATA_AND_PROVENANCE.json', 'RENDER_COMPLETE.json', 'L_BG.png', 'L_rel.png', 'L_ret.png', 'L_total.png', 'heatmap_b0_i0.png', 'heatmap_b0_i1.png', 'heatmap_b1_i0.png', 'heatmap_b1_i1.png', 'heatmap_b1_i8.png', 'heatmap_b1_i15.png', 'noise_b0_i0.png', 'noise_b0_i1.png', 'noise_b1_i0.png', 'noise_b1_i1.png', 'noise_b1_i8.png', 'noise_b1_i15.png'] if d else []}))"
+      ]
+    },
+    "periodic": {
+      "timeout_seconds": 7200,
+      "poll_interval_seconds": 30,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'RENDER_COMPLETE.json';d=json.loads(p.read_text()) if p.exists() else {};print(json.dumps({'protocol':'rrctl.adapter.v1','healthy':True,'complete':d.get('state')=='complete','progress':{'stage':'partial_output_only_CPU_render'},'observations':d,'artifacts':['CPU_METADATA_AND_PROVENANCE.json', 'RENDER_COMPLETE.json', 'L_BG.png', 'L_rel.png', 'L_ret.png', 'L_total.png', 'heatmap_b0_i0.png', 'heatmap_b0_i1.png', 'heatmap_b1_i0.png', 'heatmap_b1_i1.png', 'heatmap_b1_i8.png', 'heatmap_b1_i15.png', 'noise_b0_i0.png', 'noise_b0_i1.png', 'noise_b1_i0.png', 'noise_b1_i1.png', 'noise_b1_i8.png', 'noise_b1_i15.png'] if d else []}))"
+      ]
+    },
+    "completion": {
+      "timeout_seconds": 180,
+      "poll_interval_seconds": 5,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'RENDER_COMPLETE.json';d=json.loads(p.read_text()) if p.exists() else {};print(json.dumps({'protocol':'rrctl.adapter.v1','healthy':True,'complete':d.get('state')=='complete','progress':{'stage':'partial_output_only_CPU_render'},'observations':d,'artifacts':['CPU_METADATA_AND_PROVENANCE.json', 'RENDER_COMPLETE.json', 'L_BG.png', 'L_rel.png', 'L_ret.png', 'L_total.png', 'heatmap_b0_i0.png', 'heatmap_b0_i1.png', 'heatmap_b1_i0.png', 'heatmap_b1_i1.png', 'heatmap_b1_i8.png', 'heatmap_b1_i15.png', 'noise_b0_i0.png', 'noise_b0_i1.png', 'noise_b1_i0.png', 'noise_b1_i1.png', 'noise_b1_i8.png', 'noise_b1_i15.png'] if d else []}))"
+      ]
+    }
+  },
+  "artifacts": [
+    {
+      "path": "CPU_METADATA_AND_PROVENANCE.json",
+      "required": true
+    },
+    {
+      "path": "RENDER_COMPLETE.json",
+      "required": true
+    },
+    {
+      "path": "L_BG.png",
+      "required": true
+    },
+    {
+      "path": "L_rel.png",
+      "required": true
+    },
+    {
+      "path": "L_ret.png",
+      "required": true
+    },
+    {
+      "path": "L_total.png",
+      "required": true
+    },
+    {
+      "path": "heatmap_b0_i0.png",
+      "required": true
+    },
+    {
+      "path": "heatmap_b0_i1.png",
+      "required": true
+    },
+    {
+      "path": "heatmap_b1_i0.png",
+      "required": true
+    },
+    {
+      "path": "heatmap_b1_i1.png",
+      "required": true
+    },
+    {
+      "path": "heatmap_b1_i8.png",
+      "required": true
+    },
+    {
+      "path": "heatmap_b1_i15.png",
+      "required": true
+    },
+    {
+      "path": "noise_b0_i0.png",
+      "required": true
+    },
+    {
+      "path": "noise_b0_i1.png",
+      "required": true
+    },
+    {
+      "path": "noise_b1_i0.png",
+      "required": true
+    },
+    {
+      "path": "noise_b1_i1.png",
+      "required": true
+    },
+    {
+      "path": "noise_b1_i8.png",
+      "required": true
+    },
+    {
+      "path": "noise_b1_i15.png",
+      "required": true
+    }
+  ],
+  "local_pull_root": "\\\\?\\C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\tfss_small_20261017",
+  "metadata": {
+    "execution_purpose": "output_only_CPU_derived_cohort_analysis",
+    "GPU_model_forward": false,
+    "optimizer_updates": 0,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "cleanup_policy": "retain_all",
+    "deleted_paths": [],
+    "no_source_RGB_transfer": true,
+    "no_weights_transfer": true,
+    "inputs": {
+      "0": {
+        "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_short_train32_seed0_20261017_v1",
+        "control_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/control/tfss_cu_short_train32_seed0_20261017_v1",
+        "run_id": "tfss_cu_short_train32_seed0_20261017_v1",
+        "commit": "2abe6544ab0e2701b94c961d6e06c59a66ee87e3"
+      },
+      "1": {
+        "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_short_batch1_train16_seed0_20261017_v2",
+        "control_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/control/tfss_cu_short_batch1_train16_seed0_20261017_v2",
+        "run_id": "tfss_cu_short_batch1_train16_seed0_20261017_v2",
+        "commit": "e9623c78a27314c5f6f733abea90602d9415fb4a"
+      }
+    },
+    "mixed_source_cohort": true,
+    "output_fail_on_collision": true,
+    "inputs_partial": true,
+    "completed_input_updates": 59,
+    "planned_input_updates": 60,
+    "new_optimizer_updates": 0,
+    "render_wrapper_sha256": "24693c0fb6e04cf066ebd593b977788b88ff220911c55959e22cbf7d21483f9f",
+    "no_model_forward": true
+  }
+}

@@ -1,0 +1,745 @@
+{
+  "state": "PARTIAL_59_OF_60_COMPARISON_UPDATES",
+  "new_optimizer_updates": 0,
+  "model_forward": false,
+  "GPU_use": false,
+  "inputs": {
+    "0": {
+      "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_short_train32_seed0_20261017_v1",
+      "control_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/control/tfss_cu_short_train32_seed0_20261017_v1",
+      "run_id": "tfss_cu_short_train32_seed0_20261017_v1",
+      "commit": "2abe6544ab0e2701b94c961d6e06c59a66ee87e3"
+    },
+    "1": {
+      "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_short_batch1_train16_seed0_20261017_v2",
+      "control_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/control/tfss_cu_short_batch1_train16_seed0_20261017_v2",
+      "run_id": "tfss_cu_short_batch1_train16_seed0_20261017_v2",
+      "commit": "e9623c78a27314c5f6f733abea90602d9415fb4a"
+    }
+  },
+  "trials": [
+    {
+      "batch": 0,
+      "method": "S0-reference",
+      "completed_updates": 5,
+      "terminal_models_unchanged": true,
+      "terminal_model_hash_check": "PASSED"
+    },
+    {
+      "batch": 0,
+      "method": "S0-noop",
+      "completed_updates": 5,
+      "terminal_models_unchanged": true,
+      "terminal_model_hash_check": "PASSED"
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-C",
+      "completed_updates": 5,
+      "terminal_models_unchanged": true,
+      "terminal_model_hash_check": "PASSED"
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-U",
+      "completed_updates": 5,
+      "terminal_models_unchanged": true,
+      "terminal_model_hash_check": "PASSED"
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-C",
+      "completed_updates": 5,
+      "terminal_models_unchanged": true,
+      "terminal_model_hash_check": "PASSED"
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-U",
+      "completed_updates": 5,
+      "terminal_models_unchanged": true,
+      "terminal_model_hash_check": "PASSED"
+    },
+    {
+      "batch": 1,
+      "method": "S0-reference",
+      "completed_updates": 5,
+      "terminal_models_unchanged": true,
+      "terminal_model_hash_check": "PASSED"
+    },
+    {
+      "batch": 1,
+      "method": "S0-noop",
+      "completed_updates": 5,
+      "terminal_models_unchanged": true,
+      "terminal_model_hash_check": "PASSED"
+    },
+    {
+      "batch": 1,
+      "method": "TFSS-C",
+      "completed_updates": 5,
+      "terminal_models_unchanged": true,
+      "terminal_model_hash_check": "PASSED"
+    },
+    {
+      "batch": 1,
+      "method": "TFSS-U",
+      "completed_updates": 5,
+      "terminal_models_unchanged": true,
+      "terminal_model_hash_check": "PASSED"
+    },
+    {
+      "batch": 1,
+      "method": "Uniform-C",
+      "completed_updates": 5,
+      "terminal_models_unchanged": true,
+      "terminal_model_hash_check": "PASSED"
+    },
+    {
+      "batch": 1,
+      "method": "Uniform-U",
+      "completed_updates": 4,
+      "terminal_models_unchanged": null,
+      "terminal_model_hash_check": "NOT_RUN: interrupted before final hash check"
+    }
+  ],
+  "checkpoint_metadata": [
+    {
+      "batch": 0,
+      "method": "S0-reference",
+      "step": 1,
+      "Adam_step": 1,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "77f58e31769e27cfe19f4943475c1b74e7a348f63b1b82d53439b0cfd0498cd1"
+    },
+    {
+      "batch": 0,
+      "method": "S0-reference",
+      "step": 2,
+      "Adam_step": 2,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "22e419a20c0a013a6cf94b9ad52aedf514ca43eeec352ea937511afdb6cc42b9"
+    },
+    {
+      "batch": 0,
+      "method": "S0-reference",
+      "step": 3,
+      "Adam_step": 3,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "50588eeeaf55e7c4a7fcbefd14c0ef13fbe218a8a19b35c01e4cffe1c1d9c312"
+    },
+    {
+      "batch": 0,
+      "method": "S0-reference",
+      "step": 4,
+      "Adam_step": 4,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "f322431f878c7acea7a98a54e4012f440e4013e3b04dd9a00835cee08405e7d7"
+    },
+    {
+      "batch": 0,
+      "method": "S0-reference",
+      "step": 5,
+      "Adam_step": 5,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "2b32754806bf10b0a0199339b152b8035cf08b3e6366a1f888c40936d5fbbda6"
+    },
+    {
+      "batch": 0,
+      "method": "S0-noop",
+      "step": 1,
+      "Adam_step": 1,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "77f58e31769e27cfe19f4943475c1b74e7a348f63b1b82d53439b0cfd0498cd1"
+    },
+    {
+      "batch": 0,
+      "method": "S0-noop",
+      "step": 2,
+      "Adam_step": 2,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "22e419a20c0a013a6cf94b9ad52aedf514ca43eeec352ea937511afdb6cc42b9"
+    },
+    {
+      "batch": 0,
+      "method": "S0-noop",
+      "step": 3,
+      "Adam_step": 3,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "50588eeeaf55e7c4a7fcbefd14c0ef13fbe218a8a19b35c01e4cffe1c1d9c312"
+    },
+    {
+      "batch": 0,
+      "method": "S0-noop",
+      "step": 4,
+      "Adam_step": 4,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "f322431f878c7acea7a98a54e4012f440e4013e3b04dd9a00835cee08405e7d7"
+    },
+    {
+      "batch": 0,
+      "method": "S0-noop",
+      "step": 5,
+      "Adam_step": 5,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "2b32754806bf10b0a0199339b152b8035cf08b3e6366a1f888c40936d5fbbda6"
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-C",
+      "step": 1,
+      "Adam_step": 1,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "e6e648e3f04e608379123aaec1a34cbde9772edbddcec26dc90bcc0575922dc4"
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-C",
+      "step": 2,
+      "Adam_step": 2,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "8c2aa36d9c13f0720cebf2d2e55fdbd455743f5d6db62e03fadd06d0bd404cfd"
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-C",
+      "step": 3,
+      "Adam_step": 3,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "1e8f6834b12330b361f42aef90883163cec05d00845dcb551295e7ad6dd2afac"
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-C",
+      "step": 4,
+      "Adam_step": 4,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "62398f9e801c9ff2cd81c66d7813faaf34750ce0e52fdb73ffcccf1ecec519b3"
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-C",
+      "step": 5,
+      "Adam_step": 5,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "97739818d6686d9fc5e19042fd98d8344cd2827cafd9c148504f76e774b83728"
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-U",
+      "step": 1,
+      "Adam_step": 1,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "600e838becb6a8119dc6a05a7b5dc17ead2c57654638f0fd91f4666e00ba5763"
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-U",
+      "step": 2,
+      "Adam_step": 2,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "01ba190e639833a38558b8d5328744966d9270af941d9d5b4af1dc117ab31e68"
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-U",
+      "step": 3,
+      "Adam_step": 3,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "30dbb2b5c9ef043172d7d3362b1dfd55a2ad8432af51e2126b2c89e7237c64d9"
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-U",
+      "step": 4,
+      "Adam_step": 4,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "74bdfcb878edcd57e23770a6bf03d165c1e6975811f69dec61712158aecc1740"
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-U",
+      "step": 5,
+      "Adam_step": 5,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "7b160bb884d2472a6bad7456195b6b9842998ce56a8fe48c397e9c0d9dadf56d"
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-C",
+      "step": 1,
+      "Adam_step": 1,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "02c9b8eb08335968189337a99985c449a3039912014a8ee7590e5ed989b73092"
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-C",
+      "step": 2,
+      "Adam_step": 2,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "09bd789bf34995f826932d6fe28e9b876cab3cb41dbfac406d093d1fcb1073d1"
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-C",
+      "step": 3,
+      "Adam_step": 3,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "cacbb10ef2fcd2a79ef9f2600bbb0b8bbea03069b280b6d3a6f693daa1c52d2c"
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-C",
+      "step": 4,
+      "Adam_step": 4,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "d0726e2414c2e3b0cda347de7f60fa59bd012099ddc235b164971162fb3979d3"
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-C",
+      "step": 5,
+      "Adam_step": 5,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "84d994664bc00c1f94a0265cc4bf9469c3263c818929b716fba529a40fc280b4"
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-U",
+      "step": 1,
+      "Adam_step": 1,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "3931f3ae23843ba326e318ad349e461e8aec9da48fb0afe942b0a1ca6adda6bb"
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-U",
+      "step": 2,
+      "Adam_step": 2,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "c2c90a9a9d0ca4acdc537ce9e0e89b758e7736ee6288b22a0f0e0340b3414ab5"
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-U",
+      "step": 3,
+      "Adam_step": 3,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "7439fa8ce431758ccf1b2e9eb88f930a8dfda4f23453a97707ba721ee86c0a23"
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-U",
+      "step": 4,
+      "Adam_step": 4,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "daef8b086c940e4d43577e963716e96c47f9e4edd00fc5a586b4ff81f769dbdd"
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-U",
+      "step": 5,
+      "Adam_step": 5,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "87832a81e1984ea938a8ae9b4c4bb1f0a311d5154e1ff232e61092db33281901"
+    },
+    {
+      "batch": 1,
+      "method": "S0-reference",
+      "step": 1,
+      "Adam_step": 1,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "19791b7fc8454921f3b99db8f1be4c5956c7df097d131f38cab7cfd6e6c49619"
+    },
+    {
+      "batch": 1,
+      "method": "S0-reference",
+      "step": 2,
+      "Adam_step": 2,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "3e7000ddab8472d6da4b6ff6ee98113c5a08f5b27492da58a4d0a0d1119c8d18"
+    },
+    {
+      "batch": 1,
+      "method": "S0-reference",
+      "step": 3,
+      "Adam_step": 3,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "223706596a4b7c14cb53f090ed37562aebe4cd7301f2809502b436b52881dfc6"
+    },
+    {
+      "batch": 1,
+      "method": "S0-reference",
+      "step": 4,
+      "Adam_step": 4,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "bfec9dcde286373531f14a00ad03aef6fb2ce8856a7137be9ce1a0a0a4b18612"
+    },
+    {
+      "batch": 1,
+      "method": "S0-reference",
+      "step": 5,
+      "Adam_step": 5,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "a709268c8a81120c0b265f42b0836de25eaf64296742bbca3fb7954b72f08dcd"
+    },
+    {
+      "batch": 1,
+      "method": "S0-noop",
+      "step": 1,
+      "Adam_step": 1,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "19791b7fc8454921f3b99db8f1be4c5956c7df097d131f38cab7cfd6e6c49619"
+    },
+    {
+      "batch": 1,
+      "method": "S0-noop",
+      "step": 2,
+      "Adam_step": 2,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "3e7000ddab8472d6da4b6ff6ee98113c5a08f5b27492da58a4d0a0d1119c8d18"
+    },
+    {
+      "batch": 1,
+      "method": "S0-noop",
+      "step": 3,
+      "Adam_step": 3,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "223706596a4b7c14cb53f090ed37562aebe4cd7301f2809502b436b52881dfc6"
+    },
+    {
+      "batch": 1,
+      "method": "S0-noop",
+      "step": 4,
+      "Adam_step": 4,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "bfec9dcde286373531f14a00ad03aef6fb2ce8856a7137be9ce1a0a0a4b18612"
+    },
+    {
+      "batch": 1,
+      "method": "S0-noop",
+      "step": 5,
+      "Adam_step": 5,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "a709268c8a81120c0b265f42b0836de25eaf64296742bbca3fb7954b72f08dcd"
+    },
+    {
+      "batch": 1,
+      "method": "TFSS-C",
+      "step": 1,
+      "Adam_step": 1,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "30ad4312db45319b69f08425de7dee6b349b7fbf7a0f7623609cb1d11c0a1d3d"
+    },
+    {
+      "batch": 1,
+      "method": "TFSS-C",
+      "step": 2,
+      "Adam_step": 2,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "584479afd1a8d2e453636e1d92fce477a6c28a88aa0e280dc4156ac3d132ea1f"
+    },
+    {
+      "batch": 1,
+      "method": "TFSS-C",
+      "step": 3,
+      "Adam_step": 3,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "cfcd996eee2cbe7874e26289a917e29bfc2ecfa77d716cffec3090d63f89c1c8"
+    },
+    {
+      "batch": 1,
+      "method": "TFSS-C",
+      "step": 4,
+      "Adam_step": 4,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "e20b2632e5d8874891890bade786acbd9bca75324c57ef34d7f2c05b5430d692"
+    },
+    {
+      "batch": 1,
+      "method": "TFSS-C",
+      "step": 5,
+      "Adam_step": 5,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "ecb527bfdbe701d293f3663d68669c3472c20ee45635e95d7a803135f2edd581"
+    },
+    {
+      "batch": 1,
+      "method": "TFSS-U",
+      "step": 1,
+      "Adam_step": 1,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "ec20af870c78634445cd15ed4ddcdcbc1c11d79e6b07019a127c663db25dc8bf"
+    },
+    {
+      "batch": 1,
+      "method": "TFSS-U",
+      "step": 2,
+      "Adam_step": 2,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "f82f0436bd552817bc70502b41f8be3538887ef52a100fd31730b9e0656e4d8d"
+    },
+    {
+      "batch": 1,
+      "method": "TFSS-U",
+      "step": 3,
+      "Adam_step": 3,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "4040ad7472fa7120d8f13922adf76333e688a058968fa7dadaff78cf275e8989"
+    },
+    {
+      "batch": 1,
+      "method": "TFSS-U",
+      "step": 4,
+      "Adam_step": 4,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "e1cb9fc61e1c64885052242ba9e7c7ae9b8dbf2ff89a26e1a5cf016e53a521c4"
+    },
+    {
+      "batch": 1,
+      "method": "TFSS-U",
+      "step": 5,
+      "Adam_step": 5,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "477f27e136aaa42128efe146146a4073f05172ecce479ff85b53289cc05e56ee"
+    },
+    {
+      "batch": 1,
+      "method": "Uniform-C",
+      "step": 1,
+      "Adam_step": 1,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "e0f157fb665b6ff9b15ab8528c2c579201628f76fd082adb58765b301309097d"
+    },
+    {
+      "batch": 1,
+      "method": "Uniform-C",
+      "step": 2,
+      "Adam_step": 2,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "e221bf312f133bde2a0f145071a193fdeb721025ade4708d70118781435d3788"
+    },
+    {
+      "batch": 1,
+      "method": "Uniform-C",
+      "step": 3,
+      "Adam_step": 3,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "4355974f6b02950f2a47730934d39f4f7a04ddee02d02bdfc0b1b68249f84bac"
+    },
+    {
+      "batch": 1,
+      "method": "Uniform-C",
+      "step": 4,
+      "Adam_step": 4,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "7005ca8493eeb792e2939a3811e3abeb950698bb526320bbd2bc5f65ccf5e3a6"
+    },
+    {
+      "batch": 1,
+      "method": "Uniform-C",
+      "step": 5,
+      "Adam_step": 5,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "01d3d9e3e38aa29357db54f378b92f3fcc66a9045d04a7d7d92b08887393825c"
+    },
+    {
+      "batch": 1,
+      "method": "Uniform-U",
+      "step": 1,
+      "Adam_step": 1,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "0bfec985bae2961b15864920272935cee74bfb8c9c9de4f214ef067d5a84550b"
+    },
+    {
+      "batch": 1,
+      "method": "Uniform-U",
+      "step": 2,
+      "Adam_step": 2,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "4645a30d5834c76ce49287ab69fe59234a6cf12102651d6523fd3e0ce10de7dc"
+    },
+    {
+      "batch": 1,
+      "method": "Uniform-U",
+      "step": 3,
+      "Adam_step": 3,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "57c7dddaeb27c1097eb02e072b19caff7f88081be39c4480c305b7a8b6a11985"
+    },
+    {
+      "batch": 1,
+      "method": "Uniform-U",
+      "step": 4,
+      "Adam_step": 4,
+      "scheduler_last_epoch": 0,
+      "RNG_present": true,
+      "finite_coefficients_and_Adam": true,
+      "sha256": "02d0a5508ae8588fab3406df4f94adc7cb3c3c4afe9df31920405c5bba989e6a"
+    }
+  ],
+  "raw_json_sha256": {
+    "batch0/S0-reference/trace.json": "96783125640571e47f9acf563b030f75cc0fc13cce06976eb7f6ff7532939589",
+    "batch0/S0-reference/nt_gt_diagnostics.json": "9b1653e8b21d5cbfc7e883600874a92cd89e1ed580b0544a48be6ac6478b6f56",
+    "batch0/S0-noop/trace.json": "6eeaef40f6d64e179c6238b8d2e71aac3735dd9aa373d373618491a9f41b7a1d",
+    "batch0/S0-noop/nt_gt_diagnostics.json": "9b1653e8b21d5cbfc7e883600874a92cd89e1ed580b0544a48be6ac6478b6f56",
+    "batch0/TFSS-C/trace.json": "bdbc470132b1963759a4f8e3f411321c131b334d12932eef237ef1748323136c",
+    "batch0/TFSS-C/nt_gt_diagnostics.json": "0dfad941e6751debb1ad0d9f6e8e17f18afbb3cb38d7708ac95b6fa72b2e1499",
+    "batch0/TFSS-U/trace.json": "533b9bbba52a7bca915689d578537e70f1e963052bd7149db4c38808a645d112",
+    "batch0/TFSS-U/nt_gt_diagnostics.json": "e9e9705459cac8fa050fbcb956e7fbd5502a6241632e190674e089499c329157",
+    "batch0/Uniform-C/trace.json": "8d55742185a7cdd2dcce9ee9e215a48c9e3719f68b578b3e8bbdc63e150578b3",
+    "batch0/Uniform-C/nt_gt_diagnostics.json": "780900724a68e071655e28508297952524a48cfbd830fb2907397987ac6442a0",
+    "batch0/Uniform-U/trace.json": "4e756d7587a1978c7f53d851ae12162e768fa5c7a153df5678898788739ecbce",
+    "batch0/Uniform-U/nt_gt_diagnostics.json": "0ee24fe4cb5a88eea59a0fd0ab4fbc75a9598b9e10440de649506a828f7c7e9c",
+    "batch1/S0-reference/trace.json": "890e576c0cc2fe7df7ac89c18aa0f5bf51db2679da2254ad8a0d3c071bf3c2fd",
+    "batch1/S0-reference/nt_gt_diagnostics.json": "efd5f91da4ad89aeac03cff36a70322100494a7171aab40441992bcb5b530eae",
+    "batch1/S0-noop/trace.json": "cde14e885876829facfae731cbd2ccfaea9e0391125d7c460f935e62ebb94568",
+    "batch1/S0-noop/nt_gt_diagnostics.json": "efd5f91da4ad89aeac03cff36a70322100494a7171aab40441992bcb5b530eae",
+    "batch1/TFSS-C/trace.json": "ed0a4c7b678d2432c182a2a2123c5be798556d2c98a3e3cdf93266536a930e8f",
+    "batch1/TFSS-C/nt_gt_diagnostics.json": "034490634c703b279e981336496f1684a6bec17647437bfbbd4a05cd712fa764",
+    "batch1/TFSS-U/trace.json": "8b392eb8d84ef4f17d63bfa8766dac77bd5342186bc6e2d476f007e594a838f6",
+    "batch1/TFSS-U/nt_gt_diagnostics.json": "49f63ff51c658cb3e2d5d87a5c3227e17e2147b4fc95a75d03351c7a96c1aa85",
+    "batch1/Uniform-C/trace.json": "cc1de91da60920a99adc1040110b99a8941708b3065f7a681876a6ac731d90bd",
+    "batch1/Uniform-C/nt_gt_diagnostics.json": "a8e9b0682f142f5b3edf49b2f7a5c71f30d997daf5132516607d22e7f877ebf6",
+    "batch1/Uniform-U/trace.json": "252a56a87ba060145ee2843665d4a13cfc6fd034db65783be5e77cb2961bd902"
+  },
+  "missing": [
+    "batch1 Uniform-U step5",
+    "batch1 Uniform-U final NTGT diagnostics",
+    "batch1 Uniform-U final derived maps"
+  ],
+  "limitations": "two sources, retained complete batch0 plus partial repaired batch1; no single complete whole experiment",
+  "batch0_environment": {
+    "torch": "2.7.1+cu128",
+    "ultralytics": "8.4.150",
+    "deterministic_algorithms": true,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8"
+  },
+  "batch1_environment": {
+    "torch": "2.7.1+cu128",
+    "ultralytics": "8.4.150",
+    "deterministic_algorithms": true,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8"
+  }
+}

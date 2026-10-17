@@ -1,0 +1,45 @@
+{
+  "binding": {
+    "branch": "codex/tfss-conservative-utility-20261016",
+    "bundle_sha256": "040493362ed3c54cfb55b642b903bd85c0805efae027ee204185f209673a3688",
+    "commit": "e9623c78a27314c5f6f733abea90602d9415fb4a",
+    "control_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/control/tfss_cu_short_batch1_train16_seed0_20261017_v2",
+    "created_at": "2026-10-17T06:02:49.016650+00:00",
+    "executor_cmdline_sha256": "91092b6e060a6f1cccbbe120c210288c0f6b936e9ff0575ebf80f539c998ce24",
+    "executor_pid": 1379146,
+    "executor_process_group_id": 1379146,
+    "executor_start_ticks": 284164389,
+    "executor_started_at": "2026-10-17T06:02:49.160429+00:00",
+    "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_short_batch1_train16_seed0_20261017_v2",
+    "project": "tfss-conservative-utility-short",
+    "repo_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/repos/tfss_cu_short_batch1_train16_seed0_20261017_v2",
+    "run_id": "tfss_cu_short_batch1_train16_seed0_20261017_v2",
+    "run_spec_sha256": "d59c63a7852766283b5168b357ab38c7e17e66c27e4fed74d18eab0e713b4c58",
+    "schema_version": "rrctl.binding.v1",
+    "session": "tfss_cu_short_batch1_train16_seed0_20261017_v2",
+    "source_content_sha256": "c852c4be89646531a6ae252d391b94ef42ef4160e9dcf44e699000cbf31cee8b",
+    "stage_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/stage/tfss_cu_short_batch1_train16_seed0_20261017_v2",
+    "transport_bundle_sha256": "040493362ed3c54cfb55b642b903bd85c0805efae027ee204185f209673a3688",
+    "worker_sha256": "696cb314eb11784a9099728b117eac69cd2e01315d7732154d1ddeab609eff6a",
+    "workload_argv_sha256": "2ec64a13fbe7dc0264ab99d9e45920d46d8a72c06e4c16a52a0209e733a50cdc",
+    "workload_cmdline_sha256": "2ec64a13fbe7dc0264ab99d9e45920d46d8a72c06e4c16a52a0209e733a50cdc",
+    "workload_pid": 1379163,
+    "workload_process_group_id": 1379146,
+    "workload_start_ticks": 284164402,
+    "workload_started_at": "2026-10-17T06:02:49.677187+00:00"
+  },
+  "control_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/control/tfss_cu_short_batch1_train16_seed0_20261017_v2",
+  "run_id": "tfss_cu_short_batch1_train16_seed0_20261017_v2",
+  "status": {
+    "detail": {
+      "exit_code": 1
+    },
+    "reason": "workload_exit_nonzero",
+    "run_id": "tfss_cu_short_batch1_train16_seed0_20261017_v2",
+    "schema_version": "rrctl.status.v1",
+    "sequence": 6,
+    "state": "failed",
+    "updated_at": "2026-10-17T06:07:46.339482+00:00"
+  },
+  "status_recovered": false
+}

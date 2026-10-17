@@ -1,3 +1,11 @@
+# 最新归档状态 — 2026-10-17
+
+原a5aefbb快照为当时S3仍运行的历史快照。S3现在完整验收/归档，结果已发布object-B/codex/safe-soft05-s2-s3-counterfactual-20261014@583892c2f1f2a86770a3828d9512c66cd75f25bb。TFSS训练源码：原短测batch0@2abe6544ab0e2701b94c961d6e06c59a66ee87e3；小GT修复后的batch1@e9623c78a27314c5f6f733abea90602d9415fb4a。两批部分组合不是一个同commit的完整实验。源码e962已推送并复读；本报告为后继小结果归档，不改历史计算源码。main无变更，未推送数据/权重/秘密。
+
+---
+
+## 历史记录（以前的 NOT_RUN / 等待段落已被上文取代）
+
 # TFSS source snapshot — 2026-10-16
 
 Authorized by the TFSS-Conservative/Utility task attachment bf6f4d1e-90c9-43c6-851b-b3b19d552791. This isolated branch archives source; it does not declare S3 complete or approve formal TFSS.

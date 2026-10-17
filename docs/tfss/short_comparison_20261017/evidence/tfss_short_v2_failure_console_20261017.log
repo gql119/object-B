@@ -1,0 +1,23 @@
+/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/repos/tfss_cu_short_batch1_train16_seed0_20261017_v2/ue_framework/methods/adaptive_learner.py:126: UserWarning: Specified kernel cache directory could not be created! This disables kernel caching. Specified directory is /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_short_batch1_train16_seed0_20261017_v2/runtime/XDG_CACHE_HOME/torch/kernels. This warning will appear only once per process. (Triggered internally at /pytorch/aten/src/ATen/native/cuda/jit_utils.cpp:1491.)
+  inter = (right_bottom - left_top).clamp_min(0).prod(-1)
+Traceback (most recent call last):
+  File "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/repos/tfss_cu_short_batch1_train16_seed0_20261017_v2/scripts/tfss_short_probe.py", line 344, in <module>
+    main()
+  File "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/repos/tfss_cu_short_batch1_train16_seed0_20261017_v2/scripts/tfss_short_probe.py", line 250, in main
+    result = trainer._batch_loss(items, prototypes)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/repos/tfss_cu_short_batch1_train16_seed0_20261017_v2/ue_framework/methods/b2_semantic.py", line 381, in _batch_loss
+    result = super()._batch_loss(items, prototypes)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/repos/tfss_cu_short_batch1_train16_seed0_20261017_v2/ue_framework/methods/b2_adaptive.py", line 44, in _batch_loss
+    result = super()._batch_loss(items, prototypes)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/repos/tfss_cu_short_batch1_train16_seed0_20261017_v2/ue_framework/methods/b2_semantic.py", line 29, in _batch_loss
+    raw, delta, poison, _, _ = self._compose_delta_batched(
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/repos/tfss_cu_short_batch1_train16_seed0_20261017_v2/ue_framework/methods/tfss_spatial.py", line 131, in _compose_delta_batched
+    alpha, error = match_realized_rms(image, d, mask, target,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/repos/tfss_cu_short_batch1_train16_seed0_20261017_v2/ue_framework/methods/tfss_spatial.py", line 88, in match_realized_rms
+    raise ValueError('Uniform target exceeds own S0 maximum: no silent amplification')
+ValueError: Uniform target exceeds own S0 maximum: no silent amplification

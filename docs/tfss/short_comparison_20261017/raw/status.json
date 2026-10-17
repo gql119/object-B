@@ -1,0 +1,101 @@
+{
+  "state": "partial",
+  "phase": "short",
+  "source_commit": "SPLIT_SOURCE_RECOVERY",
+  "source_commits_by_batch": {
+    "0": "2abe6544ab0e2701b94c961d6e06c59a66ee87e3",
+    "1": "e9623c78a27314c5f6f733abea90602d9415fb4a"
+  },
+  "inputs": {
+    "0": {
+      "run_id": "tfss_cu_short_train32_seed0_20261017_v1",
+      "source_commit": "2abe6544ab0e2701b94c961d6e06c59a66ee87e3",
+      "controller_state": "failed",
+      "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_short_train32_seed0_20261017_v1"
+    },
+    "1": {
+      "run_id": "tfss_cu_short_batch1_train16_seed0_20261017_v2",
+      "source_commit": "e9623c78a27314c5f6f733abea90602d9415fb4a",
+      "controller_state": "failed",
+      "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs/tfss_cu_short_batch1_train16_seed0_20261017_v2"
+    }
+  },
+  "trials": [
+    {
+      "batch": 0,
+      "method": "S0-reference",
+      "steps": 5,
+      "state": "complete"
+    },
+    {
+      "batch": 0,
+      "method": "S0-noop",
+      "steps": 5,
+      "state": "complete"
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-C",
+      "steps": 5,
+      "state": "complete"
+    },
+    {
+      "batch": 0,
+      "method": "TFSS-U",
+      "steps": 5,
+      "state": "complete"
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-C",
+      "steps": 5,
+      "state": "complete"
+    },
+    {
+      "batch": 0,
+      "method": "Uniform-U",
+      "steps": 5,
+      "state": "complete"
+    },
+    {
+      "batch": 1,
+      "method": "S0-reference",
+      "steps": 5,
+      "state": "complete"
+    },
+    {
+      "batch": 1,
+      "method": "S0-noop",
+      "steps": 5,
+      "state": "complete"
+    },
+    {
+      "batch": 1,
+      "method": "TFSS-C",
+      "steps": 5,
+      "state": "complete"
+    },
+    {
+      "batch": 1,
+      "method": "TFSS-U",
+      "steps": 5,
+      "state": "complete"
+    },
+    {
+      "batch": 1,
+      "method": "Uniform-C",
+      "steps": 5,
+      "state": "complete"
+    },
+    {
+      "batch": 1,
+      "method": "Uniform-U",
+      "steps": 4,
+      "state": "partial"
+    }
+  ],
+  "completed_optimizer_updates": 59,
+  "planned_optimizer_updates": 60,
+  "missing": "batch1 Uniform-U step5, final NTGT and derived maps",
+  "full_TFSS_authorized": false
+}

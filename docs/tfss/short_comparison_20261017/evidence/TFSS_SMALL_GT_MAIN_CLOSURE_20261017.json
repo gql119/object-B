@@ -1,0 +1,144 @@
+{
+  "state": "CLOSED_BY_MAIN_AGENT",
+  "source_commit": "e9623c78a27314c5f6f733abea90602d9415fb4a",
+  "original_independent_review_source": "2abe6544ab0e2701b94c961d6e06c59a66ee87e3",
+  "reviewer_count": 1,
+  "new_independent_review": false,
+  "smoke_run_id": "tfss_cu_gpu_smoke_train16_batch1_seed0_20261017_v4",
+  "smoke_exit_code": 0,
+  "smoke_completed_methods": 6,
+  "smoke_steps_each": 1,
+  "smoke_batch_indices": [
+    1
+  ],
+  "S0_noop_max_difference": 0.0,
+  "actual_RMS_cases": 64,
+  "max_abs_RMS_error": 6.004144967666769e-09,
+  "max_relative_RMS_error": 1.571834296159074e-06,
+  "unchanged_method_components": [
+    "ue_framework/methods/tfss_spatial.py",
+    "ue_framework/methods/tfss_nt_sensitivity.py",
+    "ue_framework/methods/tfss_probe_metrics.py"
+  ],
+  "unchanged_canonical_files": 45,
+  "batch0_has_no_undercovered_GT": true,
+  "GPU_model_hashes": {
+    "S0-reference": [
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+    ],
+    "S0-noop": [
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+    ],
+    "TFSS-C": [
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+    ],
+    "TFSS-U": [
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+    ],
+    "Uniform-C": [
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+    ],
+    "Uniform-U": [
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+    ]
+  },
+  "production_sink_and_CPU_metadata": {
+    "small_GT_sink_proof": [
+      {
+        "image_id": "2009_000455",
+        "bbox": [
+          0.483,
+          0.5746666666666667,
+          0.038,
+          0.050666666666666665
+        ],
+        "pixel_area": 380,
+        "feature_area": 0.5859375,
+        "actual_C_U_weights_one": true,
+        "attribution_domain_excluded": true,
+        "no_gradient_fabricated": true
+      },
+      {
+        "image_id": "2009_000455",
+        "bbox": [
+          0.836,
+          0.5666666666666667,
+          0.02,
+          0.06133333333333333
+        ],
+        "pixel_area": 230,
+        "feature_area": 0.328125,
+        "actual_C_U_weights_one": true,
+        "attribution_domain_excluded": true,
+        "no_gradient_fabricated": true
+      }
+    ],
+    "checkpoint_metadata": [
+      {
+        "path": "batch1_S0-noop/step1.pt",
+        "sha256": "19791b7fc8454921f3b99db8f1be4c5956c7df097d131f38cab7cfd6e6c49619",
+        "Adam_steps": [
+          1.0
+        ],
+        "scheduler_last_epoch": 0,
+        "Torch_CUDA_RNG_present": true
+      },
+      {
+        "path": "batch1_S0-reference/step1.pt",
+        "sha256": "19791b7fc8454921f3b99db8f1be4c5956c7df097d131f38cab7cfd6e6c49619",
+        "Adam_steps": [
+          1.0
+        ],
+        "scheduler_last_epoch": 0,
+        "Torch_CUDA_RNG_present": true
+      },
+      {
+        "path": "batch1_TFSS-C/step1.pt",
+        "sha256": "30ad4312db45319b69f08425de7dee6b349b7fbf7a0f7623609cb1d11c0a1d3d",
+        "Adam_steps": [
+          1.0
+        ],
+        "scheduler_last_epoch": 0,
+        "Torch_CUDA_RNG_present": true
+      },
+      {
+        "path": "batch1_TFSS-U/step1.pt",
+        "sha256": "ec20af870c78634445cd15ed4ddcdcbc1c11d79e6b07019a127c663db25dc8bf",
+        "Adam_steps": [
+          1.0
+        ],
+        "scheduler_last_epoch": 0,
+        "Torch_CUDA_RNG_present": true
+      },
+      {
+        "path": "batch1_Uniform-C/step1.pt",
+        "sha256": "e0f157fb665b6ff9b15ab8528c2c579201628f76fd082adb58765b301309097d",
+        "Adam_steps": [
+          1.0
+        ],
+        "scheduler_last_epoch": 0,
+        "Torch_CUDA_RNG_present": true
+      },
+      {
+        "path": "batch1_Uniform-U/step1.pt",
+        "sha256": "0bfec985bae2961b15864920272935cee74bfb8c9c9de4f214ef067d5a84550b",
+        "Adam_steps": [
+          1.0
+        ],
+        "scheduler_last_epoch": 0,
+        "Torch_CUDA_RNG_present": true
+      }
+    ],
+    "checkpoint_count": 20,
+    "source_HEAD": "e9623c78a27314c5f6f733abea90602d9415fb4a",
+    "source_tracked_diff": "",
+    "model_forward": false
+  },
+  "scope": "recover only original second16 with6methods5updates; completedfirst16 retained at2abe, disclose split-source cohort; not full TFSS"
+}

@@ -1,0 +1,62 @@
+{
+  "state": "ACCEPTED_COMPLETED_BATCH0_COMPONENT_ONLY",
+  "original_whole_run_state": "failed before batch1 updates",
+  "source_commit": "2abe6544ab0e2701b94c961d6e06c59a66ee87e3",
+  "original_run_id": "tfss_cu_short_train32_seed0_20261017_v1",
+  "batches": [
+    0
+  ],
+  "trials": 6,
+  "optimizer_updates": 30,
+  "EOT_rows": 60,
+  "per_image_rows": 960,
+  "S0_noop_maxdiff": 0.0,
+  "RMS_pair_cases": 320,
+  "max_abs_RMS_error": 1.016375449081064e-08,
+  "max_relative_RMS_error": 2.1019758515197285e-06,
+  "raw_local_root": "\\\\?\\C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\tfss_small_20261017\\tfss_cu_short_train32_seed0_20261017_v1\\diagnostics\\0204cded2ba04fde87263c26d55b1a04\\output",
+  "model_hashes": {
+    "S0-reference": [
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+    ],
+    "S0-noop": [
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+    ],
+    "TFSS-C": [
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+    ],
+    "TFSS-U": [
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+    ],
+    "Uniform-C": [
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+    ],
+    "Uniform-U": [
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc",
+      "e0dc15ecfd82a3377b6d37c424b32e324d23f1e9d9dccbbdf2c737e1448eadbc"
+    ]
+  },
+  "source_provenance_disclosure": "must not claim all32/60updates on this commit; batch1 needs current-source closure/recovery",
+  "raw_json_sha256": {
+    "maps_batch0.json": "e83258350c2758dc205aa079801750ba131bf38789a39915bf9a7db1da5ca4de",
+    "status.json": "eac74704dde3a8cd5bd7d7c93d75865f18a4d2844318c53fecb83a5484632b01",
+    "batch0_S0-noop\\equivalence.json": "06164ab516fd411361c87b664612becd48e91fe6bded301bf71ce8347930cd2d",
+    "batch0_S0-noop\\nt_gt_diagnostics.json": "9b1653e8b21d5cbfc7e883600874a92cd89e1ed580b0544a48be6ac6478b6f56",
+    "batch0_S0-noop\\trace.json": "6eeaef40f6d64e179c6238b8d2e71aac3735dd9aa373d373618491a9f41b7a1d",
+    "batch0_S0-reference\\nt_gt_diagnostics.json": "9b1653e8b21d5cbfc7e883600874a92cd89e1ed580b0544a48be6ac6478b6f56",
+    "batch0_S0-reference\\trace.json": "96783125640571e47f9acf563b030f75cc0fc13cce06976eb7f6ff7532939589",
+    "batch0_TFSS-C\\nt_gt_diagnostics.json": "0dfad941e6751debb1ad0d9f6e8e17f18afbb3cb38d7708ac95b6fa72b2e1499",
+    "batch0_TFSS-C\\trace.json": "bdbc470132b1963759a4f8e3f411321c131b334d12932eef237ef1748323136c",
+    "batch0_TFSS-U\\nt_gt_diagnostics.json": "e9e9705459cac8fa050fbcb956e7fbd5502a6241632e190674e089499c329157",
+    "batch0_TFSS-U\\trace.json": "533b9bbba52a7bca915689d578537e70f1e963052bd7149db4c38808a645d112",
+    "batch0_Uniform-C\\nt_gt_diagnostics.json": "780900724a68e071655e28508297952524a48cfbd830fb2907397987ac6442a0",
+    "batch0_Uniform-C\\trace.json": "8d55742185a7cdd2dcce9ee9e215a48c9e3719f68b578b3e8bbdc63e150578b3",
+    "batch0_Uniform-U\\nt_gt_diagnostics.json": "0ee24fe4cb5a88eea59a0fd0ab4fbc75a9598b9e10440de649506a828f7c7e9c",
+    "batch0_Uniform-U\\trace.json": "4e756d7587a1978c7f53d851ae12162e768fa5c7a153df5678898788739ecbce"
+  }
+}
