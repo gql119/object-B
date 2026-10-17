@@ -26,3 +26,6 @@ S3 fully accepted/archived/exited before TFSS started. Source897cdfe smokev2 pas
 
 
 2026-10-17 NUMERICAL_STABILITY/PROTOCOL_AMENDMENT（人类明确批准）：Uniform选择最接近的可达FP32 alpha端点，保持[0,1]与原FP32前向，裁剪后实际RMS误差同时满足absolute<=1e-7及relative<=1e-4，配置值必须到达实际求解器；实际误差逐图保存，任一门失败即停止。原1e-9检查及未批准/等待文字仅为保留的历史；配置/样本/eta/预算/损失/优化器及S0/noop1e-7不变。新测试覆盖浮点台阶、绝对与相对门独立失败。源码需新RunID smoke通过后再一次独立审查。
+
+
+2026-10-17 BUG_FIX / NUMERICAL_STABILITY: valid pixel GT below unchanged canonical S0 P5 pooling minimum follows the existing invalid-Qt preservation convention (W=1 on retained GT, validfalse/raw_normnull, excludedhighQt), not label rejection/zero evidence. No data/optimizer/loss/eta/budget change. Fresh --batch-index1 recovery avoids rerunning completedbatch0; results must disclose split-source provenance. Current-source batch1 smoke/main closure required, no second scientific reviewer. See tfss/SMALL_GT_REPAIR_20261017.md.

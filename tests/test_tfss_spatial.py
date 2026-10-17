@@ -83,6 +83,34 @@ class TFSSContracts(unittest.TestCase):
         with self.assertRaises(ValueError):
             match_realized_rms(image, delta, support, 1e-9)
 
+    def test_valid_small_GT_preserves_strength_without_attribution(self):
+        import numpy as np
+        from unittest.mock import patch
+        from ue_framework.methods.tfss_clean_maps import build_maps
+        from ue_framework.methods.legacy_kproto_ret import _rectangle
+        image = np.linspace(.1, .9, 64*64*3, dtype=np.float32).reshape(64, 64, 3)
+        ann = {'cls': 14, 'bbox': [.5, .5, .1, .1]}
+        domain = _rectangle((64, 64), ann['bbox'])[0, 0].bool()
+        class Trainer:
+            device = torch.device('cpu')
+            channels = torch.tensor([0])
+            surrogate = object()
+            imgsz = 640
+            def _feature(self, image, grad):
+                return torch.nn.functional.adaptive_avg_pool2d(image.mean(1, keepdim=True), (20, 20))
+            def _masks(self, *args):
+                return [torch.ones(1, 1, 20, 20)*(.25/400)], [], []
+        with patch('ue_framework.methods.tfss_clean_maps.gradients', return_value=({}, [])):
+            maps, records = build_maps(Trainer(), [(image, [ann], domain.float().numpy())])
+        q, risk, valid = maps[0]
+        self.assertEqual(len(records[0]['target_objects']), 1)  # GT retained.
+        self.assertEqual(records[0]['target_objects'][0]['reason'], 'canonical_P5_pool_undercoverage')
+        self.assertIsNone(records[0]['target_objects'][0]['raw_norm'])
+        self.assertFalse(bool(valid[domain].any()))
+        for mode in ['TFSS-C', 'TFSS-U']:
+            weight = spatial_weights(q, risk, domain.float(), mode=mode)
+            self.assertTrue(torch.equal(weight[domain], torch.ones_like(weight[domain])))
+
     def test_soft_gradient_and_detached_maps(self):
         coeff = torch.tensor(.025, requires_grad=True)
         q = torch.tensor([[0., 1.]], requires_grad=True)

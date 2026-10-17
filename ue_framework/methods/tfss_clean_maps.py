@@ -37,8 +37,24 @@ def build_maps(trainer, items):
         invalid_q_domain = torch.zeros_like(target)
         for ann, feature_mask in zip(anns, target_masks):
             pixel_mask = _rectangle((h, w), ann['bbox'])[0, 0].to(device).bool()
-            if not bool(pixel_mask.any()) or not bool(feature_mask.sum() >= 1):
-                raise ValueError('Empty/undersized real Person supervision; no zero fallback')
+            if not bool(pixel_mask.any()):
+                raise ValueError('Empty real Person pixel domain; no zero fallback')
+            feature_mass = float(feature_mask.sum())
+            if not bool(torch.isfinite(feature_mask).all()) or feature_mass < 0:
+                raise ValueError('Invalid canonical Person feature mask')
+            if feature_mass < 1:
+                # A valid pixel GT can be too small for canonical S0 pooling
+                # (min_pixels=1). It has undefined Qt, not an invalid label.
+                # Apply the ALREADY LOCKED invalid-Qt strength-preservation
+                # policy; retain this GT and explicitly report no attribution.
+                q = pixel_mask.to(dtype=torch.float32)
+                invalid_q_domain |= pixel_mask
+                object_maps.append((q, pixel_mask))
+                object_records.append({'valid': False,
+                    'reason': 'canonical_P5_pool_undercoverage',
+                    'q10': None, 'q90': None, 'raw_norm': None,
+                    'feature_mask_sum': feature_mass, 'bbox': ann['bbox']})
+                continue
             selected = feature[:, trainer.channels]
             score = (selected.square() * feature_mask).sum() / (feature_mask.sum() * len(trainer.channels))
             grad = torch.autograd.grad(score, x, retain_graph=True)[0][0]

@@ -1,3 +1,7 @@
+# 最新：首批五步已完成；修复第二批有效小GT的 Qt 无效路由 — 2026-10-17
+
+原shortv1/source2abe在batch0完成6方法各5步后，于batch1的有效小GT/P5低于1featurepixel检查退出1。原单次独立审查已allow，未调用新审查。按既定invalidQt保留强度/排除highQt统计修复，标签/GT/原45计算/超参数不变；新增--batch-index用于仅恢复未运行第二批。需当前源码batch1单步smoke与主代理闭合后才恢复第二批，不重跑已完成首批。证据docs/tfss/SMALL_GT_REPAIR_20261017.md及execution/TFSS_SMALL_GT_REPAIR_20261017.json。
+
 # 最新：数值修订已获人类批准，继续有界准入 — 2026-10-17
 
 用户明确：同意你采取数值修订，然后继续工作。执行closest FP32 alpha端点及绝对1e-7/相对1e-4双门；旧1e-9及WAIT_FOR_HUMAN段落仅为历史。两个失败RunID永久保留，使用fresh当前源码smoke；通过后唯一新TFSS科学审查，再两独立batch各五步。完整TFSS仍未授权。授权凭证docs/tfss/NUMERICAL_AMENDMENT_AUTHORIZATION_20261017.json。

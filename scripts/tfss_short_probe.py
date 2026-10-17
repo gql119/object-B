@@ -70,6 +70,8 @@ def main():
     p.add_argument('--s3-output', required=True)
     p.add_argument('--s3-acceptance')
     p.add_argument('--phase', choices=['smoke', 'short'], required=True)
+    p.add_argument('--batch-index', type=int, choices=[0, 1],
+                   help='Isolated recovery of a preregistered batch; never resample')
     p.add_argument('--review-receipt')
     a = p.parse_args()
     conf = json.loads(Path(a.protocol).read_text())
@@ -183,18 +185,20 @@ def main():
         return trainer, frozen, adaptive
 
     steps = 1 if a.phase == 'smoke' else 5
-    batches = [manifest['records'][:16]] if a.phase == 'smoke' else [manifest['records'][:16], manifest['records'][16:]]
+    indices = [a.batch_index] if a.batch_index is not None else ([0] if a.phase == 'smoke' else [0, 1])
+    batches = [(i, manifest['records'][16*i:16*(i+1)]) for i in indices]
     evidence = {'state': 'running', 'source_commit': source, 'phase': a.phase, 'resource': resource,
                 'official_metrics_disabled': True, 'artifact_ingest_disabled': True,
                 'cleanup_policy': 'retain_all', 'deleted_paths': [], 'trials': [],
                 'started_at': time.time(), 'protocol_sha256': sha(a.protocol),
+                'batch_indices': indices,
                 'environment': {'torch': torch.__version__, 'ultralytics': ultralytics.__version__,
                     'deterministic_algorithms': torch.are_deterministic_algorithms_enabled(),
                     'cudnn_deterministic': torch.backends.cudnn.deterministic,
                     'cudnn_benchmark': torch.backends.cudnn.benchmark,
                     'CUBLAS_WORKSPACE_CONFIG': os.environ['CUBLAS_WORKSPACE_CONFIG']}}
     write(out/'status.json', evidence)
-    for batch_index, records in enumerate(batches):
+    for batch_index, records in batches:
         setup, model, adaptive = create(B2SemanticTrainer)
         items = []
         for record in records:
