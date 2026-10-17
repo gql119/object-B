@@ -31,6 +31,11 @@ def dump(path,value):
     Path(path).write_text(json.dumps(value,indent=2,allow_nan=False))
 
 
+def ram_available():
+    fields={line.split(':')[0]:line.split(':')[1].split()[0] for line in Path('/proc/meminfo').read_text().splitlines()}
+    return int(fields['MemAvailable'])*1024
+
+
 def resource_gate():
     if subprocess.check_output(['nvidia-smi','--query-compute-apps=pid','--format=csv,noheader'],text=True).strip():
         raise RuntimeError('GPU occupied; wait, never compete/interrupt')
@@ -38,7 +43,8 @@ def resource_gate():
         raise RuntimeError('CPU/disk resource gate failed; no cleanup')
     if float(subprocess.check_output(['nvidia-smi','--query-gpu=memory.free','--format=csv,noheader,nounits'],text=True).strip())<24000:
         raise RuntimeError('Need dedicated24GiB free GPU')
-    return dict(loadavg=os.getloadavg(),disk_free_bytes=shutil.disk_usage(BOUNDARY.parent).free,
+    if ram_available()<32*1024**3:raise RuntimeError('Need32GiB available RAM for unchanged cache/workers protocol')
+    return dict(loadavg=os.getloadavg(),RAM_available_bytes=ram_available(),disk_free_bytes=shutil.disk_usage(BOUNDARY.parent).free,
         gpu=subprocess.check_output(['nvidia-smi','--query-gpu=index,name,memory.free,memory.total','--format=csv,noheader,nounits'],text=True).strip())
 
 
@@ -308,6 +314,16 @@ def main():
             writer=csv.DictWriter(stream,fieldnames=list(epoch_rows[0]));writer.writeheader();writer.writerows(epoch_rows)
         mark('materialization_and_pixel_audit');data=materialize_and_audit(cfg,trainer,noise,out,splits)
         if json.loads((out/'dataset_integrity.json').read_text()).get('state')!='passed':raise ValueError('No dataset audit admission')
+        # Completed data is reused in place while waiting; no stage is rerun.
+        del trainer,prototypes
+        import gc,torch
+        gc.collect();torch.cuda.empty_cache()
+        while True:
+            pids={int(x) for x in subprocess.check_output(['nvidia-smi','--query-compute-apps=pid','--format=csv,noheader'],text=True).split()}
+            if (not pids-{os.getpid()} and os.getloadavg()[0]<=24 and ram_available()>=32*1024**3
+                    and shutil.disk_usage(out).free>=64*1024**3):break
+            mark('waiting_victim_resources',other_GPU_pids=sorted(pids-{os.getpid()}),CPU_load=os.getloadavg(),RAM_available_bytes=ram_available())
+            time.sleep(60)
         mark('victim_training_and_evaluation');train_evaluate(cfg,out,data,prov,lock)
         from scripts.s4_report import finalize
         finalize(out,ROOT,commit)

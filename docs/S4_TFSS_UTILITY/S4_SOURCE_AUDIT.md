@@ -21,3 +21,5 @@ Resource policy: empty GPU, >=24GB free GPU memory, CPU one-minute load<=24 on32
 All missing efficacy/convergence/Person-to-Dog causal data remains NOT_RUN/INCOMPLETE. The literal target success threshold0.038993 is recorded exactly; NT improvement uses raw archived S0 .6916980897616373, not rounded display .691698. Single seed is descriptive, not significance. No extra seed/eta/combination is authorized.
 
 Final additions before any GPU launch: SHA-bound observed S0 9144row/24epoch loss summary; actual decoded S0/S4 dataset RMS; predeclared Person/Dog direct GT-overlap diagnostic (conf.25/NMS.7/match.5), separate from AP and native one-to-one confusion. Three direct diagnostic geometry tests passed0.003s; all10 current affected Python ASTs pass. Reports retain every class, unfavorable findings, and explicit causal limits.
+
+Additional unchanged-protocol resource guard: >=32GiB available RAM before smoke/formal and victim; after full data audit, wait in the same pipeline if other GPU users/CPU/RAM/disk resources are unsafe, reusing completed noise/data without rerun. This is orchestration only. No GPU work occurs while awaiting that phase resource gate.
