@@ -1,6 +1,8 @@
 """Bounded current-production admission; no official metrics or data ingestion."""
 import copy
+import csv
 import json
+import math
 from pathlib import Path
 import random
 import types
@@ -14,6 +16,7 @@ from ue_framework.methods.legacy_kproto_ret import _snapshot_metrics,LegacyKProt
 from ue_framework.methods.s4_tfss import S4Trainer,CleanMapCache,model_hash,rng_state,restore_rng
 from ue_framework.methods.s4_optimization import optimize_s4
 from ue_framework.methods.s4_pixel_audit import png_project
+from ue_framework.methods.tfss_clean_maps import canonical_map_canvas
 from ue_framework.methods.tfss_spatial import spatial_weights
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -84,27 +87,60 @@ def smoke(cfg,setup_trainer,prototypes,lock,out):
         return t
     u=utility()
     status=optimize_s4(u,images,Path(records[0]['label_path']).parent,prototypes,out/'utility5',identity,stop_after=5)
+    with (out/'utility5'/'diagnostics.csv').open(newline='',encoding='utf-8') as stream:
+        gradient_rows=list(csv.DictReader(stream))
+    if len(gradient_rows)!=5:
+        raise ValueError('Expected five completed Utility optimizer diagnostic rows')
+    gradient_audit={}
+    for key in ('grad_norm_fourier','grad_delta_adaptive','s4_protection_Fourier_norm'):
+        values=[float(row[key]) for row in gradient_rows if row.get(key) not in ('',None)]
+        if not values or not all(math.isfinite(value) and value>0 for value in values):
+            raise ValueError(f'Utility smoke has missing/zero/nonfinite effective {key}')
+        gradient_audit[key]=dict(count=len(values),minimum=min(values),maximum=max(values))
     expected=u.fourier_coeff.detach().cpu().clone()
     items=[]
     for rec in records:
         im=load_image_rgb_float(rec['image_path']);ann=read_yolo_annotations(rec['label_path'])
         sup=u._build_support(im.shape,ann,image_path=rec['image_path'])[0]
         items.append((im,ann,sup))
-    # The unchanged validated builder runs the WHOLE original batch canvas;
-    # the production cache runs missing entries individually on that same canvas.
+    # Independently exercise the legacy validated builder on singleton inputs,
+    # training's batched cache call, and export's singleton cache calls. All
+    # three must use the same image-local canvas and produce the same maps.
     module=types.ModuleType('validated_map_reference');module.__package__='ue_framework.methods'
     source=(ROOT/'docs/S4_TFSS_UTILITY/VALIDATED_MAP_BUILDER.py').read_text()
     exec(compile(source,'validated_tfss_clean_maps.py','exec'),module.__dict__)
+    export_cache=CleanMapCache(out/'export_clean_maps',setup_trainer.s4_cache.identity)
     map_difference=0.
+    map_rows=[]
     for start in (0,16):
         batch=items[start:start+16];paths=images[start:start+16]
-        saved=rng_state()
-        try:old,_=module.build_maps(u,batch)
-        finally:restore_rng(saved)
         cached,_=u.s4_cache.get(u,batch,paths)
-        for x,y in zip(old,cached):
-            for a,b in zip(x,y):map_difference=max(map_difference,float((a.to(torch.float32)-b.to(torch.float32)).abs().max()))
-    if map_difference>1e-7:raise ValueError('Validated map formula/canvas equivalence failed')
+        for offset,(item,path,train_map) in enumerate(zip(batch,paths,cached)):
+            exported,_=export_cache.get(u,[item],[path]);exported=exported[0]
+            saved=rng_state()
+            try:reference,_=module.build_maps(u,[item])
+            finally:restore_rng(saved)
+            reference=reference[0]
+            support_t=torch.as_tensor(item[2],device=u.device)
+            pair_differences=[]
+            for left,right in ((train_map,exported),(train_map,reference),(exported,reference)):
+                left_weight=spatial_weights(left[0],left[1],support_t,mode='TFSS-U',eta=.85)
+                right_weight=spatial_weights(right[0],right[1],support_t,mode='TFSS-U',eta=.85)
+                values=[float((left[k].to(torch.float32)-right[k].to(torch.float32)).abs().max())
+                        for k in (0,1)]
+                values.append(float((left_weight-right_weight).abs().max()))
+                values.append(float((left[2]!=right[2]).float().max()))
+                pair_differences.append(values)
+            differences=[max(row[column] for row in pair_differences) for column in range(4)]
+            map_difference=max(map_difference,*differences)
+            map_rows.append(dict(image_id=Path(path).stem,
+                training_canvas=list(canonical_map_canvas(item[0])),
+                export_canvas=list(canonical_map_canvas(item[0])),
+                Q_max_abs_difference=differences[0],R_max_abs_difference=differences[1],
+                Utility_weight_max_abs_difference=differences[2],
+                valid_domain_mismatches=int(differences[3]!=0),
+                training_export_reference_max_difference=max(differences)))
+    if map_difference>1e-7:raise ValueError('Image-canonical train/export map equivalence failed')
     # Save a bounded generation pack, then exercise the actual materialization
     # recipe on fixed32; original dataset stays read-only and no victim starts.
     idx=u._active_idx
@@ -152,7 +188,9 @@ def smoke(cfg,setup_trainer,prototypes,lock,out):
         fixed_input='original TRAIN32/65PersonGT/46NTGT, two native batches, seed0; explicit bounded enumeration',
         optimizer_updates=20,optimizer_update_breakdown='canonical5+noop5+U5+prefix3+resume2',
         S0_noop_max_difference=maximum,parameter_update_difference=coefficient_difference,
-        validated_Q_R_canvas_max_difference=map_difference,resume3to5_max_difference=replay,resume_CSV_byte_identical=True,
+        train_export_Q_R_W_max_difference=map_difference,train_export_map_rows=map_rows,
+        effective_gradient_audit=gradient_audit,
+        resume3to5_max_difference=replay,resume_CSV_byte_identical=True,
         Adam_scheduler_replay_exact=True,PNG_checks=png_checks,frozen_adaptive_unchanged=all(integrity),
         baseline_equivalence_required=True,baseline_equivalence_probe=dict(reference_id='actual unchanged B2SemanticTrainer.train_universal, exact45 S0',
         reference_weights_path=cfg['surrogate']['ckpt'],candidate_weights_path=cfg['surrogate']['ckpt'],metric_name='max loss/Fourier gradient/delta/support/update difference',
@@ -160,4 +198,5 @@ def smoke(cfg,setup_trainer,prototypes,lock,out):
         evaluation_setting=dict(dataset='fixed TRAIN32',parameters=dict(EOT=2,batch=16),seed=0,sample_count=32,post_processing='same original image clamp'),
         evidence_paths=['reference/diagnostics.csv','noop/diagnostics.csv']),
         official_metrics_disabled=True,artifact_ingest_disabled=True,cleanup_policy='retain_all',checkpoint_cleanup_completed=False,
-        deleted_paths=[],checkpoint_paths_remaining=checkpoints,finite_outputs=True,method_change='only detached Utility scaling, original map formula/default canvas preserved')
+        deleted_paths=[],checkpoint_paths_remaining=checkpoints,finite_outputs=True,
+        method_change='image-local canonical map canvas for train/export consistency; TFSS formula, eta, losses, and optimizer unchanged')

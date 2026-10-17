@@ -8,18 +8,27 @@ from .tfss_spatial import normalize_map, target_union
 from .tfss_nt_sensitivity import gradients
 
 
-def build_maps(trainer, items, *, pad_shape=None):
-    """One per-object input gradient, max-merge Persons, equal-class NT risk."""
+def canonical_map_canvas(image):
+    """Return the image-local P5-compatible canvas, independent of batch peers."""
+    if image.ndim != 3 or image.shape[2] != 3:
+        raise ValueError('Expected an HWC RGB image')
+    h, w = image.shape[:2]
+    if h <= 0 or w <= 0:
+        raise ValueError('Empty clean image')
+    return ((h + 31) // 32 * 32, (w + 31) // 32 * 32)
+
+
+def build_maps(trainer, items):
+    """Build image-local maps; every item uses its own ceil-to-32 canvas.
+
+    Batch membership must not alter a clean image's attribution. Q still uses
+    the same original TSFL feature-gradient and normalization formula; only
+    its padded tensor shape is now canonical per image for train/export parity.
+    """
     device = trainer.device
-    pad_h = (max(im.shape[0] for im, _, _ in items) + 31) // 32 * 32
-    pad_w = (max(im.shape[1] for im, _, _ in items) + 31) // 32 * 32
-    if pad_shape is not None:
-        if (len(pad_shape) != 2 or any(int(v) != v or v % 32 for v in pad_shape)
-                or pad_shape[0] < pad_h or pad_shape[1] < pad_w):
-            raise ValueError('Invalid fixed canonical batch canvas')
-        pad_h, pad_w = map(int, pad_shape)
     maps, records = [], []
     for image, annotations, support in items:
+        pad_h, pad_w = canonical_map_canvas(image)
         started = time.perf_counter()
         for ann in annotations:
             box = torch.as_tensor(ann['bbox'])
@@ -89,7 +98,9 @@ def build_maps(trainer, items, *, pad_shape=None):
         if device.type == 'cuda':
             torch.cuda.synchronize(device)
         maps.append((q.detach(), risk.detach(), (target & ~invalid_q_domain).detach()))
-        records.append({'target_objects': object_records, 'risk_classes': risk_records,
+        records.append({'image_shape_hwc': list(image.shape),
+                        'canvas_hw': [pad_h, pad_w],
+                        'target_objects': object_records, 'risk_classes': risk_records,
                         'nt_matching': matching, 'no_nt_gt': not risks,
                         'q_target_seconds': target_seconds,
                         'extra_nt_risk_seconds': time.perf_counter()-risk_started})

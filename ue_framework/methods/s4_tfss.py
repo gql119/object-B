@@ -9,7 +9,7 @@ import torch
 import torch.nn.functional as F
 
 from .b2_semantic import B2SemanticTrainer
-from .tfss_clean_maps import build_maps
+from .tfss_clean_maps import build_maps, canonical_map_canvas
 from .tfss_spatial import SoftSpatialProjection, spatial_weights
 
 
@@ -35,11 +35,11 @@ def model_hash(model):
 
 
 class CleanMapCache:
-    """Clean-only maps keyed by input bytes and canonical padding, never poison.
+    """Clean-only maps keyed by image bytes and image-local padding, never poison.
 
-    The optional canvas equals the unchanged Parent batch canvas. It allows
-    caching an individual missing image without changing its attribution frame.
-    RNG is restored even on failure; map construction is not an outer update.
+    Each image uses its own ceil-to-32 canvas, independent of batch peers, so
+    training and per-image export call the same attribution context. RNG is
+    restored even on failure; map construction is not an outer update.
     """
     def __init__(self, root, identity):
         self.root = Path(root); self.root.mkdir(parents=True, exist_ok=True)
@@ -49,10 +49,10 @@ class CleanMapCache:
     def get(self, trainer, items, paths):
         if len(items) != len(paths) or not items:
             raise ValueError('Clean-map input identity missing')
-        canvas = tuple((max(x[0].shape[d] for x in items)+31)//32*32 for d in (0,1))
         result, records = [], []
         for item,path in zip(items,paths):
             image,ann,support = item
+            canvas = canonical_map_canvas(image)
             identity = dict(self.identity, path=str(Path(path).resolve()), image_sha256=digest(path),
                 annotations=ann, canvas=list(canvas), shape=list(image.shape))
             key = hashlib.sha256(json.dumps(identity,sort_keys=True).encode()).hexdigest()
@@ -71,7 +71,7 @@ class CleanMapCache:
                     raise RuntimeError('Insufficient free disk for clean maps; retain all data')
                 before = rng_state()
                 try:
-                    maps,evidence = build_maps(trainer,[item],pad_shape=canvas)
+                    maps,evidence = build_maps(trainer,[item])
                 finally:
                     restore_rng(before)
                 values = maps[0]

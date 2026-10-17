@@ -100,8 +100,8 @@
     "mode": "TFSS-U",
     "eta_U": 0.85,
     "formula": "1-(1-.85)*Rnt*(1-Qt)",
-    "map_version": "masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-v1",
-    "canvas": "exact canonical batch padding; cached by image/GT/teacher/code/canvas; clean-only, RNG preserved",
+    "map_version": "masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-image-canonical-canvas-v2",
+    "canvas": "per-image right/bottom .5 padding to next multiple of 32; independent of batch membership; shared by training and export; cache keyed by image/GT/teacher/code/canvas; clean-only, RNG preserved",
     "noNT": "Rnt0/W1",
     "invalid_Q": "original strength preservation and exclude attribution; retain valid GT",
     "risk_matching": "native allGT positives; valid uncovered same native TAL alone; fail absent evidence"
