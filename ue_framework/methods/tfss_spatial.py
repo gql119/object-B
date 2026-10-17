@@ -69,25 +69,39 @@ def realized_rms(image, delta, support):
     return actual[domain].double().square().mean().sqrt()
 
 
-def match_realized_rms(image, s0_delta, support, target, *, tolerance=1e-9):
+def match_realized_rms(image, s0_delta, support, target, *, tolerance=1e-7,
+                       relative_tolerance=1e-4):
     """Per-image uniform alpha, matched AFTER image clamp; never amplify S0."""
     if not torch.isfinite(torch.as_tensor(target)) or target <= 0:
         raise ValueError('Invalid/nonpositive target RMS')
+    if tolerance <= 0 or relative_tolerance <= 0:
+        raise ValueError('Invalid numerical matching tolerance')
     with torch.no_grad():
+        def measured(alpha):
+            # Evaluate the SAME typed alpha used in the actual batched forward.
+            a = s0_delta.new_tensor(alpha)
+            return float(a), float(realized_rms(image, s0_delta*a, support))
+
         maximum = float(realized_rms(image, s0_delta, support))
-        if target > maximum + tolerance:
+        if target > maximum and (target-maximum > tolerance or
+                                 (target-maximum)/target > relative_tolerance):
             raise ValueError('Uniform target exceeds own S0 maximum: no silent amplification')
         lo, hi = 0., 1.
         for _ in range(48):
             alpha = (lo + hi) / 2
-            if float(realized_rms(image, s0_delta * alpha, support)) < target:
+            if measured(alpha)[1] < target:
                 lo = alpha
             else:
                 hi = alpha
-        alpha = (lo + hi) / 2
-        error = abs(float(realized_rms(image, s0_delta * alpha, support)) - target)
-        if error > tolerance:
-            raise ValueError('RMS matching failed measured tolerance')
+        # The float32 image-clamped RMS is a staircase. Its midpoint need not be
+        # closer than either attainable bracket endpoint. Include boundary alpha
+        # 1 for exact no-attenuation/no-NT cases and never exceed [0, 1].
+        candidates = [measured(a) for a in (lo, hi, (lo+hi)/2, 0., 1.)]
+        alpha, value = min(candidates, key=lambda p: (abs(p[1]-target), p[0]))
+        error = abs(value-target)
+        if error > tolerance or error/target > relative_tolerance:
+            raise ValueError(f'RMS matching failed: absolute={error}, relative={error/target}, '
+                             f'target={target}, maximum={maximum}')
     return alpha, error
 
 
@@ -104,6 +118,7 @@ class SoftSpatialProjection:
         self.tfss_input = img_t
         self.tfss_support = inner_t
         self.tfss_matching_errors = []
+        self.tfss_matching_relative_errors = []
         if self.tfss_mode == 'S0':
             self.tfss_delta = delta
             self.tfss_applied_weight = torch.ones_like(inner_t)
@@ -113,9 +128,12 @@ class SoftSpatialProjection:
                 raise ValueError('Missing paired step/EOT/image candidate RMS targets')
             alphas = []
             for image, d, mask, target in zip(img_t, delta, inner_t, self.tfss_uniform_targets):
-                alpha, error = match_realized_rms(image, d, mask, target)
+                alpha, error = match_realized_rms(image, d, mask, target,
+                    tolerance=self.tfss_uniform_absolute_tolerance,
+                    relative_tolerance=self.tfss_uniform_relative_tolerance)
                 alphas.append(alpha)
                 self.tfss_matching_errors.append(error)
+                self.tfss_matching_relative_errors.append(error/target)
             w = delta.new_tensor(alphas)[:, None, None, None]
         else:
             w = self.tfss_weight

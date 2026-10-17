@@ -65,6 +65,24 @@ class TFSSContracts(unittest.TestCase):
         self.assertEqual(float(result[1][..., 2].abs().max()), 0)
         self.assertLessEqual(float(result[1][..., 1].abs().max()), .031372549*.5)
 
+    def test_float32_staircase_and_both_tolerances(self):
+        image = torch.full((3, 1, 1), .5)
+        delta = torch.full_like(image, .01)
+        support = torch.ones(1, 1, 1)
+        target = .00500001  # Between adjacent attained FP32 image increments.
+        alpha, error = match_realized_rms(image, delta, support, target)
+        self.assertGreaterEqual(alpha, 0.)
+        self.assertLessEqual(alpha, 1.)
+        self.assertLessEqual(error, 1e-7)
+        self.assertLessEqual(error/target, 1e-4)
+        self.assertEqual(error, abs(float(realized_rms(image,
+            delta*delta.new_tensor(alpha), support))-target))
+        with self.assertRaises(ValueError):
+            match_realized_rms(image, delta, support, target, tolerance=1e-12)
+        # A tiny target can pass the absolute gate but fail the relative gate.
+        with self.assertRaises(ValueError):
+            match_realized_rms(image, delta, support, 1e-9)
+
     def test_soft_gradient_and_detached_maps(self):
         coeff = torch.tensor(.025, requires_grad=True)
         q = torch.tensor([[0., 1.]], requires_grad=True)

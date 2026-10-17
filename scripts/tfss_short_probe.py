@@ -167,6 +167,7 @@ def main():
             self.tfss_s0_delta = result[1]
             self.tfss_applied_weight = torch.ones_like(support)
             self.tfss_matching_errors = []
+            self.tfss_matching_relative_errors = []
             return result  # Instrumentation only: actual canonical tuple unchanged.
 
     def create(klass):
@@ -217,6 +218,8 @@ def main():
             trainer, frozen, adaptive = create(ObservedParent if method == 'S0-reference' else Candidate)
             original_hashes = [state_hash(frozen), state_hash(adaptive)]
             trainer.tfss_mode = method if method in ['TFSS-C', 'TFSS-U', 'Uniform-C', 'Uniform-U'] else 'S0'
+            trainer.tfss_uniform_absolute_tolerance = conf['uniform_tolerance_absolute_rms']
+            trainer.tfss_uniform_relative_tolerance = conf['uniform_tolerance_relative_rms']
             # This is the ORIGINAL optimizer; suppress_small is not added to it.
             optimizer = torch.optim.Adam([{'params': [trainer.fourier_coeff], 'lr': trainer.universal_lr_fourier}])
             scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=trainer.universal_epochs, eta_min=1e-5)
@@ -265,6 +268,7 @@ def main():
                         targets.append(target_rms)
                         row['actual_person_rms'] = target_rms
                         row['uniform_match_errors'] = trainer.tfss_matching_errors
+                        row['uniform_match_relative_errors'] = trainer.tfss_matching_relative_errors
                         row['weight_quantiles'] = torch.quantile(trainer.tfss_applied_weight[support > 0], torch.tensor([0., .1, .25, .5, .75, .9, 1.], device=device)).tolist()
                     if eot == 1 and step == steps-1:
                         # Derived noise/weight maps only; no original RGB export.

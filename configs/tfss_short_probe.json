@@ -32,8 +32,8 @@
   "matching_policy": "native allGT; uncovered validNTGT sameTAL alone; fail on missing/zero/nonfinite evidence",
   "no_nt_policy": "R=0; TFSS-U=S0 exactly",
   "invalid_target_map_policy": "preserve full strength on affected Person; exclude invalid domain from high-TSFL statistics",
-  "uniform_matching": "each candidate batch/step/EOT/image realized RMS AFTER image clamp; uniform own trajectory alpha in[0,1], fail if target unreachable",
-  "uniform_tolerance_absolute_rms": 1e-09,
+  "uniform_matching": "same candidate batch/step/EOT/image realized RMS AFTER image clamp; own FP32 alpha in[0,1], choose closer attainable bracket endpoint; BOTH absolute and relative gates; fail if unreachable",
+  "uniform_tolerance_absolute_rms": 1e-07,
   "equivalence_tolerance": 1e-07,
   "gate_B_proxy_only": {
     "maximum_mean_relative_increase_BG_plus_rel_plus_adaptive_target": 0.02,
@@ -50,5 +50,7 @@
   "formal_TFSS_authorized": false,
   "review": "current-source GPU1step smoke -> ONE scientific implementation review -> reviewed5step comparison; no reviewer before smoke",
   "resource_policy": "empty independent physical GPU only, adequate CPU/memory; otherwise WAIT_FOR_S3 full acceptance/archive/exit",
-  "remote_output_boundary": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs"
+  "remote_output_boundary": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/tfss_conservative_utility_20261016/outputs",
+  "uniform_tolerance_relative_rms": 0.0001,
+  "numerical_amendment_authorization": "2026-10-17 direct human: \u540c\u610f\u4f60\u91c7\u53d6\u6570\u503c\u4fee\u8ba2\uff0c\u7136\u540e\u7ee7\u7eed\u5de5\u4f5c"
 }

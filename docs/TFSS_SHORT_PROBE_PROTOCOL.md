@@ -17,3 +17,6 @@ Gate C：在A/B通过者之间比较Lret/NT drift/GT box/cls/DFL、逐类分布�
 trace每step/EOT保存原loss、元梯度、selected image ID、逐图强度与保护梯度、原模型update范数。NTGT原生匹配/box/cls/DFL在最后记录的pre-update图像测量；不误称5步更新后的最终结果。NPZ仅保留derived Qt/R/delta/weight供热图；不转移原RGB/数据或权重。结束后仍须分析CSV/图形，成功smoke不会自动产生候选推荐。
 
 2026-10-17 配对数值重放修复：所有独立 reference/candidate/Uniform trial 一致设置 CUBLAS_WORKSPACE_CONFIG=:4096:8、cudnn benchmark=false/deterministic=true、deterministic_algorithms=true；不支持的算子必须报错。原首个 smoke 因 Gate A 差异1.4722e-5>1e-7失败并保留证据，不能当成正式结果。修复不改变公式/原45源码/精度/样本/超参数或 Gate A 容差；当前源码须重新 smoke 后才能调用唯一审查。
+
+
+2026-10-17 NUMERICAL_STABILITY/PROTOCOL_AMENDMENT（人类明确批准）：Uniform选择最接近的可达FP32 alpha端点，保持[0,1]与原FP32前向，裁剪后实际RMS误差同时满足absolute<=1e-7及relative<=1e-4，配置值必须到达实际求解器；实际误差逐图保存，任一门失败即停止。原1e-9检查及未批准/等待文字仅为保留的历史；配置/样本/eta/预算/损失/优化器及S0/noop1e-7不变。新测试覆盖浮点台阶、绝对与相对门独立失败。源码需新RunID smoke通过后再一次独立审查。

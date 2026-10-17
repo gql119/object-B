@@ -1,3 +1,7 @@
+# 最新：数值修订已获人类批准，继续有界准入 — 2026-10-17
+
+用户明确：同意你采取数值修订，然后继续工作。执行closest FP32 alpha端点及绝对1e-7/相对1e-4双门；旧1e-9及WAIT_FOR_HUMAN段落仅为历史。两个失败RunID永久保留，使用fresh当前源码smoke；通过后唯一新TFSS科学审查，再两独立batch各五步。完整TFSS仍未授权。授权凭证docs/tfss/NUMERICAL_AMENDMENT_AUTHORIZATION_20261017.json。
+
 # TFSS-C / TFSS-U — CURRENT-SOURCE SMOKE REPAIR
 
 2026-10-17 latest state overrides earlier WAIT_FOR_S3 paragraphs below: S3 accepted/archived/exited, docs/s3_archive/LOCAL_ACCEPTANCE.json in the S23 worktree; local exact copy execution/S3_ACCEPTANCE_20261017.json. Resource gate passed (GPUempty/CPUload7.14/32logical). First unique TFSS smoke tfss_cu_gpu_smoke_train16_seed0_20261017_v1 sourceb6a01c8 exited1 at real S0/noop equivalence, maxdiff1.4722347259521484e-5>unchanged1e-7, two trials updated once; C/U/Uniform NOT_RUN. All checkpoints retained. No independent review called, no five-step or fullTFSS admitted. Paired deterministic CUDA controls omitted in initial probe are now explicitly bound identically to all trials; main-agent diagnosis and exact failure retained in docs/tfss/SMOKE_NUMERICAL_REPLAY_REPAIR_20261017.md. Local8CPUchecks/AST/45canonicalbytechecks pass after repair; a fresh current-source real smoke is still required. Original formulas and all scientific parameters/tolerances remain fixed. Current decision INSUFFICIENT_EVIDENCE; fullTFSS still needs future human confirmation.
