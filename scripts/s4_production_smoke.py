@@ -108,8 +108,16 @@ def smoke(cfg,setup_trainer,prototypes,lock,out):
     # Save a bounded generation pack, then exercise the actual materialization
     # recipe on fixed32; original dataset stays read-only and no victim starts.
     idx=u._active_idx
+    # Match the metadata schema written by LegacyKProtoTrainer.train_universal.
+    # The smoke pack uses the current U coefficients, but the production
+    # generator still validates the method identity and fixed configuration.
     torch.save(dict(coords=[list(u.freq_candidate_coords[int(i)]) for i in idx.cpu().tolist()],
-        fourier_coeff=u.fourier_coeff.detach()[idx].cpu(),suppress_small=u.suppress_small.detach().cpu()),out/'smoke_global.pt')
+        fourier_coeff=u.fourier_coeff.detach()[idx].cpu(),suppress_small=u.suppress_small.detach().cpu(),
+        method='legacy_kproto_ret',support_mode=u.support_mode,target_class_id=u.target_class_id,
+        eps=u.eps,feature_layer=u.feature_layer,prototype_cache=u.prototype_cache,
+        num_prototypes=u.num_prototypes,margin=u.margin,
+        loss_weights={'lambda_bg':u.lambda_bg,'lambda_rel':u.lambda_rel,'lambda_ret':u.lambda_ret}),
+        out/'smoke_global.pt')
     generator=LegacyKProtoGenerator(cfg,cfg['methods']['legacy_kproto_ret'],torch.device('cuda:0'),u.surrogate,str(out/'smoke_global.pt'))
     from PIL import Image
     exports=out/'PNG_smoke';exports.mkdir()
