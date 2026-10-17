@@ -15,3 +15,8 @@ configs/tfss_short_probe.json -text
 docs/TFSS_*.md -text
 research_workspace/STATE.md -text
 research_workspace/CONCLUSIONS.md -text
+
+# Exact bounded static-control protocol/entrypoint bytes.
+configs/tfss_utility_static_control_20261017.json -text
+scripts/tfss_utility_static_control.py -text
+scripts/analyze_tfss_utility_static_control.py -text
