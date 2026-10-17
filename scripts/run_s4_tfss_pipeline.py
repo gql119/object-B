@@ -36,16 +36,115 @@ def ram_available():
     return int(fields['MemAvailable'])*1024
 
 
+def _resource_snapshot(sample_seconds=5.0):
+    def cpu_counters():
+        rows=Path('/proc/stat').read_text().splitlines();host=None;per_cpu={}
+        for row in rows:
+            fields=row.split()
+            if not fields:continue
+            if fields[0]=='cpu' or (fields[0].startswith('cpu') and fields[0][3:].isdigit()):
+                values=list(map(int,fields[1:]));total=sum(values[:8])
+                idle=values[3]+(values[4] if len(values)>4 else 0)
+                iowait=values[4] if len(values)>4 else 0
+                item=(total,idle,iowait)
+                if fields[0]=='cpu':host=item
+                else:per_cpu[int(fields[0][3:])]=item
+        try:allowed=set(os.sched_getaffinity(0))
+        except (AttributeError,OSError):allowed=set(per_cpu)
+        chosen=[v for k,v in per_cpu.items() if k in allowed]
+        affinity=tuple(sum(v[i] for v in chosen) for i in range(3)) if chosen else host
+        return affinity,host, len(allowed) or (os.cpu_count() or 1)
+    def swap_pages():
+        out={}
+        for row in Path('/proc/vmstat').read_text().splitlines():
+            fields=row.split()
+            if fields and fields[0] in ('pswpin','pswpout'):out[fields[0]]=int(fields[1])
+        return out
+    def process_inventory():
+        d_count=foreign=0;uid_set=set();me=os.getuid()
+        for proc in Path('/proc').iterdir():
+            if not proc.name.isdigit():continue
+            try:
+                stat=(proc/'stat').read_text();right=stat.rfind(')');state=stat[right+2:right+3]
+                if state=='D':d_count+=1
+                line=next(x for x in (proc/'status').read_text().splitlines() if x.startswith('Uid:'))
+                uid=int(line.split()[1]);uid_set.add(uid)
+                if uid!=me:foreign+=1
+            except (OSError,ValueError,StopIteration):pass
+        return {'d_state_count':d_count,'foreign_uid_process_count':foreign,'visible_uid_count':len(uid_set)}
+    before,host_before,capacity=cpu_counters();vm0=swap_pages();started=time.monotonic()
+    time.sleep(max(1.0,float(sample_seconds)))
+    elapsed=max(.001,time.monotonic()-started);after,host_after,_=cpu_counters();vm1=swap_pages()
+    def rates(old,new):
+        total=max(1,new[0]-old[0]);idle=max(0,new[1]-old[1]);io=max(0,new[2]-old[2])
+        return max(0.,min(100.,100.*(total-idle)/total)),max(0.,min(100.,100.*io/total))
+    busy,io_affinity=rates(before,after);host_busy,io_host=rates(host_before,host_after)
+    busy=max(busy,host_busy);io=max(io_affinity,io_host)
+    quota=None
+    try:
+        value,period=Path('/sys/fs/cgroup/cpu.max').read_text().split()[:2]
+        if value!='max':quota=float(value)/float(period)
+    except (OSError,ValueError,ZeroDivisionError):pass
+    effective_capacity=min(float(capacity),quota) if quota is not None else float(capacity)
+    mem={}
+    for row in Path('/proc/meminfo').read_text().splitlines():
+        p=row.replace(':','').split()
+        if p and p[0] in ('MemTotal','MemAvailable','MemFree','SwapTotal','SwapFree','SwapCached'):
+            mem[p[0]+'_kib']=int(p[1])
+    gpu_raw=subprocess.check_output(['nvidia-smi','--query-gpu=name,memory.total,memory.used,memory.free,utilization.gpu','--format=csv,noheader,nounits'],text=True,timeout=15).strip()
+    apps=subprocess.check_output(['nvidia-smi','--query-compute-apps=pid,process_name,used_gpu_memory','--format=csv,noheader,nounits'],text=True,timeout=15).strip()
+    gpu_row=gpu_raw.splitlines()[0].split(',')
+    return {
+        'timestamp_unix':time.time(),'sample_seconds':round(elapsed,3),
+        'logical_cpus':os.cpu_count() or 1,'cpu_affinity_cpus':capacity,
+        'cgroup_cpu_quota_cpus':quota,'effective_cpu_capacity_cpus':effective_capacity,
+        'loadavg_1_5_15':list(os.getloadavg()),
+        'cpu_busy_percent_effective_sample':round(busy,2),
+        'cpu_busy_percent_host_sample':round(host_busy,2),
+        'cpu_headroom_logical_cores':round(effective_capacity*(1-busy/100),3),
+        'io_wait_percent_sample':round(io,2),
+        'swap_activity_pages':{'in':max(0,vm1.get('pswpin',0)-vm0.get('pswpin',0)),
+                               'out':max(0,vm1.get('pswpout',0)-vm0.get('pswpout',0))},
+        'mem':mem,'gpu':{'device_raw':gpu_raw,'compute_processes_raw':apps,
+                         'compute_pids':[int(x.split(',')[0].strip()) for x in apps.splitlines() if x.strip()]},
+        'gpu_free_mib':int(gpu_row[3].strip()),'gpu_utilization_percent':float(gpu_row[4].strip()),
+        'disk_free_bytes':shutil.disk_usage(BOUNDARY.parent).free,
+        'processes':process_inventory(),
+    }
+
+
+def _resource_blockers(snapshot,allow_own_gpu=False):
+    compute_pids=set(snapshot['gpu']['compute_pids'])
+    if allow_own_gpu:compute_pids.discard(os.getpid())
+    blockers=[]
+    if compute_pids:blockers.append('GPU compute process occupied by another run/user')
+    if snapshot['gpu_free_mib']<24000:blockers.append('GPU free memory below 24000 MiB')
+    if snapshot['gpu_utilization_percent']>5:blockers.append('GPU utilization above 5%')
+    if snapshot['mem']['MemAvailable_kib']*1024<32*1024**3:blockers.append('MemAvailable below 32 GiB')
+    if snapshot['disk_free_bytes']<150*1024**3:blockers.append('disk free below 150 GiB')
+    return blockers
+
+
+def _sustained_cpu_or_io_contention(samples):
+    if len(samples)<3:return False
+    flags=[]
+    for sample in samples:
+        capacity=max(1.0,float(sample['effective_cpu_capacity_cpus']))
+        saturated=(sample['cpu_busy_percent_effective_sample']>=95.0
+            and sample['cpu_headroom_logical_cores']<=.05*capacity)
+        high_iowait=sample['io_wait_percent_sample']>=20.0
+        flags.append(saturated or high_iowait)
+    return all(flags)
+
+
 def resource_gate():
-    if subprocess.check_output(['nvidia-smi','--query-compute-apps=pid','--format=csv,noheader'],text=True).strip():
-        raise RuntimeError('GPU occupied; wait, never compete/interrupt')
-    if os.getloadavg()[0]>24 or shutil.disk_usage(BOUNDARY.parent).free<150*1024**3:
-        raise RuntimeError('CPU/disk resource gate failed; no cleanup')
-    if float(subprocess.check_output(['nvidia-smi','--query-gpu=memory.free','--format=csv,noheader,nounits'],text=True).strip())<24000:
-        raise RuntimeError('Need dedicated24GiB free GPU')
-    if ram_available()<32*1024**3:raise RuntimeError('Need32GiB available RAM for unchanged cache/workers protocol')
-    return dict(loadavg=os.getloadavg(),RAM_available_bytes=ram_available(),disk_free_bytes=shutil.disk_usage(BOUNDARY.parent).free,
-        gpu=subprocess.check_output(['nvidia-smi','--query-gpu=index,name,memory.free,memory.total','--format=csv,noheader,nounits'],text=True).strip())
+    snapshot=_resource_snapshot(5.0)
+    blockers=_resource_blockers(snapshot)
+    if blockers:raise RuntimeError('Non-CPU resource gate failed; no cleanup: '+repr(blockers))
+    # CPU load average and this short utilization sample are recorded only.
+    # Sustained CPU/I/O contention is assessed by the external three-window
+    # RRCTL audit; one local sample cannot establish sustained contention.
+    return snapshot
 
 
 def setup(lock,out):
@@ -319,10 +418,18 @@ def main():
         import gc,torch
         gc.collect();torch.cuda.empty_cache()
         while True:
-            pids={int(x) for x in subprocess.check_output(['nvidia-smi','--query-compute-apps=pid','--format=csv,noheader'],text=True).split()}
-            if (not pids-{os.getpid()} and os.getloadavg()[0]<=24 and ram_available()>=32*1024**3
-                    and shutil.disk_usage(out).free>=64*1024**3):break
-            mark('waiting_victim_resources',other_GPU_pids=sorted(pids-{os.getpid()}),CPU_load=os.getloadavg(),RAM_available_bytes=ram_available())
+            resource_window=[]
+            for index in range(3):
+                resource_window.append(_resource_snapshot(10.0))
+                if index<2:time.sleep(30)
+            sustained_cpu_contention=_sustained_cpu_or_io_contention(resource_window)
+            per_sample_blockers=[_resource_blockers(sample,allow_own_gpu=True) for sample in resource_window]
+            non_cpu_ready=all(not blockers for blockers in per_sample_blockers)
+            if non_cpu_ready and not sustained_cpu_contention:break
+            other_pids=sorted({pid for sample in resource_window for pid in sample['gpu']['compute_pids'] if pid!=os.getpid()})
+            mark('waiting_victim_resources',other_GPU_pids=other_pids,
+                 sustained_CPU_or_IO_contention=sustained_cpu_contention,
+                 resource_blockers=per_sample_blockers,resource_window=resource_window)
             time.sleep(60)
         mark('victim_training_and_evaluation');train_evaluate(cfg,out,data,prov,lock)
         from scripts.s4_report import finalize
