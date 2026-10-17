@@ -9,3 +9,8 @@
 - EFFICIENCY_OPTIMIZATION：clean maps固定一次构建，候选共用；单独计时Qt与额外R，不能据此宣称运行加速。
 
 这些改变的实际梯度/强度/目标/NT影响均待真实短测，未把假设记录为实验结果。没有引入eta.90/其他核心公式/中心渐弱/新模块或AP调参。
+
+
+## 2026-10-17 latest measured status — overrides earlier NOT_RUN / WAIT_FOR_S3
+
+S3 fully accepted/archived/exited before TFSS started. Source897cdfe smokev2 passed actual canonical S0/noop equivalence maxdiff0; S0-reference/noop/C/U each completed1update/EOT2 on firstfixed16 with unchanged model hashes. It then failed the locked Uniform postclamp RMS error1e-9 gate; first complete six-method smoke and both-batch5step remain INCOMPLETE. No reviewer called and no formal TFSS. CPU saved-delta replay finds nearest float32 bracket error>1e-9 for11/16 first-EOT images, maximum7.5655e-9. Full evidence and a concrete **unapproved** numerical protocol proposal: [RMS_GATE_BLOCKER_20261017.md](tfss/RMS_GATE_BLOCKER_20261017.md). WAIT_FOR_HUMAN_NUMERICAL_PROTOCOL; no automatic retry or tolerance change. Original source45/formulas/budgets/eta/losses/optimizer/sample/EOT unchanged.

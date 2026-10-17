@@ -9,3 +9,8 @@ Q_t来自原Frozen干净训练输入、既有P5有序24通道的区域均方能�
 `tfss_spatial.SoftSpatialProjection`只接管原compose返回的最终delta和poison，原raw/JND/TV/budget项不变，更新_last_poison以保证原Adaptive内循环真正看到缩放图像。S0模式返回原tuple，不进入额外缩放。不存在新增局部hard clipping。
 
 当前CPU公式/预算/梯度组件检查通过；真实目标保护梯度保持、5-step曲线、强度和最终AP均NOT_RUN。
+
+
+## 2026-10-17 latest measured status — overrides earlier NOT_RUN / WAIT_FOR_S3
+
+S3 fully accepted/archived/exited before TFSS started. Source897cdfe smokev2 passed actual canonical S0/noop equivalence maxdiff0; S0-reference/noop/C/U each completed1update/EOT2 on firstfixed16 with unchanged model hashes. It then failed the locked Uniform postclamp RMS error1e-9 gate; first complete six-method smoke and both-batch5step remain INCOMPLETE. No reviewer called and no formal TFSS. CPU saved-delta replay finds nearest float32 bracket error>1e-9 for11/16 first-EOT images, maximum7.5655e-9. Full evidence and a concrete **unapproved** numerical protocol proposal: [RMS_GATE_BLOCKER_20261017.md](tfss/RMS_GATE_BLOCKER_20261017.md). WAIT_FOR_HUMAN_NUMERICAL_PROTOCOL; no automatic retry or tolerance change. Original source45/formulas/budgets/eta/losses/optimizer/sample/EOT unchanged.

@@ -9,3 +9,8 @@ Result：源码身份检查通过；真实模型/损失/梯度/Delta/单步更�
 Finding：仓库归档标签不足以证明运行源码身份，已按字节恢复；但仍须以真实当前源码探针证明恢复代码数值等价。
 
 Next：独立GPU资源门通过后，直接执行历史canonical B2SemanticTrainer与S0-noop包装器的相同模型/输入/RNG/优化器对照，测五项损失、Fourier梯度、参数单步、实际空间mask及delta；1e-7容差预先固定。失败不得继续候选比较。既有研究的等价性证据仅作来源参考，不冒充本轮新证据。
+
+
+## 2026-10-17 latest measured status — overrides earlier NOT_RUN / WAIT_FOR_S3
+
+S3 fully accepted/archived/exited before TFSS started. Source897cdfe smokev2 passed actual canonical S0/noop equivalence maxdiff0; S0-reference/noop/C/U each completed1update/EOT2 on firstfixed16 with unchanged model hashes. It then failed the locked Uniform postclamp RMS error1e-9 gate; first complete six-method smoke and both-batch5step remain INCOMPLETE. No reviewer called and no formal TFSS. CPU saved-delta replay finds nearest float32 bracket error>1e-9 for11/16 first-EOT images, maximum7.5655e-9. Full evidence and a concrete **unapproved** numerical protocol proposal: [RMS_GATE_BLOCKER_20261017.md](tfss/RMS_GATE_BLOCKER_20261017.md). WAIT_FOR_HUMAN_NUMERICAL_PROTOCOL; no automatic retry or tolerance change. Original source45/formulas/budgets/eta/losses/optimizer/sample/EOT unchanged.

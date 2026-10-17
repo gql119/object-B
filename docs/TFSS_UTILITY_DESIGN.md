@@ -9,3 +9,8 @@ R_nt是原eval/frozen模型对真实非目标GT的检测损失输入敏感度；
 合法no-NT图像R=0，因此U精确退化S0；正值平坦risk映射为域内1并披露，非法或零NT梯度不能用0回退。Q无效区域保留强度且不当成高归因证据。高Qt/高R冲突位置仍保留较大扰动，无理论解耦保证。
 
 Qt与风险均在clean TRAIN上冻结，不读official val。缓存键由固定图像/标签/模型/源SHA、通道索引、batch padding和map version共同绑定。maps_batch记录单独Qt与额外NT风险耗时；真实额外成本、NT效用及是否优于C都NOT_RUN。
+
+
+## 2026-10-17 latest measured status — overrides earlier NOT_RUN / WAIT_FOR_S3
+
+S3 fully accepted/archived/exited before TFSS started. Source897cdfe smokev2 passed actual canonical S0/noop equivalence maxdiff0; S0-reference/noop/C/U each completed1update/EOT2 on firstfixed16 with unchanged model hashes. It then failed the locked Uniform postclamp RMS error1e-9 gate; first complete six-method smoke and both-batch5step remain INCOMPLETE. No reviewer called and no formal TFSS. CPU saved-delta replay finds nearest float32 bracket error>1e-9 for11/16 first-EOT images, maximum7.5655e-9. Full evidence and a concrete **unapproved** numerical protocol proposal: [RMS_GATE_BLOCKER_20261017.md](tfss/RMS_GATE_BLOCKER_20261017.md). WAIT_FOR_HUMAN_NUMERICAL_PROTOCOL; no automatic retry or tolerance change. Original source45/formulas/budgets/eta/losses/optimizer/sample/EOT unchanged.

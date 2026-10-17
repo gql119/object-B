@@ -18,3 +18,8 @@
 本地Torch2.14.0+cpu用于轻量数值检查，服务器已知Torch2.7.1+cu128/Ultralytics8.4.150；不安装/更改环境，不声称本地数值代表server bitwise。首个新增序列化测试的C++ filename writer失败证据保留为CPU_VALIDATION_INITIAL_FILE_IO_FAILURE.json；改用Python二进制文件句柄并保留owned tiny artifacts后测试通过。未删除文件。全部失败与未运行项如实保留。
 
 S3源目录/RunSpec/配置/receipt/checkpoint从未修改；只有只读rrctl观察。唯一物理GPU已被S3占用，所以没有上传TFSS脚本、没有新远程进程或模型前后向。源码独立是可验证事实；不把一段观察夸大成整个共享服务器零影响的因果证明。
+
+
+## 2026-10-17 latest measured status — overrides earlier NOT_RUN / WAIT_FOR_S3
+
+S3 fully accepted/archived/exited before TFSS started. Source897cdfe smokev2 passed actual canonical S0/noop equivalence maxdiff0; S0-reference/noop/C/U each completed1update/EOT2 on firstfixed16 with unchanged model hashes. It then failed the locked Uniform postclamp RMS error1e-9 gate; first complete six-method smoke and both-batch5step remain INCOMPLETE. No reviewer called and no formal TFSS. CPU saved-delta replay finds nearest float32 bracket error>1e-9 for11/16 first-EOT images, maximum7.5655e-9. Full evidence and a concrete **unapproved** numerical protocol proposal: [RMS_GATE_BLOCKER_20261017.md](tfss/RMS_GATE_BLOCKER_20261017.md). WAIT_FOR_HUMAN_NUMERICAL_PROTOCOL; no automatic retry or tolerance change. Original source45/formulas/budgets/eta/losses/optimizer/sample/EOT unchanged.
