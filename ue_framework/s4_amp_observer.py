@@ -58,6 +58,7 @@ class AMPAuditObserver:
         self.input_batch = None
         self.input_hash = None
         self.input_ids = []
+        self.parameter_hash_before = None
         self.batch_index = -1
         self.total_batches = 0
         self.handles = []
@@ -80,6 +81,7 @@ class AMPAuditObserver:
         self.batch_index += 1
         self.total_batches += 1
         self.scale_before = float(trainer.scaler.get_scale())
+        self.parameter_hash_before = tree_hash(dict(trainer.model.named_parameters())) if self.debug_hashes else None
         self.updates_before = self.updates
         self.post_clip_norm = None
         self.input_batch = None
@@ -135,6 +137,7 @@ class AMPAuditObserver:
         raw_loss = float(trainer.loss.detach().sum().item())
         row = {'epoch':int(trainer.epoch)+1,'batch_index':self.batch_index,'total_batches':self.total_batches,
                'raw_loss':raw_loss if math.isfinite(raw_loss) else str(raw_loss),
+               'raw_loss_items':json.dumps(trainer.loss_items.detach().cpu().tolist()) if torch.is_tensor(getattr(trainer,'loss_items',None)) else None,
                'amp_scale_before':self.scale_before,'amp_scale_after':after,
                'optimizer_attempt_observed':attempted,'optimizer_update_executed':bool(executed),
                'native_scaler_nonfinite_skip':skipped,'backoff':backoff,
@@ -149,7 +152,9 @@ class AMPAuditObserver:
             self.writer=csv.DictWriter(self.stream,fieldnames=list(row));self.writer.writeheader()
         self.writer.writerow(row);self.stream.flush()
         if self.debug_hashes:
-            self.rows.append(dict(row,state=self.state_fingerprint(trainer)))
+            parameter_hash_after=tree_hash(dict(trainer.model.named_parameters()))
+            self.rows.append(dict(row,state=self.state_fingerprint(trainer),parameter_hash_before=self.parameter_hash_before,
+                                  parameter_hash_after=parameter_hash_after,parameters_unchanged_on_skip=(self.parameter_hash_before==parameter_hash_after) if skipped else None))
         summary={k:row[k] for k in ('epoch','batch_index','total_batches','actual_updates_total','skips_total','consecutive_skips','amp_scale_after','model_finite','EMA_finite','optimizer_finite','elapsed_seconds')}
         tmp=self.directory/'latest.json.writing';tmp.write_text(json.dumps(summary,allow_nan=False));tmp.replace(self.directory/'latest.json')
         if self.enforce:
