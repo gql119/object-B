@@ -1,3 +1,11 @@
+# Latest S5: Stage B entrypoint repair
+
+VPN/RRCTL restored; three-window resource audit passed 2026-10-18T17:42:46Z. Unique Stage B v1 launched once at17:43:25UTC and failed exit1 at parent_setup before model setup or optimizer updates: import of nonexistent `resource_guard`. Actual inherited production API is `resource_gate()`; only this import/call is corrected. All v1 evidence retained, never reuse its ID. Production dependency exports/imports check passed8; tests are running. Next commit fix and use unique v2 after resource/path checks. No layer choice, CUP or formal S5 yet.
+
+# Latest S5: WAIT_FOR_VPN_ROUTE_RRCTL_NETWORK
+
+Candidate Stage B code410212b38cb3349df4a5c7484596913818720707, local5tests/compile pass, RunSpec schema parse PASS. RRCTL resource query timed out before the first sample (exit255). Read-only local route inspection selects the WLAN default route for10.15.119.134 and reports only WLAN connected; no VPN-specific route observed. No S5 ready/launch, remote mutation or GPU work occurred. Resource availability is UNKNOWN. Preserve the prepared unique RunID; after connectivity returns re-audit all resources/path absence before launch.
+
 # S5 current: Stage B local tests passed; awaiting fresh resource audit
 
 Authority: `docs/S5_CUP_S4/USER_TASK_LAYER_SELECTION_SOURCE.md`, SHA256 `6eed7e9a239e171821ebe4c2db8ead3e1c623b933098401197ecbaef6c08c7a3`. The new task explicitly authorizes P3/P5 full-channel selection, stop-gradient class-drift CUP adaptation, and autonomous compatibility/numerical fixes within the stated boundary. Previous damage-definition confirmation wait is superseded.

@@ -65,9 +65,9 @@ def run(out, status, protocol, config_hash):
     from ue_framework.methods.s4_optimization import optimize_s4
     from ue_framework.methods.s5_retention_probe import S5LayerTrainer
     from ue_framework.methods.s5_gt_loss_probe import SameFrozenGTProxy
-    from scripts.run_s4_tfss_pipeline import setup, resource_guard
+    from scripts.run_s4_tfss_pipeline import setup, resource_gate
 
-    resource_guard('S5 bounded Stage B admission')
+    resource_gate()
     lock = json.loads((ROOT/'docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json').read_text())
     manifest_path = ROOT/'docs/tfss/FIXED_TRAIN_SAMPLE_MANIFEST.json'
     if sha(manifest_path) != protocol['fixed_manifest_sha256']:

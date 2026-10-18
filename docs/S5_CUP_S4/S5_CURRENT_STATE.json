@@ -1,6 +1,6 @@
 {
   "schema": "s5.audit-state.v1",
-  "state": "STAGE_B_LOCAL_VALIDATED_READY_FOR_RESOURCE_GATE",
+  "state": "STAGE_B_ENTRYPOINT_IMPORT_REPAIR",
   "branch": "codex/s5-s4-cup-adaptation-20261018",
   "parent_code_commit": "686eaacad069aac30f7fc7af4f10bebdeec1c390",
   "authorization_source": "USER_TASK_LAYER_SELECTION_SOURCE.md",
@@ -29,13 +29,20 @@
   "S5_formal_run_id": null,
   "S5_optimizer_updates": 0,
   "S5_model_forwards": 0,
-  "remote_mutation": false,
+  "remote_mutation": true,
   "formal_seed0_schedule_authorized_after_all_gates": true,
-  "next": "Fresh original resource gate then exact-once fixed TRAIN32 layer probe; analyze before Stage C. No formal S5 until all remaining gates pass.",
+  "next": "Validate resource_gate entrypoint binding, commit isolated fix, new v2 RunSpec and fresh resource/path preflight; never relaunch v1",
   "previous_authorization_sha256": "3f3521e3b82be7765ae35aa07850a01cbc12c8caf7c952233609f0e8f067947d",
   "method_adaptation": "CUP_S4_DESIGN_ADAPTATION explicitly authorized; autonomous P3/P5 selection after fixed train evidence",
   "layer_probe_run_id": "s5_p3_p5_train32_layerprobe_seed0_20261018_v1",
-  "layer_probe_launched": false,
+  "layer_probe_launched": true,
   "Stage_C_layer_decision": "NOT_RUN",
-  "Stage_B_config_sha256": "731c88d558c7aa6754523de4ab4e462fc2a8c6dd3a85d64286064b356363a289"
+  "Stage_B_config_sha256": "731c88d558c7aa6754523de4ab4e462fc2a8c6dd3a85d64286064b356363a289",
+  "source_commit": "410212b38cb3349df4a5c7484596913818720707",
+  "resource_samples_acquired": 3,
+  "server_resource_state": "PASS 2026-10-18T17:42:46Z; GPU idle, CPU 37.82/38.64/39.05%, IO 0.03/0.04/0.05%",
+  "local_route": "RRCTL connectivity restored after user VPN reconnect",
+  "local_tests": "5 passed; compile passed",
+  "layer_probe_terminal": "FAILED exit1 before model setup/updates",
+  "last_update_utc": "2026-10-18T17:45:36.214375+00:00"
 }
