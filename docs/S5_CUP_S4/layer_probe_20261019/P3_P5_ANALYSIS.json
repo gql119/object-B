@@ -1,0 +1,210 @@
+{
+  "source_commit": "bb5cd1e56e5332c34bf41463525e429d08bfc310",
+  "source": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s5_small_20261018\\s5_p3_p5_train32_layerprobe_seed0_20261018_v2",
+  "layer_probe_complete": true,
+  "baseline_and_trial_gates": true,
+  "original_S4_vs_P3_noop_max_difference": 0.0,
+  "maximum_missing_original_P3_ROIs": 0,
+  "runtime_trials": [
+    {
+      "batch": 0,
+      "role": "S4_reference",
+      "optimizer_updates": 5,
+      "elapsed_seconds": 31.847923560999334,
+      "peak_gpu_allocated_bytes": 9253137920,
+      "frozen_model_unchanged": true,
+      "adaptive_model_unchanged": true,
+      "runtime_layers": null,
+      "runtime_modules": {
+        "model.15": "C2f",
+        "model.21": "C2f"
+      },
+      "timing_scope": "full trial including clean-map cache/diagnostic observers, not native production throughput"
+    },
+    {
+      "batch": 0,
+      "role": "P3_base",
+      "optimizer_updates": 5,
+      "elapsed_seconds": 54.48522566910833,
+      "peak_gpu_allocated_bytes": 10105562112,
+      "frozen_model_unchanged": true,
+      "adaptive_model_unchanged": true,
+      "runtime_layers": {
+        "model.15": [
+          16,
+          64,
+          80,
+          80
+        ],
+        "model.21": [
+          16,
+          256,
+          20,
+          20
+        ]
+      },
+      "runtime_modules": {
+        "model.15": "C2f",
+        "model.21": "C2f"
+      },
+      "timing_scope": "full trial including clean-map cache/diagnostic observers, not native production throughput"
+    },
+    {
+      "batch": 0,
+      "role": "P5_base",
+      "optimizer_updates": 5,
+      "elapsed_seconds": 50.66640880983323,
+      "peak_gpu_allocated_bytes": 10107127296,
+      "frozen_model_unchanged": true,
+      "adaptive_model_unchanged": true,
+      "runtime_layers": {
+        "model.15": [
+          16,
+          64,
+          80,
+          80
+        ],
+        "model.21": [
+          16,
+          256,
+          20,
+          20
+        ]
+      },
+      "runtime_modules": {
+        "model.15": "C2f",
+        "model.21": "C2f"
+      },
+      "timing_scope": "full trial including clean-map cache/diagnostic observers, not native production throughput"
+    },
+    {
+      "batch": 1,
+      "role": "S4_reference",
+      "optimizer_updates": 5,
+      "elapsed_seconds": 29.877856680192053,
+      "peak_gpu_allocated_bytes": 9551346688,
+      "frozen_model_unchanged": true,
+      "adaptive_model_unchanged": true,
+      "runtime_layers": null,
+      "runtime_modules": {
+        "model.15": "C2f",
+        "model.21": "C2f"
+      },
+      "timing_scope": "full trial including clean-map cache/diagnostic observers, not native production throughput"
+    },
+    {
+      "batch": 1,
+      "role": "P3_base",
+      "optimizer_updates": 5,
+      "elapsed_seconds": 63.97101533180103,
+      "peak_gpu_allocated_bytes": 10109371392,
+      "frozen_model_unchanged": true,
+      "adaptive_model_unchanged": true,
+      "runtime_layers": {
+        "model.15": [
+          16,
+          64,
+          80,
+          80
+        ],
+        "model.21": [
+          16,
+          256,
+          20,
+          20
+        ]
+      },
+      "runtime_modules": {
+        "model.15": "C2f",
+        "model.21": "C2f"
+      },
+      "timing_scope": "full trial including clean-map cache/diagnostic observers, not native production throughput"
+    },
+    {
+      "batch": 1,
+      "role": "P5_base",
+      "optimizer_updates": 5,
+      "elapsed_seconds": 56.52232465520501,
+      "peak_gpu_allocated_bytes": 10103766016,
+      "frozen_model_unchanged": true,
+      "adaptive_model_unchanged": true,
+      "runtime_layers": {
+        "model.15": [
+          16,
+          64,
+          80,
+          80
+        ],
+        "model.21": [
+          16,
+          256,
+          20,
+          20
+        ]
+      },
+      "runtime_modules": {
+        "model.15": "C2f",
+        "model.21": "C2f"
+      },
+      "timing_scope": "full trial including clean-map cache/diagnostic observers, not native production throughput"
+    }
+  ],
+  "final_batch_comparisons": [
+    {
+      "batch": 0,
+      "P3_base_protection_proxy": 0.9907076060771942,
+      "P3_base_GT_detection_signed_classmean_delta": 0.008547604084014893,
+      "P3_base_actual_RMS": 0.0032022648063398645,
+      "P3_base_P5_missing_original_ROIs": 0,
+      "P3_base_protect_cosine": -0.31214356363913054,
+      "P3_base_elementwise_conflict_fraction": 0.6458333432674408,
+      "P3_base_opposing_protect_projection_ratio": 0.001772126659354141,
+      "P3_base_weighted_ret_grad_norm": 0.0006294396589510143,
+      "P3_base_ret_to_protect_norm_ratio": 0.005665639881044626,
+      "P5_base_protection_proxy": 0.9907309710979462,
+      "P5_base_GT_detection_signed_classmean_delta": 0.008164117733637491,
+      "P5_base_actual_RMS": 0.0032022654037077614,
+      "P5_base_P5_missing_original_ROIs": 0,
+      "P5_base_protect_cosine": -0.46545870959220087,
+      "P5_base_elementwise_conflict_fraction": 0.6666666567325592,
+      "P5_base_opposing_protect_projection_ratio": 0.021178296503006438,
+      "P5_base_weighted_ret_grad_norm": 0.0050890708807855844,
+      "P5_base_ret_to_protect_norm_ratio": 0.045774996280670166
+    },
+    {
+      "batch": 1,
+      "P3_base_protection_proxy": 1.02628755569458,
+      "P3_base_GT_detection_signed_classmean_delta": -0.001272726058959961,
+      "P3_base_actual_RMS": 0.0031804321076047987,
+      "P3_base_P5_missing_original_ROIs": 0,
+      "P3_base_protect_cosine": -0.639533652627647,
+      "P3_base_elementwise_conflict_fraction": 0.75,
+      "P3_base_opposing_protect_projection_ratio": 0.006621984306493137,
+      "P3_base_weighted_ret_grad_norm": 0.0011848083231598139,
+      "P3_base_ret_to_protect_norm_ratio": 0.010346540715545416,
+      "P5_base_protection_proxy": 1.0261749625205994,
+      "P5_base_GT_detection_signed_classmean_delta": -0.0009169161319732666,
+      "P5_base_actual_RMS": 0.0031804357859100806,
+      "P5_base_P5_missing_original_ROIs": 0,
+      "P5_base_protect_cosine": -0.6028399054185092,
+      "P5_base_elementwise_conflict_fraction": 0.71875,
+      "P5_base_opposing_protect_projection_ratio": 0.05525144858037713,
+      "P5_base_weighted_ret_grad_norm": 0.010467184707522392,
+      "P5_base_ret_to_protect_norm_ratio": 0.09145323559641838
+    }
+  ],
+  "counts": {
+    "trace": 72,
+    "ROI_observations": 2208,
+    "class_observations": 720,
+    "GT_object_observations": 1104
+  },
+  "layer_decision": "P3",
+  "limitations": [
+    "Two fixed train batches; EOT/ROI observations are dependent.",
+    "Native GT proxies are same-model diagnostics, not victim AP.",
+    "Raw cross-layer feature losses cannot rank layer quality.",
+    "No official metric, CUP update, or formal S5 result is computed."
+  ],
+  "decision_reason": "P5 native-GT proxy mixed across batches, no consistent per-class/size advantage, much larger opposing protection projection; retain S4 single-variable CUP attribution"
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "s5.cup-calibration.v1",
+  "layer": "P3",
+  "beta": 0.95,
+  "temperature": 1.0,
+  "damage_clip": 55.70708166981073,
+  "min_weight_factor": 0.5,
+  "max_weight_factor": 2.0,
+  "normalization_floor": 1e-12,
+  "known_scales": {
+    "0": 1.2601223460251276e-05,
+    "1": 4.339535371400416e-05,
+    "6": 7.364464909187518e-05,
+    "8": 9.675489764049416e-06,
+    "12": 2.665152032932383e-05,
+    "17": 5.504690307134297e-05,
+    "3": 2.601223286546883e-06,
+    "5": 6.490873374787043e-06,
+    "11": 1.5834500118216965e-05,
+    "15": 2.295256990691996e-06,
+    "18": 1.1115298548247665e-05,
+    "19": 6.406593456631526e-05
+  },
+  "scale_observation_counts": {
+    "0": 10,
+    "1": 10,
+    "6": 5,
+    "8": 5,
+    "12": 10,
+    "17": 5,
+    "3": 5,
+    "5": 5,
+    "11": 5,
+    "15": 5,
+    "18": 5,
+    "19": 5
+  },
+  "unobserved_NT_classes": [
+    2,
+    4,
+    7,
+    9,
+    10,
+    13,
+    16
+  ],
+  "unobserved_class_policy": "first complete outer-step EOT-mean anchors fixed scale; neutral priority1 until observed",
+  "source_run_id": "s5_p3_p5_train32_layerprobe_seed0_20261018_v2",
+  "source_commit": "bb5cd1e56e5332c34bf41463525e429d08bfc310",
+  "source_artifact_sha256": {
+    "retention_classes.json": "dba95f5a9c0f67d36e01ecf9459343a465dc0b802ea8aa0b8751199e4cd24b75",
+    "layer_probe_summary.json": "add5a7f32618df8f2b0f8714acefdf9c3f06f9ffcb9cf2b88c85ed72cefef110",
+    "artifact_manifest.json": "9c0e8f4683f8f7a275629431bce7d6c70fde7ce783cd8cd02f5e7455404577a8"
+  },
+  "rule_sha256": "814eebf047678036f51fcc32bed2f7afb59f58fbe218475237d27054b68bd852",
+  "calibration_updates": 0,
+  "model_forwards": 0,
+  "validation_or_victim_AP_used": false
+}

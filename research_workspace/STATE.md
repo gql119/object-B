@@ -1,3 +1,15 @@
+# Latest S5: StageD implemented; current-source StageE pending
+
+P3 selected from completed realTRAIN32 StageB. New detached class-drift EMA/normalization/bounded pi weighting and CUP Adam-boundary/checkpoint/journal hooks are implemented; originalS4/45S0files unchanged. CPU14contracts pass; compile16/importexports71 pass. Selected-P3 config/calibration and scientific differences documented. Current CUP GPU/AMP/resume/PNG/independentreview NOT_RUN; formalS5 planned butUNLAUNCHED. Fresh resource audit underway; proceed to isolatedStageE using the actual formal trainer and native victim paths, then exactlyoneS5review and authorizedformal gates. User explicitly asks autonomous diagnosis/repair toward formal execution; do not ask repeated scope confirmation or relax correctness.
+
+# Latest S5: StageC selected P3; StageD next
+
+StageB v2 completedexit0,30updates/artifact8verified; actualS4/P3 maximumdifference0, all6modelhashpairsunchanged, finiteactualgradients and8/4/0 assertionspass. P5 nativeGTproxy mixed across batches with muchlarger opposing protection projection; retain originalP3 for single-variable CUP attribution. See docs/S5_CUP_S4/P3_P5_LAYER_DECISION.md. ActualCUP/StageE/review/formalS5 NOT_RUN. FormalS4/S3 untouched.
+
+# Latest S5: Stage B v2 RUNNING
+
+Unique `s5_p3_p5_train32_layerprobe_seed0_20261018_v2`, sourcebb5cd1e56e5332c34bf41463525e429d08bfc310, launched once; first-step RRCTL healthy, parent_setup, workloadPID1842376/executor1842361. Fresh resources and path absence passed. Scope is original TRAIN32, two independent16 batches, actualS4/P3-noop/P5 five updates each (30 total), CUPinactive, no formalnoise/victim/AP. v1 terminal import failure preserved, never relaunch. Track same binding, completion health->wait->smallpull; no layer decision yet.
+
 # Latest S5: Stage B entrypoint repair
 
 VPN/RRCTL restored; three-window resource audit passed 2026-10-18T17:42:46Z. Unique Stage B v1 launched once at17:43:25UTC and failed exit1 at parent_setup before model setup or optimizer updates: import of nonexistent `resource_guard`. Actual inherited production API is `resource_gate()`; only this import/call is corrected. All v1 evidence retained, never reuse its ID. Production dependency exports/imports check passed8; tests are running. Next commit fix and use unique v2 after resource/path checks. No layer choice, CUP or formal S5 yet.

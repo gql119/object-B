@@ -1,0 +1,194 @@
+[
+  {
+    "trial": "batch0_P3_base",
+    "step": 5,
+    "epoch": 4,
+    "cursor": 16,
+    "order_length": 16,
+    "scheduler_last_epoch": 4,
+    "last_lr": [
+      0.000933682574873297
+    ],
+    "Adam_steps": [
+      5.0
+    ],
+    "boundary": "complete_optimizer_step",
+    "finite": true,
+    "rng_fields": [
+      "cuda",
+      "numpy",
+      "python",
+      "torch"
+    ],
+    "trainer_fields": [
+      "adaptive_calls",
+      "fourier_coeff",
+      "freq_active_idx",
+      "freq_score",
+      "freq_usage",
+      "semantic_calls",
+      "suppress_small"
+    ],
+    "diagnostics_bytes": 47417
+  },
+  {
+    "trial": "batch0_P5_base",
+    "step": 5,
+    "epoch": 4,
+    "cursor": 16,
+    "order_length": 16,
+    "scheduler_last_epoch": 4,
+    "last_lr": [
+      0.000933682574873297
+    ],
+    "Adam_steps": [
+      5.0
+    ],
+    "boundary": "complete_optimizer_step",
+    "finite": true,
+    "rng_fields": [
+      "cuda",
+      "numpy",
+      "python",
+      "torch"
+    ],
+    "trainer_fields": [
+      "adaptive_calls",
+      "fourier_coeff",
+      "freq_active_idx",
+      "freq_score",
+      "freq_usage",
+      "semantic_calls",
+      "suppress_small"
+    ],
+    "diagnostics_bytes": 47416
+  },
+  {
+    "trial": "batch0_S4_reference",
+    "step": 5,
+    "epoch": 4,
+    "cursor": 16,
+    "order_length": 16,
+    "scheduler_last_epoch": 4,
+    "last_lr": [
+      0.000933682574873297
+    ],
+    "Adam_steps": [
+      5.0
+    ],
+    "boundary": "complete_optimizer_step",
+    "finite": true,
+    "rng_fields": [
+      "cuda",
+      "numpy",
+      "python",
+      "torch"
+    ],
+    "trainer_fields": [
+      "adaptive_calls",
+      "fourier_coeff",
+      "freq_active_idx",
+      "freq_score",
+      "freq_usage",
+      "semantic_calls",
+      "suppress_small"
+    ],
+    "diagnostics_bytes": 47417
+  },
+  {
+    "trial": "batch1_P3_base",
+    "step": 5,
+    "epoch": 4,
+    "cursor": 16,
+    "order_length": 16,
+    "scheduler_last_epoch": 4,
+    "last_lr": [
+      0.000933682574873297
+    ],
+    "Adam_steps": [
+      5.0
+    ],
+    "boundary": "complete_optimizer_step",
+    "finite": true,
+    "rng_fields": [
+      "cuda",
+      "numpy",
+      "python",
+      "torch"
+    ],
+    "trainer_fields": [
+      "adaptive_calls",
+      "fourier_coeff",
+      "freq_active_idx",
+      "freq_score",
+      "freq_usage",
+      "semantic_calls",
+      "suppress_small"
+    ],
+    "diagnostics_bytes": 47363
+  },
+  {
+    "trial": "batch1_P5_base",
+    "step": 5,
+    "epoch": 4,
+    "cursor": 16,
+    "order_length": 16,
+    "scheduler_last_epoch": 4,
+    "last_lr": [
+      0.000933682574873297
+    ],
+    "Adam_steps": [
+      5.0
+    ],
+    "boundary": "complete_optimizer_step",
+    "finite": true,
+    "rng_fields": [
+      "cuda",
+      "numpy",
+      "python",
+      "torch"
+    ],
+    "trainer_fields": [
+      "adaptive_calls",
+      "fourier_coeff",
+      "freq_active_idx",
+      "freq_score",
+      "freq_usage",
+      "semantic_calls",
+      "suppress_small"
+    ],
+    "diagnostics_bytes": 47370
+  },
+  {
+    "trial": "batch1_S4_reference",
+    "step": 5,
+    "epoch": 4,
+    "cursor": 16,
+    "order_length": 16,
+    "scheduler_last_epoch": 4,
+    "last_lr": [
+      0.000933682574873297
+    ],
+    "Adam_steps": [
+      5.0
+    ],
+    "boundary": "complete_optimizer_step",
+    "finite": true,
+    "rng_fields": [
+      "cuda",
+      "numpy",
+      "python",
+      "torch"
+    ],
+    "trainer_fields": [
+      "adaptive_calls",
+      "fourier_coeff",
+      "freq_active_idx",
+      "freq_score",
+      "freq_usage",
+      "semantic_calls",
+      "suppress_small"
+    ],
+    "diagnostics_bytes": 47363
+  }
+]

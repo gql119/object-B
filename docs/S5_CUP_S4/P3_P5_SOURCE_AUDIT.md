@@ -1,3 +1,7 @@
+# Runtime confirmation 2026-10-19 HKT
+
+Completed StageB v2 sourcebb5cd1e: actual model.15=C2f [16,64,80,80], model.21=C2f [16,256,20,20] on both TRAIN32 batches. Both are full-channel ROI paths; TSFL24 is independent. No original valid P3 ROI missing from P5 in this fixed set. S4/P3 whole-path maximum difference0. See P3_P5_LAYER_DECISION.md for the P3 decision and limitations.
+
 # P3/P5 Stage A 源码与运行层审计
 
 状态：静态源码确认；实际 Frozen 模块类型/张量形状将由 Stage B 当前权重运行记录核验，尚未填写 runtime PASS。最新授权 SHA256 `6eed7e9a239e171821ebe4c2db8ead3e1c623b933098401197ecbaef6c08c7a3`。Parent source/teacher/data/config/seed 元数据见 `S5_SOURCE_AUDIT_PROVENANCE.json`；S5 正式配置、checkpoint、AMP及victim结果未运行。

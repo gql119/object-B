@@ -36,3 +36,10 @@ ue_framework/s4_amp_observer.py text eol=lf
 scripts/s4_reuse_dataset_audit.py text eol=lf
 scripts/s4_victim_recovery.py text eol=lf
 tests/test_s4_amp_observer.py text eol=lf
+
+# S5 scientific protocol, calibration and approval byte identities.
+configs/s5_*.json -text
+docs/S5_CUP_S4/S5_CONFIG_LOCK.json -text
+docs/S5_CUP_S4/CUP_S4_CALIBRATION_RULE.md -text
+docs/S5_CUP_S4/P3_P5_LAYER_DECISION.md -text
+docs/S5_CUP_S4/USER_TASK_LAYER_SELECTION_SOURCE.md -text

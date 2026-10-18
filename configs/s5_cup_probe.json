@@ -1,0 +1,47 @@
+{
+  "schema": "s5.cup-probe.v1",
+  "stage": "E",
+  "seed": 0,
+  "fixed_manifest_sha256": "3becd3c5c9338dfb887da6163df8063a8ed44303dbacc4351f15e5ba376be5a1",
+  "batch_partitions": [
+    [
+      0,
+      16
+    ],
+    [
+      16,
+      32
+    ]
+  ],
+  "roles": [
+    "S4_reference",
+    "P3_off",
+    "P3_CUP"
+  ],
+  "steps_per_independent_trial": 5,
+  "eot_samples": 2,
+  "post_update_observation_eot_samples": 2,
+  "equivalence_absolute_tolerance": 1e-07,
+  "lambda_ret": 0.25,
+  "CUP_active": true,
+  "layer_channels": "all channels at actual model.15/model.21 outputs; never use target-selected TSFL24 as retention coordinates",
+  "roi_policy": "original masked_prototype min mass1, original P3 image eligibility; explicit unmatched/invalid GT counts and shared-GT views; no silently invented ROI",
+  "size_bins": "original GT area <32^2 small, <96^2 medium, otherwise large, matching existing TRAIN32 manifest descriptive scale",
+  "GT_proxy": "same Frozen clean/poison actual EOT forward outputs; detached shared clean native all-GT TAL; native same-TAL alone only for uncovered valid GT; original box/BCE19/DFL gains, object/class means; diagnostic only",
+  "protect_proxy": "weighted BG + weighted rel + lambda_adapt*original Adaptive target",
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "victim_training_enabled": true,
+  "cleanup_policy": "retain_all",
+  "cup_calibration": "configs/s5_cup_calibration.json",
+  "resume_prefix_steps": 3,
+  "native_AMP_max_batches": 46,
+  "total_noise_Adam_updates": 40,
+  "total_production_step_budget": 98,
+  "AMP_smoke_validation": false,
+  "decision_scope": "P3 is selected; verify bounded weights/actual baseline/finite effective gradients/consistent history/resume, report mixed proxies honestly; no AP claim",
+  "short_schedule": "inherit S4 loop on fixed16-image development subset: five development epochs0..4; not first5 full-data formal updates; all paired paths match",
+  "engineering_guard": "stop if selected CUP retention gradient norm or its opposing protection projection exceeds the entire protection gradient (ratio>1); finite/bounds/no-op/resume/PNG/native AMP remain mandatory, not AP efficacy thresholds",
+  "formal_victim_training_enabled": false,
+  "native_AMP_scope": "bounded existing native/repaired S0 controls5/5, S5 development PNG16, isolated synthetic overflow max20; no validation"
+}

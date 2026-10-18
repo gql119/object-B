@@ -1,0 +1,11 @@
+--- s4_victim_recovery.trial
++++ s5_victim_smoke.trial
+@@ -20,7 +20,7 @@
+     model=YOLO(str(init))
+     reference=name=='native_S0'
+     holder=attach_amp_observer(model,out/'amp_audit',enforce=False,debug_hashes=True) if reference else attach_safety_callbacks(model,amp_log_dir=out/'amp_audit',debug_hashes=True)
+-    limit=5 if name in ('native_S0','repaired_S0') else (16 if name=='real_S4' else 32)
++    limit=5 if name in ('native_S0','repaired_S0') else (16 if name=='real_S4' else 20)
+     synthetic={'forced_batch':None,'forced_after_actual_updates':None,'multiplier':1e20,'recovered':False}
+     if name=='synthetic_S4':
+         def inject(t):
