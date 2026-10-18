@@ -43,3 +43,10 @@ docs/S5_CUP_S4/S5_CONFIG_LOCK.json -text
 docs/S5_CUP_S4/CUP_S4_CALIBRATION_RULE.md -text
 docs/S5_CUP_S4/P3_P5_LAYER_DECISION.md -text
 docs/S5_CUP_S4/USER_TASK_LAYER_SELECTION_SOURCE.md -text
+
+# Preserve tested S5 runtime bytes and recognize intentional Windows CRLF.
+scripts/*s5*.py -text whitespace=cr-at-eol
+tests/test_s5*.py -text whitespace=cr-at-eol
+ue_framework/methods/s5*.py -text whitespace=cr-at-eol
+configs/s5_*.json -text whitespace=cr-at-eol
+docs/S5_CUP_S4/** whitespace=cr-at-eol
