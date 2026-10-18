@@ -311,7 +311,7 @@
     "rule_sha256": "814eebf047678036f51fcc32bed2f7afb59f58fbe218475237d27054b68bd852",
     "smoke_protocol_path": "configs/s5_cup_probe.json",
     "smoke_protocol_sha256": "7067f41106011109c7070a47f78e256672e030378506ec18899a572100b2721c",
-    "smoke_run_id": "s5_cup_p3_train32_smoke_seed0_20261019_v1",
+    "smoke_run_id": "s5_cup_p3_train32_smoke_seed0_20261019_v2",
     "S4_config_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
     "S4_comparison_path": "docs/S4_AMP_RECOVERY_20261018/S4_COMPARISON.json",
     "S4_comparison_sha256": "27e32b0a37e299dc06671dbdd71301a839adda6c29b9e01dbb8b63c2838a3db9",

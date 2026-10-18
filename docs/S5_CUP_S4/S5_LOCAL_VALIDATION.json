@@ -1,10 +1,10 @@
 {
-  "scope": "local CPU contracts only; current CUP CUDA NOT_RUN",
+  "scope": "Original14 CPU contracts retained; five new accumulation observer contracts passed; current-source CUDA pending",
   "tests": "14 passed in5.95s",
   "compile_files": 16,
   "production_import_exports_checked": 71,
   "canonical45_exact": true,
-  "config_lock_sha256": "edfb109695c9f9c9fb8eb39dbc8c3e35733cff260f494c97a8fd68c125aec3c1",
+  "config_lock_sha256": "afdcd04e925d73f50eeb9d450bdbb259195d1500f61f1e46ecd08dd66807f0c8",
   "calibration_sha256": "ad677ae316d5445ee0528805d65c733df3199a32b039aa1cc6f9f714ecdefc49",
   "script_sha256": {
     "scripts/analyze_s5_layer_probe.py": "ab4374e2d95d98e823d923371ef73c1c274b7aa75c84400f9a413d8bfaf5d29f",
@@ -15,7 +15,7 @@
     "scripts/s5_cup_probe_checks.py": "81c60117f37913b9caa89e079995cd59d4b4df52973956aee5d21c5f5fc53341",
     "scripts/s5_layer_probe.py": "522214dbf6722db5e240a7eacd5a223e2c1f73cfd4ffb3171c9e747b38a0dddd",
     "scripts/s5_report.py": "51f3dbd701be50b5f5d6204799fc640bb487f15be6da70fcf59220df12d09be2",
-    "scripts/s5_victim_smoke.py": "95240e711df6e4e0e0caaa205ae2ee22ac5b80295f6014c2a536b6f60aad4d0c",
+    "scripts/s5_victim_smoke.py": "81dd160646a574140977b1ba5421335567257dee932e86fce1b0fb415c5039ce",
     "ue_framework/methods/s5_cup_history.py": "3519fad884798425dec997f0ea20b260ace32c44fbc40a5b8dae174fc75f36fb",
     "ue_framework/methods/s5_cup_trainer.py": "d2f9f00d971e5fbf773dcc144e0ba9514fef4b5264006032cea35272334053b0",
     "ue_framework/methods/s5_gt_loss_probe.py": "70931c5dca3f29f39e05b6d3f4cbc7232bb692d46bcd2de37aca028609f22940",
@@ -32,5 +32,6 @@
     "selected_layer": "P3"
   },
   "native_AMP_current_source": "NOT_RUN",
-  "independent_S5_review": "NOT_CALLED; after current-source smoke only"
+  "independent_S5_review": "NOT_CALLED; after current-source smoke only",
+  "accumulation_observer_tests": "5 passed in0.08s"
 }

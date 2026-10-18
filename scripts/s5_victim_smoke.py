@@ -8,6 +8,24 @@ import json,random
 from scripts.s4_victim_recovery import prepare_output,dataset_view,sha,write,baseline_prefix_without_update_is_valid,SmokeBoundary
 ROOT=Path(__file__).resolve().parents[1]
 
+
+def observe_forced_overflow(synthetic, rows, updates):
+    """Validate the next native optimizer attempt, including accumulation delays."""
+    injected = synthetic['forced_batch']
+    if injected is None:
+        return
+    attempts = [row for row in rows[injected-1:] if row['optimizer_attempt_observed']]
+    if not attempts:
+        # Native warmup/accumulation can defer unscale/step beyond the injected batch.
+        return
+    forced = attempts[0]
+    if not (forced['native_scaler_nonfinite_skip'] and forced['backoff']
+            and forced['parameters_unchanged_on_skip']):
+        raise AssertionError('Isolated forced overflow did not take unchanged native skip/backoff')
+    synthetic['forced_optimizer_attempt_batch'] = forced['total_batches']
+    synthetic['recovered'] = updates > synthetic['forced_after_actual_updates']
+
+
 def trial(name,out,cfg):
     prepare_output(out,cfg)
     import numpy as np
@@ -48,10 +66,7 @@ def trial(name,out,cfg):
     def boundary(t):
         o=holder['observer']
         if name=='synthetic_S4' and synthetic['forced_batch'] is not None:
-            forced=o.rows[synthetic['forced_batch']-1]
-            if not forced['native_scaler_nonfinite_skip'] or not forced['backoff'] or not forced['parameters_unchanged_on_skip']:
-                raise AssertionError('Isolated forced overflow did not take unchanged native skip/backoff')
-            synthetic['recovered']=o.updates>synthetic['forced_after_actual_updates']
+            observe_forced_overflow(synthetic,o.rows,o.updates)
         done=o.total_batches>=limit or (name=='synthetic_S4' and o.total_batches>=5 and synthetic['recovered'])
         if done:
             if not o.updates and not baseline_prefix_without_update_is_valid(name,o.rows):
