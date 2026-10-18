@@ -1,4 +1,14 @@
-# S4 AMP recovery: VPN restored, waiting for GPU resource
+# S5 current state: source audit complete; damage-definition decision pending
+
+Authority: `docs/S5_CUP_S4/USER_TASK_SOURCE.md`, SHA256 `3f3521e3b82be7765ae35aa07850a01cbc12c8caf7c952233609f0e8f067947d`. New branch `codex/s5-s4-cup-adaptation-20261018`, based on S4 result-code commit `686eaacad069aac30f7fc7af4f10bebdeec1c390`. S4/S3 products are read-only.
+
+Source audit: S4 actual Frozen L_ret is all-channel P3/model.15 GT-ROI feature drift, instance-mean reduction; its exact class baseline is pi_k=n_k/N. Existing class-drift diagnostics are P5 and cannot directly be reused. Source-derived CPU synthetic audit passed 5 cases: max scalar decomposition error 3.637978807091713e-12, max feature gradient difference 0, baseline correction no-op difference 0; all45 canonical source bytes remain exact. Real TRAIN32/model/Fourier/Adaptive equivalence and 5-step are NOT_RUN.
+
+S3 CUP history/EMA/weight projection can be separated from CNLP, but its actual damage is post-virtual-learning clean-query detection-loss difference. Replacing it with same-input Frozen P3 drift (proposed minimal candidate A), or same-model GT detection-loss delta (B), changes this definition. The user's final-section stop rule requires this distinction to be reported before adopting it. No S5 loss was changed, no parameter was selected, no reviewer/GPU job/optimizer update/formal RunID was created. Formal seed0 24epoch/9144step + native-AMP victim200 is authorized only after the pending method definition and all correctness/resource gates are resolved.
+
+Read `docs/S5_CUP_S4/S5_PARENT_FIDELITY.md`, `S3_CUP_DEPENDENCY_AUDIT.md`, and `CUP_S4_DESIGN.md` for the source audit and concrete proposal. Config lock/checkpoint/AMP/training/evaluation results for S5 are NOT_RUN. Do not inherit an old S4 monitor instruction as permission to launch S5 or rerun S4.
+
+## Inherited S4 history (superseded by final S4 report and the S5 state above)
 
 Current authority: execution/S4_CURRENT_STATE.json. Repair source5cd8158e8312c1fcebb9fa26ac551acc3cd3a669, native optimizer inherited; CPU7contracts passed, original45S0 source and frozenS4 method/map/config unchanged. Full authorization in docs/S4_AMP_RECOVERY_20261018/USER_TASK_SOURCE.md.
 

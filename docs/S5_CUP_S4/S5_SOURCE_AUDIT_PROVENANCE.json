@@ -1,0 +1,380 @@
+{
+  "schema": "s5.source-audit-provenance.v1",
+  "status": "AUDIT_ONLY_NO_S5_RUNTIME_IMPLEMENTATION",
+  "parent_code_commit": "686eaacad069aac30f7fc7af4f10bebdeec1c390",
+  "parent_noise_source": "b1e29510e7b1ed5fa0fe361a27132d8790e65c14",
+  "parent_victim_source": "ab626917f20917e58cf30033ac99df00938cb561",
+  "parent_noise_run_id": "s4_tfss_utility_seed0_20261017_v1",
+  "parent_victim_run_id": "s4_tfss_utility_seed0_20261017_v1_victim_recovery01",
+  "parent_primary_sha256": "cc1b03eca939732599817abb97150907463ab10913456afa6cc6ae473b4bbdc3",
+  "teacher_sha256": "8de8a0c78c6414ad0bf98052b3bc96c33d8e854a2a2a905d47c8195363975b89",
+  "dataset_hash": "29b131dfca2e3636e9c47502961caa6297acf0450f646ff6409b7b3bfb21b3fa",
+  "parent_config_lock_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+  "user_authorization_sha256": "3f3521e3b82be7765ae35aa07850a01cbc12c8caf7c952233609f0e8f067947d",
+  "seed": 0,
+  "s4_sources": [
+    {
+      "path": "ue_framework/methods/legacy_kproto_ret.py",
+      "parent_git_blob_sha256": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb",
+      "working_file_sha256": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb",
+      "parent_blob_unchanged": true,
+      "working_git_blob": "8ea20c01d4b0f82d4eb17808c52afb439bc5bc9d",
+      "parent_git_blob": "8ea20c01d4b0f82d4eb17808c52afb439bc5bc9d"
+    },
+    {
+      "path": "ue_framework/methods/alce_losses.py",
+      "parent_git_blob_sha256": "59cdf7177a72b19289aeff1b5ec17f749ec47b17b26f0c0053bc0fe96ede2752",
+      "working_file_sha256": "59cdf7177a72b19289aeff1b5ec17f749ec47b17b26f0c0053bc0fe96ede2752",
+      "parent_blob_unchanged": true,
+      "working_git_blob": "498827eb97f6b6d48754438b811fc1fca6bbd273",
+      "parent_git_blob": "498827eb97f6b6d48754438b811fc1fca6bbd273"
+    },
+    {
+      "path": "ue_framework/methods/b2_semantic.py",
+      "parent_git_blob_sha256": "f890a83c71164e570535508a553dc683b016bc0a4c519335f9e202c1d7ec28e8",
+      "working_file_sha256": "f890a83c71164e570535508a553dc683b016bc0a4c519335f9e202c1d7ec28e8",
+      "parent_blob_unchanged": true,
+      "working_git_blob": "77e04e47212bc0990113f0e2044da89bf90f52e4",
+      "parent_git_blob": "77e04e47212bc0990113f0e2044da89bf90f52e4"
+    },
+    {
+      "path": "ue_framework/methods/b2_adaptive.py",
+      "parent_git_blob_sha256": "429348b91ec4909b8806aa1b25daa81dc6adbb4318462f42b82167e5639ae145",
+      "working_file_sha256": "429348b91ec4909b8806aa1b25daa81dc6adbb4318462f42b82167e5639ae145",
+      "parent_blob_unchanged": true,
+      "working_git_blob": "068af6d24b0f7186935bcc5b20a10ee8329f549e",
+      "parent_git_blob": "068af6d24b0f7186935bcc5b20a10ee8329f549e"
+    },
+    {
+      "path": "ue_framework/methods/s4_tfss.py",
+      "parent_git_blob_sha256": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d",
+      "working_file_sha256": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d",
+      "parent_blob_unchanged": true,
+      "working_git_blob": "e49d7b8377e9dcb0b240916ce8526e57cd192b63",
+      "parent_git_blob": "e49d7b8377e9dcb0b240916ce8526e57cd192b63"
+    },
+    {
+      "path": "ue_framework/methods/s4_optimization.py",
+      "parent_git_blob_sha256": "6cca2abb795109467ea13632834f607c0e32653aa6a1459fdd0dfaf116e9323d",
+      "working_file_sha256": "6cca2abb795109467ea13632834f607c0e32653aa6a1459fdd0dfaf116e9323d",
+      "parent_blob_unchanged": true,
+      "working_git_blob": "c41327cebc72bdcfe19e148a5fa03d7b34eff197",
+      "parent_git_blob": "c41327cebc72bdcfe19e148a5fa03d7b34eff197"
+    },
+    {
+      "path": "ue_framework/methods/tfss_clean_maps.py",
+      "parent_git_blob_sha256": "6730d44911a4e698862c5c73e03e9d4487c335ace71b960b7fc79bd450132f39",
+      "working_file_sha256": "6730d44911a4e698862c5c73e03e9d4487c335ace71b960b7fc79bd450132f39",
+      "parent_blob_unchanged": true,
+      "working_git_blob": "dfceb8d08a495c085a566b877e79dc7a0d76610c",
+      "parent_git_blob": "dfceb8d08a495c085a566b877e79dc7a0d76610c"
+    },
+    {
+      "path": "ue_framework/methods/tfss_spatial.py",
+      "parent_git_blob_sha256": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd",
+      "working_file_sha256": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd",
+      "parent_blob_unchanged": true,
+      "working_git_blob": "a062aa1c9ce9eb555094b7c5419929502973f605",
+      "parent_git_blob": "a062aa1c9ce9eb555094b7c5419929502973f605"
+    },
+    {
+      "path": "ue_framework/s4_victim.py",
+      "parent_git_blob_sha256": "378dbfdfd0271414339ebbf096f71c16e93fb358831df6ae83ec3d38c6c9f81a",
+      "working_file_sha256": "378dbfdfd0271414339ebbf096f71c16e93fb358831df6ae83ec3d38c6c9f81a",
+      "parent_blob_unchanged": true,
+      "working_git_blob": "d12c0bd0c6dad932739316cbb88f7226a054bb7b",
+      "parent_git_blob": "d12c0bd0c6dad932739316cbb88f7226a054bb7b"
+    },
+    {
+      "path": "ue_framework/s4_amp_observer.py",
+      "parent_git_blob_sha256": "8f0fd915eb6ba4d99840916f3e325f147cb6073566effc2492063abba39f2cca",
+      "working_file_sha256": "8f0fd915eb6ba4d99840916f3e325f147cb6073566effc2492063abba39f2cca",
+      "parent_blob_unchanged": true,
+      "working_git_blob": "0b4f0d5f530e02505d05fbe8ff0ac0505a576d2c",
+      "parent_git_blob": "0b4f0d5f530e02505d05fbe8ff0ac0505a576d2c"
+    },
+    {
+      "path": "docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json",
+      "parent_git_blob_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+      "working_file_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+      "parent_blob_unchanged": true,
+      "working_git_blob": "b3c6d6826c5db9685845701f8d14f1365e0e84eb",
+      "parent_git_blob": "b3c6d6826c5db9685845701f8d14f1365e0e84eb"
+    }
+  ],
+  "s3_sources": [
+    {
+      "path": "ue_framework/methods/counterfactual_utility.py",
+      "scientific_commit": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+      "git_blob_sha256": "bba6be07e78a97941bb61095217a7ba6edecd57d3f41aac4f8e955f12dddb74f",
+      "current_s3_git_blob_equal": true
+    },
+    {
+      "path": "ue_framework/methods/counterfactual_yolo.py",
+      "scientific_commit": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+      "git_blob_sha256": "436a4a6c8ff502b8a3276f9e5d310e4d811d26880be05972353f31519ec0f298",
+      "current_s3_git_blob_equal": true
+    },
+    {
+      "path": "ue_framework/methods/counterfactual_extension.py",
+      "scientific_commit": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+      "git_blob_sha256": "16415bb6f979a341ec9a7abbaccac312877213dcd50a28a449e53738e6829864",
+      "current_s3_git_blob_equal": true
+    },
+    {
+      "path": "ue_framework/methods/counterfactual_trainer.py",
+      "scientific_commit": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+      "git_blob_sha256": "aa388a34fd6742cf710fa6ca6455f6427e4a8e1618b55ef6c3e6f870a6c4e974",
+      "current_s3_git_blob_equal": true
+    },
+    {
+      "path": "ue_framework/methods/counterfactual_optimization.py",
+      "scientific_commit": "017591686efb3675ee8d55debf1e2cd7da4e0e17",
+      "git_blob_sha256": "59fb5ccf493b45f3c9613f5021bc641d4b7f10aa6c34e2c2b6f03e7cdea389bc",
+      "current_s3_git_blob_equal": true
+    }
+  ],
+  "s3_cup_config": {
+    "beta": 0.95,
+    "temperature": 0.0003758072853088379,
+    "damage_clip": 0.0010146975517272938,
+    "min_weight_factor": 0.5,
+    "max_weight_factor": 2.0
+  },
+  "s3_config_lock_sha256": "bd89244e22795b85139d1dee793b13c1faf44306557c083f546639ec666b6fb8",
+  "s3_config_lock_archive_commit": "583892c2f1f2a86770a3828d9512c66cd75f25bb",
+  "s3_config_lock_in_runtime_code_commit": false,
+  "canonical45": [
+    {
+      "path": "ue_framework/launch_one.py",
+      "expected": "9b8d3b76831089b3ae8dd3bd3a4323c93fea15b5fe9ebc882b16778f9139f5cc",
+      "actual": "9b8d3b76831089b3ae8dd3bd3a4323c93fea15b5fe9ebc882b16778f9139f5cc"
+    },
+    {
+      "path": "ue_framework/config.py",
+      "expected": "f11f37287afece94a71864b3ade15889760aed054baa75b0d31b5e332e4e6970",
+      "actual": "f11f37287afece94a71864b3ade15889760aed054baa75b0d31b5e332e4e6970"
+    },
+    {
+      "path": "ue_framework/runtime.py",
+      "expected": "bfe42dbdb8b37a1fafc5eb01e29a28851fda4e291f286a80ba7e86013418b5e9",
+      "actual": "bfe42dbdb8b37a1fafc5eb01e29a28851fda4e291f286a80ba7e86013418b5e9"
+    },
+    {
+      "path": "ue_framework/env_utils.py",
+      "expected": "9ccb067e1a345d1021b1b2ad369c0fce4782c0d878b57778f314c66c1ef9243e",
+      "actual": "9ccb067e1a345d1021b1b2ad369c0fce4782c0d878b57778f314c66c1ef9243e"
+    },
+    {
+      "path": "ue_framework/paths.py",
+      "expected": "39de91d8b7172cb88d1d0421f0b62e1f31d4fdbb911f64510a00e534d4184542",
+      "actual": "39de91d8b7172cb88d1d0421f0b62e1f31d4fdbb911f64510a00e534d4184542"
+    },
+    {
+      "path": "ue_framework/__init__.py",
+      "expected": "9e4f749459a68091dec7693f946c26ba9aa4733b4645d2f5fa3c5a098fd5fc68",
+      "actual": "9e4f749459a68091dec7693f946c26ba9aa4733b4645d2f5fa3c5a098fd5fc68"
+    },
+    {
+      "path": "ue_framework/pack.py",
+      "expected": "20bae0d2f42b738d6fd1ef7f25a9d736e908025c28cac6f32ede9a95a80b0e97",
+      "actual": "20bae0d2f42b738d6fd1ef7f25a9d736e908025c28cac6f32ede9a95a80b0e97"
+    },
+    {
+      "path": "ue_framework/io_utils.py",
+      "expected": "40ce021b2b99998444a3dae7d7b118541379bffcc8477b399378e355276134cb",
+      "actual": "40ce021b2b99998444a3dae7d7b118541379bffcc8477b399378e355276134cb"
+    },
+    {
+      "path": "ue_framework/train_utils.py",
+      "expected": "c7434e675840d699e7d92f843a723e055af405f9d60b1aa32cb01492788f01ae",
+      "actual": "c7434e675840d699e7d92f843a723e055af405f9d60b1aa32cb01492788f01ae"
+    },
+    {
+      "path": "ue_framework/data_utils.py",
+      "expected": "aa260a5e65195a2f8b2ebb2725377810301984fdc13c33e91b89206a84551688",
+      "actual": "aa260a5e65195a2f8b2ebb2725377810301984fdc13c33e91b89206a84551688"
+    },
+    {
+      "path": "ue_framework/metrics_utils.py",
+      "expected": "b1e35af4fbc055dfe7193d72162e09e0d3289e0e5f24ae5182761f36c2b8504b",
+      "actual": "b1e35af4fbc055dfe7193d72162e09e0d3289e0e5f24ae5182761f36c2b8504b"
+    },
+    {
+      "path": "ue_framework/status.py",
+      "expected": "cbe2887d9ca572d9d945163c80d13706d28a6dc201f4f7a9c818e6f215a69b0c",
+      "actual": "cbe2887d9ca572d9d945163c80d13706d28a6dc201f4f7a9c818e6f215a69b0c"
+    },
+    {
+      "path": "ue_framework/support.py",
+      "expected": "e0b9813177c10d76ebaedf76bf56c9e2e9e2c9bb7bdeb4c3ac71e17b2d22dca0",
+      "actual": "e0b9813177c10d76ebaedf76bf56c9e2e9e2c9bb7bdeb4c3ac71e17b2d22dca0"
+    },
+    {
+      "path": "ue_framework/stages/aggregate.py",
+      "expected": "a63968f0100269be3afb8344810034d46d14927a6bc4e487912556df7f5d8f3a",
+      "actual": "a63968f0100269be3afb8344810034d46d14927a6bc4e487912556df7f5d8f3a"
+    },
+    {
+      "path": "ue_framework/stages/evaluate.py",
+      "expected": "632a30efaee07d9803d3b3da011b0f1105d906ad4c0cafaa5e8ec9c744d2641b",
+      "actual": "632a30efaee07d9803d3b3da011b0f1105d906ad4c0cafaa5e8ec9c744d2641b"
+    },
+    {
+      "path": "ue_framework/stages/__init__.py",
+      "expected": "87bb08911f3ecf7b39f3bdf1c0cc3d094100fe5bdafcff5707b1a75ed862647e",
+      "actual": "87bb08911f3ecf7b39f3bdf1c0cc3d094100fe5bdafcff5707b1a75ed862647e"
+    },
+    {
+      "path": "ue_framework/stages/generate.py",
+      "expected": "ed4395879b604a5e8cf69f8210e57903d0db07a0216ee690fec13b47df9666ea",
+      "actual": "ed4395879b604a5e8cf69f8210e57903d0db07a0216ee690fec13b47df9666ea"
+    },
+    {
+      "path": "ue_framework/stages/train_victim.py",
+      "expected": "09526de72e5f2a19fd9a024acce22de78e2c13a8d12500bb79adbdd6cf31454a",
+      "actual": "09526de72e5f2a19fd9a024acce22de78e2c13a8d12500bb79adbdd6cf31454a"
+    },
+    {
+      "path": "ue_framework/ultra/__init__.py",
+      "expected": "87150a0a52566f183120bee1caf5385d7b6dbd4a75ba06a6634ffd0bc055dfdb",
+      "actual": "87150a0a52566f183120bee1caf5385d7b6dbd4a75ba06a6634ffd0bc055dfdb"
+    },
+    {
+      "path": "ue_framework/ultra/hijacked_loss.py",
+      "expected": "dbb7673a5e4918b0116e2d6d8de464d6882921439926817981a56c1bb1eb4ae3",
+      "actual": "dbb7673a5e4918b0116e2d6d8de464d6882921439926817981a56c1bb1eb4ae3"
+    },
+    {
+      "path": "ue_framework/methods/tausb_universal.py",
+      "expected": "d62757e31c5832c675a525889d71589e1bb2621c2c7d05693eb39f0f5dff000a",
+      "actual": "d62757e31c5832c675a525889d71589e1bb2621c2c7d05693eb39f0f5dff000a"
+    },
+    {
+      "path": "ue_framework/methods/semantic_coordinates.py",
+      "expected": "54798bb76dec96a6e160690ecbb3729e574169b00dd8439a5a4ae5c37cd38e05",
+      "actual": "54798bb76dec96a6e160690ecbb3729e574169b00dd8439a5a4ae5c37cd38e05"
+    },
+    {
+      "path": "ue_framework/methods/__init__.py",
+      "expected": "cff976374a3ce375a8bf05d008dc3acde8c28ad778ed602908c6aa1d2abd5b90",
+      "actual": "cff976374a3ce375a8bf05d008dc3acde8c28ad778ed602908c6aa1d2abd5b90"
+    },
+    {
+      "path": "ue_framework/methods/rem.py",
+      "expected": "95c8ce13d04ee541441cdd392ad6c8ad8b4fdd6596af909a626f23447269fd06",
+      "actual": "95c8ce13d04ee541441cdd392ad6c8ad8b4fdd6596af909a626f23447269fd06"
+    },
+    {
+      "path": "ue_framework/methods/base.py",
+      "expected": "ed267de51c401e9b4b6206fcd335c2afcffba1bd738f5e3fc7fbb791892801c0",
+      "actual": "ed267de51c401e9b4b6206fcd335c2afcffba1bd738f5e3fc7fbb791892801c0"
+    },
+    {
+      "path": "ue_framework/methods/b2_adaptive.py",
+      "expected": "429348b91ec4909b8806aa1b25daa81dc6adbb4318462f42b82167e5639ae145",
+      "actual": "429348b91ec4909b8806aa1b25daa81dc6adbb4318462f42b82167e5639ae145"
+    },
+    {
+      "path": "ue_framework/methods/legacy_kproto_ret.py",
+      "expected": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb",
+      "actual": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb"
+    },
+    {
+      "path": "ue_framework/methods/alce_acgt.py",
+      "expected": "58fb51fad7810cb5a39570c0943f43674fe202e5fc07e81ac08f0f1419f76552",
+      "actual": "58fb51fad7810cb5a39570c0943f43674fe202e5fc07e81ac08f0f1419f76552"
+    },
+    {
+      "path": "ue_framework/methods/em.py",
+      "expected": "e32a40e26ac2fa7c1c07194f82892291b47eda3ebf1ddc2484dba9e1dda9db3c",
+      "actual": "e32a40e26ac2fa7c1c07194f82892291b47eda3ebf1ddc2484dba9e1dda9db3c"
+    },
+    {
+      "path": "ue_framework/methods/ours.py",
+      "expected": "c3bb9c89e14456f82d023d191a2f37887090ed70b5f2e6d266c7b0545786be87",
+      "actual": "c3bb9c89e14456f82d023d191a2f37887090ed70b5f2e6d266c7b0545786be87"
+    },
+    {
+      "path": "ue_framework/methods/orth_reference_design.py",
+      "expected": "a41be2a269f40ef868bdfb978494e1acdff5efb4572a341721ceba25fb864e42",
+      "actual": "a41be2a269f40ef868bdfb978494e1acdff5efb4572a341721ceba25fb864e42"
+    },
+    {
+      "path": "ue_framework/methods/shadow_tal.py",
+      "expected": "b7240e2149c6a1b486e53aa65b74be6aceb189e721961448918bad8bf02f1a82",
+      "actual": "b7240e2149c6a1b486e53aa65b74be6aceb189e721961448918bad8bf02f1a82"
+    },
+    {
+      "path": "ue_framework/methods/safebg.py",
+      "expected": "9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+      "actual": "9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5"
+    },
+    {
+      "path": "ue_framework/methods/fourier.py",
+      "expected": "a349b0b0b24fe92b34018fcd12fad0d4e95bb611f2dbf8549b8dfd7765da5884",
+      "actual": "a349b0b0b24fe92b34018fcd12fad0d4e95bb611f2dbf8549b8dfd7765da5884"
+    },
+    {
+      "path": "ue_framework/methods/alce_losses.py",
+      "expected": "59cdf7177a72b19289aeff1b5ec17f749ec47b17b26f0c0053bc0fe96ede2752",
+      "actual": "59cdf7177a72b19289aeff1b5ec17f749ec47b17b26f0c0053bc0fe96ede2752"
+    },
+    {
+      "path": "ue_framework/methods/b2_semantic.py",
+      "expected": "f890a83c71164e570535508a553dc683b016bc0a4c519335f9e202c1d7ec28e8",
+      "actual": "f890a83c71164e570535508a553dc683b016bc0a4c519335f9e202c1d7ec28e8"
+    },
+    {
+      "path": "ue_framework/methods/alce_metrics.py",
+      "expected": "3ef71d71df9107588bdca9e08dd4b55b9aa3907e8f44a597d6a46f51d678f9b1",
+      "actual": "3ef71d71df9107588bdca9e08dd4b55b9aa3907e8f44a597d6a46f51d678f9b1"
+    },
+    {
+      "path": "ue_framework/methods/factory.py",
+      "expected": "ea477b8628d304b48895510a601ee2f90d62b68d4b5f229595c236a6c2da9340",
+      "actual": "ea477b8628d304b48895510a601ee2f90d62b68d4b5f229595c236a6c2da9340"
+    },
+    {
+      "path": "ue_framework/methods/adaptive_learner.py",
+      "expected": "02cd607b8c3e389c639bbf82859952dfb5c9528524e6ebc18a373860e7954518",
+      "actual": "02cd607b8c3e389c639bbf82859952dfb5c9528524e6ebc18a373860e7954518"
+    },
+    {
+      "path": "configs/voc_yolov8n_20cls.yaml",
+      "expected": "ce7ae30a91e838a1d53fd4773afc3b56454591701e3f83d37f404cc946af10a2",
+      "actual": "ce7ae30a91e838a1d53fd4773afc3b56454591701e3f83d37f404cc946af10a2"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to_safe_soft05_eps8_seed0_20261004.yaml",
+      "expected": "80cffe012aa6bfefcbe66f7c8e880e680da1c1885f5d0a7fcb01a77be6697894",
+      "actual": "80cffe012aa6bfefcbe66f7c8e880e680da1c1885f5d0a7fcb01a77be6697894"
+    },
+    {
+      "path": "scripts/train_noise_once.py",
+      "expected": "c5fd3e47b5967b1f3c14c93252527e58556ae671bedfbb23f05c57954c00f26a",
+      "actual": "c5fd3e47b5967b1f3c14c93252527e58556ae671bedfbb23f05c57954c00f26a"
+    },
+    {
+      "path": "scripts/materialize_noise_once.py",
+      "expected": "4f8c848ddb2a5bd8b02662f1ec9478646b2dac9b76f701d438e593a35fc453c1",
+      "actual": "4f8c848ddb2a5bd8b02662f1ec9478646b2dac9b76f701d438e593a35fc453c1"
+    },
+    {
+      "path": "scripts/run_isolated_victim.py",
+      "expected": "d967338805bc43c3b81be60f2ae1929ae0d83997f1df414b91f69d8bb36139aa",
+      "actual": "d967338805bc43c3b81be60f2ae1929ae0d83997f1df414b91f69d8bb36139aa"
+    },
+    {
+      "path": "scripts/evaluate_b2_to_safebg_checkpoints.py",
+      "expected": "69dc77c261029598188e85d5cd79c8393c1346c09c77c6822bb6aa48f2f22c0c",
+      "actual": "69dc77c261029598188e85d5cd79c8393c1346c09c77c6822bb6aa48f2f22c0c"
+    }
+  ],
+  "checkout_byte_mismatches": [],
+  "S5_config_hash": null,
+  "S5_checkpoint_hash": null,
+  "S5_AMP_status": "NOT_RUN; fixed native S4 AMP implementation retained",
+  "S5_optimizer_updates": 0,
+  "S5_model_forwards": 0
+}

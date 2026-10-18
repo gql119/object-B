@@ -1,0 +1,92 @@
+{
+  "schema": "s5.source-derived-retention-cpu-audit.v1",
+  "status": "PASS_CPU_SYNTHETIC_ONLY",
+  "torch_version": "2.14.0+cpu",
+  "device": "cpu",
+  "seed": 0,
+  "sources": [
+    {
+      "path": "ue_framework\\methods\\legacy_kproto_ret.py",
+      "function": "non_target_retention_loss",
+      "line": 28,
+      "source_sha256": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb"
+    },
+    {
+      "path": "ue_framework\\methods\\alce_losses.py",
+      "function": "masked_prototype",
+      "line": 8,
+      "source_sha256": "59cdf7177a72b19289aeff1b5ec17f749ec47b17b26f0c0053bc0fe96ede2752"
+    }
+  ],
+  "cases": [
+    {
+      "name": "unequal_counts",
+      "valid_rois": 4,
+      "absent_non_target_classes": 17,
+      "invalid_rois": 0,
+      "scalar_absolute_difference": 0.0,
+      "gradient_max_absolute_difference": 0.0,
+      "baseline_correction_noop_max_difference": 0.0,
+      "pi_sum": 1.0,
+      "naive_equal_class_mean_difference": 6.898888386785984e-06,
+      "clean_reference_gradient": "detached",
+      "finite": true
+    },
+    {
+      "name": "cross_and_same_class_overlap",
+      "valid_rois": 4,
+      "absent_non_target_classes": 16,
+      "invalid_rois": 0,
+      "scalar_absolute_difference": 4.547473508864641e-13,
+      "gradient_max_absolute_difference": 0.0,
+      "baseline_correction_noop_max_difference": 0.0,
+      "pi_sum": 1.0,
+      "naive_equal_class_mean_difference": 1.226544554810971e-07,
+      "clean_reference_gradient": "detached",
+      "finite": true
+    },
+    {
+      "name": "empty_and_subpixel_roi",
+      "valid_rois": 1,
+      "absent_non_target_classes": 18,
+      "invalid_rois": 2,
+      "scalar_absolute_difference": 0.0,
+      "gradient_max_absolute_difference": 0.0,
+      "baseline_correction_noop_max_difference": 0.0,
+      "pi_sum": 1.0,
+      "naive_equal_class_mean_difference": 0.0,
+      "clean_reference_gradient": "detached",
+      "finite": true
+    },
+    {
+      "name": "all_19_non_target_classes",
+      "valid_rois": 19,
+      "absent_non_target_classes": 0,
+      "invalid_rois": 0,
+      "scalar_absolute_difference": 3.637978807091713e-12,
+      "gradient_max_absolute_difference": 0.0,
+      "baseline_correction_noop_max_difference": 0.0,
+      "pi_sum": 1.0,
+      "naive_equal_class_mean_difference": 0.0,
+      "clean_reference_gradient": "detached",
+      "finite": true
+    },
+    {
+      "name": "no_non_target_roi",
+      "valid_rois": 0,
+      "absent_non_target_classes": 19,
+      "invalid_rois": 0,
+      "scalar_absolute_difference": 0.0,
+      "gradient_max_absolute_difference": 0.0,
+      "baseline_correction_noop_max_difference": 0.0,
+      "pi_sum": 0.0,
+      "clean_reference_gradient": "detached",
+      "finite": true
+    }
+  ],
+  "model_forwards": 0,
+  "optimizer_updates": 0,
+  "real_TRAIN32_equivalence": "NOT_RUN",
+  "canonical_S4_loss_files_modified": false,
+  "finding": "instance-count-weighted class decomposition preserves the existing retention definition; equal class weighting generally does not"
+}

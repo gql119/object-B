@@ -1,0 +1,76 @@
+{
+  "schema": "s5.audit-artifact-manifest.v1",
+  "stage": "SOURCE_AUDIT_ONLY",
+  "formal_run_complete": false,
+  "parent_code_commit": "686eaacad069aac30f7fc7af4f10bebdeec1c390",
+  "authorization_sha256": "3f3521e3b82be7765ae35aa07850a01cbc12c8caf7c952233609f0e8f067947d",
+  "S5_config_hash": null,
+  "S5_checkpoint_hash": null,
+  "files": [
+    {
+      "path": "docs/S5_CUP_S4/.gitattributes",
+      "bytes": 26,
+      "sha256": "0c92737cbce803f209cf6ea6d6221c5947ef04e7825c2b819c0d539a92c5ff20"
+    },
+    {
+      "path": "docs/S5_CUP_S4/CUP_CLASSWISE_RETENTION_AUDIT.csv",
+      "bytes": 2806,
+      "sha256": "e2c4158a8cf36438c5afe802650d3822b65810dbe077afe16a6fd5cb7fb01232"
+    },
+    {
+      "path": "docs/S5_CUP_S4/CUP_S4_CHANGELOG.md",
+      "bytes": 1145,
+      "sha256": "23e64d41cea14a411a04bdc9261d86a162a0f19035cada795cd7d78fe5986f97"
+    },
+    {
+      "path": "docs/S5_CUP_S4/CUP_S4_DESIGN.md",
+      "bytes": 4508,
+      "sha256": "64a2390307d90c2f4360132ce2e29db6756b930bebe7c80d61bb686ea58187a5"
+    },
+    {
+      "path": "docs/S5_CUP_S4/S3_CUP_DEPENDENCY_AUDIT.md",
+      "bytes": 3911,
+      "sha256": "9f014b2b06fcbd81651c056ed4d4c11fe24a71657dd9641bdb59c845deb1a6be"
+    },
+    {
+      "path": "docs/S5_CUP_S4/S5_5STEP_SMOKE.md",
+      "bytes": 1122,
+      "sha256": "e453343371ed6e9455bfe90369437b014128b1e976c7a52b7b21e4eba5dffa01"
+    },
+    {
+      "path": "docs/S5_CUP_S4/S5_CURRENT_STATE.json",
+      "bytes": 2127,
+      "sha256": "98bf756f91103a26e05e269e25d0906a43a54c61ff5e08f37540acac3db1dd6b"
+    },
+    {
+      "path": "docs/S5_CUP_S4/S5_PARENT_FIDELITY.md",
+      "bytes": 6254,
+      "sha256": "30de5afcd41553d513fd5f76070cba789e3e01830d563aa1f6b29d03b8290da4"
+    },
+    {
+      "path": "docs/S5_CUP_S4/S5_RETENTION_CPU_AUDIT.json",
+      "bytes": 3124,
+      "sha256": "899bf17c7325ff180355c4089565d41c3c81ffc37c1a98ccfa0621a427eca870"
+    },
+    {
+      "path": "docs/S5_CUP_S4/S5_SOURCE_AUDIT_PROVENANCE.json",
+      "bytes": 18669,
+      "sha256": "e3ca2e5aba5779666cd9c64792406ea8af363e7f488b487c8a6ca2f7fb400db4"
+    },
+    {
+      "path": "docs/S5_CUP_S4/USER_TASK_SOURCE.md",
+      "bytes": 14000,
+      "sha256": "3f3521e3b82be7765ae35aa07850a01cbc12c8caf7c952233609f0e8f067947d"
+    },
+    {
+      "path": "research_workspace/STATE.md",
+      "bytes": 8758,
+      "sha256": "80f893f6566ad9b8b585e5c9f7408f23bb799f29c297e9f3328e098ed05c9c62"
+    },
+    {
+      "path": "scripts/audit_s5_parent_retention.py",
+      "bytes": 7072,
+      "sha256": "265a4c8cbc7b5f0fa0fe40648b5dc6e478aa6ad7fb5a8db97bcd8e0885e9d6b9"
+    }
+  ]
+}
