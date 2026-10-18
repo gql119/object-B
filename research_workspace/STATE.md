@@ -1,7 +1,3 @@
-# S4-TFSS-Utility 正式任务状态
+# S4 Victim AMP compatibility recovery — 2026-10-18
 
-2026-10-17 direct human attachment ffdefd79 formally authorizes S4 full24epoch/9144 noise, fullVOC audit, random-initYOLOv8n200, last/best eval and final small-results publication. No further launch confirmation required inside gates.
-
-State IMPLEMENTING_PRODUCTION_WIRING / NOT_LAUNCHED. New branch codex/s4-tfss-utility-formal-20261017 from7cdcb. Parent S0 exact45 bytes, historical runtimeGitSHA unknown. S0-S3 and priorTFSS runs immutable. Current params eta_U.85, original8/4/0, allS0losses/TSFL/SafeBG/Adaptive unchanged.
-
-Next: current-source local checks -> production GPU smoke including actualcanonical/noop/update and resume -> one new production scientific review -> formal launch exactlyonce when resources pass. Retainall failures/checkpoints; no newmethods/seed/tuning.
+Latest human task explicitly authorizes native AMP safety repair, full existing dataset re-audit, CPU contracts, true CUDA victim smoke, isolated overflow test, and a fresh random-init200epoch victim-only recovery. Source docs/S4_AMP_RECOVERY_20261018/USER_TASK_SOURCE.md. Original noise/data and failedRunID remain read-only. No additional review, noise regeneration, hyperparameter/environment change or extra method/seed. Current state execution/S4_CURRENT_STATE.json.

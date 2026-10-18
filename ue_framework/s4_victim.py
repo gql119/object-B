@@ -22,11 +22,8 @@ class S4VictimTrainer(DetectionTrainer):
             if model is not None and not all(torch.isfinite(v).all() for v in model.state_dict().values() if torch.is_tensor(v)):
                 raise FloatingPointError('Nonfinite victim/EMA model; no repair or checkpoint sanitization')
 
-    def optimizer_step(self):
-        self._finite()
-        if not all(torch.isfinite(p.grad).all() for p in self.model.parameters() if p.grad is not None):
-            raise FloatingPointError('Nonfinite victim gradient; stop before update')
-        return super().optimizer_step()
+    # optimizer_step is inherited verbatim. Native GradScaler owns overflow
+    # detection, skipped SGD updates, backoff, clipping and gradient clearing.
 
     def _handle_nan_recovery(self,epoch):
         self._finite()
@@ -45,7 +42,9 @@ class S4VictimTrainer(DetectionTrainer):
         return saved
 
 
-def attach_safety_callbacks(model):
+def attach_safety_callbacks(model, *, amp_log_dir=None, debug_hashes=False):
+    from .s4_amp_observer import attach_amp_observer
+    holder=attach_amp_observer(model,amp_log_dir,enforce=True,debug_hashes=debug_hashes)
     def batch_start(t):
         if t.args.batch!=36 or t.batch_size!=36:
             raise ValueError('Matched victim batch changed (including native OOM retry); stop')
@@ -67,3 +66,4 @@ def attach_safety_callbacks(model):
             reason='worker/prefetch RNG exact continuation needs verification before any interrupted victim recovery')))
     model.add_callback('on_train_batch_start',batch_start)
     model.add_callback('on_fit_epoch_end',snapshot)
+    return holder

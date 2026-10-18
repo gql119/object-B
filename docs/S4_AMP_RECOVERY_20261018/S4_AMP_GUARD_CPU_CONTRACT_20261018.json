@@ -1,0 +1,49 @@
+{
+  "observed_at_utc": "2026-10-18T04:10:45.905221+00:00",
+  "run_id": "s4_tfss_utility_seed0_20261017_v1",
+  "remote_files_changed": false,
+  "report": {
+    "CUDA_model_or_data_loaded": false,
+    "actual_args_yaml_amp_lines": [
+      "batch: 36",
+      "workers: 16",
+      "seed: 0",
+      "amp: true"
+    ],
+    "amp_log_lines": [
+      "\u001b[34m\u001b[1mengine/trainer: \u001b[0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=36, bgr=0.0, box=7.5, cache=True, cfg=None, channels_last=None, classes=None, close_mosaic=100, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=True, cutmix=0.0, data=/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/outputs/s4_tfss_utility_seed0_20261017_v1/train_data.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=200, erasing=0.4, exist_ok=True, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, keras=False, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/repos/s4_tfss_utility_seed0_20261017_v1/configs/voc_yolov8n_20cls.yaml, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=victim, nbs=64, nms=None, opset=None, optimize=False, optimizer=SGD, overlap_mask=True, patience=0, perspective=0.0, plots=True, pose=12.0, pretrained=False, profile=False, project=/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/outputs/s4_tfss_utility_seed0_20261017_v1/victim_run, quantize=None, rect=False, resume=False, retina_mas",
+      "\u001b[34m\u001b[1mAMP: \u001b[0mrunning Automatic Mixed Precision (AMP) checks...",
+      "\u001b[34m\u001b[1mAMP: \u001b[0mdownloading yolo26n.pt for AMP checks (one-time, not used for training)...",
+      "WARNING ⚠️ \u001b[34m\u001b[1mAMP: \u001b[0mchecks skipped. Offline and unable to download YOLO26n for AMP checks. Setting 'amp=True'. If you experience zero-mAP or NaN losses you can disable AMP with amp=False."
+    ],
+    "finite_case": {
+      "existing_S4_guard_would_raise": false,
+      "loss_finite": true,
+      "model_finite_after": true,
+      "model_finite_before": true,
+      "native_found_inf": 0.0,
+      "native_optimizer_updates": 1,
+      "parameter_after": 0.8999999761581421,
+      "parameter_before": 1.0,
+      "scale_after": 65536.0,
+      "scale_before": 65536.0,
+      "scaled_gradient": "65536.0"
+    },
+    "kind": "synthetic_CPU_scalar_contract_not_actual_batch_replay",
+    "scaled_overflow_case": {
+      "existing_S4_guard_would_raise": true,
+      "loss_finite": true,
+      "model_finite_after": true,
+      "model_finite_before": true,
+      "native_found_inf": 1.0,
+      "native_optimizer_updates": 0,
+      "parameter_after": 1.0,
+      "parameter_before": 1.0,
+      "scale_after": 32768.0,
+      "scale_before": 65536.0,
+      "scaled_gradient": "inf"
+    },
+    "threads": 1,
+    "torch_version": "2.7.1+cu128"
+  }
+}
