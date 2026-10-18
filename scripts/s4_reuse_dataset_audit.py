@@ -27,6 +27,7 @@ def main():
     out.mkdir(parents=True,exist_ok=False)
     os.environ.update(CUDA_VISIBLE_DEVICES='',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1')
     import numpy as np
+    import cv2
     import torch
     import ultralytics
     from ue_framework.config import load_config
@@ -35,6 +36,7 @@ def main():
     from ue_framework.methods.legacy_kproto_ret import _rectangle
     from scripts.audit_safe_bg_ablation_fingerprint_20261004 import split_fingerprint
     torch.set_num_threads(1)
+    cv2.setNumThreads(1)
     started=time.monotonic();parent=Path(config['parent_output']);data=Path(config['poisoned_dataset_path'])
     lockpath=ROOT/'docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json';lock=json.loads(lockpath.read_text())
     assert sha(lockpath)==config['frozen_s4_config_sha256']

@@ -63,6 +63,7 @@ class AMPContracts(unittest.TestCase):
         self.assertEqual(t.scaler.get_scale(),32768.)
         self.assertTrue(all(p.grad is None for p in t.model.parameters()))
         self.assertIsNone(o.rows[-1]['post_native_clip_unscaled_gradient_norm'])
+        self.assertTrue(o.rows[-1]['parameters_unchanged_on_skip'])
         step(t,o)
         self.assertEqual(o.updates,1);self.assertEqual(o.consecutive_skips,0)
 

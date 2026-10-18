@@ -1,0 +1,25 @@
+{
+  "state": "PREPARED_NOT_LAUNCHED",
+  "parent_noise_run_id": "s4_tfss_utility_seed0_20261017_v1",
+  "poisoned_dataset_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/outputs/s4_tfss_utility_seed0_20261017_v1/dataset",
+  "poisoned_dataset_manifest_sha": "194d05cba8674c5699f83ad70178e93d6df7389a54fb0914d140342607598d36",
+  "noise_checkpoint_expected_sha": "4413e45aa9c448bb768cac50e0ae40b5b0a1a580e38ff37cf66023bdab07c6e5",
+  "victim_config_sha": "5f9975d6cb91d7ad875b681a6eb13719fd9957953d9267907c80fb669293c18c",
+  "frozen_original_S4_config_sha": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+  "victim_source_sha": "378dbfdfd0271414339ebbf096f71c16e93fb358831df6ae83ec3d38c6c9f81a",
+  "repair_commit_sha": "12edf9f6d186fcd7c050b37d05384b42eab0050f",
+  "source_file_hashes": {
+    "ue_framework/s4_victim.py": "378dbfdfd0271414339ebbf096f71c16e93fb358831df6ae83ec3d38c6c9f81a",
+    "ue_framework/s4_amp_observer.py": "8f0fd915eb6ba4d99840916f3e325f147cb6073566effc2492063abba39f2cca",
+    "scripts/s4_reuse_dataset_audit.py": "f653cb229a8a8da6b0f5018d958477c33967dfe2bc35ba3b245c7d6dfe5e7aea",
+    "scripts/s4_victim_recovery.py": "72c665cc44a61660870590029c2d44796b74e83a9f51e978fd013781b12c5303",
+    "tests/test_s4_amp_observer.py": "864fbfb96d2b81be19aa58362396739c80e9557a82995c1a9fd90d13ac1a7c7a"
+  },
+  "runtime_candidate_commit": "NOT_LAUNCHED; generatedRunSpec binds exactHEAD",
+  "original_failure_report": "docs/S4_AMP_RECOVERY_20261018/AMP_FAILURE_ROOT_CAUSE.md",
+  "recovery_reason": "Restore unchanged native AMP semantics; failed originalVictim completed0updates. Fresh seed0 random initialization, not exact interrupted-batch resume.",
+  "authorization_sha": "a4c8baf794c08ad363747bcd31b8685b578bfe15a4f3feb98a716609e094c48a",
+  "current_remote_environment_verification": "NOT_RUN_network_unreachable",
+  "dataset_fresh_audit": "NOT_RUN_network_unreachable",
+  "no_noise_regeneration": true
+}

@@ -1,0 +1,23 @@
+{
+  "S0_original45": "byte_exact",
+  "unchanged_S4_runtime_git_blobs": {
+    "ue_framework/methods/s4_optimization.py": "6cca2abb795109467ea13632834f607c0e32653aa6a1459fdd0dfaf116e9323d",
+    "ue_framework/methods/s4_tfss.py": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d",
+    "ue_framework/methods/tfss_clean_maps.py": "6730d44911a4e698862c5c73e03e9d4487c335ace71b960b7fc79bd450132f39",
+    "ue_framework/methods/tfss_nt_sensitivity.py": "e1fa911ea651259926972125a71565d3fe0080fe508f68f1f13b2f670d85a73d",
+    "ue_framework/methods/tfss_spatial.py": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd",
+    "docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec"
+  },
+  "working_copy_EOL_only_differences_vs_old_worktree": [
+    "ue_framework/methods/s4_optimization.py"
+  ],
+  "new_source_working_copy_sha256": {
+    "ue_framework/s4_victim.py": "378dbfdfd0271414339ebbf096f71c16e93fb358831df6ae83ec3d38c6c9f81a",
+    "ue_framework/s4_amp_observer.py": "8f0fd915eb6ba4d99840916f3e325f147cb6073566effc2492063abba39f2cca",
+    "scripts/s4_reuse_dataset_audit.py": "f653cb229a8a8da6b0f5018d958477c33967dfe2bc35ba3b245c7d6dfe5e7aea",
+    "scripts/s4_victim_recovery.py": "72c665cc44a61660870590029c2d44796b74e83a9f51e978fd013781b12c5303",
+    "tests/test_s4_amp_observer.py": "864fbfb96d2b81be19aa58362396739c80e9557a82995c1a9fd90d13ac1a7c7a"
+  },
+  "AST_passed": 5,
+  "optimizer_override_present": false
+}

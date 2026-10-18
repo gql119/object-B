@@ -1,0 +1,18 @@
+{
+  "state": "WAIT_FOR_RRCTL_CONNECTION",
+  "updated_at_utc": "2026-10-18T05:38:25.451191+00:00",
+  "local_source_repair": "IMPLEMENTED_CPU_TESTED",
+  "CPU_tests": 7,
+  "source45": "exact",
+  "frozen_S4_config": "unchanged",
+  "resource_query_failures": 3,
+  "last_error": "RRCTL transport rc255: connect to10.15.119.134 port22: Connection timed out",
+  "fresh_dataset_audit": "NOT_RUN",
+  "REAL_S4_VICTIM_BATCH_TEST": "NOT_RUN",
+  "SYNTHETIC_OVERFLOW_TEST": "NOT_RUN",
+  "formal_recovery": "NOT_LAUNCHED",
+  "victim_epochs_completed": 0,
+  "final_AP": "NOT_RUN",
+  "full_recovery_authorized": true,
+  "remote_mutation": false
+}

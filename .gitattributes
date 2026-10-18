@@ -29,3 +29,10 @@ scripts/run_s4_tfss_pipeline.py text eol=lf
 scripts/s4_production_smoke.py text eol=lf
 ue_framework/methods/s4_*.py text eol=lf
 ue_framework/s4_victim.py text eol=lf
+
+# Exact recovery authorization, config and evidence identities across hosts.
+docs/S4_AMP_RECOVERY_20261018/** -text whitespace=cr-at-eol
+ue_framework/s4_amp_observer.py text eol=lf
+scripts/s4_reuse_dataset_audit.py text eol=lf
+scripts/s4_victim_recovery.py text eol=lf
+tests/test_s4_amp_observer.py text eol=lf
