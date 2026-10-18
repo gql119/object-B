@@ -57,6 +57,15 @@ def check_admission(cfg):
     audit=Path(cfg['remote_root'])/'outputs'/cfg['audit_run_id']/'dataset_reuse_audit.json'
     result=json.loads(audit.read_text());assert result['state']=='passed'
     assert result['poisoned_dataset_manifest_sha256']==cfg['parent_materialization_manifest_sha256']
+    assert result['audit_script_sha256']==sha(ROOT/'scripts/s4_reuse_dataset_audit.py')
+    for rel,expected in json.loads((ROOT/'docs/tfss/S0_CANONICAL_SOURCE_SHA256.json').read_text()).items():
+        assert sha(ROOT/rel)==expected
+    import importlib.metadata
+    environment=json.loads((audit.parent/'runtime_and_S0_provenance.json').read_text())
+    assert importlib.metadata.version('torch')==environment['torch']
+    assert importlib.metadata.version('ultralytics')==environment['ultralytics']
+    native=Path(sys.prefix)/'lib/python3.11/site-packages/ultralytics/engine/trainer.py'
+    assert sha(native)==environment['native_trainer_sha256']
     return {'audit_path':str(audit),'audit_sha256':sha(audit),'audit':result}
 
 class SmokeBoundary(Exception):pass
@@ -174,6 +183,8 @@ def main():
         assert out.name==cfg['formal_run_id']
         smoke=Path(cfg['remote_root'])/'outputs'/cfg['smoke_run_id']/'smoke_summary.json'
         assert json.loads(smoke.read_text())['state']=='passed'
+        smoke_status=json.loads((smoke.parent/'pipeline_status.json').read_text())
+        assert smoke_status['state']=='complete' and smoke_status['source_commit']==commit
         # Re-read every retained image/label hash immediately before formal use.
         manifest=json.loads((Path(cfg['parent_output'])/'materialization_manifest.json').read_text())
         for row in manifest:

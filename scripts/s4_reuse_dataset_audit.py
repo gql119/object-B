@@ -116,7 +116,7 @@ def main():
              'historical_source_limit':'contemporaneous installed trainer source not retained; checkpoint version and archived launcher/protocol are provenance'}
     assert runtime['torch']==provenance['environment']['torch'] and runtime['ultralytics']==provenance['environment']['ultralytics']
     write(out/'runtime_and_S0_provenance.json',runtime)
-    result={'state':'passed','read_only_input':True,'no_noise_regeneration':True,'GPU_forward_calls':0,'source45_passed':True,
+    result={'state':'passed','audit_script_sha256':sha(Path(__file__)),'read_only_input':True,'no_noise_regeneration':True,'GPU_forward_calls':0,'source45_passed':True,
             'train':16551,'val':4952,'target_images':targets,'changed_Person_GT':changed,'non_target_images_byte_identical':non_targets,
             'labels_byte_identical':True,'clean_validation_byte_identical':True,'output_manifest_hashes_verified':True,
             'duplicate_or_missing_IDs':0,'outside_max_byte':outside_max,'global_max_byte':global_max,'overlap_max_byte':overlap_max,
