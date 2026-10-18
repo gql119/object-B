@@ -31,6 +31,27 @@ def dump(path,value):
     Path(path).write_text(json.dumps(value,indent=2,allow_nan=False))
 
 
+def comparable_metric_delta(candidate, baseline):
+    """Return only numeric aggregate metrics present in both historical schemas.
+
+    Older S0/S1/S2/S3 summaries retain per-class Recall/Precision and target/NT
+    values, but do not define Recall_all or Precision_all. Missing historical
+    aggregates must stay unavailable instead of aborting report assembly.
+    """
+    prefixes=('mAP','Recall_','Precision_')
+    delta={}
+    unavailable=[]
+    for key,value in candidate.items():
+        if not key.startswith(prefixes) or not isinstance(value,(int,float)) or isinstance(value,bool):
+            continue
+        old=baseline.get(key)
+        if isinstance(old,(int,float)) and not isinstance(old,bool):
+            delta[key]=value-old
+        else:
+            unavailable.append(key)
+    return delta,sorted(unavailable)
+
+
 def ram_available():
     fields={line.split(':')[0]:line.split(':')[1].split()[0] for line in Path('/proc/meminfo').read_text().splitlines()}
     return int(fields['MemAvailable'])*1024
@@ -367,9 +388,12 @@ def train_evaluate(cfg,out,data,provenance,lock):
     result=metrics['S4'];target_ok=result['mAP50_target']<=lock['success_gate']['target_max_literal']
     utility_ok=result['mAP50_non_target']>metrics['S0']['mAP50_non_target']
     category='SUCCESS_CANDIDATE' if target_ok and utility_ok else ('TARGET_REGRESSION' if not target_ok else 'UTILITY_NOT_IMPROVED')
-    delta={name:{k:result[k]-metrics[name][k] for k in result if k.startswith(('mAP','Recall_','Precision_')) and isinstance(result[k],(float,int))} for name in ('S0','S1','S2','S3')}
+    delta={};delta_unavailable={}
+    for name in ('S0','S1','S2','S3'):
+        delta[name],delta_unavailable[name]=comparable_metric_delta(result,metrics[name])
     dump(out/'comparison.json',dict(state='complete',method='S4-TFSS-Utility',parent='S0',primary='last.pt@200',secondary='best.pt',
-        metrics=metrics,delta=delta,outcome=category,single_seed_not_significance=True,causal_mechanism_established=False,
+        metrics=metrics,delta=delta,delta_unavailable_historical_aggregates=delta_unavailable,
+        outcome=category,single_seed_not_significance=True,causal_mechanism_established=False,
         person_to_dog=direct,person_to_dog_definition='new predeclared fixed-threshold GT-overlap diagnostic, not native AP/causal migration'))
     with (out/'voc20_comparison.csv').open('w',newline='') as f:
         rows=[]

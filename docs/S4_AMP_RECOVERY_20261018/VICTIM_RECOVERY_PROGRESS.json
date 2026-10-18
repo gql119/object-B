@@ -1,18 +1,214 @@
 {
-  "state": "WAIT_FOR_RRCTL_CONNECTION",
-  "updated_at_utc": "2026-10-18T05:38:25.451191+00:00",
-  "local_source_repair": "IMPLEMENTED_CPU_TESTED",
-  "CPU_tests": 7,
+  "state": "RESULTS_RECOVERED_POST_REPORT_ASSEMBLY_FAILURE",
+  "updated_at_utc": "2026-10-18T13:05:32.113615Z",
+  "local_source_repair": "COMMITTED_CPU_TESTED",
+  "CPU_tests": 8,
   "source45": "exact",
   "frozen_S4_config": "unchanged",
   "resource_query_failures": 3,
-  "last_error": "RRCTL transport rc255: connect to10.15.119.134 port22: Connection timed out",
-  "fresh_dataset_audit": "NOT_RUN",
-  "REAL_S4_VICTIM_BATCH_TEST": "NOT_RUN",
-  "SYNTHETIC_OVERFLOW_TEST": "NOT_RUN",
-  "formal_recovery": "NOT_LAUNCHED",
-  "victim_epochs_completed": 0,
-  "final_AP": "NOT_RUN",
+  "last_error": "KeyError('Recall_all') during comparison assembly; historical S0-S3 aggregate schema omits Recall_all and Precision_all",
+  "fresh_dataset_audit": "PASS",
+  "REAL_S4_VICTIM_BATCH_TEST": "PASS; 16 actual S4 batches, 10 successful updates, 6 native scaler skips",
+  "SYNTHETIC_OVERFLOW_TEST": "PASS; forced overflow followed by finite recovered update",
+  "formal_recovery": "FAILED_EXIT1_AFTER_200_EPOCHS_AND_EVALUATION; report reconstructed locally from hash-verified RRCTL artifacts",
+  "victim_epochs_completed": 200,
+  "final_AP": "COMPLETED; last.pt@200 primary and best.pt secondary evaluated; full S0-S3/VOC20 report reconstructed locally",
   "full_recovery_authorized": true,
-  "remote_mutation": false
+  "remote_mutation": true,
+  "authorization_sha256": "a4c8baf794c08ad363747bcd31b8685b578bfe15a4f3feb98a716609e094c48a",
+  "planned_audit_run_id": "s4_dataset_reuse_cpu_audit_seed0_20261018_v1",
+  "planned_smoke_run_id": "s4_victim_amp_real_smoke_seed0_20261018_v2",
+  "planned_formal_run_id": "s4_tfss_utility_seed0_20261017_v1_victim_recovery01",
+  "next": "No restart. Use the recovered comparison report; original RRCTL terminal state remains failed.",
+  "VPN_connection": "RESTORED_RRCTL_VERIFIED",
+  "resource_gate": "Three-window audit passed 2026-10-18T06:19:28Z and RRCTL final preflight passed immediately before ready/launch; unique CPU-only data audit launched once.",
+  "resource_evidence": "execution/S4_RESOURCE_AUDIT_POLICY_CHANGE_20261018T082139Z.json",
+  "source_commit": "ab626917f20917e58cf30033ac99df00938cb561",
+  "last_resource_observation": {
+    "MemAvailable_bytes": 124952137728,
+    "cgroup_cpu_busy_percent_of_effective_capacity": 3.76,
+    "cgroup_cpu_quota_cpus": null,
+    "cpu_affinity_cpus": 32,
+    "cpu_busy_percent_affinity_sample": 3.72,
+    "cpu_busy_percent_effective_sample": 3.76,
+    "cpu_busy_percent_host_sample": 3.75,
+    "cpu_headroom_logical_cores": 30.798,
+    "disk": {
+      "free_bytes": 1382949183488,
+      "path": "/project/guoqinglong"
+    },
+    "effective_cpu_capacity_cpus": 32.0,
+    "gpu": {
+      "compute_processes_present": true,
+      "compute_processes_raw": "1651450, python, 26728",
+      "device_raw": "NVIDIA RTX A6000, 46068, 27035, 18430, 100"
+    },
+    "io_wait_percent_affinity_sample": 0.03,
+    "io_wait_percent_host_sample": 0.02,
+    "io_wait_percent_sample": 0.03,
+    "loadavg_1_5_15": [
+      0.4638671875,
+      0.6572265625,
+      0.47509765625
+    ],
+    "logical_cpus": 32,
+    "mem": {
+      "MemAvailable_kib": 122023572,
+      "MemFree_kib": 28861716,
+      "MemTotal_kib": 131118368,
+      "SwapCached_kib": 27012,
+      "SwapFree_kib": 7619372,
+      "SwapTotal_kib": 8388604
+    },
+    "passed": false,
+    "paths_absent": {
+      "control_root": true,
+      "output_root": true,
+      "repo_root": true,
+      "stage_root": true
+    },
+    "processes": {
+      "d_state_count": 0,
+      "d_state_processes": [],
+      "foreign_uid_process_count": 589,
+      "visible_uid_count": 25
+    },
+    "sample_seconds": 5.0,
+    "single_sample_severe_cpu_or_io": false,
+    "swap_activity_pages": {
+      "in": 0,
+      "out": 0
+    },
+    "timestamp_utc": "2026-10-18T05:49:48Z"
+  },
+  "gpu_process_ownership_evidence": "execution/GPU_PROCESS_OWNERSHIP_20261018.json",
+  "audit_process_pid": 1656351,
+  "audit_executor_pid": 1656340,
+  "audit_run_id": "s4_dataset_reuse_cpu_audit_seed0_20261018_v1",
+  "audit_exit_code": 0,
+  "audit_artifacts": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4amp_small_20261018\\s4_dataset_reuse_cpu_audit_seed0_20261018_v1",
+  "audit_checks": {
+    "train": 16551,
+    "val": 4952,
+    "target_images": 6095,
+    "changed_Person_GT": 13256,
+    "labels_byte_identical": true,
+    "clean_validation_byte_identical": true,
+    "outside_max_byte": 0,
+    "global_max_byte": 8,
+    "overlap_max_byte": 4,
+    "missing_or_duplicate_ids": 0
+  },
+  "smoke_run_id": "s4_victim_amp_real_smoke_seed0_20261018_v2",
+  "smoke_workload_pid": 1691448,
+  "smoke_executor_pid": 1691435,
+  "smoke_stage": "native_S0",
+  "dataset_reuse_audit": "PASS",
+  "smoke_state": "PASSED; v2 bounded real-CUDA smoke",
+  "smoke_exit_code": 0,
+  "smoke_batches_before_failure": 5,
+  "smoke_failure": "No actual native optimizer update observed at five-batch boundary",
+  "smoke_amp_skip_log": "RETRIEVED",
+  "paired_equivalence": "PASS; max difference 0.0; input hashes exact",
+  "real_S4_batch_test": "PASS; 16 batches, 10 updates, 6 skips",
+  "synthetic_overflow_test": "PASS; forced overflow followed by finite recovery update",
+  "smoke_amp_skip_log_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4amp_small_20261018\\s4_victim_amp_real_smoke_seed0_20261018_v1\\native_S0_AMP_SCALE_AND_SKIP_LOG.csv",
+  "smoke_amp_skip_log_sha256": "f8cb06f598aa331e9f0f4cebeec2db216b3c3e0cc1cb8e0dc0627b59408ff79a",
+  "native_S0_first5_batches": {
+    "native_scaler_skips": 5,
+    "scale_sequence": [
+      65536.0,
+      32768.0,
+      16384.0,
+      8192.0,
+      4096.0,
+      2048.0
+    ],
+    "successful_updates": 0,
+    "loss_model_ema_optimizer_finite": true
+  },
+  "smoke_summary_sha256": "2d9f4f1db8457d6df5a4d5049a5c93ff6385452c21a793ecf4d9939f84686533",
+  "formal_workload_pid": 1696343,
+  "formal_executor_pid": 1696333,
+  "formal_stage": "victim_training_and_evaluation",
+  "formal_health": "failed_exit1_after_200_epochs_report_assembly",
+  "formal_last_health_observation": {
+    "state": "failed",
+    "exit_code": 1,
+    "stage": "comparison_report_assembly_after_victim_evaluation",
+    "error": "KeyError('Recall_all')",
+    "failed_at_utc": "2026-10-18T12:32:57.061419Z",
+    "run_id": "s4_tfss_utility_seed0_20261017_v1_victim_recovery01",
+    "last_sha256": "cc1b03eca939732599817abb97150907463ab10913456afa6cc6ae473b4bbdc3",
+    "best_sha256": "155e83155640ccff7b8406291bf50fb6849381b4f370c36e46f60f7be5805f0b",
+    "results_rows": 200,
+    "comparison_report": "docs/S4_AMP_RECOVERY_20261018/S4_S0_S1_S2_S3_FINAL_REPORT.md"
+  },
+  "smoke_failed_at_utc": null,
+  "smoke_v1_failure": {
+    "run_id": "s4_victim_amp_real_smoke_seed0_20261018_v1",
+    "exit_code": 1,
+    "stage": "native_S0",
+    "amp_csv_sha256": "f8cb06f598aa331e9f0f4cebeec2db216b3c3e0cc1cb8e0dc0627b59408ff79a"
+  },
+  "formal_previous_healthy_observation": {
+    "adapter": {
+      "artifacts": [],
+      "complete": false,
+      "healthy": true,
+      "observations": {
+        "parent_noise_run_id": "s4_tfss_utility_seed0_20261017_v1",
+        "run_id": "s4_tfss_utility_seed0_20261017_v1_victim_recovery01",
+        "source_commit": "ab626917f20917e58cf30033ac99df00938cb561",
+        "stage": "victim_training_and_evaluation",
+        "started_at_unix": 1792311784.9423609,
+        "state": "running"
+      },
+      "progress": {
+        "stage": "victim_training_and_evaluation"
+      },
+      "protocol": "rrctl.adapter.v1"
+    },
+    "complete": false,
+    "degraded_reasons": [],
+    "errors": [],
+    "healthy": true,
+    "observations": {
+      "console_age_seconds": 21.69803762435913,
+      "executor_alive": true,
+      "executor_pid": 1696333,
+      "gpu_utilization_policy": "advisory",
+      "process_alive": true,
+      "process_pid": 1696343,
+      "session_alive": true,
+      "state": "running",
+      "workload_alive": true,
+      "workload_pid": 1696343
+    },
+    "phase": "periodic",
+    "schema_version": "rrctl.health.v2",
+    "status": "healthy"
+  },
+  "recovered_metrics": {
+    "primary_checkpoint_role": "last.pt@200",
+    "person_AP50": 0.028158895413428475,
+    "non_target_mAP50": 0.6937870442308225,
+    "all_mAP50": 0.6605056367899528,
+    "all_mAP75": 0.4901369242504927,
+    "all_mAP50_95": 0.45726868769750995,
+    "PUS": {
+      "P": 0.9675567539633126,
+      "U": 0.905181378607414,
+      "S": 0.9353302965334364
+    },
+    "WCD": 0.2959510970908037,
+    "WCD_class": "dog",
+    "TCD3": 0.26448170124191184
+  },
+  "result_pull": {
+    "method": "RRCTL transport explicit small-file downloads with per-file size/SHA256 verification",
+    "bytes_pulled": 43710,
+    "artifact_manifest_present": false,
+    "report_outputs": "docs/S4_AMP_RECOVERY_20261018/"
+  }
 }

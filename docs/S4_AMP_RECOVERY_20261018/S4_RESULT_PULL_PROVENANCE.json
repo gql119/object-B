@@ -1,0 +1,95 @@
+{
+  "schema": "s4.rrctl-bounded-results-pull.v1",
+  "run_id": "s4_tfss_utility_seed0_20261017_v1_victim_recovery01",
+  "remote_terminal_state": {
+    "detail": {
+      "exit_code": 1
+    },
+    "reason": "workload_exit_nonzero",
+    "run_id": "s4_tfss_utility_seed0_20261017_v1_victim_recovery01",
+    "schema_version": "rrctl.status.v1",
+    "sequence": 6,
+    "state": "failed",
+    "updated_at": "2026-10-18T12:33:02.130452+00:00"
+  },
+  "rrctl_inspect_return_code": 0,
+  "protocol_artifact_manifest": "missing; Controller.pull cannot build a full artifact set",
+  "manifest_read_error": "RRCError: download_failed: download failed for /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/control/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/artifact_manifest.json: cat: /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/control/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/artifact_manifest.json: No such file or directory",
+  "method": "RRCTL ProfileStore/transport exact-path downloads with independent size/SHA verification",
+  "files_pulled": [
+    {
+      "remote_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/control/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/status.json",
+      "local_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4amp_small_20261018\\s4_tfss_utility_seed0_20261017_v1_victim_recovery01\\rrctl_control\\status.json",
+      "bytes": 236,
+      "sha256": "b781c8a8b60034a8c825fd9dcb173f75362648d84561b0ff5b962fd1b198a4cf"
+    },
+    {
+      "remote_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/control/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/events.jsonl",
+      "local_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4amp_small_20261018\\s4_tfss_utility_seed0_20261017_v1_victim_recovery01\\rrctl_control\\events.jsonl",
+      "bytes": 2291,
+      "sha256": "a33cd1062f00423de878bf2600eb6e63e3eb9e7d7359e7934050e56d0651fd88"
+    },
+    {
+      "remote_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/outputs/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/RECOVERY_PROVENANCE.json",
+      "local_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4amp_small_20261018\\s4_tfss_utility_seed0_20261017_v1_victim_recovery01\\payload\\RECOVERY_PROVENANCE.json",
+      "bytes": 6118,
+      "sha256": "b33256a945356970476529c21e0bd80d519c971415c4c991729c55b872514c2f"
+    },
+    {
+      "remote_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/outputs/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/S0_person_dog.json",
+      "local_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4amp_small_20261018\\s4_tfss_utility_seed0_20261017_v1_victim_recovery01\\payload\\S0_person_dog.json",
+      "bytes": 523,
+      "sha256": "e63c4ebe645a4de35d18e6b2174c64b25a66c765ef6a06e80b29343e94bbfb50"
+    },
+    {
+      "remote_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/outputs/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/S4_best_secondary_evaluation.json",
+      "local_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4amp_small_20261018\\s4_tfss_utility_seed0_20261017_v1_victim_recovery01\\payload\\S4_best_secondary_evaluation.json",
+      "bytes": 3639,
+      "sha256": "d7bbb9000a5989d496589a0b25892bfe6bd87eabb3aadf5afb4dd7e65875d0f4"
+    },
+    {
+      "remote_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/outputs/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/S4_evaluation.json",
+      "local_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4amp_small_20261018\\s4_tfss_utility_seed0_20261017_v1_victim_recovery01\\payload\\S4_evaluation.json",
+      "bytes": 3635,
+      "sha256": "3b8da141dd366ea5dfde97fb7b56224abde61e9cd2931ad296a96d42482f1280"
+    },
+    {
+      "remote_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/outputs/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/S4_person_dog.json",
+      "local_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4amp_small_20261018\\s4_tfss_utility_seed0_20261017_v1_victim_recovery01\\payload\\S4_person_dog.json",
+      "bytes": 522,
+      "sha256": "15cf65bf05732962e021775227dc8ba1659729738d88ce1468c005f1d1bb2e97"
+    },
+    {
+      "remote_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/outputs/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/pipeline_status.json",
+      "local_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4amp_small_20261018\\s4_tfss_utility_seed0_20261017_v1_victim_recovery01\\payload\\pipeline_status.json",
+      "bytes": 379,
+      "sha256": "4c9828ed05630910ba607c3272a45d8e596349b03a7937e0149877c5795a756e"
+    },
+    {
+      "remote_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/outputs/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/victim_completion.json",
+      "local_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4amp_small_20261018\\s4_tfss_utility_seed0_20261017_v1_victim_recovery01\\payload\\victim_completion.json",
+      "bytes": 204,
+      "sha256": "cd4885e1a717a567128ff7cabef74fbe8b52e5c48c62d8c3298eb64fb3dce419"
+    },
+    {
+      "remote_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/outputs/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/victim_run_spec.json",
+      "local_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4amp_small_20261018\\s4_tfss_utility_seed0_20261017_v1_victim_recovery01\\payload\\victim_run_spec.json",
+      "bytes": 1294,
+      "sha256": "f6afa21023bf5653593654469c9ce3099f191e14b91c4c44b40ff61ebe41500e"
+    },
+    {
+      "remote_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/outputs/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/victim_run/victim/results.csv",
+      "local_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4amp_small_20261018\\s4_tfss_utility_seed0_20261017_v1_victim_recovery01\\payload\\victim_run\\victim\\results.csv",
+      "bytes": 24869,
+      "sha256": "c68ce870513a7545a65c56c98d4dc30869da5dd5e7c68394af4e12ebb857b803"
+    }
+  ],
+  "files_skipped": [],
+  "bytes_pulled": 43710,
+  "excluded": [
+    "all weights/checkpoints",
+    "all data/images/labels",
+    "victim_run/victim/amp_audit/AMP_SCALE_AND_SKIP_LOG.csv (about 65 MB; not needed for AP comparison)",
+    "control/console.log (large; traceback already inspected read-only)"
+  ]
+}
