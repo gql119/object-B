@@ -6,6 +6,7 @@ import unittest
 import uuid
 import torch
 from ue_framework.s4_amp_observer import AMPAuditObserver, tree_hash
+from scripts.s4_victim_recovery import baseline_prefix_without_update_is_valid
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -87,5 +88,14 @@ class AMPContracts(unittest.TestCase):
 
     def test_policy_cannot_be_relaxed_silently(self):
         with self.assertRaises(ValueError):AMPAuditObserver(self.output/'bad',max_consecutive_skips=17)
+
+    def test_zero_update_smoke_prefix_only_accepts_logged_native_baseline_skips(self):
+        rows=[{'native_scaler_nonfinite_skip':True,'backoff':True,'optimizer_update_executed':False} for _ in range(5)]
+        self.assertTrue(baseline_prefix_without_update_is_valid('native_S0',rows))
+        self.assertTrue(baseline_prefix_without_update_is_valid('repaired_S0',rows))
+        self.assertFalse(baseline_prefix_without_update_is_valid('real_S4',rows))
+        self.assertFalse(baseline_prefix_without_update_is_valid('native_S0',[]))
+        broken=list(rows);broken[-1]=dict(rows[-1],backoff=False)
+        self.assertFalse(baseline_prefix_without_update_is_valid('native_S0',broken))
 
 if __name__=='__main__':unittest.main()

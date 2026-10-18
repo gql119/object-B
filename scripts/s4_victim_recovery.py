@@ -17,6 +17,15 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 CONFIG=ROOT/'docs/S4_AMP_RECOVERY_20261018/VICTIM_RECOVERY_CONFIG.json'
 
+def baseline_prefix_without_update_is_valid(name,rows):
+    """Permit only fully logged native AMP skips in the bounded S0 pair."""
+    return name in ('native_S0','repaired_S0') and bool(rows) and all(
+        r.get('native_scaler_nonfinite_skip') is True
+        and r.get('backoff') is True
+        and r.get('optimizer_update_executed') is False
+        for r in rows
+    )
+
 def sha(p):
     h=hashlib.sha256()
     with Path(p).open('rb') as f:
@@ -116,7 +125,8 @@ def trial(name,out,cfg):
             synthetic['recovered']=o.updates>synthetic['forced_after_actual_updates']
         done=o.total_batches>=limit or (name=='synthetic_S4' and o.total_batches>=5 and synthetic['recovered'])
         if done:
-            if not o.updates:raise AssertionError('No actual native optimizer update observed')
+            if not o.updates and not baseline_prefix_without_update_is_valid(name,o.rows):
+                raise AssertionError('No actual native optimizer update observed outside an exactly logged S0 AMP-skip equivalence prefix')
             if name=='synthetic_S4' and not synthetic['recovered']:raise AssertionError('No subsequent normal update after forced overflow')
             assert all(r['raw_loss_finite'] and r['model_finite'] and r['EMA_finite'] and r['optimizer_finite'] for r in o.rows)
             snapshot=out/'retained_smoke_state.pt'
