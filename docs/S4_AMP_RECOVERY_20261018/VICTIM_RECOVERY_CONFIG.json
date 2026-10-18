@@ -10,7 +10,7 @@
   "authorization_sha256": "a4c8baf794c08ad363747bcd31b8685b578bfe15a4f3feb98a716609e094c48a",
   "formal_run_id": "s4_tfss_utility_seed0_20261017_v1_victim_recovery01",
   "audit_run_id": "s4_dataset_reuse_cpu_audit_seed0_20261018_v1",
-  "smoke_run_id": "s4_victim_amp_real_smoke_seed0_20261018_v1",
+  "smoke_run_id": "s4_victim_amp_real_smoke_seed0_20261018_v2",
   "remote_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018",
   "victim_protocol": {
     "train_count": 16551,
