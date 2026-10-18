@@ -1,5 +1,7 @@
 # CUP-S4 最小适配方案：待确认的 damage 定义
 
+更新：`USER_TASK_LAYER_SELECTION_SOURCE.md` 已明确授权 `CUP_S4_DESIGN_ADAPTATION`，包括自主 P3/P5 选层和选定层 `d_k=stopgrad(L_ret,k)`。下文原“等待确认”保留为此前审计历史，现已解除；当前尚未选层，先执行 Stage B。最新权重记法为相对倍率 w_k：sum pi_k*w_k=1，w=1 恢复基准；下文绝对权重可写成 a_k=pi_k*w_k，两者不重复相乘。温度、标准化、EMA及边界的正式数值必须在实际固定训练开发证据后锁定，不能把原建议当作已实现或已验证。
+
 状态：PROPOSED，未接入任何训练 loss，未冻结 S5 正式配置。相关授权、Parent、teacher、data、config、seed 元数据在 `S5_SOURCE_AUDIT_PROVENANCE.json`。S5 checkpoint/AMP/日志/正式结果为 NOT_RUN。
 
 ## 已由源码确定的部分

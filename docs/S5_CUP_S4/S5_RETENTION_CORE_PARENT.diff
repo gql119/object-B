@@ -1,0 +1,24 @@
+--- S4/SemanticFrozenTrainer._batch_loss
++++ S5/S5FrozenRetention._batch_loss
+@@ -52,9 +52,13 @@
+                 orth_ntp = self._pooled(orth_hp_map, orth_non_targets)
+                 if orth_valid and orth_nt0 and orth_ntp:
+                     non_target_pairs.append((torch.stack(orth_ntp), torch.stack(orth_nt0)))
++                self.s5_record_retention('P3', orth_h0_map, orth_hp_map,
++                    orth_non_targets, nt_anns, orth_valid, b, image.shape[:2])
+             targets, contexts, non_targets = self._masks(
+                 annotations, support, image.shape[:2], hp_map, (pad_h, pad_w)
+             )
++            self.s5_record_retention('P5', h0_map, hp_map, non_targets,
++                nt_anns, orth_valid, b, image.shape[:2])
+             h0, hp, ct = [], [], []
+             overlaps = []
+             for ann, target_mask, context_mask in zip(target_anns, targets, contexts):
+@@ -124,6 +128,7 @@
+             )
+         else:
+             ret = poisoned.sum() * 0.0
++        ret = self.s5_reduce_retention(ret, poisoned)
+         bg_full, rel_full, cos_clean_full, cos_bg_full = bg, rel, cos_clean, cos_bg
+         if raw_selected_losses:
+             bg_raw, rel_raw, _, _, cos_raw_bg = [

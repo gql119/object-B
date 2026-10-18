@@ -1,0 +1,25 @@
+{
+  "schema": "s5.stageB-local-validation.v1",
+  "status": "PASS_LOCAL_ONLY",
+  "tests": {
+    "command": "python -m pytest -q tests/test_s5_retention_layer.py tests/test_s4_metric_delta_schema.py",
+    "literal_result": "5 passed in 5.64s"
+  },
+  "compile": "PASS",
+  "reference_source45": "all45exact",
+  "stageB_GPU": "NOT_RUN",
+  "source_files": {
+    "ue_framework/methods/s5_retention_core.py": "a572795744cf2c9ecbaf0582ee3231c8a5427d1ffb52594c24191fff88967e32",
+    "ue_framework/methods/s5_retention_probe.py": "1e7ac9c5a182aae0a932286e7387f4558a9f4c659ece8bf5acf60a7a6475b963",
+    "ue_framework/methods/s5_gt_loss_probe.py": "70931c5dca3f29f39e05b6d3f4cbc7232bb692d46bcd2de37aca028609f22940",
+    "scripts/s5_layer_probe.py": "4ba99e000c236c6d6a945488190efbc3a3f957c476cd0872b0a3fd3466736a02",
+    "configs/s5_layer_probe.json": "731c88d558c7aa6754523de4ab4e462fc2a8c6dd3a85d64286064b356363a289",
+    "tests/test_s5_retention_layer.py": "bacbf67712ebe4a359d43cfa28f076b94348036dd2d8aa7ae4aa96f2c765e31c"
+  },
+  "authorization_sha256": "6eed7e9a239e171821ebe4c2db8ead3e1c623b933098401197ecbaef6c08c7a3",
+  "step_budget": 30,
+  "step_unit": "actual Fourier Adam updates across 6 independent five-update trials",
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "reviewer_called": false
+}

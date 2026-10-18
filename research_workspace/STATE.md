@@ -1,3 +1,13 @@
+# S5 current: Stage B local tests passed; awaiting fresh resource audit
+
+Authority: `docs/S5_CUP_S4/USER_TASK_LAYER_SELECTION_SOURCE.md`, SHA256 `6eed7e9a239e171821ebe4c2db8ead3e1c623b933098401197ecbaef6c08c7a3`. The new task explicitly authorizes P3/P5 full-channel selection, stop-gradient class-drift CUP adaptation, and autonomous compatibility/numerical fixes within the stated boundary. Previous damage-definition confirmation wait is superseded.
+
+Current implementation: isolated P3/P5 static-retention core with two observation sites and one retention sink; original S4 source/45 canonical files unchanged. Local 4 S5 contracts and inherited optional-metric-schema test PASS (5 total), compile PASS. Stage B protocol fixed before runtime in `configs/s5_layer_probe.json`: original TRAIN32, two independent batch16, original S4 / P3-noop / P5, five updates each, total30; no CUP, no victim, no official AP. RunID planned `s5_p3_p5_train32_layerprobe_seed0_20261018_v1`, UNLAUNCHED.
+
+Next: RRCTL read-only fresh resource admission, exact-once diagnostic launch, actual module/ROI/GT/Fourier/Adaptive/no-op audit and paired layer evidence. Stage C and formal S5 remain NOT_RUN, no S5 config lock. P5 chosen only on clear repeatable evidence; otherwise P3 per user rule. After layer choice, implement/diagnose CUP, current-source GPU smoke, one new independent S5 review, original native AMP/budget/resource gates, then already-authorized formal run. See `docs/S5_CUP_S4/P3_P5_DIAGNOSTIC_PROTOCOL.md`.
+
+## Prior S5 audit history (superseded waiting state)
+
 # S5 current state: source audit complete; damage-definition decision pending
 
 Authority: `docs/S5_CUP_S4/USER_TASK_SOURCE.md`, SHA256 `3f3521e3b82be7765ae35aa07850a01cbc12c8caf7c952233609f0e8f067947d`. New branch `codex/s5-s4-cup-adaptation-20261018`, based on S4 result-code commit `686eaacad069aac30f7fc7af4f10bebdeec1c390`. S4/S3 products are read-only.
