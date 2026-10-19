@@ -1,0 +1,13 @@
+{
+  "phase": "A",
+  "operation": "OpenCV RGB2GRAY then GRAY2RGB",
+  "formula": "OpenCV BT.601 integer implementation of Y=.299R+.587G+.114B",
+  "channels": 3,
+  "channel_equality_required": true,
+  "name": "gray",
+  "input": "original-resolution uint8 RGB training image",
+  "output": "uint8 RGB, PNG lossless except data_aug online",
+  "dimensions": "unchanged for offline transforms",
+  "labels": "byte-exact; online data_aug native joint bbox transform",
+  "validation": "unchanged clean4952"
+}

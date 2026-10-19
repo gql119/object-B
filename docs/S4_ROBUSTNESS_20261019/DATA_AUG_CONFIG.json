@@ -1,0 +1,16 @@
+{
+  "phase": "B",
+  "operation": "online native YOLO RandomPerspective",
+  "overrides": {
+    "degrees": 10.0,
+    "shear": 2.0
+  },
+  "historical_condition": "strong_aug",
+  "duplication": "single replacement of two native augmentation args, no stacked independent augmenter",
+  "name": "data_aug",
+  "input": "original-resolution uint8 RGB training image",
+  "output": "uint8 RGB, PNG lossless except data_aug online",
+  "dimensions": "unchanged for offline transforms",
+  "labels": "byte-exact; online data_aug native joint bbox transform",
+  "validation": "unchanged clean4952"
+}

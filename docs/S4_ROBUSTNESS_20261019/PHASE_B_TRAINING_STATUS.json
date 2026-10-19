@@ -1,0 +1,10 @@
+{
+  "state": "NOT_RUN",
+  "defenses": {
+    "gauss": "NOT_RUN",
+    "meanf": "NOT_RUN",
+    "medianf": "NOT_RUN",
+    "data_aug": "NOT_RUN"
+  },
+  "automatic_AT": false
+}

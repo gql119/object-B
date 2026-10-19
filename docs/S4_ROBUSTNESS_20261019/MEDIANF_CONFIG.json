@@ -1,0 +1,14 @@
+{
+  "phase": "B",
+  "operation": "cv2.medianBlur",
+  "kernel": 3,
+  "border": "OpenCV internal BORDER_REPLICATE",
+  "channels": "each channel independently",
+  "historical_condition": "median3",
+  "name": "medianf",
+  "input": "original-resolution uint8 RGB training image",
+  "output": "uint8 RGB, PNG lossless except data_aug online",
+  "dimensions": "unchanged for offline transforms",
+  "labels": "byte-exact; online data_aug native joint bbox transform",
+  "validation": "unchanged clean4952"
+}

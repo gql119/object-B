@@ -1,0 +1,17 @@
+{
+  "phase": "B",
+  "operation": "cv2.GaussianBlur",
+  "kernel": [
+    3,
+    3
+  ],
+  "sigma": 0,
+  "border": "BORDER_DEFAULT/REFLECT_101",
+  "historical_condition": "gaussian3",
+  "name": "gauss",
+  "input": "original-resolution uint8 RGB training image",
+  "output": "uint8 RGB, PNG lossless except data_aug online",
+  "dimensions": "unchanged for offline transforms",
+  "labels": "byte-exact; online data_aug native joint bbox transform",
+  "validation": "unchanged clean4952"
+}

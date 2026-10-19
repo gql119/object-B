@@ -1,0 +1,18 @@
+{
+  "AST_files": [
+    "ue_framework/s4_robustness.py",
+    "scripts/run_s4_robustness.py",
+    "tests/test_s4_robustness.py"
+  ],
+  "AST": "PASS",
+  "CPU_contracts": 3,
+  "CPU_command": "python -m unittest discover -s tests -p test_s4_robustness.py -v",
+  "CPU_result": "3 tests OK, 0.434s",
+  "canonical_S0_files": 45,
+  "canonical45_SHA": "EXACT",
+  "GPU_smoke": "NOT_RUN",
+  "independent_review": "NOT_CALLED",
+  "formal": "NOT_RUN",
+  "old_launcher_with_rmtree": "NOT_USED",
+  "scientific_S4_files_unchanged": true
+}

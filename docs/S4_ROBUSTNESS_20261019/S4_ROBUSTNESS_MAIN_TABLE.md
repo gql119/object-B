@@ -1,0 +1,12 @@
+# 待正式测量的鲁棒性表
+
+|Group / metric|Clean|Gauss|JPEG50|JPEG30|MeanF|MedianF|Gray|BDR|AT|Data Augmentation|
+|---|---|---|---|---|---|---|---|---|---|---|
+|Clean Person AP50|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|
+|Clean Non-target mAP50|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|
+|Clean Selectivity S|—|—|—|—|—|—|—|—|—|—|
+|S4 Person AP50|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|
+|S4 Non-target mAP50|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|
+|S4 Selectivity S|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|NOT_RUN|
+
+NOT_RUN不是0；Clean列原无防御基线将在来源复算后填入。

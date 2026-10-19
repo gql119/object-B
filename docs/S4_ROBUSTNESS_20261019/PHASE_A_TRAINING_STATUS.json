@@ -1,0 +1,10 @@
+{
+  "state": "NOT_RUN",
+  "defenses": {
+    "jpeg50": "NOT_RUN",
+    "jpeg30": "NOT_RUN",
+    "gray": "NOT_RUN",
+    "bdr": "NOT_RUN"
+  },
+  "automatic_AT": false
+}

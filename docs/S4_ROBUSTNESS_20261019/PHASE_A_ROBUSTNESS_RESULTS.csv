@@ -1,0 +1,9 @@
+defense,arm,status
+jpeg50,clean,NOT_RUN
+jpeg50,S4,NOT_RUN
+jpeg30,clean,NOT_RUN
+jpeg30,S4,NOT_RUN
+gray,clean,NOT_RUN
+gray,S4,NOT_RUN
+bdr,clean,NOT_RUN
+bdr,S4,NOT_RUN

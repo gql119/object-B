@@ -1,0 +1,9 @@
+defense,arm,status
+gauss,clean,NOT_RUN
+gauss,S4,NOT_RUN
+meanf,clean,NOT_RUN
+meanf,S4,NOT_RUN
+medianf,clean,NOT_RUN
+medianf,S4,NOT_RUN
+data_aug,clean,NOT_RUN
+data_aug,S4,NOT_RUN
