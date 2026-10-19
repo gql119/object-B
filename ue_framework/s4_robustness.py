@@ -7,15 +7,20 @@ from PIL import Image, JpegImagePlugin
 
 OFFLINE = ('jpeg50','jpeg30','gray','bdr','gauss','meanf','medianf')
 
-def transform_rgb(x, defense):
+def transform_rgb(x, defense, params=None):
+    params=dict(params or {})
     if x.dtype != np.uint8 or x.ndim != 3 or x.shape[2] != 3:
         raise ValueError('Expected original-resolution HWC uint8 RGB')
     if defense in ('none','data_aug'):
         return x.copy()
     if defense in ('jpeg50','jpeg30'):
+        quality=int(params.get('quality',50 if defense=='jpeg50' else 30))
+        sampling=int(params.get('subsampling',2))
+        assert quality==(50 if defense=='jpeg50' else 30) and sampling==2
+        assert params.get('optimize',False) is False and params.get('progressive',False) is False
         buffer=BytesIO()
-        Image.fromarray(x).save(buffer,format='JPEG',quality=50 if defense=='jpeg50' else 30,
-            subsampling=2,optimize=False,progressive=False)
+        Image.fromarray(x).save(buffer,format='JPEG',quality=quality,
+            subsampling=sampling,optimize=False,progressive=False)
         buffer.seek(0)
         with Image.open(buffer) as decoded:
             assert JpegImagePlugin.get_sampling(decoded)==2
@@ -23,12 +28,20 @@ def transform_rgb(x, defense):
     if defense=='gray':
         return cv2.cvtColor(cv2.cvtColor(x,cv2.COLOR_RGB2GRAY),cv2.COLOR_GRAY2RGB)
     if defense=='bdr':
+        bits=int(params.get('bits',5));assert bits==5
+        levels=2**bits-1
         # Exact retained project implementation: float32, 31 levels, ties-to-even.
         z=x.astype(np.float32)/255.0
-        return np.clip(np.round((np.round(z*31)/31)*255),0,255).astype(np.uint8)
-    if defense=='gauss':return cv2.GaussianBlur(x,(3,3),0,borderType=cv2.BORDER_DEFAULT)
-    if defense=='meanf':return cv2.blur(x,(3,3),borderType=cv2.BORDER_DEFAULT)
-    if defense=='medianf':return cv2.medianBlur(x,3)
+        return np.clip(np.round((np.round(z*levels)/levels)*255),0,255).astype(np.uint8)
+    if defense in ('gauss','meanf'):
+        kernel=tuple(params.get('kernel',[3,3]));assert kernel==(3,3)
+        if defense=='gauss':
+            sigma=float(params.get('sigma',0));assert sigma==0
+            return cv2.GaussianBlur(x,kernel,sigma,borderType=cv2.BORDER_DEFAULT)
+        return cv2.blur(x,kernel,borderType=cv2.BORDER_DEFAULT)
+    if defense=='medianf':
+        kernel=int(params.get('kernel',3));assert kernel==3
+        return cv2.medianBlur(x,kernel)
     raise ValueError('Unapproved defense: '+defense)
 
 def read_rgb(path):

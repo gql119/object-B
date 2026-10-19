@@ -110,7 +110,7 @@ def data_view(c,out,defense,arm,ids=None):
     rows=[];total=0
     for image_id in selected:
         p=source_images[image_id];label=source/'labels/train'/(image_id+'.txt')
-        rgb=read_rgb(p);result=transform_rgb(rgb,defense)
+        rgb=read_rgb(p);result=transform_rgb(rgb,defense,c['defenses'].get(defense))
         assert rgb.shape==result.shape and rgb.dtype==result.dtype==np.uint8
         dest=view/'images/train'/(image_id+'.png')
         if defense in ('none','data_aug'):
@@ -160,7 +160,9 @@ def train(c,out,data,*,smoke=False,reference=False,synthetic=False,limit=10):
     torch.set_num_threads(1);torch.backends.cudnn.benchmark=False;torch.backends.cudnn.deterministic=True;torch.use_deterministic_algorithms(True)
     args=dict(c['victim_protocol']['train_args']);args.update(data=str(data),project=str(out/'victim_run'),name='victim',patience=0)
     defense=json.loads((out/'data_audit.json').read_text())['defense']
-    if defense=='data_aug':args.update(degrees=10.0,shear=2.0)
+    if defense=='data_aug':
+        overrides=c['defenses']['data_aug']['overrides'];assert overrides==dict(degrees=10.,shear=2.)
+        args.update(**overrides)
     init=ROOT/'configs/voc_yolov8n_20cls.yaml';assert sha(init)==c['victim_protocol']['init_yaml_sha256']
     assert args['batch']==36 and args['workers']==16 and args['amp'] is True and args['epochs']==200 and args['seed']==0 and args['pretrained'] is False
     dump(out/'victim_run_spec.json',dict(run_id=out.parent.name+'__'+out.name,source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),init_yaml_sha256=sha(init),train_args=args,defense=defense,smoke=smoke))
