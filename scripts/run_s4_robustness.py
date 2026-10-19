@@ -87,14 +87,17 @@ def parent_audit(c,out,full):
     return proof
 
 def wait_admission(out):
-    from scripts.run_s4_tfss_pipeline import _resource_snapshot,_resource_blockers,_sustained_cpu_or_io_contention
+    from scripts.run_s4_tfss_pipeline import _resource_snapshot
+    from ue_framework.s4_robustness_resources import capacity_blockers,sustained_iowait,POLICY_ID
     while True:
         samples=[]
         for i in range(3):
             samples.append(_resource_snapshot(10.0))
             if i<2:time.sleep(30)
-        passed=not any(_resource_blockers(s) for s in samples) and not _sustained_cpu_or_io_contention(samples)
-        dump(out/'resource_admission.json',dict(samples=samples,passed=passed,loadavg_record_only=True))
+        blockers=[b for s in samples for b in capacity_blockers(s)]
+        if sustained_iowait(samples):blockers.append('sustained I/O wait >=20% in all three windows')
+        passed=not blockers
+        dump(out/'resource_admission.json',dict(samples=samples,passed=passed,blockers=blockers,policy_id=POLICY_ID,cpu_gpu_utilization_and_process_presence_record_only=True,sustained_iowait_guard_preserved=True))
         if passed:return
         dump(out/'training_progress.json',dict(state='WAIT_FOR_RESOURCE',no_training_started=True))
         time.sleep(900)

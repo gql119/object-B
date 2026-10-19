@@ -1,0 +1,15 @@
+# RESOURCE_GATE_POLICY_CHANGE — 2026-10-19
+
+Direct human instruction: CPU/GPU admission thresholds should not block execution when they only affect speed. The later instruction supersedes the earlier request to keep utilization admission unchanged. It does not authorize algorithm, training, data, metric or other-user process changes.
+
+Before: three10-second windows30seconds apart; all-three CPUbusy>=95% with<=5%headroom or I/Owait>=20% blocked admission; any GPUcompute process or GPUutilization>5% blocked admission. RAM>=32GiB, GPUfree>=24000MiB, disk>=150GiB and unique paths were also required.
+
+After: keep the existing three10-second windows30seconds apart and final fresh preflight. Only CPUload/busy/headroom and GPUutilization/other-process presence become performance telemetry, without a standalone veto/pause. Preserve the original sustained all-three I/Owait>=20% gate, RAM>=32GiB, GPUfree>=24000MiB, disk>=150GiB, unique path/source/binding and correctness checks. Swap and D-state remain fully recorded under their original diagnostic status; no safety signal is removed or hidden. Actual CUDA/OOM, nonfinite state, I/O errors and data-integrity failures still stop safely with retained evidence; no batch/worker/AMP changes or silent retry. Other processes remain untouched.
+
+Automatic approval rejected an intermediate broader patch because it appeared to remove I/O/Swap/D-state safeguards as well. That rejected action was not executed. The narrowed policy explicitly preserves the original I/O gate and all Swap/D-state observations, changing only CPU/GPU speed-only conditions.
+
+Basis: the retained13:26UTC observations showed available RAM~109GiB, GPUfree44406MiB, disk~1.17TiB, I/Owait0, D-state0 and no Swap activity despite CPU99–100%. An unrelated GPUprocess held752MiB with totalGPUutilization0–1%. These samples establish capacity headroom, not future freedom from resource errors; a final fresh capacity preflight remains mandatory. Pure utilization is a speed signal rather than evidence of mathematical or data corruption. No ownership inference or signal is made for that process.
+
+Code: new pure-stdlib ue_framework/s4_robustness_resources.py capacity_blockers; only wait_admission in scripts/run_s4_robustness.py changes. The private execution/s4_resource_policy.py, resource_audit_s4.py and launch_s4.py use the same capacity policy. RunSpec metadata and the sole existing monitor are updated. Original scripts/run_s4_tfss_pipeline.py and S4 method/loss sources are untouched.
+
+Frozen robustness config SHA00af2dc40c5c4d263246e78f70195bf8a53a16b9118bb289a9b307d93bafdb91 and originalS4 config SHA33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec remain unchanged. No changes to batch36/workers16/seed0/LR/200epochs/AMP/nativeSGD, defense parameters, S4 noise, loss, maps or evaluation. The pre-existing independent scientific verdict remains not_evaluable for G1 until actual historical-loader equivalence closes; no second reviewer. This resource-only change does not satisfy that scientific gate.
