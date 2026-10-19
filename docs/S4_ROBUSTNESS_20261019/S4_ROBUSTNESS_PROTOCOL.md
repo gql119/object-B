@@ -8,6 +8,6 @@
 
 资源继续既有3窗口规则，loadavg仅记录，所有窗口CPU>=95%且余量<=5%或IO>=20%才认持续争用；RAM>=32GiB/GPU空闲free>=24000MiB/util<=5%/disk>=150GiB，监测Swap/D-state/他人进程。训练中自身GPU占用合法，不能套用空闲准入误停。无权干预他人。新输出保留每轮checkpoint/full状态；没有worker/prefetch RNG证明时不伪装精确续训。
 
-Smoke上限100 actual training batches，固定TRAIN32，native_S4/no-defense pair各5，四A防御Clean/S4各10，独立synthetic overflow最多10；正式指标/结果ingest关闭。当前源码通过CPU→真实GPU smoke→恰好一次独立科学实现审查后才正式训练。
+Smoke固定TRAIN32，明确禁用val/save并以on_val_start断言禁止验证forward，按三个隔离组串行执行：first最多90 batch（native/no-defense各15且需真实更新、JPEG50两臂各最多20、synthetic最多20）；second最多90（JPEG30/Gray/BDR两臂各最多15）；phaseB最多80（四防御S4各最多20）。每个隔离RunID均≤100 batch；非基线试验须至少一次真实更新，累积步与native overflow skip严格区分，达到必要成功证据后提前结束；不取AP代理。三个组全部通过后只进行一次独立科学审查。当前源码通过CPU→真实GPU smoke→恰好一次独立科学实现审查后才正式训练。
 
 AMP硬件自检复用历史防御local_amp_check：当前随机模型eval、固定zero1×3×256×256、FP32/autocast输出形状/有限性/allclose atol0.5，恢复train状态，不下载YOLO26n。该自检不执行优化更新；正式SGD/GradScaler继承原生。与S4离线跳过外部权重自检相比只增加显式自检证据，实际AMP必须为True，否则立即阻断；基线配对共享同一自检。

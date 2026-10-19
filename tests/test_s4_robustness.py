@@ -4,6 +4,12 @@ import cv2
 from ue_framework.s4_robustness import transform_rgb,paired_scores
 
 class Contracts(unittest.TestCase):
+    def test_frozen_parameter_mismatch_is_rejected(self):
+        x=np.zeros((32,32,3),dtype=np.uint8)
+        with self.assertRaises(AssertionError):transform_rgb(x,'jpeg50',dict(quality=30))
+        with self.assertRaises(AssertionError):transform_rgb(x,'bdr',dict(bits=4))
+        with self.assertRaises(AssertionError):transform_rgb(x,'gauss',dict(kernel=[3,3],sigma=1))
+
     def test_defenses_geometry_and_legacy_filters(self):
         x=np.random.default_rng(11).integers(0,256,(43,57,3),dtype=np.uint8)
         for d in ['jpeg50','jpeg30','gray','bdr','gauss','meanf','medianf','none','data_aug']:

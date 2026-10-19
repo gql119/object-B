@@ -40,10 +40,38 @@
   "max_consecutive_amp_skips": 16,
   "skip_limit_reason": "Predeclared before CUDA: sixteen successive native backoffs take the default 65536 scale to1. Persistent failure across this entire ladder stops with evidence. Isolated skips use unchanged native semantics.",
   "smoke": {
-    "max_total_actual_batches": 100,
-    "trial_batches": 10,
-    "baseline_pair_batches": 5,
-    "synthetic_max_batches": 10,
+    "max_actual_batches_per_isolated_group": 100,
+    "groups": {
+      "first": {
+        "max_batches": 90,
+        "baseline_pair_batches_each": 15,
+        "baseline_actual_updates_required": true,
+        "jpeg50_each_max_batches": 20,
+        "synthetic_max_batches": 20
+      },
+      "second": {
+        "max_batches": 90,
+        "defenses": [
+          "jpeg30",
+          "gray",
+          "bdr"
+        ],
+        "paired_trial_max_batches": 15
+      },
+      "phaseB": {
+        "max_batches": 80,
+        "defenses": [
+          "gauss",
+          "meanf",
+          "medianf",
+          "data_aug"
+        ],
+        "S4_trial_max_batches": 20
+      }
+    },
+    "validation_disabled": true,
+    "save_native_epoch_checkpoints": false,
+    "exit_on_first_actual_update_after_min5_batches": true,
     "official_metrics_disabled": true,
     "artifact_ingest_disabled": true
   },
@@ -227,7 +255,8 @@
         "robustness_yolo_dataset.py": "472b965681b1314c4724e67c959ef727dc2cb54c818a7db1be18a0e13cfe8236",
         "robustness_pgd_at.py": "c4c420d7aa7ff60c3b5efe1c166b9fe9c3196a378bdf920203304d4d33a87369"
       },
-      "evaluation_reuse": "reevaluate existing frozen last on current untouched validation to recover AP75/AP50-95/Precision; confirm AP50/Recall against prior evidence; no retraining"
+      "evaluation_reuse": "reevaluate existing frozen last on current untouched validation to recover AP75/AP50-95/Precision; confirm AP50/Recall against prior evidence; no retraining",
+      "best_sha256": "42b71ea938de8af36b94916b6efa5d9e1f6770904ea4b1fb2c22e7a03946a3a8"
     },
     "meanf": {
       "root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_safe_soft05_20261005/runs/average3_clean",
@@ -266,7 +295,8 @@
         "robustness_yolo_dataset.py": "472b965681b1314c4724e67c959ef727dc2cb54c818a7db1be18a0e13cfe8236",
         "robustness_pgd_at.py": "c4c420d7aa7ff60c3b5efe1c166b9fe9c3196a378bdf920203304d4d33a87369"
       },
-      "evaluation_reuse": "reevaluate existing frozen last on current untouched validation to recover AP75/AP50-95/Precision; confirm AP50/Recall against prior evidence; no retraining"
+      "evaluation_reuse": "reevaluate existing frozen last on current untouched validation to recover AP75/AP50-95/Precision; confirm AP50/Recall against prior evidence; no retraining",
+      "best_sha256": "6c69a813d76f91beaf6591185b2ebf587d3ac736039d968dd938b1f43105f1ac"
     },
     "medianf": {
       "root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_safe_soft05_20261005/runs/median3_clean",
@@ -305,7 +335,8 @@
         "robustness_yolo_dataset.py": "472b965681b1314c4724e67c959ef727dc2cb54c818a7db1be18a0e13cfe8236",
         "robustness_pgd_at.py": "c4c420d7aa7ff60c3b5efe1c166b9fe9c3196a378bdf920203304d4d33a87369"
       },
-      "evaluation_reuse": "reevaluate existing frozen last on current untouched validation to recover AP75/AP50-95/Precision; confirm AP50/Recall against prior evidence; no retraining"
+      "evaluation_reuse": "reevaluate existing frozen last on current untouched validation to recover AP75/AP50-95/Precision; confirm AP50/Recall against prior evidence; no retraining",
+      "best_sha256": "2b71eb76061dfef1de6359c86c212f3d5f14e27db0a9533ad522d7e3992d28bf"
     },
     "data_aug": {
       "root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_safe_soft05_20261005/runs/strong_aug_clean",
@@ -346,7 +377,8 @@
         "robustness_yolo_dataset.py": "472b965681b1314c4724e67c959ef727dc2cb54c818a7db1be18a0e13cfe8236",
         "robustness_pgd_at.py": "c4c420d7aa7ff60c3b5efe1c166b9fe9c3196a378bdf920203304d4d33a87369"
       },
-      "evaluation_reuse": "reevaluate existing frozen last on current untouched validation to recover AP75/AP50-95/Precision; confirm AP50/Recall against prior evidence; no retraining"
+      "evaluation_reuse": "reevaluate existing frozen last on current untouched validation to recover AP75/AP50-95/Precision; confirm AP50/Recall against prior evidence; no retraining",
+      "best_sha256": "fa59fc42f7b016156a1135f521af110804e095f6bfc1d39b4327f3688f1ae7df"
     }
   },
   "phase_A": [

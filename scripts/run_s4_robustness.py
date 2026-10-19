@@ -159,6 +159,7 @@ def train(c,out,data,*,smoke=False,reference=False,synthetic=False,limit=10):
     random.seed(0);np.random.seed(0);torch.manual_seed(0);torch.cuda.manual_seed_all(0)
     torch.set_num_threads(1);torch.backends.cudnn.benchmark=False;torch.backends.cudnn.deterministic=True;torch.use_deterministic_algorithms(True)
     args=dict(c['victim_protocol']['train_args']);args.update(data=str(data),project=str(out/'victim_run'),name='victim',patience=0)
+    if smoke:args.update(val=False,save=False)
     defense=json.loads((out/'data_audit.json').read_text())['defense']
     if defense=='data_aug':
         overrides=c['defenses']['data_aug']['overrides'];assert overrides==dict(degrees=10.,shear=2.)
@@ -171,7 +172,7 @@ def train(c,out,data,*,smoke=False,reference=False,synthetic=False,limit=10):
     # scaler/clip/skip/update sequencing is never replaced.
     native_trainer.check_amp=local_amp_check
     holder=attach_amp_observer(model,out/'amp_audit',enforce=True,debug_hashes=True) if reference else attach_safety_callbacks(model,amp_log_dir=out/'amp_audit',debug_hashes=smoke)
-    forced={'batch':None,'updates_before':None,'recovered':False}
+    forced={'batch':None,'updates_before':None,'recovered':False,'actual_skip_batch':None}
     def verify_amp(t):
         assert bool(t.amp),'AMP disabled by hardware selfcheck; do not change formal protocol'
         dump(out/'AMP_SELF_CHECK.json',dict(passed=True,external_weights=False,source='historical run_robustness_victim.local_amp_check',native_optimizer_inherited=True))
@@ -188,20 +189,27 @@ def train(c,out,data,*,smoke=False,reference=False,synthetic=False,limit=10):
             t.model.loss=loss
         model.add_callback('on_train_start',inject)
     if smoke:
+        def forbid_smoke_validation(t):raise AssertionError('Smoke validation/inference metrics are disabled')
+        model.add_callback('on_val_start',forbid_smoke_validation)
         def boundary(t):
             o=holder['observer']
             if synthetic and forced['batch'] is not None:
-                row=o.rows[forced['batch']-1]
-                if row['optimizer_attempt_observed']:
+                attempts=[row for row in o.rows[forced['batch']-1:] if row['optimizer_attempt_observed']]
+                if attempts:
+                    row=attempts[0]
                     assert row['native_scaler_nonfinite_skip'] and row['backoff'] and row['parameters_unchanged_on_skip']
+                    forced['actual_skip_batch']=row['total_batches']
                     forced['recovered']=o.updates>forced['updates_before']
-            if o.total_batches>=limit:
+            # Limits count actual batches, not optimizer attempts. Accumulation
+            # batches do not constitute a failed AMP attempt or a skipped update.
+            ready=synthetic and forced['recovered'] or not synthetic and defense!='none' and o.updates>=1 and o.total_batches>=5
+            if o.total_batches>=limit or ready:
                 if synthetic:assert forced['recovered'],'Synthetic overflow did not recover within bound'
                 if not reference and defense!='none':assert o.updates>=1,'No successful native AMP update within smoke bound'
                 assert bool(t.amp),'AMP unexpectedly disabled'
                 assert all(r['raw_loss_finite'] and r['model_finite'] and r['EMA_finite'] and r['optimizer_finite'] for r in o.rows)
                 torch.save(dict(model=t.model.state_dict(),optimizer=t.optimizer.state_dict(),scheduler=t.scheduler.state_dict(),scaler=t.scaler.state_dict()),out/'retained_smoke_state.pt')
-                dump(out/'trial_summary.json',dict(state='passed',rows=o.rows,initial=o.initial,batches=o.total_batches,actual_updates=o.updates,skips=o.skips,forced=forced,AMP=True,finite_loss=True,official_metrics_disabled=True,artifact_ingest_disabled=True))
+                dump(out/'trial_summary.json',dict(state='passed',rows=o.rows,initial=o.initial,batches=o.total_batches,actual_updates=o.updates,skips=o.skips,forced=forced,AMP=True,finite_loss=True,validation_forward_batches=0,official_metrics_disabled=True,artifact_ingest_disabled=True))
                 raise Boundary()
         model.add_callback('on_train_batch_end',boundary)
     else:
@@ -240,19 +248,26 @@ def trial(c,out,args):
     data,audit=data_view(c,out,args.defense,args.arm,ids)
     train(c,out,data,smoke=True,reference=args.reference,synthetic=args.synthetic,limit=args.limit)
 
-def smoke(c,out):
+def smoke(c,out,group):
     trials=[]
-    for name,defense,arm,limit,extra in [('native_S4','none','S4',5,['--reference']),('candidate_S4','none','S4',5,[])]+[(f'{d}_{arm}',d,arm,10,[]) for d in c['phase_A'] for arm in ['S4','clean']]+[('overflow_S4','none','S4',10,['--synthetic'])]:
+    plans={
+      'first':[('native_S4','none','S4',15,['--reference']),('candidate_S4','none','S4',15,[])]+[(f'jpeg50_{arm}','jpeg50',arm,20,[]) for arm in ['S4','clean']]+[('overflow_S4','none','S4',20,['--synthetic'])],
+      'second':[(f'{d}_{arm}',d,arm,15,[]) for d in ['jpeg30','gray','bdr'] for arm in ['S4','clean']],
+      'phaseB':[(f'{d}_S4',d,'S4',20,[]) for d in c['phase_B']],
+    }
+    for name,defense,arm,limit,extra in plans[group]:
         cmd=[sys.executable,'-B',__file__,'--phase','trial','--output',str(out/name),'--defense',defense,'--arm',arm,'--limit',str(limit),*extra]
         child_run(cmd,out,name,timeout=1800)
         r=json.loads((out/name/'trial_summary.json').read_text());trials.append(dict(name=name,batches=r['batches'],actual_updates=r['actual_updates'],skips=r['skips']))
         dump(out/'smoke_progress.json',trials)
-    a=json.loads((out/'native_S4/trial_summary.json').read_text());b=json.loads((out/'candidate_S4/trial_summary.json').read_text())
-    assert a['initial']==b['initial']
-    for x,y in zip(a['rows'],b['rows']):
-        for k in ['input_tensor_sha256','input_ids','raw_loss','state','optimizer_update_executed','amp_scale_before','amp_scale_after']:assert x[k]==y[k],k
+    if group=='first':
+        a=json.loads((out/'native_S4/trial_summary.json').read_text());b=json.loads((out/'candidate_S4/trial_summary.json').read_text())
+        assert a['actual_updates']>=1 and b['actual_updates']>=1
+        assert a['initial']==b['initial']
+        for x,y in zip(a['rows'],b['rows']):
+            for k in ['input_tensor_sha256','input_ids','raw_loss','state','optimizer_update_executed','amp_scale_before','amp_scale_after']:assert x[k]==y[k],k
     assert sum(r['batches'] for r in trials)<=100
-    dump(out/'smoke_summary.json',dict(state='passed',trials=trials,total_actual_batches=sum(r['batches'] for r in trials),baseline_equivalence_max_difference=0.,input_tensor_hashes_exact=True,finite_loss=True,production_entrypoint_reached=True,AMP=True,official_metrics_disabled=True,artifact_ingest_disabled=True,cleanup_policy='retain_all',deleted_paths=[]))
+    dump(out/'smoke_summary.json',dict(state='passed',group=group,trials=trials,total_actual_batches=sum(r['batches'] for r in trials),baseline_equivalence_max_difference=0. if group=='first' else None,input_tensor_hashes_exact=True if group=='first' else None,finite_loss=True,production_entrypoint_reached=True,AMP=True,validation_forward_batches=0,official_metrics_disabled=True,artifact_ingest_disabled=True,cleanup_policy='retain_all',deleted_paths=[]))
 
 def formal(c,out,defense):
     assert defense in c['phase_A']+c['phase_B']
@@ -272,7 +287,11 @@ def formal(c,out,defense):
             weights=Path(historical['root'])/'victim/weights/last.pt';assert sha(weights)==historical['last_sha256']
             m=evaluate(weights,data,armout,'last_primary')
             old=json.loads((Path(historical['root'])/'last_primary_clean_val_metrics.json').read_text())
-            for i,name in enumerate(NAMES):assert abs(m['AP50_per_class'][i]-old['AP50_per_class'][name])<=1e-7,'Historical clean evaluation mismatch'
+            for i,name in enumerate(NAMES):
+                assert abs(m['AP50_per_class'][i]-old['AP50_per_class'][name])<=1e-7,'Historical clean AP50 evaluation mismatch'
+                assert abs(m['Recall_per_class'][i]-old['Recall_per_class'][name])<=1e-7,'Historical clean Recall evaluation mismatch'
+            best=Path(historical['root'])/'victim/weights/best.pt';assert sha(best)==historical['best_sha256']
+            evaluate(best,data,armout,'best_secondary')
             result[arm]=m;audits[arm]=dict(reused_clean=True,**historical)
         else:
             cmd=[sys.executable,'-B',__file__,'--phase','arm','--output',str(armout),'--defense',defense,'--arm',arm]
@@ -284,7 +303,7 @@ def formal(c,out,defense):
     dump(out/'paired_results.json',dict(defense=defense,state='complete',source_commit=commit,config_sha256=sha(LOCK),parent_S4_manifest_sha256=c['parent_materialization_manifest_sha256'],metrics=result,scores=pair,audits=audits,primary='last.pt@200',secondary='best.pt',single_seed_descriptive=True))
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--phase',choices=['smoke','trial','formal','arm'],required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--defense',default='none');p.add_argument('--arm',choices=['S4','clean'],default='S4');p.add_argument('--reference',action='store_true');p.add_argument('--synthetic',action='store_true');p.add_argument('--limit',type=int,default=10);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--phase',choices=['smoke','trial','formal','arm'],required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--defense',default='none');p.add_argument('--arm',choices=['S4','clean'],default='S4');p.add_argument('--reference',action='store_true');p.add_argument('--synthetic',action='store_true');p.add_argument('--limit',type=int,default=10);p.add_argument('--smoke-group',choices=['first','second','phaseB'],default='first');a=p.parse_args()
     c=json.loads(LOCK.read_text())
     if a.phase=='trial':trial(c,a.output,a);return
     output_setup(a.output,c)
@@ -293,7 +312,7 @@ def main():
     dump(a.output/'pipeline_status.json',status)
     try:
         if a.phase=='smoke':
-            parent_audit(c,a.output,False);smoke(c,a.output)
+            parent_audit(c,a.output,False);smoke(c,a.output,a.smoke_group)
         elif a.phase=='formal':formal(c,a.output,a.defense)
         else:
             assert a.defense in c['phase_A']+c['phase_B']

@@ -1,0 +1,11 @@
+# 初始 smoke 失败与修复
+
+原唯一RunID s4_robustness_phaseA_train32_smoke_seed0_20261019_v1，sourceb21f525，终止于JPEG30-S4第10个batch，全部产物保留，绝不复用RunID。原JPEG50两臂各10batch/1实际update；原baseline5batch不代表5optimizerattempt。
+
+直接证据：JPEG30十行AMP CSV中6次attempt全部native skip+backoff，4次是无optimizerattempt的梯度累积；scale65536→32768→16384→8192→4096→2048→1024，loss/model/EMA/optimizer始终有限。硬性“第10batch必须update”的smoke边界不足，不能证明持续性失败；未保存的梯度非有限具体来源不猜。
+
+另一个实现错误：smoke误沿用val=True，固定32图导致单batch即一个epoch，原生循环每epoch实际跑4952val。输出不作为正式结果，也没有使用AP选参数。修复仅在smoke分支设置val=False/save=False，并增加on_val_start硬断言。正式args仍为200epoch/原valTrue/原nativeAMP路径；未修改任何S4算法、像素变换、损失、LR或workers。
+
+新smoke分三隔离有界组，每组≤100actualbatch，允许记录累积和合法skip直到首次实际更新；每trial仍有固定上限，16连续native skip安全界限不变，绝不关闭有限性或等价性断言。synthetic在首次实际更新后注入一次有限loss multiplier，等到下一次实际optimizerattempt确认skip/backoff/参数不变，再确认后续成功update，避免把积累batch误当optimizerattempt。
+
+旧失败证据 execution/SMOKE_V1_FAILURE_LOG.json、SMOKE_PROGRESS_LATEST.json 保留；新组必须使用新的RunID及当前源码。CPU/AST检查与GPU均需重新记录，不冒称原smoke已经通过。
