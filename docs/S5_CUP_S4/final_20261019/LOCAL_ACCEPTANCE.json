@@ -1,0 +1,128 @@
+{
+  "schema": "s5.main-agent-acceptance.v1",
+  "accepted": true,
+  "run_id": "s5_tfss_utility_cup_p3_seed0_20261019_v1",
+  "source_commit": "e29d4662465159b5a1d1d7a5fd6c19c545f764e8",
+  "config_sha256": "afdcd04e925d73f50eeb9d450bdbb259195d1500f61f1e46ecd08dd66807f0c8",
+  "checked_utc": "2026-10-19T09:37:42.167953+00:00",
+  "completed_utc": "2026-10-19T08:48:43.187875+00:00",
+  "execution_status": "COMPLETE_VERIFIED_ARCHIVED",
+  "research_verdict": "MIXED_OR_REJECTED_BY_PREREGISTERED_CRITERIA",
+  "criteria": {
+    "Person_AP50_within_preregistered_limit": true,
+    "NT_AP50_above_literal": false,
+    "WCD_below_literal": false,
+    "TCD3_below_literal": false,
+    "NT_AP50_improved_vs_actual_S4": false,
+    "WCD_improved_vs_actual_S4": false,
+    "TCD3_improved_vs_actual_S4": false,
+    "NT_AP75_improved_vs_actual_S4": false
+  },
+  "raw_manifest_sha256": "91da3ac252f53ffdf070a04b697e67b656c559ede978e1d998688ae0016d710d",
+  "raw_manifest_files_verified": 37,
+  "raw_bytes_verified": 39633685,
+  "metric_recomputation": {
+    "Clean": {
+      "P": 0.0,
+      "U": 1.0,
+      "S": 0.0,
+      "WCD": 0.0,
+      "TCD3": 0.0,
+      "WCD_class": "aeroplane"
+    },
+    "S0": {
+      "P": 0.9665952579796269,
+      "U": 0.9024559274736853,
+      "S": 0.9334250734498786,
+      "WCD": 0.2810323798542793,
+      "TCD3": 0.2578511679110964,
+      "WCD_class": "dog"
+    },
+    "S1": {
+      "P": 0.8943819492334,
+      "U": 0.9192578220265056,
+      "S": 0.9066492869650402,
+      "WCD": 0.2703148749169063,
+      "TCD3": 0.2187931314567354,
+      "WCD_class": "dog"
+    },
+    "S2": {
+      "P": 0.9534895119744223,
+      "U": 0.8990957248373492,
+      "S": 0.9254940899440578,
+      "WCD": 0.3084263008262152,
+      "TCD3": 0.2743985877796649,
+      "WCD_class": "dog"
+    },
+    "S3": {
+      "P": 0.9603501574274214,
+      "U": 0.8994463007417703,
+      "S": 0.9289010017420839,
+      "WCD": 0.2697248045357672,
+      "TCD3": 0.26075386351959123,
+      "WCD_class": "bicycle"
+    },
+    "S4": {
+      "P": 0.9675567539633126,
+      "U": 0.905181378607414,
+      "S": 0.9353302965334364,
+      "WCD": 0.2959510970908037,
+      "TCD3": 0.26448170124191184,
+      "WCD_class": "dog"
+    },
+    "S5": {
+      "P": 0.9739772359094737,
+      "U": 0.9003783285667772,
+      "S": 0.9357328058247114,
+      "WCD": 0.31318165930240155,
+      "TCD3": 0.2683523516219294,
+      "WCD_class": "dog"
+    },
+    "S5_best_secondary": {
+      "P": 0.9625244749797905,
+      "U": 0.9120359469396987,
+      "S": 0.9366002938352155,
+      "WCD": 0.2836414400142564,
+      "TCD3": 0.24802073886889345,
+      "WCD_class": "dog"
+    }
+  },
+  "historical_optional_aggregates_unavailable": {
+    "Clean": [
+      "Recall_all",
+      "Precision_all"
+    ],
+    "S0": [
+      "Recall_all",
+      "Precision_all"
+    ],
+    "S1": [
+      "Recall_all",
+      "Precision_all"
+    ],
+    "S2": [
+      "Recall_all",
+      "Precision_all"
+    ],
+    "S3": [
+      "Recall_all",
+      "Precision_all"
+    ],
+    "S4": [],
+    "S5": [],
+    "S5_best_secondary": []
+  },
+  "checkpoint_metadata_proof_sha256": "66181688e7e419ef1ec4433274f94ada3df47e20b3d988f7d85ab26b3c866dfd",
+  "noise_checkpoint_sha256": "63d68cc8c50afb35658a412cfdfafea0b89a5bc3222f53057bbaafb28fc780ee",
+  "last_sha256": "a33b864348bedfa4fa60feccdd420ea998faef410ce9025a89eee508ff2d291c",
+  "best_sha256": "2e7c195e233476c50cea8df025820978e44d0c511857b0a60e3e8991fde41997",
+  "full_dataset_audit_passed": true,
+  "victim_epochs": 200,
+  "snapshot_serialization_note": "Pipeline re-serializes snapshots; original source config/receipt SHA and snapshot file SHA are recorded separately, with exact parsed-content equality.",
+  "runtime_reported_model_immutability": true,
+  "independent_live_final_teacher_parameter_hash": "NOT_AVAILABLE_AFTER_PROCESS_EXIT; initial hashes, original file SHA, and runtime completion flags retained",
+  "single_seed_not_significance": true,
+  "new_GPU_forwards": 0,
+  "new_optimizer_updates": 0,
+  "automatic_extra_runs": false
+}

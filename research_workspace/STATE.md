@@ -1,3 +1,41 @@
+# S5 最终验收 — 2026-10-19
+
+- 状态：COMPLETE / VERIFIED / ARCHIVED，远端 exit0，原绑定训练进程已退出。完整 24 epoch / 9,144 noise 更新、全量数据审计、随机初始化 YOLOv8n Victim 200 epoch、last 主评价与 best 次评价均完成。
+- 唯一 RunID：s5_tfss_utility_cup_p3_seed0_20261019_v1；科学源码 e29d4662465159b5a1d1d7a5fd6c19c545f764e8；配置 SHA afdcd04e925d73f50eeb9d450bdbb259195d1500f61f1e46ecd08dd66807f0c8。
+- S5 last Person AP50=0.02258628164286698，NT AP50=0.690105689344675，NT AP75=0.5102067823101584；WCD=0.31318165930240155（dog），TCD3=0.26835235162192933。
+- 相比 S4：Person -0.5573pp，NT -0.3681pp，NT AP75 -0.5045pp，WCD/TCD3 变差。综合判据未通过；执行验收不等于研究成功。单种子，不作显著性/因果/跨种子结论。
+- 37 个文件大小/SHA 核验、全类已有聚合和带符号指标本地复算通过；最终 checkpoint Adam/CUP9144、scheduler24、Fourier/RNG、200 行 CSV 与 last 内嵌记录核验通过。206 个 checkpoint 保留，无新优化或数据/权重传输。
+- 完整报告：docs/S5_CUP_S4/final_20261019/S5_FINAL_REPORT_ZH.md；主代理验收 LOCAL_ACCEPTANCE.json；原始完整证据保留 BASE/s5_small_20261018/唯一RunID。
+- S0–S4 继续保持已归档；不重跑、调参或自动追加实验。当前仅完成此前授权的小型结果发布，完成后关闭原唯一监控。
+
+以下均为历史过程记录，以本节最终状态为准。
+
+---
+
+# Latest S5 progress verified 2026-10-19 16:17 Asia/Hong_Kong
+
+Same sole boundPID1880295/startticks297568436 alive, victim_training. Victim CSV177/200 contiguousepochs, recordedlossesfinite; last/best currently provisional. Registered noise24/9144 and dataset integrity alreadypassed, auditSHA unchanged. Current stage evidence execution/S5_STAGE_20261019T081720Z.json. This is bounded stage/CSV/checkpoint-metadata inspection, not a fresh three-window resource audit or final checkpoint-content acceptance. Continue same process through200 and final evaluations/reports; neverduplicate/restart.
+
+# Latest S5 stage verified 2026-10-19 14:22 Asia/Hong_Kong
+
+Same sole RunID s5_tfss_utility_cup_p3_seed0_20261019_v1 and PID1880295/startticks297568436. Noise COMPLETE24/24epochs9144/9144updates,32807.92903734278s (registered schedule completion, not convergence). Full dataset audit passed16551train/4952cleanval/6095targetimages/13256PersonGTchanged; labels/cleanval/nonPerson byte-identical, outside0/per-pixel8-4-0. AuditSHA446158754c3d7c3540dc175432e4844c7dd434e182af94ac1a6dfa09888b3bd5. Victim RUNNING,81/200continuousCSVepochs,recordedlossesfinite; fresh randomYAMLseed0/batch36/workers16/AMPtrue/nativeSGD. Last/best files currently exist but provisional; no finalAPclaim. Latest read-only RRCTL evidence execution/S5_STAGE_20261019T062231Z.json and S5_MONITOR_20261019T062143Z.json. Actual3-windowCPU68.68/56.05/56.10%,IO.02/.04/.03%,ownGPUonly,activeguardsPASS. Source/configidentities exact. Pipeline's embedded resource block is launch-time metadata; use current monitor for current resources. No new launch/signals/remote mutation; final checkpoint payload/Adam/CUP/RNG acceptance remains pending. Never rerun noise/data or create another victim.
+
+# Latest S5 read-only monitor 2026-10-18T19:22:45UTC
+
+Same boundPID1880295/startticks297568436, sourcee29d466/configafdcd04e exact/remoteGit clean; healthy noise_generation epoch1,65/9144steps. Three samples progressed47->57->65; CPU100/47.61/100%, I/O0/.04/0%, no sustained contention. GPU onlyownprocess9471MiB; activeRAM/disk/source/config/PID safeguards passed. Retained immutable checkpoint metadata/hash recorded in execution/S5_MONITOR_20261018T192245Z.json (content acceptance not yet performed). No signals, launch or remote writes; unchanged healthy notification suppressed. Follow existing run, neverduplicate.
+
+# Latest S5: FORMAL LAUNCHED EXACTLY ONCE
+
+RunID s5_tfss_utility_cup_p3_seed0_20261019_v1, sourcee29d466, configSHAafdcd04e925d73f50eeb9d450bdbb259195d1500f61f1e46ecd08dd66807f0c8. WorkloadPID1880295/executor1880293; first-step RRCTL healthy. Current-source smokev2 passed92/98units, exactS4/noop0/PNG32/resume0/nativeAMPpassed. ExactlyONE independent S5 reviewer scientifically_correct/allow_run with no blockers; receiptSHA25663bc1f6500ca76bcc848dc4e9a1aae6730b49beff34ddca5afbaf5f4db4f1. Three-window resources and finalpreflights passed. Neverrelaunch. Follow existing binding through24/9144/full dataset audit/victim200/lastprimary/fullVOC20/reports acceptance/publication. ShortproxiesMIXED, noAPclaim. See execution/S5_CURRENT_STATE.json and S5_CONTINUE.md.
+
+# Latest S5: v1 synthetic AMP harness failed; repaired candidate e29d466
+
+40 noise updates/resume/PNG passed; synthetic observer asserted on accumulation-only batch11 before native optimizer attempt. Five targeted contracts pass; only smoke observer and smoke RunID metadata repaired. v2 fresh-source GPU pending; reviewer NOT_CALLED/formal NOT_RUN. See S5_AMP_ACCUMULATION_HARNESS_REPAIR.md.
+
+# Latest S5: current-source StageE smoke RUNNING
+
+RunID s5_cup_p3_train32_smoke_seed0_20261019_v1 launched once onef7889a; parent audit completed and actualS4reference batch0 active, RRCTLhealthy. WorkloadPID1852763/executor1852761. Source/config tested/committed bytes exact; scopedGitHubbranchremoteSHAverified. Budget<=98 (40noiseAdam,12postEOT,no-update,AMP5/5/16/max20) retainall. FormalS5/reviewer NOT_RUN/NOT_CALLED. Currentstate execution/S5_CURRENT_STATE.json; next actualsource gates then oneindependentreview and authorizedformal.
+
 # Latest S5: StageD implemented; current-source StageE pending
 
 P3 selected from completed realTRAIN32 StageB. New detached class-drift EMA/normalization/bounded pi weighting and CUP Adam-boundary/checkpoint/journal hooks are implemented; originalS4/45S0files unchanged. CPU14contracts pass; compile16/importexports71 pass. Selected-P3 config/calibration and scientific differences documented. Current CUP GPU/AMP/resume/PNG/independentreview NOT_RUN; formalS5 planned butUNLAUNCHED. Fresh resource audit underway; proceed to isolatedStageE using the actual formal trainer and native victim paths, then exactlyoneS5review and authorizedformal gates. User explicitly asks autonomous diagnosis/repair toward formal execution; do not ask repeated scope confirmation or relax correctness.

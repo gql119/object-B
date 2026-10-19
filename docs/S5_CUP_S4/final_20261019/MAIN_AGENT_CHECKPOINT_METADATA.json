@@ -1,0 +1,117 @@
+{
+  "source": {
+    "head": "e29d4662465159b5a1d1d7a5fd6c19c545f764e8",
+    "tracked_clean": true
+  },
+  "config_sha256": "afdcd04e925d73f50eeb9d450bdbb259195d1500f61f1e46ecd08dd66807f0c8",
+  "config_snapshot_sha256": "ce9f3c8df78e4b8fcf0e544392dce74111493ea6ab37bd10f97d46306b4f5d05",
+  "review_snapshot_sha256": "f146841b66aa7730f7e2c72543d43283a6c3d2fc5a7bb780b8b43df4d97ceeb2",
+  "snapshots_semantically_exact": true,
+  "snapshot_serialization_note": "Pipeline re-serializes snapshots; original source config/receipt SHA and snapshot file SHA are recorded separately, with exact parsed-content equality.",
+  "review_receipt_sha256": "25663bc1f6500ca76bcc848dc4e9a1aae6730b49beff34ddca5afbaf5f4db4f1",
+  "noise": {
+    "checkpoint_sha256": "63d68cc8c50afb35658a412cfdfafea0b89a5bc3222f53057bbaafb28fc780ee",
+    "boundary": "complete_optimizer_step",
+    "epoch": 24,
+    "steps": 9144,
+    "cursor": 0,
+    "order": null,
+    "diagnostic_rows": 9144,
+    "adam_steps": [
+      9144
+    ],
+    "scheduler_last_epoch": 24,
+    "CUP_steps": 9144,
+    "CUP_state_finite": true,
+    "CUP_calibration_exact": true,
+    "Fourier_state_finite": true,
+    "rng_keys": [
+      "python",
+      "numpy",
+      "torch",
+      "cuda"
+    ],
+    "cuda_rng_count": 1,
+    "checkpoint_count": 206,
+    "no_writing_files": true,
+    "frozen_adaptive_initial_hash_equal": true,
+    "original_teacher_file_sha256": "8de8a0c78c6414ad0bf98052b3bc96c33d8e854a2a2a905d47c8195363975b89",
+    "runtime_reported_both_models_unchanged": true,
+    "adaptive_calls": 18288,
+    "semantic_calls": 18288,
+    "cup_journal_sha256": "0beb43b086dbba6441ad604e697947d7f210bbc5abe1b2a112ac06f11113d403"
+  },
+  "victim": {
+    "last.pt": {
+      "sha256": "a33b864348bedfa4fa60feccdd420ea998faef410ce9025a89eee508ff2d291c",
+      "embedded_epoch": -1,
+      "embedded_row_lengths": {
+        "epoch": 200,
+        "time": 200,
+        "train/box_loss": 200,
+        "train/cls_loss": 200,
+        "train/dfl_loss": 200,
+        "metrics/precision(B)": 200,
+        "metrics/recall(B)": 200,
+        "metrics/mAP50(B)": 200,
+        "metrics/mAP50-95(B)": 200,
+        "val/box_loss": 200,
+        "val/cls_loss": 200,
+        "val/dfl_loss": 200,
+        "lr/pg0": 200,
+        "lr/pg1": 200,
+        "lr/pg2": 200
+      },
+      "model_weights_finite": true
+    },
+    "best.pt": {
+      "sha256": "2e7c195e233476c50cea8df025820978e44d0c511857b0a60e3e8991fde41997",
+      "embedded_epoch": -1,
+      "embedded_row_lengths": {
+        "epoch": 200,
+        "time": 200,
+        "train/box_loss": 200,
+        "train/cls_loss": 200,
+        "train/dfl_loss": 200,
+        "metrics/precision(B)": 200,
+        "metrics/recall(B)": 200,
+        "metrics/mAP50(B)": 200,
+        "metrics/mAP50-95(B)": 200,
+        "val/box_loss": 200,
+        "val/cls_loss": 200,
+        "val/dfl_loss": 200,
+        "lr/pg0": 200,
+        "lr/pg1": 200,
+        "lr/pg2": 200
+      },
+      "model_weights_finite": true
+    }
+  },
+  "victim_csv": {
+    "rows": 200,
+    "contiguous": true,
+    "recorded_losses_finite": true,
+    "primary_embedded_rows_match_csv": true
+  },
+  "victim_protocol": {
+    "fresh_random": true,
+    "matched_locked_args_except_output_paths": true,
+    "epochs": 200,
+    "batch": 36,
+    "workers": 16,
+    "amp": true,
+    "seed": 0,
+    "optimizer": "SGD"
+  },
+  "evaluation_file_sha256": {
+    "S5_evaluation.json": "546db8f1471e1d08a51cd96011134ab4e3cfa4f4b455fc266583e45554e8ae2e",
+    "S5_best_secondary_evaluation.json": "3023a8f42cc3a473902f75110040e72821faeaddc1e10156b72ab453060dc165",
+    "comparison.json": "e367f8996f8ee26f858b3b776874c4d00b005a8e4a608a1d1d862ba9e7843086",
+    "dataset_integrity.json": "446158754c3d7c3540dc175432e4844c7dd434e182af94ac1a6dfa09888b3bd5"
+  },
+  "accepted": true,
+  "GPU_forwards": 0,
+  "optimizer_updates": 0,
+  "checked_utc": "2026-10-19T09:30:24.338368+00:00",
+  "read_only": true
+}

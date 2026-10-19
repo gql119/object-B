@@ -1,0 +1,134 @@
+{
+  "schema": "s5.scoped-publication.v1",
+  "run_id": "s5_tfss_utility_cup_p3_seed0_20261019_v1",
+  "source_commit": "e29d4662465159b5a1d1d7a5fd6c19c545f764e8",
+  "config_sha256": "afdcd04e925d73f50eeb9d450bdbb259195d1500f61f1e46ecd08dd66807f0c8",
+  "raw_manifest_sha256": "91da3ac252f53ffdf070a04b697e67b656c559ede978e1d998688ae0016d710d",
+  "files": [
+    {
+      "archive": "CUP_CLASSWISE_WEIGHTS.csv",
+      "raw": "reports/CUP_CLASSWISE_WEIGHTS.csv",
+      "sha256": "a304a34ce25d1cc25b11921ce4345111c618e427c13895e33357aa73f1ffebff"
+    },
+    {
+      "archive": "CUP_GRADIENT_AUDIT.csv",
+      "raw": "reports/CUP_GRADIENT_AUDIT.csv",
+      "sha256": "37582bbd1a0d2ce85a2b9da56e9616ea8111aefd89900355ea015cf2b42c8eee"
+    },
+    {
+      "archive": "CUP_S4_ADAPTATION_DIFF.md",
+      "raw": "reports/CUP_S4_ADAPTATION_DIFF.md",
+      "sha256": "19ec082d836bf5fc1d5b5f19a0095f48c71823a60183b6469482fa2158d1f421"
+    },
+    {
+      "archive": "CUP_S4_DESIGN.md",
+      "raw": "reports/CUP_S4_DESIGN.md",
+      "sha256": "65ee19eb04095df93f34a32749bb2fc143789c47282c6bc3cbf537875df3c63d"
+    },
+    {
+      "archive": "P3_P5_5STEP_RESULTS.md",
+      "raw": "reports/P3_P5_5STEP_RESULTS.md",
+      "sha256": "18a92614e01c620acefbf0b6dedfd5467db86c3f64f43d1c17e1022c98f8c14b"
+    },
+    {
+      "archive": "P3_P5_GRADIENT_COMPARISON.csv",
+      "raw": "reports/P3_P5_GRADIENT_COMPARISON.csv",
+      "sha256": "74639e87bf3ec2dabda95655feaa5cdbeb0f48bffe2e80e55d389b49f7a276e8"
+    },
+    {
+      "archive": "P3_P5_LAYER_DECISION.md",
+      "raw": "reports/P3_P5_LAYER_DECISION.md",
+      "sha256": "2e1f79fbe1b20398a839d7b425b88e6baae18e9a6ca9e7fa9e9a3be09b057a39"
+    },
+    {
+      "archive": "P3_P5_NON_TARGET_RETENTION.csv",
+      "raw": "reports/P3_P5_NON_TARGET_RETENTION.csv",
+      "sha256": "73bb3c1622f8dee1d64b1e4d357914f523fff79efcffe94162283569229797b2"
+    },
+    {
+      "archive": "P3_P5_SOURCE_AUDIT.md",
+      "raw": "reports/P3_P5_SOURCE_AUDIT.md",
+      "sha256": "ebfe3251fd1ad4212d68ba81cf08b88dd91eb273cc609831c49f4c86a2ab3366"
+    },
+    {
+      "archive": "S5_5STEP_SMOKE.md",
+      "raw": "reports/S5_5STEP_SMOKE.md",
+      "sha256": "dd9d49bd0436ff0b286e6c9a37a4033cca3b445775e07ba584a4bfe9a03cec4a"
+    },
+    {
+      "archive": "S5_COMPARISON.json",
+      "raw": "reports/S5_COMPARISON.json",
+      "sha256": "e367f8996f8ee26f858b3b776874c4d00b005a8e4a608a1d1d862ba9e7843086"
+    },
+    {
+      "archive": "S5_CONFIG_LOCK.json",
+      "raw": "reports/S5_CONFIG_LOCK.json",
+      "sha256": "ce9f3c8df78e4b8fcf0e544392dce74111493ea6ab37bd10f97d46306b4f5d05"
+    },
+    {
+      "archive": "S5_FINAL_REPORT.md",
+      "raw": "reports/S5_FINAL_REPORT.md",
+      "sha256": "7d3383fd538648b06575f55c59a40c692e77e2491b4ecfaf3c3ed1afb4b1550e"
+    },
+    {
+      "archive": "S5_NOISE_TRAINING_REPORT.md",
+      "raw": "reports/S5_NOISE_TRAINING_REPORT.md",
+      "sha256": "54fa18e4b0b949bbe347af0fe301ea31c0707a49d07e2140f095cbc6f82d67ab"
+    },
+    {
+      "archive": "S5_PARENT_EQUIVALENCE.md",
+      "raw": "reports/S5_PARENT_EQUIVALENCE.md",
+      "sha256": "60d7125cf95d884c162479f6e64f314c20eb1663b738e2c29fa609ccdecef5ae"
+    },
+    {
+      "archive": "S5_S0_S3_S4_COMPARISON.csv",
+      "raw": "reports/S5_S0_S3_S4_COMPARISON.csv",
+      "sha256": "98b1d5692caca8d8e0945b1a25a31037f72d4b7fbbeeef2a92342e71d5fa9960"
+    },
+    {
+      "archive": "S5_VICTIM_TRAINING_REPORT.md",
+      "raw": "reports/S5_VICTIM_TRAINING_REPORT.md",
+      "sha256": "59793fab2de37c3b623b2072f03ff50071af58c4a3cc31b4220d1cb712357dcc"
+    },
+    {
+      "archive": "S5_VOC20_PER_CLASS.csv",
+      "raw": "reports/S5_VOC20_PER_CLASS.csv",
+      "sha256": "2b1896a3d055efd193eb669b51401e2fd8fd1bdd0bca10a8158df9ccb596122e"
+    },
+    {
+      "archive": "S5_evaluation.json",
+      "raw": "S5_evaluation.json",
+      "sha256": "546db8f1471e1d08a51cd96011134ab4e3cfa4f4b455fc266583e45554e8ae2e"
+    },
+    {
+      "archive": "S5_best_secondary_evaluation.json",
+      "raw": "S5_best_secondary_evaluation.json",
+      "sha256": "3023a8f42cc3a473902f75110040e72821faeaddc1e10156b72ab453060dc165"
+    },
+    {
+      "archive": "VICTIM_RESULTS_200.csv",
+      "raw": "victim_run/victim/results.csv",
+      "sha256": "fe8f87f9149160be99cf00203690f29ca940066f72ad47661829f482b9e8060c"
+    },
+    {
+      "archive": "RAW_ARTIFACT_MANIFEST.json",
+      "raw": "artifact_manifest.json",
+      "sha256": "91da3ac252f53ffdf070a04b697e67b656c559ede978e1d998688ae0016d710d"
+    },
+    {
+      "archive": "S5_TFSS_SPATIAL_STATS.csv",
+      "raw": "S5_TFSS_SPATIAL_STATS.csv",
+      "sha256": "7619663f9ab79a2b55414e180a247fc8ae62e6f144180adccec3e08069dce4ea"
+    }
+  ],
+  "exclusions": [
+    "weights",
+    "datasets",
+    "source RGB",
+    "NPZ",
+    "profiles",
+    "secrets",
+    "execution databases",
+    "large raw diagnostics and per-image integrity ledger"
+  ]
+}
