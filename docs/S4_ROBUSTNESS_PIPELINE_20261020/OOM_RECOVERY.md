@@ -11,3 +11,5 @@ Existing pipeline and Gray attempt remain untouched. Recovery gets a fresh contr
 Validation: targeted local contracts then production RRCTL CPU-only synthetic scope smoke. The synthetic child self-signal9 tests receipt/controller survival, not a real OOM injection. Do not disable OOM protection or manufacture memory pressure. Actual formal recovery waits for these gates and fresh unchanged resource admission.
 
 Evidence retained locally: execution/PIPELINE_CAUSE_SYSTEM_LOGS_20261020.json; execution/PIPELINE_OOM_SCOPE_AUDIT_20261020.json; execution/PIPELINE_INTERRUPTION_READONLY_20261020.json.
+
+Recovery reporting correction: report lookup now resolves each actual RunID/output from the explicit pipeline config instead of a hard-coded original Gray name. Metric functions/checks are unchanged. The recovery launcher source is58f8c1c; a separately recorded reporting-only code update is deployed before report generation. Both component identities are retained; never describe the mixed runtime as unmodified58f8c1c. Five local contracts pass, and current-source production scope smoke passed exit0 with one small artifact. This does not simulate real oomd pressure.

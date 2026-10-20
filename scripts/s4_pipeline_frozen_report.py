@@ -41,8 +41,8 @@ def validate_metrics(m):
         for suffix,expected in [('target',v[14]),('non_target',sum(nt)/19),('all',sum(v)/20)]:
             if key+'_'+suffix in m:assert math.isclose(m[key+'_'+suffix],expected,abs_tol=1e-12)
 
-def accept(defense,lock,lockhash):
-    rid=f's4_robustness_{defense}_paired_seed0_20261019_v1';p=SMALL/rid
+def accept(defense,lock,lockhash,*,run_id=None,output=None):
+    rid=run_id or f's4_robustness_{defense}_paired_seed0_20261019_v1';p=Path(output) if output is not None else SMALL/rid
     accepted=ROOT/'execution/acceptance'/f'{rid}.json'
     if not accepted.is_file():
         state='IN_PROGRESS' if (ROOT/'execution/state'/rid/'run_ref.json').is_file() else 'NOT_RUN'

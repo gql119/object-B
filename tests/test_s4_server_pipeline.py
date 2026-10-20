@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+import sys
 
 ROOT=Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location('scheduler',ROOT/'scripts/run_s4_robustness_pipeline.py')
@@ -33,5 +34,18 @@ class Contracts(unittest.TestCase):
         self.assertFalse(any(x.startswith(('--property','-p','--slice')) for x in argv))
         self.assertEqual(m.classify('Result=oom-kill'),'RETRYABLE_FAILURE')
         self.assertEqual(m.classify('AssertionError with Result=oom-kill'),'BLOCKED')
+    def test_report_paths_use_explicit_recovery_binding(self):
+        sys.path.insert(0,str(ROOT/'scripts'))
+        import s4_pipeline_reports as report
+        c=m.load(ROOT/'docs/S4_ROBUSTNESS_PIPELINE_20261020/PIPELINE_RECOVERY01_CONFIG.json')
+        out=report.output_for(c,'gray')
+        self.assertTrue(out.name.endswith('_recovery01'))
+        self.assertEqual(report.output_for(c,'jpeg30').name,c['bootstrap_runs']['jpeg30'])
+        old=report.legacy.ROOT
+        try:
+            report.legacy.ROOT=Path(tempfile.mkdtemp(prefix='report-binding-',dir=ROOT/'execution'))
+            pair,status=report.legacy.accept('gray',{},'unused',run_id=out.name,output=out)
+            self.assertIsNone(pair);self.assertEqual(status['run_id'],out.name)
+        finally:report.legacy.ROOT=old
 
 if __name__=='__main__':unittest.main()

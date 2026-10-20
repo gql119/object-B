@@ -13,6 +13,11 @@ def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def save(p,x):
     p=Path(p);tmp=p.with_name(p.name+'.writing');tmp.write_text(json.dumps(x,indent=2,allow_nan=False)+'\n');tmp.replace(p)
 
+def output_for(config,defense):
+    if defense in config['bootstrap_runs']:
+        return Path(config['root'])/'outputs'/config['bootstrap_runs'][defense]
+    return Path(config['stages'][defense]['output'])
+
 def generate(config,lock,phase):
     root=Path(config['output_root']);doc=root/'reports';doc.mkdir(exist_ok=True)
     for name in ['S4_ROBUSTNESS_SOURCE_AUDIT.md','S4_ROBUSTNESS_PROTOCOL.md','DEFENSE_IMPLEMENTATION_AUDIT.md','JPEG50_CONFIG.json','JPEG30_CONFIG.json','GRAY_CONFIG.json','BDR_CONFIG.json','HISTORICAL_S0_DEFENSE_REUSE_AUDIT.md','CLEAN_DEFENSE_MATCHING_AUDIT.csv','AT_PROTOCOL_AND_COST_AUDIT.md']:
@@ -28,10 +33,10 @@ def generate(config,lock,phase):
     legacy.ROOT=root;legacy.DOC=doc;legacy.SMALL=Path(config['root'])/'outputs'
     original=legacy.accept
     def actual_control(defense,c,lockhash):
-        c=json.loads(json.dumps(c));out=legacy.SMALL/f's4_robustness_{defense}_paired_seed0_20261019_v1'
+        c=json.loads(json.dumps(c));out=output_for(config,defense)
         p=out/'selected_arms.json'
         if p.exists() and not load(p).get('clean',{}).get('historical',True):c['historical_clean'].pop(defense,None)
-        return original(defense,c,lockhash)
+        return original(defense,c,lockhash,run_id=out.name,output=out)
     legacy.accept=actual_control
     try:legacy.main()
     finally:legacy.accept=original
@@ -48,7 +53,7 @@ def generate(config,lock,phase):
             p=pairs[d];a=p['metrics']['clean'];b=p['metrics']['S4'];s=p['recomputed_scores']
             vals=[a['mAP50_target'],b['mAP50_target'],a['mAP50_non_target'],b['mAP50_non_target'],*[s[k] for k in ['P','U','S','WCD','TCD3']]]
             lines.append('| '+d+' | '+' | '.join('UNDEFINED' if v is None else f'{v:.12g}' for v in vals)+' |')
-            out=legacy.SMALL/f's4_robustness_{d}_paired_seed0_20261019_v1';status=load(out/'pipeline_status.json')
+            out=output_for(config,d);status=load(out/'pipeline_status.json')
             elapsed=status.get('completed_at_unix',0)-status.get('started_at_unix',0)
             if elapsed>0:duration+=elapsed
             receipt=load(root/'execution/acceptance'/f'{out.name}.json')
@@ -59,7 +64,7 @@ def generate(config,lock,phase):
         (doc/f'PHASE_{ph}_FINAL_REPORT.md').write_text(text)
         shutil.copyfile(doc/f'PHASE_{ph}_ROBUSTNESS_RESULTS.csv',doc/f'PHASE_{ph}_RESULTS.csv')
         shutil.copyfile(doc/f'PHASE_{ph}_PER_CLASS_RESULTS.csv',doc/f'PHASE_{ph}_PER_CLASS.csv')
-        save(doc/f'PHASE_{ph}_ACCEPTANCE.json',dict(state='ACCEPTED',phase=ph,time=time.time(),defenses=references,report_sha256=sha(doc/f'PHASE_{ph}_FINAL_REPORT.md'),results_sha256=sha(doc/f'PHASE_{ph}_RESULTS.csv'),per_class_sha256=sha(doc/f'PHASE_{ph}_PER_CLASS.csv')))
+        save(doc/f'PHASE_{ph}_ACCEPTANCE.json',dict(state='ACCEPTED',phase=ph,time=time.time(),defenses=references,reporter_sha256=sha(__file__),report_adapter_sha256=sha(legacy.__file__),report_sha256=sha(doc/f'PHASE_{ph}_FINAL_REPORT.md'),results_sha256=sha(doc/f'PHASE_{ph}_RESULTS.csv'),per_class_sha256=sha(doc/f'PHASE_{ph}_PER_CLASS.csv')))
     if phase in ('B','FINAL'):
         baseline_metrics=load(baseline)['metrics'];base=baseline_metrics['S4'];clean0=baseline_metrics['Clean']
         def evidence(d):
