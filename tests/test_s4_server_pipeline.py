@@ -25,5 +25,13 @@ class Contracts(unittest.TestCase):
         self.assertEqual(c['science_commit'],'e17c24c54aae4cdae4bcc4703facf2a57052d2c8')
         for p,h in c['science_sha256'].items():self.assertEqual(m.sha(ROOT/p),h,p)
         self.assertNotIn('resume',m.load(ROOT/'docs/S4_ROBUSTNESS_20261019/S4_ROBUSTNESS_LOCK.json')['victim_protocol']['train_args'])
+    def test_scope_isolation_has_no_resource_protection_override(self):
+        unit,argv=m.scope_argv(ROOT/'execution/test-scope',['python','frozen_train.py','--batch','36'],ROOT)
+        self.assertTrue(unit.startswith('s4rb-job-'))
+        self.assertEqual(argv[:4],['systemd-run','--user','--scope','--quiet'])
+        self.assertEqual(argv[-4:],['python','frozen_train.py','--batch','36'])
+        self.assertFalse(any(x.startswith(('--property','-p','--slice')) for x in argv))
+        self.assertEqual(m.classify('Result=oom-kill'),'RETRYABLE_FAILURE')
+        self.assertEqual(m.classify('AssertionError with Result=oom-kill'),'BLOCKED')
 
 if __name__=='__main__':unittest.main()

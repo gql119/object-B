@@ -1,0 +1,84 @@
+{
+  "schema": "s4.robustness.server-pipeline.v1",
+  "pipeline_run_id": "s4_robustness_server_pipeline_seed0_20261020_recovery01",
+  "root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019",
+  "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/outputs/s4_robustness_server_pipeline_seed0_20261020_recovery01",
+  "science_repo": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/repos/s4_robustness_jpeg30_paired_seed0_20261019_v1",
+  "science_commit": "e17c24c54aae4cdae4bcc4703facf2a57052d2c8",
+  "science_sha256": {
+    "scripts/run_s4_robustness.py": "f343d80be04659c42eb277776bdfeef3989d9036a691fecde47f3c17c3347136",
+    "scripts/run_s4_tfss_pipeline.py": "ee97272270c86f43091fb81ae67acc63171ad11fd6aeb77ea7992d58e80d5fbc",
+    "ue_framework/s4_robustness.py": "a33de08f8e8600de42ac068087f132b6ed79926394ba069aaa181e37eb440157",
+    "ue_framework/s4_robustness_resources.py": "23c5b221ae3166e6b51c97b57538ed016ad05274fbb4d239ad21eede660eed6e",
+    "ue_framework/s4_victim.py": "378dbfdfd0271414339ebbf096f71c16e93fb358831df6ae83ec3d38c6c9f81a",
+    "ue_framework/s4_amp_observer.py": "8f0fd915eb6ba4d99840916f3e325f147cb6073566effc2492063abba39f2cca",
+    "configs/voc_yolov8n_20cls.yaml": "ce7ae30a91e838a1d53fd4773afc3b56454591701e3f83d37f404cc946af10a2",
+    "docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+    "docs/S4_ROBUSTNESS_20261019/S4_ROBUSTNESS_LOCK.json": "00af2dc40c5c4d263246e78f70195bf8a53a16b9118bb289a9b307d93bafdb91"
+  },
+  "config_sha256": "00af2dc40c5c4d263246e78f70195bf8a53a16b9118bb289a9b307d93bafdb91",
+  "task_sha256": "d60cf85a281de14bbb62108f1218a5760bf9b3bc9e7794e787e192e8c22e1336",
+  "AT_authorized": false,
+  "python": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+  "order": [
+    "existing",
+    "gray",
+    "bdr",
+    "phase_A",
+    "gauss",
+    "meanf",
+    "medianf",
+    "data_aug",
+    "phase_B",
+    "archive"
+  ],
+  "poll_seconds": 30,
+  "monitor_seconds": 900,
+  "max_environment_retries": 2,
+  "backoff_seconds": [
+    60,
+    300
+  ],
+  "bootstrap_runs": {
+    "jpeg50": "s4_robustness_jpeg50_paired_seed0_20261019_v1",
+    "jpeg30": "s4_robustness_jpeg30_paired_seed0_20261019_v1"
+  },
+  "stages": {
+    "gray": {
+      "run_id": "s4_robustness_gray_paired_seed0_20261019_recovery01",
+      "output": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/outputs/s4_robustness_gray_paired_seed0_20261019_recovery01"
+    },
+    "bdr": {
+      "run_id": "s4_robustness_bdr_paired_seed0_20261019_v1",
+      "output": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/outputs/s4_robustness_bdr_paired_seed0_20261019_v1"
+    },
+    "gauss": {
+      "run_id": "s4_robustness_gauss_paired_seed0_20261019_v1",
+      "output": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/outputs/s4_robustness_gauss_paired_seed0_20261019_v1"
+    },
+    "meanf": {
+      "run_id": "s4_robustness_meanf_paired_seed0_20261019_v1",
+      "output": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/outputs/s4_robustness_meanf_paired_seed0_20261019_v1"
+    },
+    "medianf": {
+      "run_id": "s4_robustness_medianf_paired_seed0_20261019_v1",
+      "output": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/outputs/s4_robustness_medianf_paired_seed0_20261019_v1"
+    },
+    "data_aug": {
+      "run_id": "s4_robustness_data_aug_paired_seed0_20261019_v1",
+      "output": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/outputs/s4_robustness_data_aug_paired_seed0_20261019_v1"
+    }
+  },
+  "smoke_runs": {
+    "group1": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/outputs/s4_robustness_group1_train32_smoke_seed0_20261019_v2",
+    "group2": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/outputs/s4_robustness_group2_train32_smoke_seed0_20261019_v2",
+    "groupB": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/outputs/s4_robustness_groupB_train32_smoke_seed0_20261019_v2"
+  },
+  "review_receipt_sha256": "70d33dace35e306d5c01e3c8e79345f5989bc9c6d3f4d7c29904bb8165497d5d",
+  "reboot_automatic_restart": false,
+  "background": "RRCTL detached tmux; no linger/system-level change",
+  "recovery": "preserve completed arms; evaluation-only after proven 200 rows; otherwise new recovery RunID/fresh seed0 full200, never exact DataLoader resume",
+  "isolate_job_scopes": true,
+  "recovery_of": "s4_robustness_server_pipeline_seed0_20261020_v1",
+  "recovery_reason": "confirmed systemd-oomd killed entire original tmux pane scope; old partial Gray retained; new full200 seed0 attempt, never exact resume"
+}

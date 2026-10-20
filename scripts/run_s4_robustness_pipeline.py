@@ -38,27 +38,62 @@ def identity(pid):
 def same(record):
     now=identity(record.get('pid',-1)) if record else None
     return bool(now and now['uid']==os.getuid() and now['start_ticks']==record.get('start_ticks'))
+def memory_scope(record):
+    """Cheap observation only; never changes a limit or OOM policy."""
+    if not same(record):return None
+    try:
+        rel=Path('/proc',str(record['pid']),'cgroup').read_text().strip().split('0::',1)[1]
+        root=Path('/sys/fs/cgroup')/rel.lstrip('/')
+        return dict(path=rel,**{name:(root/name).read_text().strip() for name in
+            ['memory.current','memory.peak','memory.events','memory.pressure'] if (root/name).is_file()})
+    except (OSError,IndexError):return None
+
+def scope_argv(jobdir,argv,cwd):
+    unit='s4rb-job-'+hashlib.sha256(str(Path(jobdir).resolve()).encode()).hexdigest()[:24]
+    # A separate ordinary scope limits the blast radius, not the OOM policy.
+    # No oom_score_adj, ManagedOOM*, memory limit or priority override is used.
+    return unit, ['systemd-run','--user','--scope','--quiet','--unit='+unit,
+        sys.executable,'-B',str(Path(__file__).resolve()),'--scope-child',str(jobdir),
+        '--cwd',str(cwd),'--',*argv]
+
+def scope_child(jobdir,argv,cwd):
+    ident=identity(os.getpid());assert ident and ident['uid']==os.getuid()
+    atomic(Path(jobdir)/'child.json',dict(**ident,argv=argv,cwd=str(cwd),started_at=time.time(),memory_scope=memory_scope(ident)))
+    os.chdir(cwd);os.execvpe(argv[0],argv,os.environ.copy())
 def classify(text):
     lower=text.lower()
     if any(x in lower for x in ['assertionerror','non-finite raw','nonfinite raw','persistent','label mismatch','checkpoint corrupt','scientific acceptance','invalid image']):return 'BLOCKED'
-    if any(x in lower for x in ['out of memory','no space left','input/output error','resource temporarily unavailable','temporarily unavailable','stale file handle','connection reset']):return 'RETRYABLE_FAILURE'
+    if any(x in lower for x in ['out of memory','oom-kill','no space left','input/output error','resource temporarily unavailable','temporarily unavailable','stale file handle','connection reset']):return 'RETRYABLE_FAILURE'
     return 'FAILED'
 
 class Blocked(RuntimeError):pass
 class JobFailure(RuntimeError):
     def __init__(self,key,text):super().__init__(text);self.key=key;self.kind=classify(text)
 
-def supervise(jobdir,argv,cwd):
+def supervise(jobdir,argv,cwd,isolated=False):
     """Only this helper owns child Popen; never retries or alters arguments."""
     jobdir=Path(jobdir)
     with (jobdir/'stdout.log').open('ab',buffering=0) as out,(jobdir/'stderr.log').open('ab',buffering=0) as err:
-        child=subprocess.Popen(argv,cwd=cwd,stdout=out,stderr=err,env=os.environ.copy())
+        unit=None
+        command=argv
+        if isolated:
+            unit,command=scope_argv(jobdir,argv,cwd)
+            atomic(jobdir/'scope_launch.json',dict(unit=unit+'.scope',argv=command,supervisor=identity(os.getpid()),supervisor_scope=memory_scope(identity(os.getpid())),OOM_policy_overrides=False))
+        child=subprocess.Popen(command,cwd=cwd,stdout=out,stderr=err,env=os.environ.copy())
         child_id=identity(child.pid)
         if child_id is None:
             # Very short synthetic jobs may already have exited; wait still owns it.
             child_id=dict(pid=child.pid,start_ticks=None,uid=os.getuid())
-        atomic(jobdir/'child.json',dict(**child_id,argv=argv,cwd=str(cwd),started_at=time.time()))
+        if not isolated:atomic(jobdir/'child.json',dict(**child_id,argv=argv,cwd=str(cwd),started_at=time.time()))
         rc=child.wait()
+        if isolated:
+            child_id=load(jobdir/'child.json',child_id)
+            try:
+                observed=subprocess.run(['systemctl','--user','show',unit+'.scope','-p','Result','-p','ActiveState','-p','MemoryPeak','-p','ControlGroup'],capture_output=True,text=True,timeout=15)
+                details=dict(returncode=observed.returncode,stdout=observed.stdout,stderr=observed.stderr,child_returncode=rc)
+            except (OSError,subprocess.TimeoutExpired) as e:details=dict(observer_error=repr(e),child_returncode=rc)
+            atomic(jobdir/'scope_result.json',details)
+            if rc:err.write(('\nIsolated scope status: '+details.get('stdout','unavailable')+'\n').encode())
     atomic(jobdir/'exit.json',dict(returncode=rc,ended_at=time.time(),child=child_id))
     return rc
 
@@ -88,7 +123,8 @@ class Pipeline:
             jobdir.mkdir(parents=True)
             job=dict(state='LAUNCH_INTENT',directory=str(jobdir),argv=argv,created_at=time.time())
             self.state['jobs'][key]=job;self.save()
-            process=subprocess.Popen([self.c['python'],'-B',str(Path(__file__).resolve()),'--supervise',str(jobdir),'--cwd',str(HERE.parent),'--',*argv],start_new_session=True,stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+            isolation=['--isolated-scope'] if self.c.get('isolate_job_scopes',False) else []
+            process=subprocess.Popen([self.c['python'],'-B',str(Path(__file__).resolve()),'--supervise',str(jobdir),'--cwd',str(HERE.parent),*isolation,'--',*argv],start_new_session=True,stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
             self.children[key]=process
             ident=identity(process.pid)
             if ident is None:ident=dict(pid=process.pid,start_ticks=None,uid=os.getuid())
@@ -134,6 +170,7 @@ class Pipeline:
     def progress(self,jobdir):
         progress=dict(pipeline_run_id=self.c['pipeline_run_id'],stage=self.state['current_stage'],time=time.time(),state=self.state['state'])
         child=load(jobdir/'child.json');progress['child']=child
+        progress['child_memory_scope']=memory_scope(child);progress['controller_memory_scope']=memory_scope(identity(os.getpid()))
         if self.state.get('paused_child'):
             paused=self.state['paused_child']
             if not same(paused):raise Blocked('Recorded paused child identity changed')
@@ -268,8 +305,10 @@ class Pipeline:
         finally:fcntl.flock(lock,fcntl.LOCK_UN);lock.close()
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--config');p.add_argument('--status',action='store_true');p.add_argument('--supervise');p.add_argument('--cwd');p.add_argument('command',nargs=argparse.REMAINDER);a=p.parse_args()
-    if a.supervise:return supervise(a.supervise,a.command[1:] if a.command[:1]==['--'] else a.command,a.cwd)
+    p=argparse.ArgumentParser();p.add_argument('--config');p.add_argument('--status',action='store_true');p.add_argument('--supervise');p.add_argument('--scope-child');p.add_argument('--isolated-scope',action='store_true');p.add_argument('--cwd');p.add_argument('command',nargs=argparse.REMAINDER);a=p.parse_args()
+    command=a.command[1:] if a.command[:1]==['--'] else a.command
+    if a.scope_child:return scope_child(a.scope_child,command,a.cwd)
+    if a.supervise:return supervise(a.supervise,command,a.cwd,a.isolated_scope)
     if not a.config:p.error('--config required')
     if a.status:
         c=load(a.config);root=Path(c['output_root']);print(json.dumps(dict(state=load(root/'pipeline_state.json'),progress=load(root/'pipeline_progress.json')),indent=2));return 0

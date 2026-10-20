@@ -7,7 +7,7 @@ import subprocess
 import sys
 import time
 
-from run_s4_robustness_pipeline import Pipeline,ORDER,atomic,load,classify
+from run_s4_robustness_pipeline import Pipeline,ORDER,atomic,load,classify,JobFailure,identity
 
 def command(counter,delay=.05):
     return [sys.executable,'-B','-c',"import pathlib,sys,time;time.sleep(float(sys.argv[2]));p=pathlib.Path(sys.argv[1]);p.open('a').write('once\\n')",str(counter),str(delay)]
@@ -22,7 +22,7 @@ class Demo(Pipeline):
     def stage(self,d):self.action(d,'synthetic')
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);p.add_argument('--crash-controller',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);p.add_argument('--crash-controller',action='store_true');p.add_argument('--isolated-scopes',action='store_true');a=p.parse_args()
     root=a.output
     config=root/'demo_config.json'
     if a.crash_controller:
@@ -31,6 +31,7 @@ def main():
     c=dict(pipeline_run_id=root.name,root=str(root.parent.parent),output_root=str(root/'queue'),order=ORDER,AT_authorized=False,config_sha256='synthetic_only',science_commit='synthetic_no_model',python=sys.executable,poll_seconds=.05,monitor_seconds=900)
     # The normal scheduler requires every output under the authorized outputs/.
     c['root']=str(root.parent.parent);c['output_root']=str(root/'queue')
+    c['isolate_job_scopes']=a.isolated_scopes
     atomic(config,c)
     first=Demo(config);assert first.run()==0
     assert [k for k,v in first.state['stages'].items() if v['state']=='ACCEPTED']==ORDER
@@ -51,6 +52,20 @@ def main():
     assert classify('CUDA out of memory')=='RETRYABLE_FAILURE'
     assert classify('AssertionError: non-finite raw loss; CUDA out of memory')=='BLOCKED'
     summary=dict(state='passed',GPU_forwards=0,training_batches=0,official_metrics_disabled=True,artifact_ingest_disabled=True,queue_order_exact=ORDER,completed_stages_never_rerun=True,flock_duplicate_prevented=True,controller_crash_exit=24,existing_supervisor_adopted=True,orphan_command_executions=1,child_survives_controller_exit=True,deleted_paths=[])
+    if a.isolated_scopes:
+        for jd in (first.root/'jobs').iterdir():
+            child=load(jd/'child.json');launch=load(jd/'scope_launch.json')
+            assert 's4rb-job-' in child['memory_scope']['path']
+            assert child['memory_scope']['path']!=launch['supervisor_scope']['path']
+            assert launch['OOM_policy_overrides'] is False
+        before=identity(os.getpid())
+        try:
+            recovered.run_job('self-sigkill-demo',[sys.executable,'-B','-c','import os,signal;os.kill(os.getpid(),signal.SIGKILL)'])
+            raise AssertionError('Synthetic signal9 must fail')
+        except JobFailure:pass
+        exit_receipt=load(first.root/'jobs/self-sigkill-demo/exit.json')
+        assert exit_receipt['returncode']!=0 and identity(os.getpid())==before
+        summary.update(independent_job_scopes_verified=True,OOM_policy_overrides=False,synthetic_child_signal9_exit_recorded=exit_receipt['returncode'],controller_survived_child_signal9=True,real_oomd_pressure_injection=False)
     atomic(root/'smoke_summary.json',summary);print(json.dumps(summary),flush=True)
 
 if __name__=='__main__':main()
