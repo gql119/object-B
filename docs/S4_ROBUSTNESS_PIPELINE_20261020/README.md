@@ -47,6 +47,13 @@ reattachment using the same command after verifying the original process is gone
 accepted phases remain skipped. A new RRCTL RunID must never be used to bypass
 the singleton queue or an ambiguous live child.
 
+Reattachment automatically adopts a surviving supervisor/child with its durable
+identity/exit receipt. A host reboot can remove both without an exit receipt;
+that ambiguous incomplete job deliberately BLOCKS pending operator verification
+and an explicit recovery record. Re-running a command is not a promise of
+automatic post-reboot training recovery. Recognized stage environment failures
+have bounded retries; unknown controller/scientific failures are not ignored.
+
 Read-only status (run on the school server; substitute the deployed absolute
 script/config paths from execution/PIPELINE_DEPLOYMENT.json):
 

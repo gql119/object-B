@@ -1,0 +1,8 @@
+{
+  "original_attachment_sha256": "d60cf85a281de14bbb62108f1218a5760bf9b3bc9e7794e787e192e8c22e1336",
+  "exact_worktree_copy_sha256": "d60cf85a281de14bbb62108f1218a5760bf9b3bc9e7794e787e192e8c22e1336",
+  "runtime_config_task_sha256_means": "original attachment bytes",
+  "committed_LF_task_sha256": "5bbfca97aee0c4dfa469d7dcf2e90a60af1b089786c78659953c3cc4fd1f9903",
+  "normalization": "Git CRLF to LF only; normalized bytes compared equal",
+  "source_commit": "d84c28c731ae10c6a0f32d5ed86ac5635e1a0a8c"
+}

@@ -1,0 +1,88 @@
+{
+  "local_contracts": {
+    "passed": 3,
+    "failed": 0
+  },
+  "actual_CPU_supervisor_smoke": {
+    "GPU_forwards": 0,
+    "artifact_ingest_disabled": true,
+    "child_survives_controller_exit": true,
+    "completed_stages_never_rerun": true,
+    "controller_crash_exit": 24,
+    "deleted_paths": [],
+    "existing_supervisor_adopted": true,
+    "flock_duplicate_prevented": true,
+    "official_metrics_disabled": true,
+    "orphan_command_executions": 1,
+    "queue_order_exact": [
+      "existing",
+      "gray",
+      "bdr",
+      "phase_A",
+      "gauss",
+      "meanf",
+      "medianf",
+      "data_aug",
+      "phase_B",
+      "archive"
+    ],
+    "state": "passed",
+    "training_batches": 0
+  },
+  "actual_CPU_dummy_pause_sink_probe": {
+    "passed": true,
+    "synthetic_only": true,
+    "GPU_forwards": 0,
+    "official_metrics_disabled": true,
+    "only_own_new_dummy_pid_signalled": {
+      "pid": 2407432,
+      "start_ticks": 311714039,
+      "uid": 1014,
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "--phase",
+        "arm",
+        "--output",
+        "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/outputs/s4_robustness_pipeline_supervision_smoke_seed0_20261020_v2/synthetic_pause_only/synthetic_arm"
+      ]
+    },
+    "live_training_signalled": false,
+    "actual_stop_cont_sinks_reached": true,
+    "same_start_ticks": true,
+    "checkpoint_binding_unchanged": true,
+    "three_clear_windows_30s_apart": true,
+    "child_natural_exit": 0,
+    "deleted_paths": []
+  },
+  "actual_live_duplicate_test": {
+    "passed": true,
+    "existing_instance": true,
+    "controller_before": {
+      "pid": 2405363,
+      "start_ticks": 311657949,
+      "uid": 1014
+    },
+    "controller_after": {
+      "pid": 2405363,
+      "start_ticks": 311657949,
+      "uid": 1014
+    }
+  },
+  "scientific_runtime_source": "e17c24c54aae4cdae4bcc4703facf2a57052d2c8",
+  "orchestrator_runtime_source": "d84c28c731ae10c6a0f32d5ed86ac5635e1a0a8c",
+  "native_GPU_evidence": "Existing exact source15trials and G1 reused; no new scientific computation",
+  "original_independent_reviewer_verdict": "not_evaluable",
+  "main_agent_G1_closure": "CLOSED; not a second reviewer",
+  "GitHub_branch_verified": "codex/s4-robustness-evaluation-20261019@d84c28c731ae10c6a0f32d5ed86ac5635e1a0a8c",
+  "host_reboot_auto_restart": false,
+  "effective_logind_KillUserProcesses": false,
+  "read_only_CLI_and_deployed_source_bytes": {
+    "readonly_status_cli_passed": true,
+    "current_stage": "existing",
+    "runtime_source_file_sha256": {
+      "scripts/s4_pipeline_frozen_audit.py": "46dbb1c0fdcff805ccd31e140d8abe3be8b49fcac1e0c4f290a570f2613e603b",
+      "scripts/s4_pipeline_frozen_report.py": "6c02ab206ea70b576f1d58a6069d69e81ece862b41a202f37187bd225fba0417",
+      "docs/S4_ROBUSTNESS_PIPELINE_20261020/USER_TASK_SOURCE.md": "5bbfca97aee0c4dfa469d7dcf2e90a60af1b089786c78659953c3cc4fd1f9903"
+    }
+  }
+}

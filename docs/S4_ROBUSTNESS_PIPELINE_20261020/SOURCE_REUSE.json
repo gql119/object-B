@@ -1,9 +1,14 @@
 {
   "audit_source": "execution/accept_completed_pair.py CODE exact",
-  "audit_code_sha256": "b4db8fe8426bde3776347182ae87fab902f1b4db9bc18df222f78220d9913964",
+  "audit_code_sha256": "46dbb1c0fdcff805ccd31e140d8abe3be8b49fcac1e0c4f290a570f2613e603b",
   "report_source": "execution/report_robustness.py exact",
   "report_sha256": "6c02ab206ea70b576f1d58a6069d69e81ece862b41a202f37187bd225fba0417",
   "science_files_unchanged": true,
   "review_route": "smoke_validation: orchestration only; no second scientific reviewer",
-  "task_sha256": "d60cf85a281de14bbb62108f1218a5760bf9b3bc9e7794e787e192e8c22e1336"
+  "task_sha256": "d60cf85a281de14bbb62108f1218a5760bf9b3bc9e7794e787e192e8c22e1336",
+  "audit_code_sha256_worktree_bytes": "b4db8fe8426bde3776347182ae87fab902f1b4db9bc18df222f78220d9913964",
+  "report_sha256_worktree_bytes": "6c02ab206ea70b576f1d58a6069d69e81ece862b41a202f37187bd225fba0417",
+  "source_hash_semantics": "primary hashes bind committed/runtime LF bytes; worktree-byte hashes retained separately",
+  "task_committed_LF_sha256": "5bbfca97aee0c4dfa469d7dcf2e90a60af1b089786c78659953c3cc4fd1f9903",
+  "normalized_text_equal": true
 }
