@@ -1,0 +1,123 @@
+{
+  "observed_at": "2026-10-20T12:42:56.234979+00:00",
+  "state": "GRAY_TRAINING_RECOVERY_VERIFIED",
+  "confirmed_original_cause": {
+    "UTC": "2026-10-20T11:42:56Z",
+    "HKT": "2026-10-20T19:42:56+08:00",
+    "mechanism": "systemd-oomd cgroup-wide kill",
+    "scope": "tmux-spawn-75a2c4d6-7545-4916-90d5-201aae402dc7.scope",
+    "executor_pid": 2405347,
+    "killed_processes": 52,
+    "unit_result": "oom-kill"
+  },
+  "recovery_run_id": "s4_robustness_server_pipeline_seed0_20261020_recovery01",
+  "bound_controller": {
+    "pid": 2434707,
+    "start_ticks": 312401496
+  },
+  "actual_gray_child": {
+    "pid": 2435328,
+    "start_ticks": 312422683,
+    "uid": 1014,
+    "state": "R",
+    "matches": true
+  },
+  "own_training_roots": 1,
+  "child_scope": {
+    "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-761f793a29c3b10d3307eb84.scope",
+    "memory.current": "2259841024",
+    "memory.peak": "2259841024",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+    "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+  },
+  "controller_scope": {
+    "path": "/user.slice/user-1014.slice/user@1014.service/tmux-spawn-0bb754a1-6d5d-46ba-bb68-dde0543f35d2.scope",
+    "memory.current": "24895488",
+    "memory.peak": "47292416",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+    "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+  },
+  "launcher_commit": "58f8c1cb3032abf4f296dbbce84ccb9d7a61f920",
+  "reporter_commit": "05c73cf317ff16acd0e6e5eb960a858ba7b8c8d0",
+  "science_commit": "e17c24c54aae4cdae4bcc4703facf2a57052d2c8",
+  "config_sha256": "00af2dc40c5c4d263246e78f70195bf8a53a16b9118bb289a9b307d93bafdb91",
+  "local_contracts": 5,
+  "CPU_only_scope_smoke": {
+    "run_id": "s4_robustness_scope_supervision_smoke_seed0_20261020_v1",
+    "state": "completed",
+    "exit_code": 0,
+    "independent_scopes": true,
+    "controller_survives_child_signal9": true,
+    "OOM_policy_overrides": false,
+    "real_oom_injection": false,
+    "GPU_forwards": 0
+  },
+  "report_binding_readonly_checks": {
+    "JPEG50": "COMPLETE_ACCEPTED",
+    "JPEG30": "COMPLETE_ACCEPTED",
+    "recovery_gray_id_correct": true,
+    "metric_functions_AST_exact": true
+  },
+  "original_failed_artifacts_retained": true,
+  "training_config_unchanged": true,
+  "original_Gray_checkpoint_available": false,
+  "exact_resume_claim": false,
+  "AT": "NOT_RUN",
+  "monitor": "same single2hour status-only monitor",
+  "deleted_paths": [],
+  "first_checkpoint_verification": {
+    "passed": true,
+    "observed_unix": 1792500176.2349794,
+    "epoch1_checkpoint_sha256": "e1bf480a22415e570c0d76e260616231dc955077369a10ae60dba593ec49f78a",
+    "checkpoint_size_bytes": 12341059,
+    "checkpoint_mtime_unix": 1792500089.6524246,
+    "epoch1_checkpoint_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/outputs/s4_robustness_gray_paired_seed0_20261019_recovery01/arm_attempts/S4_attempt01/victim_run/victim/retained_robustness_epochs/epoch_001.pt",
+    "saved_csv_rows": 1,
+    "current_AMP": {
+      "epoch": 2,
+      "batch_index": 459,
+      "total_batches": 920,
+      "actual_updates_total": 898,
+      "skips_total": 6,
+      "consecutive_skips": 0,
+      "amp_scale_after": 1024.0,
+      "model_finite": true,
+      "EMA_finite": true,
+      "optimizer_finite": true,
+      "elapsed_seconds": 169.4785999469459
+    },
+    "frozen_train_args_verified": true,
+    "train_settings": {
+      "batch": 36,
+      "workers": 16,
+      "epochs": 200,
+      "amp": true,
+      "seed": 0,
+      "optimizer": "SGD",
+      "lr0": 0.01,
+      "weight_decay": 0.0005,
+      "warmup_epochs": 3.0
+    },
+    "source_commit": "e17c24c54aae4cdae4bcc4703facf2a57052d2c8",
+    "child_memory_scope": {
+      "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-761f793a29c3b10d3307eb84.scope",
+      "memory.current": "48430850048",
+      "memory.peak": "48711634944",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1998\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1998"
+    },
+    "controller_memory_scope": {
+      "path": "/user.slice/user-1014.slice/user@1014.service/tmux-spawn-0bb754a1-6d5d-46ba-bb68-dde0543f35d2.scope",
+      "memory.current": "24780800",
+      "memory.peak": "47292416",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+    },
+    "old_failure_boundary_crossed": true,
+    "full200_completed": false,
+    "formal_final_metrics": "NOT_RUN"
+  },
+  "old_failure_boundary_crossed": true,
+  "full200_completed": false,
+  "final_Gray_metrics": "NOT_RUN"
+}
