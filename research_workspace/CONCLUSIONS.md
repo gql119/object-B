@@ -23,3 +23,65 @@
 - C005 | finding | SUPPORTED | scope=tfss.replay: deterministic paired CUDA control repair yields actual canonical/noop maxdiff0 at one update/first16; not a full smoke pass. Evidence execution/tfss_smoke_v2_observation_20261017.json.
 - C006 | finding | MIXED | scope=tfss.uniform_numeric_gate: actual GPU Uniform strict RMS gate failed; CPU saved-delta replay found11/16 targets not bracket-matchable within1e-9 in current float32 arithmetic. No matched-control efficacy conclusion. Evidence docs/tfss/RMS_GATE_BLOCKER_20261017.md.
 - C007 | decision | PROPOSED | scope=tfss.numerical_protocol: closer-bracket solver plus BOTH abs1e-7/relative1e-4 RMS gates is unapproved. Existing1e-9 stays locked; WAIT_FOR_HUMAN, no automatic retry/reviewer/short/full run.
+
+### C001
+
+<!-- research-memory:f2112ee8745f61f83125f3be:C001 -->
+Type: decision
+Status: ACTIVE
+Scope: ablation.s4_tfss_full.support
+Effective at: 2026-10-21T15:05:51.920120+00:00
+
+Independent S4_TFSS_FULL_OVERLAP changes only Person-NT intersection support .5 to1, keeps TFSS eta.85 and frozen S4 science/protocol, and waits for predecessor robustness full acceptance plus conflict-free scheduling before GPU smoke/review/formal.
+
+Source: Ecc7738e5ecf131a2ed1baacd
+Source role: user
+Source ref: docs/S4_TFSS_FULL_20261021/USER_TASK_SOURCE.md
+Occurred at: 2026-10-21T15:05:51.920120+00:00
+Received at: 2026-10-21T15:05:51.923112+00:00
+Evidence: 见来源事件
+
+> 用户来源摘录：# Codex 任务：S4-TFSS-Full 全目标框空间调控消融实验
+>
+> ## 1. 研究目标
+>
+> 当前项目：
+>
+> Class-Selective Unlearnable Examples for Object Detection
+>
+> 正式基线：
+>
+> S4 — Safe-Soft05 + TFSS-Utility
+>
+> 本次需要建立一个独立消融版本：
+>
+> **S4-TFSS-Full**
+>
+> 研究问题：
+>
+> 原始 S4 在 Person 与非目标 GT 重叠区域设置固定 0.5 区域系数，使重叠区扰动上限从 8/255 降为 4/255。
+>
+> 本次希望取消这一固定重叠区域减半机制，让整个 Person GT 框内均采用 8/255 基础扰动预算，并完全通过原有 TFSS-Utility 权重进行位置相关的扰动缩放。
+>
+> 需要验证：
+>
+> 1. 去掉 4/255 重叠区限制后，是否进一步降低 Person AP50。
+> 2. TFSS 能否在没有重叠区固定减半机制的条件下，保持非目标类别 [已截断，按来源继续读取]
+
+### C002
+
+<!-- research-memory:e34f88c7daadb7cb208edddb:C002 -->
+Type: finding
+Status: SUPPORTED
+Scope: ablation.s4_tfss_full.cpu_components
+Effective at: 2026-10-21T15:03:17.119020+00:00
+
+27 CPU tests passed; exact component parity/gradient checks and PNG8/outside0, formal GPU/AP still NOT_RUN.
+
+Source: Eec8d9a06d88ea409afb17751
+Source role: document
+Source ref: research_workspace/analysis/2026-10-21-s4-tfss-full-preparation.md
+Occurred at: 2026-10-21T15:03:17.119020+00:00
+Received at: 2026-10-21T15:04:01.757860+00:00
+Evidence: research_workspace/analysis/2026-10-21-s4-tfss-full-preparation.md
+Protocol: CPU component parity/export/cache only

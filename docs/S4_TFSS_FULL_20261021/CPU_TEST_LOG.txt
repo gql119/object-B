@@ -1,0 +1,32 @@
+test_actual_CPU_YOLO_clean_maps_cache_parity_and_rng (test_s4_tfss_full.FullContracts.test_actual_CPU_YOLO_clean_maps_cache_parity_and_rng) ... ok
+test_config_only_one_variable_and_canonical45_unchanged (test_s4_tfss_full.FullContracts.test_config_only_one_variable_and_canonical45_unchanged) ... ok
+test_diagnostic_csv_schema_stable_with_and_without_overlap (test_s4_tfss_full.FullContracts.test_diagnostic_csv_schema_stable_with_and_without_overlap) ... ok
+test_export_allows_overlap_above_four_without_exceeding_eight (test_s4_tfss_full.FullContracts.test_export_allows_overlap_above_four_without_exceeding_eight) ... ok
+test_generator_rejects_old_half_checkpoint (test_s4_tfss_full.FullContracts.test_generator_rejects_old_half_checkpoint) ... ok
+test_historical_comparison_identity_and_same_results_zero_deltas (test_s4_tfss_full.FullContracts.test_historical_comparison_identity_and_same_results_zero_deltas) ... ok
+test_image_clamp_boundary_and_no_person (test_s4_tfss_full.FullContracts.test_image_clamp_boundary_and_no_person) ... ok
+test_nonoverlap_exact_forward_raw_jnd_and_gradient (test_s4_tfss_full.FullContracts.test_nonoverlap_exact_forward_raw_jnd_and_gradient) ... ok
+test_optimizer_copy_changes_only_original_eligibility (test_s4_tfss_full.FullContracts.test_optimizer_copy_changes_only_original_eligibility) ... ok
+test_overlap_only_doubles_base_retains_W_and_gradients (test_s4_tfss_full.FullContracts.test_overlap_only_doubles_base_retains_W_and_gradients) ... ok
+test_queue_fail_closed_and_no_idle_GPU_bypass (test_s4_tfss_full.FullContracts.test_queue_fail_closed_and_no_idle_GPU_bypass) ... ok
+test_real_GT_geometry_overlap_diagnostics_even_binary_support (test_s4_tfss_full.FullContracts.test_real_GT_geometry_overlap_diagnostics_even_binary_support) ... ok
+test_same_generator_and_trainer_composition_and_export_PNG (test_s4_tfss_full.FullContracts.test_same_generator_and_trainer_composition_and_export_PNG) ... ok
+test_spatial_summary_distinguishes_no_overlap_and_area_pooling (test_s4_tfss_full.FullContracts.test_spatial_summary_distinguishes_no_overlap_and_area_pooling) ... ok
+test_support_all_geometries (test_s4_tfss_full.FullContracts.test_support_all_geometries) ... ok
+test_threshold_crossing_tiny_overlap_preserves_original_sample_policy (test_s4_tfss_full.FullContracts.test_threshold_crossing_tiny_overlap_preserves_original_sample_policy) ... ok
+test_tiny_Person_export_does_not_silently_skip (test_s4_tfss_full.FullContracts.test_tiny_Person_export_does_not_silently_skip) ... ok
+test_actual_rms_with_saturation (test_tfss_spatial.TFSSContracts.test_actual_rms_with_saturation) ... ok
+test_composition_budget_and_adaptive_cache (test_tfss_spatial.TFSSContracts.test_composition_budget_and_adaptive_cache) ... ok
+test_exact_formulas_and_no_nt (test_tfss_spatial.TFSSContracts.test_exact_formulas_and_no_nt) ... ok
+test_float32_staircase_and_both_tolerances (test_tfss_spatial.TFSSContracts.test_float32_staircase_and_both_tolerances) ... ok
+test_higher_order_diagnostic_does_not_consume_backward (test_tfss_spatial.TFSSContracts.test_higher_order_diagnostic_does_not_consume_backward) ... ok
+test_invalid_maps_fail (test_tfss_spatial.TFSSContracts.test_invalid_maps_fail) ... ok
+test_masked_smoothing_and_degenerate_policy (test_tfss_spatial.TFSSContracts.test_masked_smoothing_and_degenerate_policy) ... ok
+test_multi_person_max_no_amplitude_addition (test_tfss_spatial.TFSSContracts.test_multi_person_max_no_amplitude_addition) ... ok
+test_soft_gradient_and_detached_maps (test_tfss_spatial.TFSSContracts.test_soft_gradient_and_detached_maps) ... ok
+test_valid_small_GT_preserves_strength_without_attribution (test_tfss_spatial.TFSSContracts.test_valid_small_GT_preserves_strength_without_attribution) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 2.490s
+
+OK

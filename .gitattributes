@@ -36,3 +36,14 @@ ue_framework/s4_amp_observer.py text eol=lf
 scripts/s4_reuse_dataset_audit.py text eol=lf
 scripts/s4_victim_recovery.py text eol=lf
 tests/test_s4_amp_observer.py text eol=lf
+
+# Independent S4-TFSS-Full scientific source and exact task/lock evidence.
+docs/S4_TFSS_FULL_20261021/** -text whitespace=cr-at-eol
+ue_framework/configs/exp_voc_person_s4_tfss_full_seed0_20261021.yaml -text whitespace=cr-at-eol
+scripts/run_s4_tfss_full.py text eol=lf
+scripts/evaluate_s4_tfss_full.py text eol=lf
+scripts/s4_full_report.py text eol=lf
+scripts/check_s4_tfss_full_cpu.py text eol=lf
+ue_framework/s4_full_contract.py text eol=lf
+tests/test_s4_tfss_full.py text eol=lf
+research_workspace/analysis/2026-10-21-s4-tfss-full-preparation.md text eol=lf

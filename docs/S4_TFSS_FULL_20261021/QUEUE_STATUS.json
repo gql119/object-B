@@ -1,0 +1,51 @@
+{
+  "checked_utc": "2026-10-21T15:03:17.017794+00:00",
+  "current_query": "FAILED_RRCTL_worker_output_invalid_JSON",
+  "query_attempts_this_task": 2,
+  "transport_root_cause": "UNKNOWN; raw worker stdout/stderr/returncode not captured by the helper; no training-failure inference",
+  "last_verified_utc": "2026-10-21T14:19:19.454649+00:00",
+  "last_verified_pipeline": "s4_robustness_server_pipeline_seed0_20261020_recovery01",
+  "last_verified_state": "RUNNING",
+  "last_verified_stage": "meanf",
+  "last_verified_training": {
+    "epoch": 193,
+    "AMP": true,
+    "data_loader_workers": 16,
+    "data_loader_worker_rng": "not independently serialized; no exact automatic resume",
+    "last_sha256": "5a998b807b11869d8f4944eb884a41eb9d7593459ddcf302b6f8ea8f4608ccdb"
+  },
+  "last_verified_AMP": {
+    "epoch": 194,
+    "batch_index": 148,
+    "total_batches": 88929,
+    "actual_updates_total": 44886,
+    "skips_total": 22,
+    "consecutive_skips": 0,
+    "amp_scale_after": 4096.0,
+    "model_finite": true,
+    "EMA_finite": true,
+    "optimizer_finite": true,
+    "elapsed_seconds": 14391.95622474514
+  },
+  "last_verified_stages": {
+    "existing": "ACCEPTED",
+    "gray": "ACCEPTED",
+    "bdr": "ACCEPTED",
+    "phase_A": "ACCEPTED",
+    "gauss": "ACCEPTED",
+    "meanf": "RUNNING"
+  },
+  "required_remaining": [
+    "meanf",
+    "medianf",
+    "data_aug",
+    "phase_B",
+    "archive"
+  ],
+  "future_plans_after_existing_pipeline": "NOT_FRESHLY_VERIFIED",
+  "admission": "BLOCKED_UNVERIFIED_PREDECESSOR_ACCEPTANCE_AND_QUEUE",
+  "new_GPU_workload_started": false,
+  "pipeline_modified": false,
+  "duplicate_monitor_created": false,
+  "query_retry_policy": "Two bounded read-only checks separated by implementation work; stop further retries in this turn. No VPN or experiment change."
+}

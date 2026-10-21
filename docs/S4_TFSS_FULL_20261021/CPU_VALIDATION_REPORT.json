@@ -1,0 +1,46 @@
+{
+  "schema": "s4.tfss-full.cpu-validation.v1",
+  "state": "passed",
+  "tests_run": 27,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds": 2.7917952999996487,
+  "source_file_sha256": {
+    "ue_framework/methods/s4_tfss_full.py": "cde91a81e3ad1c1ce725018e0c29676460f4afbaeb412efd4c02de8a2d092333",
+    "ue_framework/methods/s4_full_optimization.py": "3ca9321b3924d3ee7245cfcf3565879b4af68bc2e4e8b4c41ee82c5e8e57c5db",
+    "ue_framework/s4_full_contract.py": "90cffd4201137dbe2432ebe16bb04e4395c9c1ce85a57460de4badcf246c1053",
+    "scripts/run_s4_tfss_full.py": "8ff1ce604a634d2442ac125b61bd666a470335e4d654745e08271552f3102579",
+    "scripts/s4_full_report.py": "e64f290b5cc42b6d31a249ae9b19120a4114a4a390aa01ae8eb6b3c1c07586e8",
+    "scripts/evaluate_s4_tfss_full.py": "99eb8769c0cad84c5444f8e3f1163b42ba9eddee57afa04434c685bfed4a889e",
+    "scripts/check_s4_tfss_full_cpu.py": "4d594d193dcda2db65d840c43267c802a2af70205d5b5d04ef2a409c646f839a",
+    "tests/test_s4_tfss_full.py": "84303e11ee82e50f55364337d8167934b132f30cbfffaa5ffc694f72d6d20bb1"
+  },
+  "config_sha256": "ffe87d33994a9462740d8deb5d7da88b6794f486d753fd0eec2eb7ccb75fb100",
+  "numeric_component_smoke": {
+    "actual_Fourier_JND_TFSS_path": true,
+    "non_overlap_delta_difference": 0.0,
+    "overlap_twice_reference_difference": 0.0,
+    "Fourier_gradient_norm": 0.3397556245326996,
+    "float_linf": 0.03129507973790169,
+    "decoded_PNG_overlap_linf_bytes": 8,
+    "decoded_PNG_outside_max_bytes": 0
+  },
+  "environment": {
+    "torch": "2.14.0+cpu",
+    "numpy": "2.5.4",
+    "device": "CPU",
+    "torch_threads": 1
+  },
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "GPU_smoke": "NOT_RUN_pending_predecessor_acceptance_and_queue_admission",
+  "independent_scientific_review": "NOT_CALLED_pending_current_commit_GPU_smoke",
+  "cache_capacity_fixture": "Test-only mocked free-space return to exercise <1MiB total cache writes on local disk; not remote admission. All Q/R/model/native gradients and cache bytes are real.",
+  "evidence_limits": [
+    "Random-YAML CPU teacher is not formal pretrained teacher",
+    "CPU component tests do not validate full GPU Frozen/Adaptive outer training chain",
+    "No full dataset export or AP result generated",
+    "Retain all test artifacts; no cleanup"
+  ]
+}
