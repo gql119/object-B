@@ -1,0 +1,10 @@
+# Phase A report
+
+Status: COMPLETE_ACCEPTED. Only full accepted results are included.
+
+- jpeg50: Clean/S4 Person AP50=0.865868647/0.072199285; NT mAP50=0.763383336/0.679123317; P/U/S=0.9166163536956509/0.8896229251762106/0.9029179371499276.
+- jpeg30: Clean/S4 Person AP50=0.855396434/0.216120307; NT mAP50=0.757089800/0.684108512; P/U/S=0.7473448582727222/0.9036028644141352/0.8180791497642054.
+- gray: Clean/S4 Person AP50=0.850729237/0.015809466; NT mAP50=0.759428729/0.678860859; P/U/S=0.981416571281901/0.8939098995704122/0.9356216128838848.
+- bdr: Clean/S4 Person AP50=0.868471160/0.028381203; NT mAP50=0.766823981/0.695745784; P/U/S=0.9673205000834575/0.9073083279571125/0.9363538343179324.
+
+Target AP/Recall changes are descriptive, paired against the same defense Clean. Single seed provides no significance or causal proof. Strong defenses may harm Clean detection; high S alone is not overall superiority.

@@ -1,3 +1,7 @@
+# S4 鲁棒性最终交付 — 2026-10-22
+
+八项防御的配对200轮评价和验收已完成；[最终结果、协议与来源审计](docs/S4_ROBUSTNESS_FINAL_20261022/README.md)为当前正式入口。AT未运行；S4-TFSS-Full另行审查，不包含在本次结果中。
+
 # Experiment B: full person-box perturbation
 
 This repository contains the source for the bbox-half experiment: a shared Fourier perturbation is applied across each person bounding box, with half strength where a non-target box overlaps. The configured pixel budget is 16/255.

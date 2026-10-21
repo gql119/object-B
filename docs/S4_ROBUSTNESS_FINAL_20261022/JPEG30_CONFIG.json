@@ -1,0 +1,16 @@
+{
+  "phase": "A",
+  "operation": "Pillow RGB JPEG encode/decode then lossless PNG",
+  "quality": 30,
+  "subsampling": 2,
+  "chroma": "4:2:0",
+  "optimize": false,
+  "progressive": false,
+  "extra_JPEG_encodes": 0,
+  "name": "jpeg30",
+  "input": "original-resolution uint8 RGB training image",
+  "output": "uint8 RGB, PNG lossless except data_aug online",
+  "dimensions": "unchanged for offline transforms",
+  "labels": "byte-exact; online data_aug native joint bbox transform",
+  "validation": "unchanged clean4952"
+}

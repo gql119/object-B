@@ -1,0 +1,18 @@
+{
+  "phase": "A",
+  "operation": "Bit-Depth Reduction",
+  "bits": 5,
+  "levels": 31,
+  "formula": "z=float32(x)/255; q=round(z*31)/31; uint8(clip(round(q*255),0,255))",
+  "rounding": "numpy round ties-to-even",
+  "normalization": "only uint8<->float32 unit interval",
+  "status": "SOURCE_RESOLVED",
+  "source": "retained ue_framework/utils/robust_transforms.py and scripts/run_robust_eval_modular.sh --bdr_bits5; Feature Squeezing NDSS2018 color-image5-bit setting",
+  "scope": "detection train-only adaptation; no claim of prior S0 formal BDR",
+  "name": "bdr",
+  "input": "original-resolution uint8 RGB training image",
+  "output": "uint8 RGB, PNG lossless except data_aug online",
+  "dimensions": "unchanged for offline transforms",
+  "labels": "byte-exact; online data_aug native joint bbox transform",
+  "validation": "unchanged clean4952"
+}

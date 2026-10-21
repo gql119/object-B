@@ -1,0 +1,157 @@
+{
+  "state": "LOCAL_ACCEPTANCE_PASSED",
+  "UTC": "2026-10-21T23:40:22.763029+00:00",
+  "pipeline_run_id": "s4_robustness_server_pipeline_seed0_20261020_recovery01",
+  "science_commit": "e17c24c54aae4cdae4bcc4703facf2a57052d2c8",
+  "launcher_commit": "58f8c1cb3032abf4f296dbbce84ccb9d7a61f920",
+  "reporting_commit": "05c73cf317ff16acd0e6e5eb960a858ba7b8c8d0",
+  "config_sha256": "00af2dc40c5c4d263246e78f70195bf8a53a16b9118bb289a9b307d93bafdb91",
+  "eight_pairs": [
+    {
+      "defense": "jpeg50",
+      "clean_AP": 0.8658686474278828,
+      "S4_AP": 0.07219928504315179,
+      "clean_NT": 0.7633833363894688,
+      "S4_NT": 0.6791233167495744,
+      "P": 0.9166163536956509,
+      "U": 0.8896229251762106,
+      "S": 0.9029179371499276,
+      "WCD": 0.2902132263130642,
+      "TCD3": 0.24108840655134892
+    },
+    {
+      "defense": "jpeg30",
+      "clean_AP": 0.8553964344920498,
+      "S4_AP": 0.2161203073895969,
+      "clean_NT": 0.7570898003177755,
+      "S4_NT": 0.6841085121858675,
+      "P": 0.7473448582727222,
+      "U": 0.9036028644141352,
+      "S": 0.8180791497642054,
+      "WCD": 0.287642901902822,
+      "TCD3": 0.22604194174912232
+    },
+    {
+      "defense": "gray",
+      "clean_AP": 0.8507292369158451,
+      "S4_AP": 0.01580946613262839,
+      "clean_NT": 0.7594287286988002,
+      "S4_NT": 0.6788608586020303,
+      "P": 0.981416571281901,
+      "U": 0.8939098995704122,
+      "S": 0.9356216128838848,
+      "WCD": 0.3207812196410782,
+      "TCD3": 0.2570438439881532
+    },
+    {
+      "defense": "bdr",
+      "clean_AP": 0.868471160296225,
+      "S4_AP": 0.028381203210420054,
+      "clean_NT": 0.766823981016327,
+      "S4_NT": 0.6957457840533402,
+      "P": 0.9673205000834575,
+      "U": 0.9073083279571125,
+      "S": 0.9363538343179324,
+      "WCD": 0.2631818328122525,
+      "TCD3": 0.2369674704769789
+    },
+    {
+      "defense": "gauss",
+      "clean_AP": 0.8511753469185687,
+      "S4_AP": 0.09501280873899934,
+      "clean_NT": 0.7470034044394215,
+      "S4_NT": 0.6786069188325855,
+      "P": 0.8883745763044414,
+      "U": 0.9084388569043227,
+      "S": 0.8982946917974236,
+      "WCD": 0.3239684073468772,
+      "TCD3": 0.2405204153658239
+    },
+    {
+      "defense": "meanf",
+      "clean_AP": 0.8499680806630248,
+      "S4_AP": 0.06923271085078492,
+      "clean_NT": 0.7402003004843392,
+      "S4_NT": 0.6606379069042912,
+      "P": 0.9185466931925498,
+      "U": 0.892512346282503,
+      "S": 0.9053423951865704,
+      "WCD": 0.3124848841920486,
+      "TCD3": 0.2581802709048198
+    },
+    {
+      "defense": "medianf",
+      "clean_AP": 0.8519289482288764,
+      "S4_AP": 0.0936543706926991,
+      "clean_NT": 0.7420609832808465,
+      "S4_NT": 0.6661467422932765,
+      "P": 0.8900678620119642,
+      "U": 0.897698110131147,
+      "S": 0.8938667029877327,
+      "WCD": 0.3493230899787887,
+      "TCD3": 0.2979769340254938
+    },
+    {
+      "defense": "data_aug",
+      "clean_AP": 0.8677137978279893,
+      "S4_AP": 0.033793276275660526,
+      "clean_NT": 0.7684320815814446,
+      "S4_NT": 0.6886910059921326,
+      "P": 0.9610548128193307,
+      "U": 0.896228856784319,
+      "S": 0.9275105039651224,
+      "WCD": 0.28994290551716956,
+      "TCD3": 0.25475438028013936
+    }
+  ],
+  "phase_A_per_class_rows": 160,
+  "phase_B_per_class_rows": 160,
+  "original_server_archive_sha256": "ff006430a337c78407e5962ff2d45b47f6c1c5920c5c6e22ea576bbc0522b06d",
+  "all_original_archive_files_verified": true,
+  "remote_checkpoint_CSV_reverification": true,
+  "dataset_hash_audit_evidence": "server accepted full16551 file audits; manifest hashes independently reread",
+  "GPU_forwards": 0,
+  "AT": "NOT_RUN",
+  "source_components": {
+    "<REMOTE_PATH>": {
+      "sha256": "0ae78282a037d3f9d049c1452c8556755fe5b19194fd378440253a85e1cb1e97",
+      "content": {
+        "passed": true,
+        "launch_source_commit": "58f8c1cb3032abf4f296dbbce84ccb9d7a61f920",
+        "reporting_component_commit": "05c73cf317ff16acd0e6e5eb960a858ba7b8c8d0",
+        "frozen_science_hashes_exact": true,
+        "score_validation_and_table_functions_AST_exact": true,
+        "existing_formal_readonly_acceptance": {
+          "jpeg50": {
+            "run_id": "s4_robustness_jpeg50_paired_seed0_20261019_v1",
+            "state": "COMPLETE_ACCEPTED",
+            "accepted": true,
+            "paired_results_sha256": "27d727c760ea389d2114be7f24829af062e2f2ba39eee6beb7d0978f1edaff0b"
+          },
+          "jpeg30": {
+            "run_id": "s4_robustness_jpeg30_paired_seed0_20261019_v1",
+            "state": "COMPLETE_ACCEPTED",
+            "accepted": true,
+            "paired_results_sha256": "5cf957eab36c7a72fc0b3bf4d0ae424ecc2b932e29a45a4fc565497be00be473"
+          }
+        },
+        "gray_pending_actual_bound_run": {
+          "run_id": "s4_robustness_gray_paired_seed0_20261019_recovery01",
+          "state": "NOT_RUN",
+          "accepted": false
+        },
+        "reporter_sha256": "1450627836fed1e68f8900b42131463e1114c09f68b26690d8c91b1977ebf32d",
+        "report_adapter_sha256": "001d9ba3dffdd899d60d2354003f8079627ae775ec0d2b1be6e1f10f1e8aa8d8",
+        "GPU_forwards": 0,
+        "training_updates": 0,
+        "first_probe_error": "historical JPEG50 predates selected_arms.json; corrected read-only probe to use the same optional-file check as production; no code/runtime failure"
+      }
+    },
+    "scripts/s4_pipeline_reports.py": {
+      "sha256": "1450627836fed1e68f8900b42131463e1114c09f68b26690d8c91b1977ebf32d"
+    },
+    "scripts/s4_pipeline_frozen_report.py": {
+      "sha256": "001d9ba3dffdd899d60d2354003f8079627ae775ec0d2b1be6e1f10f1e8aa8d8"
+    }
+  }
+}

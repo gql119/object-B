@@ -1,0 +1,31 @@
+{
+  "phase": "A",
+  "state": "COMPLETE_ACCEPTED",
+  "defenses": {
+    "jpeg50": {
+      "run_id": "s4_robustness_jpeg50_paired_seed0_20261019_v1",
+      "state": "COMPLETE_ACCEPTED",
+      "accepted": true,
+      "paired_results_sha256": "27d727c760ea389d2114be7f24829af062e2f2ba39eee6beb7d0978f1edaff0b"
+    },
+    "jpeg30": {
+      "run_id": "s4_robustness_jpeg30_paired_seed0_20261019_v1",
+      "state": "COMPLETE_ACCEPTED",
+      "accepted": true,
+      "paired_results_sha256": "5cf957eab36c7a72fc0b3bf4d0ae424ecc2b932e29a45a4fc565497be00be473"
+    },
+    "gray": {
+      "run_id": "s4_robustness_gray_paired_seed0_20261019_recovery01",
+      "state": "COMPLETE_ACCEPTED",
+      "accepted": true,
+      "paired_results_sha256": "9bba7178dce1d7ce08fad0236aadfef9f850031ddc95cb74ed335baf37dd5403"
+    },
+    "bdr": {
+      "run_id": "s4_robustness_bdr_paired_seed0_20261019_v1",
+      "state": "COMPLETE_ACCEPTED",
+      "accepted": true,
+      "paired_results_sha256": "3db3ff15cd6bd56ee5439189eb4c38e33fc75b9adc2769cafba7b6485f9f7031"
+    }
+  },
+  "generated_utc": "2026-10-21T23:00:37.914803+00:00"
+}

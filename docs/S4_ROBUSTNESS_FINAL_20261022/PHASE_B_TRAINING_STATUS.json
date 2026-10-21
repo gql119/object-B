@@ -1,0 +1,31 @@
+{
+  "phase": "B",
+  "state": "COMPLETE_ACCEPTED",
+  "defenses": {
+    "gauss": {
+      "run_id": "s4_robustness_gauss_paired_seed0_20261019_v1",
+      "state": "COMPLETE_ACCEPTED",
+      "accepted": true,
+      "paired_results_sha256": "de2bbbbba1ab9d1253a50fd86fbf6254365373a0c77dd54af9ced02796ad4275"
+    },
+    "meanf": {
+      "run_id": "s4_robustness_meanf_paired_seed0_20261019_v1",
+      "state": "COMPLETE_ACCEPTED",
+      "accepted": true,
+      "paired_results_sha256": "583420de5a571fa1a767d8cf20cb8fa31ebc28de6a3e1907cf6f2e7a1578356d"
+    },
+    "medianf": {
+      "run_id": "s4_robustness_medianf_paired_seed0_20261019_v1",
+      "state": "COMPLETE_ACCEPTED",
+      "accepted": true,
+      "paired_results_sha256": "7e3b8b257c653da1eaf7042e9e33f46a2e4de955dabd168d68cffb46daf2a132"
+    },
+    "data_aug": {
+      "run_id": "s4_robustness_data_aug_paired_seed0_20261019_v1",
+      "state": "COMPLETE_ACCEPTED",
+      "accepted": true,
+      "paired_results_sha256": "e9e4b3eedb153fd1a7064283b9720beaa71f16224fc3527948745d42f519d8ed"
+    }
+  },
+  "generated_utc": "2026-10-21T23:00:37.915719+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "state": "COMPLETED_AND_ACCEPTED",
+  "pipeline_run_id": "s4_robustness_server_pipeline_seed0_20261020_recovery01",
+  "all_eight_defenses": true,
+  "AT": "NOT_RUN",
+  "science_commit": "e17c24c54aae4cdae4bcc4703facf2a57052d2c8",
+  "config_sha256": "00af2dc40c5c4d263246e78f70195bf8a53a16b9118bb289a9b307d93bafdb91",
+  "archive_manifest_sha256": "ff006430a337c78407e5962ff2d45b47f6c1c5920c5c6e22ea576bbc0522b06d",
+  "completed_at": 1792623637.9317973
+}
