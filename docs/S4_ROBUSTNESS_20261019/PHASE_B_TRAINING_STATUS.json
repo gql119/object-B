@@ -1,10 +1,82 @@
 {
-  "state": "NOT_RUN",
+  "phase": "B",
+  "state": "IN_PROGRESS",
+  "generated_utc": "2026-10-21T14:21:58.328440+00:00",
+  "pipeline_run_id": "s4_robustness_server_pipeline_seed0_20261020_recovery01",
+  "current_server_stage": "meanf",
   "defenses": {
-    "gauss": "NOT_RUN",
-    "meanf": "NOT_RUN",
-    "medianf": "NOT_RUN",
-    "data_aug": "NOT_RUN"
-  },
-  "automatic_AT": false
+    "gauss": {
+      "run_id": "s4_robustness_gauss_paired_seed0_20261019_v1",
+      "state": "COMPLETE_ACCEPTED",
+      "accepted": true,
+      "paired_results_sha256": "de2bbbbba1ab9d1253a50fd86fbf6254365373a0c77dd54af9ced02796ad4275",
+      "arms": {
+        "clean": {
+          "epoch_rows": 200,
+          "checkpoint_sha256": "82e9857a4013cb095ca1ca29afd1d08fc0153c8ae32ebbffe6225dedac7aff97",
+          "historical_clean_reuse": true
+        },
+        "S4": {
+          "epoch_rows": 200,
+          "checkpoint_sha256": "772f543908763b61194bb6e18e6fb8ecc898424c4b86c854488dc38d4aa595cd",
+          "historical_clean_reuse": false
+        }
+      }
+    },
+    "meanf": {
+      "run_id": "s4_robustness_meanf_paired_seed0_20261019_v1",
+      "state": "IN_PROGRESS",
+      "accepted": false,
+      "arms": {
+        "clean": "PENDING",
+        "S4": "IN_PROGRESS"
+      },
+      "progress": {
+        "observed_utc": "2026-10-21T14:19:19.454649+00:00",
+        "state": "RUNNING",
+        "stage": "meanf",
+        "active_job": "meanf:S4:attempt01",
+        "own_training_roots": 1,
+        "training": {
+          "epoch": 193,
+          "AMP": true,
+          "data_loader_workers": 16,
+          "last_sha256": "5a998b807b11869d8f4944eb884a41eb9d7593459ddcf302b6f8ea8f4608ccdb"
+        },
+        "AMP": {
+          "epoch": 194,
+          "batch_index": 148,
+          "total_batches": 88929,
+          "actual_updates_total": 44886,
+          "skips_total": 22,
+          "consecutive_skips": 0,
+          "amp_scale_after": 4096.0,
+          "model_finite": true,
+          "EMA_finite": true,
+          "optimizer_finite": true,
+          "elapsed_seconds": 14391.95622474514
+        },
+        "resource_blockers": [],
+        "source_pipeline_id": "s4_robustness_server_pipeline_seed0_20261020_recovery01"
+      }
+    },
+    "medianf": {
+      "run_id": "s4_robustness_medianf_paired_seed0_20261019_v1",
+      "state": "NOT_RUN",
+      "accepted": false,
+      "arms": {
+        "clean": "NOT_RUN",
+        "S4": "NOT_RUN"
+      }
+    },
+    "data_aug": {
+      "run_id": "s4_robustness_data_aug_paired_seed0_20261019_v1",
+      "state": "NOT_RUN",
+      "accepted": false,
+      "arms": {
+        "clean": "NOT_RUN",
+        "S4": "NOT_RUN"
+      }
+    }
+  }
 }

@@ -1,0 +1,102 @@
+{
+  "schema": "s4.robustness.github-publication-manifest.v1",
+  "created_utc": "2026-10-21T14:22:15.050727+00:00",
+  "repository": "gql119/object-B",
+  "branch": "codex/s4-robustness-results-20261021",
+  "base_branch": "codex/s4-robustness-evaluation-20261019",
+  "base_commit": "4dd1cc370b0c93c888279ff949b1a5ebb7e15e9b",
+  "commit_scope": "S4 robustness reporting code and sanitized small results only",
+  "excluded": "Weights, datasets, raw RRCTL pulls, absolute server paths, local settings, credentials and private execution snapshots. This manifest lists the published payload files and does not include itself.",
+  "files": [
+    {
+      "path": "execution/assemble_accepted_results.py",
+      "size_bytes": 43497,
+      "sha256": "2ca8b1da79e91d354b43536f2f87c0b71f6858ed7d9fc62f5c2d03f58b92009e"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/PHASE_A_PER_CLASS_RESULTS.csv",
+      "size_bytes": 21412,
+      "sha256": "07bafa3baaf97a01b340293772701b9e96ee5a64ec404aa7a01cb8082f07e139"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/PHASE_A_REPORT.md",
+      "size_bytes": 2539,
+      "sha256": "365b2d96a311ad4dd4f8691326bddfa2f5a4a0a8800dab09234768f5962c026f"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/PHASE_A_ROBUSTNESS_RESULTS.csv",
+      "size_bytes": 10604,
+      "sha256": "beb0b46d8ad7d155a49f5fd277d739334811d354c5950b59b1c76d62a893769f"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/PHASE_A_TRAINING_STATUS.json",
+      "size_bytes": 2600,
+      "sha256": "f8e0783b190f4ced0289bca7316fa289b073e5224d8961d3ca31b39f7094f74f"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/PHASE_B_PER_CLASS_RESULTS.csv",
+      "size_bytes": 5416,
+      "sha256": "ad0b4c09be5d57865fb6bb39cdbcf3e6447cae082c731f4ed35eae5aeab497d3"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/PHASE_B_REPORT.md",
+      "size_bytes": 2221,
+      "sha256": "be1ff9315e0cf6eecac45017caa2a06a635aaa6b768227f0ff5c70af93a0c95c"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/PHASE_B_ROBUSTNESS_RESULTS.csv",
+      "size_bytes": 7498,
+      "sha256": "2eb67989fbaf231df7f8b3cc73bc784c0cddf16bca3031c9d66af923d1b1f6e6"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/PHASE_B_TRAINING_STATUS.json",
+      "size_bytes": 2590,
+      "sha256": "b659d06e1b3d4d8383b3561db89439a79b1479e4ce0aaffe8595367bc6b843e4"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/S4_DEFENSE_DATA_MANIFEST.csv",
+      "size_bytes": 3825,
+      "sha256": "e764e7eec1ce4d6a1ae46048667ebbf7ceafdc46415b5700ef89bc2b5303e00d"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/S4_ROBUSTNESS_ACCEPTED_PAIRS_20261021.json",
+      "size_bytes": 67838,
+      "sha256": "001c0f044c85b622fb6196c975ce5b7fa7f76a99ee3b543bbfd8bbbc87e0c0c9"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/S4_ROBUSTNESS_ALL_RESULTS.csv",
+      "size_bytes": 19400,
+      "sha256": "af5a9ffe6a6ec905ce8b274f6c34760a10ea974a825f6394151ab22eaf14be09"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/S4_ROBUSTNESS_DATA_CATALOG_20261021.md",
+      "size_bytes": 3800,
+      "sha256": "a63d52e97db030fbf7cbf9ce42dc4a8218a294af1c8d799ef25ba18459061860"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/S4_ROBUSTNESS_EXECUTION_LEDGER_20261021.csv",
+      "size_bytes": 5345,
+      "sha256": "e30610a3f0dc817636840fa4c872b75b4b91e85a0655f5019ee0c192e6465e76"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/S4_ROBUSTNESS_EXTENDED_METRICS.csv",
+      "size_bytes": 24574,
+      "sha256": "f8ae9a1fb57286600605c76709dcf14c42a9d7aebddb713931b39f6b5f05f241"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/S4_ROBUSTNESS_FINAL_REPORT.md",
+      "size_bytes": 4607,
+      "sha256": "8fd11b002afa99e5fb76fcddb8f4eb95d89525b3907dd1e164e9dea963f1a6f8"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/S4_ROBUSTNESS_INTERIM_RESULTS_20261021.md",
+      "size_bytes": 3256,
+      "sha256": "ffcee2d44008f51774372d1c22fbb48400c77086705e9143686c2621ce5b83b0"
+    },
+    {
+      "path": "docs/S4_ROBUSTNESS_20261019/S4_ROBUSTNESS_MAIN_TABLE.md",
+      "size_bytes": 1444,
+      "sha256": "455dec81bd35b2be2b4f8d3f8605ab2649dc69fbce7188e0ecdc7472ee96cfe8"
+    }
+  ]
+}

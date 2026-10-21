@@ -1,10 +1,72 @@
 {
-  "state": "NOT_RUN",
+  "phase": "A",
+  "state": "COMPLETE_ACCEPTED",
+  "generated_utc": "2026-10-21T14:21:58.328440+00:00",
+  "pipeline_run_id": "s4_robustness_server_pipeline_seed0_20261020_recovery01",
   "defenses": {
-    "jpeg50": "NOT_RUN",
-    "jpeg30": "NOT_RUN",
-    "gray": "NOT_RUN",
-    "bdr": "NOT_RUN"
-  },
-  "automatic_AT": false
+    "jpeg50": {
+      "run_id": "s4_robustness_jpeg50_paired_seed0_20261019_v1",
+      "state": "COMPLETE_ACCEPTED",
+      "accepted": true,
+      "paired_results_sha256": "27d727c760ea389d2114be7f24829af062e2f2ba39eee6beb7d0978f1edaff0b",
+      "arms": {
+        "clean": {
+          "epoch_rows": 200,
+          "checkpoint_sha256": "cf9468d667cdfa3015fc9e928ee530e341a662ae8b42eb369f4cbdbd1e6bf12b"
+        },
+        "S4": {
+          "epoch_rows": 200,
+          "checkpoint_sha256": "971278bc2cf0303e56bfd6faf3329cee1d0092a99991d7a219467731f4d8cd6b"
+        }
+      }
+    },
+    "jpeg30": {
+      "run_id": "s4_robustness_jpeg30_paired_seed0_20261019_v1",
+      "state": "COMPLETE_ACCEPTED",
+      "accepted": true,
+      "paired_results_sha256": "5cf957eab36c7a72fc0b3bf4d0ae424ecc2b932e29a45a4fc565497be00be473",
+      "arms": {
+        "clean": {
+          "epoch_rows": 200,
+          "checkpoint_sha256": "958e805b577594afa92f645791e076e73647148375f3e6ca309a71e27396a4cc"
+        },
+        "S4": {
+          "epoch_rows": 200,
+          "checkpoint_sha256": "a15462adf57bfee8701163023d8c50647ad24c673b2f0538289786d888a2ec9a"
+        }
+      }
+    },
+    "gray": {
+      "run_id": "s4_robustness_gray_paired_seed0_20261019_recovery01",
+      "state": "COMPLETE_ACCEPTED",
+      "accepted": true,
+      "paired_results_sha256": "9bba7178dce1d7ce08fad0236aadfef9f850031ddc95cb74ed335baf37dd5403",
+      "arms": {
+        "clean": {
+          "epoch_rows": 200,
+          "checkpoint_sha256": "b8247a7e5820b4f37d98a558808fe9f1f264016528461cf0ef39d8591a769390"
+        },
+        "S4": {
+          "epoch_rows": 200,
+          "checkpoint_sha256": "62007a2294e278aa6d3f94e8d308d206c28b0de638bf41a518cd76e5c81b47c9"
+        }
+      }
+    },
+    "bdr": {
+      "run_id": "s4_robustness_bdr_paired_seed0_20261019_v1",
+      "state": "COMPLETE_ACCEPTED",
+      "accepted": true,
+      "paired_results_sha256": "3db3ff15cd6bd56ee5439189eb4c38e33fc75b9adc2769cafba7b6485f9f7031",
+      "arms": {
+        "clean": {
+          "epoch_rows": 200,
+          "checkpoint_sha256": "46e7c9734ea28f57309c27dd0aada1f796a1e916db96798ebde25c4f0829351c"
+        },
+        "S4": {
+          "epoch_rows": 200,
+          "checkpoint_sha256": "78d1172b6c2fb0d8c0460da5d4e838fc173d78beb81efeca5eef828b6d18b82b"
+        }
+      }
+    }
+  }
 }
