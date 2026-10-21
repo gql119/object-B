@@ -1,4 +1,5 @@
 test_actual_CPU_YOLO_clean_maps_cache_parity_and_rng (test_s4_tfss_full.FullContracts.test_actual_CPU_YOLO_clean_maps_cache_parity_and_rng) ... ok
+test_baseline_identity_binds_training_and_export_files_separately (test_s4_tfss_full.FullContracts.test_baseline_identity_binds_training_and_export_files_separately) ... ok
 test_config_only_one_variable_and_canonical45_unchanged (test_s4_tfss_full.FullContracts.test_config_only_one_variable_and_canonical45_unchanged) ... ok
 test_diagnostic_csv_schema_stable_with_and_without_overlap (test_s4_tfss_full.FullContracts.test_diagnostic_csv_schema_stable_with_and_without_overlap) ... ok
 test_export_allows_overlap_above_four_without_exceeding_eight (test_s4_tfss_full.FullContracts.test_export_allows_overlap_above_four_without_exceeding_eight) ... ok
@@ -27,6 +28,6 @@ test_soft_gradient_and_detached_maps (test_tfss_spatial.TFSSContracts.test_soft_
 test_valid_small_GT_preserves_strength_without_attribution (test_tfss_spatial.TFSSContracts.test_valid_small_GT_preserves_strength_without_attribution) ... ok
 
 ----------------------------------------------------------------------
-Ran 27 tests in 2.490s
+Ran 28 tests in 3.902s
 
 OK

@@ -152,7 +152,9 @@
     "integrity_sha256": "3eece1fc62df963f7d4aa15d378395273bd3963f812c0f7764ea9115dc82fe82",
     "last_sha256": "cc1b03eca939732599817abb97150907463ab10913456afa6cc6ae473b4bbdc3",
     "comparison_path": "docs/S4_AMP_RECOVERY_20261018/S4_COMPARISON.json",
-    "comparison_sha256": "27e32b0a37e299dc06671dbdd71301a839adda6c29b9e01dbb8b63c2838a3db9"
+    "comparison_sha256": "27e32b0a37e299dc06671dbdd71301a839adda6c29b9e01dbb8b63c2838a3db9",
+    "noise_checkpoint_relative_path": "noise/checkpoints/step_009144_epoch_24_cursor_00000.pt",
+    "export_params_sha256": "d731e2579ff58bfaa6bce67a2b4439ca9b6c182a3966413f8bb8c41d6049c2c2"
   },
   "queue": {
     "pipeline_id": "s4_robustness_server_pipeline_seed0_20261020_recovery01",

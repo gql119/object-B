@@ -1,5 +1,7 @@
 # S4-TFSS-Full：全 Person 框空间调控消融
 
+最新：28项CPU测试通过（无skip），原45及S4核心文件保持一致。首个GPU smoke在计算前被历史噪声checkpoint路径绑定错误拦下；真实文件SHA核验一致，修正见SMOKE_V1_PREFLIGHT_FAILURE_AND_FIX.md。将以新RunID执行当前源码GPU smoke，尚无独立审查或正式结果。原鲁棒性八项已全部验收并发布。
+
 当前交付是**独立实现与本地 CPU 验证**。正式 Fourier 优化、完整数据导出、GPU smoke、独立科学审查和 victim200 均未运行；不得填入正式 AP。
 
 - 实验标识：`S4_TFSS_FULL_OVERLAP`。

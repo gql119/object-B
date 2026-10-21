@@ -24,3 +24,6 @@
 - LPIPS：项目未锁定合法本地LPIPS模型权重和实现，记录NOT_RUN，不下载或伪造；PSNR有直接数值实现，SSIM沿原有已安装实现可选记录。
 
 “本地PNG导出检查通过”仅指实际合成输入的组件检查，不冒充完整VOC数据审计。正式导出还会逐图校验原GT/图像尺寸/labels、无Person图像字节一致、clean val字节一致、无重复缺失ID、每个Person GT改变、Manifest哈希和8/0预算。
+
+
+2026-10-22 identity-binding regression: 28 CPU tests, zero failures/errors/skips. New test exercises separate final training-state and export-parameter byte identities and rejects cross-binding or changed export bytes. v1 preflight failure retained; current candidate GPU path remains unvalidated until v2 completes.

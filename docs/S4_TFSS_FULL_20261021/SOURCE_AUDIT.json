@@ -63,7 +63,7 @@
   "canonical45_count": 45,
   "canonical45_all_exact": true,
   "candidate_config_sha256": "eaade0d996dedf62d24fe332f8e4939b240c42f3d54c2ba525951211155105d5",
-  "new_lock_sha256": "ffe87d33994a9462740d8deb5d7da88b6794f486d753fd0eec2eb7ccb75fb100",
+  "new_lock_sha256": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
   "baseline_provenance": {
     "formal_run_id": "s4_tfss_utility_seed0_20261017_v1_victim_recovery01",
     "parent_noise_run_id": "s4_tfss_utility_seed0_20261017_v1",
@@ -84,9 +84,12 @@
     "Recall_target": 0.0003921146306889522
   },
   "actual_completed_S4_victim_args_exact": true,
-  "remote_baseline_file_reverification": "PENDING_not_claimed_from_local_metadata",
-  "prior_pipeline_live_query": "FAILED_INVALID_JSON",
-  "GPU_smoke": "NOT_RUN",
+  "remote_baseline_file_reverification": "PASSED_20261021T2348Z_named_final_training_checkpoint_and_export_global_params_both_exact",
+  "prior_pipeline_live_query": "COMPLETED_AND_ACCEPTED_all10stages_AT_not_run",
+  "GPU_smoke": "v1_FAILED_SOURCE_PREFLIGHT_binding_only_zero_GPU_updates; current-source v2 pending",
   "independent_reviewer_count": 0,
-  "formal_run": "NOT_RUN"
+  "formal_run": "NOT_RUN",
+  "CPU_tests_current_candidate": 28,
+  "baseline_export_params_sha256": "d731e2579ff58bfaa6bce67a2b4439ca9b6c182a3966413f8bb8c41d6049c2c2",
+  "baseline_noise_checkpoint_relative_path": "noise/checkpoints/step_009144_epoch_24_cursor_00000.pt"
 }

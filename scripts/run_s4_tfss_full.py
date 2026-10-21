@@ -205,7 +205,8 @@ def materialize_and_audit(cfg,trainer,noise,out,source_splits,lock):
 
 def baseline_identity(lock):
     baseline=lock["baseline"]; old=Path(baseline["output"])
-    checks=[(old/"noise/global_params.pt",baseline["noise_sha256"]),
+    checks=[(old/baseline["noise_checkpoint_relative_path"],baseline["noise_sha256"]),
+            (old/"noise/global_params.pt",baseline["export_params_sha256"]),
             (old/"materialization_manifest.json",baseline["manifest_sha256"]),
             (old/"dataset_integrity.json",baseline["integrity_sha256"]),
             (ROOT/baseline["comparison_path"],baseline["comparison_sha256"]),
@@ -332,6 +333,10 @@ def gpu_smoke(cfg,trainer,prototypes,lock,out,identity):
     delta_error=float((evidence[0][1]-evidence[1][1]).abs().max())
     grad_error=float((evidence[0][2]-evidence[1][2]).abs().max())
     if max(loss_error,delta_error,grad_error)!=0:raise ValueError("Actual no-overlap production equivalence failed")
+    baseline_values=dict(reference_metric=evidence[0][0],candidate_metric=evidence[1][0],
+        reference_weights_path=cfg["surrogate"]["ckpt"],candidate_weights_path=cfg["surrogate"]["ckpt"],
+        reference_implementation="ue_framework/methods/s4_tfss.py:S4Trainer",
+        candidate_implementation="ue_framework/methods/s4_tfss_full.py:S4FullTrainer")
     del ref,evidence;restore_rng(state)
     for key,value in counters.items():setattr(trainer,key,value)
     observed=[]
@@ -357,14 +362,21 @@ def gpu_smoke(cfg,trainer,prototypes,lock,out,identity):
     png=export_project(clean,np.clip(image+generated.perturbation*weight[:,:,None],0,1),ann,trainer.eps)
     from PIL import Image
     Image.fromarray(png).save(out/"smoke_full_export.png")
+    decoded=np.asarray(Image.open(out/"smoke_full_export.png").convert("RGB"))
+    target,other=domains(image.shape,ann)
+    absolute=np.abs(decoded.astype(np.int16)-clean.astype(np.int16))
+    if not np.array_equal(decoded,png) or np.any(absolute[~target]!=0) or np.any(absolute[target]>8):
+        raise ValueError("Actual decoded smoke PNG violates full-target8/0 budget")
     return dict(state="passed",actual_Adam_steps=2,observed=observed,
         production_entrypoint_reached=True,finite_loss=True,official_metrics_disabled=True,
         artifact_ingest_disabled=True,cleanup_policy="retain_all",deleted_paths=[],
         baseline_equivalence_probe=dict(reference_id="canonical S4Trainer",sample_id=Path(plain[0]).stem,
             loss_absolute_difference=loss_error,delta_max_absolute_difference=delta_error,
-            Fourier_gradient_max_absolute_difference=grad_error,tolerance=0),
+            Fourier_gradient_max_absolute_difference=grad_error,tolerance=0,**baseline_values),
         selected_image_ids=[Path(p).stem for p in selected],decoded_PNG_8_0_passed=True,
-        overlap_export_image_id=Path(path).stem,checkpoint_paths_remaining=[str(p) for p in out.rglob("*.pt")])
+        overlap_export_image_id=Path(path).stem,decoded_PNG_linf_bytes=int(absolute.max()),
+        decoded_PNG_outside_max_bytes=int(absolute[~target].max()) if np.any(~target) else 0,
+        checkpoint_paths_remaining=[str(p) for p in out.rglob("*.pt")])
 
 
 def main():

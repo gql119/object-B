@@ -303,6 +303,33 @@ class FullContracts(unittest.TestCase):
         self.assertTrue(all(value==0 for value in result["aggregate_delta"].values()))
         self.assertAlmostEqual(result["scores"]["S4"]["S"],.935330,places=6)
 
+    def test_baseline_identity_binds_training_and_export_files_separately(self):
+        from unittest.mock import patch
+        from scripts import run_s4_tfss_full as entry
+        fixture=retained();old=fixture/"old";(old/"noise/checkpoints").mkdir(parents=True)
+        (old/"noise/checkpoints/final.pt").write_bytes(b"training-state-identity-fixture")
+        (old/"noise/global_params.pt").write_bytes(b"export-parameters-identity-fixture")
+        (old/"materialization_manifest.json").write_text("[]")
+        (old/"dataset_integrity.json").write_text("{}")
+        weights=fixture/"victim/weights";weights.mkdir(parents=True)
+        (weights/"last.pt").write_bytes(b"victim-identity-fixture")
+        digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+        comparison=dict(source_provenance=dict(last_sha256=digest(weights/"last.pt")),
+                        training=dict(args=dict(project=str(fixture),name="victim")))
+        (fixture/"comparison.json").write_text(json.dumps(comparison))
+        config=fixture/"docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json";config.parent.mkdir(parents=True)
+        config.write_bytes((ROOT/"docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json").read_bytes())
+        lock=dict(baseline=dict(output=str(old),noise_checkpoint_relative_path="noise/checkpoints/final.pt",
+            noise_sha256=digest(old/"noise/checkpoints/final.pt"),export_params_sha256=digest(old/"noise/global_params.pt"),
+            manifest_sha256=digest(old/"materialization_manifest.json"),integrity_sha256=digest(old/"dataset_integrity.json"),
+            comparison_path="comparison.json",comparison_sha256=digest(fixture/"comparison.json"),last_sha256=digest(weights/"last.pt")))
+        with patch.object(entry,"ROOT",fixture):
+            self.assertEqual(entry.baseline_identity(lock),comparison)
+            wrong=copy.deepcopy(lock);wrong["baseline"]["noise_checkpoint_relative_path"]="noise/global_params.pt"
+            with self.assertRaisesRegex(ValueError,"Historical S4 identity changed"):entry.baseline_identity(wrong)
+            (old/"noise/global_params.pt").write_bytes(b"changed-export-fixture")
+            with self.assertRaisesRegex(ValueError,"Historical S4 identity changed"):entry.baseline_identity(lock)
+
     def test_spatial_summary_distinguishes_no_overlap_and_area_pooling(self):
         from scripts.s4_full_report import spatial_summary
         rows=[]
