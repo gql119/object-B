@@ -1,3 +1,13 @@
+# Current selected defense recovery03 — 2026-10-22
+
+Change: nativefloat32 boundary-copy correction, strict validator/trainingGT and transformsettings preserved. Selectedv2 firstCutoutsmoke failed; source-bound recovery03 exactlyonce runtime40d2/confige35f. Full200 completeaccepted/published4649c93.
+
+Result:56local+56server CPUtests pass; source131/native12exact. Immutable originalS4DecisionSHA630c8 reused exactbytes; no reselection. Actual server now validating/threeGPUsmokes, formalpairsNOT_RUN, reviewer0.
+
+Finding: Cutout integration failed on nativefloat32 rounding x1=-3.05e-5pixels; fixed only geometrycopy for occlusion/checks, originalGTbytes retained. Test evidence and original failure preserved. Full tradeoff favours originalS4 under frozenrule, single-seeddescriptive.
+
+Next: serverowns all3smokes→exactlyone newextendedscientificreview→pairedCutout/CutMix/MixUp→archive,OPblocked. Same solemonitor. No oldFull/8defense rerun,AT,newseed or tuning.
+
 # Deployed extended successor — 2026-10-22
 
 Actual healthy WAITING_PREVIOUS_PIPELINE controller2875690/start326511739, no jobs/no newGPU. Source37e0ae7a35baa32b7096239c07a30c76bdaa88b6/configa6a9ee615af7baf4dfbc149efe39545ac62c2892b3125906c8a02c29876506b1 immutable; later docsHEAD separate.31actualserver CPUtests/scope/singleton/completedjobadoption passed,125source+12nativeSHA verified. Full originalPID healthy, latestreadonlynoise10/24,3519/9144. Same sole2hmonitor updated; serverfutureGPU waitsFull fullacceptance + source/data/capacity +3boundedGPUsmokes +one scientificreview receipt, then6pairedVictims autonomous; OPblocked. See EXTENDED_CONTINUE.md.

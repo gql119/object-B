@@ -1,3 +1,7 @@
+# Current recovery03 — original S4 selected
+
+Full completed and was independently accepted/published. Frozen selection chose original S4. Selectedv2 failed its first Cutout smoke on native float32 boundary roundoff; new runtime40d2/confige35f fixes geometry-copy validation and retains the exact immutable Decision SHA630c8.56local+56server CPU tests pass; current three GPU smoke groups and one new extended review are required before paired formal training. OP remains blocked. See ../../EXTENDED_CONTINUE.md and reports/CUTOUT_BOUNDARY_REPAIR.md. Prior preparation notes follow.
+
 # S4 extended defenses — independent successor
 
 Latest authorization (2026-10-22): automatic S4/Full selection supersedes the
