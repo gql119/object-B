@@ -1,8 +1,8 @@
 {
   "schema": "s4.extended.queue.v1",
-  "pipeline_run_id": "s4_robustness_extended_selected_seed0_20261022_v2",
+  "pipeline_run_id": "s4_robustness_extended_selected_seed0_20261022_recovery03",
   "root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022",
-  "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_v2",
+  "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03",
   "python": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
   "order": [
     "cutout",
@@ -523,14 +523,14 @@
   "smoke_batches_per_arm": 20,
   "smoke_state": "PENDING_GPU_SMOKE",
   "review_state": "PENDING_GPU_SMOKE_THEN_ONE_SCIENTIFIC_REVIEW",
-  "review_receipt": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/receipts/EXTENDED_SCIENTIFIC_CLOSURE_SELECTED_BATCH02.json",
+  "review_receipt": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/receipts/EXTENDED_SCIENTIFIC_CLOSURE_SELECTED_RECOVERY03.json",
   "OP_PROTOCOL_APPROVED": false,
   "source_files": {
     "robustness_s4_extended/build_preparation.py": "861057da1691c4db6bd348112275f9b34d36d476d7677f646680e209568e6209",
     "robustness_s4_extended/common.py": "d2521e0d22d4ba9fc9738509c8131d5ce550ee5607f3cb4a115ee3218038eced",
-    "robustness_s4_extended/control.py": "1638c3a4a8511510485bddf8afe213c12fe2a80f0a92a5d2efea809e04e9e260",
+    "robustness_s4_extended/control.py": "f1017c33ccb712f6c6b9986b9240a92bacecd97dc9c2378c6844fcdee8572ff6",
     "robustness_s4_extended/cpu_server_smoke.py": "1b0598fbcb0d2b04ced79360d6313cf2ba965720614b1717e7544a76f67947d8",
-    "robustness_s4_extended/integration.py": "296e8f683aafa8b54352f0ca82b7f21cde5690c0ac0dddb35428ae7c66dc4821",
+    "robustness_s4_extended/integration.py": "aafa431ef874e6fa58895d2738af3a6337415d15d3293779fad50fc25cc06674",
     "robustness_s4_extended/metrics.py": "2bd4a4c874c0a580744c0a916a227dba6a4172070c7594440c3e7db36789cfa0",
     "robustness_s4_extended/op_prototype.py": "8c3d1a76db8cdb9f0f08151443a929c90caf70447ff2f5596d214d3049a081b5",
     "robustness_s4_extended/predecessor.py": "5a4b6024f28778853a167b075a78fe3710716805384087b227886d99cfb1ba60",
@@ -653,11 +653,13 @@
     "docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
     "robustness_s4_extended/configs/FULL_REFERENCE_LOCK.json": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
     "robustness_s4_extended/configs/SELECTION_RULE.json": "e9b2dcbe5ebe0aa7dd1b19150b74be1d02eccbb8b6e9a350580d735504bfe418",
-    "robustness_s4_extended/selection.py": "d8822896cc2ed2eeefc54fd7cf9d3f31166e9a14784934feb4f80138b4f7bafa",
-    "robustness_s4_extended/tests/test_selection.py": "0bf2e5495340e5aa02feca5bb047d822c1d0ac879fa6d621d187d5d9fd04e32a"
+    "robustness_s4_extended/selection.py": "bfe66a269bec64036f2cc932c60b546f89b9098f0879262e04e927a500cc815f",
+    "robustness_s4_extended/tests/test_selection.py": "0bf2e5495340e5aa02feca5bb047d822c1d0ac879fa6d621d187d5d9fd04e32a",
+    "robustness_s4_extended/tests/test_native_roundoff.py": "27c37287690d3011fa4851ac8563a3fcc90f20e888d2c74c252a5bad7155e61e",
+    "robustness_s4_extended/tests/test_decision_recovery.py": "a54c0f3d9b1612b9e6649e2940f2145fcf0df72b4793a0588f60653d4a734797"
   },
   "source_hash_basis": "exact committed Git blob bytes; Linux RRCTL checkout; original canonical -text files preserved",
-  "cpu_scope_smoke_run_id": "s4_robustness_extended_selection_cpu_smoke_seed0_20261022_v3",
+  "cpu_scope_smoke_run_id": "s4_robustness_extended_selection_cpu_smoke_seed0_20261022_v4",
   "supersedes_waiter": {
     "run_id": "s4_robustness_extended_seed0_20261022_v1",
     "source_commit": "37e0ae7a35baa32b7096239c07a30c76bdaa88b6",
@@ -666,7 +668,7 @@
   "selection": {
     "rule_path": "robustness_s4_extended/configs/SELECTION_RULE.json",
     "rule_sha256": "e9b2dcbe5ebe0aa7dd1b19150b74be1d02eccbb8b6e9a350580d735504bfe418",
-    "decision_file": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_v2/S4_FULL_DECISION.json",
+    "decision_file": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/S4_FULL_DECISION.json",
     "original_robustness": {
       "pipeline_id": "s4_robustness_server_pipeline_seed0_20261020_recovery01",
       "pipeline_state_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/outputs/s4_robustness_server_pipeline_seed0_20261020_recovery01/pipeline_state.json",
@@ -686,12 +688,25 @@
       "fresh_admission_receipt_required": true
     },
     "latest_authorization_sha256": "b199d9e448a6495a8b2e592dd9a9b1c679700296ee85cc54dea3d95484af2177",
-    "status": "WAITING_FULL_ACCEPTANCE_NO_METHOD_SELECTED"
+    "status": "WAITING_FULL_ACCEPTANCE_NO_METHOD_SELECTED",
+    "locked_decision_reuse": {
+      "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_v2",
+      "batch_id": "s4_robustness_extended_selected_seed0_20261022_v2",
+      "source_commit": "8644e14cb6804bf9774f8a56c777be155bc64550",
+      "config_sha256": "97a4ae1ee4788ba1485783ba0b70d2e24ec93464b235c037ce9c953cbe1571e3",
+      "decision_sha256": "630c8ad65d110c115a72dc7ea50d88c55a2a1ffaac79172d239b0d02a0e612c1",
+      "full_acceptance_sha256": "150c91a833ad92218b69397f4799a2a3c6fa605b911d01f1e0884411cc868cb7"
+    }
   },
   "supersedes_selected_batch": {
     "run_id": "s4_robustness_extended_selected_seed0_20261022_v1",
     "state": "BLOCKED_FULL_VALIDATION",
     "formal_jobs": 0,
     "reason": "Full recovery02 own-bootstrap false conflict before any Victim training; no method selected"
+  },
+  "recovery_of": {
+    "run_id": "s4_robustness_extended_selected_seed0_20261022_v2",
+    "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_v2",
+    "reason": "First Cutout smoke failed native float32 boundary roundoff; no formal pairs; exact Decision reuse"
   }
 }
