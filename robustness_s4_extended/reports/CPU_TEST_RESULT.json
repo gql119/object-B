@@ -1,17 +1,17 @@
 {
-  "UTC": "2026-10-22T13:33:14.473254+00:00",
+  "UTC": "2026-10-22T13:40:16.582356+00:00",
   "status": "PASSED",
   "tests": 48,
   "failures": 0,
   "errors": 0,
   "skipped": 0,
-  "elapsed_seconds": 0.7809999999590218,
+  "elapsed_seconds": 0.9209999999729916,
   "parsed_files": 19,
   "GPU_steps": 0,
   "actual_detection_dataset_CPU": true,
   "real_VOC_images_read": 0,
   "synthetic_fixtures_retained": true,
-  "config_sha256": "7b9e84ded1e49e38afad9a7eca0599db49b408330d905a5d9050677b47981e0c",
+  "config_sha256": "2a4254aa3cd615ce28bd481faab0cbd20b6a63cbd51c21c745668fda6f526410",
   "packages": {
     "torch": "2.14.0+cpu",
     "ultralytics": "8.4.150",
@@ -19,5 +19,5 @@
     "Pillow": "12.3.0"
   },
   "runtime_limitations": "Local CPU builds/NumPy differ from locked remote; GPU reachability and one scientific review pending; no official AP",
-  "raw_sha256": "40831c2a07486f7302e0cd3457bb70ec94bad99d5b3513606b3214cb5cc11168"
+  "raw_sha256": "a1c2337fbaec3fc586774873392a9c1b465a97c98bd06f32d408940ae9649ee8"
 }

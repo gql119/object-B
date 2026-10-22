@@ -415,8 +415,8 @@
     "automatic_exact_resume": false
   },
   "predecessor": {
-    "run_id": "s4_tfss_full_overlap_seed0_20261021_victim_recovery01",
-    "output": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s4_tfss_full_overlap_20261021/outputs/s4_tfss_full_overlap_seed0_20261021_victim_recovery01",
+    "run_id": "s4_tfss_full_overlap_seed0_20261021_victim_recovery02",
+    "output": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s4_tfss_full_overlap_20261021/outputs/s4_tfss_full_overlap_seed0_20261021_victim_recovery02",
     "source_commit": "1d10ad620ef01aad20e8c85d49465473d72c9a4e",
     "config_sha256": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
     "native_state": "complete",
@@ -424,7 +424,7 @@
     "recovery": {
       "generation_output": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s4_tfss_full_overlap_20261021/outputs/s4_tfss_full_overlap_seed0_20261021_v1",
       "generation_run_id": "s4_tfss_full_overlap_seed0_20261021_v1",
-      "runtime_commit": "b4784e84846157b456e1f2e006ab0a24d0477afc",
+      "runtime_commit": "7f8d577a8c4c07229fc94e26ef577519361207f4",
       "full_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s4_tfss_full_overlap_20261021",
       "parent_files": {
         "config_lock_snapshot.json": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
@@ -534,11 +534,11 @@
     "robustness_s4_extended/metrics.py": "2bd4a4c874c0a580744c0a916a227dba6a4172070c7594440c3e7db36789cfa0",
     "robustness_s4_extended/op_prototype.py": "8c3d1a76db8cdb9f0f08151443a929c90caf70447ff2f5596d214d3049a081b5",
     "robustness_s4_extended/predecessor.py": "5a4b6024f28778853a167b075a78fe3710716805384087b227886d99cfb1ba60",
-    "robustness_s4_extended/successor.py": "cba5f3b1a09efc0ddc87b49e621ccf75daf2c87ba3d581956d813238e12dd123",
+    "robustness_s4_extended/successor.py": "caafc47bface2c7b387cc8da1e33c10873ff40e56b6e1f8a4557d5c22ab54cd6",
     "robustness_s4_extended/transforms.py": "acc582da5d48e8404edd7f5f1eb957e37d2cffa62430acebc5619c4d4affdb53",
     "robustness_s4_extended/validate_cpu.py": "d547c33a35cd8840f037563ea1c107691a171c9b652e7016d943a8afd6420ea9",
     "robustness_s4_extended/visualize_cpu.py": "2789fef7890979ede3532fad6b380faf39c3b74c9951a26c34b9de4536da1f39",
-    "robustness_s4_extended/worker.py": "e0cb0e99e1c8b9fc0138ed2c16b1572d2c7853b81f3ae7d28913409da79c9152",
+    "robustness_s4_extended/worker.py": "0c0577f7e7c6a886af73f870f82990f2a05b27e65290dda2068cbd387b978d3b",
     "robustness_s4_extended/write_reports.py": "27f3eb1beb7daccdd6d20c562c13d3e88462b7bca830f88b1180b3359c4546ba",
     "robustness_s4_extended/__init__.py": "a1eb90c506d008b4eec19ccdcb6a22fa2b251e6c51a3b444d92d0a6b31f5040c",
     "robustness_s4_extended/tests/test_defenses.py": "a1c8c9ae20a9cbf6c17cfe87ebda1cbb427ab873ceede14e4627ec6e4cef4955",
@@ -657,7 +657,7 @@
     "robustness_s4_extended/tests/test_selection.py": "0bf2e5495340e5aa02feca5bb047d822c1d0ac879fa6d621d187d5d9fd04e32a"
   },
   "source_hash_basis": "exact committed Git blob bytes; Linux RRCTL checkout; original canonical -text files preserved",
-  "cpu_scope_smoke_run_id": "s4_robustness_extended_selection_cpu_smoke_seed0_20261022_v1",
+  "cpu_scope_smoke_run_id": "s4_robustness_extended_selection_cpu_smoke_seed0_20261022_v2",
   "supersedes_waiter": {
     "run_id": "s4_robustness_extended_seed0_20261022_v1",
     "source_commit": "37e0ae7a35baa32b7096239c07a30c76bdaa88b6",

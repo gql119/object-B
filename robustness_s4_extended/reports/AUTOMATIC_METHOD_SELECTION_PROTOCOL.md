@@ -8,7 +8,7 @@ The original Full24epoch/9144 generation and16551/4952 dataset audit completed.
 Its Victim startup was externally terminated by systemd-oomd before epoch1.
 A new source-bound Full Victim recovery uses the exact completed generation and
 fresh seed0/full200, unchanged numerical source1d10ad6 and protocol2bedd986.
-Runtime recoveryb4784e8 is separate. Failed output remains retained.
+Runtime recovery7f8d577 is separate. Failed original/recovery01 outputs remain retained.
 No new augmentation GPU work can begin until recovery full200/last/best/data/
 validation/report acceptance is independently verified.
 
@@ -41,7 +41,7 @@ not edited in place. After exact PID/start-tick and WAITING/no-active-job checks
 only that waiting controller is normally terminated and retained as superseded.
 A new version of the same server successor is deployed with a unique BatchID:
 s4_robustness_extended_selected_seed0_20261022_v1.
-It follows the Full victim recovery output and retains read-only generation lineage.
+It follows the Full victim_recovery02 output and retains read-only generation lineage.
 There is never more than one active extended waiter and no duplicate training.
 
 Order: Full accepted -> compare/select -> immutable selected dataset ->

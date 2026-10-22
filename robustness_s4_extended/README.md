@@ -1,5 +1,15 @@
 # S4 extended defenses — independent successor
 
+Latest authorization (2026-10-22): automatic S4/Full selection supersedes the
+original-S4-only preparation below. Read reports/AUTOMATIC_METHOD_SELECTION_PROTOCOL.md.
+The selected batch follows Full victim_recovery02, independently accepts its
+complete generation plus200-epoch victim, then freezes one S4_FULL_DECISION.json.
+Full wins only if S improves by more than1e-9 with PersonAP50<=S4,
+NTmAP50>=S4, WCD<=S4 and identical protocols. Invalid Full blocks all new GPU work.
+All defenses read the same Decision; no method is selected yet. OP remains disabled.
+The previous no-job waiter is retained and normally superseded by the versioned
+selected-method successor; no prior training is rerun or modified.
+
 Start with `reports/EXTENDED_ROBUSTNESS_AUDIT.md`, `reports/REFERENCE_IMPLEMENTATION_AUDIT.md`, `reports/OP_DETECTION_ADAPTATION_REVIEW.md` and `reports/EXTENDED_ROBUSTNESS_TEST_REPORT.md`.
 
 Only original S4 Safe-Soft05+TFSS-Utility training data feeds Poison. S4-TFSS-Full is the queue predecessor, never the Poison source. No existing process, environment, original image, label, noise or checkpoint is modified. All four methods are separate paired Clean/S4 experiments, seed0/200/random-YAML/native AMP/batch36/workers16/640/last@200, clean4952 validation.
