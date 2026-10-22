@@ -1,0 +1,21 @@
+{
+  "EXTERNAL_RECEIPT_VERIFIED.json": "e9a746caaa51f4713f61e5fd3529aa0184b46966e9aa17b819699ce379dd719f",
+  "INDEPENDENT_SCIENTIFIC_REVIEW.md": "30f585cad5f9a2f577c47c493d812f0c740e9aa254b042b767d7a83e9e974177",
+  "PREDECESSOR_ACCEPTANCE.json": "150c91a833ad92218b69397f4799a2a3c6fa605b911d01f1e0884411cc868cb7",
+  "README.md": "677516d39eb3eafcadb0986fb2e38a7593eb0f0ff61df258cd3b2733e7dbaf3b",
+  "S4_FULL_DECISION.json": "630c8ad65d110c115a72dc7ea50d88c55a2a1ffaac79172d239b0d02a0e612c1",
+  "SCIENTIFIC_CLOSURE.json": "258331e60b368981be8142cf61cb7758866597b848785a6bff4b36313a113589",
+  "SCIENTIFIC_REVIEW_PACKET.json": "da7587bb10153ed774c33541f0772eed3d9c21f344ef8258582e2b3a367d5971",
+  "cutmix/smoke_summary.json": "22ac8ccbc21902bb103623334110bd23c096ae9fe335d88be53d2040f539c4ca",
+  "cutout/smoke_summary.json": "5fca6c95f694f9e70f17c403d74507fbd490093e40d3bbd30e2e3ad88e0e226c",
+  "mixup/smoke_summary.json": "2fa670a576cee7540aeba647167bb177a25ca66a5a4ed73593ae275fab987249",
+  "cutmix/clean/baseline_equivalence.json": "83a405b8fd342b0226a97e28f0312ef2e0c689a5c0a7fa5354c7ccdc0b5e15ee",
+  "cutmix/clean/trial_summary.json": "106414d95c445870fcd299e22900f11ef2b1e778923577d816a614ecd6a897a7",
+  "cutmix/poison/trial_summary.json": "106414d95c445870fcd299e22900f11ef2b1e778923577d816a614ecd6a897a7",
+  "cutout/clean/baseline_equivalence.json": "7ccffec9cd2d5fafae73378cfa67b270466085e410703706049fd6ec3197870b",
+  "cutout/clean/trial_summary.json": "106414d95c445870fcd299e22900f11ef2b1e778923577d816a614ecd6a897a7",
+  "cutout/poison/trial_summary.json": "106414d95c445870fcd299e22900f11ef2b1e778923577d816a614ecd6a897a7",
+  "mixup/clean/baseline_equivalence.json": "a525a09d1c6a6b65fe9826b512aef2a49fd30e590941932720738bcedd66d914",
+  "mixup/clean/trial_summary.json": "106414d95c445870fcd299e22900f11ef2b1e778923577d816a614ecd6a897a7",
+  "mixup/poison/trial_summary.json": "d6a216709f961c164634a7d2dce1e91888cc15184ab2f2ced0b055041e09c32f"
+}

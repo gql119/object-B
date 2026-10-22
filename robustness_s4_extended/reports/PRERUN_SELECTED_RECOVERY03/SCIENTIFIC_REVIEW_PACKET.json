@@ -1,0 +1,158 @@
+{
+  "schema_version": "prerun.scientific-review.v1",
+  "review_mode": "scientific_review",
+  "repo_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_robustness_extended_20261022",
+  "pre_run_code_commit": "40d2e55914c586bba45d1ea1bf44b89689d20865",
+  "review_diff_base_commit": "0c1082f8190e10c6b0581a3f5dfa3f5170e5e5e2",
+  "approved_basis": [
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_robustness_extended_20261022\\robustness_s4_extended\\reports\\USER_AUTHORIZATION.md",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_robustness_extended_20261022\\robustness_s4_extended\\reports\\SELECTION_USER_AUTHORIZATION.md",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_robustness_extended_20261022\\robustness_s4_extended\\reports\\AUTOMATIC_METHOD_SELECTION_PROTOCOL.md",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_robustness_extended_20261022\\robustness_s4_extended\\reports\\REFERENCE_IMPLEMENTATION_AUDIT.md"
+  ],
+  "implementation_intent": "Separately test detection-compatible Cutout/CutMix/MixUp on matched fresh Clean and selected originalS4. Native baseline augmentations, model/loss/SGD/AMP/200 protocol unchanged except one online defense. OP excluded/disabled. Native float32 boundary roundoff handled on geometry-copy, original training GT unchanged. Selection has already locked originalS4 Decision, exact original bytes inherited across recovery; not a new selection or Full review.",
+  "exact_command": "For each defense cutout,cutmix,mixup, serial: /project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m robustness_s4_extended.worker --action arm --defense DEFENSE --arm clean --output /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/DEFENSE/clean; then same command --arm poison --output .../poison; then worker --action accept --defense DEFENSE --output .../DEFENSE",
+  "output_collision_policy": "unique_output",
+  "local_validation": [
+    {
+      "command": "python -B -m robustness_s4_extended.validate_cpu",
+      "exit_code": 0,
+      "observation": "56 local and56actualserver CPU contracts,0fail/errors/skips,5actualroundoff regressions+3Decisioninheritance cases; see reports/CPU_TEST_RESULT.json,execution/CPU_SERVER_SMOKE_VERIFIED.json"
+    }
+  ],
+  "pre_review_smoke": {
+    "schema_version": "prerun.pre-review-smoke.v1",
+    "disposition": "passed",
+    "computation_kind": "training",
+    "candidate_commit": "40d2e55914c586bba45d1ea1bf44b89689d20865",
+    "run_id": "s4_robustness_extended_selected_seed0_20261022_recovery03/smoke_cutout",
+    "exact_command": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m robustness_s4_extended.worker --action smoke --defense cutout --output /project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/smoke_cutout",
+    "exit_code": 0,
+    "step_budget": 42,
+    "completed_steps": 22,
+    "step_unit": "actual train batches plus 2 baseline forward units; primary Cutout group. Other two independent groups20/22 units included as critical evidence",
+    "finite_loss": true,
+    "production_entrypoint_reached": true,
+    "isolated_output": true,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "cleanup_policy": "retain_all",
+    "checkpoint_cleanup_completed": false,
+    "deleted_paths": [],
+    "checkpoint_paths_remaining": [
+      "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/smoke_cutout/poison/retained_smoke_state.pt",
+      "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/smoke_cutout/clean/retained_smoke_state.pt",
+      "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/smoke_cutout/clean/baseline_preupdate_state.pt"
+    ],
+    "retained_evidence_paths": [
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_robustness_extended_20261022\\execution\\review_evidence\\console.log",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_robustness_extended_20261022\\execution\\review_evidence\\status.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_robustness_extended_20261022\\execution\\review_evidence\\cutout\\smoke_summary.json"
+    ],
+    "baseline_equivalence_required": true,
+    "baseline_equivalence_probe": {
+      "reference_id": "pinned native YOLODataset and YOLOv8n loss",
+      "candidate_id": "ExtendedDataset defense probability0, same YOLOv8n loss",
+      "reference_metric": 11.438650131225586,
+      "candidate_metric": 11.438650131225586,
+      "absolute_difference": 0.0,
+      "tolerance": 0,
+      "metric_name": "pre-update detection loss sum",
+      "actual_native_source": {
+        "data/augment.py": {
+          "sha256": "3631af29958e17bc442cbaa49a6bd32b660615b1bb1171a4e8e8692bace1f428"
+        },
+        "data/dataset.py": {
+          "sha256": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e"
+        },
+        "data/build.py": {
+          "sha256": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a"
+        },
+        "engine/trainer.py": {
+          "sha256": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7"
+        },
+        "cfg/default.yaml": {
+          "sha256": "27d6c46184efc16d404f8b3bd1e12069f3ba10379adbbc415ffc10cc41088d7a"
+        },
+        "models/yolo/detect/train.py": {
+          "sha256": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f"
+        },
+        "utils/instance.py": {
+          "sha256": "609e24de399439afe3eeb453334d1e700afa53047c07701e3f25c3e97bdd2b98"
+        },
+        "nn/tasks.py": {
+          "sha256": "c3896877977a1dca2ffaa1f4ad755ebd57342cae0ec80c78fa45edaa67f5823e"
+        },
+        "utils/loss.py": {
+          "sha256": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d"
+        },
+        "utils/tal.py": {
+          "sha256": "9468fb73df7805a4d297302aa221e0d7a6e46e224d0a0768e5abf3f4d2cf2861"
+        },
+        "utils/metrics.py": {
+          "sha256": "a2125a0e9269fbb2e186e0a972d35465a9a81049b0cd6b568448abb784587869"
+        },
+        "utils/torch_utils.py": {
+          "sha256": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5"
+        }
+      },
+      "sample_count": 1,
+      "image_and_labels_exact": true,
+      "reference_weights_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/smoke_cutout/clean/baseline_preupdate_state.pt",
+      "candidate_weights_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/smoke_cutout/clean/baseline_preupdate_state.pt",
+      "weights_sha256": "3fe3114fbabde98231228d228ca7293b42be2a01cbc21173001dd3ea2ddbe0d8",
+      "seed": 0,
+      "weights": "identical pre-update randomYAML state",
+      "official_metrics_disabled": true,
+      "evaluation_setting": {
+        "dataset": "fixed32 training sample manifest, first sample; unchanged image/labels for native vs probability0 candidate",
+        "parameters": {
+          "imgsz": 640,
+          "mixup": 0,
+          "cutmix": 0
+        },
+        "seed": 0,
+        "sample_count": 1,
+        "post_processing": "pre-update detection loss sum, identical random YAML model state"
+      },
+      "evidence_paths": [
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_robustness_extended_20261022\\execution\\review_evidence\\cutout\\clean\\baseline_equivalence.json",
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_robustness_extended_20261022\\execution\\review_evidence\\cutmix\\clean\\baseline_equivalence.json",
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_robustness_extended_20261022\\execution\\review_evidence\\mixup\\clean\\baseline_equivalence.json"
+      ]
+    },
+    "evidence_paths": [
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_robustness_extended_20261022\\execution\\review_evidence\\cutout\\smoke_summary.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_robustness_extended_20261022\\execution\\review_evidence\\cutmix\\smoke_summary.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_robustness_extended_20261022\\execution\\review_evidence\\mixup\\smoke_summary.json"
+    ]
+  },
+  "critical_values": [
+    {
+      "name": "Cutout normalized geometry and GT policy",
+      "source": "CUTOUT_CONFIG p1,n1,area.25,fill0,maxocclusion.5,maxattempts8",
+      "sink": "ExtendedDataset before Format -> SeededOperation -> CutoutTransform -> cutout union-area/wholecandidate rejection, native_absolute_boxes geometrycopy only",
+      "evidence": "Committed integration/transforms plus actualcutoutGPU Clean10+poison10/1updateeach; CPU actual002804 roundoff and GTbyte-identity tests; see scientific_source_40d2 and cutout evidence"
+    },
+    {
+      "name": "CutMix and MixUp native detector sinks",
+      "source": "CUTMIX_CONFIG p1/Beta1/3areas/donor.5/min2px; MIXUP_CONFIG p1/Beta32,32",
+      "sink": "Pinned nativeDetectCutMix primaryzeroGTintersection + stricterdonorfilter; nativeMixUp imageblend/Instancesintegerconcat, nativeclose_mosaic100 disables both last100",
+      "evidence": "actualCutMix20batches/2updates/22units, MixUp18batches/2updates/20units; nativecopies execution/ultralytics_source and actualCPU integration tests. All three baseline-disabled input/labels/loss exact11.438650131225586"
+    },
+    {
+      "name": "Data, selection and metric identity",
+      "source": "Actual S4_FULL_DECISION SHA630c8... originalS4manifest194d05... and full predecessor acceptance150c91a8...",
+      "sink": "load_decision/runtime_config -> worker data_view clean/poison, victim_run_spec; paired AP20signedPUS/WCD/TCD3, last200primary/bestsecondary/clean4952val",
+      "evidence": "24smallJSONs with actual32sample manifests, trial specs, fullDecision and PREDECESSOR_ACCEPTANCE; scientific source metrics/selection/worker and pinned baseline. No unmatched historicalClean denominators."
+    }
+  ],
+  "experiment": {
+    "benchmark": "VOC20 independent detection victim",
+    "dataset": "Clean VOC16551 + selected originalS4same16551 labels; unchanged clean4952val; smoke fixed32trainonly",
+    "checkpoint": "new randomYAML YOLOv8n; formal last.pt@200primary/bestsecondary; no smokeAP/ingest",
+    "seed": 0,
+    "metric_policy": "fullVOC20 AP50/AP75/AP50-95/Recall/Precision, Person14/NT19/all, signedfractionP/U/S,WCD,TCD3,zero denomnull,no clip; selectedmethod allreports",
+    "output_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/{cutout,cutmix,mixup}/{clean,poison}"
+  }
+}

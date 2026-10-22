@@ -1,0 +1,99 @@
+{
+  "source_commit": "40d2e55914c586bba45d1ea1bf44b89689d20865",
+  "config_sha256": "e35f7119a929b678c2f074c64ebb4641cf25fa41d1963eae7a9f4bbecf262677",
+  "finite_loss": true,
+  "selected_method": "S4_ORIGINAL",
+  "selected_dataset_manifest": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/outputs/s4_tfss_utility_seed0_20261017_v1/materialization_manifest.json",
+  "selected_dataset_sha256": "194d05cba8674c5699f83ad70178e93d6df7389a54fb0914d140342607598d36",
+  "decision_sha256": "630c8ad65d110c115a72dc7ea50d88c55a2a1ffaac79172d239b0d02a0e612c1",
+  "batch_id": "s4_robustness_extended_selected_seed0_20261022_v2",
+  "total_actual_batches": 18,
+  "additional_preupdate_loss_forwards": 2,
+  "total_production_units": 20,
+  "trials": [
+    {
+      "state": "passed",
+      "finite_loss": true,
+      "batches": 10,
+      "actual_updates": 1,
+      "skips": 5,
+      "validation_forward_batches": 0,
+      "source_commit": "40d2e55914c586bba45d1ea1bf44b89689d20865",
+      "config_sha256": "e35f7119a929b678c2f074c64ebb4641cf25fa41d1963eae7a9f4bbecf262677",
+      "official_metrics_disabled": true,
+      "artifact_ingest_disabled": true,
+      "cleanup_policy": "retain_all"
+    },
+    {
+      "state": "passed",
+      "finite_loss": true,
+      "batches": 8,
+      "actual_updates": 1,
+      "skips": 4,
+      "validation_forward_batches": 0,
+      "source_commit": "40d2e55914c586bba45d1ea1bf44b89689d20865",
+      "config_sha256": "e35f7119a929b678c2f074c64ebb4641cf25fa41d1963eae7a9f4bbecf262677",
+      "official_metrics_disabled": true,
+      "artifact_ingest_disabled": true,
+      "cleanup_policy": "retain_all"
+    }
+  ],
+  "baseline_equivalence": {
+    "reference_id": "pinned native YOLODataset and YOLOv8n loss",
+    "candidate_id": "ExtendedDataset defense probability0, same YOLOv8n loss",
+    "reference_metric": 11.438650131225586,
+    "candidate_metric": 11.438650131225586,
+    "absolute_difference": 0.0,
+    "tolerance": 0,
+    "metric_name": "pre-update detection loss sum",
+    "actual_native_source": {
+      "data/augment.py": {
+        "sha256": "3631af29958e17bc442cbaa49a6bd32b660615b1bb1171a4e8e8692bace1f428"
+      },
+      "data/dataset.py": {
+        "sha256": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e"
+      },
+      "data/build.py": {
+        "sha256": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a"
+      },
+      "engine/trainer.py": {
+        "sha256": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7"
+      },
+      "cfg/default.yaml": {
+        "sha256": "27d6c46184efc16d404f8b3bd1e12069f3ba10379adbbc415ffc10cc41088d7a"
+      },
+      "models/yolo/detect/train.py": {
+        "sha256": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f"
+      },
+      "utils/instance.py": {
+        "sha256": "609e24de399439afe3eeb453334d1e700afa53047c07701e3f25c3e97bdd2b98"
+      },
+      "nn/tasks.py": {
+        "sha256": "c3896877977a1dca2ffaa1f4ad755ebd57342cae0ec80c78fa45edaa67f5823e"
+      },
+      "utils/loss.py": {
+        "sha256": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d"
+      },
+      "utils/tal.py": {
+        "sha256": "9468fb73df7805a4d297302aa221e0d7a6e46e224d0a0768e5abf3f4d2cf2861"
+      },
+      "utils/metrics.py": {
+        "sha256": "a2125a0e9269fbb2e186e0a972d35465a9a81049b0cd6b568448abb784587869"
+      },
+      "utils/torch_utils.py": {
+        "sha256": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5"
+      }
+    },
+    "sample_count": 1,
+    "image_and_labels_exact": true,
+    "reference_weights_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/smoke_mixup/clean/baseline_preupdate_state.pt",
+    "candidate_weights_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/smoke_mixup/clean/baseline_preupdate_state.pt",
+    "weights_sha256": "3fe3114fbabde98231228d228ca7293b42be2a01cbc21173001dd3ea2ddbe0d8",
+    "seed": 0,
+    "weights": "identical pre-update randomYAML state",
+    "official_metrics_disabled": true
+  },
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "cleanup_policy": "retain_all"
+}

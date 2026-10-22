@@ -1,3 +1,13 @@
+# Current extended scientific gate CLOSED — 2026-10-22
+
+Change: Three source40d2/confige35f selected-originalS4 GPU smoke groups completed; one independent scientific implementation review.
+
+Result: Cutout20batches/2updates, CutMix20/2, MixUp18/2; finite/disabledofficialmetrics/ingest and native-disabled exactloss11.438650131225586. ExactlyONE reviewer scientifically_correct/allow_run/no blockers. ExternalclosureSHA258331e6 uploaded/readback exact. Evidence robustness_s4_extended/reports/PRERUN_SELECTED_RECOVERY03.
+
+Finding: Scientific contract accepted for the fixed detection adaptation, not efficacy. No second review. Full acceptedpublished4649c93 and immutableDecision630c8 originalS4 retained.
+
+Next: server autonomous Cutout Clean200→S4200→accept, CutMix pair, MixUp pair, archive,OPblocked. Same solemonitor status/repair only. No manual stage launch, passedsmoke rerun or extra reviewer.
+
 # Current selected defense recovery03 — 2026-10-22
 
 Change: nativefloat32 boundary-copy correction, strict validator/trainingGT and transformsettings preserved. Selectedv2 firstCutoutsmoke failed; source-bound recovery03 exactlyonce runtime40d2/confige35f. Full200 completeaccepted/published4649c93.

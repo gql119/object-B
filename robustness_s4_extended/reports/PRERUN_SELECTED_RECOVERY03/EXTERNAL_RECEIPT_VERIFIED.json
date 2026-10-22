@@ -1,0 +1,17 @@
+{
+  "state": "passed",
+  "receipt_sha256": "258331e60b368981be8142cf61cb7758866597b848785a6bff4b36313a113589",
+  "remote_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/receipts/EXTENDED_SCIENTIFIC_CLOSURE_SELECTED_RECOVERY03.json",
+  "remote_readback_exact": true,
+  "source_commit": "40d2e55914c586bba45d1ea1bf44b89689d20865",
+  "config_sha256": "e35f7119a929b678c2f074c64ebb4641cf25fa41d1963eae7a9f4bbecf262677",
+  "decision_sha256": "630c8ad65d110c115a72dc7ea50d88c55a2a1ffaac79172d239b0d02a0e612c1",
+  "reviewer_count": 1,
+  "pre_run_result": "pass",
+  "UTC": "2026-10-22T22:09:03.159027+00:00",
+  "preflight": {
+    "state": "PENDING_SCIENTIFIC_REVIEW",
+    "source": "40d2e55914c586bba45d1ea1bf44b89689d20865",
+    "receipt_absent_or_identical": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "source_commit": "40d2e55914c586bba45d1ea1bf44b89689d20865",
+  "config_sha256": "e35f7119a929b678c2f074c64ebb4641cf25fa41d1963eae7a9f4bbecf262677",
+  "pre_run_result": "pass",
+  "reviewer_count": 1,
+  "reviewer": "/root/extended_defenses_scientific_review",
+  "independent_result": "scientifically_correct",
+  "independent_decision": "allow_run",
+  "decision_sha256": "630c8ad65d110c115a72dc7ea50d88c55a2a1ffaac79172d239b0d02a0e612c1",
+  "smoke_sha256": {
+    "cutout": "5fca6c95f694f9e70f17c403d74507fbd490093e40d3bbd30e2e3ad88e0e226c",
+    "cutmix": "22ac8ccbc21902bb103623334110bd23c096ae9fe335d88be53d2040f539c4ca",
+    "mixup": "2fa670a576cee7540aeba647167bb177a25ca66a5a4ed73593ae275fab987249"
+  },
+  "scientific_review_sha256": "30f585cad5f9a2f577c47c493d812f0c740e9aa254b042b767d7a83e9e974177",
+  "review_packet_sha256": "da7587bb10153ed774c33541f0772eed3d9c21f344ef8258582e2b3a367d5971",
+  "blockers": [],
+  "main_agent_closure": "All three current-source GPU groups verified; single independent scientific verdict correct, no blockers; no second or closing reviewer",
+  "cleanup_policy": "retain_all"
+}
