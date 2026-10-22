@@ -1,0 +1,43 @@
+{
+  "state": "passed",
+  "source_commit": "40d2e55914c586bba45d1ea1bf44b89689d20865",
+  "config_sha256": "e35f7119a929b678c2f074c64ebb4641cf25fa41d1963eae7a9f4bbecf262677",
+  "CPU_tests": 56,
+  "CPU_failures": 0,
+  "CPU_errors": 0,
+  "GPU_steps": 0,
+  "real_VOC_reads": 0,
+  "singleton_flock": true,
+  "production_supervisor": true,
+  "completed_job_executions": 1,
+  "completed_job_adopted": true,
+  "ordinary_independent_child_scope": true,
+  "OOM_policy_overrides": false,
+  "existing_training_modified": false,
+  "child_identity": {
+    "pid": 3082271,
+    "start_ticks": 332392749,
+    "uid": 1014,
+    "argv": [
+      "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+      "-B",
+      "-c",
+      "from pathlib import Path;import sys; p=Path(sys.argv[1]);p.write_text(str(int(p.read_text())+1) if p.exists() else '1')",
+      "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selection_cpu_smoke_seed0_20261022_v4/child_count.txt"
+    ],
+    "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selection_cpu_smoke_seed0_20261022_v4",
+    "started_at": 1792699252.7200367,
+    "memory_scope": {
+      "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-3a4fbadf58071eb8c704176c.scope",
+      "memory.current": "9695232",
+      "memory.peak": "9695232",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+    }
+  },
+  "deleted_paths": [],
+  "source_files_exact": 131,
+  "native_sources_exact": 12,
+  "RRCTL_run_id": "s4_robustness_extended_selection_cpu_smoke_seed0_20261022_v4",
+  "smoke_summary_sha256": "61f1ebd8e79524904f412b78e64c29432c06605a2cd4623d8f3ad728ea57acca"
+}
