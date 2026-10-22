@@ -154,6 +154,6 @@ class QueueContracts(unittest.TestCase):
         with self.assertRaises(Blocked):s.verify_wait_gate()
     def test_no_cached_clean_control(self):
         c=load(CONFIG);self.assertEqual(c['baseline']['victim_protocol']['train_args']['batch'],36);self.assertEqual(c['smoke_batches_per_arm'],20)
-        source=(ROOT/'robustness_s4_extended/successor.py').read_text();self.assertIn("for arm in ['clean','S4']",source)
+        source=(ROOT/'robustness_s4_extended/successor.py').read_text();self.assertIn("for arm in ['clean','poison']",source)
 
 if __name__=='__main__':unittest.main()

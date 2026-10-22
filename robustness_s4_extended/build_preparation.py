@@ -5,6 +5,8 @@ W=Path(__file__).resolve().parents[1];B=W.parent
 def read(p):return json.loads(p.read_text(encoding='utf-8-sig'))
 def write(p,x):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(x,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
 def main():
+    if list((W/'execution/state').glob('*/run_ref.json')):
+        raise ValueError('Deployed bindings exist; use a new source-bound queue configuration, never regenerate a live queue')
     old=read(W/'docs/S4_ROBUSTNESS_20261019/S4_ROBUSTNESS_LOCK.json')
     audit=read(W/'execution/SERVER_READONLY_AUDIT.json');full=read(B/'s4_tfss_full_overlap_20261021/execution/S4_TFSS_FULL_CURRENT_STATE.json')
     remote=old['remote_root'].rsplit('/',1)[0]+'/robustness_s4_extended_20261022'

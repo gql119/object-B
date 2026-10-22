@@ -15,7 +15,7 @@ def remote(t,python,code,payload):
     return json.loads(r.stdout)
 
 def prepare(cpu):
-    c=load(CONFIG);rid='s4_robustness_extended_cpu_scope_smoke_seed0_20261022_v1' if cpu else c['pipeline_run_id']
+    c=load(CONFIG);rid=c.get('cpu_scope_smoke_run_id','s4_robustness_extended_cpu_scope_smoke_seed0_20261022_v1') if cpu else c['pipeline_run_id']
     if (ROOT/'execution/state'/rid/'run_ref.json').exists():raise ValueError('Already bound: inspect only')
     template=load(ROOT.parent/'s4_robustness_evaluation_20261019/execution/s4_robustness_group1_train32_smoke_seed0_20261019_v2.json')
     template.update(run_id=rid,project='s4-robustness-extended')
@@ -24,7 +24,7 @@ def prepare(cpu):
     template['session']['name']=rid;python=c['python']
     command=[python,'-B','-m','robustness_s4_extended.cpu_server_smoke','--output',template['remote']['output_root']] if cpu else [python,'-B','-m','robustness_s4_extended.successor','--expected-source',commit()]
     template['workload']=dict(argv=command,cwd='.')
-    artifacts=['smoke_summary.json','CPU_TEST_CONSOLE.txt'] if cpu else ['pipeline_state.json','pipeline_progress.json','pipeline_events.jsonl','reports/EXTENDED_RESULTS.csv','reports/EXTENDED_PER_CLASS_RESULTS.csv','reports/EXTENDED_METRICS.csv','reports/METRICS_ALL_CHECKPOINTS.json','reports/EXTENDED_REPORT.md','reports/REPORT_STATE.json','reports/ARCHIVE_MANIFEST.json']
+    artifacts=['smoke_summary.json','CPU_TEST_CONSOLE.txt'] if cpu else ['pipeline_state.json','pipeline_progress.json','pipeline_events.jsonl','reports/EXTENDED_RESULTS.csv','reports/EXTENDED_PER_CLASS_RESULTS.csv','reports/EXTENDED_METRICS.csv','reports/METRICS_ALL_CHECKPOINTS.json','reports/EXTENDED_REPORT.md','reports/REPORT_STATE.json','reports/ARCHIVE_MANIFEST.json','S4_FULL_DECISION.json','S4_FULL_COMPARISON.csv','S4_FULL_COMPARISON.md','PIPELINE_STATUS.json','PREDECESSOR_ACCEPTANCE.json','reports/EXTENDED_ROBUSTNESS_RESULTS.csv','reports/EXTENDED_ROBUSTNESS_PER_CLASS.csv','reports/EXTENDED_ROBUSTNESS_REPORT.md']
     adapter="import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root']);f=p/"+repr('smoke_summary.json' if cpu else 'pipeline_state.json')+";d=json.loads(f.read_text()) if f.exists() else {};done=d.get('state') in ('passed','BLOCKED_PROTOCOL_APPROVAL');print(json.dumps({'protocol':'rrctl.adapter.v1','healthy':d.get('state') not in ('FAILED','failed'),'complete':done,'progress':d,'artifacts':"+repr(artifacts)+" if done else []}))"
     for name,h in template['health'].items():
         h['adapter_argv']=[python,'-B','-c',adapter];h['gpu_utilization_policy']='advisory';h['timeout_seconds']=180 if name=='completion' else 3600
@@ -47,7 +47,7 @@ print(json.dumps({'paths_absent':True,'current_Full_state':s,'no_training_or_pro
 '''
 
 def launch(cpu,profiles):
-    c=load(CONFIG);rid='s4_robustness_extended_cpu_scope_smoke_seed0_20261022_v1' if cpu else c['pipeline_run_id'];p=ROOT/'execution'/(rid+'.json');specdata=load(p)
+    c=load(CONFIG);rid=c.get('cpu_scope_smoke_run_id','s4_robustness_extended_cpu_scope_smoke_seed0_20261022_v1') if cpu else c['pipeline_run_id'];p=ROOT/'execution'/(rid+'.json');specdata=load(p)
     if specdata['source']['commit']!=commit():raise ValueError('Prepared source changed')
     if (ROOT/'execution/state'/rid).exists() or (ROOT/'execution'/(rid+'_launch_intent.json')).exists():raise ValueError('Existing binding/intent: inspect only')
     ctl,t=services(profiles)
@@ -66,7 +66,7 @@ def launch(cpu,profiles):
     print(json.dumps(dict(run_id=rid,launched_once=True,CPU_only_now=True)))
 
 def inspect(cpu,profiles):
-    c=load(CONFIG);rid='s4_robustness_extended_cpu_scope_smoke_seed0_20261022_v1' if cpu else c['pipeline_run_id'];ctl,t=services(profiles);i=ctl.inspect(rid)
+    c=load(CONFIG);rid=c.get('cpu_scope_smoke_run_id','s4_robustness_extended_cpu_scope_smoke_seed0_20261022_v1') if cpu else c['pipeline_run_id'];ctl,t=services(profiles);i=ctl.inspect(rid)
     h=ctl.health(rid,phase='completion' if i['status']['state'] in ['completed','workload_complete','failed','aborted'] else 'periodic')
     answer=dict(UTC=datetime.datetime.now(datetime.timezone.utc).isoformat(),inspect=i,health=h)
     if h.get('healthy') and h.get('complete'):
@@ -82,7 +82,7 @@ def review_evidence(profiles):
     if s['config_sha256']!=sha(CONFIG):raise ValueError('Review config differs')
     target=ROOT/'execution/review_evidence';target.mkdir(exist_ok=True);manifest={}
     for name in ['cutout','cutmix','mixup']:
-        for rel in ['smoke_summary.json','clean/baseline_equivalence.json','clean/trial_summary.json','S4/trial_summary.json','clean/data_manifest.json','S4/data_manifest.json','clean/victim_run_spec.json','S4/victim_run_spec.json']:
+        for rel in ['smoke_summary.json','clean/baseline_equivalence.json','clean/trial_summary.json','poison/trial_summary.json','clean/data_manifest.json','poison/data_manifest.json','clean/victim_run_spec.json','poison/victim_run_spec.json']:
             remote_path=c['output_root']+'/experiments/smoke_'+name+'/'+rel
             data=t.download(remote_path);local=target/name/rel;local.parent.mkdir(parents=True,exist_ok=True)
             if local.exists() and local.read_bytes()!=data:raise ValueError('Previously downloaded evidence changed')

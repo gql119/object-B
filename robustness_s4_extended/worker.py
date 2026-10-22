@@ -3,6 +3,7 @@ import argparse,csv,copy,json,math,os,random,sys,time
 from pathlib import Path
 from .common import ROOT,CONFIG,load,sha,atomic,commit,verify_source
 from .metrics import paired
+from .selection import runtime_config,decision_identity,load_decision,decision_path
 
 def check_environment(c):
     import importlib.metadata
@@ -24,14 +25,12 @@ def accepted_predecessor(c):
 def review_gate(c):
     r=load(c['review_receipt'])
     if (r.get('source_commit'),r.get('config_sha256'),r.get('pre_run_result'),r.get('reviewer_count'))!=(commit(),sha(CONFIG),'pass',1):raise ValueError('Current-source scientific review required')
+    if r.get('decision_sha256')!=sha(decision_path(c)):raise ValueError('Review did not bind selected dataset')
     for name in ['cutout','cutmix','mixup']:
         path=Path(c['output_root'])/'experiments'/('smoke_'+name)/'smoke_summary.json'
         s=load(path)
-        if not s['finite_loss'] or s['source_commit']!=commit() or r['smoke_sha256'][name]!=sha(path):raise ValueError('Current source GPU evidence required')
+        if not s['finite_loss'] or s['source_commit']!=commit() or r['smoke_sha256'][name]!=sha(path) or s.get('decision_sha256')!=sha(decision_path(c)):raise ValueError('Current source GPU evidence required')
     return r
-
-def runtime_config(c):
-    x=copy.deepcopy(c['baseline']);x['remote_root']=c['root'];return x
 
 def no_op_probe(c,data,out):
     """Actual native vs disabled candidate dataset + CUDA loss on identical random weights."""
@@ -82,7 +81,7 @@ def train(c,defense,arm,out,smoke=False):
     if smoke:
         records=load(ROOT/'docs/tfss/FIXED_TRAIN_SAMPLE_MANIFEST.json')['records'];ids=[r['image_id'] for r in records]
     data,audit=old.data_view(x,out,'none',arm,ids=ids)
-    audit.update(defense=defense,online=True,transform=c['defenses'][defense],input_identity='ORIGINAL_S4' if arm=='S4' else 'ORIGINAL_CLEAN')
+    audit.update(defense=defense,online=True,transform=c['defenses'][defense],input_identity=load_decision(c)['selected_method'] if arm=='poison' else 'ORIGINAL_CLEAN',**decision_identity(c))
     atomic(out/'data_audit.json',audit)
     if smoke and arm=='clean':no_op_probe(c,data,out)
     import numpy as np,torch
@@ -100,7 +99,7 @@ def train(c,defense,arm,out,smoke=False):
     if (args['epochs'],args['batch'],args['workers'],args['seed'],args['amp'],args['optimizer'],args['pretrained'])!=(200,36,16,0,True,'SGD',False):raise ValueError('Frozen training protocol changed')
     init=ROOT/'configs/voc_yolov8n_20cls.yaml'
     if sha(init)!=x['victim_protocol']['init_yaml_sha256']:raise ValueError('Initialization changed')
-    atomic(out/'victim_run_spec.json',dict(source_commit=commit(),config_sha256=sha(CONFIG),arm=arm,defense=defense,train_args=args,init_yaml_sha256=sha(init),transform=c['defenses'][defense],validation='unchanged4952clean',smoke=smoke))
+    atomic(out/'victim_run_spec.json',dict(source_commit=commit(),config_sha256=sha(CONFIG),arm=arm,defense=defense,**decision_identity(c),train_args=args,init_yaml_sha256=sha(init),transform=c['defenses'][defense],validation='unchanged4952clean',smoke=smoke))
     configure(c['defenses'][defense],out/'transform_audit')
     model=YOLO(str(init));native.check_amp=old.local_amp_check
     holder=attach_safety_callbacks(model,amp_log_dir=out/'amp_audit',debug_hashes=smoke)
@@ -137,7 +136,9 @@ def accept_arm(c,out,defense,arm,evaluate=False):
     if (spec['source_commit'],spec['config_sha256'],spec['arm'],spec['defense'])!=(commit(),sha(CONFIG),arm,defense):raise ValueError('Training source/defense attribution differs')
     manifest=load(out/'data_manifest.json')
     if len(manifest)!=16551 or len({r['id'] for r in manifest})!=16551:raise ValueError('Incomplete source dataset')
-    source=Path(c['baseline']['clean_root'] if arm=='clean' else c['baseline']['poisoned_dataset_path'])
+    selected=runtime_config(c)
+    source=Path(selected['clean_root'] if arm=='clean' else selected['poisoned_dataset_path'])
+    if any(spec.get(k)!=v for k,v in decision_identity(c).items()):raise ValueError('Training selected batch changed')
     for row in manifest:
         if not Path(row['source']).is_relative_to(source/'images/train'):raise ValueError('Wrong poison source')
         if sha(row['output'])!=row['output_sha256'] or sha(row['source'])!=row['source_sha256']:raise ValueError('Source image changed during training')
@@ -165,12 +166,12 @@ def accept_arm(c,out,defense,arm,evaluate=False):
         return True
     if not finite({k:snapshot[k] for k in ['model','optimizer','scheduler','scaler']}):raise ValueError('Nonfinite final training state')
     del snapshot
-    rec=dict(state='ACCEPTED',arm=arm,defense=defense,epochs=200,checkpoints=proof,source_commit=commit(),config_sha256=sha(CONFIG),input_manifest_sha256=sha(out/'data_manifest.json'),parent_S4_manifest_sha256=c['baseline']['parent_materialization_manifest_sha256'],validation='original4952clean',metrics_sha256=sha(out/'last_primary_evaluation.json'))
+    rec=dict(state='ACCEPTED',arm=arm,defense=defense,epochs=200,checkpoints=proof,source_commit=commit(),config_sha256=sha(CONFIG),input_manifest_sha256=sha(out/'data_manifest.json'),parent_selected_manifest_sha256=selected['parent_materialization_manifest_sha256'],**decision_identity(c),validation='original4952clean',metrics_sha256=sha(out/'last_primary_evaluation.json'))
     atomic(out/'ACCEPTANCE.json',rec)
     return rec
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--action',choices=['validate','smoke','arm','accept'],required=True);p.add_argument('--defense',choices=['cutout','cutmix','mixup']);p.add_argument('--arm',choices=['clean','S4']);p.add_argument('--output',type=Path);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--action',choices=['validate','smoke','arm','accept'],required=True);p.add_argument('--defense',choices=['cutout','cutmix','mixup']);p.add_argument('--arm',choices=['clean','poison']);p.add_argument('--output',type=Path);a=p.parse_args()
     c=load(CONFIG);verify_source(c);accepted_predecessor(c);check_environment(c)
     from scripts import run_s4_robustness as old
     if a.output and not a.output.resolve().is_relative_to(Path(c['root'])/'outputs'):raise ValueError('Output outside isolated root')
@@ -180,17 +181,17 @@ def main():
         atomic(out/'CPU_IDENTITY_PASS.json',dict(source_commit=commit(),config_sha256=sha(CONFIG),passed=True))
     elif a.action=='smoke':
         a.output.mkdir(parents=True,exist_ok=False)
-        for arm in ['clean','S4']:
+        for arm in ['clean','poison']:
             old.wait_admission(a.output);train(c,a.defense,arm,a.output/arm,True)
-        trials=[load(a.output/arm/'trial_summary.json') for arm in ['clean','S4']]
-        atomic(a.output/'smoke_summary.json',dict(source_commit=commit(),config_sha256=sha(CONFIG),finite_loss=True,total_actual_batches=sum(t['batches'] for t in trials),additional_preupdate_loss_forwards=2,total_production_units=sum(t['batches'] for t in trials)+2,trials=trials,baseline_equivalence=load(a.output/'clean/baseline_equivalence.json'),official_metrics_disabled=True,artifact_ingest_disabled=True,cleanup_policy='retain_all'))
+        trials=[load(a.output/arm/'trial_summary.json') for arm in ['clean','poison']]
+        atomic(a.output/'smoke_summary.json',dict(source_commit=commit(),config_sha256=sha(CONFIG),finite_loss=True,**decision_identity(c),total_actual_batches=sum(t['batches'] for t in trials),additional_preupdate_loss_forwards=2,total_production_units=sum(t['batches'] for t in trials)+2,trials=trials,baseline_equivalence=load(a.output/'clean/baseline_equivalence.json'),official_metrics_disabled=True,artifact_ingest_disabled=True,cleanup_policy='retain_all'))
     elif a.action=='arm':
         review_gate(c);old.wait_admission(Path(c['output_root']));train(c,a.defense,a.arm,a.output)
     else:
         review_gate(c)
-        records={arm:accept_arm(c,a.output/arm,a.defense,arm) for arm in ['clean','S4']}
-        clean=load(a.output/'clean/last_primary_evaluation.json');s4=load(a.output/'S4/last_primary_evaluation.json')
+        records={arm:accept_arm(c,a.output/arm,a.defense,arm) for arm in ['clean','poison']}
+        clean=load(a.output/'clean/last_primary_evaluation.json');s4=load(a.output/'poison/last_primary_evaluation.json')
         scores=paired(clean,s4)
-        atomic(a.output/'paired_results.json',dict(defense=a.defense,source_commit=commit(),config_sha256=sha(CONFIG),metrics=dict(clean=clean,S4=s4),scores=scores,primary='last.pt@200',secondary='best.pt',single_seed_descriptive=True))
+        atomic(a.output/'paired_results.json',dict(defense=a.defense,source_commit=commit(),config_sha256=sha(CONFIG),metrics=dict(clean=clean,poison=s4),**decision_identity(c),scores=scores,primary='last.pt@200',secondary='best.pt',single_seed_descriptive=True))
         atomic(a.output/'ACCEPTANCE.json',dict(state='ACCEPTED',records=records,paired_sha256=sha(a.output/'paired_results.json')))
 if __name__=='__main__':main()

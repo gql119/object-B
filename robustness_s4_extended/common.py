@@ -34,3 +34,7 @@ def validate_config(c):
     if (x['n_holes'],x['area_fraction'],x['max_gt_occlusion'],x['max_attempts'],x['fill_value'])!=(1,[.25,.25],.5,8,0):raise ValueError('Cutout protocol drift')
     if (y['beta'],y['num_areas'],y['donor_min_visible'],y['min_pixels'])!=(1.,3,.5,2.):raise ValueError('CutMix protocol drift')
     if z['beta']!=[32.,32.]:raise ValueError('MixUp must use pinned native beta32/32')
+    if 'selection' in c:
+        from .selection import validate_rule
+        p=ROOT/c['selection']['rule_path'];validate_rule(load(p))
+        if sha(p)!=c['selection']['rule_sha256']:raise ValueError('Selection rule bytes changed')

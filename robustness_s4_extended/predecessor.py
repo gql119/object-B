@@ -8,11 +8,39 @@ def full_state(config):
     p=Path(config['predecessor']['output'])/'pipeline_status.json'
     return load(p) if p.is_file() else None
 
+def generation_output(pre,out,state):
+    """Bind a fresh victim recovery to the immutable completed Full generation.
+
+    No training or numerical change: original acceptance still checks every
+    image/label, noise hash, full200 last/best and metric. Never accept a Boolean
+    recovery flag without the exact generation/runtime lineage and receipts.
+    """
+    if 'recovery' not in pre:return out
+    expected=pre['recovery'];parent=Path(expected['generation_output'])
+    if not parent.is_relative_to(Path(expected['full_root'])/'outputs') or parent.name!=expected['generation_run_id'] or parent==out:
+        raise ValueError('Recovery generation boundary mismatch')
+    p=load(out/'RECOVERY_PROVENANCE.json');proof=load(out/'PARENT_DATA_REUSE_AUDIT.json')
+    if (p.get('run_id'),p.get('runtime_commit'),p.get('science_commit'),p.get('config_sha256'),p.get('parent_run_id'),p.get('parent_output'))!=(pre['run_id'],expected['runtime_commit'],pre['source_commit'],pre['config_sha256'],expected['generation_run_id'],str(parent)):
+        raise ValueError('Recovery generation/runtime provenance mismatch')
+    if state.get('runtime_commit')!=expected['runtime_commit'] or p.get('fresh_victim200') is not True or p.get('exact_resume') is not False:
+        raise ValueError('Recovery must be separately bound fresh victim200')
+    if proof.get('state')!='passed' or proof.get('full_files_rehashed') is not True or proof.get('parent_run_id')!=expected['generation_run_id']:
+        raise ValueError('Recovery parent-data audit missing')
+    if p.get('parent_files')!=expected['parent_files'] or proof.get('parent_files')!=expected['parent_files']:
+        raise ValueError('Recovery parent artifact bindings changed')
+    for rel,digest in expected['parent_files'].items():
+        if sha(parent/rel)!=digest or sha(out/rel)!=digest:
+            raise ValueError('Recovery completed-generation artifact changed: '+rel)
+    if (out/'dataset').resolve()!=(parent/'dataset').resolve() or (out/'noise').resolve()!=(parent/'noise').resolve():
+        raise ValueError('Recovery dataset/noise points to another generation')
+    return parent
+
 def verify_predecessor(config):
     """Called only AFTER native complete. Hashes actual checkpoints/files, not a Finished log."""
     pre=config['predecessor'];out=Path(pre['output']);state=full_state(config)
     if not state or state.get('state')!='complete':return None
     if (state.get('run_id'),state.get('source_commit'),state.get('config_sha256'))!=(pre['run_id'],pre['source_commit'],pre['config_sha256']):raise ValueError('Predecessor identity mismatch')
+    generated=generation_output(pre,out,state)
     if sha(out/'config_lock_snapshot.json')!=pre['config_sha256']:raise ValueError('Predecessor lock mutated')
     lock=load(out/'config_lock_snapshot.json');noise=load(out/'noise/status.json');done=load(out/'victim_completion.json')
     if not (noise.get('schedule_complete') is True and noise['steps']==9144 and done['epochs']==done['rows']==200):raise ValueError('Incomplete Full schedules')
@@ -27,7 +55,7 @@ def verify_predecessor(config):
     if len(rows)!=16551 or len({r['id'] for r in rows})!=16551:raise ValueError('Full manifest IDs')
     for r in rows:
         p=Path(r['output'])
-        if not p.is_relative_to(out/'dataset/images/train') or sha(p)!=r['output_sha256']:raise ValueError('Full training data changed')
+        if not p.is_relative_to(generated/'dataset/images/train') or sha(p)!=r['output_sha256']:raise ValueError('Full training data changed')
         if sha(out/'dataset/labels/train'/(r['id']+'.txt'))!=r['label_sha256']:raise ValueError('Full labels changed')
     clean=Path(config['baseline']['clean_root'])
     for p in (out/'dataset/images/val').iterdir():
