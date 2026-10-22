@@ -2,7 +2,7 @@
 
 Latest authorization (2026-10-22): automatic S4/Full selection supersedes the
 original-S4-only preparation below. Read reports/AUTOMATIC_METHOD_SELECTION_PROTOCOL.md.
-The selected batch follows Full victim_recovery02, independently accepts its
+The selected batch follows Full victim_recovery03, independently accepts its
 complete generation plus200-epoch victim, then freezes one S4_FULL_DECISION.json.
 Full wins only if S improves by more than1e-9 with PersonAP50<=S4,
 NTmAP50>=S4, WCD<=S4 and identical protocols. Invalid Full blocks all new GPU work.

@@ -1,8 +1,8 @@
 {
   "schema": "s4.extended.queue.v1",
-  "pipeline_run_id": "s4_robustness_extended_selected_seed0_20261022_v1",
+  "pipeline_run_id": "s4_robustness_extended_selected_seed0_20261022_v2",
   "root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022",
-  "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_v1",
+  "output_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_v2",
   "python": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
   "order": [
     "cutout",
@@ -415,8 +415,8 @@
     "automatic_exact_resume": false
   },
   "predecessor": {
-    "run_id": "s4_tfss_full_overlap_seed0_20261021_victim_recovery02",
-    "output": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s4_tfss_full_overlap_20261021/outputs/s4_tfss_full_overlap_seed0_20261021_victim_recovery02",
+    "run_id": "s4_tfss_full_overlap_seed0_20261021_victim_recovery03",
+    "output": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s4_tfss_full_overlap_20261021/outputs/s4_tfss_full_overlap_seed0_20261021_victim_recovery03",
     "source_commit": "1d10ad620ef01aad20e8c85d49465473d72c9a4e",
     "config_sha256": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
     "native_state": "complete",
@@ -424,7 +424,7 @@
     "recovery": {
       "generation_output": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s4_tfss_full_overlap_20261021/outputs/s4_tfss_full_overlap_seed0_20261021_v1",
       "generation_run_id": "s4_tfss_full_overlap_seed0_20261021_v1",
-      "runtime_commit": "7f8d577a8c4c07229fc94e26ef577519361207f4",
+      "runtime_commit": "dc60396d044cefe08fd03ae6b126d33135ff11b2",
       "full_root": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s4_tfss_full_overlap_20261021",
       "parent_files": {
         "config_lock_snapshot.json": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
@@ -523,7 +523,7 @@
   "smoke_batches_per_arm": 20,
   "smoke_state": "PENDING_GPU_SMOKE",
   "review_state": "PENDING_GPU_SMOKE_THEN_ONE_SCIENTIFIC_REVIEW",
-  "review_receipt": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/receipts/EXTENDED_SCIENTIFIC_CLOSURE_SELECTED_BATCH.json",
+  "review_receipt": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/receipts/EXTENDED_SCIENTIFIC_CLOSURE_SELECTED_BATCH02.json",
   "OP_PROTOCOL_APPROVED": false,
   "source_files": {
     "robustness_s4_extended/build_preparation.py": "861057da1691c4db6bd348112275f9b34d36d476d7677f646680e209568e6209",
@@ -657,7 +657,7 @@
     "robustness_s4_extended/tests/test_selection.py": "0bf2e5495340e5aa02feca5bb047d822c1d0ac879fa6d621d187d5d9fd04e32a"
   },
   "source_hash_basis": "exact committed Git blob bytes; Linux RRCTL checkout; original canonical -text files preserved",
-  "cpu_scope_smoke_run_id": "s4_robustness_extended_selection_cpu_smoke_seed0_20261022_v2",
+  "cpu_scope_smoke_run_id": "s4_robustness_extended_selection_cpu_smoke_seed0_20261022_v3",
   "supersedes_waiter": {
     "run_id": "s4_robustness_extended_seed0_20261022_v1",
     "source_commit": "37e0ae7a35baa32b7096239c07a30c76bdaa88b6",
@@ -666,7 +666,7 @@
   "selection": {
     "rule_path": "robustness_s4_extended/configs/SELECTION_RULE.json",
     "rule_sha256": "e9b2dcbe5ebe0aa7dd1b19150b74be1d02eccbb8b6e9a350580d735504bfe418",
-    "decision_file": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_v1/S4_FULL_DECISION.json",
+    "decision_file": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_v2/S4_FULL_DECISION.json",
     "original_robustness": {
       "pipeline_id": "s4_robustness_server_pipeline_seed0_20261020_recovery01",
       "pipeline_state_path": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_20261019/outputs/s4_robustness_server_pipeline_seed0_20261020_recovery01/pipeline_state.json",
@@ -687,5 +687,11 @@
     },
     "latest_authorization_sha256": "b199d9e448a6495a8b2e592dd9a9b1c679700296ee85cc54dea3d95484af2177",
     "status": "WAITING_FULL_ACCEPTANCE_NO_METHOD_SELECTED"
+  },
+  "supersedes_selected_batch": {
+    "run_id": "s4_robustness_extended_selected_seed0_20261022_v1",
+    "state": "BLOCKED_FULL_VALIDATION",
+    "formal_jobs": 0,
+    "reason": "Full recovery02 own-bootstrap false conflict before any Victim training; no method selected"
   }
 }
