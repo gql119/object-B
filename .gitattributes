@@ -36,3 +36,9 @@ ue_framework/s4_amp_observer.py text eol=lf
 scripts/s4_reuse_dataset_audit.py text eol=lf
 scripts/s4_victim_recovery.py text eol=lf
 tests/test_s4_amp_observer.py text eol=lf
+
+# New extended-defenses protocol identities across Windows preparation / Linux execution.
+robustness_s4_extended/**/*.py text eol=lf
+robustness_s4_extended/**/*.json -text whitespace=cr-at-eol
+README.md -text whitespace=cr-at-eol
+research_workspace/STATE.md -text whitespace=cr-at-eol

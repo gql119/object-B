@@ -1,6 +1,6 @@
 """Local deterministic config builder from this conversation's actual identity audits."""
 from pathlib import Path
-import json,hashlib
+import json,hashlib,subprocess
 W=Path(__file__).resolve().parents[1];B=W.parent
 def read(p):return json.loads(p.read_text(encoding='utf-8-sig'))
 def write(p,x):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(x,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
@@ -21,7 +21,14 @@ def main():
     # Capture scientific and orchestration sources, plus all immutable baseline code they reuse.
     paths=list((W/'robustness_s4_extended').rglob('*.py'))+list((W/'ue_framework').rglob('*.py'))+list((W/'scripts').glob('*.py'))+[W/'configs/voc_yolov8n_20cls.yaml',W/'docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json']
     for p in paths:
-        if '__pycache__' not in str(p):q['source_files'][p.relative_to(W).as_posix()]=hashlib.sha256(p.read_bytes()).hexdigest()
+        if '__pycache__' not in str(p):
+            rel=p.relative_to(W).as_posix()
+            # RRCTL reconstructs Git blobs on Linux. Windows autocrlf working bytes are not that identity.
+            blob=subprocess.check_output(['git','show','HEAD:'+rel],cwd=W)
+            if blob.replace(b'\r\n',b'\n')!=p.read_bytes().replace(b'\r\n',b'\n'):
+                raise ValueError('Commit scientific source before freezing it: '+rel)
+            q['source_files'][rel]=hashlib.sha256(blob).hexdigest()
+    q['source_hash_basis']='exact committed Git blob bytes; Linux RRCTL checkout; original canonical -text files preserved'
     write(cfg/'QUEUE.json',q)
     write(W/'robustness_s4_extended/reports/QUEUE_STATUS.json',dict(state='PREPARED_NOT_DEPLOYED',predecessor=audit['full_state'],GPU_training_started=False,stages={x:('BLOCKED_PROTOCOL_APPROVAL' if x=='op' else 'WAITING_PREVIOUS_PIPELINE') for x in q['order']},official_metrics=None))
     print(json.dumps(dict(configs=4,scientific_sources=len(q['source_files']),root=remote)))
