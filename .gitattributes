@@ -42,3 +42,6 @@ robustness_s4_extended/**/*.py text eol=lf
 robustness_s4_extended/**/*.json -text whitespace=cr-at-eol
 README.md -text whitespace=cr-at-eol
 research_workspace/STATE.md -text whitespace=cr-at-eol
+
+# Preserve exact small scientific-review evidence bytes.
+robustness_s4_extended/reports/PRERUN_SELECTED_RECOVERY03/** -text whitespace=cr-at-eol
