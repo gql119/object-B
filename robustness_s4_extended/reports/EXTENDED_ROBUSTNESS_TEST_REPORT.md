@@ -1,6 +1,6 @@
 # CPU验证与未完成门槛
 
-实测时间 2026-10-22T03:34:23.367060+00:00：31项、failure=0、error=0、skip=0；状态PASSED，Python AST检查17文件。读取实际VOC图片0，GPU steps0；所有合成fixture保留，未删除checkpoint。
+实测时间 2026-10-22T03:37:49.785822+00:00：31项、failure=0、error=0、skip=0；状态PASSED，Python AST检查17文件。读取实际VOC图片0，GPU steps0；所有合成fixture保留，未删除checkpoint。
 
 覆盖Cutout的单Person、Person+Dog、Person+Horse重叠、无Person、小目标、完全遮挡、边界、空标注；20类同策略、重叠孔洞面积并集、概率0、seed稳定、非法类/坐标拒绝。原生检测MixUp多实例/空GT与像素范围；CutMix不遮挡主图、严重截断排除、无合格donor跳过；真实YOLODataset+DataLoader合成CPU batch；实际native与概率0候选img/cls/box/batch_idx数值完全相等；close_mosaic100重建后CutMix/MixUp确实p0。还有OP投影数学、signed P/U/S和零分母、队列只读等待/身份拒绝、OP不可调用等契约。
 
