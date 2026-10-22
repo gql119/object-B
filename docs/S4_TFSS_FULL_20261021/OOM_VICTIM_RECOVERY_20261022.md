@@ -78,3 +78,14 @@ CPU smoke must pass before the unique recovery02 launch. No real OOM injection,
 kernel/user memory policy modification, other-user action, or hyperparameter
 change is used. Recovery01 and its failure logs are retained.
 
+## Recovery02 pre-training guard; recovery03
+
+Recovery02 correctly survived the prior scope issue but stopped before any Victim
+batch: its conflict guard counted its own newly introduced bootstrap process as
+another training root. This is a lifecycle bug, not a Full result or resource
+failure. Recovery03 excludes only the exact live bootstrap PID/start-ticks/UID,
+matching script and configuration. Other owned training roots still block.
+Three additional CPU contracts cover relative argv, unrelated PID, stale identity;
+the actual scoped bootstrap path is now also exercised in the production CPU
+smoke. Recovery02 output and the blocked selected-batch waiter are retained.
+

@@ -12,6 +12,17 @@ class RecoveryContracts(unittest.TestCase):
   root=ROOT/'execution'/'recovery_cpu_cases';root.mkdir(parents=True,exist_ok=True)
   yield tempfile.mkdtemp(dir=root) # All test artifacts retained; no cleanup.
 
+ def test_actual_relative_bootstrap_is_excluded(self):
+  argv=b'python\x00-B\x00scripts/recover_s4_tfss_full_victim.py\x00--config\x00CFG\x00--phase\x00bootstrap\x00'
+  with patch.dict(r.os.environ,{'S4_FULL_RECOVERY_BOOTSTRAP':json.dumps(dict(pid=123,start_ticks=456,uid=1014))}),patch.object(r,'same',return_value=True),patch('pathlib.Path.read_bytes',return_value=argv):
+   self.assertTrue(r.bound_bootstrap(123,{'_config_path':'CFG'}))
+ def test_unrelated_pid_not_excluded(self):
+  with patch.dict(r.os.environ,{'S4_FULL_RECOVERY_BOOTSTRAP':json.dumps(dict(pid=123,start_ticks=456,uid=1014))}):
+   self.assertFalse(r.bound_bootstrap(789,{'_config_path':'CFG'}))
+ def test_stale_bootstrap_identity_not_excluded(self):
+  with patch.dict(r.os.environ,{'S4_FULL_RECOVERY_BOOTSTRAP':json.dumps(dict(pid=123,start_ticks=456,uid=1014))}),patch.object(r,'same',return_value=False):
+   self.assertFalse(r.bound_bootstrap(123,{'_config_path':'CFG'}))
+
  def test_frozen_training_functions_and_all_original_python(self):
   base="1d10ad620ef01aad20e8c85d49465473d72c9a4e"
   for name in ["scripts/run_s4_tfss_full.py","ue_framework/s4_victim.py","ue_framework/s4_amp_observer.py"]:

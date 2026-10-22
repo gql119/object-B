@@ -111,14 +111,30 @@ def run_detached_job(c,key,argv):
         raise RuntimeError('Isolated job '+key+' exited '+str(receipt['returncode'])+'; retained evidence; no automatic batch resume')
     return receipt
 
-def bootstrap(c):
+def bound_bootstrap(pid,c):
+    record=json.loads(os.environ.get('S4_FULL_RECOVERY_BOOTSTRAP','{}'))
+    if pid!=record.get('pid') or not same(record):return False
+    args=Path('/proc',str(pid),'cmdline').read_bytes().decode(errors='replace').split('\0')
+    return (any((ROOT/a).resolve()==Path(__file__).resolve() for a in args if a.endswith('.py')) and '--phase' in args
+        and args[args.index('--phase')+1] in ['bootstrap','bootstrap-smoke']
+        and '--config' in args and args[args.index('--config')+1]==c['_config_path'])
+
+def admission_smoke_controller(c):
+    out,_,_=assert_config(c)
+    record=json.loads(os.environ['S4_FULL_RECOVERY_BOOTSTRAP'])
+    if not bound_bootstrap(record['pid'],c):raise ValueError('Own bootstrap would be misidentified as a conflicting training root')
+    atomic(out/'bootstrap_guard_smoke.json',dict(state='passed',actual_bootstrap=record,
+        controller=identity(os.getpid()),own_bootstrap_correctly_excluded=True,GPU_steps=0))
+
+def bootstrap(c,smoke=False):
     """RRCTL watches this tiny process; all controller work has an ordinary scope."""
     out,_,_=assert_config(c)
-    if out.exists():raise FileExistsError('Unique recovery bootstrap only')
+    if out.exists() and not smoke:raise FileExistsError('Unique recovery bootstrap only')
     unit='s4full-controller-'+hashlib.sha256(c['run_id'].encode()).hexdigest()[:20]
     command=['systemd-run','--user','--scope','--quiet','--unit='+unit,
-        sys.executable,'-B',str(Path(__file__).resolve()),'--config',c['_config_path'],'--phase','controller']
-    process=subprocess.Popen(command,cwd=ROOT,start_new_session=True,stdin=subprocess.DEVNULL)
+        sys.executable,'-B',str(Path(__file__).resolve()),'--config',c['_config_path'],'--phase','admission-smoke-controller' if smoke else 'controller']
+    env=os.environ.copy();env['S4_FULL_RECOVERY_BOOTSTRAP']=json.dumps(identity(os.getpid()))
+    process=subprocess.Popen(command,cwd=ROOT,start_new_session=True,stdin=subprocess.DEVNULL,env=env)
     rc=process.wait()
     if rc:raise SystemExit(rc)
 
@@ -141,6 +157,8 @@ def smoke(c):
     out,_,_=assert_config(c)
     if out.exists():raise FileExistsError('Unique scope smoke output required')
     out.mkdir(parents=True)
+    probe=subprocess.run([sys.executable,'-B','scripts/recover_s4_tfss_full_victim.py','--config',c['_config_path'],'--phase','bootstrap-smoke'],cwd=ROOT)
+    if probe.returncode or read(out/'bootstrap_guard_smoke.json')['state']!='passed':raise ValueError('Actual bootstrap admission guard smoke failed')
     process=subprocess.Popen([sys.executable,'-B',str(Path(__file__).resolve()),
         '--config',c['_config_path'],'--phase','orphan-smoke-controller'],cwd=ROOT)
     if process.wait()!=24:raise ValueError('Synthetic controller did not exit at intended boundary')
@@ -155,7 +173,7 @@ def smoke(c):
     if detached['new_session'] is not True:raise ValueError('Supervisor still tied to controller session')
     atomic(out/'smoke_summary.json',dict(state='passed',runtime_commit=c['runtime_commit'],
         config_sha256=c['config_sha256'],scientific_files_exact=True,independent_ordinary_scope=True,
-        detached_supervisor_session=True,synthetic_controller_exit=24,child_survived_controller_exit=True,
+        actual_bootstrap_guard_passed=True,detached_supervisor_session=True,synthetic_controller_exit=24,child_survived_controller_exit=True,
         completed_job_executions=1,OOM_policy_overrides=False,GPU_steps=0,real_dataset_reads=0,
         scope=child['memory_scope']['path']))
 
@@ -189,6 +207,7 @@ def controller(c):
             # Read-only guard against another owned actual training workload.
             for p in Path('/proc').iterdir():
                 if not p.name.isdigit() or int(p.name)==os.getpid():continue
+                if bound_bootstrap(int(p.name),c):continue
                 try:
                     if p.stat().st_uid!=os.getuid():continue
                     args=(p/'cmdline').read_bytes().decode(errors='replace').split('\0')
@@ -205,7 +224,7 @@ def controller(c):
         except BaseException as error:mark(state['stage'],state='failed',error=repr(error));raise
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--config',required=True);p.add_argument('--phase',choices=['bootstrap','controller','audit','worker','report','scope-smoke','orphan-smoke-controller'],required=True)
+    p=argparse.ArgumentParser();p.add_argument('--config',required=True);p.add_argument('--phase',choices=['bootstrap','controller','audit','worker','report','scope-smoke','orphan-smoke-controller','bootstrap-smoke','admission-smoke-controller'],required=True)
     a=p.parse_args();c=read(a.config);c['_config_path']=str(Path(a.config).resolve())
     out=Path(c['output'])
     for key,name in [('YOLO_CONFIG_DIR','yolo'),('MPLCONFIGDIR','mpl'),('XDG_CACHE_HOME','cache'),('TORCH_HOME','torch')]:
@@ -215,6 +234,6 @@ def main():
         os.environ[key]=str(folder)
     os.environ.update(CUDA_VISIBLE_DEVICES='0',CUBLAS_WORKSPACE_CONFIG=':4096:8',OMP_NUM_THREADS='1',
         MKL_NUM_THREADS='1',WANDB_MODE='disabled',PYTHONDONTWRITEBYTECODE='1')
-    {'bootstrap':bootstrap,'controller':controller,'audit':audit_worker,'worker':worker,'report':report_worker,'scope-smoke':smoke,'orphan-smoke-controller':orphan_smoke_controller}[a.phase](c)
+    {'bootstrap':bootstrap,'controller':controller,'audit':audit_worker,'worker':worker,'report':report_worker,'scope-smoke':smoke,'orphan-smoke-controller':orphan_smoke_controller,'bootstrap-smoke':lambda c:bootstrap(c,True),'admission-smoke-controller':admission_smoke_controller}[a.phase](c)
 if __name__=='__main__':main()
 
