@@ -17,3 +17,5 @@
 执行器只通过 RRCTL Controller/ProfileStore/transport；新CPU控制run和后继run各唯一绑定。存在binding时仅status，不再launch。当前执行凭据和实际部署状态见execution以及reports/DEPLOYMENT_STATUS.json，不能把PREPARED描述成已部署。
 
 审查门槛来自项目 `F:/autodl-tmp - 副本/ue_project/.agents/skills/pre-run-implementation-review/SKILL.md` 的 `isolated remote GPU few-step smoke -> one scientific implementation review -> official training/evaluation`。服务器能独立等待/训练/评价/顺序推进；科学审查凭据须由独立审查服务或现有唯一Codex监控签发，不能由调度器自证。服务不可用时保持PENDING_SCIENTIFIC_REVIEW，不需要本地持续连接维持server进程，但不会谎称无外部门槛。
+
+实际直接只读查询（已从原F盘项目目录验证，无需改变ExecutionPolicy）：调用既有Python解释器并传入本工作树 execution/query_extended_status.py 的绝对路径。该脚本内置本机已审计RRCTL导入路径，仅通过transport读取小型JSON，不写远端health，不调用GPU、不启动任务。准备时的ps1包装被本机执行策略阻止，未修改策略，改用Python已验证成功。最终快照：Full第10/24轮、3519/9144更新；后继WAITING_PREVIOUS_PIPELINE，active_job=None。
