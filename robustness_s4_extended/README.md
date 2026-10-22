@@ -22,3 +22,5 @@ Native `close_mosaic=100` is retained: CutMix/MixUp are disabled for the last100
 OP has no production worker route, model-training CLI or enabled default. Approving an arbitrary Boolean cannot run an unspecified detection protocol. A selected/approved protocol must be implemented, validated and source-bound before any OP GPU/model/full-dataset work.
 
 Research conclusions require complete paired formal acceptance. CPU tests and visuals are correctness evidence only, with no AP, robustness-effect, or causal-mechanism claims.
+
+Actual deployment (2026-10-22): server successor `s4_robustness_extended_seed0_20261022_v1` is healthy / WAITING_PREVIOUS_PIPELINE, controller2875690/start326511739, active_job=None/jobs{}/zero new GPU work. Runtime source `37e0ae7a35baa32b7096239c07a30c76bdaa88b6`; config `a6a9ee615af7baf4dfbc149efe39545ac62c2892b3125906c8a02c29876506b1`. Both local and actual server31CPU contracts and ordinary independent-scope/singleton/completed-job-adoption passed. See reports/DEPLOYMENT_STATUS.json and CPU_SERVER_SMOKE_VERIFIED.json. Later documentation commits do not change this deployed runtime.

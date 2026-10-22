@@ -1,0 +1,29 @@
+{
+  "state": "passed",
+  "source_commit": "37e0ae7a35baa32b7096239c07a30c76bdaa88b6",
+  "config_sha256": "a6a9ee615af7baf4dfbc149efe39545ac62c2892b3125906c8a02c29876506b1",
+  "CPU_smoke_summary_sha256": "dde040e4e68e73540fc359a145f86872c3a016bf27c3e59a06d74e3ec8050f21",
+  "source_files_verified": 125,
+  "native_files_verified": 12,
+  "CPU_tests": 31,
+  "GPU_steps": 0,
+  "existing_Full_state": {
+    "state": "running",
+    "run_id": "s4_tfss_full_overlap_seed0_20261021_v1",
+    "source_commit": "1d10ad620ef01aad20e8c85d49465473d72c9a4e",
+    "config_sha256": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
+    "support_mode": "bbox_full_target",
+    "stage": "noise_generation"
+  },
+  "existing_Full_process": {
+    "pid": 2829581,
+    "start_ticks": 325195800,
+    "uid": 1014
+  },
+  "existing_Full_noise": {
+    "epoch": 9,
+    "steps": 3399
+  },
+  "all_existing_processes_unmodified": true,
+  "UTC": "2026-10-22T03:40:18.692419+00:00"
+}

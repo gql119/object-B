@@ -1,5 +1,5 @@
 {
-  "state": "PREPARED_NOT_DEPLOYED",
+  "state": "WAITING_PREVIOUS_PIPELINE",
   "predecessor": {
     "state": "running",
     "run_id": "s4_tfss_full_overlap_seed0_20261021_v1",
@@ -15,5 +15,15 @@
     "mixup": "WAITING_PREVIOUS_PIPELINE",
     "op": "BLOCKED_PROTOCOL_APPROVAL"
   },
-  "official_metrics": null
+  "official_metrics": null,
+  "deployed": true,
+  "controller": {
+    "pid": 2875690,
+    "start_ticks": 326511739,
+    "uid": 1014
+  },
+  "source_commit": "37e0ae7a35baa32b7096239c07a30c76bdaa88b6",
+  "config_sha256": "a6a9ee615af7baf4dfbc149efe39545ac62c2892b3125906c8a02c29876506b1",
+  "actual_jobs": {},
+  "active_job": null
 }

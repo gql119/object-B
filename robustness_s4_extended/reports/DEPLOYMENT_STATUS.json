@@ -1,0 +1,21 @@
+{
+  "UTC": "2026-10-22T03:45:00.163392+00:00",
+  "state": "WAITING_PREVIOUS_PIPELINE",
+  "pipeline_run_id": "s4_robustness_extended_seed0_20261022_v1",
+  "runtime_source_commit": "37e0ae7a35baa32b7096239c07a30c76bdaa88b6",
+  "queue_config_sha256": "a6a9ee615af7baf4dfbc149efe39545ac62c2892b3125906c8a02c29876506b1",
+  "controller": {
+    "pid": 2875690,
+    "start_ticks": 326511739,
+    "uid": 1014
+  },
+  "active_job": null,
+  "jobs_started": 0,
+  "new_GPU_steps": 0,
+  "CPU_server_tests": 31,
+  "CPU_server_scope_smoke": "passed",
+  "scientific_review": "PENDING_GPU_SMOKE_THEN_ONE_SCIENTIFIC_REVIEW",
+  "OP": "BLOCKED_PROTOCOL_APPROVAL",
+  "server_state_sha256": "87208fdf740379e5013f46b6a02388b00ac74614d4070495bf71f336aae5c0ad",
+  "runtime_source_distinct_from_later_documentation_HEAD": true
+}
