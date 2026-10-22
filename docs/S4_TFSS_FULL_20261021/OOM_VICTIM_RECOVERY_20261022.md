@@ -61,3 +61,20 @@ was inaccessible under the sandbox. Its failed cleanup also hit permission
 errors. The harness now retains each case under execution/recovery_cpu_cases and
 performs no cleanup. This incident preceded any recovery deployment or launch.
 
+## Recovery01 retained; detached-session correction
+
+At21:27:24HKT, the recovery01 tmux scope was itself oomd-killed (two processes).
+The separate worker scope then ended without an exit receipt. The first wrapper
+called the supervisor synchronously, unlike the original production Pipeline's
+detached-supervisor path. Scope isolation alone was insufficient for the control
+session failure. No recovery01 epoch/checkpoint or official metric exists.
+
+Recovery02 adds a separately scoped controller behind a tiny RRCTL bootstrap,
+ordinary scoped supervisors with start_new_session=True, and scoped CPU audit/
+report jobs. Large dataset hashing no longer charges the control tmux scope.
+A synthetic controller exits itself with code24 while the exact detached
+supervisor/child completes and records exit0. This stronger actual-launcher
+CPU smoke must pass before the unique recovery02 launch. No real OOM injection,
+kernel/user memory policy modification, other-user action, or hyperparameter
+change is used. Recovery01 and its failure logs are retained.
+

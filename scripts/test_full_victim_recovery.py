@@ -41,6 +41,6 @@ class RecoveryContracts(unittest.TestCase):
   tree=ast.parse((ROOT/"scripts/recover_s4_tfss_full_victim.py").read_text(encoding="utf-8"))
   calls={getattr(n.func,"id",getattr(n.func,"attr","")) for n in ast.walk(tree) if isinstance(n,ast.Call)}
   self.assertNotIn("optimize_s4_full",calls);self.assertNotIn("materialize_and_audit",calls)
-  self.assertIn("train_evaluate",calls);self.assertIn("supervise",calls)
+  self.assertIn("train_evaluate",calls);self.assertIn("start_detached_supervisor",calls)
 if __name__=="__main__":unittest.main(verbosity=2)
 

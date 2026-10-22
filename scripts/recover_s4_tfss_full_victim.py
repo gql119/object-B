@@ -82,17 +82,82 @@ def worker(c):
     # random YAML model, native DetectionTrainer, native SGD/GradScaler and validators.
     train_evaluate(cfg,out,parent/'dataset',lock)
 
+def start_detached_supervisor(c,job,argv):
+    """New session + ordinary supervisor scope; no terminal or OOM-policy coupling."""
+    if job.exists():raise FileExistsError('Never duplicate a previously started recovery job')
+    job.mkdir(parents=True)
+    unit='s4full-supervisor-'+hashlib.sha256(str(job).encode()).hexdigest()[:20]
+    command=['systemd-run','--user','--scope','--quiet','--unit='+unit,
+        sys.executable,'-B',str(ROOT/'scripts/run_s4_robustness_pipeline.py'),
+        '--supervise',str(job),'--cwd',str(ROOT),'--isolated-scope','--',*argv]
+    with (job/'supervisor_stdout.log').open('ab',buffering=0) as out,(job/'supervisor_stderr.log').open('ab',buffering=0) as err:
+        process=subprocess.Popen(command,cwd=ROOT,start_new_session=True,stdin=subprocess.DEVNULL,
+            stdout=out,stderr=err,env=os.environ.copy())
+    ident=identity(process.pid)
+    atomic(job/'detached_supervisor.json',dict(identity=ident,argv=command,new_session=True,
+        parent=identity(os.getpid()),unit=unit+'.scope',OOM_policy_overrides=False))
+    return process
+
+def run_detached_job(c,key,argv):
+    job=Path(c['output'])/'jobs'/key
+    process=start_detached_supervisor(c,job,argv)
+    while not (job/'exit.json').exists():
+        if process.poll() is not None:
+            raise RuntimeError('Detached supervisor exited without job receipt; preserve, never relaunch: '+key)
+        time.sleep(2)
+    receipt=read(job/'exit.json')
+    process.wait(timeout=15)
+    if receipt['returncode']:
+        raise RuntimeError('Isolated job '+key+' exited '+str(receipt['returncode'])+'; retained evidence; no automatic batch resume')
+    return receipt
+
+def bootstrap(c):
+    """RRCTL watches this tiny process; all controller work has an ordinary scope."""
+    out,_,_=assert_config(c)
+    if out.exists():raise FileExistsError('Unique recovery bootstrap only')
+    unit='s4full-controller-'+hashlib.sha256(c['run_id'].encode()).hexdigest()[:20]
+    command=['systemd-run','--user','--scope','--quiet','--unit='+unit,
+        sys.executable,'-B',str(Path(__file__).resolve()),'--config',c['_config_path'],'--phase','controller']
+    process=subprocess.Popen(command,cwd=ROOT,start_new_session=True,stdin=subprocess.DEVNULL)
+    rc=process.wait()
+    if rc:raise SystemExit(rc)
+
+def audit_worker(c):
+    out,_,_=assert_config(c)
+    atomic(out/'PARENT_DATA_REUSE_AUDIT.json',validate_parent(c))
+
+def report_worker(c):
+    out,_,lock=assert_config(c)
+    from scripts.s4_full_report import finalize
+    finalize(out,ROOT,c['science_commit'],lock)
+
+def orphan_smoke_controller(c):
+    out=Path(c['output'])
+    argv=[sys.executable,'-B','-c','import time;time.sleep(1);print("retained synthetic child completed")']
+    start_detached_supervisor(c,out/'jobs/orphan',argv)
+    os._exit(24) # This synthetic controller exits itself; no other process signalled.
+
 def smoke(c):
     out,_,_=assert_config(c)
     if out.exists():raise FileExistsError('Unique scope smoke output required')
     out.mkdir(parents=True)
-    job=out/'jobs/synthetic';job.mkdir(parents=True)
-    rc=supervise(job,[sys.executable,'-B','-c','import json,os;print(json.dumps(dict(pid=os.getpid(),CPU_only=True)))'],ROOT,True)
-    child=read(job/'child.json');launch=read(job/'scope_launch.json')
-    if rc or child['memory_scope']['path']==launch['supervisor_scope']['path']:raise ValueError('Ordinary scope isolation failed')
+    process=subprocess.Popen([sys.executable,'-B',str(Path(__file__).resolve()),
+        '--config',c['_config_path'],'--phase','orphan-smoke-controller'],cwd=ROOT)
+    if process.wait()!=24:raise ValueError('Synthetic controller did not exit at intended boundary')
+    job=out/'jobs/orphan'
+    until=time.monotonic()+30
+    while not (job/'exit.json').exists():
+        if time.monotonic()>until:raise TimeoutError('Detached supervisor did not survive synthetic controller exit')
+        time.sleep(.1)
+    child=read(job/'child.json');launch=read(job/'scope_launch.json');detached=read(job/'detached_supervisor.json')
+    if read(job/'exit.json')['returncode'] or child['memory_scope']['path']==launch['supervisor_scope']['path']:
+        raise ValueError('Child/supervisor ordinary scope isolation failed')
+    if detached['new_session'] is not True:raise ValueError('Supervisor still tied to controller session')
     atomic(out/'smoke_summary.json',dict(state='passed',runtime_commit=c['runtime_commit'],
         config_sha256=c['config_sha256'],scientific_files_exact=True,independent_ordinary_scope=True,
-        OOM_policy_overrides=False,GPU_steps=0,real_dataset_reads=0,scope=child['memory_scope']['path']))
+        detached_supervisor_session=True,synthetic_controller_exit=24,child_survived_controller_exit=True,
+        completed_job_executions=1,OOM_policy_overrides=False,GPU_steps=0,real_dataset_reads=0,
+        scope=child['memory_scope']['path']))
 
 def controller(c):
     out,parent,lock=assert_config(c)
@@ -109,7 +174,7 @@ def controller(c):
             state.update(stage=stage,updated_at=time.time(),**kw);atomic(out/'pipeline_status.json',state);print(json.dumps(state),flush=True)
         try:
             mark('parent_full_data_verification')
-            atomic(out/'PARENT_DATA_REUSE_AUDIT.json',validate_parent(c))
+            run_detached_job(c,'audit',[sys.executable,'-B',str(Path(__file__).resolve()),'--config',c['_config_path'],'--phase','audit'])
             link_completed(c)
             atomic(out/'RECOVERY_PROVENANCE.json',dict(**c,authorization='2026-10-22 direct human diagnose/fix/continue authorization',
                 finished_generation_reused=True,no_noise_regeneration=True,fresh_victim200=True,exact_resume=False))
@@ -133,26 +198,23 @@ def controller(c):
                             raise ValueError('Another owned training root active: '+str(p))
                 except OSError:pass
             mark('victim_training_and_evaluation')
-            job=out/'jobs/victim';job.mkdir(parents=True)
-            rc=supervise(job,[sys.executable,'-B',str(Path(__file__).resolve()),'--config',c['_config_path'],'--phase','worker'],ROOT,True)
-            if rc:raise RuntimeError('Isolated victim exited '+str(rc)+'; retained exit.json/scope_result.json; no automatic batch resume')
+            run_detached_job(c,'victim',[sys.executable,'-B',str(Path(__file__).resolve()),'--config',c['_config_path'],'--phase','worker'])
             mark('reporting')
-            from scripts.s4_full_report import finalize
-            finalize(out,ROOT,c['science_commit'],lock)
+            run_detached_job(c,'report',[sys.executable,'-B',str(Path(__file__).resolve()),'--config',c['_config_path'],'--phase','report'])
             mark('complete',state='complete',completed_at_unix=time.time())
         except BaseException as error:mark(state['stage'],state='failed',error=repr(error));raise
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--config',required=True);p.add_argument('--phase',choices=['controller','worker','scope-smoke'],required=True)
+    p=argparse.ArgumentParser();p.add_argument('--config',required=True);p.add_argument('--phase',choices=['bootstrap','controller','audit','worker','report','scope-smoke','orphan-smoke-controller'],required=True)
     a=p.parse_args();c=read(a.config);c['_config_path']=str(Path(a.config).resolve())
     out=Path(c['output'])
     for key,name in [('YOLO_CONFIG_DIR','yolo'),('MPLCONFIGDIR','mpl'),('XDG_CACHE_HOME','cache'),('TORCH_HOME','torch')]:
         folder=out/'runtime'/name
         # controller/smoke requires absent output; only worker creates runtime dirs.
-        if a.phase=='worker':folder.mkdir(parents=True,exist_ok=True)
+        if a.phase in ('worker','report'):folder.mkdir(parents=True,exist_ok=True)
         os.environ[key]=str(folder)
     os.environ.update(CUDA_VISIBLE_DEVICES='0',CUBLAS_WORKSPACE_CONFIG=':4096:8',OMP_NUM_THREADS='1',
         MKL_NUM_THREADS='1',WANDB_MODE='disabled',PYTHONDONTWRITEBYTECODE='1')
-    {'controller':controller,'worker':worker,'scope-smoke':smoke}[a.phase](c)
+    {'bootstrap':bootstrap,'controller':controller,'audit':audit_worker,'worker':worker,'report':report_worker,'scope-smoke':smoke,'orphan-smoke-controller':orphan_smoke_controller}[a.phase](c)
 if __name__=='__main__':main()
 
