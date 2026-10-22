@@ -1,0 +1,29 @@
+{
+  "initialization": "random_yaml",
+  "init_yaml_sha256": "ce7ae30a91e838a1d53fd4773afc3b56454591701e3f83d37f404cc946af10a2",
+  "train_args": {
+    "data": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s4_tfss_full_overlap_20261021/outputs/s4_tfss_full_overlap_seed0_20261021_victim_recovery03/train_data.yaml",
+    "epochs": 200,
+    "imgsz": 640,
+    "batch": 36,
+    "workers": 16,
+    "project": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s4_tfss_full_overlap_20261021/outputs/s4_tfss_full_overlap_seed0_20261021_victim_recovery03/victim_run",
+    "name": "victim",
+    "exist_ok": true,
+    "optimizer": "SGD",
+    "cos_lr": true,
+    "close_mosaic": 100,
+    "cache": true,
+    "amp": true,
+    "save_period": 10,
+    "device": "0",
+    "lr0": 0.01,
+    "lrf": 0.01,
+    "momentum": 0.937,
+    "weight_decay": 0.0005,
+    "seed": 0,
+    "pretrained": false,
+    "val": true,
+    "patience": 0
+  }
+}

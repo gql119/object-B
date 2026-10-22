@@ -1,0 +1,21 @@
+{
+  "state": "passed",
+  "parent_run_id": "s4_tfss_full_overlap_seed0_20261021_v1",
+  "parent_files": {
+    "config_lock_snapshot.json": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
+    "dataset_integrity.json": "f56b4efdc29bfb3429bd8f10cd020b915e6d88878f731e99c4e1dd84dd5b61ba",
+    "materialization_manifest.json": "77c092982cd3e259ea78424768af2b90d880d5f3bcbe215e71b8aa7de3f4c25b",
+    "source_audit.json": "0f376d4116fb4c585e8f157d51cae7784bbd5828925999f187b7a05dd74d6bdc",
+    "SPATIAL_DIAGNOSTICS_SUMMARY.json": "98c6247f246811c5d0345c5188336001b1b799f6a4b4d3d4317d12581486a870",
+    "noise/global_params.pt": "90e9481fd093c6d43267b0f881c27cf4ea9e07e8108fd3b84b144e7d829f03fc",
+    "noise/checkpoints/step_009144_epoch_24_cursor_00000.pt": "79efe7cd0465cb7682d331194aeed2cc9af44a7adb50fee5c709855838ca0bf4"
+  },
+  "full_files_rehashed": true,
+  "train": 16551,
+  "val": 4952,
+  "noise_steps": 9144,
+  "prior_victim_reused": false,
+  "exact_resume_claim": false,
+  "new_victim_seed": 0,
+  "new_victim_epochs": 200
+}

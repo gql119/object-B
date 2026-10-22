@@ -1,3 +1,7 @@
+# Current final result — COMPLETED_AND_ACCEPTED
+
+Full has completed generation24/9144, full new-data audit and recovery03 fresh Victim200. Final results, per-class tables, identities, scope failures and independent acceptance: [Final archive](../S4_TFSS_FULL_FINAL_20261022/README.md). The frozen selector chose original S4 because Full improved NT retention but worsened Person AP50 and S. No Full rerun or further review is needed. The preparation notes below are historical.
+
 # S4-TFSS-Full：全Person框空间调控消融
 
 当前状态（2026-10-22）：28项CPU测试、当前源码真实GPU smoke和唯一一次独立科学审查通过。已按条件授权唯一启动正式RunID s4_tfss_full_overlap_seed0_20261021_v1；正式AP和完整200轮结果尚未产生。

@@ -47,3 +47,6 @@ scripts/check_s4_tfss_full_cpu.py text eol=lf
 ue_framework/s4_full_contract.py text eol=lf
 tests/test_s4_tfss_full.py text eol=lf
 research_workspace/analysis/2026-10-21-s4-tfss-full-preparation.md text eol=lf
+
+# Exact accepted Full small report archive bytes.
+docs/S4_TFSS_FULL_FINAL_20261022/** -text whitespace=cr-at-eol

@@ -1,0 +1,33 @@
+{
+  "state": "passed",
+  "support_mode": "bbox_full_target",
+  "experiment_id": "S4_TFSS_FULL_OVERLAP",
+  "noise_checkpoint_sha256": "90e9481fd093c6d43267b0f881c27cf4ea9e07e8108fd3b84b144e7d829f03fc",
+  "cache_identity": {
+    "reference_sha256": "8de8a0c78c6414ad0bf98052b3bc96c33d8e854a2a2a905d47c8195363975b89",
+    "maps_code_sha256": "6730d44911a4e698862c5c73e03e9d4487c335ace71b960b7fc79bd450132f39",
+    "risk_code_sha256": "e1fa911ea651259926972125a71565d3fe0080fe508f68f1f13b2f670d85a73d",
+    "map_version": "masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-image-canonical-canvas-v2",
+    "support_mode": "bbox_full_target",
+    "experiment_id": "S4_TFSS_FULL_OVERLAP"
+  },
+  "train": 16551,
+  "val": 4952,
+  "target_images": 6095,
+  "non_target_images_unchanged": 10456,
+  "person_gt": 13256,
+  "changed_person_gt": 13256,
+  "labels_byte_identical": true,
+  "clean_val_byte_identical": true,
+  "non_target_images_byte_identical": true,
+  "outside_target_zero": true,
+  "per_pixel_frozen_budget_passed": true,
+  "decoded_PNG_audited": true,
+  "materialization_manifest_sha256": "77c092982cd3e259ea78424768af2b90d880d5f3bcbe215e71b8aa7de3f4c25b",
+  "PSNR_scope": "full-image per target image",
+  "SSIM": "NOT_RUN_missing_installed_tool",
+  "LPIPS": "NOT_RUN_no_validated_local_weight_binding",
+  "full_integrity_file_sha256": "f56b4efdc29bfb3429bd8f10cd020b915e6d88878f731e99c4e1dd84dd5b61ba",
+  "per_image_audit_records": 6095,
+  "per_image_audit_location": "retained on server and local raw artifact; full data audit not included in small Git publication"
+}

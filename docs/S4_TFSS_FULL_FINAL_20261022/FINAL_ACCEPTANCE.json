@@ -1,0 +1,216 @@
+{
+  "state": "COMPLETED_AND_ACCEPTED",
+  "UTC": "2026-10-22T20:05:03.348372+00:00",
+  "run_id": "s4_tfss_full_overlap_seed0_20261021_victim_recovery03",
+  "source_commit": "1d10ad620ef01aad20e8c85d49465473d72c9a4e",
+  "runtime_commit": "dc60396d044cefe08fd03ae6b126d33135ff11b2",
+  "config_sha256": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
+  "independent_main_agent_remote_proof": {
+    "passed": true,
+    "checkpoints": {
+      "last.pt": "2a831ea516b4c9d752465ea0c5fab628502788fd6a1e6caf34af931db489c6c6",
+      "best.pt": "5e5fd09cc68e3befeb8f69d75b612f496fe3a633ab3b05203b5c60c6a803dbe5"
+    },
+    "full_native_state_sha256": "39c24964eca8b1b6c14f51d082c5f3b2459f7c55e958d34ddecdddbaf415d8e8",
+    "victim_rng_keys": [
+      "python",
+      "numpy",
+      "torch",
+      "cuda"
+    ],
+    "noise_rng_keys": [
+      "python",
+      "numpy",
+      "torch",
+      "cuda"
+    ],
+    "noise_identity": {
+      "config_lock_sha256": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
+      "source_commit": "1d10ad620ef01aad20e8c85d49465473d72c9a4e",
+      "parent": "S4-TFSS-Utility",
+      "method": "S4_TFSS_FULL_OVERLAP",
+      "support_mode": "bbox_full_target",
+      "eta": 0.85,
+      "dataset_fingerprint": "29b131dfca2e3636e9c47502961caa6297acf0450f646ff6409b7b3bfb21b3fa",
+      "cache_identity": {
+        "reference_sha256": "8de8a0c78c6414ad0bf98052b3bc96c33d8e854a2a2a905d47c8195363975b89",
+        "maps_code_sha256": "6730d44911a4e698862c5c73e03e9d4487c335ace71b960b7fc79bd450132f39",
+        "risk_code_sha256": "e1fa911ea651259926972125a71565d3fe0080fe508f68f1f13b2f670d85a73d",
+        "map_version": "masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-image-canonical-canvas-v2",
+        "support_mode": "bbox_full_target",
+        "experiment_id": "S4_TFSS_FULL_OVERLAP"
+      },
+      "ordered_images_sha256": "4e8a4d8bd2e04b0eb739a578f6722cbfb0eff26896380b62de8a93f0bc651ce7"
+    },
+    "scientific_files_exact": 131,
+    "parent_files_exact": {
+      "config_lock_snapshot.json": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
+      "dataset_integrity.json": "f56b4efdc29bfb3429bd8f10cd020b915e6d88878f731e99c4e1dd84dd5b61ba",
+      "materialization_manifest.json": "77c092982cd3e259ea78424768af2b90d880d5f3bcbe215e71b8aa7de3f4c25b",
+      "source_audit.json": "0f376d4116fb4c585e8f157d51cae7784bbd5828925999f187b7a05dd74d6bdc",
+      "SPATIAL_DIAGNOSTICS_SUMMARY.json": "98c6247f246811c5d0345c5188336001b1b799f6a4b4d3d4317d12581486a870",
+      "noise/global_params.pt": "90e9481fd093c6d43267b0f881c27cf4ea9e07e8108fd3b84b144e7d829f03fc",
+      "noise/checkpoints/step_009144_epoch_24_cursor_00000.pt": "79efe7cd0465cb7682d331194aeed2cc9af44a7adb50fee5c709855838ca0bf4"
+    },
+    "all_tensors_finite": true,
+    "no_GPU_or_training": true,
+    "dataset_evidence": "Hash-bound original generation integrity + actual server independent full-image/label/cleanval rehash acceptance; no image transfer"
+  },
+  "server_full_dataset_acceptance": {
+    "state": "COMPLETED_AND_ACCEPTED",
+    "adapter": "independent read-only evidence adapter; native Full state remains unchanged",
+    "run_id": "s4_tfss_full_overlap_seed0_20261021_victim_recovery03",
+    "source_commit": "1d10ad620ef01aad20e8c85d49465473d72c9a4e",
+    "config_sha256": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
+    "checkpoints": {
+      "last.pt": "2a831ea516b4c9d752465ea0c5fab628502788fd6a1e6caf34af931db489c6c6",
+      "best.pt": "5e5fd09cc68e3befeb8f69d75b612f496fe3a633ab3b05203b5c60c6a803dbe5"
+    },
+    "noise_steps": 9144,
+    "victim_epochs": 200,
+    "dataset_manifest_sha256": "77c092982cd3e259ea78424768af2b90d880d5f3bcbe215e71b8aa7de3f4c25b",
+    "validation_count": 4952,
+    "comparison_sha256": "940fb3580566b41934cf1fc1093ca01291f779c9cbca38eaa754fddb988de1d8",
+    "native_state_sha256": "57c7e778f90b550673c1df6ba64c76530ac45fc8b391128927aed49cb7bf3605",
+    "full_state_sha256": "39c24964eca8b1b6c14f51d082c5f3b2459f7c55e958d34ddecdddbaf415d8e8"
+  },
+  "local_CSV200": true,
+  "rawVOC20_metrics_recomputed": {
+    "P": 0.915678868992153,
+    "U": 0.91760759224635,
+    "S": 0.916642216055115,
+    "WCD": 0.2528753477249256,
+    "TCD3": 0.23879825105181854,
+    "relative_collateral_by_class": {
+      "0": -0.033569234144000815,
+      "1": 0.21741376242608434,
+      "2": 0.07584624819440144,
+      "3": -0.007889431411976844,
+      "4": 0.2528753477249256,
+      "5": 0.0029442096012788355,
+      "6": 0.008841257405103109,
+      "7": 0.06495131546449506,
+      "8": 0.12059098547601366,
+      "9": 0.0814546434085085,
+      "10": 0.06838899923262454,
+      "11": 0.2461056430044457,
+      "12": 0.16593682477002147,
+      "13": 0.15547040501743836,
+      "15": 0.058121464589658056,
+      "16": 0.031453636465996526,
+      "17": 0.05426779536485782,
+      "18": -0.010386172141554573,
+      "19": 0.01224139490399545
+    },
+    "target_clean": 0.8679432194172523,
+    "target_S4": 0.07318595391185463,
+    "NT_clean": 0.766461905456105,
+    "NT_S4": 0.7033112636141261
+  },
+  "selection_recomputed": {
+    "selected_method": "S4_ORIGINAL",
+    "comparison_metrics": {
+      "S4_ORIGINAL": {
+        "Person_AP50": 0.028158895413428475,
+        "NT_mAP50": 0.6937870442308226,
+        "NT_mAP75": 0.5152513352613782,
+        "S": 0.9353302965334364,
+        "P": 0.9675567539633126,
+        "U": 0.9051813786074141,
+        "WCD": 0.2959510970908037,
+        "TCD3": 0.26448170124191184,
+        "NT_AP50": {
+          "0": 0.8378178813373707,
+          "1": 0.6758374948338814,
+          "2": 0.6489867777088529,
+          "3": 0.667840970144477,
+          "4": 0.4800954822875178,
+          "5": 0.816410643308093,
+          "6": 0.881801408022812,
+          "7": 0.8029616656335287,
+          "8": 0.5229261075972649,
+          "9": 0.6994899683793208,
+          "10": 0.6599345058980813,
+          "11": 0.5680177200144652,
+          "12": 0.7478919740998293,
+          "13": 0.7504804569568946,
+          "15": 0.43626123240140324,
+          "16": 0.7357278730725549,
+          "17": 0.6946011135911314,
+          "18": 0.8368819028626332,
+          "19": 0.7179886622355164
+        }
+      },
+      "S4_TFSS_FULL": {
+        "Person_AP50": 0.07318595391185463,
+        "NT_mAP50": 0.7033112636141261,
+        "NT_mAP75": 0.5298847199685859,
+        "S": 0.916642216055115,
+        "P": 0.915678868992153,
+        "U": 0.91760759224635,
+        "WCD": 0.2528753477249256,
+        "TCD3": 0.23879825105181854,
+        "NT_AP50": {
+          "0": 0.8649294514233206,
+          "1": 0.6930421406098735,
+          "2": 0.6697684692824327,
+          "3": 0.6736615300151134,
+          "4": 0.4851456977467532,
+          "5": 0.8215101117490462,
+          "6": 0.8846816398928705,
+          "7": 0.7952515581257986,
+          "8": 0.5272475190227179,
+          "9": 0.6964008979572457,
+          "10": 0.6981900502688387,
+          "11": 0.6082323997991028,
+          "12": 0.7374716317249705,
+          "13": 0.7191334186141858,
+          "15": 0.452727059544641,
+          "16": 0.7327751744388575,
+          "17": 0.7120947596818094,
+          "18": 0.8520948936928794,
+          "19": 0.7385556050779376
+        }
+      }
+    },
+    "checks": {
+      "S_improves_over_tolerance": false,
+      "Person_AP50_not_higher": false,
+      "NT_mAP50_not_lower": true,
+      "WCD_not_higher": true,
+      "identical_evaluation_protocol": true
+    },
+    "selection_reason": "Full did not satisfy every frozen advantage condition; descriptive conservative default",
+    "single_seed_descriptive": true,
+    "statistical_significance_claim": false
+  },
+  "decision_sha256": "630c8ad65d110c115a72dc7ea50d88c55a2a1ffaac79172d239b0d02a0e612c1",
+  "local_small_results_sha256": {
+    "artifact_manifest.json": "5502990cc071f365ad6f9eb0736ea97520e1f37621c5a00679013163fded1097",
+    "comparison.json": "940fb3580566b41934cf1fc1093ca01291f779c9cbca38eaa754fddb988de1d8",
+    "dataset_integrity.json": "f56b4efdc29bfb3429bd8f10cd020b915e6d88878f731e99c4e1dd84dd5b61ba",
+    "PARENT_DATA_REUSE_AUDIT.json": "aa30688651b323a592588e8c3fa3bea80aa28a3d7c98f291165f071f25e872ef",
+    "pipeline_status.json": "57c7e778f90b550673c1df6ba64c76530ac45fc8b391128927aed49cb7bf3605",
+    "RECOVERY_PROVENANCE.json": "d1dcba887b779d2a348a0dbe9b6f31bd3deaf042d5c78604e54c34d3be24b096",
+    "resource_admission.json": "53b4c3589c480106cf761f92ddb79979793201b333b73174c196228e14afe749",
+    "S4_TFSS_FULL_OVERLAP_best_secondary_evaluation.json": "ac94b61c8ec7de3e1a8191d35367b607a48c6c48187dd636d8d5dbfa0e2149c1",
+    "S4_TFSS_FULL_OVERLAP_evaluation.json": "ae38f9cace755db7f9f96d1a08db43cd88d37fd6eba5e4a81db44aa0fc2800c4",
+    "S4_vs_Full_VOC20.csv": "ce7e4ec3ba194f6179c7b6e361fbb3f9e6c2b448c599bfa07394985aec52a6ef",
+    "S4_VS_TFSS_FULL_REPORT.md": "f8b69b6b5eab1186592e127241b3412dad2a3b9fefb51b66e54f194e96aa35d1",
+    "source_audit.json": "0f376d4116fb4c585e8f157d51cae7784bbd5828925999f187b7a05dd74d6bdc",
+    "SPATIAL_DIAGNOSTICS_SUMMARY.json": "98c6247f246811c5d0345c5188336001b1b799f6a4b4d3d4317d12581486a870",
+    "victim_completion.json": "9261227ccdfa2c22a824e1cb10aba4fbc9445d4e9400592aa86117b1cfdef2b7",
+    "victim_run_spec.json": "898414dd391f6d32f4002bffe579dfb0a98d5a808558ccd97951866f04094c3f",
+    "worker_identity.json": "b69feb923db08369175f69e59e37733a4190dec12bd5f0e347c37ad034231095",
+    "jobs/victim/child.json": "4faee95aa0ddd517142af960caf085a942e29ba1e4d38027fdc335ecf07c546b",
+    "jobs/victim/exit.json": "7cf7cdea923e792b7fc699c9976ada4c03ff022698d14e6b2049fa315a703a2f",
+    "jobs/victim/scope_launch.json": "ae4d0b9a38a6d9c81b5f47521745fdb7e3d5cef6cda3e9112d772da8ed46f888",
+    "jobs/victim/scope_result.json": "39ec1e564ece9e9b81769c668ada50855d296e7bba97a86df02565395c65bd42",
+    "victim_run/victim/results.csv": "1f8faa06ee569659a7661ee812428f35e89d9f6334cd11846d62c9bf9b7e771d"
+  },
+  "limits": [
+    "single seed, descriptive only",
+    "no causal overlap-mediation or background-absorption claim",
+    "LPIPS unavailable unless validated separately"
+  ]
+}

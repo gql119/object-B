@@ -1,0 +1,19 @@
+{
+  "state": "passed",
+  "splits": {
+    "train": "a42debb9c71d73a4b164f58736f01e367807b7b1259c7f23da0d0f9a6cb33606",
+    "val": "d59429973640d7b4ede35be11c1967287ddf5959b5eb59138839b5ef55e8b330"
+  },
+  "counts": {
+    "train": 16551,
+    "val": 4952
+  },
+  "target_images": 6095,
+  "person_gt": 13256,
+  "dataset_fingerprint": "29b131dfca2e3636e9c47502961caa6297acf0450f646ff6409b7b3bfb21b3fa",
+  "source_commit": "1d10ad620ef01aad20e8c85d49465473d72c9a4e",
+  "parent_runtime_git_sha": null,
+  "parent_runtime_git_sha_reason": "historical S0 contemporaneous commit unknown; exact45 source bytes bound",
+  "full_budget_mode": "bbox_full_target8/0",
+  "historical_S0_initialized_from": "original reference, not Parent victim or final noise"
+}

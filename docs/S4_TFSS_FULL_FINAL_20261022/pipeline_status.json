@@ -1,0 +1,19 @@
+{
+  "state": "complete",
+  "run_id": "s4_tfss_full_overlap_seed0_20261021_victim_recovery03",
+  "source_commit": "1d10ad620ef01aad20e8c85d49465473d72c9a4e",
+  "runtime_commit": "dc60396d044cefe08fd03ae6b126d33135ff11b2",
+  "config_sha256": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
+  "support_mode": "bbox_full_target",
+  "stage": "complete",
+  "controller": {
+    "pid": 3035105,
+    "start_ticks": 330594046,
+    "uid": 1014
+  },
+  "generation_run_id": "s4_tfss_full_overlap_seed0_20261021_v1",
+  "recovery": true,
+  "exact_victim_resume": false,
+  "updated_at": 1792696286.174704,
+  "completed_at_unix": 1792696286.1746976
+}
