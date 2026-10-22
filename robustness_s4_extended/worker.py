@@ -192,6 +192,7 @@ def main():
         records={arm:accept_arm(c,a.output/arm,a.defense,arm) for arm in ['clean','poison']}
         clean=load(a.output/'clean/last_primary_evaluation.json');s4=load(a.output/'poison/last_primary_evaluation.json')
         scores=paired(clean,s4)
+        scores['target_poison']=scores.pop('target_S4');scores['NT_poison']=scores.pop('NT_S4')
         atomic(a.output/'paired_results.json',dict(defense=a.defense,source_commit=commit(),config_sha256=sha(CONFIG),metrics=dict(clean=clean,poison=s4),**decision_identity(c),scores=scores,primary='last.pt@200',secondary='best.pt',single_seed_descriptive=True))
         atomic(a.output/'ACCEPTANCE.json',dict(state='ACCEPTED',records=records,paired_sha256=sha(a.output/'paired_results.json')))
 if __name__=='__main__':main()

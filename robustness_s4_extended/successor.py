@@ -35,7 +35,7 @@ class Successor(Pipeline):
                 argv=(p/'cmdline').read_bytes().decode(errors='replace').split('\0')
                 if not argv or 'python' not in Path(argv[0]).name:continue
                 entries=[Path(x).name for x in argv[1:] if x.endswith('.py')]
-                if any(x.startswith(('run_s4','run_s5','train')) for x in entries) or 'robustness_s4_extended.worker' in argv:
+                if any(x.startswith(('run_s4','run_s5','train','recover_s4')) for x in entries) or 'robustness_s4_extended.worker' in argv:
                     return dict(pid=int(p.name),identity=identity(int(p.name)),entry=entries)
             except (OSError,ValueError):continue
         return None
@@ -49,7 +49,7 @@ class Successor(Pipeline):
         for name in ['cutout','cutmix','mixup']:
             p=self.root/'experiments'/name/'paired_results.json'
             if self.state['stages'].get(name)=='ACCEPTED':
-                r=load(p);scores=dict(r['scores'],target_poison=r['scores']['target_S4'],NT_poison=r['scores']['NT_S4']);rows.append(dict(defense=name,selected_method=r['selected_method'],state='ACCEPTED',**{k:scores[k] for k in ['target_clean','target_poison','NT_clean','NT_poison','P','U','S','WCD','TCD3']}))
+                r=load(p);scores=r['scores'];rows.append(dict(defense=name,selected_method=r['selected_method'],state='ACCEPTED',**{k:scores[k] for k in ['target_clean','target_poison','NT_clean','NT_poison','P','U','S','WCD','TCD3']}))
                 for arm in ['clean','poison']:
                     m=r['metrics'][arm]
                     extended.append(dict(defense=name,selected_method=r['selected_method'],arm=arm,checkpoint_role='last.pt@200',**{k:v for k,v in m.items() if isinstance(v,(float,int))}))
@@ -77,12 +77,14 @@ class Successor(Pipeline):
                     while not self.verify_wait_gate():
                         self.state.update(state='WAITING_PREVIOUS_PIPELINE',current_stage='predecessor',active_job=None);self.save();time.sleep(self.c['poll_seconds'])
                     self.state.update(state='CHECK_PREVIOUS_ACCEPTANCE');self.save()
-                    proof=verify_predecessor(self.c)
+                    try:proof=verify_predecessor(self.c)
+                    except Exception as error:raise SelectionBlocked('BLOCKED_FULL_VALIDATION: '+repr(error)) from error
                     if not proof or proof['state']!='COMPLETED_AND_ACCEPTED':raise Blocked('Predecessor scientific acceptance unavailable')
                     atomic(self.root/'PREDECESSOR_ACCEPTANCE.json',proof)
                 self.state.update(state='COMPARE_S4_VS_FULL',current_stage='selection');self.save()
-                decision=select_and_lock(self.c)
-                self.state.update(selected_method=decision['selected_method'],decision_sha256=sha(self.root/'S4_FULL_DECISION.json'));self.save()
+                try:decision=select_and_lock(self.c)
+                except Exception as error:raise SelectionBlocked('BLOCKED_FULL_VALIDATION: '+repr(error)) from error
+                self.state.update(selected_method=decision['selected_method'],selection_status='VALIDATED_AND_LOCKED',decision_sha256=sha(self.root/'S4_FULL_DECISION.json'));self.save();self.report()
                 conflict=self.own_training_conflict()
                 while conflict:
                     self.state.update(state='WAITING_OTHER_BOUND_WORK',conflict=conflict);self.save();time.sleep(self.c['poll_seconds']);conflict=self.own_training_conflict()
@@ -109,7 +111,9 @@ class Successor(Pipeline):
                     self.state['stages'][name]='ACCEPTED';self.state['active_job']=None;self.save();self.report()
                 self.state.update(state='BLOCKED_PROTOCOL_APPROVAL',current_stage='op',active_job=None);self.state['stages']['op']='BLOCKED_PROTOCOL_APPROVAL';self.save();self.report()
             except BaseException as e:
-                self.state.update(state='BLOCKED_FULL_VALIDATION' if isinstance(e,SelectionBlocked) else 'FAILED',error=repr(e));self.save();self.report();raise
+                self.state.update(state='BLOCKED_FULL_VALIDATION' if isinstance(e,SelectionBlocked) else 'FAILED',error=repr(e))
+                if isinstance(e,SelectionBlocked):self.state['selection_status']='BLOCKED_FULL_VALIDATION'
+                self.save();self.report();raise
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--status',action='store_true');p.add_argument('--expected-source');a=p.parse_args();c=load(CONFIG)
