@@ -1,0 +1,63 @@
+{
+  "state": "GPU_AND_SINGLE_SCIENTIFIC_REVIEW_PASSED_FORMAL_LAUNCHED",
+  "observed_utc": "2026-10-22T00:03:51.146684+00:00",
+  "runtime_scientific_commit": "1d10ad620ef01aad20e8c85d49465473d72c9a4e",
+  "config_sha256": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
+  "CPU_tests": 28,
+  "CPU_failures": 0,
+  "CPU_skips": 0,
+  "smoke_run_id": "s4_tfss_full_overlap_gpu_smoke_seed0_20261021_v2",
+  "smoke_exit_code": 0,
+  "actual_Adam_updates": 2,
+  "actual_EOT_losses": [
+    {
+      "step": 0,
+      "eot": 0,
+      "loss": 1.1512073278427124
+    },
+    {
+      "step": 0,
+      "eot": 1,
+      "loss": 1.156757116317749
+    },
+    {
+      "step": 1,
+      "eot": 0,
+      "loss": 1.1582942008972168
+    },
+    {
+      "step": 1,
+      "eot": 1,
+      "loss": 1.176867127418518
+    }
+  ],
+  "baseline_equivalence": {
+    "reference_id": "canonical S4Trainer",
+    "sample_id": "000035",
+    "loss_absolute_difference": 0.0,
+    "delta_max_absolute_difference": 0.0,
+    "Fourier_gradient_max_absolute_difference": 0.0,
+    "tolerance": 0,
+    "reference_metric": 0.7707809805870056,
+    "candidate_metric": 0.7707809805870056,
+    "reference_implementation": "ue_framework/methods/s4_tfss.py:S4Trainer",
+    "candidate_implementation": "ue_framework/methods/s4_tfss_full.py:S4FullTrainer"
+  },
+  "teacher_checkpoint_sha256": "8de8a0c78c6414ad0bf98052b3bc96c33d8e854a2a2a905d47c8195363975b89",
+  "decoded_PNG_linf_bytes": 2,
+  "decoded_PNG_outside_max_bytes": 0,
+  "reviewer_count": 1,
+  "reviewer": "/root/s4_full_scientific_review",
+  "reviewer_result": "scientifically_correct",
+  "reviewer_decision": "allow_run",
+  "pre_run_result": "pass",
+  "review_receipt_sha256": "d3e1753b260bf1bb01c621a0d919f737ddf4ef02d0be0d968eb6902bc833e691",
+  "review_receipt_remote_readback_exact": true,
+  "formal_run_id": "s4_tfss_full_overlap_seed0_20261021_v1",
+  "formal_launch_once": true,
+  "formal_stage_at_observation": "initial capacity/source preflight; noise updates not yet observed",
+  "formal_official_metrics": null,
+  "scientific_source_immutable": true,
+  "publication_documentation_commits_are_separate": true,
+  "AT": "NOT_RUN"
+}

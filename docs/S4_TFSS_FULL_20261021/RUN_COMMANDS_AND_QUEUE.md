@@ -1,3 +1,5 @@
+最新执行记录：前序全部验收/发布，当前GPU实测与唯一科学审查通过；正式RunID已唯一启动，源码1d10ad620ef01aad20e8c85d49465473d72c9a4e/config2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c。以下准备阶段的NOT_RUN/队列阻塞文字是历史快照，当前证据见GPU_SMOKE_AND_REVIEW_ACCEPTANCE.json和execution/S4_TFSS_FULL_CURRENT_STATE.json；已有绑定只inspect，禁止重复执行launch。
+
 # 独立生产入口与队列准入
 
 这些是未来RRCTL RunSpec中的workload命令；当前未提交远程launch，不使用raw SSH。部署时RRCTL必须固定本分支已提交的实际Git SHA和独立repo/output路径。已有RunID/binding只能inspect，不能重复launch。
