@@ -10,12 +10,30 @@ from .transforms import cutout, sample_seed, validate, occlusion_fractions
 
 CONTEXT={}
 
+def native_absolute_boxes(labels):
+    """Geometry-only copy: snap float conversion roundoff, never edit training GT.
+
+    Native flip converts clipped xyxy to float32 xywh; conversion back can
+    produce e.g. -3e-5 at a zero boundary. Four dtype epsilons at image scale
+    bound this arithmetic roundoff. Real out-of-bounds/degenerate GT still fail.
+    """
+    instance=deepcopy(labels['instances']);h,w=labels['img'].shape[:2]
+    instance.convert_bbox('xyxy');instance.denormalize(w,h)
+    raw=instance.bboxes
+    boxes=np.asarray(raw,dtype=np.float64).copy()
+    tolerance=float(4*np.finfo(raw.dtype).eps*max(w,h)) if np.issubdtype(raw.dtype,np.floating) else 0.
+    clipped=boxes.copy();clipped[:,[0,2]]=np.clip(clipped[:,[0,2]],0,w);clipped[:,[1,3]]=np.clip(clipped[:,[1,3]],0,h)
+    correction=float(np.max(np.abs(clipped-boxes))) if len(boxes) else 0.
+    if correction>tolerance:raise ValueError('Native detection geometry exceeds floating-point boundary roundoff')
+    validate(labels['img'],clipped,labels['cls'])
+    return clipped,dict(boundary_roundoff_max_pixels=correction,boundary_roundoff_tolerance_pixels=tolerance,original_training_GT_unchanged=True)
+
 class CutoutTransform:
     def __init__(self,config):self.config=config
     def __call__(self,labels):
-        instance=deepcopy(labels['instances']);h,w=labels['img'].shape[:2]
-        instance.convert_bbox('xyxy');instance.denormalize(w,h)
-        img,info=cutout(labels['img'],instance.bboxes,labels['cls'],self.config,np.random.default_rng(np.random.randint(0,2**32,dtype=np.uint64)))
+        boxes,roundoff=native_absolute_boxes(labels)
+        img,info=cutout(labels['img'],boxes,labels['cls'],self.config,np.random.default_rng(np.random.randint(0,2**32,dtype=np.uint64)))
+        info.update(roundoff)
         labels['img']=img
         # Every GT keeps its full original bbox; unacceptable occlusion rejects the image transform.
         labels['_extended_audit']=info
@@ -45,15 +63,15 @@ class SeededOperation:
         random.seed(seed);np.random.seed(seed)
         try:
             result=self.operation(labels)
-            probe=deepcopy(result['instances']);h,w=result['img'].shape[:2];probe.convert_bbox('xyxy');probe.denormalize(w,h)
-            validate(result['img'],probe.bboxes,result['cls'])
+            boxes,roundoff=native_absolute_boxes(result)
             audit=result.pop('_extended_audit',{})
+            audit.update(roundoff)
             # Bounded evidence per worker, not one file or stdout event per training image.
             if self.calls<4:
                 folder=self.dataset.ext_audit
                 folder.mkdir(parents=True,exist_ok=True)
                 with (folder/f'worker_{os.getpid()}.jsonl').open('a') as f:
-                    f.write(json.dumps(dict(defense=self.defense,epoch=epoch,sample_id=sid,seed=seed,labels=len(probe),**audit))+'\n')
+                    f.write(json.dumps(dict(defense=self.defense,epoch=epoch,sample_id=sid,seed=seed,labels=len(boxes),**audit))+'\n')
             self.calls+=1
             return result
         finally:random.setstate(a);np.random.set_state(b)

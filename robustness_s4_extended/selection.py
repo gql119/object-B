@@ -52,7 +52,10 @@ def decision_path(c):return Path(c['output_root'])/'S4_FULL_DECISION.json'
 
 def load_decision(c, *, check_files=True):
     p=decision_path(c);d=load(p)
-    if (d.get('batch_id'),d.get('selection_source_commit'),d.get('selection_config_sha256'),d.get('decision_rule_sha256'),d.get('validation_status'))!=(c['pipeline_run_id'],commit(),sha(ROOT/'robustness_s4_extended/configs/QUEUE.json'),c['selection']['rule_sha256'],'VALIDATED_AND_LOCKED'):
+    origin=c['selection'].get('locked_decision_reuse')
+    expected=(origin['batch_id'],origin['source_commit'],origin['config_sha256']) if origin else (c['pipeline_run_id'],commit(),sha(ROOT/'robustness_s4_extended/configs/QUEUE.json'))
+    if origin and sha(p)!=origin['decision_sha256']:raise SelectionBlocked('Recovered immutable Decision bytes changed')
+    if (d.get('batch_id'),d.get('selection_source_commit'),d.get('selection_config_sha256'),d.get('decision_rule_sha256'),d.get('validation_status'))!=(*expected,c['selection']['rule_sha256'],'VALIDATED_AND_LOCKED'):
         raise SelectionBlocked('Selected batch/source/rule/config differs')
     x=descriptor(c,d['selected_method'])
     expected=dict(selected_poison_dataset=x['dataset'],selected_dataset_manifest=x['manifest'],
@@ -84,6 +87,18 @@ def select_and_lock(c):
     state=load(Path(c['predecessor']['output'])/'pipeline_status.json')
     if state.get('state')!='complete' or sha(Path(c['predecessor']['output'])/'pipeline_status.json')!=proof['native_state_sha256']:
         raise SelectionBlocked('Full actual acceptance state changed')
+    origin=c['selection'].get('locked_decision_reuse')
+    if origin:
+        previous=Path(origin['output_root'])
+        data=(previous/'S4_FULL_DECISION.json').read_bytes()
+        if sha(previous/'S4_FULL_DECISION.json')!=origin['decision_sha256'] or sha(root/'PREDECESSOR_ACCEPTANCE.json')!=origin['full_acceptance_sha256']:
+            raise SelectionBlocked('Recovered decision/predecessor evidence changed')
+        # Exact bytes, including the original batch/source/config attribution.
+        # Recovery cannot reselect a method or rewrite a decision already used.
+        with path.open('xb') as stream:stream.write(data)
+        for name in ['S4_FULL_COMPARISON.csv','S4_FULL_COMPARISON.md']:
+            with (root/name).open('xb') as stream:stream.write((previous/name).read_bytes())
+        return load_decision(c)
     queue=c['selection']['original_robustness'];old=load(queue['pipeline_state_path'])
     if old.get('pipeline_run_id')!=queue['pipeline_id'] or old.get('state')!='COMPLETED_AND_ACCEPTED' or old.get('active_job') is not None or not all(old['stages'][s]['state']=='ACCEPTED' for s in queue['required_stages']):
         raise SelectionBlocked('Original eight-defense pipeline not accepted')

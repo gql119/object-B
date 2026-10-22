@@ -43,6 +43,15 @@ p=json.loads(sys.argv[1]);paths=p['paths'];full=Path(p['full'])
 assert all(not Path(x).exists() for x in paths.values()),paths
 s=json.loads((full/'pipeline_status.json').read_text())
 assert s['run_id']==p['predecessor_id'] and s['source_commit']==p['predecessor_source']
+if p.get('recovery'):
+ r=p['recovery'];old=json.loads((Path(r['output_root'])/'pipeline_state.json').read_text())
+ assert old['state']=='FAILED' and old['pipeline_run_id']==r['run_id'] and not old['stages']
+ assert old['jobs']['smoke_cutout']['exit']['returncode']==1
+ for ident in [old['controller'],old['jobs']['smoke_cutout']['exit']['child']]:
+  proc=Path('/proc')/str(ident['pid'])
+  if proc.exists():
+   fields=(proc/'stat').read_text().rsplit(')',1)[1].split()
+   assert int(fields[19])!=ident['start_ticks'] or fields[0]=='Z','Failed prior binding still alive'
 print(json.dumps({'paths_absent':True,'current_Full_state':s,'no_training_or_process_mutation':True}))
 '''
 
@@ -54,7 +63,7 @@ def launch(cpu,profiles):
     if not cpu:
         smoke=load(ROOT/'execution/CPU_SERVER_SMOKE_VERIFIED.json')
         if smoke.get('state')!='passed' or smoke.get('source_commit')!=commit() or smoke.get('config_sha256')!=sha(CONFIG):raise ValueError('Current-source CPU supervision smoke required')
-    payload=dict(paths={k:specdata['remote'][k] for k in ['stage_root','repo_root','control_root','output_root']},full=c['predecessor']['output'],predecessor_id=c['predecessor']['run_id'],predecessor_source=c['predecessor']['source_commit'])
+    payload=dict(paths={k:specdata['remote'][k] for k in ['stage_root','repo_root','control_root','output_root']},full=c['predecessor']['output'],predecessor_id=c['predecessor']['run_id'],predecessor_source=c['predecessor']['source_commit'],recovery=c.get('recovery_of'))
     atomic(ROOT/'execution'/(rid+'_preflight.json'),remote(t,c['python'],PREFLIGHT,payload))
     from remote_run_control.models import RunSpec
     spec=RunSpec.from_path(p);ready=ctl.ready(spec);atomic(ROOT/'execution'/(rid+'_ready.json'),ready)

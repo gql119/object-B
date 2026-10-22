@@ -1,0 +1,11 @@
+# Cutout boundary integration repair
+
+The selected successor v2 failed its first Clean Cutout GPU smoke before formal training. Its failed state, exit1, source8644/config97a4, all logs and outputs are retained. No scientific reviewer has been called for extended defenses.
+
+A single-thread CPU reproduction on the same 32-image smoke dataset found sample002804 after34successful calls: native float32 conversion after clipping/flip produced x1=-0.000030517578125 pixels at a 640-pixel boundary. The strict absolute-xyxy validator rejected this arithmetic roundoff. The first32-call prefix alone did not reproduce the error; both attempts and the failing-prefix RNG states are retained in execution/CUTOUT_BOUNDARY_INCIDENT_20261022.
+
+The new interface computes a geometry-only copy, permits snapping only within four source-dtype epsilons at image scale, then runs the unchanged strict validator. Training Instances and labels remain byte-identical. Real out-of-bounds, reversed and degenerate boxes still fail. Cutout policy/parameters, native training, all baseline and S4 method files remain unchanged. Audit records expose correction and bound. Five regression cases cover the observed value, native xywh roundtrip, normalized/empty, real invalid boxes, and unchanged GT.
+
+Recovery must use a unique source-bound successor, not reset v2. The original Decision JSON SHA630c8ad65d110c115a72dc7ea50d88c55a2a1ffaac79172d239b0d02a0e612c1 is reused byte-for-byte with its original batch/source/config attribution; no post-result reselection or rule tuning. Three tests verify exact inherited Decision bytes and rejection of changed evidence. Source/native/selected-data checks and all three bounded GPU smoke groups must pass on the new runtime, followed by exactly one new extended scientific review before formal pairs. OP remains blocked.
+
+Full completed200/200 and exit0. Its independent server predecessor acceptance binds last2a831ea5..., best5e5fd09c..., full-state39c24964..., manifest77c092... and clean4952. Conservative frozen selection chose original S4: S0.9353303 vs Full0.9166422; Person AP50 0.0281589 vs0.0731860. Full improves NT AP50 and WCD but fails the S and Person guards. These are single-seed descriptive results.
