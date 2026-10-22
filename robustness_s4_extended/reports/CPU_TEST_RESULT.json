@@ -1,0 +1,23 @@
+{
+  "UTC": "2026-10-22T03:34:23.367060+00:00",
+  "status": "PASSED",
+  "tests": 31,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds": 0.9380000000237487,
+  "parsed_files": 17,
+  "GPU_steps": 0,
+  "actual_detection_dataset_CPU": true,
+  "real_VOC_images_read": 0,
+  "synthetic_fixtures_retained": true,
+  "config_sha256": "6e645752802a7f0034f2d331c2ca46de65ae2e172788cbd61efacf0e18d70a5e",
+  "packages": {
+    "torch": "2.14.0+cpu",
+    "ultralytics": "8.4.150",
+    "numpy": "2.5.4",
+    "Pillow": "12.3.0"
+  },
+  "runtime_limitations": "Local CPU builds/NumPy differ from locked remote; GPU reachability and one scientific review pending; no official AP",
+  "raw_sha256": "a85a49f678faea6de2fecd6d41fd5a52d465c74020bc351e022a018191f07286"
+}

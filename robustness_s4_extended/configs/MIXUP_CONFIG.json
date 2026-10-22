@@ -1,0 +1,10 @@
+{
+  "name": "mixup",
+  "probability": 1.0,
+  "beta": [
+    32.0,
+    32.0
+  ],
+  "labels": "native Instances and integer class concatenation; no per-instance lambda loss weights",
+  "schedule": "native close_mosaic100 disables MixUp for final100epochs"
+}

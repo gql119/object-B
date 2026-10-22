@@ -1,3 +1,13 @@
+# S4 extended robustness preparation — 2026-10-22
+
+Change: independent codex/s4-robustness-extended-defenses-20261022; original S4 data fixed. Cutout/CutMix/MixUp detection adapters, disabled OP CPU math prototype, serial server successor waiting for Full acceptance. Original eight defenses actually accepted; Full audit epoch9/24,3129/9144,PID2829581/start325195800.
+
+Result:31 CPU contracts,0 failures/errors/skips; actual native detection dataset/label+disabled-path equality;10 synthetic visual cases checked; no new GPU or VOC scan. New GPU smoke/review/6victims NOT_RUN. OP BLOCKED_PROTOCOL_APPROVAL.
+
+Next: exact-source CPU server supervision smoke then unique server waiter deploy; future Full acceptance->source/data->3GPU smokes->one scientific review->server paired Cutout/CutMix/MixUp, OP blocked. See robustness_s4_extended/reports and execution binding. No new monitor, AT, seed, S4 noise or environment changes.
+
+Historical parent state follows.
+
 # S4 鲁棒性研究 — 2026-10-19
 
 当前唯一主方法 S4-TFSS-Utility，PhaseA/B全正式训练和评价已获人类授权；AT只做审计。独立分支codex/s4-robustness-evaluation-20261019。

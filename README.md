@@ -21,3 +21,8 @@ The B2-T implementation and its completed single-seed run are recorded in [`expe
 ## B2-TO angular-orthogonality variant (2026-09-27)
 
 The admitted B2-TO candidate and its completed single-seed run are recorded in [`experiments/b2_to_lr001_orth0005_20260927/`](experiments/b2_to_lr001_orth0005_20260927/README.md). The package contains clean VOC AP50 and recall for all 20 classes, compact run evidence, config/source hashes, and the 200-epoch results CSV; it excludes datasets and checkpoints. This run changed the Fourier learning rate as well as the angular orthogonality weight, so it is not a pure orthogonality ablation.
+
+
+## S4 extended robustness defenses (prepared 2026-10-22)
+
+Independent Cutout/CutMix/MixUp detection successor and disabled OP prototype: [protocol, CPU evidence and queue gates](robustness_s4_extended/README.md). No new GPU work until the running S4-TFSS-Full completes and passes full acceptance.

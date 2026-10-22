@@ -1,0 +1,169 @@
+{
+  "scope": "synthetic CPU inputs; no VOC or poison image transferred; actual native mix classes",
+  "cutout_cases": [
+    {
+      "case": "person",
+      "applied": true,
+      "reason": "accepted",
+      "rectangles": [
+        [
+          0,
+          0,
+          20,
+          20
+        ]
+      ],
+      "occlusion_per_gt": [
+        0.0
+      ],
+      "class_ids": [
+        14
+      ],
+      "candidate_occlusion_per_gt": [
+        0.0
+      ],
+      "attempts": 1
+    },
+    {
+      "case": "person+dog",
+      "applied": false,
+      "reason": "reject_whole_candidate_any_class_severe_occlusion",
+      "rectangles": [],
+      "occlusion_per_gt": [
+        0.0,
+        0.0
+      ],
+      "class_ids": [
+        14,
+        11
+      ],
+      "candidate_occlusion_per_gt": [
+        0.0,
+        1.0
+      ],
+      "attempts": 1
+    },
+    {
+      "case": "person+horse overlap",
+      "applied": true,
+      "reason": "accepted",
+      "rectangles": [
+        [
+          25,
+          30,
+          45,
+          50
+        ]
+      ],
+      "occlusion_per_gt": [
+        0.17777777777777778,
+        0.20512820512820512
+      ],
+      "class_ids": [
+        14,
+        12
+      ],
+      "candidate_occlusion_per_gt": [
+        0.17777777777777778,
+        0.20512820512820512
+      ],
+      "attempts": 1
+    },
+    {
+      "case": "no person",
+      "applied": true,
+      "reason": "accepted",
+      "rectangles": [
+        [
+          0,
+          0,
+          20,
+          20
+        ]
+      ],
+      "occlusion_per_gt": [
+        0.0
+      ],
+      "class_ids": [
+        6
+      ],
+      "candidate_occlusion_per_gt": [
+        0.0
+      ],
+      "attempts": 1
+    },
+    {
+      "case": "small target",
+      "applied": false,
+      "reason": "reject_whole_candidate_any_class_severe_occlusion",
+      "rectangles": [],
+      "occlusion_per_gt": [
+        0.0
+      ],
+      "class_ids": [
+        14
+      ],
+      "candidate_occlusion_per_gt": [
+        1.0
+      ],
+      "attempts": 1
+    },
+    {
+      "case": "full occlusion rejected",
+      "applied": false,
+      "reason": "reject_whole_candidate_any_class_severe_occlusion",
+      "rectangles": [],
+      "occlusion_per_gt": [
+        0.0
+      ],
+      "class_ids": [
+        14
+      ],
+      "candidate_occlusion_per_gt": [
+        1.0
+      ],
+      "attempts": 1
+    },
+    {
+      "case": "boundary",
+      "applied": true,
+      "reason": "accepted",
+      "rectangles": [
+        [
+          0,
+          0,
+          6,
+          6
+        ]
+      ],
+      "occlusion_per_gt": [
+        0.0004938271604938272
+      ],
+      "class_ids": [
+        14
+      ],
+      "candidate_occlusion_per_gt": [
+        0.0004938271604938272
+      ],
+      "attempts": 1
+    },
+    {
+      "case": "empty GT",
+      "applied": true,
+      "reason": "accepted",
+      "rectangles": [
+        [
+          0,
+          0,
+          30,
+          30
+        ]
+      ],
+      "occlusion_per_gt": [],
+      "class_ids": [],
+      "candidate_occlusion_per_gt": [],
+      "attempts": 1
+    }
+  ],
+  "png_sha256": "0747ca5019aa96ac78e92bf64157e68b3c5346b47faec8d73af0223f0e1706f0"
+}

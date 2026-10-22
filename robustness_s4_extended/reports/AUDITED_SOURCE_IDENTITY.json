@@ -1,0 +1,111 @@
+{
+  "UTC": "2026-10-22T03:34:23.899364+00:00",
+  "original_S4_identities": {
+    "parent_noise_checkpoint_sha256": "4413e45aa9c448bb768cac50e0ae40b5b0a1a580e38ff37cf66023bdab07c6e5",
+    "parent_dataset_integrity_sha256": "3eece1fc62df963f7d4aa15d378395273bd3963f812c0f7764ea9115dc82fe82",
+    "parent_materialization_manifest_sha256": "194d05cba8674c5699f83ad70178e93d6df7389a54fb0914d140342607598d36"
+  },
+  "original_S4_manifest_count": 16551,
+  "samples": [
+    {
+      "id": "000005",
+      "image_sha256": "fbb7fad63f242bf15fef88a2532b362241586cba4bf9dd0f26c09b94e42c5659",
+      "label_sha256": "9d68a888d5b0b628888e0266768cfdb07594fcff593883803954043a2917e42f"
+    },
+    {
+      "id": "2011_003276",
+      "image_sha256": "b203876c6fdfdb0136afb9a0e1532b2425287c5513aa859b33dde50409e321fe",
+      "label_sha256": "faf0c6303366934a541c093dce31436dba004ac3ca5992d2d026cbdb1156fa15"
+    }
+  ],
+  "full_source_rehash_now": false,
+  "prior_full_audit": "old accepted pipeline; all16551+clean4952 previously independently accepted",
+  "versions": {
+    "torch": "2.7.1+cu128",
+    "torchvision": "0.22.1+cu128",
+    "ultralytics": "8.4.150",
+    "numpy": "2.4.6",
+    "Pillow": "12.3.0",
+    "opencv-python": "5.0.0.93"
+  },
+  "ultralytics_native_sources": {
+    "data/augment.py": {
+      "sha256": "3631af29958e17bc442cbaa49a6bd32b660615b1bb1171a4e8e8692bace1f428"
+    },
+    "data/dataset.py": {
+      "sha256": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e"
+    },
+    "data/build.py": {
+      "sha256": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a"
+    },
+    "engine/trainer.py": {
+      "sha256": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7"
+    },
+    "cfg/default.yaml": {
+      "sha256": "27d6c46184efc16d404f8b3bd1e12069f3ba10379adbbc415ffc10cc41088d7a"
+    },
+    "models/yolo/detect/train.py": {
+      "sha256": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f"
+    },
+    "utils/instance.py": {
+      "sha256": "609e24de399439afe3eeb453334d1e700afa53047c07701e3f25c3e97bdd2b98"
+    },
+    "nn/tasks.py": {
+      "sha256": "c3896877977a1dca2ffaa1f4ad755ebd57342cae0ec80c78fa45edaa67f5823e"
+    },
+    "utils/loss.py": {
+      "sha256": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d"
+    },
+    "utils/tal.py": {
+      "sha256": "9468fb73df7805a4d297302aa221e0d7a6e46e224d0a0768e5abf3f4d2cf2861"
+    },
+    "utils/metrics.py": {
+      "sha256": "a2125a0e9269fbb2e186e0a972d35465a9a81049b0cd6b568448abb784587869"
+    },
+    "utils/torch_utils.py": {
+      "sha256": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5"
+    }
+  },
+  "installer": "pip\n",
+  "native_git_sha": "UNKNOWN_distribution_has_no_direct_url; actual12sourceSHA256bound",
+  "predecessor": {
+    "state": "running",
+    "run_id": "s4_tfss_full_overlap_seed0_20261021_v1",
+    "source_commit": "1d10ad620ef01aad20e8c85d49465473d72c9a4e",
+    "config_sha256": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
+    "support_mode": "bbox_full_target",
+    "stage": "noise_generation"
+  },
+  "predecessor_process": {
+    "pid": 2829581,
+    "start_ticks": 325195800,
+    "uid": 1014
+  },
+  "locked_train_args": {
+    "data": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/outputs/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/train_data.yaml",
+    "epochs": 200,
+    "imgsz": 640,
+    "batch": 36,
+    "workers": 16,
+    "project": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/outputs/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/victim_run",
+    "name": "victim",
+    "exist_ok": true,
+    "optimizer": "SGD",
+    "cos_lr": true,
+    "close_mosaic": 100,
+    "cache": true,
+    "amp": true,
+    "save_period": 10,
+    "device": "0",
+    "lr0": 0.01,
+    "lrf": 0.01,
+    "momentum": 0.937,
+    "weight_decay": 0.0005,
+    "seed": 0,
+    "pretrained": false,
+    "val": true,
+    "patience": 0
+  },
+  "old_eight_defenses": "actual server all10stages ACCEPTED / COMPLETED_AND_ACCEPTED",
+  "old_state_sha256": "53c2ba7167bcfbf17bd077f08299034c8b3db95029f7cf3223a29b94e7906590"
+}

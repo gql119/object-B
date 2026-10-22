@@ -1,0 +1,58 @@
+[
+  {
+    "repo": "hala64/mi-ue",
+    "commit": "4cd387978c08b0c85eed9afc0b849d0b8777691c",
+    "file": "evaluation_sl.py",
+    "url": "https://raw.githubusercontent.com/hala64/mi-ue/4cd387978c08b0c85eed9afc0b849d0b8777691c/evaluation_sl.py",
+    "sha256": "e8bd0b8d579cca1019faf1437c46da06a24986b239d84c54d38c58908a68cf15"
+  },
+  {
+    "repo": "hala64/mi-ue",
+    "commit": "4cd387978c08b0c85eed9afc0b849d0b8777691c",
+    "file": "dataloaders.py",
+    "url": "https://raw.githubusercontent.com/hala64/mi-ue/4cd387978c08b0c85eed9afc0b849d0b8777691c/dataloaders.py",
+    "sha256": "fe8418b52f2951e45f5f52eed105d4ca4ce24719cfc306b18acef49c60998839"
+  },
+  {
+    "repo": "hala64/mi-ue",
+    "commit": "4cd387978c08b0c85eed9afc0b849d0b8777691c",
+    "file": "cutout.py",
+    "url": "https://raw.githubusercontent.com/hala64/mi-ue/4cd387978c08b0c85eed9afc0b849d0b8777691c/cutout.py",
+    "sha256": "b1b8a481a25f333638565875eb7c1f25db30a5e1b733e61ccfc8a64e119c08fb"
+  },
+  {
+    "repo": "hala64/mi-ue",
+    "commit": "4cd387978c08b0c85eed9afc0b849d0b8777691c",
+    "file": "README.md",
+    "url": "https://raw.githubusercontent.com/hala64/mi-ue/4cd387978c08b0c85eed9afc0b849d0b8777691c/README.md",
+    "sha256": "458391e03c32b060b1f6eb413cbcebfb9b2177601e4eb80bde6508040487f53e"
+  },
+  {
+    "repo": "psandovalsegura/learn-from-unlearnable",
+    "commit": "866d1dab6420bb1ea99796c8a263f3b0562e23e9",
+    "file": "orthogonal_projection_step_1.py",
+    "url": "https://raw.githubusercontent.com/psandovalsegura/learn-from-unlearnable/866d1dab6420bb1ea99796c8a263f3b0562e23e9/orthogonal_projection_step_1.py",
+    "sha256": "7750bee3739d2c2852c3b7f9a6f36ddf98ae900cf685c2d69a797c60f70d95cd"
+  },
+  {
+    "repo": "psandovalsegura/learn-from-unlearnable",
+    "commit": "866d1dab6420bb1ea99796c8a263f3b0562e23e9",
+    "file": "orthogonal_projection_step_2.py",
+    "url": "https://raw.githubusercontent.com/psandovalsegura/learn-from-unlearnable/866d1dab6420bb1ea99796c8a263f3b0562e23e9/orthogonal_projection_step_2.py",
+    "sha256": "ca9be903870a9ce5d77d1f34923cd64eba6fd6caeb38c5858991d6cb2204ec09"
+  },
+  {
+    "repo": "psandovalsegura/learn-from-unlearnable",
+    "commit": "866d1dab6420bb1ea99796c8a263f3b0562e23e9",
+    "file": "utils_projection.py",
+    "url": "https://raw.githubusercontent.com/psandovalsegura/learn-from-unlearnable/866d1dab6420bb1ea99796c8a263f3b0562e23e9/utils_projection.py",
+    "sha256": "eef14e8de05e5aefe765865a47760911108126b3ed46e08dfdb16ed43f48eb6a"
+  },
+  {
+    "repo": "psandovalsegura/learn-from-unlearnable",
+    "commit": "866d1dab6420bb1ea99796c8a263f3b0562e23e9",
+    "file": "README.md",
+    "url": "https://raw.githubusercontent.com/psandovalsegura/learn-from-unlearnable/866d1dab6420bb1ea99796c8a263f3b0562e23e9/README.md",
+    "sha256": "9f36861f65494fbdf28f8bef5b3d4d9bd2a73c03a97d419f4528abc23a53ccb4"
+  }
+]

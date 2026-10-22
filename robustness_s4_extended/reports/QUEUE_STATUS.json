@@ -1,0 +1,19 @@
+{
+  "state": "PREPARED_NOT_DEPLOYED",
+  "predecessor": {
+    "state": "running",
+    "run_id": "s4_tfss_full_overlap_seed0_20261021_v1",
+    "source_commit": "1d10ad620ef01aad20e8c85d49465473d72c9a4e",
+    "config_sha256": "2bedd986d44dce40d3815093da76ef3d259aec83fab7f0c6518d0f7795b6675c",
+    "support_mode": "bbox_full_target",
+    "stage": "noise_generation"
+  },
+  "GPU_training_started": false,
+  "stages": {
+    "cutout": "WAITING_PREVIOUS_PIPELINE",
+    "cutmix": "WAITING_PREVIOUS_PIPELINE",
+    "mixup": "WAITING_PREVIOUS_PIPELINE",
+    "op": "BLOCKED_PROTOCOL_APPROVAL"
+  },
+  "official_metrics": null
+}
