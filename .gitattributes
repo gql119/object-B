@@ -29,3 +29,9 @@ scripts/run_s4_tfss_pipeline.py text eol=lf
 scripts/s4_production_smoke.py text eol=lf
 ue_framework/methods/s4_*.py text eol=lf
 ue_framework/s4_victim.py text eol=lf
+
+# Isolated COCO protocol/source receipts must hash identically on Windows/Linux.
+coco_s4/** -text
+docs/S4_COCO_MINITRAIN_20261023/** -text
+configs/coco_yolov8n_80cls.yaml -text
+COCO_CONTINUE.md -text
