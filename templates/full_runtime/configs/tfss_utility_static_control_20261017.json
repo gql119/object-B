@@ -1,0 +1,66 @@
+{
+  "schema": "tfss.utility-static-control.v1",
+  "authorization": "direct human 2026-10-17 six scoped requirements; failure restoration, static same-base RMS control, existing fixed training batches, no changes to S0/C/U loss/parameters/schedule, judge whether one full Utility run is worth proposing",
+  "inputs": {
+    "0": {
+      "output_root": "${PATH_4f0801724f62}",
+      "control_root": "${PATH_cf4d2eb12ca8}",
+      "repo_root": "${PATH_6218616f2fef}",
+      "run_id": "tfss_cu_short_train32_seed0_20261017_v1",
+      "commit": "2abe6544ab0e2701b94c961d6e06c59a66ee87e3",
+      "maps_sha256": "db93dc6e12ae667cd0f86b9fad13a2f4aea081b93a6651c12158525103ada9c8"
+    },
+    "1": {
+      "output_root": "${PATH_bc71f5995d69}",
+      "control_root": "${PATH_d0e32f0968f6}",
+      "repo_root": "${PATH_1a52fe3f87cc}",
+      "run_id": "tfss_cu_short_batch1_train16_seed0_20261017_v2",
+      "commit": "e9623c78a27314c5f6f733abea90602d9415fb4a",
+      "maps_sha256": "4c58922d5421b71ab402461f27a2d89204ad8367d58060fe50f98120141205c7"
+    }
+  },
+  "manifest_sha256": "3becd3c5c9338dfb887da6163df8063a8ed44303dbacc4351f15e5ba376be5a1",
+  "original_protocol_sha256": "c49b3e13e653c10d806c4e2f1076e0a2147a5186383b0d47e576f2c7aa3f3a5d",
+  "remote_output_boundary": "${PATH_527f55be488f}",
+  "absolute_RMS_tolerance": 1e-07,
+  "relative_RMS_tolerance": 0.0001,
+  "alpha_bounds": [
+    0,
+    1
+  ],
+  "eta_U": 0.85,
+  "new_optimizer_updates": 0,
+  "smoke_cells": [
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      5,
+      1
+    ]
+  ],
+  "measured_cells": "both existing fixed16 TRAIN batches, saved U pre-step states1..5, EOT1/2",
+  "arms": [
+    "canonical S0 at Utility state",
+    "Utility replay",
+    "static same-Utility-base uniform RMS matched"
+  ],
+  "independent_control_disposition": "original own-trajectory Uniform-U remains failed, never replace or reclassify its step5 as completed",
+  "invalid_Q_policy": "unchanged preserved strength/excluded attribution domain",
+  "spatial_regions": {
+    "high_Q": "Q>=.9 and valid attribution domain",
+    "high_R": "R>=.9",
+    "high_R_low_Q": "R>=.9 and Q<=.1 and validQ",
+    "weighted_energy": "actual post-image-clamp delta^2 weighted by clean Q/R, divided by same-state unscaled base energy"
+  },
+  "target_gate": "same prior engineering GateB; report static vs same-state S0 separately from original own-trajectory results",
+  "recommendation_basis": "correct replay and actual RMS pairing, target proxy preservation, spatial highQ/high-protection retention vs highRisk reduction at same total RMS, paired NT feature and native realGT proxies, stability across both fixed batches; mixed/incomplete evidence may mean do not recommend. No AP/convergence claim. No parameter search.",
+  "full_TFSS_authorized": false,
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "cleanup_policy": "retain_all",
+  "new_publication_authorized": false
+}

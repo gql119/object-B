@@ -1,0 +1,43 @@
+{
+  "schema": "s5.layer-probe.v1",
+  "stage": "B",
+  "seed": 0,
+  "fixed_manifest_sha256": "3becd3c5c9338dfb887da6163df8063a8ed44303dbacc4351f15e5ba376be5a1",
+  "batch_partitions": [
+    [
+      0,
+      16
+    ],
+    [
+      16,
+      32
+    ]
+  ],
+  "roles": [
+    "S4_reference",
+    "P3_base",
+    "P5_base"
+  ],
+  "steps_per_independent_trial": 5,
+  "eot_samples": 2,
+  "post_update_observation_eot_samples": 2,
+  "equivalence_absolute_tolerance": 1e-07,
+  "lambda_ret": 0.25,
+  "CUP_active": false,
+  "layer_channels": "all channels at actual model.15/model.21 outputs; never use target-selected TSFL24 as retention coordinates",
+  "roi_policy": "original masked_prototype min mass1, original P3 image eligibility; explicit unmatched/invalid GT counts and shared-GT views; no silently invented ROI",
+  "size_bins": "original GT area <32^2 small, <96^2 medium, otherwise large, matching existing TRAIN32 manifest descriptive scale",
+  "GT_proxy": "same Frozen clean/poison actual EOT forward outputs; detached shared clean native all-GT TAL; native same-TAL alone only for uncovered valid GT; original box/BCE19/DFL gains, object/class means; diagnostic only",
+  "protect_proxy": "weighted BG + weighted rel + lambda_adapt*original Adaptive target",
+  "decision_rule": {
+    "default": "P3",
+    "P5_eligibility": "P3 no-op must pass, actual finite effective gradients/budgets/unchanged models, no missing original valid P3 ROI in P5",
+    "P5_evidence": "both independent batches must show no worsening final protection proxy, no higher paired gradient conflict, improvement in same-native-GT detection delta with consistent perclass/size support, and static/five-step consistency; raw cross-layer loss magnitude alone never selects P5",
+    "mixed_or_weak_or_unsupported": "retain P3; report every unfavorable class and signal",
+    "cost": "report peak memory and elapsed time including diagnostic overhead; do not treat observer-heavy timings as native production throughput"
+  },
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "victim_training_enabled": false,
+  "cleanup_policy": "retain_all"
+}

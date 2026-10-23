@@ -1,0 +1,16 @@
+{
+  "schema": "s4.full-selection.rule.v1",
+  "decision_rule_version": "conservative_pareto_S_20261022_v1",
+  "frozen_before_full_results": true,
+  "S_improvement_tolerance": 1e-09,
+  "required_full_guards": [
+    "Person_AP50_not_higher",
+    "NT_mAP50_not_lower",
+    "WCD_not_higher",
+    "identical_evaluation_protocol"
+  ],
+  "other_guard_tolerance": 0,
+  "invalid_full_action": "BLOCKED_FULL_VALIDATION",
+  "OP_protocol_approved": false,
+  "single_seed_descriptive": true
+}
