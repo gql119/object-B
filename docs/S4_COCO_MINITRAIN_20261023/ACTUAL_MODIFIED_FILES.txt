@@ -35,3 +35,12 @@ docs/S4_COCO_MINITRAIN_20261023/S4_COCO_TEST_REPORT.md
 docs/S4_COCO_MINITRAIN_20261023/S4_VOC_TO_COCO_COMPATIBILITY_AUDIT.md
 docs/S4_COCO_MINITRAIN_20261023/SNAPSHOT_PUBLICATION_VERIFIED.json
 docs/S4_COCO_MINITRAIN_20261023/USER_TASK_SOURCE.md
+scripts/build_b2_to_safe_coordinates.py
+scripts/build_semantic_coordinates.py
+ue_framework/methods/b2_semantic.py
+ue_framework/methods/s4_optimization.py
+ue_framework/methods/s4_pixel_audit.py
+ue_framework/methods/tfss_clean_maps.py
+ue_framework/methods/tfss_nt_sensitivity.py
+ue_framework/s4_amp_observer.py
+ue_framework/s4_victim.py
