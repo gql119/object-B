@@ -35,3 +35,6 @@ coco_s4/** -text
 docs/S4_COCO_MINITRAIN_20261023/** -text
 configs/coco_yolov8n_80cls.yaml -text
 COCO_CONTINUE.md -text
+.gitattributes text eol=lf
+scripts/build_semantic_coordinates.py text eol=lf
+scripts/build_b2_to_safe_coordinates.py text eol=lf
