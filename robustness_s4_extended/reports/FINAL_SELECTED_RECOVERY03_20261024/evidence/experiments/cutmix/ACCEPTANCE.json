@@ -1,0 +1,48 @@
+{
+  "state": "ACCEPTED",
+  "records": {
+    "clean": {
+      "state": "ACCEPTED",
+      "arm": "clean",
+      "defense": "cutmix",
+      "epochs": 200,
+      "checkpoints": {
+        "last.pt": "ca28fdce2994286640887c78891c2c969a7615383ee19971b91eb55b0549aa06",
+        "best.pt": "1665c278788cd40db967c696fff19ba3747e8bf955452417051b113aec5ee76b"
+      },
+      "source_commit": "40d2e55914c586bba45d1ea1bf44b89689d20865",
+      "config_sha256": "e35f7119a929b678c2f074c64ebb4641cf25fa41d1963eae7a9f4bbecf262677",
+      "input_manifest_sha256": "d707e73b0b512f8a0ef481d753fa81aaacd3f26a2dd1139ddae8679fa8730509",
+      "parent_selected_manifest_sha256": "194d05cba8674c5699f83ad70178e93d6df7389a54fb0914d140342607598d36",
+      "selected_method": "S4_ORIGINAL",
+      "selected_dataset_manifest": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/outputs/s4_tfss_utility_seed0_20261017_v1/materialization_manifest.json",
+      "selected_dataset_sha256": "194d05cba8674c5699f83ad70178e93d6df7389a54fb0914d140342607598d36",
+      "decision_sha256": "630c8ad65d110c115a72dc7ea50d88c55a2a1ffaac79172d239b0d02a0e612c1",
+      "batch_id": "s4_robustness_extended_selected_seed0_20261022_v2",
+      "validation": "original4952clean",
+      "metrics_sha256": "8ad8685abaff4345e92df584ef2f4522a712ac268e17831b9069953d4115450b"
+    },
+    "poison": {
+      "state": "ACCEPTED",
+      "arm": "poison",
+      "defense": "cutmix",
+      "epochs": 200,
+      "checkpoints": {
+        "last.pt": "11bb61a4d662f403d30f75f1a33eab801f63f444c80dd750907a9d31b1fdc84d",
+        "best.pt": "634e1ab1fbb8f01f37c693fa103c07398e413cc44d1e219fd720615b0820ca11"
+      },
+      "source_commit": "40d2e55914c586bba45d1ea1bf44b89689d20865",
+      "config_sha256": "e35f7119a929b678c2f074c64ebb4641cf25fa41d1963eae7a9f4bbecf262677",
+      "input_manifest_sha256": "4e7931d80f45de6ba49406f22350811a0e354aaca3a5985aa3022218964657be",
+      "parent_selected_manifest_sha256": "194d05cba8674c5699f83ad70178e93d6df7389a54fb0914d140342607598d36",
+      "selected_method": "S4_ORIGINAL",
+      "selected_dataset_manifest": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/outputs/s4_tfss_utility_seed0_20261017_v1/materialization_manifest.json",
+      "selected_dataset_sha256": "194d05cba8674c5699f83ad70178e93d6df7389a54fb0914d140342607598d36",
+      "decision_sha256": "630c8ad65d110c115a72dc7ea50d88c55a2a1ffaac79172d239b0d02a0e612c1",
+      "batch_id": "s4_robustness_extended_selected_seed0_20261022_v2",
+      "validation": "original4952clean",
+      "metrics_sha256": "33cce95c56b226b17b819df8569b435bc785fe964b57b603133b073d4f09daf8"
+    }
+  },
+  "paired_sha256": "2f6a7d0f2fc3900c2aafa70ec0ccd320be94193ba38169fcb6058c1daaaa09ae"
+}

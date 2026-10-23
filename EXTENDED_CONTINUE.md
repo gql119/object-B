@@ -1,3 +1,13 @@
+# Final extended results — 2026-10-24
+
+Change: source40d2/confige35f completed all six matched200epoch victims; same locked originalS4 Decision630c8. Server final state OP BLOCKED_PROTOCOL_APPROVAL, activeNone, exit0.
+
+Result: Cutout/CutMix/MixUp independently accepted; completionhealth->wait->18smallpull plus49small source/checkpoint/arm receipts. CPU checked131source/12native,actuallast/best/200CSV/nativeoptimizerRNG; all signed scores independently recomputed. Final report: robustness_s4_extended/reports/FINAL_SELECTED_RECOVERY03_20261024/README.md. S: .931351/.924886/.885240, respectively; single seed descriptive.
+
+Next: no more old launches,smokes or reviewers. OP needs explicit protocol approval and remains disabled. The latest human COCO task supersedes historical delete-monitor instructions: keep the SAME sole monitor. COCO needs full official image acquisition/newphase gates; no formal binding exists. Runtime40d2 is immutable; final documentation publication is separate.
+
+Historical preparation follows.
+
 # Current scientific gate CLOSED — 2026-10-22T22:09UTC
 Read execution/EXTENDED_CURRENT_STATE.json and current actual server state. All three current-runtime40d2/confige35f GPU groups passed: Cutout20/2updates, CutMix20/2, MixUp18/2, sixbaselineforwards. EXACTLY ONE new independent reviewer /root/extended_defenses_scientific_review returned scientifically_correct/allow_run/no blockers. Verdict execution/EXTENDED_INDEPENDENT_SCIENTIFIC_REVIEW.md; packet execution/EXTENDED_SCIENTIFIC_REVIEW_PACKET.json. External receipt root/receipts/EXTENDED_SCIENTIFIC_CLOSURE_SELECTED_RECOVERY03.json SHA258331e60b368981be8142cf61cb7758866597b848785a6bff4b36313a113589 uploaded and readback exact, binds source40d2/confige35f/Decision630c8 and actualall3smokeSHAs. NEVER call another scientific reviewer or repeat passed smoke. No main-agent outstanding blockers. Server owns automatic matched Clean200/S4200 Cutout→CutMix→MixUp, not heartbeat. Only observe normal stages; scoped repair authorized only on actual diagnosed failure/newuniqueversionedbinding. Same sole2hmonitor; OP unapproved. Prior preparation context below is historical where it says pending review/smoke.
 

@@ -1,0 +1,31 @@
+{
+  "stage": "mixup",
+  "child": {
+    "pid": 3521935,
+    "start_ticks": 342178501,
+    "uid": 1014,
+    "argv": [
+      "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+      "-B",
+      "-m",
+      "robustness_s4_extended.worker",
+      "--action",
+      "accept",
+      "--defense",
+      "mixup",
+      "--output",
+      "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/mixup"
+    ],
+    "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selected_seed0_20261022_recovery03",
+    "started_at": 1792797110.2177398,
+    "memory_scope": {
+      "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-697fec3cff037e98ba844dc8.scope",
+      "memory.current": "9420800",
+      "memory.peak": "9420800",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+    }
+  },
+  "state": "RUNNING",
+  "time": 1792797110.351345
+}

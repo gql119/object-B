@@ -1,0 +1,14 @@
+{"time": 1792699304.1041868, "event": "job_started", "stage": "validation", "job": "validate", "supervisor": {"pid": 3083621, "start_ticks": 332397894, "uid": 1014}}
+{"time": 1792699604.4020104, "event": "job_started", "stage": "smoke_cutout", "job": "smoke_cutout", "supervisor": {"pid": 3084899, "start_ticks": 332427924, "uid": 1014}}
+{"time": 1792699904.6864123, "event": "job_started", "stage": "smoke_cutmix", "job": "smoke_cutmix", "supervisor": {"pid": 3086021, "start_ticks": 332457952, "uid": 1014}}
+{"time": 1792700204.9924068, "event": "job_started", "stage": "smoke_mixup", "job": "smoke_mixup", "supervisor": {"pid": 3087270, "start_ticks": 332487982, "uid": 1014}}
+{"time": 1792700505.278933, "event": "all_current_source_GPU_smokes_ready_for_single_scientific_review", "stage": "scientific_review", "selected_method": "S4_ORIGINAL", "selected_dataset_manifest": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/outputs/s4_tfss_utility_seed0_20261017_v1/materialization_manifest.json", "selected_dataset_sha256": "194d05cba8674c5699f83ad70178e93d6df7389a54fb0914d140342607598d36", "decision_sha256": "630c8ad65d110c115a72dc7ea50d88c55a2a1ffaac79172d239b0d02a0e612c1", "batch_id": "s4_robustness_extended_selected_seed0_20261022_v2"}
+{"time": 1792707105.3755827, "event": "job_started", "stage": "cutout", "job": "cutout_clean", "supervisor": {"pid": 3104782, "start_ticks": 333178021, "uid": 1014}}
+{"time": 1792721806.0733488, "event": "job_started", "stage": "cutout", "job": "cutout_poison", "supervisor": {"pid": 3140051, "start_ticks": 334648091, "uid": 1014}}
+{"time": 1792736506.7661905, "event": "job_started", "stage": "cutout", "job": "accept_cutout", "supervisor": {"pid": 3304261, "start_ticks": 336118160, "uid": 1014}}
+{"time": 1792736807.1189468, "event": "job_started", "stage": "cutmix", "job": "cutmix_clean", "supervisor": {"pid": 3305279, "start_ticks": 336148195, "uid": 1014}}
+{"time": 1792751507.7994323, "event": "job_started", "stage": "cutmix", "job": "cutmix_poison", "supervisor": {"pid": 3382627, "start_ticks": 337618263, "uid": 1014}}
+{"time": 1792766208.46774, "event": "job_started", "stage": "cutmix", "job": "accept_cutmix", "supervisor": {"pid": 3434341, "start_ticks": 339088330, "uid": 1014}}
+{"time": 1792766508.7929492, "event": "job_started", "stage": "mixup", "job": "mixup_clean", "supervisor": {"pid": 3435019, "start_ticks": 339118363, "uid": 1014}}
+{"time": 1792782109.4870865, "event": "job_started", "stage": "mixup", "job": "mixup_poison", "supervisor": {"pid": 3485985, "start_ticks": 340678432, "uid": 1014}}
+{"time": 1792797110.1343396, "event": "job_started", "stage": "mixup", "job": "accept_mixup", "supervisor": {"pid": 3521934, "start_ticks": 342178497, "uid": 1014}}

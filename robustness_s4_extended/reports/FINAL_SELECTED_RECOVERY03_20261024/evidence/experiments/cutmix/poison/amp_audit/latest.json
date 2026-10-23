@@ -1,0 +1,1 @@
+{"epoch": 200, "batch_index": 459, "total_batches": 92000, "actual_updates_total": 46422, "skips_total": 22, "consecutive_skips": 0, "amp_scale_after": 2048.0, "model_finite": true, "EMA_finite": true, "optimizer_finite": true, "elapsed_seconds": 14376.343119967729}

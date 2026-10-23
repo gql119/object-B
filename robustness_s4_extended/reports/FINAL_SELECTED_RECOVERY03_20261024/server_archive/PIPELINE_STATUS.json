@@ -1,0 +1,718 @@
+{
+  "schema": "s4.extended.pipeline-state.v1",
+  "pipeline_run_id": "s4_robustness_extended_selected_seed0_20261022_recovery03",
+  "source_commit": "40d2e55914c586bba45d1ea1bf44b89689d20865",
+  "config_sha256": "e35f7119a929b678c2f074c64ebb4641cf25fa41d1963eae7a9f4bbecf262677",
+  "state": "BLOCKED_PROTOCOL_APPROVAL",
+  "current_stage": "op",
+  "stages": {
+    "cutout": "ACCEPTED",
+    "cutmix": "ACCEPTED",
+    "mixup": "ACCEPTED",
+    "op": "BLOCKED_PROTOCOL_APPROVAL"
+  },
+  "jobs": {
+    "validate": {
+      "state": "COMPLETED",
+      "directory": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/jobs/validate",
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "robustness_s4_extended.worker",
+        "--action",
+        "validate"
+      ],
+      "created_at": 1792699304.071857,
+      "supervisor": {
+        "pid": 3083621,
+        "start_ticks": 332397894,
+        "uid": 1014
+      },
+      "exit": {
+        "returncode": 0,
+        "ended_at": 1792699308.4632359,
+        "child": {
+          "pid": 3083622,
+          "start_ticks": 332397897,
+          "uid": 1014,
+          "argv": [
+            "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+            "-B",
+            "-m",
+            "robustness_s4_extended.worker",
+            "--action",
+            "validate"
+          ],
+          "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selected_seed0_20261022_recovery03",
+          "started_at": 1792699304.1856906,
+          "memory_scope": {
+            "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-304e8da5863a0852355c4774.scope",
+            "memory.current": "9695232",
+            "memory.peak": "9695232",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+            "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+          }
+        }
+      }
+    },
+    "smoke_cutout": {
+      "state": "COMPLETED",
+      "directory": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/jobs/smoke_cutout",
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "robustness_s4_extended.worker",
+        "--action",
+        "smoke",
+        "--defense",
+        "cutout",
+        "--output",
+        "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/smoke_cutout"
+      ],
+      "created_at": 1792699604.3772326,
+      "supervisor": {
+        "pid": 3084899,
+        "start_ticks": 332427924,
+        "uid": 1014
+      },
+      "exit": {
+        "returncode": 0,
+        "ended_at": 1792699853.3878329,
+        "child": {
+          "pid": 3084900,
+          "start_ticks": 332427930,
+          "uid": 1014,
+          "argv": [
+            "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+            "-B",
+            "-m",
+            "robustness_s4_extended.worker",
+            "--action",
+            "smoke",
+            "--defense",
+            "cutout",
+            "--output",
+            "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/smoke_cutout"
+          ],
+          "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selected_seed0_20261022_recovery03",
+          "started_at": 1792699604.5300703,
+          "memory_scope": {
+            "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-6de3a3297f998f2692ef3521.scope",
+            "memory.current": "9695232",
+            "memory.peak": "9695232",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+            "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+          }
+        }
+      }
+    },
+    "smoke_cutmix": {
+      "state": "COMPLETED",
+      "directory": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/jobs/smoke_cutmix",
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "robustness_s4_extended.worker",
+        "--action",
+        "smoke",
+        "--defense",
+        "cutmix",
+        "--output",
+        "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/smoke_cutmix"
+      ],
+      "created_at": 1792699904.6589925,
+      "supervisor": {
+        "pid": 3086021,
+        "start_ticks": 332457952,
+        "uid": 1014
+      },
+      "exit": {
+        "returncode": 0,
+        "ended_at": 1792700153.605997,
+        "child": {
+          "pid": 3086022,
+          "start_ticks": 332457958,
+          "uid": 1014,
+          "argv": [
+            "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+            "-B",
+            "-m",
+            "robustness_s4_extended.worker",
+            "--action",
+            "smoke",
+            "--defense",
+            "cutmix",
+            "--output",
+            "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/smoke_cutmix"
+          ],
+          "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selected_seed0_20261022_recovery03",
+          "started_at": 1792699904.8114548,
+          "memory_scope": {
+            "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-92c2c3d8cfe5e821b7484523.scope",
+            "memory.current": "9695232",
+            "memory.peak": "9695232",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+            "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+          }
+        }
+      }
+    },
+    "smoke_mixup": {
+      "state": "COMPLETED",
+      "directory": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/jobs/smoke_mixup",
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "robustness_s4_extended.worker",
+        "--action",
+        "smoke",
+        "--defense",
+        "mixup",
+        "--output",
+        "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/smoke_mixup"
+      ],
+      "created_at": 1792700204.9549327,
+      "supervisor": {
+        "pid": 3087270,
+        "start_ticks": 332487982,
+        "uid": 1014
+      },
+      "exit": {
+        "returncode": 0,
+        "ended_at": 1792700443.4540439,
+        "child": {
+          "pid": 3087271,
+          "start_ticks": 332487988,
+          "uid": 1014,
+          "argv": [
+            "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+            "-B",
+            "-m",
+            "robustness_s4_extended.worker",
+            "--action",
+            "smoke",
+            "--defense",
+            "mixup",
+            "--output",
+            "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/smoke_mixup"
+          ],
+          "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selected_seed0_20261022_recovery03",
+          "started_at": 1792700205.1124454,
+          "memory_scope": {
+            "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-7a209d1e83f13b786c2cfd01.scope",
+            "memory.current": "9695232",
+            "memory.peak": "9695232",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+            "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+          }
+        }
+      }
+    },
+    "cutout_clean": {
+      "state": "COMPLETED",
+      "directory": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/jobs/cutout_clean",
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "robustness_s4_extended.worker",
+        "--action",
+        "arm",
+        "--defense",
+        "cutout",
+        "--arm",
+        "clean",
+        "--output",
+        "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/cutout/clean"
+      ],
+      "created_at": 1792707105.3383043,
+      "supervisor": {
+        "pid": 3104782,
+        "start_ticks": 333178021,
+        "uid": 1014
+      },
+      "exit": {
+        "returncode": 0,
+        "ended_at": 1792721622.2679572,
+        "child": {
+          "pid": 3104783,
+          "start_ticks": 333178026,
+          "uid": 1014,
+          "argv": [
+            "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+            "-B",
+            "-m",
+            "robustness_s4_extended.worker",
+            "--action",
+            "arm",
+            "--defense",
+            "cutout",
+            "--arm",
+            "clean",
+            "--output",
+            "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/cutout/clean"
+          ],
+          "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selected_seed0_20261022_recovery03",
+          "started_at": 1792707105.46425,
+          "memory_scope": {
+            "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-b9f05f1b0b84a3b0fb22d58c.scope",
+            "memory.current": "9424896",
+            "memory.peak": "9424896",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+            "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+          }
+        }
+      }
+    },
+    "cutout_poison": {
+      "state": "COMPLETED",
+      "directory": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/jobs/cutout_poison",
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "robustness_s4_extended.worker",
+        "--action",
+        "arm",
+        "--defense",
+        "cutout",
+        "--arm",
+        "poison",
+        "--output",
+        "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/cutout/poison"
+      ],
+      "created_at": 1792721806.0442011,
+      "supervisor": {
+        "pid": 3140051,
+        "start_ticks": 334648091,
+        "uid": 1014
+      },
+      "exit": {
+        "returncode": 0,
+        "ended_at": 1792736322.3448799,
+        "child": {
+          "pid": 3140052,
+          "start_ticks": 334648095,
+          "uid": 1014,
+          "argv": [
+            "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+            "-B",
+            "-m",
+            "robustness_s4_extended.worker",
+            "--action",
+            "arm",
+            "--defense",
+            "cutout",
+            "--arm",
+            "poison",
+            "--output",
+            "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/cutout/poison"
+          ],
+          "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selected_seed0_20261022_recovery03",
+          "started_at": 1792721806.1587603,
+          "memory_scope": {
+            "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-149f5a660e5edd49642d833f.scope",
+            "memory.current": "9695232",
+            "memory.peak": "9695232",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+            "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+          }
+        }
+      }
+    },
+    "accept_cutout": {
+      "state": "COMPLETED",
+      "directory": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/jobs/accept_cutout",
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "robustness_s4_extended.worker",
+        "--action",
+        "accept",
+        "--defense",
+        "cutout",
+        "--output",
+        "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/cutout"
+      ],
+      "created_at": 1792736506.7302787,
+      "supervisor": {
+        "pid": 3304261,
+        "start_ticks": 336118160,
+        "uid": 1014
+      },
+      "exit": {
+        "returncode": 0,
+        "ended_at": 1792736579.1664004,
+        "child": {
+          "pid": 3304262,
+          "start_ticks": 336118166,
+          "uid": 1014,
+          "argv": [
+            "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+            "-B",
+            "-m",
+            "robustness_s4_extended.worker",
+            "--action",
+            "accept",
+            "--defense",
+            "cutout",
+            "--output",
+            "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/cutout"
+          ],
+          "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selected_seed0_20261022_recovery03",
+          "started_at": 1792736506.904268,
+          "memory_scope": {
+            "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-f63c4bcac2c19a7eab2c6f40.scope",
+            "memory.current": "9490432",
+            "memory.peak": "9490432",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+            "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+          }
+        }
+      }
+    },
+    "cutmix_clean": {
+      "state": "COMPLETED",
+      "directory": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/jobs/cutmix_clean",
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "robustness_s4_extended.worker",
+        "--action",
+        "arm",
+        "--defense",
+        "cutmix",
+        "--arm",
+        "clean",
+        "--output",
+        "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/cutmix/clean"
+      ],
+      "created_at": 1792736807.0898924,
+      "supervisor": {
+        "pid": 3305279,
+        "start_ticks": 336148195,
+        "uid": 1014
+      },
+      "exit": {
+        "returncode": 0,
+        "ended_at": 1792751507.7148361,
+        "child": {
+          "pid": 3305280,
+          "start_ticks": 336148201,
+          "uid": 1014,
+          "argv": [
+            "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+            "-B",
+            "-m",
+            "robustness_s4_extended.worker",
+            "--action",
+            "arm",
+            "--defense",
+            "cutmix",
+            "--arm",
+            "clean",
+            "--output",
+            "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/cutmix/clean"
+          ],
+          "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selected_seed0_20261022_recovery03",
+          "started_at": 1792736807.2485008,
+          "memory_scope": {
+            "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-022df6ec5d1a59df074533b1.scope",
+            "memory.current": "9695232",
+            "memory.peak": "9695232",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+            "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+          }
+        }
+      }
+    },
+    "cutmix_poison": {
+      "state": "COMPLETED",
+      "directory": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/jobs/cutmix_poison",
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "robustness_s4_extended.worker",
+        "--action",
+        "arm",
+        "--defense",
+        "cutmix",
+        "--arm",
+        "poison",
+        "--output",
+        "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/cutmix/poison"
+      ],
+      "created_at": 1792751507.7719882,
+      "supervisor": {
+        "pid": 3382627,
+        "start_ticks": 337618263,
+        "uid": 1014
+      },
+      "exit": {
+        "returncode": 0,
+        "ended_at": 1792766162.16483,
+        "child": {
+          "pid": 3382628,
+          "start_ticks": 337618268,
+          "uid": 1014,
+          "argv": [
+            "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+            "-B",
+            "-m",
+            "robustness_s4_extended.worker",
+            "--action",
+            "arm",
+            "--defense",
+            "cutmix",
+            "--arm",
+            "poison",
+            "--output",
+            "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/cutmix/poison"
+          ],
+          "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selected_seed0_20261022_recovery03",
+          "started_at": 1792751507.884048,
+          "memory_scope": {
+            "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-8132ee47939769fedcd2117d.scope",
+            "memory.current": "9420800",
+            "memory.peak": "9420800",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+            "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+          }
+        }
+      }
+    },
+    "accept_cutmix": {
+      "state": "COMPLETED",
+      "directory": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/jobs/accept_cutmix",
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "robustness_s4_extended.worker",
+        "--action",
+        "accept",
+        "--defense",
+        "cutmix",
+        "--output",
+        "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/cutmix"
+      ],
+      "created_at": 1792766208.43942,
+      "supervisor": {
+        "pid": 3434341,
+        "start_ticks": 339088330,
+        "uid": 1014
+      },
+      "exit": {
+        "returncode": 0,
+        "ended_at": 1792766222.9065175,
+        "child": {
+          "pid": 3434342,
+          "start_ticks": 339088336,
+          "uid": 1014,
+          "argv": [
+            "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+            "-B",
+            "-m",
+            "robustness_s4_extended.worker",
+            "--action",
+            "accept",
+            "--defense",
+            "cutmix",
+            "--output",
+            "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/cutmix"
+          ],
+          "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selected_seed0_20261022_recovery03",
+          "started_at": 1792766208.5959551,
+          "memory_scope": {
+            "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-81e829818410fa14e6a488f4.scope",
+            "memory.current": "9695232",
+            "memory.peak": "9695232",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+            "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+          }
+        }
+      }
+    },
+    "mixup_clean": {
+      "state": "COMPLETED",
+      "directory": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/jobs/mixup_clean",
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "robustness_s4_extended.worker",
+        "--action",
+        "arm",
+        "--defense",
+        "mixup",
+        "--arm",
+        "clean",
+        "--output",
+        "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/mixup/clean"
+      ],
+      "created_at": 1792766508.7677574,
+      "supervisor": {
+        "pid": 3435019,
+        "start_ticks": 339118363,
+        "uid": 1014
+      },
+      "exit": {
+        "returncode": 0,
+        "ended_at": 1792781899.7778776,
+        "child": {
+          "pid": 3435020,
+          "start_ticks": 339118367,
+          "uid": 1014,
+          "argv": [
+            "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+            "-B",
+            "-m",
+            "robustness_s4_extended.worker",
+            "--action",
+            "arm",
+            "--defense",
+            "mixup",
+            "--arm",
+            "clean",
+            "--output",
+            "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/mixup/clean"
+          ],
+          "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selected_seed0_20261022_recovery03",
+          "started_at": 1792766508.8742409,
+          "memory_scope": {
+            "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-98876f1257a20ecfd7dc7b66.scope",
+            "memory.current": "9424896",
+            "memory.peak": "9424896",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+            "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+          }
+        }
+      }
+    },
+    "mixup_poison": {
+      "state": "COMPLETED",
+      "directory": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/jobs/mixup_poison",
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "robustness_s4_extended.worker",
+        "--action",
+        "arm",
+        "--defense",
+        "mixup",
+        "--arm",
+        "poison",
+        "--output",
+        "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/mixup/poison"
+      ],
+      "created_at": 1792782109.4605312,
+      "supervisor": {
+        "pid": 3485985,
+        "start_ticks": 340678432,
+        "uid": 1014
+      },
+      "exit": {
+        "returncode": 0,
+        "ended_at": 1792797044.7616227,
+        "child": {
+          "pid": 3485986,
+          "start_ticks": 340678438,
+          "uid": 1014,
+          "argv": [
+            "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+            "-B",
+            "-m",
+            "robustness_s4_extended.worker",
+            "--action",
+            "arm",
+            "--defense",
+            "mixup",
+            "--arm",
+            "poison",
+            "--output",
+            "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/mixup/poison"
+          ],
+          "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selected_seed0_20261022_recovery03",
+          "started_at": 1792782109.6217606,
+          "memory_scope": {
+            "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-5927f17f990fb10f90fc01fd.scope",
+            "memory.current": "9691136",
+            "memory.peak": "9691136",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+            "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+          }
+        }
+      }
+    },
+    "accept_mixup": {
+      "state": "COMPLETED",
+      "directory": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/jobs/accept_mixup",
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "robustness_s4_extended.worker",
+        "--action",
+        "accept",
+        "--defense",
+        "mixup",
+        "--output",
+        "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/mixup"
+      ],
+      "created_at": 1792797110.1067655,
+      "supervisor": {
+        "pid": 3521934,
+        "start_ticks": 342178497,
+        "uid": 1014
+      },
+      "exit": {
+        "returncode": 0,
+        "ended_at": 1792797119.3653243,
+        "child": {
+          "pid": 3521935,
+          "start_ticks": 342178501,
+          "uid": 1014,
+          "argv": [
+            "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+            "-B",
+            "-m",
+            "robustness_s4_extended.worker",
+            "--action",
+            "accept",
+            "--defense",
+            "mixup",
+            "--output",
+            "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/outputs/s4_robustness_extended_selected_seed0_20261022_recovery03/experiments/mixup"
+          ],
+          "cwd": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/robustness_s4_extended_20261022/repos/s4_robustness_extended_selected_seed0_20261022_recovery03",
+          "started_at": 1792797110.2177398,
+          "memory_scope": {
+            "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4rb-job-697fec3cff037e98ba844dc8.scope",
+            "memory.current": "9420800",
+            "memory.peak": "9420800",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+            "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+          }
+        }
+      }
+    }
+  },
+  "active_job": null,
+  "controller": {
+    "pid": 3083464,
+    "start_ticks": 332397377,
+    "uid": 1014
+  },
+  "updated_at": 1792797410.42734,
+  "selected_method": "S4_ORIGINAL",
+  "selection_status": "VALIDATED_AND_LOCKED",
+  "decision_sha256": "630c8ad65d110c115a72dc7ea50d88c55a2a1ffaac79172d239b0d02a0e612c1"
+}

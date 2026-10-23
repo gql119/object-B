@@ -1,3 +1,7 @@
+# S4 extended robustness final results
+
+Cutout/CutMix/MixUp: six matched200epoch victims accepted; OP protocol approval pending. [Final report](robustness_s4_extended/reports/FINAL_SELECTED_RECOVERY03_20261024/README.md). Runtime40d2 remains separate from documentation publication.
+
 # S4 鲁棒性最终交付 — 2026-10-22
 
 八项防御的配对200轮评价和验收已完成；[最终结果、协议与来源审计](docs/S4_ROBUSTNESS_FINAL_20261022/README.md)为当前正式入口。AT未运行；S4-TFSS-Full另行审查，不包含在本次结果中。

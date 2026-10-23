@@ -45,3 +45,6 @@ research_workspace/STATE.md -text whitespace=cr-at-eol
 
 # Preserve exact small scientific-review evidence bytes.
 robustness_s4_extended/reports/PRERUN_SELECTED_RECOVERY03/** -text whitespace=cr-at-eol
+
+# Preserve exact final server reports and evidence bytes.
+robustness_s4_extended/reports/FINAL_SELECTED_RECOVERY03_20261024/** -text whitespace=cr-at-eol

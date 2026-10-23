@@ -1,3 +1,13 @@
+# Final extended results — 2026-10-24
+
+Change: source40d2/confige35f completed all six matched200epoch victims; same locked originalS4 Decision630c8. Server final state OP BLOCKED_PROTOCOL_APPROVAL, activeNone, exit0.
+
+Result: Cutout/CutMix/MixUp independently accepted; completionhealth->wait->18smallpull plus49small source/checkpoint/arm receipts. CPU checked131source/12native,actuallast/best/200CSV/nativeoptimizerRNG; all signed scores independently recomputed. Final report: robustness_s4_extended/reports/FINAL_SELECTED_RECOVERY03_20261024/README.md. S: .931351/.924886/.885240, respectively; single seed descriptive.
+
+Next: no more old launches,smokes or reviewers. OP needs explicit protocol approval and remains disabled. The latest human COCO task supersedes historical delete-monitor instructions: keep the SAME sole monitor. COCO needs full official image acquisition/newphase gates; no formal binding exists. Runtime40d2 is immutable; final documentation publication is separate.
+
+Historical preparation follows.
+
 # Current extended scientific gate CLOSED — 2026-10-22
 
 Change: Three source40d2/confige35f selected-originalS4 GPU smoke groups completed; one independent scientific implementation review.

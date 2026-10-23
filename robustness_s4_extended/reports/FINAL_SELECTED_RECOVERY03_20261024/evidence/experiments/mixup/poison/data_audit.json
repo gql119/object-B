@@ -1,0 +1,31 @@
+{
+  "state": "passed",
+  "defense": "mixup",
+  "arm": "poison",
+  "count": 16551,
+  "source_dataset": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/outputs/s4_tfss_utility_seed0_20261017_v1/dataset",
+  "parent_S4_manifest_sha256": "194d05cba8674c5699f83ad70178e93d6df7389a54fb0914d140342607598d36",
+  "geometry_unchanged": true,
+  "labels_byte_identical": true,
+  "decoded_PNG_exact": true,
+  "validation": "original4952clean; transform never applied",
+  "output_bytes": 3107164571,
+  "manifest_sha256": "9a072f7dbac8fe1f5d1308858d29fe0f4bba2e127a220f2025457fbe28cb28ec",
+  "online": true,
+  "transform": {
+    "name": "mixup",
+    "probability": 1.0,
+    "beta": [
+      32.0,
+      32.0
+    ],
+    "labels": "native Instances and integer class concatenation; no per-instance lambda loss weights",
+    "schedule": "native close_mosaic100 disables MixUp for final100epochs"
+  },
+  "input_identity": "S4_ORIGINAL",
+  "selected_method": "S4_ORIGINAL",
+  "selected_dataset_manifest": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/outputs/s4_tfss_utility_seed0_20261017_v1/materialization_manifest.json",
+  "selected_dataset_sha256": "194d05cba8674c5699f83ad70178e93d6df7389a54fb0914d140342607598d36",
+  "decision_sha256": "630c8ad65d110c115a72dc7ea50d88c55a2a1ffaac79172d239b0d02a0e612c1",
+  "batch_id": "s4_robustness_extended_selected_seed0_20261022_v2"
+}

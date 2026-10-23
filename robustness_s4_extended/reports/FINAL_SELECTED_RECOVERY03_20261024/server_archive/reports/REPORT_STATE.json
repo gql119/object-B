@@ -1,0 +1,14 @@
+{
+  "pipeline_run_id": "s4_robustness_extended_selected_seed0_20261022_recovery03",
+  "stages": {
+    "cutout": "ACCEPTED",
+    "cutmix": "ACCEPTED",
+    "mixup": "ACCEPTED",
+    "op": "BLOCKED_PROTOCOL_APPROVAL"
+  },
+  "selected_method": "S4_ORIGINAL",
+  "OP": "BLOCKED_PROTOCOL_APPROVAL",
+  "source_commit": "40d2e55914c586bba45d1ea1bf44b89689d20865",
+  "config_sha256": "e35f7119a929b678c2f074c64ebb4641cf25fa41d1963eae7a9f4bbecf262677",
+  "single_seed_descriptive": true
+}
