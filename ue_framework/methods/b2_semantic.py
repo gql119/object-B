@@ -15,6 +15,7 @@ from .safebg import SafeBGTripletCache, safe_background_direction
 class SemanticFrozenTrainer(LegacyKProtoTrainer):
     def _batch_loss(self, items, prototypes):
         """One surrogate clean/poisoned forward for a legacy-style padded batch."""
+        class_names = getattr(self, 'class_names', CLASSES)
         pad_h = (max(image.shape[0] for image, _, _ in items) + 31) // 32 * 32
         pad_w = (max(image.shape[1] for image, _, _ in items) + 31) // 32 * 32
         images, supports = [], []
@@ -269,10 +270,10 @@ class SemanticFrozenTrainer(LegacyKProtoTrainer):
                 metrics[f"active_nt_class_{rank + 1}"] = poisoned.new_tensor(class_frequency[rank])
                 metrics[f"projection_ratio_class_{rank + 1}"] = active_ratios[:, rank].mean()
         for j, c in enumerate(sorted(self.bases)):
-            metrics["L_orth_"+CLASSES[c]] = conflicts[j]
-            metrics["feature_drift_"+CLASSES[c]] = (torch.stack(class_drifts[c]).mean()
+            metrics["L_orth_"+class_names[c]] = conflicts[j]
+            metrics["feature_drift_"+class_names[c]] = (torch.stack(class_drifts[c]).mean()
                 if class_drifts[c] else poisoned.sum()*0.)
-            metrics["feature_count_"+CLASSES[c]] = poisoned.new_tensor(len(class_drifts[c]))
+            metrics["feature_count_"+class_names[c]] = poisoned.new_tensor(len(class_drifts[c]))
         for j in range(self.worst_k):
             c = worst[j]
             metrics[f"worst_class_{j+1}"] = poisoned.new_tensor(c)
@@ -289,6 +290,9 @@ class SemanticFrozenTrainer(LegacyKProtoTrainer):
 class B2SemanticTrainer(B2AdaptiveTrainer, SemanticFrozenTrainer):
     def __init__(self, cfg, method_cfg, device, frozen_reference, adaptive_model):
         super().__init__(cfg, method_cfg, device, frozen_reference, adaptive_model)
+        self.class_names = cfg['experiment'].get('class_names', CLASSES)
+        if len(self.class_names) != self.num_classes:
+            raise ValueError('Configured class names do not match detection head')
         settings = method_cfg["semantic"]
         artifacts = Path(settings["artifact_dir"])
         self.tsfl = torch.load(artifacts/"target_specific_channels.pt", weights_only=True)
@@ -362,7 +366,11 @@ class B2SemanticTrainer(B2AdaptiveTrainer, SemanticFrozenTrainer):
             if not 1 <= self.safe_bg_active_k <= len(self.safe_bases):
                 raise ValueError("Invalid Safe-BG active_k")
             if self.safe_bg_mode == "low_rank":
-                self.safe_bg_cache = SafeBGTripletCache(
+                cache_class = SafeBGTripletCache
+                if self.num_classes == 80:
+                    from coco_s4.cache import OnDemandSafeBGTripletCache
+                    cache_class = OnDemandSafeBGTripletCache
+                self.safe_bg_cache = cache_class(
                     self.safe_bases, self.safe_bg_projector_rtol, self.safe_bg_rank)
         self.lambda_orth = float(settings["lambda_orth"])
         self.orth_objective = settings.get('orth_objective', 'angular')
@@ -416,10 +424,10 @@ class B2SemanticTrainer(B2AdaptiveTrainer, SemanticFrozenTrainer):
         with open(diagnostics_csv_path, newline="", encoding="utf-8") as f:
             reader = csv.DictReader(f); fields = reader.fieldnames; rows = list(reader)
         for row in rows:
-            worst = sorted(self.bases, key=lambda c: (-float(row["L_orth_"+CLASSES[c]]), c))[:self.worst_k]
+            worst = sorted(self.bases, key=lambda c: (-float(row["L_orth_"+self.class_names[c]]), c))[:self.worst_k]
             for j,c in enumerate(worst):
                 row[f"worst_class_{j+1}"] = c
-                row[f"worst_Lorth_{j+1}"] = float(row["L_orth_"+CLASSES[c]])
+                row[f"worst_Lorth_{j+1}"] = float(row["L_orth_"+self.class_names[c]])
         with open(diagnostics_csv_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=fields); writer.writeheader(); writer.writerows(rows)
         with open(diagnostics_json_path, encoding="utf-8") as f:

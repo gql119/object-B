@@ -1,0 +1,42 @@
+{
+  "UTC": "20261023T151707Z",
+  "tests": 45,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "passed": true,
+  "syntax_files": [
+    "coco_s4\\acquire.py",
+    "coco_s4\\cache.py",
+    "coco_s4\\data.py",
+    "coco_s4\\evaluation.py",
+    "coco_s4\\protocol.py",
+    "coco_s4\\validate_cpu.py",
+    "coco_s4\\__init__.py",
+    "coco_s4\\tests\\reference_tfss_nt_sensitivity_voc.py",
+    "coco_s4\\tests\\test_compatibility.py",
+    "coco_s4\\tests\\test_native_sensitivity.py",
+    "coco_s4\\tests\\__init__.py",
+    "ue_framework/methods/tfss_nt_sensitivity.py",
+    "ue_framework/methods/tfss_clean_maps.py",
+    "ue_framework/methods/b2_semantic.py",
+    "ue_framework/methods/s4_optimization.py",
+    "ue_framework/methods/s4_pixel_audit.py",
+    "scripts/build_semantic_coordinates.py",
+    "scripts/build_b2_to_safe_coordinates.py",
+    "ue_framework/s4_victim.py",
+    "ue_framework/s4_amp_observer.py"
+  ],
+  "CPU_only": true,
+  "native_teacher": "random YAML on CPU, not formal clean25K pretrained teacher",
+  "GPU_smoke": "PENDING_PREDECESSOR_AND_DATA",
+  "formal_runs_launched": 0,
+  "known_initial_native_probe_failure": "2 fixture errors: raw DetectionModel lacked args; fixed by setting native get_cfg(), no production loss/guard change",
+  "historical_fixture_separate_result": {
+    "name": "old_B2_baseline_files_identical",
+    "fails_on_unchanged_S4_parent": true,
+    "expected_old_B2_legacy_sha": "e6203909a21d1ac50ba7e41c80219dc69bac9499ad41b2649f9368d8052dabe3",
+    "actual_original_S4_legacy_sha": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb",
+    "replacement": "current_original_S4_math_sources_exact checks8actualserver-SHA-locked sources; historical fixture and failure remain retained"
+  }
+}

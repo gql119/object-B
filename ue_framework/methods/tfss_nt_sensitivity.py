@@ -13,12 +13,17 @@ from ultralytics.utils.metrics import bbox_iou
 from ultralytics.utils.tal import make_anchors, bbox2dist
 
 
-def gradients(model, image, annotations, imgsz=640, *, coverage_policy='strict_native_TAL', coverage_only=False):
+def gradients(model, image, annotations, imgsz=640, *, coverage_policy='strict_native_TAL', coverage_only=False,
+              target_class_id=14, num_classes=20):
+    if not 0 <= target_class_id < num_classes:
+        raise ValueError('Invalid target/class schema')
+    if any(int(a['cls']) != a['cls'] or not 0 <= int(a['cls']) < num_classes for a in annotations):
+        raise ValueError('GT class outside configured schema')
     if coverage_policy not in ['strict_native_TAL', 'independent_same_TAL_for_uncovered_valid_GT']:
         raise ValueError('Unknown predeclared CSB supervision coverage policy')
     if model.training or any(p.requires_grad for p in model.parameters()):
         raise ValueError('CSB teacher must be eval/frozen, with input gradient enabled')
-    nt = [a for a in annotations if int(a['cls']) != 14]
+    nt = [a for a in annotations if int(a['cls']) != target_class_id]
     if not nt:
         return {}, []
     device = next(model.parameters()).device
@@ -39,7 +44,7 @@ def gradients(model, image, annotations, imgsz=640, *, coverage_policy='strict_n
     criterion = v8DetectionLoss(model)
     pd = raw['boxes'].permute(0, 2, 1).contiguous()
     ps = raw['scores'].permute(0, 2, 1).contiguous()
-    if ps.shape[-1] != 20 or not torch.isfinite(ps).all() or not torch.isfinite(pd).all():
+    if ps.shape[-1] != num_classes or not torch.isfinite(ps).all() or not torch.isfinite(pd).all():
         raise ValueError('Invalid raw logits/distribution; do not sigmoid twice')
     anchors, stride = make_anchors(raw['feats'], criterion.stride, .5)
     decoded = criterion.bbox_decode(anchors, pd)
@@ -55,10 +60,10 @@ def gradients(model, image, annotations, imgsz=640, *, coverage_policy='strict_n
             decoded.detach() * stride, anchors * stride, labels, gtboxes, gtboxes.sum(-1, keepdim=True) > 0)
     losses = {}
     records = []
-    keep = [c for c in range(20) if c != 14]
+    keep = [c for c in range(num_classes) if c != target_class_id]
     for j, ann in enumerate(annotations):
         cls = int(ann['cls'])
-        if cls == 14:
+        if cls == target_class_id:
             continue
         hit = fg[0] & (gi[0] == j)
         native_count = int(hit.sum())
@@ -108,7 +113,7 @@ def gradients(model, image, annotations, imgsz=640, *, coverage_policy='strict_n
         losses.setdefault(cls, []).append(loss)
         records.append({'gt_index': j, 'cls': cls, 'positive_count': int(hit.sum()),
                         'native_positive_count': native_count, 'coverage_mode': mode, 'coverage_status': 'COVERED',
-                        'box': float(terms[0].detach()), 'cls_bce19': float(terms[1].detach()),
+                        'box': float(terms[0].detach()), f'cls_bce{num_classes-1}': float(terms[1].detach()),
                         'dfl': float(terms[2].detach()), 'gains': gains.tolist(),
                         'weighted_loss': float(loss.detach())})
     maps = {}

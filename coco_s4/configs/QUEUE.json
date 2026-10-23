@@ -1,0 +1,81 @@
+{
+  "schema": "s4.coco.queue.v1",
+  "state": "WAITING_PREVIOUS_PIPELINE_AND_DATA",
+  "scientific_parent_commit": "b1e29510e7b1ed5fa0fe361a27132d8790e65c14",
+  "original_victim_component": "ab626917f20917e58cf30033ac99df00938cb561",
+  "snapshot_commit": "f00ef6062557bef0f3b5081702de1e52ba9beb0a",
+  "predecessor_run_id": "s4_robustness_extended_selected_seed0_20261022_recovery03",
+  "predecessor_required_stages": {
+    "cutout": "ACCEPTED",
+    "cutmix": "ACCEPTED",
+    "mixup": "ACCEPTED"
+  },
+  "predecessor_required_state": "BLOCKED_PROTOCOL_APPROVAL",
+  "predecessor_archive_required": true,
+  "OP_APPROVED": false,
+  "deployment": "PREPARED_ONLY_NO_SECOND_GPU_SCHEDULER",
+  "formal_binding": null,
+  "GPU_work_now": false,
+  "single_GPU_serial": true,
+  "order": [
+    "official_data_acceptance",
+    "CPU_and_VOC_regressions",
+    "Teacher_GPU_smoke_and_single_review",
+    "clean25K_Teacher200",
+    "COCO_reference_StrictTSFL_SafeBG_TFSS",
+    "actual_S4_loss_chain_GPU_smoke_and_single_review",
+    "fresh_Fourier24_epochs",
+    "complete25K_PNG_label_budget_audit",
+    "Clean_Victim200",
+    "S4_Victim200",
+    "official_COCO_val2017_5000_last_and_best",
+    "paired_report_acceptance"
+  ],
+  "teacher": {
+    "init": "random_yaml80",
+    "train": "official_minitrain25K_clean_only",
+    "epochs": 200,
+    "batch": 36,
+    "workers": 16,
+    "imgsz": 640,
+    "seed": 0,
+    "pretrained": false,
+    "val": false,
+    "primary": "last@200",
+    "extra_full_train2017_pretraining": false
+  },
+  "method_constraints": {
+    "support": "bbox_half_overlap",
+    "budget_bytes": [
+      8,
+      4,
+      0
+    ],
+    "TFSS_eta": 0.85,
+    "SafeBG_rank": 8,
+    "SafeBG_alpha": 0.5,
+    "SafeBG_active": 3,
+    "StrictTSFL_required_selected_dimensions": 24,
+    "StrictTSFL_failure_policy": "BLOCK_NO_THRESHOLD_RELAXATION",
+    "noise_epochs": 24,
+    "batch16_EOT2": true,
+    "optimizer_steps": "24*ceil(eligible_clean_Person_images/16), frozen after original >10 support eligibility audit"
+  },
+  "current_blockers": [
+    "30K_clean_images_not_yet_acquired; finite32imagebridge failedHTTP502/TLS; rawattemptsretained",
+    "new_full_pipeline_entrypoint_source_binding_and_GPU_evidence_not_yet_ready",
+    "official_pycocotools_missing_in_active_environment; separatepinneddependencyneeded",
+    "current_robustness_not_finished"
+  ],
+  "no_resume_existing_ID": true,
+  "no_data_or_weight_Git_upload": true,
+  "official_annotations": {
+    "train_sha256": "5682389c3bb0a356912771811f7836659cc6de5a588413752922ccb94a6df1a8",
+    "val_sha256": "e8c7f7908f1d7278341fae127d0da654f102f11bd7b21d8aeefa635b8c810b6f",
+    "train_images": 25000,
+    "val_images": 5000,
+    "train_val_disjoint": true,
+    "resampled": false
+  },
+  "CPU_tests": 45
+}

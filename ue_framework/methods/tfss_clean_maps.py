@@ -26,13 +26,15 @@ def build_maps(trainer, items):
     its padded tensor shape is now canonical per image for train/export parity.
     """
     device = trainer.device
+    target_class_id = getattr(trainer, 'target_class_id', 14)
+    num_classes = getattr(trainer, 'num_classes', 20)
     maps, records = [], []
     for image, annotations, support in items:
         pad_h, pad_w = canonical_map_canvas(image)
         started = time.perf_counter()
         for ann in annotations:
             box = torch.as_tensor(ann['bbox'])
-            if (int(ann['cls']) != ann['cls'] or not 0 <= int(ann['cls']) < 20
+            if (int(ann['cls']) != ann['cls'] or not 0 <= int(ann['cls']) < num_classes
                 or box.shape != (4,) or not torch.isfinite(box).all()
                 or bool((box < 0).any()) or bool((box > 1).any())
                 or not bool((box[2:] > 0).all())):
@@ -43,7 +45,7 @@ def build_maps(trainer, items):
         padded = F.pad(x, (0, pad_w-w, 0, pad_h-h), value=.5)
         feature = trainer._feature(padded, grad=True)
         target_masks, _, _ = trainer._masks(annotations, support, (h, w), feature, (pad_h, pad_w))
-        anns = [a for a in annotations if int(a['cls']) == 14]
+        anns = [a for a in annotations if int(a['cls']) == target_class_id]
         if len(target_masks) != len(anns) or not anns:
             raise ValueError('Person mask/GT mismatch')
         object_maps, object_records = [], []
@@ -87,7 +89,8 @@ def build_maps(trainer, items):
         # Original eval/frozen teacher, real all-GT native TAL; only uncovered
         # valid NTGT uses the SAME TAL alone. Invalid/no evidence still fails.
         class_gradients, matching = gradients(trainer.surrogate, image, annotations,
-            imgsz=trainer.imgsz, coverage_policy='independent_same_TAL_for_uncovered_valid_GT')
+            imgsz=trainer.imgsz, coverage_policy='independent_same_TAL_for_uncovered_valid_GT',
+            target_class_id=target_class_id, num_classes=num_classes)
         risks, risk_records = [], []
         for cls, raw in sorted(class_gradients.items()):
             r, evidence = normalize_map(torch.as_tensor(raw, device=device), target,

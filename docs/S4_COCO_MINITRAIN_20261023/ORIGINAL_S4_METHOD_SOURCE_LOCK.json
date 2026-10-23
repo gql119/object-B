@@ -1,0 +1,14 @@
+{
+  "parent_commit": "b1e29510e7b1ed5fa0fe361a27132d8790e65c14",
+  "server_verified_snapshot": "f00ef6062557bef0f3b5081702de1e52ba9beb0a",
+  "files": {
+    "ue_framework/methods/adaptive_learner.py": "02cd607b8c3e389c639bbf82859952dfb5c9528524e6ebc18a373860e7954518",
+    "ue_framework/methods/b2_adaptive.py": "429348b91ec4909b8806aa1b25daa81dc6adbb4318462f42b82167e5639ae145",
+    "ue_framework/methods/fourier.py": "a349b0b0b24fe92b34018fcd12fad0d4e95bb611f2dbf8549b8dfd7765da5884",
+    "ue_framework/methods/legacy_kproto_ret.py": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb",
+    "ue_framework/methods/s4_tfss.py": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d",
+    "ue_framework/methods/safebg.py": "9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+    "ue_framework/methods/semantic_coordinates.py": "54798bb76dec96a6e160690ecbb3729e574169b00dd8439a5a4ae5c37cd38e05",
+    "ue_framework/methods/tfss_spatial.py": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd"
+  }
+}

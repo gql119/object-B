@@ -1,0 +1,408 @@
+{
+  "state": "VERIFIED_AGAINST_DIRECT_AUTHOR_JSON",
+  "native_version": "8.4.150",
+  "native_coco_yaml_sha256": "38ed1eb122fad6eed8e18dcf8da56a4b26db9c2064be41530485e2644fae9f7f",
+  "mapping": [
+    {
+      "category_id": 1,
+      "yolo_class_id": 0,
+      "name": "person"
+    },
+    {
+      "category_id": 2,
+      "yolo_class_id": 1,
+      "name": "bicycle"
+    },
+    {
+      "category_id": 3,
+      "yolo_class_id": 2,
+      "name": "car"
+    },
+    {
+      "category_id": 4,
+      "yolo_class_id": 3,
+      "name": "motorcycle"
+    },
+    {
+      "category_id": 5,
+      "yolo_class_id": 4,
+      "name": "airplane"
+    },
+    {
+      "category_id": 6,
+      "yolo_class_id": 5,
+      "name": "bus"
+    },
+    {
+      "category_id": 7,
+      "yolo_class_id": 6,
+      "name": "train"
+    },
+    {
+      "category_id": 8,
+      "yolo_class_id": 7,
+      "name": "truck"
+    },
+    {
+      "category_id": 9,
+      "yolo_class_id": 8,
+      "name": "boat"
+    },
+    {
+      "category_id": 10,
+      "yolo_class_id": 9,
+      "name": "traffic light"
+    },
+    {
+      "category_id": 11,
+      "yolo_class_id": 10,
+      "name": "fire hydrant"
+    },
+    {
+      "category_id": 13,
+      "yolo_class_id": 11,
+      "name": "stop sign"
+    },
+    {
+      "category_id": 14,
+      "yolo_class_id": 12,
+      "name": "parking meter"
+    },
+    {
+      "category_id": 15,
+      "yolo_class_id": 13,
+      "name": "bench"
+    },
+    {
+      "category_id": 16,
+      "yolo_class_id": 14,
+      "name": "bird"
+    },
+    {
+      "category_id": 17,
+      "yolo_class_id": 15,
+      "name": "cat"
+    },
+    {
+      "category_id": 18,
+      "yolo_class_id": 16,
+      "name": "dog"
+    },
+    {
+      "category_id": 19,
+      "yolo_class_id": 17,
+      "name": "horse"
+    },
+    {
+      "category_id": 20,
+      "yolo_class_id": 18,
+      "name": "sheep"
+    },
+    {
+      "category_id": 21,
+      "yolo_class_id": 19,
+      "name": "cow"
+    },
+    {
+      "category_id": 22,
+      "yolo_class_id": 20,
+      "name": "elephant"
+    },
+    {
+      "category_id": 23,
+      "yolo_class_id": 21,
+      "name": "bear"
+    },
+    {
+      "category_id": 24,
+      "yolo_class_id": 22,
+      "name": "zebra"
+    },
+    {
+      "category_id": 25,
+      "yolo_class_id": 23,
+      "name": "giraffe"
+    },
+    {
+      "category_id": 27,
+      "yolo_class_id": 24,
+      "name": "backpack"
+    },
+    {
+      "category_id": 28,
+      "yolo_class_id": 25,
+      "name": "umbrella"
+    },
+    {
+      "category_id": 31,
+      "yolo_class_id": 26,
+      "name": "handbag"
+    },
+    {
+      "category_id": 32,
+      "yolo_class_id": 27,
+      "name": "tie"
+    },
+    {
+      "category_id": 33,
+      "yolo_class_id": 28,
+      "name": "suitcase"
+    },
+    {
+      "category_id": 34,
+      "yolo_class_id": 29,
+      "name": "frisbee"
+    },
+    {
+      "category_id": 35,
+      "yolo_class_id": 30,
+      "name": "skis"
+    },
+    {
+      "category_id": 36,
+      "yolo_class_id": 31,
+      "name": "snowboard"
+    },
+    {
+      "category_id": 37,
+      "yolo_class_id": 32,
+      "name": "sports ball"
+    },
+    {
+      "category_id": 38,
+      "yolo_class_id": 33,
+      "name": "kite"
+    },
+    {
+      "category_id": 39,
+      "yolo_class_id": 34,
+      "name": "baseball bat"
+    },
+    {
+      "category_id": 40,
+      "yolo_class_id": 35,
+      "name": "baseball glove"
+    },
+    {
+      "category_id": 41,
+      "yolo_class_id": 36,
+      "name": "skateboard"
+    },
+    {
+      "category_id": 42,
+      "yolo_class_id": 37,
+      "name": "surfboard"
+    },
+    {
+      "category_id": 43,
+      "yolo_class_id": 38,
+      "name": "tennis racket"
+    },
+    {
+      "category_id": 44,
+      "yolo_class_id": 39,
+      "name": "bottle"
+    },
+    {
+      "category_id": 46,
+      "yolo_class_id": 40,
+      "name": "wine glass"
+    },
+    {
+      "category_id": 47,
+      "yolo_class_id": 41,
+      "name": "cup"
+    },
+    {
+      "category_id": 48,
+      "yolo_class_id": 42,
+      "name": "fork"
+    },
+    {
+      "category_id": 49,
+      "yolo_class_id": 43,
+      "name": "knife"
+    },
+    {
+      "category_id": 50,
+      "yolo_class_id": 44,
+      "name": "spoon"
+    },
+    {
+      "category_id": 51,
+      "yolo_class_id": 45,
+      "name": "bowl"
+    },
+    {
+      "category_id": 52,
+      "yolo_class_id": 46,
+      "name": "banana"
+    },
+    {
+      "category_id": 53,
+      "yolo_class_id": 47,
+      "name": "apple"
+    },
+    {
+      "category_id": 54,
+      "yolo_class_id": 48,
+      "name": "sandwich"
+    },
+    {
+      "category_id": 55,
+      "yolo_class_id": 49,
+      "name": "orange"
+    },
+    {
+      "category_id": 56,
+      "yolo_class_id": 50,
+      "name": "broccoli"
+    },
+    {
+      "category_id": 57,
+      "yolo_class_id": 51,
+      "name": "carrot"
+    },
+    {
+      "category_id": 58,
+      "yolo_class_id": 52,
+      "name": "hot dog"
+    },
+    {
+      "category_id": 59,
+      "yolo_class_id": 53,
+      "name": "pizza"
+    },
+    {
+      "category_id": 60,
+      "yolo_class_id": 54,
+      "name": "donut"
+    },
+    {
+      "category_id": 61,
+      "yolo_class_id": 55,
+      "name": "cake"
+    },
+    {
+      "category_id": 62,
+      "yolo_class_id": 56,
+      "name": "chair"
+    },
+    {
+      "category_id": 63,
+      "yolo_class_id": 57,
+      "name": "couch"
+    },
+    {
+      "category_id": 64,
+      "yolo_class_id": 58,
+      "name": "potted plant"
+    },
+    {
+      "category_id": 65,
+      "yolo_class_id": 59,
+      "name": "bed"
+    },
+    {
+      "category_id": 67,
+      "yolo_class_id": 60,
+      "name": "dining table"
+    },
+    {
+      "category_id": 70,
+      "yolo_class_id": 61,
+      "name": "toilet"
+    },
+    {
+      "category_id": 72,
+      "yolo_class_id": 62,
+      "name": "tv"
+    },
+    {
+      "category_id": 73,
+      "yolo_class_id": 63,
+      "name": "laptop"
+    },
+    {
+      "category_id": 74,
+      "yolo_class_id": 64,
+      "name": "mouse"
+    },
+    {
+      "category_id": 75,
+      "yolo_class_id": 65,
+      "name": "remote"
+    },
+    {
+      "category_id": 76,
+      "yolo_class_id": 66,
+      "name": "keyboard"
+    },
+    {
+      "category_id": 77,
+      "yolo_class_id": 67,
+      "name": "cell phone"
+    },
+    {
+      "category_id": 78,
+      "yolo_class_id": 68,
+      "name": "microwave"
+    },
+    {
+      "category_id": 79,
+      "yolo_class_id": 69,
+      "name": "oven"
+    },
+    {
+      "category_id": 80,
+      "yolo_class_id": 70,
+      "name": "toaster"
+    },
+    {
+      "category_id": 81,
+      "yolo_class_id": 71,
+      "name": "sink"
+    },
+    {
+      "category_id": 82,
+      "yolo_class_id": 72,
+      "name": "refrigerator"
+    },
+    {
+      "category_id": 84,
+      "yolo_class_id": 73,
+      "name": "book"
+    },
+    {
+      "category_id": 85,
+      "yolo_class_id": 74,
+      "name": "clock"
+    },
+    {
+      "category_id": 86,
+      "yolo_class_id": 75,
+      "name": "vase"
+    },
+    {
+      "category_id": 87,
+      "yolo_class_id": 76,
+      "name": "scissors"
+    },
+    {
+      "category_id": 88,
+      "yolo_class_id": 77,
+      "name": "teddy bear"
+    },
+    {
+      "category_id": 89,
+      "yolo_class_id": 78,
+      "name": "hair drier"
+    },
+    {
+      "category_id": 90,
+      "yolo_class_id": 79,
+      "name": "toothbrush"
+    }
+  ],
+  "official_annotation_sha256": "5682389c3bb0a356912771811f7836659cc6de5a588413752922ccb94a6df1a8"
+}

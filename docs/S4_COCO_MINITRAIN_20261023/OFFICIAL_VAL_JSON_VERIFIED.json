@@ -1,0 +1,14 @@
+{
+  "state": "OFFICIAL_VAL_JSON_EXTRACTED_CRC_VERIFIED",
+  "url": "http://images.cocodataset.org/annotations/annotations_trainval2017.zip",
+  "zip_member": "annotations/instances_val2017.json",
+  "member_CRC32": 781945669,
+  "size": 19987840,
+  "sha256": "e8c7f7908f1d7278341fae127d0da654f102f11bd7b21d8aeefa635b8c810b6f",
+  "images": 5000,
+  "annotations": 36781,
+  "categories": 80,
+  "metadata_bytes_read": 6529779,
+  "network_trials": [],
+  "images_downloaded": 0
+}

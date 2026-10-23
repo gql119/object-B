@@ -50,7 +50,7 @@ def main():
     labels = data/cfg['data']['train_labels']
     images = sorted(list_images(str(data/cfg['data']['train_images'])))
     counts = {'target_objects': 0, 'non_target_objects': 0, 'images': len(images)}
-    pooled = {c: [] for c in range(20) if c != trainer.target_class_id}
+    pooled = {c: [] for c in range(cfg['experiment']['num_classes']) if c != trainer.target_class_id}
     nt_gt_counts = {c: 0 for c in pooled}
     st = sn = None
     manifest = hashlib.sha256(); started = time.time()
@@ -127,7 +127,10 @@ def main():
         'determinism_test': 'two stable selections from the same full-training sensitivity tensors; not two independent calibrations',
         'aggregation': 'per GT mean spatial absolute gradient, then equal GT average', **counts}
     write(output/'tsfl_summary.json', summary)
-    write(output/'subspace_summary.json', {CLASSES[c]: {k:v for k,v in x.items() if k not in ('basis','mean')} |
+    class_names = cfg['experiment'].get('class_names', CLASSES)
+    if len(class_names) != cfg['experiment']['num_classes']:
+        raise ValueError('Class names and head count differ')
+    write(output/'subspace_summary.json', {class_names[c]: {k:v for k,v in x.items() if k not in ('basis','mean')} |
           {'gt_count':nt_gt_counts[c], 'invalid_pool_count':nt_gt_counts[c]-x['count']} for c,x in subspaces.items()})
     write(output/'coordinates_identity.json', identity)
     write(output/'status.json', {'state':'complete', 'images_done':len(images),

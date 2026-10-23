@@ -90,6 +90,9 @@ def main():
         raise ValueError("Strict TSFL artifacts must stay in the isolated project")
     output.mkdir(parents=True, exist_ok=False)
     cfg = load_config(args.config)
+    class_names = cfg['experiment'].get('class_names', CLASSES)
+    if len(class_names) != cfg['experiment']['num_classes']:
+        raise ValueError('Class names and head count differ')
     method = cfg["methods"]["legacy_kproto_ret"]
     settings = method["semantic"]
     strict = settings["strict_tsfl"]
@@ -280,7 +283,7 @@ def main():
     torch.save({"classes": selected_subspaces, "identity": identity}, output / "safe_bg_selected_subspaces.pt")
     summary = dict(strict_result["summary"])
     summary["selected_channel_top_conflicting_classes"] = {
-        str(channel): [CLASSES[c] for c in class_ids]
+        str(channel): [class_names[c] for c in class_ids]
         for channel, class_ids in summary["selected_channel_top_conflicting_classes"].items()
     }
     selected_mask = torch.zeros_like(s_target, dtype=torch.bool); selected_mask[indices] = True
@@ -306,7 +309,7 @@ def main():
         "identity": identity,
     })
     write_json(output / "tsfl_sensitivity_stats.json", {
-        "classes": {str(c): {"class_name": CLASSES[c], "object_count": class_counts[c],
+        "classes": {str(c): {"class_name": class_names[c], "object_count": class_counts[c],
             "mean_sensitivity": s_nt_by_class[c].tolist(),
             "mean_normalized_sensitivity": strict_result["S_nt_class_normalized"][i].tolist()}
             for i, c in enumerate(sorted(s_nt_by_class))},
@@ -349,7 +352,7 @@ def main():
         "non_target_objects": sum(class_counts.values()),
     })
     write_json(output / "subspace_summary.json", {
-        CLASSES[c]: {k: v for k, v in item.items() if k not in ("basis", "mean")} |
+        class_names[c]: {k: v for k, v in item.items() if k not in ("basis", "mean")} |
         {"gt_count": class_counts[c], "invalid_pool_count": class_counts[c] - item["count"]}
         for c, item in full_subspaces.items()
     })

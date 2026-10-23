@@ -1,0 +1,900 @@
+{
+  "state": "ALL_METADATA_VERIFIED_IMAGES_PENDING",
+  "mapping": [
+    {
+      "category_id": 1,
+      "yolo_class_id": 0,
+      "name": "person"
+    },
+    {
+      "category_id": 2,
+      "yolo_class_id": 1,
+      "name": "bicycle"
+    },
+    {
+      "category_id": 3,
+      "yolo_class_id": 2,
+      "name": "car"
+    },
+    {
+      "category_id": 4,
+      "yolo_class_id": 3,
+      "name": "motorcycle"
+    },
+    {
+      "category_id": 5,
+      "yolo_class_id": 4,
+      "name": "airplane"
+    },
+    {
+      "category_id": 6,
+      "yolo_class_id": 5,
+      "name": "bus"
+    },
+    {
+      "category_id": 7,
+      "yolo_class_id": 6,
+      "name": "train"
+    },
+    {
+      "category_id": 8,
+      "yolo_class_id": 7,
+      "name": "truck"
+    },
+    {
+      "category_id": 9,
+      "yolo_class_id": 8,
+      "name": "boat"
+    },
+    {
+      "category_id": 10,
+      "yolo_class_id": 9,
+      "name": "traffic light"
+    },
+    {
+      "category_id": 11,
+      "yolo_class_id": 10,
+      "name": "fire hydrant"
+    },
+    {
+      "category_id": 13,
+      "yolo_class_id": 11,
+      "name": "stop sign"
+    },
+    {
+      "category_id": 14,
+      "yolo_class_id": 12,
+      "name": "parking meter"
+    },
+    {
+      "category_id": 15,
+      "yolo_class_id": 13,
+      "name": "bench"
+    },
+    {
+      "category_id": 16,
+      "yolo_class_id": 14,
+      "name": "bird"
+    },
+    {
+      "category_id": 17,
+      "yolo_class_id": 15,
+      "name": "cat"
+    },
+    {
+      "category_id": 18,
+      "yolo_class_id": 16,
+      "name": "dog"
+    },
+    {
+      "category_id": 19,
+      "yolo_class_id": 17,
+      "name": "horse"
+    },
+    {
+      "category_id": 20,
+      "yolo_class_id": 18,
+      "name": "sheep"
+    },
+    {
+      "category_id": 21,
+      "yolo_class_id": 19,
+      "name": "cow"
+    },
+    {
+      "category_id": 22,
+      "yolo_class_id": 20,
+      "name": "elephant"
+    },
+    {
+      "category_id": 23,
+      "yolo_class_id": 21,
+      "name": "bear"
+    },
+    {
+      "category_id": 24,
+      "yolo_class_id": 22,
+      "name": "zebra"
+    },
+    {
+      "category_id": 25,
+      "yolo_class_id": 23,
+      "name": "giraffe"
+    },
+    {
+      "category_id": 27,
+      "yolo_class_id": 24,
+      "name": "backpack"
+    },
+    {
+      "category_id": 28,
+      "yolo_class_id": 25,
+      "name": "umbrella"
+    },
+    {
+      "category_id": 31,
+      "yolo_class_id": 26,
+      "name": "handbag"
+    },
+    {
+      "category_id": 32,
+      "yolo_class_id": 27,
+      "name": "tie"
+    },
+    {
+      "category_id": 33,
+      "yolo_class_id": 28,
+      "name": "suitcase"
+    },
+    {
+      "category_id": 34,
+      "yolo_class_id": 29,
+      "name": "frisbee"
+    },
+    {
+      "category_id": 35,
+      "yolo_class_id": 30,
+      "name": "skis"
+    },
+    {
+      "category_id": 36,
+      "yolo_class_id": 31,
+      "name": "snowboard"
+    },
+    {
+      "category_id": 37,
+      "yolo_class_id": 32,
+      "name": "sports ball"
+    },
+    {
+      "category_id": 38,
+      "yolo_class_id": 33,
+      "name": "kite"
+    },
+    {
+      "category_id": 39,
+      "yolo_class_id": 34,
+      "name": "baseball bat"
+    },
+    {
+      "category_id": 40,
+      "yolo_class_id": 35,
+      "name": "baseball glove"
+    },
+    {
+      "category_id": 41,
+      "yolo_class_id": 36,
+      "name": "skateboard"
+    },
+    {
+      "category_id": 42,
+      "yolo_class_id": 37,
+      "name": "surfboard"
+    },
+    {
+      "category_id": 43,
+      "yolo_class_id": 38,
+      "name": "tennis racket"
+    },
+    {
+      "category_id": 44,
+      "yolo_class_id": 39,
+      "name": "bottle"
+    },
+    {
+      "category_id": 46,
+      "yolo_class_id": 40,
+      "name": "wine glass"
+    },
+    {
+      "category_id": 47,
+      "yolo_class_id": 41,
+      "name": "cup"
+    },
+    {
+      "category_id": 48,
+      "yolo_class_id": 42,
+      "name": "fork"
+    },
+    {
+      "category_id": 49,
+      "yolo_class_id": 43,
+      "name": "knife"
+    },
+    {
+      "category_id": 50,
+      "yolo_class_id": 44,
+      "name": "spoon"
+    },
+    {
+      "category_id": 51,
+      "yolo_class_id": 45,
+      "name": "bowl"
+    },
+    {
+      "category_id": 52,
+      "yolo_class_id": 46,
+      "name": "banana"
+    },
+    {
+      "category_id": 53,
+      "yolo_class_id": 47,
+      "name": "apple"
+    },
+    {
+      "category_id": 54,
+      "yolo_class_id": 48,
+      "name": "sandwich"
+    },
+    {
+      "category_id": 55,
+      "yolo_class_id": 49,
+      "name": "orange"
+    },
+    {
+      "category_id": 56,
+      "yolo_class_id": 50,
+      "name": "broccoli"
+    },
+    {
+      "category_id": 57,
+      "yolo_class_id": 51,
+      "name": "carrot"
+    },
+    {
+      "category_id": 58,
+      "yolo_class_id": 52,
+      "name": "hot dog"
+    },
+    {
+      "category_id": 59,
+      "yolo_class_id": 53,
+      "name": "pizza"
+    },
+    {
+      "category_id": 60,
+      "yolo_class_id": 54,
+      "name": "donut"
+    },
+    {
+      "category_id": 61,
+      "yolo_class_id": 55,
+      "name": "cake"
+    },
+    {
+      "category_id": 62,
+      "yolo_class_id": 56,
+      "name": "chair"
+    },
+    {
+      "category_id": 63,
+      "yolo_class_id": 57,
+      "name": "couch"
+    },
+    {
+      "category_id": 64,
+      "yolo_class_id": 58,
+      "name": "potted plant"
+    },
+    {
+      "category_id": 65,
+      "yolo_class_id": 59,
+      "name": "bed"
+    },
+    {
+      "category_id": 67,
+      "yolo_class_id": 60,
+      "name": "dining table"
+    },
+    {
+      "category_id": 70,
+      "yolo_class_id": 61,
+      "name": "toilet"
+    },
+    {
+      "category_id": 72,
+      "yolo_class_id": 62,
+      "name": "tv"
+    },
+    {
+      "category_id": 73,
+      "yolo_class_id": 63,
+      "name": "laptop"
+    },
+    {
+      "category_id": 74,
+      "yolo_class_id": 64,
+      "name": "mouse"
+    },
+    {
+      "category_id": 75,
+      "yolo_class_id": 65,
+      "name": "remote"
+    },
+    {
+      "category_id": 76,
+      "yolo_class_id": 66,
+      "name": "keyboard"
+    },
+    {
+      "category_id": 77,
+      "yolo_class_id": 67,
+      "name": "cell phone"
+    },
+    {
+      "category_id": 78,
+      "yolo_class_id": 68,
+      "name": "microwave"
+    },
+    {
+      "category_id": 79,
+      "yolo_class_id": 69,
+      "name": "oven"
+    },
+    {
+      "category_id": 80,
+      "yolo_class_id": 70,
+      "name": "toaster"
+    },
+    {
+      "category_id": 81,
+      "yolo_class_id": 71,
+      "name": "sink"
+    },
+    {
+      "category_id": 82,
+      "yolo_class_id": 72,
+      "name": "refrigerator"
+    },
+    {
+      "category_id": 84,
+      "yolo_class_id": 73,
+      "name": "book"
+    },
+    {
+      "category_id": 85,
+      "yolo_class_id": 74,
+      "name": "clock"
+    },
+    {
+      "category_id": 86,
+      "yolo_class_id": 75,
+      "name": "vase"
+    },
+    {
+      "category_id": 87,
+      "yolo_class_id": 76,
+      "name": "scissors"
+    },
+    {
+      "category_id": 88,
+      "yolo_class_id": 77,
+      "name": "teddy bear"
+    },
+    {
+      "category_id": 89,
+      "yolo_class_id": 78,
+      "name": "hair drier"
+    },
+    {
+      "category_id": 90,
+      "yolo_class_id": 79,
+      "name": "toothbrush"
+    }
+  ],
+  "splits": {
+    "train": {
+      "images": 25000,
+      "raw_annotations": 183546,
+      "eligible_training_annotations": 181475,
+      "crowd_annotations": 2071,
+      "explicit_ignore_annotations": 0,
+      "per_class_raw": {
+        "1": 56197,
+        "33": 1309,
+        "27": 1855,
+        "31": 2807,
+        "56": 1554,
+        "8": 2041,
+        "41": 1255,
+        "42": 1197,
+        "7": 976,
+        "35": 1438,
+        "22": 1192,
+        "6": 1217,
+        "48": 1265,
+        "50": 1373,
+        "78": 367,
+        "79": 698,
+        "81": 1259,
+        "47": 4497,
+        "49": 1737,
+        "19": 1351,
+        "72": 1175,
+        "65": 937,
+        "77": 1311,
+        "75": 1204,
+        "84": 5101,
+        "25": 1085,
+        "3": 8935,
+        "16": 2155,
+        "85": 1338,
+        "15": 2231,
+        "44": 5213,
+        "67": 3453,
+        "51": 3232,
+        "60": 1545,
+        "86": 1428,
+        "70": 887,
+        "24": 1086,
+        "18": 1099,
+        "21": 1664,
+        "87": 326,
+        "52": 2221,
+        "54": 1058,
+        "39": 713,
+        "37": 1363,
+        "40": 842,
+        "2": 1516,
+        "82": 623,
+        "53": 1378,
+        "55": 1464,
+        "57": 1559,
+        "64": 1859,
+        "62": 8238,
+        "23": 296,
+        "63": 1231,
+        "4": 1898,
+        "32": 1273,
+        "9": 2296,
+        "17": 1033,
+        "73": 1061,
+        "20": 2064,
+        "88": 1027,
+        "28": 2466,
+        "38": 1859,
+        "90": 401,
+        "10": 2637,
+        "61": 1307,
+        "59": 1175,
+        "46": 1664,
+        "11": 353,
+        "43": 1081,
+        "36": 570,
+        "76": 571,
+        "74": 441,
+        "5": 1054,
+        "13": 376,
+        "34": 573,
+        "58": 715,
+        "14": 214,
+        "80": 46,
+        "89": 40
+      },
+      "per_class_eligible": {
+        "1": 55096,
+        "33": 1291,
+        "27": 1854,
+        "31": 2802,
+        "56": 1548,
+        "8": 2040,
+        "41": 1254,
+        "42": 1190,
+        "7": 976,
+        "35": 1431,
+        "22": 1190,
+        "6": 1215,
+        "48": 1264,
+        "50": 1373,
+        "78": 367,
+        "79": 698,
+        "81": 1258,
+        "47": 4478,
+        "49": 1733,
+        "19": 1349,
+        "72": 1174,
+        "65": 937,
+        "77": 1309,
+        "75": 1204,
+        "84": 4976,
+        "25": 1085,
+        "3": 8873,
+        "16": 2102,
+        "85": 1336,
+        "15": 2229,
+        "44": 5152,
+        "67": 3450,
+        "51": 3224,
+        "60": 1508,
+        "86": 1423,
+        "70": 885,
+        "24": 1081,
+        "18": 1099,
+        "21": 1634,
+        "87": 323,
+        "52": 2157,
+        "54": 1053,
+        "39": 713,
+        "37": 1353,
+        "40": 842,
+        "2": 1504,
+        "82": 622,
+        "53": 1357,
+        "55": 1444,
+        "57": 1539,
+        "64": 1855,
+        "62": 8158,
+        "23": 296,
+        "63": 1231,
+        "4": 1884,
+        "32": 1265,
+        "9": 2259,
+        "17": 1033,
+        "73": 1060,
+        "20": 2006,
+        "88": 1014,
+        "28": 2432,
+        "38": 1808,
+        "90": 400,
+        "10": 2631,
+        "61": 1299,
+        "59": 1174,
+        "46": 1654,
+        "11": 353,
+        "43": 1078,
+        "36": 570,
+        "76": 571,
+        "74": 441,
+        "5": 1054,
+        "13": 376,
+        "34": 573,
+        "58": 705,
+        "14": 214,
+        "80": 46,
+        "89": 40
+      },
+      "size_counts_by_official_area": {
+        "large": 43609,
+        "medium": 62433,
+        "small": 75433
+      },
+      "person_images": 13630,
+      "person_with_NT_images": 13559,
+      "person_NT_cooccurrence_fraction": 0.9947909024211299,
+      "no_person_images": 11370,
+      "empty_label_images": 0,
+      "image_ids_sha256": "a23c13bda28a14c11b2c54bcd72bca565211f66d8be2517ca4c80155c4ff1e01"
+    },
+    "val": {
+      "images": 5000,
+      "raw_annotations": 36781,
+      "eligible_training_annotations": 36335,
+      "crowd_annotations": 446,
+      "explicit_ignore_annotations": 0,
+      "per_class_raw": {
+        "18": 218,
+        "64": 343,
+        "72": 288,
+        "16": 440,
+        "17": 202,
+        "19": 273,
+        "20": 361,
+        "21": 380,
+        "44": 1025,
+        "63": 261,
+        "62": 1791,
+        "67": 697,
+        "2": 316,
+        "3": 1932,
+        "4": 371,
+        "5": 143,
+        "6": 285,
+        "7": 190,
+        "9": 430,
+        "1": 11004,
+        "13": 75,
+        "28": 413,
+        "32": 254,
+        "54": 177,
+        "65": 163,
+        "77": 262,
+        "82": 126,
+        "85": 267,
+        "90": 57,
+        "8": 415,
+        "10": 637,
+        "11": 101,
+        "14": 60,
+        "15": 413,
+        "34": 115,
+        "35": 241,
+        "36": 69,
+        "41": 179,
+        "42": 269,
+        "46": 343,
+        "47": 899,
+        "48": 215,
+        "49": 326,
+        "50": 253,
+        "51": 626,
+        "52": 379,
+        "53": 239,
+        "55": 287,
+        "56": 316,
+        "57": 371,
+        "59": 285,
+        "61": 316,
+        "70": 179,
+        "73": 231,
+        "74": 106,
+        "75": 283,
+        "76": 153,
+        "78": 55,
+        "79": 143,
+        "80": 9,
+        "81": 225,
+        "84": 1161,
+        "86": 277,
+        "87": 36,
+        "88": 191,
+        "89": 11,
+        "27": 371,
+        "31": 540,
+        "33": 303,
+        "22": 255,
+        "24": 268,
+        "38": 336,
+        "58": 127,
+        "60": 338,
+        "25": 232,
+        "39": 146,
+        "40": 148,
+        "37": 263,
+        "23": 71,
+        "43": 225
+      },
+      "per_class_eligible": {
+        "18": 218,
+        "64": 342,
+        "72": 288,
+        "16": 427,
+        "17": 202,
+        "19": 272,
+        "20": 354,
+        "21": 372,
+        "44": 1013,
+        "63": 261,
+        "62": 1771,
+        "67": 695,
+        "2": 314,
+        "3": 1918,
+        "4": 367,
+        "5": 143,
+        "6": 283,
+        "7": 190,
+        "9": 424,
+        "1": 10777,
+        "13": 75,
+        "28": 407,
+        "32": 252,
+        "54": 177,
+        "65": 163,
+        "77": 262,
+        "82": 126,
+        "85": 267,
+        "90": 57,
+        "8": 414,
+        "10": 634,
+        "11": 101,
+        "14": 60,
+        "15": 411,
+        "34": 115,
+        "35": 241,
+        "36": 69,
+        "41": 179,
+        "42": 267,
+        "46": 341,
+        "47": 895,
+        "48": 215,
+        "49": 325,
+        "50": 253,
+        "51": 623,
+        "52": 370,
+        "53": 236,
+        "55": 285,
+        "56": 312,
+        "57": 365,
+        "59": 284,
+        "61": 310,
+        "70": 179,
+        "73": 231,
+        "74": 106,
+        "75": 283,
+        "76": 153,
+        "78": 55,
+        "79": 143,
+        "80": 9,
+        "81": 225,
+        "84": 1129,
+        "86": 274,
+        "87": 36,
+        "88": 190,
+        "89": 11,
+        "27": 371,
+        "31": 540,
+        "33": 299,
+        "22": 252,
+        "24": 266,
+        "38": 327,
+        "58": 125,
+        "60": 328,
+        "25": 232,
+        "39": 145,
+        "40": 148,
+        "37": 260,
+        "23": 71,
+        "43": 225
+      },
+      "size_counts_by_official_area": {
+        "small": 15264,
+        "large": 8679,
+        "medium": 12392
+      },
+      "person_images": 2693,
+      "person_with_NT_images": 2675,
+      "person_NT_cooccurrence_fraction": 0.993316004455997,
+      "no_person_images": 2307,
+      "empty_label_images": 48,
+      "image_ids_sha256": "1d158ad41c99a053bef0f51e7468b7f183408dec16e5f8162fdfa2203104ba04"
+    }
+  },
+  "disjoint": true,
+  "crowd_ignore_policy": "exclude from YOLO training/feature statistics; retain original JSON including crowd for official COCOeval",
+  "label_policy": "all80 classes, normalized xywh, no bbox clipping, no label or image deletion; empty/no-Person images retained",
+  "official_val_source": {
+    "state": "OFFICIAL_VAL_JSON_EXTRACTED_CRC_VERIFIED",
+    "url": "http://images.cocodataset.org/annotations/annotations_trainval2017.zip",
+    "zip_member": "annotations/instances_val2017.json",
+    "member_CRC32": 781945669,
+    "size": 19987840,
+    "sha256": "e8c7f7908f1d7278341fae127d0da654f102f11bd7b21d8aeefa635b8c810b6f",
+    "images": 5000,
+    "annotations": 36781,
+    "categories": 80,
+    "metadata_bytes_read": 6529779,
+    "network_trials": [],
+    "images_downloaded": 0
+  },
+  "train_val_disjointness": true,
+  "official_source": {
+    "state": "OFFICIAL_JSON_VERIFIED_DIRECT_AUTHOR_LINK",
+    "UTC": "2026-10-23T14:32:23.341895+00:00",
+    "source_url": "https://drive.usercontent.google.com/download?id=1lezhgY4M_Ag13w0dEzQ7x_zQ_w0ohjin&export=download&confirm=t",
+    "size": 112648466,
+    "sha256": "5682389c3bb0a356912771811f7836659cc6de5a588413752922ccb94a6df1a8",
+    "images": 25000,
+    "annotations": 183546,
+    "categories": 80,
+    "TLS_verified": true,
+    "resampled": false,
+    "range_trials": [
+      {
+        "start": 56590205,
+        "end": 60784508,
+        "bytes": 4194304,
+        "Content-Range": "bytes 56590205-60784508/112648466"
+      },
+      {
+        "start": 60784509,
+        "attempt": 1,
+        "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)>"
+      },
+      {
+        "start": 60784509,
+        "end": 64978812,
+        "bytes": 4194304,
+        "Content-Range": "bytes 60784509-64978812/112648466"
+      },
+      {
+        "start": 64978813,
+        "end": 69173116,
+        "bytes": 4194304,
+        "Content-Range": "bytes 64978813-69173116/112648466"
+      },
+      {
+        "start": 69173117,
+        "end": 73367420,
+        "bytes": 4194304,
+        "Content-Range": "bytes 69173117-73367420/112648466"
+      },
+      {
+        "start": 73367421,
+        "attempt": 1,
+        "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)>"
+      },
+      {
+        "start": 73367421,
+        "end": 77561724,
+        "bytes": 4194304,
+        "Content-Range": "bytes 73367421-77561724/112648466"
+      },
+      {
+        "start": 77561725,
+        "end": 81756028,
+        "bytes": 4194304,
+        "Content-Range": "bytes 77561725-81756028/112648466"
+      },
+      {
+        "start": 81756029,
+        "end": 85950332,
+        "bytes": 4194304,
+        "Content-Range": "bytes 81756029-85950332/112648466"
+      },
+      {
+        "start": 85950333,
+        "end": 90144636,
+        "bytes": 4194304,
+        "Content-Range": "bytes 85950333-90144636/112648466"
+      },
+      {
+        "start": 90144637,
+        "end": 94338940,
+        "bytes": 4194304,
+        "Content-Range": "bytes 90144637-94338940/112648466"
+      },
+      {
+        "start": 94338941,
+        "end": 98533244,
+        "bytes": 4194304,
+        "Content-Range": "bytes 94338941-98533244/112648466"
+      },
+      {
+        "start": 98533245,
+        "end": 102727548,
+        "bytes": 4194304,
+        "Content-Range": "bytes 98533245-102727548/112648466"
+      },
+      {
+        "start": 102727549,
+        "end": 106921852,
+        "bytes": 4194304,
+        "Content-Range": "bytes 102727549-106921852/112648466"
+      },
+      {
+        "start": 106921853,
+        "end": 111116156,
+        "bytes": 4194304,
+        "Content-Range": "bytes 106921853-111116156/112648466"
+      },
+      {
+        "start": 111116157,
+        "end": 112648465,
+        "bytes": 1532309,
+        "Content-Range": "bytes 111116157-112648465/112648466"
+      }
+    ]
+  },
+  "verified_train_images": 0,
+  "verified_val_images": 0,
+  "all_training_image_ids_retained": true
+}

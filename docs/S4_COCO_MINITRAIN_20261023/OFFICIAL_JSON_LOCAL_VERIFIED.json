@@ -1,0 +1,108 @@
+{
+  "state": "OFFICIAL_JSON_VERIFIED_DIRECT_AUTHOR_LINK",
+  "UTC": "2026-10-23T14:32:23.341895+00:00",
+  "source_url": "https://drive.usercontent.google.com/download?id=1lezhgY4M_Ag13w0dEzQ7x_zQ_w0ohjin&export=download&confirm=t",
+  "size": 112648466,
+  "sha256": "5682389c3bb0a356912771811f7836659cc6de5a588413752922ccb94a6df1a8",
+  "images": 25000,
+  "annotations": 183546,
+  "categories": 80,
+  "TLS_verified": true,
+  "resampled": false,
+  "range_trials": [
+    {
+      "start": 56590205,
+      "end": 60784508,
+      "bytes": 4194304,
+      "Content-Range": "bytes 56590205-60784508/112648466"
+    },
+    {
+      "start": 60784509,
+      "attempt": 1,
+      "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)>"
+    },
+    {
+      "start": 60784509,
+      "end": 64978812,
+      "bytes": 4194304,
+      "Content-Range": "bytes 60784509-64978812/112648466"
+    },
+    {
+      "start": 64978813,
+      "end": 69173116,
+      "bytes": 4194304,
+      "Content-Range": "bytes 64978813-69173116/112648466"
+    },
+    {
+      "start": 69173117,
+      "end": 73367420,
+      "bytes": 4194304,
+      "Content-Range": "bytes 69173117-73367420/112648466"
+    },
+    {
+      "start": 73367421,
+      "attempt": 1,
+      "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)>"
+    },
+    {
+      "start": 73367421,
+      "end": 77561724,
+      "bytes": 4194304,
+      "Content-Range": "bytes 73367421-77561724/112648466"
+    },
+    {
+      "start": 77561725,
+      "end": 81756028,
+      "bytes": 4194304,
+      "Content-Range": "bytes 77561725-81756028/112648466"
+    },
+    {
+      "start": 81756029,
+      "end": 85950332,
+      "bytes": 4194304,
+      "Content-Range": "bytes 81756029-85950332/112648466"
+    },
+    {
+      "start": 85950333,
+      "end": 90144636,
+      "bytes": 4194304,
+      "Content-Range": "bytes 85950333-90144636/112648466"
+    },
+    {
+      "start": 90144637,
+      "end": 94338940,
+      "bytes": 4194304,
+      "Content-Range": "bytes 90144637-94338940/112648466"
+    },
+    {
+      "start": 94338941,
+      "end": 98533244,
+      "bytes": 4194304,
+      "Content-Range": "bytes 94338941-98533244/112648466"
+    },
+    {
+      "start": 98533245,
+      "end": 102727548,
+      "bytes": 4194304,
+      "Content-Range": "bytes 98533245-102727548/112648466"
+    },
+    {
+      "start": 102727549,
+      "end": 106921852,
+      "bytes": 4194304,
+      "Content-Range": "bytes 102727549-106921852/112648466"
+    },
+    {
+      "start": 106921853,
+      "end": 111116156,
+      "bytes": 4194304,
+      "Content-Range": "bytes 106921853-111116156/112648466"
+    },
+    {
+      "start": 111116157,
+      "end": 112648465,
+      "bytes": 1532309,
+      "Content-Range": "bytes 111116157-112648465/112648466"
+    }
+  ]
+}

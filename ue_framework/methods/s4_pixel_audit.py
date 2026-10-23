@@ -2,20 +2,20 @@
 import numpy as np
 from .legacy_kproto_ret import _rectangle
 
-def domains(shape, annotations):
+def domains(shape, annotations, target_class_id=14, num_classes=20):
     target = np.zeros(shape[:2], dtype=bool)
     other = np.zeros_like(target)
     for ann in annotations:
         cls = int(ann['cls'])
         box = np.asarray(ann['bbox'], dtype=float)
-        if not 0 <= cls < 20 or not np.isfinite(box).all() or box.shape != (4,):
+        if cls != ann['cls'] or not 0 <= cls < num_classes or not np.isfinite(box).all() or box.shape != (4,):
             raise ValueError('Invalid GT class/box')
         if np.any(box[:2] < 0) or np.any(box[:2] > 1) or np.any(box[2:] <= 0) or np.any(box[2:] > 1):
             raise ValueError('Invalid normalized GT coordinates')
         mask = _rectangle(shape[:2], box)[0, 0].numpy().astype(bool)
         if not mask.any():
             raise ValueError('GT rectangle has no original-resolution pixels')
-        if cls == 14:
+        if cls == target_class_id:
             target |= mask
         else:
             other |= mask

@@ -22,8 +22,11 @@ from .s4_tfss import rng_state, restore_rng, model_hash
 
 def optimize_s4(trainer, images, label_dir, prototypes, output, identity, *, stop_after=0, resume=None, observe=None, formal_lock=None):
     """stop_after is an admission interruption/step bound, never a formal schedule override."""
+    from coco_s4.protocol import expected_noise_schedule
+    schedule = expected_noise_schedule(getattr(trainer, 'num_classes', 20), len(images))
+    class_names = getattr(trainer, 'class_names', CLASSES)
     if not stop_after:
-        if not formal_lock or formal_lock.get('noise_schedule') != {'epochs':24,'optimizer_steps':9144,'batch_size':16,'eot_samples':2}:
+        if not formal_lock or formal_lock.get('noise_schedule') != schedule:
             raise ValueError('Missing frozen S4 schedule')
     output = Path(output).absolute()
     if os.name == 'nt' and not str(output).startswith('\\\\?\\'):
@@ -164,10 +167,10 @@ def optimize_s4(trainer, images, label_dir, prototypes, output, identity, *, sto
                     else (sum(row[k] for row in metrics if row[k] is not None) / sum(row[k] is not None for row in metrics)
                     if any(row[k] is not None for row in metrics) else None)) for k in metrics[0]}
                 latest.update(epoch=epoch + 1, step=state['step'], grad_norm_fourier=grad_norm)
-                worst = sorted(trainer.bases, key=lambda c: (-latest['L_orth_' + CLASSES[c]], c))[:trainer.worst_k]
+                worst = sorted(trainer.bases, key=lambda c: (-latest['L_orth_' + class_names[c]], c))[:trainer.worst_k]
                 for j, cls in enumerate(worst):
                     latest[f'worst_class_{j+1}'] = cls
-                    latest[f'worst_Lorth_{j+1}'] = latest['L_orth_' + CLASSES[cls]]
+                    latest[f'worst_Lorth_{j+1}'] = latest['L_orth_' + class_names[cls]]
                 if not all(np.isfinite(v) for v in latest.values() if isinstance(v, (float, int))):
                     raise FloatingPointError('CNLP diagnostic nonfinite')
                 state['diagnostics'].append(latest)
@@ -213,14 +216,14 @@ def optimize_s4(trainer, images, label_dir, prototypes, output, identity, *, sto
             save_checkpoint()
     if model_hash(trainer.surrogate) != frozen_before or model_hash(trainer.adaptive.model) != adaptive_before:
         raise ValueError('Frozen/Adaptive base model changed')
-    if not stop_after and (state['step'] != 9144 or state['epoch'] != 24):
-        raise ValueError('Full S4 must complete24epochs/9144Adam updates')
+    if not stop_after and (state['step'] != schedule['optimizer_steps'] or state['epoch'] != schedule['epochs']):
+        raise ValueError('S4 must complete the frozen dataset-specific 24-epoch schedule')
     if state['step'] == 0:
         raise ValueError('No valid optimization steps')
     saved_idx = trainer.freq_active_idx
     pack = dict(coords=[list(trainer.freq_candidate_coords[int(i)]) for i in saved_idx.cpu().tolist()],
         fourier_coeff=trainer.fourier_coeff.detach()[saved_idx].cpu(), suppress_small=trainer.suppress_small.detach().cpu(),
-        method='legacy_kproto_ret', support_mode=trainer.support_mode, target_class_id=14, eps=trainer.eps,
+        method='legacy_kproto_ret', support_mode=trainer.support_mode, target_class_id=trainer.target_class_id, eps=trainer.eps,
         feature_layer=trainer.feature_layer, s4_identity=identity, num_prototypes=trainer.num_prototypes,
         margin=trainer.margin)
     with (output / 'global_params.pt').open('xb') as stream:

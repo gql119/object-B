@@ -1,0 +1,1 @@
+state,arm,checkpoint,epoch,mAP50_target,mAP50_non_target,S,mAP50_all,mAP50_95_all,mAP50_95_target,mAP50_95_non_target,mAP75_non_target,WCD,TCD3,PersonRecall

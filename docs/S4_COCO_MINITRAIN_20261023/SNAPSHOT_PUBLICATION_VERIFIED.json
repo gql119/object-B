@@ -1,0 +1,15 @@
+{
+  "schema": "snapshot-publication.v1",
+  "verified_utc": "2026-10-23T14:00:29.535251+00:00",
+  "repository": "https://github.com/gql119/object-B",
+  "branch": "codex/current-experiments-snapshot-20261023",
+  "commit": "f00ef6062557bef0f3b5081702de1e52ba9beb0a",
+  "tree": "a8d243e52ef126f45a8c4357b61a8024d87a6c23",
+  "ls_remote": "f00ef6062557bef0f3b5081702de1e52ba9beb0a\trefs/heads/codex/current-experiments-snapshot-20261023",
+  "source_files": 958,
+  "server_file_hashes_verified": 958,
+  "all_archive_file_sha256_match": true,
+  "push_succeeded": true,
+  "stage0_complete": true,
+  "no_COCO_adaptation_before_this_receipt": true
+}

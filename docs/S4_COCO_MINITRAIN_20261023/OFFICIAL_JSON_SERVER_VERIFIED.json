@@ -1,0 +1,15 @@
+{
+  "state": "VERIFIED_ON_SERVER",
+  "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/metadata/instances_minitrain2017.json",
+  "sha256": "5682389c3bb0a356912771811f7836659cc6de5a588413752922ccb94a6df1a8",
+  "public_annotations_only": true,
+  "images_or_weights_transferred": false,
+  "before": {
+    "exists": true,
+    "sha256": "5682389c3bb0a356912771811f7836659cc6de5a588413752922ccb94a6df1a8"
+  },
+  "readback": {
+    "exists": true,
+    "sha256": "5682389c3bb0a356912771811f7836659cc6de5a588413752922ccb94a6df1a8"
+  }
+}
