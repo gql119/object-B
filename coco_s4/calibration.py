@@ -22,7 +22,15 @@ class ProtocolSpaceBlocked(ValueError):
     pass
 
 
-def collect(trainer, model, images, label_dir, output):
+def verify_expected_hashes(image_path, label_path, image_sha, label_sha, expected_hashes):
+    if expected_hashes is None:
+        return
+    expected = expected_hashes.get(Path(image_path).stem)
+    if expected is None or expected != (image_sha, label_sha):
+        raise ValueError('Clean COCO train image/label differs from accepted manifest: '+Path(image_path).stem)
+
+
+def collect(trainer, model, images, label_dir, output, *, expected_hashes=None):
     """Same per-GT gradients/pooling as the canonical P3/P5 builders.
 
     Both retained feature maps come from the same frozen forward; gradients are
@@ -40,7 +48,9 @@ def collect(trainer, model, images, label_dir, output):
     for index,path in enumerate(images):
         image=load_image_rgb_float(path)
         label=label_path_for_image(path,str(label_dir));anns=read_yolo_annotations(label)
-        manifest.update((Path(path).stem+':'+sha(path)+':'+sha(label)+'\n').encode())
+        image_sha,label_sha=sha(path),sha(label)
+        verify_expected_hashes(path,label,image_sha,label_sha,expected_hashes)
+        manifest.update((Path(path).stem+':'+image_sha+':'+label_sha+'\n').encode())
         support,_,_=trainer._build_support(image.shape,anns,image_path=path)
         if support.sum()>10:
             eligible.append(path)

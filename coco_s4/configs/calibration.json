@@ -1,0 +1,37 @@
+{
+  "schema": "s4.coco.calibration-config.v1",
+  "phase": "calibration",
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261025_v3",
+  "teacher_policy": "fixed native EMA last@200",
+  "predecessor_phase": "teacher_eval",
+  "predecessor_receipt_kind": "accepted.json",
+  "validation_used": false,
+  "parameter_updates": false,
+  "checkpoint_selection_allowed": false,
+  "method_statistics_from_validation": false,
+  "selected_space_dimension": 24,
+  "support_mode": "bbox_half_overlap",
+  "target_class_id": 0,
+  "num_classes": 80,
+  "prototype_count": 8,
+  "prototype_seed": 0,
+  "prototype_max_images": 0,
+  "strict_tsfl": {
+    "target_candidate_fraction": 0.4,
+    "nt_safety_quantile": 0.6,
+    "sensitivity_worst_k": 3,
+    "target_channel_fraction": 0.15,
+    "min_selected_channels": 4,
+    "selected_layer": "P5",
+    "feature_layer": "model.21"
+  },
+  "safe_bg": {
+    "enabled": true,
+    "mode": "low_rank",
+    "rank": 8,
+    "removal_alpha": 0.5,
+    "active_k": 3,
+    "reference_layer": "model.15"
+  },
+  "artifact_relative_root": "execution/generated_calibration/coco_calibration_template"
+}
