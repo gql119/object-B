@@ -1,0 +1,44 @@
+{
+  "uid": 1014,
+  "native_root": "/project/guoqinglong/miniconda3/envs/cfbdm/lib/python3.11/site-packages/ultralytics",
+  "versions": {
+    "ultralytics": "8.4.150",
+    "torch": "2.7.1+cu128",
+    "torchvision": "0.22.1+cu128",
+    "numpy": "2.4.6"
+  },
+  "GPU_imported": false,
+  "read_only": true,
+  "files": {
+    "engine/trainer.py": {
+      "sha256": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+      "bytes": 69443
+    },
+    "engine/model.py": {
+      "sha256": "7cb2135d1a5199ec7286b01ac61b67213da044d815a3325e320b752f36b74f64",
+      "bytes": 60786
+    },
+    "models/yolo/detect/train.py": {
+      "sha256": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f",
+      "bytes": 12440
+    },
+    "utils/checks.py": {
+      "sha256": "392fb131292638fad608786ff58f50868a0a16739a66fbc3d8c88de0e0e8ee4a",
+      "bytes": 47032
+    },
+    "utils/torch_utils.py": {
+      "sha256": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5",
+      "bytes": 54540
+    },
+    "data/utils.py": {
+      "sha256": "6135197e734e4dba2b85caca69a7757979f5ac4c8cb08223feb22888fe9c0ade",
+      "bytes": 39253
+    },
+    "cfg/default.yaml": {
+      "sha256": "27d6c46184efc16d404f8b3bd1e12069f3ba10379adbbc415ffc10cc41088d7a",
+      "bytes": 10338
+    }
+  },
+  "UTC": "2026-10-24T17:12:59.988380+00:00",
+  "purpose": "Actual native source binding for future strict train-only COCO Teacher; no formal binding or scientific readiness implied"
+}

@@ -1,6 +1,6 @@
 {
   "schema": "s4.coco.queue.v1",
-  "state": "WAITING_PREVIOUS_PIPELINE_AND_DATA",
+  "state": "DATA_READY_WAITING_IMPLEMENTATION_VALIDATION",
   "scientific_parent_commit": "b1e29510e7b1ed5fa0fe361a27132d8790e65c14",
   "original_victim_component": "ab626917f20917e58cf30033ac99df00938cb561",
   "snapshot_commit": "f00ef6062557bef0f3b5081702de1e52ba9beb0a",
@@ -62,10 +62,8 @@
     "optimizer_steps": "24*ceil(eligible_clean_Person_images/16), frozen after original >10 support eligibility audit"
   },
   "current_blockers": [
-    "30K_clean_images_not_yet_acquired; finite32imagebridge failedHTTP502/TLS; rawattemptsretained",
     "new_full_pipeline_entrypoint_source_binding_and_GPU_evidence_not_yet_ready",
-    "official_pycocotools_missing_in_active_environment; separatepinneddependencyneeded",
-    "current_robustness_not_finished"
+    "official_pycocotools_missing_in_active_environment; separatepinneddependencyneeded"
   ],
   "no_resume_existing_ID": true,
   "no_data_or_weight_Git_upload": true,
@@ -77,5 +75,7 @@
     "train_val_disjoint": true,
     "resampled": false
   },
-  "CPU_tests": 45
+  "CPU_tests": 45,
+  "train_data_ready": true,
+  "val_data_ready": true
 }
