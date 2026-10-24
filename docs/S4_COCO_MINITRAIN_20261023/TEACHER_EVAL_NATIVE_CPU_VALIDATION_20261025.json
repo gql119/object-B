@@ -1,0 +1,62 @@
+{
+  "state": "passed",
+  "UTC": "2026-10-24T21:46:05.941515+00:00",
+  "data": "two synthetic CPU images; random native COCO80 head",
+  "native_raw_and_decoded_predictions_exact": true,
+  "pre_NMS_nonfinite_rejected": true,
+  "image_count": 2,
+  "production_parameters_except_explicit_CPU_test": {
+    "device": "cpu",
+    "batch": 2,
+    "imgsz": 640
+  },
+  "GPU_initialized": false,
+  "official_COCO_metrics_computed": false,
+  "scientific_review_passed": false,
+  "formal_phase_allowed": false,
+  "baseline_equivalence_probe": {
+    "reference_id": "pinned ultralytics.YOLO.predict, independent model instance",
+    "candidate_id": "coco_s4.coco_eval.predict production sink",
+    "reference_weights_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_eval_cpu_2026-10-24T214600.691899_0000\\random_native80.pt",
+    "candidate_weights_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_eval_cpu_2026-10-24T214600.691899_0000\\random_native80.pt",
+    "weights_sha256": "599e1dbaed478fd839a245dfe09fc681daacc02e72ebd1a05190bb350a12e09c",
+    "metric_name": "raw and decoded native inference exact identity",
+    "reference_metric": 0,
+    "candidate_metric": 0,
+    "absolute_difference": 0,
+    "tolerance": 0,
+    "raw_outputs_exact": true,
+    "decoded_predictions_exact": true,
+    "reference_raw_forward_calls": 1,
+    "raw_reference_sha256": "7f7639572414aa5b969c548a354adb2096ea2cecd81e22f7eb857661484ef837",
+    "evaluation_setting": {
+      "dataset": "first sorted annotation image IDs",
+      "sample_count": 2,
+      "seed": 0,
+      "parameters": {
+        "imgsz": 640,
+        "batch": 2,
+        "device": "cpu",
+        "conf": 0.001,
+        "iou": 0.7,
+        "max_det": 300,
+        "half": false,
+        "augment": false,
+        "agnostic_nms": false,
+        "rect": false,
+        "save": false,
+        "save_txt": false,
+        "save_conf": false,
+        "verbose": false,
+        "stream": true
+      },
+      "post_processing": "identical native NMS"
+    }
+  },
+  "source_sha256": {
+    "coco_s4/coco_eval.py": "600aab89423e3fc0b2345644147d9cc44b867deb1c41b567ed12aa139462349f",
+    "coco_s4/phase_teacher_eval.py": "343afa803b281414e0979fbb166d80e5ff46544ad414877e38fb808649010d43"
+  },
+  "output": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_eval_cpu_2026-10-24T214600.691899_0000",
+  "deleted_paths": []
+}

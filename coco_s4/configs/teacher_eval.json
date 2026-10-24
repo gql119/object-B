@@ -1,0 +1,21 @@
+{
+  "schema": "s4.coco.teacher-eval-config.v1",
+  "phase": "teacher_eval",
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261025_v3",
+  "checkpoint_policy": "fixed native EMA last@200",
+  "image_count": 5000,
+  "nc": 80,
+  "target_class_id": 0,
+  "predict_args": {
+    "imgsz": 640, "batch": 36, "device": "0", "conf": 0.001,
+    "iou": 0.7, "max_det": 300, "half": false, "augment": false,
+    "agnostic_nms": false, "rect": false, "save": false,
+    "save_txt": false, "save_conf": false, "verbose": false, "stream": true
+  },
+  "parameter_updates": false,
+  "checkpoint_selection_allowed": false,
+  "method_statistics_allowed": false,
+  "metric_driven_tuning_allowed": false,
+  "evaluator_version": "2.0.10",
+  "evaluator_wheel_sha256": "1760c10459dfb4229e7436ae380228428efb0115bbe332a51b72d07fa085d8c0"
+}

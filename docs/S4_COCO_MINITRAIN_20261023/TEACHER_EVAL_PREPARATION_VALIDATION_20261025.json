@@ -1,0 +1,21 @@
+{
+  "state": "passed",
+  "UTC": "2026-10-24T21:49:44.204789+00:00",
+  "actual_RRCTL_RunSpec_schema_validated": true,
+  "POSIX_paths_and_ordinary_scope_valid": true,
+  "invalid_names_rejected": 4,
+  "synthetic_unusable_zero_commit_and_hash_fixture": true,
+  "actual_server_binding_created": false,
+  "actual_production_prepare_probe": {
+    "state": "WAITING_TEACHER_DEPENDENCY",
+    "native_state": "RUNNING",
+    "current_stage": "teacher200",
+    "observed_this_heartbeat": true,
+    "remote_writes": 0
+  },
+  "GPU_runs": 0,
+  "formal_registered": false,
+  "source_sha256": "4462a5a13ec57dbb9de360000f2116d56a30be25b0d7b5e80c78b7b2302fad7f",
+  "output": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\evalprep_2026-10-24T214943.775863_0000",
+  "deleted_paths": []
+}

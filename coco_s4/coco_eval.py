@@ -5,6 +5,7 @@ Its caller must supply the accepted checkpoint/data/release and phase closure.
 """
 from pathlib import Path
 import csv
+import hashlib
 import json
 import math
 import sys
@@ -15,6 +16,24 @@ PREDICT_ARGS = dict(imgsz=640, batch=36, device='0', conf=.001, iou=.7,
                     max_det=300, half=False, augment=False, agnostic_nms=False,
                     rect=False, save=False, save_txt=False, save_conf=False,
                     verbose=False, stream=True)
+
+
+def raw_signature(value):
+    """Numerical identity before threshold/NMS, used only by bounded probes."""
+    import torch
+    rows=[]
+    def visit(v):
+        if torch.is_tensor(v):
+            if not torch.isfinite(v).all():raise FloatingPointError('Nonfinite reference raw output')
+            t=v.detach().cpu().contiguous()
+            rows.append(dict(shape=list(t.shape),dtype=str(t.dtype),
+                             sha256=hashlib.sha256(t.numpy().tobytes()).hexdigest()))
+        elif isinstance(v,dict):
+            for k in sorted(v):visit(v[k])
+        elif isinstance(v,(tuple,list)):
+            for item in v:visit(item)
+    visit(value)
+    return rows
 
 
 def load_evaluator(directory, expected):
@@ -100,9 +119,10 @@ def predict(checkpoint, images_dir, annotation_json, mapping, output, *, smoke_b
         raise ValueError('Missing accepted val image')
     initial=sha(checkpoint)
     model=YOLO(str(checkpoint))
-    if model.model.nc!=80 or model.model.names[0]!='person':
+    if model.model.model[-1].nc!=80 or len(model.model.names)!=80 or model.model.names[0]!='person':
         raise ValueError('Not a COCO80/Person0 checkpoint')
     counter=dict(raw_forward_calls=0,raw_tensors_checked=0)
+    signatures=[]
     def checked(module,args,result):
         counter['raw_forward_calls']+=1
         def check(v):
@@ -115,6 +135,7 @@ def predict(checkpoint, images_dir, annotation_json, mapping, output, *, smoke_b
             elif isinstance(v,(tuple,list)):
                 for item in v:check(item)
         check(result)
+        if smoke_batches:signatures.append(raw_signature(result))
     hook=model.model.register_forward_hook(checked)
     table={r['yolo_class_id']:r['category_id'] for r in mapping}
     seen=[];detections=[]
@@ -143,9 +164,10 @@ def predict(checkpoint, images_dir, annotation_json, mapping, output, *, smoke_b
     target=Path(output)/'detections.json'
     write_once(target,detections)
     receipt=dict(state='passed' if smoke_batches else 'complete',UTC=now(),checkpoint_sha256=initial,
-                 predict_args=PREDICT_ARGS,image_count=len(seen),detections=len(detections),
+                 predict_args=dict(PREDICT_ARGS),image_count=len(seen),detections=len(detections),
                  finite_outputs=True,checked_outputs='all raw tensor outputs of DetectionModel, before NMS',
                  sparse_category_id_mapping_explicit=True,original_pixel_xywh=True,**counter,
+                 raw_output_signatures=signatures,actual_device=str(next(model.model.parameters()).device),
                  official_metrics_disabled=bool(smoke_batches),artifact_ingest_disabled=bool(smoke_batches),
                  cleanup_policy='retain_all',deleted_paths=[])
     write_once(Path(output)/'prediction_audit.json',receipt)
