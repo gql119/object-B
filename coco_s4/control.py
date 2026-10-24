@@ -10,7 +10,7 @@ from .runtime import DATA_FILES, DATA_ROOT, PARENT, VICTIM_PARENT, ROOT, atomic,
 
 EX = ROOT/'execution'
 BASE = ROOT.parent
-RUN_ID = 's4_coco_experiment_a_seed0_20261025_v1'
+RUN_ID = 's4_coco_experiment_a_seed0_20261025_v2'
 REMOTE_ROOT = '/project/guoqinglong/projects/s4_coco_experiment_a_20261025'
 PYTHON = '/project/guoqinglong/miniconda3/envs/cfbdm/bin/python'
 PROFILES = BASE/'s4_robustness_evaluation_20261019/execution/profiles.json'
@@ -45,11 +45,11 @@ def prepare():
     if changes:
         raise ValueError('Tracked source must be clean')
     release = dict(schema='s4.coco.release.v1', source_commit=commit(), scientific_parent=PARENT, victim_parent=VICTIM_PARENT,
-                   files={n: sha(ROOT/n) for n in selected}, data_root=str(DATA_ROOT), data_files=DATA_FILES,
+                   files={n: sha(ROOT/n) for n in selected}, data_root=DATA_ROOT.as_posix(), data_files=DATA_FILES,
                    native_sources={n: r['sha256'] for n, r in actual['files'].items()}, versions=actual['versions'],
                    config_path='docs/S4_COCO_MINITRAIN_20261023/COCO_EXPERIMENT_A_CONFIG.yaml',
                    implemented_phases=['teacher200'], later_phase_implementation_acceptance_not_implied=True)
-    rel_local=EX/'TEACHER_SOURCE_RELEASE_20261025.json'
+    rel_local=EX/RUN_ID/'source_release.json'
     write_once(rel_local, release)
     template = load(BASE/'s4_robustness_extended_20261022/execution/s4_robustness_extended_selected_seed0_20261022_recovery03.json')
     prev = dict(output=template['remote']['output_root'],run_id=template['run_id'],source_commit=template['source']['commit'])
@@ -63,7 +63,7 @@ def prepare():
                 predecessor_acceptance_sha256=sha(acc_local),owned_release_root=REMOTE_ROOT+'/releases',
                 future_phases_require_separate_immutable_validated_release=True,OP_enabled=False,
                 user_authorization_sha256=sha(ROOT/'docs/S4_COCO_MINITRAIN_20261023/USER_AUTOSTART_TASK_20261025.md'))
-    cfg_local=EX/'COCO_WORKFLOW_BOUND_CONFIG_20261025.json';write_once(cfg_local,config)
+    cfg_local=EX/RUN_ID/'workflow.json';write_once(cfg_local,config)
     template.update(run_id=RUN_ID,project='s4-coco-experiment-a')
     template['source']=dict(repo_root=str(ROOT),branch='codex/s4-coco-minitrain25k-generalization',commit=commit(),
                             allowed_post_commit_paths=['execution/','Ultralytics/'])
