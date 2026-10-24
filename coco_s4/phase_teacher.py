@@ -51,6 +51,11 @@ def baseline_probe(t, output):
     weights = output / 'baseline_preupdate_state.pt'
     torch.save(state, weights)
     ref = DetectionModel(str(t.args.model), ch=3, nc=80, verbose=False).to(t.device)
+    # Native Linux CUDA setup uses channels_last. Compare under the same native
+    # memory layout, rather than comparing different convolution kernels.
+    candidate_conv=next(p for p in t.model.parameters() if p.ndim==4)
+    if candidate_conv.is_contiguous(memory_format=torch.channels_last):
+        ref.to(memory_format=torch.channels_last)
     ref.args = copy.deepcopy(t.model.args)
     ref.names = copy.deepcopy(t.model.names)
     ref.stride = t.model.stride

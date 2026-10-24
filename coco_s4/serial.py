@@ -86,21 +86,39 @@ def predecessor(config):
 
 
 def run_job(out, name, argv, cwd, status):
+    from .process import scope_command, cgroup
     job = out/'jobs'/name
     job.mkdir(parents=True, exist_ok=False)
     write_once(job/'intent.json', dict(argv=argv, cwd=str(cwd), UTC=now(), owner=identity()))
     status.update(state='RUNNING', active_job=name, updated_UTC=now())
     atomic(out/'pipeline_state.json', status)
+    unit,command=scope_command(job,argv,cwd)
+    write_once(job/'scope_launch.json',dict(unit=unit+'.scope',argv=command,supervisor=identity(),
+                                          supervisor_scope=cgroup(),OOM_policy_overrides=False))
     with (job/'console.log').open('xb') as log:
-        child = subprocess.Popen(argv, cwd=cwd, stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT)
-        ident = identity(child.pid)
-        write_once(job/'child.json', ident)
+        child = subprocess.Popen(command, cwd=cwd, stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT)
+        launcher=identity(child.pid)
+        write_once(job/'scope_launcher.json',launcher)
+        deadline=time.monotonic()+30
+        while not (job/'child.json').exists() and child.poll() is None and time.monotonic()<deadline:
+            time.sleep(.1)
+        if not (job/'child.json').exists():
+            rc=child.wait(timeout=10)
+            write_once(job/'exit.json',dict(returncode=rc,scope_launcher=launcher,ended_UTC=now()))
+            raise RuntimeError('Scoped child did not start: '+name)
+        ident=load(job/'child.json')
+        parent_scope=load(job/'scope_launch.json')['supervisor_scope']['path']
+        if ident['memory_scope']['path']==parent_scope:
+            raise RuntimeError('Ordinary child scope isolation failed')
         while child.poll() is None:
             status.update(active_child=ident, updated_UTC=now())
             atomic(out/'pipeline_state.json', status)
             time.sleep(10)
         result = dict(returncode=child.returncode, child=ident, ended_UTC=now())
         write_once(job/'exit.json', result)
+        observed=subprocess.run(['systemctl','--user','show',unit+'.scope','-p','Result','-p','ActiveState',
+                                 '-p','MemoryPeak','-p','ControlGroup'],capture_output=True,text=True,timeout=15)
+        write_once(job/'scope_result.json',dict(returncode=observed.returncode,stdout=observed.stdout,stderr=observed.stderr))
     if child.returncode:
         raise RuntimeError('Scientific child failed; no automatic retry: ' + name)
     status.update(active_job=None, active_child=None)
@@ -132,6 +150,14 @@ def main():
     atomic(out/'pipeline_state.json', status)
     try:
         write_once(out/'PREDECESSOR_ACCEPTANCE.json', predecessor(cfg))
+        probe=out/'cpu_supervision_counter.json'
+        cpu_argv=[sys.executable,'-B','-c',
+                  'from pathlib import Path;import json,sys;p=Path(sys.argv[1]);f=p.open("x");json.dump({"executions":1},f);f.close()',str(probe)]
+        run_job(out,'cpu_supervision',cpu_argv,ROOT,status)
+        if load(probe)!={'executions':1}:
+            raise ValueError('Real production CPU supervision probe failed')
+        write_once(out/'CPU_SUPERVISION_ACCEPTED.json',dict(state='passed',executions=1,ordinary_independent_scope=True,
+                                                          OOM_policy_overrides=False,GPU_steps=0,UTC=now()))
         while True:
             r = capacity(out)
             atomic(out/'capacity_latest.json', r)
@@ -141,9 +167,9 @@ def main():
             atomic(out/'pipeline_state.json', status); time.sleep(300)
         smoke = out/'teacher_smoke'
         run_job(out, 'teacher_smoke', [sys.executable, '-B', '-m', 'coco_s4.phase_teacher', '--release', str(a.release),
-                                     '--output', str(smoke), '--smoke-batches', '10'], ROOT, status)
+                                     '--output', str(smoke), '--smoke-batches', '20'], ROOT, status)
         s = load(smoke/'smoke_summary.json')
-        if s['state'] != 'passed' or not s['finite_loss'] or s['total_actual_batches'] != 10:
+        if s['state'] != 'passed' or not s['finite_loss'] or s['total_actual_batches'] != 20:
             raise ValueError('Teacher current-candidate GPU smoke not accepted')
         status.update(state='PENDING_SCIENTIFIC_REVIEW', current_stage='teacher200', updated_UTC=now())
         atomic(out/'pipeline_state.json', status)

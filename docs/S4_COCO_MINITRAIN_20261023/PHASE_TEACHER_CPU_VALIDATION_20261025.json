@@ -1,14 +1,14 @@
 {
   "state": "passed",
-  "UTC": "2026-10-24T19:46:28.925207+00:00",
-  "output": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\phase_cpu_20261024T194625Z",
+  "UTC": "2026-10-24T19:54:52.334443+00:00",
+  "output": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\phase_cpu_20261024T195449Z",
   "immutable_receipt_collision_refused": true,
   "unsafe_release_paths_refused": 4,
   "actual_CPU_native_loss_equivalence": {
     "reference_id": "pinned ultralytics.nn.tasks.DetectionModel.loss",
     "candidate_id": "COCOTrainOnlyTeacher production model.loss",
-    "reference_weights_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\phase_cpu_20261024T194625Z\\baseline_preupdate_state.pt",
-    "candidate_weights_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\phase_cpu_20261024T194625Z\\baseline_preupdate_state.pt",
+    "reference_weights_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\phase_cpu_20261024T195449Z\\baseline_preupdate_state.pt",
+    "candidate_weights_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\phase_cpu_20261024T195449Z\\baseline_preupdate_state.pt",
     "weights_sha256": "a1e606388660dc0365c0b43589a5ca1bfc1562b1e1b16dce54eca08f37309e67",
     "metric_name": "pre-update native detection loss sum",
     "reference_metric": 0.72416090965271,
@@ -35,7 +35,7 @@
   "new_GPU_smoke": false,
   "source": {
     "coco_s4/runtime.py": "fa50989fa10f4f597ae6ed69dcdb09c8943a066c715efbdf9b3809c428ecd517",
-    "coco_s4/phase_teacher.py": "b23e3d62528126b15409314839a005317cff40bbabe9b0a935a85649a34fd319",
-    "coco_s4/serial.py": "2af8e601189424436a27a427cd83885ff0e4b667ab181f9f90554352ae4632e1"
+    "coco_s4/phase_teacher.py": "1b84e73a03e17f15fbf5e63bbecd0e88ea945e26f4f77c989ac23d9ffa6d72a3",
+    "coco_s4/serial.py": "f20c177b3a5bcea401dab7ec6e2b32b834c6aa856e28ce51511aca9b70d3f4fb"
   }
 }
