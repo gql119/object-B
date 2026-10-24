@@ -1,0 +1,17 @@
+{
+  "validation_loader_requests_blocked": 1,
+  "native_validate_dispatches_blocked": 1,
+  "final_eval_dispatches_blocked": 1,
+  "validation_forwards": 0,
+  "EMA_forwards": 0,
+  "fitness_kind": "negative_native_training_loss; not AP",
+  "formal_primary_checkpoint": "last@200",
+  "automatic_resume_allowed": false,
+  "train_image_count": 25000,
+  "data_route": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/images/train",
+  "validation_image_count": 0,
+  "cpu_probe": false,
+  "native_optimizer_step_inherited": true,
+  "checkpoints_not_stripped": true,
+  "official_metrics_disabled": true
+}

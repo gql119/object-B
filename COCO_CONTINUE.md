@@ -1,3 +1,11 @@
+# Current: formal COCO Teacher200 is running (2026-10-25)
+
+Read execution/COCO_CURRENT_STATE.json and execution/COCO_TEACHER_RUNNING_CONTINUE_20261025.md first. Actual source ee0b4256fdd344c5a275e6d15efc78cb7636d6e1, workflow s4_coco_experiment_a_seed0_20261025_v3. Controller3797092/start349641321, Teacher3800540/start349706115,uid1014. Healthy current binding is inspect-only; never run control prepare/launch/restart or repeat Teacher smoke/review. Server consumed the exact closure and automatically started formal Teacher200; no new user confirmation is required. No AP/completion is implied by progress.
+
+Full25K train+5K val already accepted, no transfer/extraction/audit reruns. New evaluator/calibration components have CPU evidence only; future production wrappers/immutable phase releases/GPU/single-review gates remain OPEN. Same one monitor continues implementation during the healthy Teacher, then handles dependency gates after fixed last@200. No second scheduler or monitor. Do not confuse later docs/preparation HEAD with active runtime ee0b425.
+
+Historical continuation text below is superseded where it conflicts with this current state.
+
 # Latest direct AUTO-START authorization and Teacher CPU component — 2026-10-25
 
 Read USER_AUTOSTART_TASK_20261025.md SHA5c9bdf0280bc667ad5b63d927cf5a462d68137cadb1f3d35ac0a6ff00c48bc23, execution/COCO_CURRENT_STATE.json and docs/S4_COCO_MINITRAIN_20261023/COCO_EXPERIMENT_A_STATUS.json FIRST. User explicitly says finish remaining tests/implementation, archive current code/config, deploy one persistent server serial workflow and AUTOMATICALLY run full Experiment A after actual gates, no reconfirmation; do not stop at tests or just commands. Same sole two-hour monitor; if5hourquota exhausted preserve evidence and continue after reset, no reset-credit use. Last observed82%used/reset2026-10-24T19:36:21Z; read actual limits when needed.

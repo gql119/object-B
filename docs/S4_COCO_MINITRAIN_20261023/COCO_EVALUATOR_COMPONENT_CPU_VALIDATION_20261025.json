@@ -1,0 +1,29 @@
+{
+  "state": "EVALUATION_COMPONENT_CPU_VALIDATED",
+  "UTC": "2026-10-24T19:59:47.296159+00:00",
+  "source_sha256": {
+    "coco_s4/__init__.py": "7287d2720917368ec9196f2a7bf2bf0eef065de09c3566d8f1823e6ec337a002",
+    "coco_s4/runtime.py": "fa50989fa10f4f597ae6ed69dcdb09c8943a066c715efbdf9b3809c428ecd517",
+    "coco_s4/evaluation.py": "2ce9cca325f2b9632b8617d9c07d530bebfdfa7f7df628453b7d3130bbda78d1",
+    "coco_s4/coco_eval.py": "3b2373ae216639b2950309574635f104231fc5da67c030ad59dd253af5347fb5"
+  },
+  "checks": {
+    "perfect": {
+      "classes": 80,
+      "values_as_expected": true
+    },
+    "empty": {
+      "classes": 80,
+      "values_as_expected": true
+    }
+  },
+  "sparse_mapping_exact": true,
+  "crowd_ignored_by_official_evaluator": true,
+  "GPU_imported": false,
+  "formal_metrics": false,
+  "inference_GPU_smoke_passed": false,
+  "scientific_review_passed": false,
+  "candidate_source_committed": false,
+  "live_Teacher_release_modified": false,
+  "output": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/evaluator_component_cpu_20261025_v1"
+}

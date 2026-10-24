@@ -1,0 +1,54 @@
+{
+  "state": "passed",
+  "source_commit": "ee0b4256fdd344c5a275e6d15efc78cb7636d6e1",
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "smoke_batches": 20,
+  "completed_UTC": "2026-10-24T19:59:18.738297+00:00",
+  "finite_loss": true,
+  "production_entrypoint_reached": true,
+  "computation_kind": "training",
+  "total_actual_batches": 20,
+  "actual_native_SGD_updates": 14,
+  "legal_native_AMP_skips": 6,
+  "zero_validation_forwards": true,
+  "release_sha256": "c520c67ea99effba2a81d79695d0102cd866c9475a8a7284793f6f0b3d426e1a",
+  "last_checkpoint_sha256": "04699f6630949453e9fcc5b82d5726d7bbc26979fb13bf0be3356d318c6892ce",
+  "checkpoint_paths_remaining": [
+    "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/baseline_preupdate_state.pt",
+    "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/train/weights/best.pt",
+    "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/train/weights/epoch0.pt",
+    "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/train/weights/last.pt",
+    "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/train/retained_epoch_checkpoints/epoch_001.pt"
+  ],
+  "cleanup_policy": "retain_all",
+  "checkpoint_cleanup_completed": false,
+  "deleted_paths": [],
+  "baseline_equivalence_probe": {
+    "reference_id": "pinned ultralytics.nn.tasks.DetectionModel.loss",
+    "candidate_id": "COCOTrainOnlyTeacher production model.loss",
+    "reference_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/baseline_preupdate_state.pt",
+    "candidate_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/baseline_preupdate_state.pt",
+    "weights_sha256": "da3da67a43ca838ca36846a01bc03a289b16037808099b0016d84c7bcaa03efb",
+    "metric_name": "pre-update native detection loss sum",
+    "reference_metric": 487.11358642578125,
+    "candidate_metric": 487.11358642578125,
+    "absolute_difference": 0.0,
+    "tolerance": 0,
+    "evaluation_setting": {
+      "dataset": "first native augmented clean25K batch",
+      "seed": 0,
+      "sample_count": 36,
+      "parameters": {
+        "imgsz": 640,
+        "nc": 80,
+        "Person": 0
+      },
+      "post_processing": "native raw detection loss, identical tensors, no NMS"
+    },
+    "reference_computation_module": "ultralytics.nn.tasks.DetectionModel",
+    "native_loss_inherited": true,
+    "official_metrics_disabled": true
+  },
+  "baseline_equivalence_required": true
+}

@@ -1,0 +1,9 @@
+{
+  "state": "passed",
+  "UTC": "2026-10-24T19:49:13.684163+00:00",
+  "root_cause": "Windows str(Path) serialized backslashes for server POSIX data root; strict guard refused before any scientific child",
+  "canonical_remote_data_root": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023",
+  "fix": "serialize server path with as_posix; unique v2; per-RunID binding files",
+  "no_data_or_scientific_changes": true,
+  "previous_binding_not_reused": true
+}

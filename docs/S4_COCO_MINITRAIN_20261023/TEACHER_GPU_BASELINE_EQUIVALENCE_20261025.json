@@ -1,0 +1,26 @@
+{
+  "reference_id": "pinned ultralytics.nn.tasks.DetectionModel.loss",
+  "candidate_id": "COCOTrainOnlyTeacher production model.loss",
+  "reference_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/baseline_preupdate_state.pt",
+  "candidate_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/baseline_preupdate_state.pt",
+  "weights_sha256": "da3da67a43ca838ca36846a01bc03a289b16037808099b0016d84c7bcaa03efb",
+  "metric_name": "pre-update native detection loss sum",
+  "reference_metric": 487.11358642578125,
+  "candidate_metric": 487.11358642578125,
+  "absolute_difference": 0.0,
+  "tolerance": 0,
+  "evaluation_setting": {
+    "dataset": "first native augmented clean25K batch",
+    "seed": 0,
+    "sample_count": 36,
+    "parameters": {
+      "imgsz": 640,
+      "nc": 80,
+      "Person": 0
+    },
+    "post_processing": "native raw detection loss, identical tensors, no NMS"
+  },
+  "reference_computation_module": "ultralytics.nn.tasks.DetectionModel",
+  "native_loss_inherited": true,
+  "official_metrics_disabled": true
+}

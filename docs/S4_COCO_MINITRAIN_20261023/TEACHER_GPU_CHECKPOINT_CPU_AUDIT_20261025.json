@@ -1,0 +1,33 @@
+{
+  "state": "CURRENT_TEACHER_SMOKE_INDEPENDENTLY_VERIFIED",
+  "UTC": "2026-10-24T20:00:49.806836+00:00",
+  "source_files_verified": 86,
+  "source_commit": "ee0b4256fdd344c5a275e6d15efc78cb7636d6e1",
+  "checkpoint_files": {
+    "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/baseline_preupdate_state.pt": {
+      "sha256": "da3da67a43ca838ca36846a01bc03a289b16037808099b0016d84c7bcaa03efb",
+      "bytes": 12789234
+    },
+    "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/train/weights/best.pt": {
+      "sha256": "04699f6630949453e9fcc5b82d5726d7bbc26979fb13bf0be3356d318c6892ce",
+      "bytes": 12881027
+    },
+    "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/train/weights/epoch0.pt": {
+      "sha256": "04699f6630949453e9fcc5b82d5726d7bbc26979fb13bf0be3356d318c6892ce",
+      "bytes": 12881027
+    },
+    "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/train/weights/last.pt": {
+      "sha256": "04699f6630949453e9fcc5b82d5726d7bbc26979fb13bf0be3356d318c6892ce",
+      "bytes": 12881027
+    },
+    "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/train/retained_epoch_checkpoints/epoch_001.pt": {
+      "sha256": "04699f6630949453e9fcc5b82d5726d7bbc26979fb13bf0be3356d318c6892ce",
+      "bytes": 12881027
+    }
+  },
+  "last_embedded_epoch": 0,
+  "last_optimizer_scaler_retained": true,
+  "last_EMA_finite_no_hooks": true,
+  "GPU_initialized": false,
+  "no_model_weights_or_images_transferred": true
+}

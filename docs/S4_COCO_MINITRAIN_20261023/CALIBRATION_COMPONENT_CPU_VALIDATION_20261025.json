@@ -1,0 +1,17 @@
+{
+  "state": "CALIBRATION_COMPONENT_CPU_VALIDATED",
+  "UTC": "2026-10-24T20:08:38.333943+00:00",
+  "source_sha256": "ad39e5d7d06e8da2216308e3213b35de3fe1ce4f15aa35001927f3a6d4849b83",
+  "actual_native_CPU_images": 2,
+  "actual_classes_per_image": 80,
+  "P3_P5_all_per_GT_gradient_sums_equal_independent_canonical_loops": true,
+  "frozen_model_unchanged": true,
+  "synthetic_79_class_artifact_flow_passed": true,
+  "P3_reference_copies_byte_exact": true,
+  "incompatible_selected_space_blocks_without_truncation_or_threshold_relaxation": true,
+  "formal_COCO_statistics": false,
+  "GPU_initialized": false,
+  "GPU_smoke_passed": false,
+  "scientific_review_passed": false,
+  "output": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\calibration_cpu_20261024T200834Z"
+}

@@ -1,0 +1,31 @@
+{
+  "state": "ISOLATED_EVALUATOR_CPU_VALIDATED",
+  "UTC": "2026-10-24T19:57:57.757563+00:00",
+  "directory": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/evaluator/pycocotools_2_0_10",
+  "addon": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/evaluator/pycocotools_2_0_10/addon",
+  "wheel_sha256": "1760c10459dfb4229e7436ae380228428efb0115bbe332a51b72d07fa085d8c0",
+  "files": {
+    "pycocotools/__init__.py": "d02e91fe125b82e6e5f0642b897f7439094506d06f32771b40d00170deb8eae1",
+    "pycocotools/_mask.cpython-311-x86_64-linux-gnu.so": "6ea7589960deab4fb4de8cec8452f31c178c2eec478e06c1ef10fc953c59fc27",
+    "pycocotools/coco.py": "07f29665283eeb84deb940e7f28caabc0863f521089e1075165b9b32693a3f16",
+    "pycocotools/cocoeval.py": "988485f79624cd42ceed9335d284df4cdcdf7b3d583e052fcbed2dd6bccf0267",
+    "pycocotools/mask.py": "4d4788f995971c97c5548f0bd19941f6ec1faaf5d0d7fb6ec489256ff872c617",
+    "pycocotools-2.0.10.dist-info/METADATA": "fdc44a1ff92d846c5199aa7f230813f149dd4dbec1d0cd3a997cef69cf091dd5",
+    "pycocotools-2.0.10.dist-info/WHEEL": "fc216f202603999940607b7c2fb667de7f8118b8fc76464b40fa76d8f8b2e491",
+    "pycocotools-2.0.10.dist-info/top_level.txt": "9324b027becef551751346a209beb6d6d11f1c5f405180cc85fd8bec56099d53",
+    "pycocotools-2.0.10.dist-info/RECORD": "925a979c2101b7ad3ae8b7e103a70a9208f769b513c6496b47d9dcb48fe1bce2"
+  },
+  "pycocotools_version": "2.0.10",
+  "numpy_version": "2.4.6",
+  "Python": "3.11.16",
+  "actual_official_COCOeval": true,
+  "synthetic_images": 1,
+  "synthetic_classes": 80,
+  "AP_expected_and_measured": 1,
+  "all_IoU_class_arrays_within_1e_12": true,
+  "core_environment_unchanged": true,
+  "no_official_COCO_metrics": true,
+  "GPU_initialized": false,
+  "deleted_paths": [],
+  "initial_probe_failure_retained": "category metadata stored as list, not report wrapper; verifier schema corrected without restaging addon/data"
+}

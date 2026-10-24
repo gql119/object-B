@@ -1,0 +1,140 @@
+{
+  "schema_version": "prerun.scientific-review.v1",
+  "review_mode": "scientific_review",
+  "repo_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023",
+  "pre_run_code_commit": "ee0b4256fdd344c5a275e6d15efc78cb7636d6e1",
+  "review_diff_base_commit": "73724c5585633a6a7c95e6616f0a85f4b0c354f7",
+  "approved_basis": [
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\docs\\S4_COCO_MINITRAIN_20261023\\USER_AUTOSTART_TASK_20261025.md",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\docs\\S4_COCO_MINITRAIN_20261023\\COCO_EXPERIMENT_A_CONFIG.yaml",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_DATA_FINAL_INDEPENDENT_ACCEPTANCE_20261025.json"
+  ],
+  "implementation_intent": "First scientific phase only: fresh random-YAML YOLOv8n COCO80 Teacher on fixed clean minitrain25K, Person0,200epochs,b36,w16,640,seed0,nativeSGD/AMP/schedule/baseaug. Strict train-only: no final_epoch/final_eval/EMA validation, no validation image loader, no strip of native training state. Fixed last@200; later full-val official assessment is a separate read-only phase, never checkpoint selection or method calibration. Original S4 generation parent b1e29510e7b1ed5fa0fe361a27132d8790e65c14 and Victim AMP component ab626917f20917e58cf30033ac99df00938cb561 retained. No claim of completed statistics, Fourier or future evaluation readiness. Review scientific data/compute/checkpoint paths only; scheduler/transport/scope are excluded scaffolding, independently CPU tested. Untracked coco_s4/coco_eval.py is a separate future CPU-validated component and is not deployed or in this review.",
+  "exact_command": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.phase_teacher --release /project/guoqinglong/projects/s4_coco_experiment_a_20261025/bindings/s4_coco_experiment_a_seed0_20261025_v3/source_release.json --output /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200 --review /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/receipts/TEACHER_SCIENTIFIC_CLOSURE.json --smoke-evidence /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/smoke_summary.json",
+  "output_collision_policy": "fail",
+  "local_validation": [
+    {
+      "command": "python -B -m coco_s4.validate_teacher_cpu",
+      "exit_code": 0,
+      "observation": "Previously accepted unchanged strict Teacher component e3954d4:72syntheticimages,2nativeCPU batches,1actualSGDupdate,zero validation loader/validator/EMA forwards,final epoch/final_eval blocked,last optimizer/scaler retained; execution/TEACHER_CPU_VALIDATION_20261025.json. CPU versions differ from server and do not prove CUDA."
+    },
+    {
+      "command": "python -B -m coco_s4.validate_teacher_contracts",
+      "exit_code": 0,
+      "observation": "5 invalid data routes and15 frozen scientific argument mutations refused;8original math+2Victim component SHA exact. execution/TEACHER_CONTRACT_VALIDATION_20261025.json"
+    },
+    {
+      "command": "python -B -m coco_s4.validate_phase_cpu",
+      "exit_code": 0,
+      "observation": "Current scientific phase code:2syntheticCPU native loss0.72416090965271 exact/tolerance0;candidate state restored,4unsafe paths/collisions refused. execution/PHASE_TEACHER_CPU_VALIDATION_20261025.json"
+    }
+  ],
+  "pre_review_smoke": {
+    "schema_version": "prerun.pre-review-smoke.v1",
+    "disposition": "passed",
+    "candidate_commit": "ee0b4256fdd344c5a275e6d15efc78cb7636d6e1",
+    "run_id": "s4_coco_experiment_a_seed0_20261025_v3__teacher_smoke",
+    "exact_command": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.phase_teacher --release /project/guoqinglong/projects/s4_coco_experiment_a_20261025/bindings/s4_coco_experiment_a_seed0_20261025_v3/source_release.json --output /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke --smoke-batches 20",
+    "exit_code": 0,
+    "computation_kind": "training",
+    "step_budget": 24,
+    "completed_steps": 24,
+    "finite_loss": true,
+    "production_entrypoint_reached": true,
+    "isolated_output": true,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "evidence_paths": [
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\DOWNLOAD_MANIFEST.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\teacher_smoke\\amp_audit\\AMP_SCALE_AND_SKIP_LOG.csv",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\teacher_smoke\\train\\TEACHER_TRAIN_ONLY_AUDIT.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\INDEPENDENT_CPU_AUDIT.json"
+    ],
+    "cleanup_policy": "retain_all",
+    "checkpoint_cleanup_completed": false,
+    "checkpoint_paths_remaining": [
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/baseline_preupdate_state.pt",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/train/weights/best.pt",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/train/weights/epoch0.pt",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/train/weights/last.pt",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/train/retained_epoch_checkpoints/epoch_001.pt"
+    ],
+    "deleted_paths": [],
+    "retained_evidence_paths": [
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\jobs\\teacher_smoke\\console.log",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\teacher_smoke\\status.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\teacher_smoke\\smoke_summary.json"
+    ],
+    "baseline_equivalence_required": true,
+    "baseline_equivalence_probe": {
+      "reference_id": "pinned ultralytics.nn.tasks.DetectionModel.loss",
+      "candidate_id": "COCOTrainOnlyTeacher production model.loss",
+      "reference_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/baseline_preupdate_state.pt",
+      "candidate_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_smoke/baseline_preupdate_state.pt",
+      "weights_sha256": "da3da67a43ca838ca36846a01bc03a289b16037808099b0016d84c7bcaa03efb",
+      "metric_name": "pre-update native detection loss sum",
+      "reference_metric": 487.11358642578125,
+      "candidate_metric": 487.11358642578125,
+      "absolute_difference": 0.0,
+      "tolerance": 0,
+      "evaluation_setting": {
+        "dataset": "first native augmented clean25K batch",
+        "seed": 0,
+        "sample_count": 36,
+        "parameters": {
+          "imgsz": 640,
+          "nc": 80,
+          "Person": 0
+        },
+        "post_processing": "native raw detection loss, identical tensors, no NMS"
+      },
+      "reference_computation_module": "ultralytics.nn.tasks.DetectionModel",
+      "native_loss_inherited": true,
+      "official_metrics_disabled": true,
+      "evidence_paths": [
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\teacher_smoke\\baseline_equivalence.json",
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\INDEPENDENT_CPU_AUDIT.json"
+      ]
+    }
+  },
+  "critical_values": [
+    {
+      "name": "COCO80 Person0 full clean25K",
+      "source": "frozen config, canonical official mapping and accepted30000 image/label hashes",
+      "sink": "teacher_overrides -> COCOTrainOnlyTeacher.get_dataset -> native YOLO train loader/model head",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\teacher_smoke\\phase_spec.json; C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\teacher_smoke\\train\\TEACHER_TRAIN_ONLY_AUDIT.json"
+    },
+    {
+      "name": "strict train-only isolation",
+      "source": "Teacher policy valFalse plus null val YAML, explicit overrides",
+      "sink": "get_dataloader(val) empty sentinel/get_validator trap/validate and final_eval overrides; no EMA inference",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\teacher_smoke\\train\\TEACHER_TRAIN_ONLY_AUDIT.json; CPU72-image final-epoch probe TEACHER_CPU_VALIDATION_20261025.json"
+    },
+    {
+      "name": "200/36/16/640/nativeSGD AMP schedule",
+      "source": "COCO_EXPERIMENT_A_CONFIG.yaml victim section and pinned native default.yaml seven source hashes",
+      "sink": "teacher_overrides -> native inherited optimizer_step/preprocess/build optimizer/scheduler/train loop; historical AMP FP32/autocast selfcheck only",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\teacher_smoke\\train\\args.yaml; 20actualnativebatches/14actualSGDupdates/6legalAMPskips finite,20batches+2preupdate reference/candidate loss forwards+2AMPselfcheck forwards=24productionunits, no official metrics: C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\teacher_smoke\\amp_audit\\AMP_SCALE_AND_SKIP_LOG.csv"
+    },
+    {
+      "name": "random initialization and baseline reuse",
+      "source": "committed coco_yolov8n_80cls.yaml,pretrainedFalse,seed0,no transferred pretrained weights",
+      "sink": "COCOTrainOnlyTeacher native model vs separately instantiated pinned DetectionModel.loss, same random weights/input/GT/memorylayout",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\teacher_smoke\\baseline_equivalence.json; both GPU preupdate losses487.11358642578125/difference0/tolerance0"
+    },
+    {
+      "name": "last200 fixed and complete state",
+      "source": "frozen200 epochs, primarylast200,attach_safety_callbacks originalAMPcomponent",
+      "sink": "native save_model with passive EMA hook removal/restoration; final_eval does not strip; original10epoch/final200 FP32optimizer/scheduler/scaler/PythonNumPyTorchCUDA RNG snapshots",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_gpu_evidence_20261025\\INDEPENDENT_CPU_AUDIT.json; smoke embeddedepoch0 actual last/optimizer/scaler/finiteEMA/nohooks; this does not claim Teacher200 completed"
+    }
+  ],
+  "experiment": {
+    "benchmark": "Experiment A Original S4 cross-dataset method generalization; first Teacher bootstrap phase",
+    "dataset": "fixed official minitrain25K clean training,25000; no val opened by Teacher; later official cleanval2017 5000 separate read-only assessment",
+    "checkpoint": "fresh randomYAML80 -> fixed last@200 primary, no validation checkpoint selection; no existing COCO Teacher reused",
+    "seed": 0,
+    "metric_policy": "training loss only during Teacher; no AP. Future officialCOCOeval is a separate validated phase; no AP tuning or val statistics.",
+    "output_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200"
+  }
+}

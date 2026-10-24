@@ -1,0 +1,14 @@
+{
+  "state": "TEACHER_SCIENTIFIC_CLOSURE_UPLOADED_AND_READBACK_EXACT",
+  "receipt_sha256": "9afbc4276ca92af2feb9bf4537f22c61c5c8e2a65c0723f1ea9b5c3beefcb02a",
+  "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/receipts/TEACHER_SCIENTIFIC_CLOSURE.json",
+  "source_commit": "ee0b4256fdd344c5a275e6d15efc78cb7636d6e1",
+  "controller": {
+    "pid": 3797092,
+    "start_ticks": 349641321,
+    "uid": 1014
+  },
+  "UTC": "2026-10-24T20:06:09.127331+00:00",
+  "manual_formal_launch": false,
+  "server_will_consume_single_receipt": true
+}
