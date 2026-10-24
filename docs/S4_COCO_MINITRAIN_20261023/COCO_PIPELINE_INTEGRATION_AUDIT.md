@@ -17,3 +17,5 @@
 原始 S4 Safe-Soft05 + TFSS-Utility、8/4/0 预算、StrictP5、Safe-BG、TFSS、Frozen/Adaptive、Fourier24 和冻结优化协议保持不变。未启动新 GPU 任务，未创建新的训练调度器，未调用新 reviewer，未重新运行已接受的 Cutout/CutMix/MixUp/Full。
 
 服务器实际源码复核（2026-10-24T17:12:59Z）：通过既有RRCTL只读取得本人环境7个原生源/配置，未import GPU库、未写远程文件。Ultralytics 8.4.150、torch 2.7.1+cu128、torchvision 0.22.1+cu128、NumPy 2.4.6。实际 engine/trainer.py SHA256 `2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7`；同样确认第628–630行会在final_epoch调用validate，第973–987行的final_eval还会strip_optimizer并运行validator。新Teacher入口需要保留原生训练更新/调度/AMP，单独阻止验证loader和两处验证调用，保留last@200及完整训练状态；不能直接沿用旧VOC入口或从这一源码读取推断GPU通过。完整指纹见ACTUAL_TEACHER_NATIVE_SOURCE_AUDIT.json。
+
+已实现组件：coco_s4.teacher.COCOTrainOnlyTeacher。两个CPU探针已实际覆盖原生训练loop、最终epoch/final_eval阻断、零val/EMA前向和保存后optimizer/scaler/无hook；源码SHA见TEACHER_CPU_VALIDATION_20261025.json。完整生产入口与绑定/单服务器串行workflow尚未实现，不能标全流水线ready；实际CUDA和单次科学审查仍待当前候选完成后执行。

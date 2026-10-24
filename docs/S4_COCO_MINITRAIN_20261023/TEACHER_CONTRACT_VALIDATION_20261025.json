@@ -1,0 +1,14 @@
+{
+  "state": "TEACHER_FROZEN_ARGUMENT_AND_DATA_GUARDS_PASSED",
+  "UTC": "2026-10-24T17:34:55.918695+00:00",
+  "source_sha256": "e3954d420ffcf430aa672f58aebfb4f7c5043958f8bc1f88ddf3b5435327b024",
+  "invalid_data_routes_rejected": 5,
+  "frozen_argument_mutations_rejected": 15,
+  "all80_official_names_checked": true,
+  "original8_math_and2_victim_sources_unchanged": true,
+  "no_output_created_by_invalid_formal_requests": true,
+  "GPU_initialized": false,
+  "formal_training_started": false,
+  "deleted_paths": [],
+  "output": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\teacher_guard_probe_20261024T173455Z"
+}

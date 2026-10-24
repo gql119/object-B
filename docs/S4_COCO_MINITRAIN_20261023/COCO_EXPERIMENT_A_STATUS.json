@@ -1,0 +1,61 @@
+{
+  "state": "DATA_ACCEPTED_TEACHER_COMPONENT_CPU_VALIDATED_IMPLEMENTATION_CONTINUES",
+  "UTC": "2026-10-24T17:44:54.472777+00:00",
+  "selected_method": "Original S4 Safe-Soft05 + TFSS-Utility",
+  "budget_bytes": [
+    8,
+    4,
+    0
+  ],
+  "train_images": 25000,
+  "val_images": 5000,
+  "COCO_classes": 80,
+  "Person_ID": 0,
+  "data_independently_accepted": true,
+  "data_publication_commit": "73724c5585633a6a7c95e6616f0a85f4b0c354f7",
+  "original_generation_parent": "b1e29510e7b1ed5fa0fe361a27132d8790e65c14",
+  "original_victim_component": "ab626917f20917e58cf30033ac99df00938cb561",
+  "teacher_component_source_sha256": "e3954d420ffcf430aa672f58aebfb4f7c5043958f8bc1f88ddf3b5435327b024",
+  "existing_CPU_contracts_accepted": 45,
+  "new_teacher_CPU_probes": {
+    "native_batches": 2,
+    "native_SGD_updates": 1,
+    "validation_images": 0,
+    "validation_forwards": 0,
+    "EMA_forwards": 0,
+    "checkpoint_retained": true,
+    "invalid_data_routes_rejected": 5,
+    "invalid_argument_mutations_rejected": 15
+  },
+  "local_CPU_environment": {
+    "Python": "3.12.14",
+    "torch": "2.14.0+cpu",
+    "Ultralytics": "8.4.150"
+  },
+  "server_actual_environment": {
+    "Python": "3.11",
+    "torch": "2.7.1+cu128",
+    "Ultralytics": "8.4.150"
+  },
+  "CPU_environment_equivalence_claimed": false,
+  "formal_binding": null,
+  "COCO_GPU_runs": 0,
+  "COCO_scientific_review_calls": 0,
+  "teacher_training_started": false,
+  "full_production_entrypoints_implemented": false,
+  "serial_server_workflow_deployed": false,
+  "automatic_start_authorized_after_actual_gates": true,
+  "teacher_readonly_posttraining_COCOeval_required": true,
+  "pending_work": [
+    "full production entrypoints/source/config/data binding",
+    "single serial server workflow",
+    "current-candidate bounded GPU smoke and single scientific review per new phase",
+    "fresh capacity/conflict admission",
+    "isolated pinned COCOeval and LPIPS validation"
+  ],
+  "quota_continuation_monitor": "s4-robustness-existing-run-status",
+  "quota_reset_UTC_last_observed": "2026-10-24T19:36:21Z",
+  "new_monitor_created": false,
+  "no_manual_reconfirmation_needed": true,
+  "AP_results": null
+}
