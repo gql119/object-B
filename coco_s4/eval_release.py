@@ -190,6 +190,7 @@ def register(tag, review_path):
             or smoke.get('release_sha256')!=sha(release_path)
             or smoke.get('phase_config_sha256')!=cfg_sha
             or smoke.get('teacher_checkpoint_sha256')!=release['teacher_dependency']['checkpoint_sha256']
+            or smoke.get('actual_device')!='cuda:0'
             or smoke.get('official_metrics_disabled') is not True
             or smoke.get('artifact_ingest_disabled') is not True
             or smoke.get('parameter_updates') is not False
@@ -200,6 +201,7 @@ def register(tag, review_path):
             or not 1<=smoke.get('total_raw_forwards_including_warmup',0)<=100
             or baseline.get('raw_outputs_exact') is not True
             or baseline.get('decoded_predictions_exact') is not True
+            or baseline.get('reference_actual_device')!='cuda:0'
             or baseline.get('absolute_difference')!=0 or baseline.get('tolerance')!=0):
         raise ValueError('Teacher-evaluation smoke failed its fixed-checkpoint/read-only contract')
     _,transport=services();observation=read_dependency(transport)

@@ -40,7 +40,8 @@ def main():
     assert baseline['raw_outputs_exact'] and baseline['decoded_predictions_exact']
     assert baseline['evaluation_setting']['parameters']['device']=='cpu'
     assert baseline['evaluation_setting']['parameters']['batch']==2
-    assert audit['actual_device']=='cpu' and audit['official_metrics_disabled']
+    assert audit['actual_device']=='cpu' and audit['actual_forward_tensor_devices']==['cpu']
+    assert baseline['reference_actual_device']=='cpu' and audit['official_metrics_disabled']
     rejected_nan=False
     try:coco_eval.raw_signature(torch.tensor([float('nan')]))
     except FloatingPointError:rejected_nan=True
@@ -52,7 +53,7 @@ def main():
                formal_phase_allowed=False,baseline_equivalence_probe=baseline,
                source_sha256={n:sha(ROOT/n) for n in ['coco_s4/coco_eval.py','coco_s4/phase_teacher_eval.py']},
                output=str(out),deleted_paths=[])
-    (ROOT/'execution/TEACHER_EVAL_NATIVE_CPU_VALIDATION_20261025.json').write_text(json.dumps(proof,indent=2))
+    (ROOT/'execution/TEACHER_EVAL_NATIVE_CPU_DEVICE_AUDIT_20261025.json').write_text(json.dumps(proof,indent=2))
     print(json.dumps(proof))
 
 
