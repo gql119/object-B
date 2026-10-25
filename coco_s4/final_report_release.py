@@ -64,7 +64,7 @@ def current_source():
         raise ValueError("Final-report source must be committed and clean")
     head = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
     remote = subprocess.check_output(["git", "-C", str(ROOT), "ls-remote", "origin",
-        "refs/heads/codex/s4-coco-minitrain25k-generalization"], text=True).split()
+        "refs/heads/codex/s4-coco80-dynamic-dimension-20261025"], text=True).split()
     if not remote or remote[0] != head:
         raise ValueError("Final-report candidate must be published and remotely verified")
     return head
@@ -73,7 +73,7 @@ def current_source():
 def read_dependency(transport):
     active = OWNED / "repos" / WORKFLOW
     r = transport.run([PYTHON, "-B", "-c", READ_DEPENDENCY, WORKFLOW_OUTPUT.as_posix(), WORKFLOW,
-                       "ee0b4256fdd344c5a275e6d15efc78cb7636d6e1", active.as_posix()])
+                       load(EX/(WORKFLOW+".json"))["source"]["commit"], active.as_posix()])
     if r.returncode:
         raise RuntimeError(r.stderr.decode(errors="replace")[-2500:])
     return json.loads(r.stdout)

@@ -277,6 +277,7 @@ methods:
         target_channel_fraction: 0.15
         min_selected_channels: 4
       safe_bg:
+        dimension_protocol: coco80-strict-tsfl-selected-dimension-v1
         enabled: true
         mode: low_rank
         rank: 8

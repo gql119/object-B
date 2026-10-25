@@ -23,6 +23,7 @@ PYTHON = '/project/guoqinglong/miniconda3/envs/cfbdm/bin/python'
 READ_DEPENDENCY = r'''
 from pathlib import Path
 import hashlib,json,os,sys
+sys.path.insert(0,sys.argv[6]);from coco_s4.dimension_protocol import validate_receipt_dimension
 o=Path(sys.argv[1]);phase=sys.argv[2];run=sys.argv[3];source=sys.argv[4];owned=Path(sys.argv[5]).resolve()
 s=json.loads((o/'pipeline_state.json').read_text())
 assert os.getuid()==1014 and s['run_id']==run and s['source_commit']==source
@@ -54,7 +55,8 @@ for name in required:
   assert r.get('checkpoint_selection_allowed') is False and r.get('method_statistics_allowed') is False
   row.update(teacher_checkpoint_sha256=r['teacher_checkpoint_sha256'])
  elif name=='calibration':
-  assert r.get('images')==25000 and r.get('selected_channel_count')==24 and r.get('validation_used') is False
+  validate_receipt_dimension(r)
+  assert r.get('images')==25000 and r.get('selected_channel_count')==len(r.get('selected_channels',[])) and r.get('dimension_protocol')=='coco80-strict-tsfl-selected-dimension-v1' and r.get('validation_used') is False
   assert r.get('parameter_updates') is False and r.get('checkpoint_selection_allowed') is False
  elif name=='fourier24':
   assert r.get('epochs_completed')==24 and r.get('validation_used') is False
@@ -96,7 +98,7 @@ def current_source():
         raise ValueError('Tracked source must be committed and clean before victim validation')
     head = commit()
     remote = subprocess.check_output(['git', '-C', str(ROOT), 'ls-remote', 'origin',
-        'refs/heads/codex/s4-coco-minitrain25k-generalization'], text=True).split()
+        'refs/heads/codex/s4-coco80-dynamic-dimension-20261025'], text=True).split()
     if not remote or remote[0] != head:
         raise ValueError('Current matched-victim candidate must be published and remotely verified')
     return head
@@ -105,7 +107,7 @@ def current_source():
 def read_dependency(transport, phase):
     active = OWNED/'repos'/WORKFLOW
     return_code = transport.run([PYTHON, '-B', '-c', READ_DEPENDENCY, WORKFLOW_OUTPUT.as_posix(), phase,
-                                 WORKFLOW, 'ee0b4256fdd344c5a275e6d15efc78cb7636d6e1', OWNED.as_posix(),
+                                 WORKFLOW, load(EX/(WORKFLOW+'.json'))['source']['commit'], OWNED.as_posix(),
                                  active.as_posix()])
     if return_code.returncode:
         raise RuntimeError(return_code.stderr.decode(errors='replace')[-3000:])
@@ -149,7 +151,7 @@ def build(phase, tag, head, observation):
     repo = (OWNED/'releases'/tag).as_posix(); output = (OWNED/'validation'/tag).as_posix()
     remote_release = anchor_path(tag)
     template.update(run_id=tag, project='s4-coco-'+phase+'-validation')
-    template['source'] = dict(repo_root=str(ROOT), branch='codex/s4-coco-minitrain25k-generalization',
+    template['source'] = dict(repo_root=str(ROOT), branch='codex/s4-coco80-dynamic-dimension-20261025',
                               commit=head, allowed_post_commit_paths=['execution/','Ultralytics/'])
     template['remote'].update(repo_root=repo, output_root=output,
                               stage_root=(OWNED/'stage'/tag).as_posix(), control_root=(OWNED/'control'/tag).as_posix())

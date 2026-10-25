@@ -39,7 +39,10 @@ def main():
     built = build_report(teacher, clean, s4, [dict(yolo_class_id=i, category_id=i+1, name=n)
                       for i, n in enumerate(["airplane", "person"] + [f"x{i}" for i in range(78)])],
                       dict(PSNR_db=dict(mean=30.), LPIPS=dict(value=None, state="not_validated")),
-                      provenance=dict(source_commit="fixture"))
+                      provenance=dict(source_commit="fixture",calibration_dimension=dict(
+                          selected_channels=list(range(39)),selected_channel_count=39,
+                          total_feature_channels=256,eligible_channel_count=78,
+                          dimension_protocol='coco80-strict-tsfl-selected-dimension-v1')))
     if (len(built["metrics"]) != 80 or built["paired_summary"]["P"] != .5
             or built["spatial_and_perceptual_diagnostics"]["LPIPS"]["value"] is not None
             or built["causal_claims"] or built["significance_claims"]):

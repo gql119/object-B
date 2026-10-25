@@ -8,6 +8,7 @@ from pathlib import Path
 from .evaluation import paired_metrics
 from .phase_contract import OWNED, WORKFLOW, WORKFLOW_OUTPUT
 from .runtime import DATA_FILES, DATA_ROOT, ROOT, atomic, load, now, safe_relative, sha, verify_release, write_once
+from .dimension_protocol import PROTOCOL,RESULT_LABEL,validate_receipt_dimension
 
 STAGES = ("teacher200", "teacher_eval", "calibration", "fourier24", "export25k",
           "clean200", "s4_200", "official_eval")
@@ -38,6 +39,7 @@ def shared_voc_classes(mapping):
 
 
 def build_report(teacher_rows, clean_rows, s4_rows, mapping, export_diagnostics, *, provenance):
+    dimension=validate_receipt_dimension(provenance['calibration_dimension'])
     if any(len(rows) != 80 for rows in (teacher_rows, clean_rows, s4_rows)):
         raise ValueError("Final report requires full 80-class Teacher/Clean/S4 metrics")
     pair = paired_metrics(clean_rows, s4_rows, target=0)
@@ -65,12 +67,13 @@ def build_report(teacher_rows, clean_rows, s4_rows, mapping, export_diagnostics,
                 generated_UTC=now(), seed_count=1, analysis_scope="descriptive single-seed matched comparison",
                 causal_claims=False, significance_claims=False, checkpoint_selection_from_val=False,
                 parameter_updates_during_evaluation=False, target=dict(yolo_class_id=0, name="person"),
-                method_protocol=dict(name="Original S4 Safe-Soft05 + TFSS-Utility",
+                method_protocol=dict(name=RESULT_LABEL,dimension_protocol=PROTOCOL,
                     scientific_parent="b1e29510e7b1ed5fa0fe361a27132d8790e65c14",
                     victim_component="ab626917f20917e58cf30033ac99df00938cb561",
                     support_values=[1.0, 0.5, 0.0], pixel_budgets=[8, 4, 0],
                     STE="2.01/255", TFSS_weight="1 - 0.15*Rnt*(1-Qt)", TFSS_eta=0.85,
-                    selected_dimension=24, Fourier_epochs=24, seed=0),
+                    selected_dimension=dimension,VOC_original_selected_dimension=24,
+                    common_selection_rule='min(ceil(.15*C), N_eligible)',Fourier_epochs=24, seed=0),
                 official_coco_classes=80, official_val_images=5000, metrics=by,
                 paired_summary=pair, shared_voc_class_names=shared_voc_classes(mapping),
                 spatial_and_perceptual_diagnostics=export_diagnostics,
@@ -173,7 +176,7 @@ def run(release_path, output, *, registration=None):
                   deleted_paths=[])
     atomic(output / "status.json", status)
     try:
-        accepted = _build_and_write(output, manifest, cfg, receipts)
+        accepted = _build_and_write(output, manifest, cfg, receipts, release_path)
         atomic(output / "status.json", accepted)
         return accepted
     except BaseException as exc:
@@ -182,7 +185,7 @@ def run(release_path, output, *, registration=None):
         raise
 
 
-def _build_and_write(output, manifest, cfg, receipts):
+def _build_and_write(output, manifest, cfg, receipts, release_path):
     teacher = load(WORKFLOW_OUTPUT / "teacher_eval/official_metrics.json")["classes"]
     clean = load(WORKFLOW_OUTPUT / "official_eval/clean200/official_metrics.json")["classes"]
     s4 = load(WORKFLOW_OUTPUT / "official_eval/s4_200/official_metrics.json")["classes"]
@@ -192,7 +195,7 @@ def _build_and_write(output, manifest, cfg, receipts):
     checkpoints = {k: load(WORKFLOW_OUTPUT / f"{k}/accepted.json") for k in ("clean200", "s4_200")}
     provenance = dict(source_commit=manifest["source_commit"], release_sha256=sha(release_path),
                       config_sha256=sha(ROOT / manifest["phase_config_path"]), data_files=DATA_FILES,
-                      stage_receipts=receipts,
+                      stage_receipts=receipts,calibration_dimension=load(WORKFLOW_OUTPUT/'calibration/accepted.json'),
                       checkpoints={k: dict(primary="last.pt@200", sha256=v["primary_checkpoint_sha256"],
                                            best_secondary_sha256=v["best_secondary_checkpoint_sha256"],
                                            initial_state_sha256=v["initial_state_sha256"])
@@ -203,7 +206,8 @@ def _build_and_write(output, manifest, cfg, receipts):
     with (output / "COCO_EXPERIMENT_A_PER_CLASS.csv").open("x", newline="", encoding="utf-8") as stream:
         writer = csv.DictWriter(stream, fieldnames=fields); writer.writeheader(); writer.writerows(report["metrics"])
     pair = report["paired_summary"]
-    md = ["# Original S4 COCO Experiment A", "", "Fixed-seed descriptive results; no causal or significance claim.", "",
+    md = ['# '+RESULT_LABEL, "", "Fixed-seed descriptive results; no causal or significance claim.", "",
+          f"- COCO TSFL channels: {report['method_protocol']['selected_dimension']}; original VOC:24; common StrictTSFL rule min(ceil(.15*C), N_eligible).",
           f"- Target Person AP50 reduction P: {pair['P']}", f"- Non-target AP50 retention U: {pair['U']}",
           f"- Harm-retention harmonic score S: {pair['S']}", f"- WCD: {pair['WCD']}", f"- TCD3: {pair['TCD3']}",
           f"- Official val2017 images/classes: {report['official_val_images']} / {report['official_coco_classes']}",

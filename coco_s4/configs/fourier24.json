@@ -1,7 +1,7 @@
 {
   "schema": "s4.coco.fourier24-config.v1",
   "phase": "fourier24",
-  "workflow_run_id": "s4_coco_experiment_a_seed0_20261025_v3",
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261025_dimcompat_v1",
   "predecessor_phase": "calibration",
   "predecessor_receipt_kind": "accepted.json",
   "teacher_policy": "fixed native EMA last@200",
@@ -15,7 +15,7 @@
   "optimizer_steps": "24*ceil(eligible_person_image_count/16)",
   "target_class_id": 0,
   "num_classes": 80,
-  "selected_space_dimension": 24,
+  "selected_space_dimension": "actual StrictTSFL selection",
   "eps": 0.03137254901960784,
   "validation_used": false,
   "parameter_updates": "Fourier coefficients only; original S4 inner adaptive step retained",
@@ -23,5 +23,6 @@
   "artifact_ingest_enabled": false,
   "checkpoint_selection_allowed": false,
   "optimizer_resume_claim": false,
-  "cleanup_policy": "retain_all"
+  "cleanup_policy": "retain_all",
+  "dimension_protocol": "coco80-strict-tsfl-selected-dimension-v1"
 }

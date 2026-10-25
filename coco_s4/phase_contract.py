@@ -7,21 +7,23 @@ from pathlib import Path
 
 from .runtime import ROOT, load, safe_relative, sha, verify_release
 
-WORKFLOW = 's4_coco_experiment_a_seed0_20261025_v3'
+LEGACY_WORKFLOW = 's4_coco_experiment_a_seed0_20261025_v3'
+WORKFLOW = 's4_coco_experiment_a_seed0_20261025_dimcompat_v1'
 OWNED = Path('/project/guoqinglong/projects/s4_coco_experiment_a_20261025')
 WORKFLOW_OUTPUT = OWNED/'outputs'/WORKFLOW
+ORIGIN_OUTPUT = OWNED/'outputs'/LEGACY_WORKFLOW
 TEACHER_COMMIT = 'ee0b4256fdd344c5a275e6d15efc78cb7636d6e1'
 TEACHER_RELEASE = 'c520c67ea99effba2a81d79695d0102cd866c9475a8a7284793f6f0b3d426e1a'
 
 
 def teacher_dependency(binding, workflow_output=WORKFLOW_OUTPUT):
     """Fixed native EMA last@200; never select best or an intermediate epoch."""
-    root=Path(workflow_output).resolve()
+    root=(ORIGIN_OUTPUT if workflow_output == WORKFLOW_OUTPUT else Path(workflow_output)).resolve()
     accepted=root/'teacher200/accepted.json'
     last=root/'teacher200/train/weights/last.pt'
     full=root/'teacher200/train/state_snapshots/epoch_200_full_state.pt'
     expected={'accepted_path':str(accepted),'checkpoint_path':str(last),'full_state_path':str(full)}
-    if any(binding.get(k)!=v for k,v in expected.items()):
+    if any(not binding.get(k) or Path(binding[k]).resolve()!=Path(v).resolve() for k,v in expected.items()):
         raise ValueError('Teacher dependency route differs from this workflow fixed last@200')
     if sha(accepted)!=binding['accepted_sha256']:
         raise ValueError('Accepted Teacher receipt changed')

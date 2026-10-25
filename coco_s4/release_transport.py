@@ -8,13 +8,13 @@ exact bytes into the release root when registering the reviewed phase.
 import json
 from pathlib import Path, PurePosixPath
 
-from .phase_contract import OWNED
+from .phase_contract import OWNED, WORKFLOW, WORKFLOW_OUTPUT
 from .runtime import sha, write_once
 
 PYTHON = '/project/guoqinglong/miniconda3/envs/cfbdm/bin/python'
 REMOTE_OWNED = PurePosixPath(OWNED.as_posix())
 REMOTE_RELEASES = REMOTE_OWNED / 'releases'
-REMOTE_OUTPUT = REMOTE_OWNED / 'outputs' / 's4_coco_experiment_a_seed0_20261025_v3'
+REMOTE_OUTPUT = PurePosixPath(WORKFLOW_OUTPUT.as_posix())
 
 REMOTE_INSPECT = r'''import hashlib,json,os,sys
 from pathlib import Path
@@ -88,7 +88,7 @@ def close_and_register(transport, *, tag, phase, module, spec, release_path, smo
     release = json.loads(release_path.read_text(encoding='utf-8'))
     review = json.loads(review_path.read_text(encoding='utf-8'))
     if (release.get('phase') != phase or release.get('source_commit') != spec['source']['commit']
-            or release.get('workflow_run_id') != 's4_coco_experiment_a_seed0_20261025_v3'):
+            or release.get('workflow_run_id') != WORKFLOW):
         raise ValueError('Release identity differs from the exact candidate')
     if (review.get('phase') != phase or review.get('source_commit') != release['source_commit']
             or review.get('release_sha256') != sha(release_path)

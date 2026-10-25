@@ -17,6 +17,7 @@ import shutil
 from .runtime import DATA_ROOT, ROOT, atomic, load, now, safe_relative, sha, write_once
 from .phase_contract import OWNED, WORKFLOW, WORKFLOW_OUTPUT, phase_release
 from .phase_calibration import validate_original_config, train_manifest
+from .dimension_protocol import PROTOCOL, validate_receipt_dimension
 
 PHASE = 'fourier24'
 MAIN_CONFIG = 'docs/S4_COCO_MINITRAIN_20261023/COCO_EXPERIMENT_A_CONFIG.yaml'
@@ -59,7 +60,8 @@ def validate_phase_config(cfg):
                     support_mode='bbox_half_overlap',
                     support_eligibility='accepted calibration manifest; original support.sum()>10',
                     optimizer_steps='24*ceil(eligible_person_image_count/16)',
-                    target_class_id=0, num_classes=80, selected_space_dimension=24,
+                    target_class_id=0, num_classes=80, selected_space_dimension='actual StrictTSFL selection',
+                    dimension_protocol=PROTOCOL,
                     eps=0.03137254901960784, validation_used=False,
                     parameter_updates='Fourier coefficients only; original S4 inner adaptive step retained',
                     official_metrics_enabled=False, artifact_ingest_enabled=False,
@@ -72,6 +74,8 @@ def validate_phase_config(cfg):
 def validate_fourier_source_config(cfg):
     validate_original_config(cfg)
     method = cfg['methods']['legacy_kproto_ret']
+    if method['semantic']['safe_bg'].get('dimension_protocol')!=PROTOCOL:
+        raise ValueError('Current COCO Fourier source requires the authorized selected-dimension protocol')
     exact = [
         (method['support_mode'], 'bbox_half_overlap'),
         (method['shortcut_num_bases'], 16),
@@ -136,18 +140,32 @@ def eligible_paths_from_manifest(document, train_image_root):
     return resolved, steps
 
 
-def accepted_calibration_dependency(manifest):
-    path = WORKFLOW_OUTPUT/'calibration'/'accepted.json'
+def accepted_calibration_dependency(manifest, *, validation=False):
+    candidate=manifest.get('dimension_reconstruction_dependency') if validation else None
+    path = Path(candidate['receipt_path']) if candidate else WORKFLOW_OUTPUT/'calibration'/'accepted.json'
     expected = manifest.get('calibration_dependency', {})
     if not path.is_file() or sha(path) != expected.get('accepted_sha256'):
         raise ValueError('Accepted Original S4 calibration receipt is absent or changed')
     receipt = load(path)
     required = dict(state='ACCEPTED', phase='calibration', images=25000,
-                    person_ground_truth=55096, selected_channel_count=24,
+                    person_ground_truth=55096,
                     validation_used=False, parameter_updates=False,
                     checkpoint_selection_allowed=False)
     if any(receipt.get(key) != value for key, value in required.items()):
-        raise ValueError('Calibration receipt is not a valid train-only 24D COCO result')
+        raise ValueError('Calibration receipt is not a valid train-only selected-dimension COCO result')
+    validate_receipt_dimension(receipt)
+    if candidate:
+        if (not path.resolve().is_relative_to((OWNED/'validation').resolve())
+                or sha(path)!=candidate['receipt_sha256']
+                or manifest.get('dimension_reconstruction_validation_allowed') is not True
+                or receipt.get('acceptance_scope')!='CPU_RECONSTRUCTION_COMPONENT'
+                or receipt.get('formal_use_requires_current_review') is not True):
+            raise ValueError('Unreviewed reconstruction is permitted only in a bound isolated validation release')
+        teacher=manifest['teacher_dependency']
+        if (receipt.get('teacher_checkpoint_sha256')!=teacher['checkpoint_sha256']
+                or receipt.get('teacher_receipt_sha256')!=teacher['accepted_sha256']):
+            raise ValueError('Retained reconstruction used a different accepted Teacher')
+        return path,receipt,None
     pipeline = load(WORKFLOW_OUTPUT/'pipeline_state.json')
     stage = pipeline.get('stages', {}).get('calibration', {})
     if stage.get('state') != 'ACCEPTED' or stage.get('receipt_sha256') != sha(path):
@@ -340,7 +358,7 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
     else:
         if output != (WORKFLOW_OUTPUT/'fourier24').resolve() or registration is None:
             raise ValueError('Formal Fourier must use the existing serial stage output and READY gate')
-    calibration_path, calibration, pipeline = accepted_calibration_dependency(manifest)
+    calibration_path, calibration, pipeline = accepted_calibration_dependency(manifest,validation=bool(smoke_images or cpu_probe_images))
     if smoke_images == 0 and cpu_probe_images == 0:
         review, smoke = formal_gate(registration, release_path, manifest, config_sha)
     else:
@@ -372,7 +390,9 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
     try:
         imported_root, imported = copy_calibration_consumer_artifacts(
             output, dict(manifest=manifest, receipt=calibration,
-                         phase_spec=load(WORKFLOW_OUTPUT/'calibration'/'phase_spec.json')))
+                         phase_spec=load(Path(manifest['dimension_reconstruction_dependency']['phase_spec_path']))
+                         if manifest.get('dimension_reconstruction_dependency') else
+                         load(WORKFLOW_OUTPUT/'calibration'/'phase_spec.json')))
         cfg, checkpoint = runtime_config(phase_cfg, manifest, imported_root,
                                          smoke=bool(smoke_images or cpu_probe_images))
         images, expected_hashes, expected_digest = train_manifest()
@@ -382,7 +402,7 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
         eligible, expected_steps = validate_original_support_manifest(eligible_document, DATA_ROOT/'images/train')
         if (len(eligible) != calibration['eligible_person_image_count']
                 or expected_steps != calibration['original_fourier_optimizer_steps']
-                or calibration.get('selected_channel_count') != 24):
+                or calibration.get('selected_channel_count') != validate_receipt_dimension(calibration)):
             raise ValueError('Fourier schedule or selected space differs from accepted calibration')
         if not set(map(str, eligible)).issubset(set(map(str, images))):
             raise ValueError('Accepted eligible image list is not a subset of the fixed train split')
@@ -415,7 +435,7 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
 
         trainer = EligibleCOCOB2Trainer(cfg, method_cfg, device,
                                         original_teacher, adaptive_teacher)
-        if (trainer.channels.numel() != 24 or len(trainer.bases) != 79
+        if (trainer.channels.numel() != validate_receipt_dimension(calibration) or len(trainer.bases) != 79
                 or len(trainer.safe_bases) != 79 or trainer.safe_bg_rank != 8
                 or trainer.safe_bg_removal_alpha != .5 or trainer.safe_bg_active_k != 3
                 or trainer.orth_feature_layer != 'model.15'):
@@ -431,7 +451,23 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
         if len(eligible) != calibration['eligible_person_image_count']:
             raise ValueError('Eligible support schedule changed before the original trainer call')
         forward_calls = []
-        hooks = [model.register_forward_hook(lambda module, args, result: forward_calls.append(1))
+        forward_devices=set();forward_cuda_indices=set()
+        def audit_forward(module,args,result):
+            def tensors(value):
+                if torch.is_tensor(value):yield value
+                elif isinstance(value,(tuple,list)):
+                    for item in value:yield from tensors(item)
+                elif isinstance(value,dict):
+                    for item in value.values():yield from tensors(item)
+            outputs=list(tensors(result))
+            if not outputs:raise ValueError('Actual native forward returned no auditable tensors')
+            for tensor in outputs:
+                if tensor.device!=device or not torch.isfinite(tensor).all():
+                    raise FloatingPointError('Native pre-loss forward tensor has wrong device or nonfinite outputs')
+                forward_devices.add(str(tensor.device))
+                if tensor.device.type=='cuda':forward_cuda_indices.add(tensor.device.index)
+            forward_calls.append(1)
+        hooks = [model.register_forward_hook(audit_forward)
                  for model in (trainer.surrogate, trainer.adaptive.model)]
         before_coeff = trainer.fourier_coeff.detach().clone()
         rng_before = _rng_state(torch, np, include_cuda=(device.type == 'cuda'))
@@ -481,6 +517,10 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                 raise FloatingPointError('Nonfinite Original S4 Fourier full loss/delta/gradient')
             if float(rows[-1]['grad_norm_fourier']) <= 0 or float(rows[-1]['outside_support_max']) > 1e-7:
                 raise ValueError('Fourier smoke has zero gradient or perturbation outside the original support')
+            loss_gradients={name:float(rows[-1].get(key,'nan')) for name,key in
+                            (('L_BG','grad_BG_safe_norm'),('L_rel','grad_rel_safe_norm'))}
+            if any(not _finite_number(value) or value<=0 for value in loss_gradients.values()):
+                raise ValueError('Actual SafeBG L_BG/L_rel gradient does not reach Fourier coefficients')
             pack = torch.load(params_path, map_location='cpu', weights_only=True)
             if (len(pack.get('coords', [])) != 16 or tuple(pack['fourier_coeff'].shape) != (16, 3)
                     or abs(float(pack['eps'])-8/255) > 1e-9
@@ -491,6 +531,11 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                                                              else 'fourier-gradient'),
                           production_entrypoint_reached=True, finite_outputs=True,
                           frozen_teacher_unchanged=True, actual_device=str(device), actual_training_images=1,
+                          actual_forward_tensor_devices=sorted(forward_devices),
+                          actual_cuda_device_indices=sorted(forward_cuda_indices),
+                          selected_channel_count=trainer.channels.numel(),non_target_class_count=len(trainer.safe_bases),
+                          independent_P3_selected_count=trainer.orth_channels.numel(),
+                          SafeBG_loss_Fourier_gradient_norms=loss_gradients,cache_memory=trainer.safe_bg_cache.memory_report(),
                           production_forward_calls=len(forward_calls), actual_fourier_optimizer_updates=1,
                           actual_eot_samples=2, validation_used=False, parameter_updates=True,
                           official_metrics_disabled=True, artifact_ingest_disabled=True,

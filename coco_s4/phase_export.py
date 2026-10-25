@@ -6,6 +6,8 @@ import json
 import os
 from pathlib import Path
 import shutil
+from .dimension_protocol import validate_receipt_dimension
+from .phase_contract import WORKFLOW
 
 PHASE = 'export25k'
 MAIN_CONFIG = 'docs/S4_COCO_MINITRAIN_20261023/COCO_EXPERIMENT_A_CONFIG.yaml'
@@ -16,7 +18,7 @@ TFSS_MAP_VERSION = 'masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-i
 
 def validate_phase_config(cfg):
     expected = dict(schema='s4.coco.export25k-config.v1', phase=PHASE,
-                    workflow_run_id='s4_coco_experiment_a_seed0_20261025_v3',
+                    workflow_run_id=WORKFLOW,
                     predecessor_phase='fourier24', predecessor_receipt_kind='accepted.json',
                     teacher_policy='fixed native EMA last@200',
                     source_split='official fixed COCO minitrain2017 train25K', image_count=25000,
@@ -116,14 +118,14 @@ def accepted_fourier_dependency(manifest):
 
 
 def validate_accepted_calibration(calibration):
+    dimension=validate_receipt_dimension(calibration)
     channels = calibration.get('selected_channels')
     nt = calibration.get('non_target_objects_by_class')
     if (calibration.get('images') != 25000 or calibration.get('person_ground_truth') != 55096
-            or calibration.get('selected_channel_count') != 24
-            or not isinstance(channels, list) or len(channels) != 24 or len(set(channels)) != 24
+            or not isinstance(channels, list) or len(channels) != dimension or len(set(channels)) != dimension
             or not isinstance(nt, dict) or set(nt) != {str(i) for i in range(1, 80)}
             or any(not isinstance(v, int) or v <= 0 for v in nt.values())):
-        raise ValueError('Export requires the accepted COCO train-only 24D/79-class calibration')
+        raise ValueError('Export requires the accepted COCO selected-space/79-class calibration')
 
 
 def validate_accepted_fourier(fourier, calibration):

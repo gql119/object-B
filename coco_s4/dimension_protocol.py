@@ -1,5 +1,6 @@
 """Explicit COCO-only selected-coordinate version; projection mathematics unchanged."""
 import torch
+import math
 
 PROTOCOL = 'coco80-strict-tsfl-selected-dimension-v1'
 RESULT_LABEL = 'Original S4 — COCO80 Dimension-Compatible Implementation'
@@ -26,9 +27,17 @@ def validate_identity(identity, indices, feature_channels):
 
 
 def validate_receipt_dimension(receipt):
-    indices = torch.tensor(receipt.get('selected_channels', []), dtype=torch.long)
+    values=receipt.get('selected_channels')
+    if (not isinstance(values,list) or any(type(v) is not int for v in values)
+            or type(receipt.get('total_feature_channels')) is not int
+            or type(receipt.get('eligible_channel_count')) is not int
+            or not 0<=receipt['eligible_channel_count']<=receipt['total_feature_channels']):
+        raise ValueError('Selected-channel receipt must contain exact integer channel identities')
+    indices = torch.tensor(values, dtype=torch.long)
     dimension = selected_dimension(indices, receipt.get('total_feature_channels', 0))
     if (receipt.get('dimension_protocol') != PROTOCOL
-            or receipt.get('selected_channel_count') != dimension):
+            or receipt.get('selected_channel_count') != dimension
+            or not isinstance(receipt.get('eligible_channel_count'),int)
+            or dimension!=min(math.ceil(.15*receipt['total_feature_channels']),receipt['eligible_channel_count'])):
         raise ValueError('COCO selected-dimension receipt identity mismatch')
     return dimension

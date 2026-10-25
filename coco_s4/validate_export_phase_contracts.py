@@ -55,14 +55,15 @@ def main():
     else:
         raise AssertionError('Nonzero out-of-support Fourier delta was accepted')
 
-    calibration = dict(images=25000, person_ground_truth=55096, selected_channel_count=24,
-                       selected_channels=list(range(24)),
+    calibration = dict(images=25000, person_ground_truth=55096, selected_channel_count=39,
+                       selected_channels=list(range(39)),total_feature_channels=256,eligible_channel_count=78,
+                       dimension_protocol='coco80-strict-tsfl-selected-dimension-v1',
                        non_target_objects_by_class={str(i): 1 for i in range(1, 80)},
                        original_fourier_optimizer_steps=24*17,
                        accepted_clean_train_manifest_sha256='a'*64)
     validate_accepted_calibration(calibration)
     fourier = dict(epochs_completed=24, optimizer_steps=24*17,
-                   train_manifest_sha256='a'*64, selected_channels=list(range(24)),
+                   train_manifest_sha256='a'*64, selected_channels=list(range(39)),
                    calibration_receipt_sha256='b'*64, clean_train_eligible_files_unchanged=True)
     validate_accepted_fourier(fourier, calibration)
     for field, value in (('selected_channel_count', 23), ('person_ground_truth', 55095)):

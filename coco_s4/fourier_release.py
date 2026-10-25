@@ -21,6 +21,7 @@ PYTHON = '/project/guoqinglong/miniconda3/envs/cfbdm/bin/python'
 CALIBRATION_SOURCE = r'''
 from pathlib import Path
 import hashlib,json,os,sys
+sys.path.insert(0,sys.argv[6]);from coco_s4.dimension_protocol import validate_receipt_dimension
 o=Path(sys.argv[1]);s=json.loads((o/'pipeline_state.json').read_text())
 assert os.getuid()==1014 and s['run_id']==sys.argv[2] and s['source_commit']==sys.argv[3]
 ident=s['controller'];p=Path('/proc')/str(ident['pid']);f=(p/'stat').read_text().rsplit(')',1)[1].split()
@@ -44,7 +45,8 @@ assert er['teacher_checkpoint_sha256']==sha(last) and er['parameter_updates'] is
 assert sha(e)==s['stages']['teacher_eval']['receipt_sha256']
 c=o/'calibration/accepted.json';cr=json.loads(c.read_text())
 assert cr['state']=='ACCEPTED' and cr['phase']=='calibration' and cr['images']==25000
-assert cr['selected_channel_count']==24 and cr['validation_used'] is False and cr['parameter_updates'] is False
+assert len(cr['selected_channels'])==cr['selected_channel_count'] and cr['dimension_protocol']=='coco80-strict-tsfl-selected-dimension-v1' and cr['validation_used'] is False and cr['parameter_updates'] is False
+validate_receipt_dimension(cr)
 assert cr['teacher_checkpoint_sha256']==sha(last) and cr['teacher_receipt_sha256']==sha(t)
 assert sha(c)==s['stages']['calibration']['receipt_sha256']
 spec=json.loads((o/'calibration/phase_spec.json').read_text());source=Path(spec['source_root']);artifact=Path(spec['artifact_root'])
@@ -88,7 +90,7 @@ def current_source():
         raise ValueError('Tracked source must be committed and clean before Fourier validation')
     head = commit()
     remote = subprocess.check_output(['git', '-C', str(ROOT), 'ls-remote', 'origin',
-        'refs/heads/codex/s4-coco-minitrain25k-generalization'], text=True).split()
+        'refs/heads/codex/s4-coco80-dynamic-dimension-20261025'], text=True).split()
     if not remote or remote[0] != head:
         raise ValueError('Current Fourier candidate must be published and remotely verified')
     return head
@@ -98,7 +100,7 @@ def read_dependency(transport):
     active = OWNED/'repos'/WORKFLOW
     from .phase_fourier import CALIBRATION_ARTIFACT_SUFFIXES
     result = transport.run([PYTHON, '-B', '-c', CALIBRATION_SOURCE, WORKFLOW_OUTPUT.as_posix(), WORKFLOW,
-                            'ee0b4256fdd344c5a275e6d15efc78cb7636d6e1', OWNED.as_posix(),
+                            load(EX/(WORKFLOW+'.json'))['source']['commit'], OWNED.as_posix(),
                             json.dumps(CALIBRATION_ARTIFACT_SUFFIXES), active.as_posix()])
     if result.returncode:
         raise RuntimeError(result.stderr.decode(errors='replace')[-2500:])
@@ -142,7 +144,7 @@ def build(tag, head, observation, *, validation_kind):
     repo = (OWNED/'releases'/tag).as_posix(); output = (OWNED/'validation'/tag).as_posix()
     remote_release = anchor_path(tag)
     template.update(run_id=tag, project='s4-coco-fourier24-validation')
-    template['source'] = dict(repo_root=str(ROOT), branch='codex/s4-coco-minitrain25k-generalization',
+    template['source'] = dict(repo_root=str(ROOT), branch='codex/s4-coco80-dynamic-dimension-20261025',
                               commit=head, allowed_post_commit_paths=['execution/', 'Ultralytics/'])
     template['remote'].update(repo_root=repo, output_root=output, stage_root=(OWNED/'stage'/tag).as_posix(),
                               control_root=(OWNED/'control'/tag).as_posix())

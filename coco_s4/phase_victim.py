@@ -16,6 +16,7 @@ import yaml
 
 from .phase_contract import OWNED, WORKFLOW, WORKFLOW_OUTPUT, phase_release
 from .runtime import DATA_ROOT, atomic, load, now, sha, write_once
+from .dimension_protocol import validate_receipt_dimension
 
 FROZEN_TRAINING = dict(epochs=200, imgsz=640, seed=0, batch=36, workers=16,
                        optimizer='SGD', cos_lr=True, close_mosaic=100, cache=True,
@@ -97,10 +98,11 @@ def validate_phase_binding(manifest, cfg, phase, workflow_output=WORKFLOW_OUTPUT
             or evaluation.get('teacher_checkpoint_sha256') != sha(last)):
         raise ValueError('Separate fixed-last Teacher assessment is not accepted')
     calibration = load(output/'calibration/accepted.json')
-    if (calibration.get('images') != 25000 or calibration.get('selected_channel_count') != 24
+    validate_receipt_dimension(calibration)
+    if (calibration.get('images') != 25000
             or calibration.get('validation_used') is not False
             or calibration.get('parameter_updates') is not False):
-        raise ValueError('COCO train-only strict24D calibration is not accepted')
+        raise ValueError('COCO train-only selected-space calibration is not accepted')
     fourier = load(output/'fourier24/accepted.json')
     if (fourier.get('epochs_completed') != 24 or fourier.get('validation_used') is not False
             or fourier.get('calibration_receipt_sha256') != deps['calibration'].get('accepted_sha256')):
