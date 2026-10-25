@@ -155,14 +155,18 @@ def load_teacher(path, checkpoint_sha, device):
     checkpoint = torch.load(path, map_location='cpu', weights_only=False)
     if checkpoint.get('epoch') != 199 or checkpoint.get('ema') is None:
         raise ValueError('Calibration requires the native EMA last@200 checkpoint')
-    model = checkpoint['ema'].model
+    # Native last.pt stores the DetectionModel itself in ema; .model would
+    # discard its forward/head semantics and return only a Sequential.
+    model = checkpoint['ema']
     if model.model[-1].nc != 80 or model.names[0] != 'person':
         raise ValueError('Teacher checkpoint is not COCO80 Person0')
     if any(not torch.isfinite(p).all() for p in model.parameters()):
         raise FloatingPointError('Nonfinite fixed Teacher parameters')
     if any(m._forward_hooks or m._forward_pre_hooks for m in model.modules()):
         raise ValueError('Teacher checkpoint contains unexpected forward audit hooks')
-    model.to(device).eval()
+    # Native serialization stores EMA in FP16. Canonical YOLO checkpoint
+    # loading converts it to FP32 before the original calibration path.
+    model.float().to(device).eval()
     for parameter in model.parameters():
         parameter.requires_grad_(False)
     return model, model_hash(model)
@@ -209,7 +213,15 @@ def formal_gate(registration, release_path, manifest, config_sha):
                     actual_device='cuda:0')
     if any(smoke.get(k) != v for k, v in required.items()) or smoke.get('actual_training_images') != 1:
         raise ValueError('Current calibration release needs one real bounded CUDA production-path image')
-    if not 1 <= smoke.get('production_forward_calls', 0) <= 100:
+    baseline = smoke.get('baseline_equivalence_probe', {})
+    if (not 1 <= smoke.get('production_forward_calls', 0) <= 100
+            or not 1 <= smoke.get('total_production_forward_calls', 0) <= 100
+            or smoke.get('actual_forward_tensor_devices') != ['cuda:0']
+            or smoke.get('actual_cuda_device_indices') != [0]
+            or baseline.get('all_sensitivity_sums_exact') is not True
+            or baseline.get('absolute_difference') != 0 or baseline.get('tolerance') != 0
+            or baseline.get('reference_actual_forward_tensor_devices') != ['cuda:0']
+            or baseline.get('reference_actual_cuda_device_indices') != [0]):
         raise ValueError('Calibration smoke exceeded its 1..100 forward bound')
     return review, smoke
 
@@ -223,6 +235,56 @@ def _finite(value):
     if isinstance(value, (list, tuple)):
         return all(_finite(v) for v in value)
     return not isinstance(value, float) or (value == value and abs(value) != float('inf'))
+
+
+def canonical_gradient_reference(trainer, image_path, label_dir, raw):
+    """Independent canonical per-layer loops, same frozen Teacher and image.
+
+    The producer collects both layers from one forward. This reference follows
+    the original builder's separate forward for each layer and compares every
+    target/NT sensitivity sum rather than only checking that arrays exist.
+    """
+    import torch
+    from ue_framework.data_utils import load_image_rgb_float, label_path_for_image, read_yolo_annotations
+    from ue_framework.methods.semantic_coordinates import gt_evidence
+    from ue_framework.methods.s4_tfss import model_hash
+    from .coco_eval import raw_tensor_device_details, raw_signature
+    model=trainer.surrogate;before=model_hash(model);devices=set();indices=set();calls=[]
+    def hook(module,inputs,result):
+        ds,ix=raw_tensor_device_details(result);devices.update(ds);indices.update(ix)
+        raw_signature(result);calls.append(int(inputs[0].shape[0]))
+    handle=model.register_forward_hook(hook)
+    image=load_image_rgb_float(str(image_path))
+    anns=read_yolo_annotations(label_path_for_image(str(image_path),str(label_dir)))
+    compared=0
+    try:
+        for layer in ('model.15','model.21'):
+            target=None;nt=None;by={c:None for c in range(1,80)}
+            x=trainer._to_tensor(image).requires_grad_(True)
+            trainer.multi_features.clear();decoded=trainer._forward_raw(x);feature=trainer.multi_features[layer]
+            for cls,evidence in gt_evidence(decoded,anns,image.shape[:2],trainer.imgsz):
+                g=torch.autograd.grad(evidence,feature,retain_graph=True)[0].detach().abs().mean((0,2,3)).double().cpu()
+                if cls==0:target=g.clone() if target is None else target+g
+                else:
+                    nt=g.clone() if nt is None else nt+g
+                    by[cls]=g.clone() if by[cls] is None else by[cls]+g
+            item=raw['layers'][layer]
+            for candidate,reference in [(item['target_sum'],target),(item['nt_sum'],nt),
+                                         *((item['nt_sums'][c],by[c]) for c in by)]:
+                if candidate is None or reference is None:
+                    if candidate is not None or reference is not None:raise ValueError('Canonical missing-class statistics differ')
+                elif not torch.equal(candidate,reference):
+                    raise ValueError('Actual P3/P5 statistics differ from independent canonical gradient loops')
+                else:compared+=candidate.numel()
+            del x,decoded,feature
+    finally:handle.remove()
+    if model_hash(model)!=before:raise ValueError('Canonical gradient reference changed frozen Teacher')
+    return dict(reference_id='independent original per-layer GT-evidence gradient loops',
+        reference_metric=0,candidate_metric=0,metric_name='P3/P5 target, pooledNT and per-class sensitivity sums exact identity',
+        absolute_difference=0,tolerance=0,all_sensitivity_sums_exact=True,compared_values=compared,
+        reference_forward_calls=len(calls),reference_forward_input_batch_sizes=calls,
+        reference_actual_forward_tensor_devices=sorted(devices),reference_actual_cuda_device_indices=sorted(indices),
+        frozen_model_unchanged=True)
 
 
 def run(release_path, output, *, registration=None, smoke_images=0):
@@ -270,6 +332,7 @@ def run(release_path, output, *, registration=None, smoke_images=0):
                   teacher_checkpoint_sha256=sha(checkpoint),
                   teacher_receipt_sha256=manifest['teacher_dependency']['accepted_sha256'],
                   teacher_eval_receipt_sha256=manifest['teacher_eval_dependency']['accepted_sha256'],
+                  previous_stage_receipt_sha256=manifest['teacher_eval_dependency']['accepted_sha256'],
                   accepted_teacher_eval_hash=sha(eval_path), validation_used=False, parameter_updates=False,
                   checkpoint_selection_allowed=False, official_metrics_disabled=True, artifact_ingest_disabled=True,
                   cleanup_policy='retain_all', deleted_paths=[])
@@ -302,8 +365,14 @@ def run(release_path, output, *, registration=None, smoke_images=0):
     else:
         chosen = images
     before = model_hash(teacher)
-    forward_calls = []
-    hook = teacher.register_forward_hook(lambda module, inputs, result: forward_calls.append(1)) if smoke_images else None
+    forward_calls = []; forward_devices=set(); forward_cuda_indices=set()
+    def audit_forward(module, inputs, result):
+        from .coco_eval import raw_tensor_device_details, raw_signature
+        devices,indices=raw_tensor_device_details(result)
+        forward_devices.update(devices);forward_cuda_indices.update(indices)
+        raw_signature(result)  # finite raw tensors, before GT evidence reduction
+        forward_calls.append(int(inputs[0].shape[0]))
+    hook = teacher.register_forward_hook(audit_forward) if smoke_images else None
     try:
         try:
             raw = collect(trainer, teacher, chosen, DATA_ROOT/'labels/train', stats_root,
@@ -315,11 +384,25 @@ def run(release_path, output, *, registration=None, smoke_images=0):
             raise ValueError('Calibration produced nonfinite statistics or changed the frozen Teacher')
         if smoke_images:
             if (raw['images'] != 1 or raw['target_count'] <= 0 or len(raw['eligible_person_images']) != 1
-                    or not 1 <= len(forward_calls) <= 100):
+                    or not 1 <= len(forward_calls) <= 100
+                    or forward_devices!={'cuda:0'} or forward_cuda_indices!={0}):
                 raise ValueError('One-image calibration smoke did not exercise eligible Person statistics')
+            reference_trainer=LegacyKProtoTrainer(cfg,method_cfg,device,consumer_seed)
+            baseline=canonical_gradient_reference(reference_trainer,selected,DATA_ROOT/'labels/train',raw)
+            total_calls=len(forward_calls)+baseline['reference_forward_calls']
+            if (not 1<=total_calls<=100 or baseline['reference_actual_forward_tensor_devices']!=['cuda:0']
+                    or baseline['reference_actual_cuda_device_indices']!=[0]):
+                raise ValueError('Canonical calibration reference did not prove bounded CUDA0 execution')
+            baseline.update(reference_weights_path=str(checkpoint),candidate_weights_path=str(checkpoint),
+                weights_sha256=sha(checkpoint),evaluation_setting=dict(dataset=str(selected),sample_count=1,seed=0,
+                parameters=dict(imgsz=640,device='cuda:0',target_class_id=0,num_classes=80),
+                post_processing='original per-GT evidence and channel sensitivity reduction'))
             status = dict(common, state='passed', computation_kind='gradient-calibration',
                           production_entrypoint_reached=True, finite_outputs=True, model_unchanged=True,
-                          actual_device='cuda:0',
+                          actual_device=next(iter(forward_devices)),actual_cuda_device_index=0,
+                          actual_forward_tensor_devices=sorted(forward_devices),actual_cuda_device_indices=sorted(forward_cuda_indices),
+                          forward_input_batch_sizes=forward_calls,
+                          baseline_equivalence_probe=baseline,total_production_forward_calls=total_calls,
                           actual_training_images=1, production_forward_calls=len(forward_calls),
                           target_objects_observed=raw['target_count'], validation_used=False,
                           parameter_updates=False, completed_UTC=now(), retained=['phase_spec.json','smoke_statistics/raw_statistics.pt'],

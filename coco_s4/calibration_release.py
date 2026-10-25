@@ -99,11 +99,11 @@ def build(tag, head, observation):
     if any(name not in selected for name in required):
         raise ValueError('Calibration source/configuration closure is incomplete')
     prev=observation['previous_dependency']
-    teacher=dict(accepted_path=str(WORKFLOW_OUTPUT/'teacher200/accepted.json'),
+    teacher=dict(accepted_path=(WORKFLOW_OUTPUT/'teacher200/accepted.json').as_posix(),
                  accepted_sha256=prev['teacher_accepted_sha256'],
-                 checkpoint_path=str(WORKFLOW_OUTPUT/'teacher200/train/weights/last.pt'),
+                 checkpoint_path=(WORKFLOW_OUTPUT/'teacher200/train/weights/last.pt').as_posix(),
                  checkpoint_sha256=prev['teacher_checkpoint_sha256'],
-                 full_state_path=str(WORKFLOW_OUTPUT/'teacher200/train/state_snapshots/epoch_200_full_state.pt'),
+                 full_state_path=(WORKFLOW_OUTPUT/'teacher200/train/state_snapshots/epoch_200_full_state.pt').as_posix(),
                  full_state_sha256=prev['full_state_sha256'])
     release=dict(schema='s4.coco.release.v1',phase=PHASE,workflow_run_id=WORKFLOW,source_commit=head,
                  scientific_parent=PARENT,victim_parent=VICTIM_PARENT,
@@ -140,7 +140,7 @@ def build(tag, head, observation):
     template['artifacts']=[dict(path='result/'+name,required=True) for name in
                            ('smoke_summary.json','phase_spec.json','smoke_statistics/raw_statistics.pt',
                             'smoke_statistics/eligible_support_manifest.json')]
-    template['local_pull_root']=str(EX/tag/'small_pull')
+    template['local_pull_root']=str(EX/'p')
     template['metadata']=dict(execution_purpose='isolated_calibration_pre_review_smoke',
         computation_kind='gradient-calibration',candidate_commit=head,cleanup_policy='retain_all',
         official_metrics_disabled=True,artifact_ingest_disabled=True,validation_used=False,
@@ -210,7 +210,7 @@ def register(tag, review_path):
     spec=load(spec_path)
     if current_source()!=spec['source']['commit']:
         raise ValueError('Calibration review source differs from the published candidate')
-    summary_path=Path(spec['local_pull_root'])/'result'/'smoke_summary.json'
+    summary_path=Path(spec['local_pull_root'])/tag/'result'/'smoke_summary.json'
     if not summary_path.is_file():raise ValueError('RRCTL has not pulled calibration smoke evidence')
     smoke=load(summary_path);release_path=EX/tag/'source_release.json';release=load(release_path)
     cfg_sha=sha(ROOT/release['phase_config_path'])
@@ -220,9 +220,16 @@ def register(tag, review_path):
         previous_stage_receipt_sha256=release['teacher_eval_dependency']['accepted_sha256'],
         computation_kind='gradient-calibration',production_entrypoint_reached=True,finite_outputs=True,
         model_unchanged=True,validation_used=False,parameter_updates=False,official_metrics_disabled=True,
-        artifact_ingest_disabled=True,actual_device='cuda:0',actual_training_images=1)
+        artifact_ingest_disabled=True,actual_device='cuda:0',actual_cuda_device_index=0,
+        actual_forward_tensor_devices=['cuda:0'],actual_cuda_device_indices=[0],actual_training_images=1)
+    baseline=smoke.get('baseline_equivalence_probe',{})
     if (any(smoke.get(k)!=v for k,v in expected.items())
-            or not 1<=smoke.get('production_forward_calls',0)<=100):
+            or not 1<=smoke.get('production_forward_calls',0)<=100
+            or not 1<=smoke.get('total_production_forward_calls',0)<=100
+            or baseline.get('all_sensitivity_sums_exact') is not True
+            or baseline.get('absolute_difference')!=0 or baseline.get('tolerance')!=0
+            or baseline.get('reference_actual_forward_tensor_devices')!=['cuda:0']
+            or baseline.get('reference_actual_cuda_device_indices')!=[0]):
         raise ValueError('Calibration smoke lacks the exact bounded native CUDA evidence')
     review=load(review_path)
     if review.get('previous_stage_receipt_sha256')!=release['teacher_eval_dependency']['accepted_sha256']:

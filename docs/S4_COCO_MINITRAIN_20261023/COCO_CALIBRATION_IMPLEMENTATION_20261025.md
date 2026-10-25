@@ -1,5 +1,23 @@
 # Original S4 COCO calibration phase implementation
 
+## Current candidate update (2026-10-25)
+
+Teacher200 and its fixed-last full 5K assessment are now independently accepted;
+the existing controller waits for calibration. This candidate loads the native
+EMA DetectionModel (rather than its Sequential child), converts serialized FP16
+to the canonical FP32 calibration model, and freezes it. A synthetic native CPU
+probe matched canonical YOLO loading, raw outputs, and input gradients exactly.
+The bounded calibration smoke now measures actual raw tensor CUDA device/index
+and compares every P3/P5 sensitivity sum against independent original per-layer
+GT-evidence loops on the same frozen Teacher and one real clean-train image.
+The new reference function passed a separate synthetic CPU probe (640, Person0
+and one NT class, 960 compared values, two reference forwards). These are local
+checks; real current-candidate CUDA, one new calibration scientific review, and
+formal registration remain open. The short RRCTL pull path, POSIX dependency
+paths, and previous-receipt summary field are explicit transport/binding fixes.
+No Original S4 math, thresholds, data split, checkpoint bytes, or training
+hyperparameters changed. Historical implementation notes below are retained.
+
 ## State
 
 This is a local, CPU-contract-validated implementation candidate for the
