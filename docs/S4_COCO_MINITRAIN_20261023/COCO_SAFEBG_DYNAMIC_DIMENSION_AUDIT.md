@@ -39,3 +39,7 @@ The corrective wrapper passively measures autograd.grad of actual weighted BG_se
 
 ## First formal batch numerical block (latest actual state)
 See COCO_SAFEBG_DIMENSION_NUMERICAL_CONSISTENCY_REPORT_20261025.md and DIMENSION_RECOVERY01_20261025/. Current-source single-image direct coefficient gradients pass, but first formal batch16 fails actual rank8 projector orthogonality: 1.03712e-5 > unchanged1e-5 for ordered classes38,24,26. Both failed controller/child are absent. Bounded diagnosis confirms true Gram violation even evaluating sameq in double precision. No solver/threshold change, no blind restart, no downstream results. Formal readiness remains BLOCKED pending a validated numerical implementation correction.
+
+
+## Current-source full native batch16 precision validation (2026-10-26)
+The retained first-formal-batch numerical block is closed by actual CPU16 and CUDA16 evidence at dcd91b3: same ordered rank8 SVD internallyfloat64 then cast originaldtype, VOC24 original arithmetic unchanged. Failedorder38,24,26 is reached through native cache; Gram CPU5.96046e-8/CUDA1.19209e-7, no tolerance relaxation. Direct BG/rel gradients to Fourier are finite/nonzero;138source/7native/checkpoint/RNG and original16 image IDs independently audited. See COCO_SAFEBG_PRECISION_BATCH16_VALIDATION_REPORT_20261026.md and PRECISION_RECOVERY_V2_20261026/. Exactly one original review plus main repair closure; old failures untouched. New unique v2 control binding and READY exist, with actual formal progress verified separately. Full Experiment A remains incomplete.

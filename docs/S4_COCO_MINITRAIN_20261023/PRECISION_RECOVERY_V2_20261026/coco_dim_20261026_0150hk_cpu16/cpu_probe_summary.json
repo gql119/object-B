@@ -1,0 +1,180 @@
+{
+  "phase": "fourier24",
+  "source_commit": "dcd91b33d90dfd2472b8eacb843a994a4801d1cf",
+  "release_sha256": "63eb86142add014c647558d256873c94e2d480023780903761b45423ed5ac80f",
+  "phase_config_sha256": "9f2830c5d6a2a608f881cb5d7c2616bc77f6340ca597ae74ab4070229361ce4a",
+  "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+  "teacher_receipt_sha256": "f06302c55aad6870c877aed3f79f1defb280a392d6bf96d4f40ca018245c3ade",
+  "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+  "accepted_calibration_manifest_sha256": "181e9c203b2d5a147888aac7ded702673c2084994d722c9ca4633fad0210ee64",
+  "validation_used": false,
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "cleanup_policy": "retain_all",
+  "deleted_paths": [],
+  "state": "passed",
+  "started_UTC": "2026-10-25T17:49:11.371105+00:00",
+  "smoke": false,
+  "cpu_probe": true,
+  "computation_kind": "fourier-gradient-cpu-validation",
+  "production_entrypoint_reached": true,
+  "finite_outputs": true,
+  "frozen_teacher_unchanged": true,
+  "actual_device": "cpu",
+  "actual_training_images": 16,
+  "actual_native_batch_sizes": [
+    16,
+    16
+  ],
+  "sample_order_policy": "original_full_eligible_numpy_seed0",
+  "full_eligible_image_count": 13630,
+  "actual_training_image_ids": [
+    "000000168353",
+    "000000048204",
+    "000000394240",
+    "000000531061",
+    "000000234986",
+    "000000379914",
+    "000000122453",
+    "000000043248",
+    "000000027522",
+    "000000268941",
+    "000000426118",
+    "000000338745",
+    "000000286042",
+    "000000396611",
+    "000000218467",
+    "000000284680"
+  ],
+  "expected_training_image_ids": [
+    "000000168353",
+    "000000048204",
+    "000000394240",
+    "000000531061",
+    "000000234986",
+    "000000379914",
+    "000000122453",
+    "000000043248",
+    "000000027522",
+    "000000268941",
+    "000000426118",
+    "000000338745",
+    "000000286042",
+    "000000396611",
+    "000000218467",
+    "000000284680"
+  ],
+  "actual_forward_tensor_devices": [
+    "cpu"
+  ],
+  "actual_cuda_device_indices": [],
+  "selected_channel_count": 39,
+  "non_target_class_count": 79,
+  "independent_P3_selected_count": 48,
+  "SafeBG_loss_Fourier_gradient_norms": {
+    "L_BG": 0.023654932156205177,
+    "L_rel": 0.02355520986020565
+  },
+  "cache_memory": {
+    "selected_dim": 39,
+    "classes": 79,
+    "entries": 55,
+    "svd_precision_policy": "selected_dimension_float64_svd_v1",
+    "output_dtype": "torch.float32",
+    "max_entries": 8192,
+    "misses": 55,
+    "basis_bytes": 221052,
+    "entry_bytes": 73040,
+    "entry_upper_bound_bytes": 10878976
+  },
+  "per_loss_fourier_gradient_measurement": {
+    "measurement": "direct_autograd_fourier_coeff_v1",
+    "target": "trainer.fourier_coeff",
+    "parameter_shape": [
+      64,
+      3
+    ],
+    "parameter_device": "cpu",
+    "parameter_is_leaf": true,
+    "EOT_draws": 2,
+    "optimizer_gradient_accumulation_unchanged": true,
+    "per_draw_norms": [
+      {
+        "L_BG": 0.025143984705209732,
+        "L_rel": 0.02503640577197075
+      },
+      {
+        "L_BG": 0.02456338331103325,
+        "L_rel": 0.02449553832411766
+      }
+    ],
+    "mean_EOT_gradient_norms": {
+      "L_BG": 0.023654932156205177,
+      "L_rel": 0.02355520986020565
+    }
+  },
+  "per_loss_fourier_gradient_proof_sha256": "f995773896c2bc8d262af7f0b63104fb79e8eb49b379203d4a96ba5053784f52",
+  "poison_image_gradient_norms": {
+    "L_BG": 0.11811913922429085,
+    "L_rel": 0.11810150742530823
+  },
+  "baseline_equivalence_probe": {
+    "reference_id": "frozen original SafeBG weightless24D kernel 9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+    "reference_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+    "candidate_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+    "weights_usage": "checkpoint belongs to the production loss path; this isolated projection kernel has no learned weights",
+    "reference_source_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_calibration_20261025_0825z_detprobe/ue_framework/methods/safebg.py",
+    "reference_source_sha256": "9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+    "candidate_source_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261026_0150hk_cpu16/ue_framework/methods/safebg.py",
+    "candidate_source_sha256": "e0bfe9a5c86591c91e2ac1b560923994f1a322e6d34ec567e44bbeb01b673043",
+    "metric_name": "24D projected output Frobenius norm",
+    "reference_metric": 9.069275856018066,
+    "candidate_metric": 9.069275856018066,
+    "absolute_difference": 0.0,
+    "tolerance": 0,
+    "all_outputs_and_diagnostics_exact": true,
+    "RNG_restored": true,
+    "actual_tensor_device": "cpu",
+    "evaluation_setting": {
+      "dataset": "fixed synthetic24D tensor fixture; no VOC/COCO AP",
+      "seed": 157,
+      "sample_count": 2,
+      "parameters": {
+        "rank": 8,
+        "removal_alpha": 0.5,
+        "active_k": 3
+      },
+      "post_processing": "none"
+    }
+  },
+  "production_forward_calls": 12,
+  "actual_fourier_optimizer_updates": 1,
+  "actual_eot_samples": 2,
+  "parameter_updates": true,
+  "Fourier_gradient_norm": 0.047059398144483566,
+  "max_abs_delta": 0.00788235291838646,
+  "outside_support_max": 0.0,
+  "learned_fourier_max_abs_change": 0.0009999994654208422,
+  "native_rng_sha256": "cec97ba18bdb55d391910fee3cdd3564cbf0f1970d0fbcfeb619a29d74445865",
+  "retained": [
+    "phase_spec.json",
+    "global_params.pt",
+    "diagnostics.csv",
+    "diagnostics.json",
+    "native_rng_state.pt",
+    "imported_calibration/"
+  ],
+  "completed_UTC": "2026-10-25T17:50:43.457015+00:00",
+  "projector_precision_validation": {
+    "all_native_cached_ranks_eight": true,
+    "maximum_native_cached_Gram": 2.980232238769531e-07,
+    "historical_failed_order": [
+      38,
+      24,
+      26
+    ],
+    "historical_failed_order_in_native_cache": true,
+    "historical_failed_order_Gram": 5.960464477539063e-08,
+    "thresholds_unchanged": true
+  }
+}

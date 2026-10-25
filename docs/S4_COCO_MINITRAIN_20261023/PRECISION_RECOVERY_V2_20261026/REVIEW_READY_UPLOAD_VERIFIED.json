@@ -1,0 +1,9 @@
+{
+  "state": "VERIFIED",
+  "UTC": "2026-10-25T18:10:11.178644+00:00",
+  "registered_existing_unique_controller": true,
+  "READY_uploaded_and_readback": true,
+  "ready_sha256": "9493828ad915f83be75b507fc6a7b6c046c8340bbec9a574762b4091c935560d",
+  "scientific_closure_sha256": "4191363ea1685bb3ba31669b4b89f714f3fa46d43c5f0b142b4e6ccfdc148125",
+  "formal_start_proof_sha256": "7dd9d04f55432ff41ba97878bda11be1c91613e6220dcf63a718d33c0523ed68"
+}

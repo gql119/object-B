@@ -1,0 +1,156 @@
+{
+  "state": "FORMAL_FIRST_BATCH_AND_UPDATES_VERIFIED",
+  "UTC": "2026-10-25T18:10:11.177647+00:00",
+  "source_commit": "dcd91b33d90dfd2472b8eacb843a994a4801d1cf",
+  "release_sha256": "63eb86142add014c647558d256873c94e2d480023780903761b45423ed5ac80f",
+  "controller_config_sha256": "8228eca879de4619a01080f8d3fb959df555a4d9e0d3b2d764dbe83f7c82e3c8",
+  "actual_workflow": "s4_coco_experiment_a_seed0_20261026_dimcompat_v2",
+  "observed_native_state": {
+    "state": {
+      "schema": "s4.coco.serial-recovery.v1",
+      "state": "RUNNING",
+      "run_id": "s4_coco_experiment_a_seed0_20261026_dimcompat_v2",
+      "source_commit": "dcd91b33d90dfd2472b8eacb843a994a4801d1cf",
+      "config_sha256": "8228eca879de4619a01080f8d3fb959df555a4d9e0d3b2d764dbe83f7c82e3c8",
+      "release_sha256": "63eb86142add014c647558d256873c94e2d480023780903761b45423ed5ac80f",
+      "controller": {
+        "pid": 63444,
+        "start_ticks": 357606197,
+        "uid": 1014
+      },
+      "stages": {
+        "teacher200": {
+          "state": "ACCEPTED",
+          "receipt_sha256": "f06302c55aad6870c877aed3f79f1defb280a392d6bf96d4f40ca018245c3ade",
+          "reused": true
+        },
+        "teacher_eval": {
+          "state": "ACCEPTED",
+          "receipt_sha256": "69655e8c89aa282a5ace5eff89b45412d9631f76409d269d778728c1df868b51",
+          "reused": true
+        },
+        "calibration": {
+          "state": "ACCEPTED",
+          "receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+          "reused": true
+        }
+      },
+      "current_stage": "fourier24",
+      "active_job": "fourier24",
+      "active_child": {
+        "pid": 64595,
+        "start_ticks": 357618769,
+        "uid": 1014,
+        "argv": [
+          "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+          "-B",
+          "-m",
+          "coco_s4.phase_fourier",
+          "--release",
+          "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261026_0200hk_gpu16/source_release.json",
+          "--output",
+          "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261026_dimcompat_v2/fourier24",
+          "--registration",
+          "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261026_dimcompat_v2/receipts/fourier24_READY.json"
+        ],
+        "cwd": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261026_0200hk_gpu16",
+        "UTC": "2026-10-25T18:05:12.906185+00:00",
+        "memory_scope": {
+          "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4coco-job-d763ee15e39ba85b141ffdfc.scope",
+          "memory.current": "10829824",
+          "memory.peak": "10829824",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+          "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+        }
+      },
+      "OP_enabled": false,
+      "phase_order": [
+        "teacher200",
+        "teacher_eval",
+        "calibration",
+        "fourier24",
+        "export25k",
+        "clean200",
+        "s4_200",
+        "official_eval",
+        "final_report"
+      ],
+      "dimension_protocol": "coco80-strict-tsfl-selected-dimension-v1",
+      "created_UTC": "2026-10-25T18:03:09.787668+00:00",
+      "updated_UTC": "2026-10-25T18:09:02.963576+00:00"
+    },
+    "controller_live": {
+      "expected": {
+        "pid": 63444,
+        "start_ticks": 357606197,
+        "uid": 1014
+      },
+      "live": true,
+      "actual_start_ticks": 357606197,
+      "actual_uid": 1014
+    },
+    "child_live": {
+      "expected": {
+        "pid": 64595,
+        "start_ticks": 357618769,
+        "uid": 1014,
+        "argv": [
+          "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+          "-B",
+          "-m",
+          "coco_s4.phase_fourier",
+          "--release",
+          "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261026_0200hk_gpu16/source_release.json",
+          "--output",
+          "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261026_dimcompat_v2/fourier24",
+          "--registration",
+          "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261026_dimcompat_v2/receipts/fourier24_READY.json"
+        ],
+        "cwd": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261026_0200hk_gpu16",
+        "UTC": "2026-10-25T18:05:12.906185+00:00",
+        "memory_scope": {
+          "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4coco-job-d763ee15e39ba85b141ffdfc.scope",
+          "memory.current": "10829824",
+          "memory.peak": "10829824",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+          "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+        }
+      },
+      "live": true,
+      "actual_start_ticks": 357618769,
+      "actual_uid": 1014
+    },
+    "phase_status": {
+      "phase": "fourier24",
+      "source_commit": "dcd91b33d90dfd2472b8eacb843a994a4801d1cf",
+      "release_sha256": "63eb86142add014c647558d256873c94e2d480023780903761b45423ed5ac80f",
+      "phase_config_sha256": "9f2830c5d6a2a608f881cb5d7c2616bc77f6340ca597ae74ab4070229361ce4a",
+      "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+      "teacher_receipt_sha256": "f06302c55aad6870c877aed3f79f1defb280a392d6bf96d4f40ca018245c3ade",
+      "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+      "accepted_calibration_manifest_sha256": "181e9c203b2d5a147888aac7ded702673c2084994d722c9ca4633fad0210ee64",
+      "validation_used": false,
+      "official_metrics_disabled": true,
+      "artifact_ingest_disabled": true,
+      "cleanup_policy": "retain_all",
+      "deleted_paths": [],
+      "state": "RUNNING",
+      "started_UTC": "2026-10-25T18:05:14.250339+00:00",
+      "smoke": false,
+      "cpu_probe": false
+    },
+    "complete_CSV_rows": 27,
+    "last_row": {
+      "step": "26",
+      "epoch": "1",
+      "L_total": "1.5602073669433594",
+      "grad_norm_fourier": "0.0555272102355957",
+      "outside_support_max": "0.0"
+    }
+  },
+  "CPU_GPU_batch16_pre_run_pass": true,
+  "reviewer_count": 1,
+  "second_reviewer_called": false,
+  "old_workflows_not_restarted": true,
+  "formal_experiment_complete": false
+}

@@ -1,0 +1,15 @@
+{
+  "phase": "fourier24",
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261026_dimcompat_v2",
+  "pre_run_result": "pass",
+  "source_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261026_0200hk_gpu16",
+  "release_sha256": "63eb86142add014c647558d256873c94e2d480023780903761b45423ed5ac80f",
+  "release_relative": "source_release.json",
+  "module": "coco_s4.phase_fourier",
+  "previous_stage_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+  "scientific_closure_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261026_dimcompat_v2/receipts/fourier24_SCIENTIFIC_CLOSURE.json",
+  "scientific_closure_sha256": "4191363ea1685bb3ba31669b4b89f714f3fa46d43c5f0b142b4e6ccfdc148125",
+  "smoke_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261026_0200hk_gpu16/result/smoke_summary.json",
+  "smoke_sha256": "f525a323f373d2bc36fab4c2a823ac486d0791540a8dbb26663c3c1dd4f6e128",
+  "registered_UTC": "2026-10-25T18:04:48.320635+00:00"
+}

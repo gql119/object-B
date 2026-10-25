@@ -1,0 +1,106 @@
+{
+  "state": "VERIFIED",
+  "UTC": "2026-10-25T17:58:37.379594+00:00",
+  "source_commit": "dcd91b33d90dfd2472b8eacb843a994a4801d1cf",
+  "remote_SHA_readback": "dcd91b33d90dfd2472b8eacb843a994a4801d1cf",
+  "remote_readback_source": "successful standard push plus ls-remote during this turn",
+  "scoped_blob_bytes_exact": [
+    {
+      "path": "coco_s4/configs/clean200.json",
+      "bytes": 1137,
+      "sha256": "17acd1f64d1c0a9d8cfa3a030f557357645213d7c3aa7a38b56e75541a00cb46",
+      "blob_oid": "ca3bbcb644f3d84b835c04918ae4a28398444b4a"
+    },
+    {
+      "path": "coco_s4/configs/export25k.json",
+      "bytes": 1139,
+      "sha256": "10bab08c2e0eb44a5e481f361bab5251d9d50065596ba5e80dca26b4a657b364",
+      "blob_oid": "e743fe42ca92a9e2e59bf40d5cd2ea53d657b2fe"
+    },
+    {
+      "path": "coco_s4/configs/final_report.json",
+      "bytes": 659,
+      "sha256": "0e8fec8447749733d3bf12d0a527c098eb68e3dcaf1b82a4ef57dca00751d17c",
+      "blob_oid": "51152696347506d5aa74b28e80b0987adccdbad5"
+    },
+    {
+      "path": "coco_s4/configs/fourier24.json",
+      "bytes": 1099,
+      "sha256": "9f2830c5d6a2a608f881cb5d7c2616bc77f6340ca597ae74ab4070229361ce4a",
+      "blob_oid": "9dee5f91b9bbd39cb820ad5de82c406e2dc83fa2"
+    },
+    {
+      "path": "coco_s4/configs/official_eval.json",
+      "bytes": 1127,
+      "sha256": "2552f4ad685c07e431b7d5affc86f149a7342417722add2b3cadb0a4bffe7e65",
+      "blob_oid": "c5fbdc827833a2ead86e5e59966ec568bd9651d4"
+    },
+    {
+      "path": "coco_s4/configs/s4_200.json",
+      "bytes": 1163,
+      "sha256": "ec40d102b18875169b5089659246e37aa8e4e172a332cc4773452c3298ad5c36",
+      "blob_oid": "3da3f75e5935aef8df1a0826515b69338cab41cc"
+    },
+    {
+      "path": "coco_s4/dimension_release.py",
+      "bytes": 14417,
+      "sha256": "e8b3a0007e4a5633abb71d9085e0913ddc3c34b3e1a5383f75eb640cdedfcaa3",
+      "blob_oid": "a32d233a739ce3f7c28ff6ebd8377d7237da52f5"
+    },
+    {
+      "path": "coco_s4/fourier_gradient_audit.py",
+      "bytes": 3584,
+      "sha256": "7692ec3ea6b58f36be33d3ca85cd9f562f25a8e09e5f719ea0fab22cff5a9e28",
+      "blob_oid": "c44815ef1b836b4985827f1db25811b34443a412"
+    },
+    {
+      "path": "coco_s4/phase_contract.py",
+      "bytes": 6338,
+      "sha256": "29764d0e7df18b85b28632fdf076c96225d9393831274525e866a6e1d0cc01ff",
+      "blob_oid": "7c7a6d7c5c6674cb7d40e317bc311bf1102d5c39"
+    },
+    {
+      "path": "coco_s4/phase_fourier.py",
+      "bytes": 44412,
+      "sha256": "44faeb43f1c4d5da5aabdc06284c5102fa6f5d38481bdcd4686eb58eae89b4f0",
+      "blob_oid": "d954927c1d854765256f0a3cdebaa24e32cb0bb4"
+    },
+    {
+      "path": "coco_s4/recovery_control.py",
+      "bytes": 12707,
+      "sha256": "e32c72460d372073455dec22ddbef003967e2ebfde836a9211326668dc9a3a7c",
+      "blob_oid": "62ccd3c1beb27a5948953f90d8b55193990eacc3"
+    },
+    {
+      "path": "coco_s4/serial_recovery.py",
+      "bytes": 14313,
+      "sha256": "c5d73c02707695d3534e67b1e50500a7ee15b10d4f38b270ca17816f64353e2a",
+      "blob_oid": "c6969981668e45097a7b6d7d6dff9411f0eab9e6"
+    },
+    {
+      "path": "coco_s4/validate_fourier_phase_contracts.py",
+      "bytes": 5164,
+      "sha256": "c8182c50b485eb0e99b297c22bc22c37e39fc4fadea50566e374679326486f67",
+      "blob_oid": "b90242ff258d7e35ab38bac3e088c7fc7e1d83f5"
+    },
+    {
+      "path": "coco_s4/validate_recovery_contracts.py",
+      "bytes": 6096,
+      "sha256": "c13198116daa90037595fb3e954889bdd4ac3e6ab8597c71d3621c0d92b9b070",
+      "blob_oid": "26e4b1f9cd82ba6e83ad3eb2b6eda2a8fcbc0be5"
+    },
+    {
+      "path": "docs/S4_COCO_MINITRAIN_20261023/COCO_BATCH16_RECOVERY_V2_CONTRACTS_20261026.json",
+      "bytes": 3501,
+      "sha256": "5a42addc6778b5a3e5645b052246dd9360cc7727c0f8c26097cd756a7029765a",
+      "blob_oid": "a452d524ae677390f7021be2ee8de7409e36560e"
+    },
+    {
+      "path": "docs/S4_COCO_MINITRAIN_20261023/COCO_BATCH16_RECOVERY_V2_IMPLEMENTATION_20261026.md",
+      "bytes": 2352,
+      "sha256": "a08a3bee46d8049c2064d5ae6f9584cb39cad93b00fead45ff79149150f4c819",
+      "blob_oid": "cde6c6dad45cb6dd62ff301777c7dfc6161ba6bf"
+    }
+  ],
+  "formal_ready": false
+}
