@@ -1,0 +1,42 @@
+{
+  "schema": "s4.coco.victim-phase.v1",
+  "phase": "s4_200",
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261025_v3",
+  "role": "original_s4_poisoned_victim",
+  "predecessor_phase": "clean200",
+  "dataset_route": "accepted Original S4 poisoned COCO minitrain2017 train25K",
+  "image_count": 25000,
+  "class_count": 80,
+  "target_class_id": 0,
+  "initialization": "random YOLOv8n 80-class YAML; pretrained=false; resume=false",
+  "training": {
+    "epochs": 200,
+    "imgsz": 640,
+    "seed": 0,
+    "batch": 36,
+    "workers": 16,
+    "optimizer": "SGD",
+    "cos_lr": true,
+    "close_mosaic": 100,
+    "cache": true,
+    "amp": true,
+    "save_period": 10,
+    "lr0": 0.01,
+    "lrf": 0.01,
+    "momentum": 0.937,
+    "weight_decay": 0.0005,
+    "patience": 0,
+    "device": "0"
+  },
+  "validation": {
+    "training_val": false,
+    "final_epoch_validation": false,
+    "final_eval": false,
+    "selection_from_val": false,
+    "official_metrics": false
+  },
+  "primary_checkpoint": "last.pt@200",
+  "secondary_checkpoint": "best.pt; native train-loss fitness only; not primary",
+  "automatic_resume": false,
+  "cleanup_policy": "retain_all"
+}
