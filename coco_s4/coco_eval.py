@@ -36,6 +36,21 @@ def raw_signature(value):
     return rows
 
 
+def raw_tensor_devices(value):
+    """Return device names observed on the actual pre-NMS forward outputs."""
+    import torch
+    devices=set()
+    def visit(v):
+        if torch.is_tensor(v):
+            devices.add(str(v.device))
+        elif isinstance(v,dict):
+            for k in sorted(v):visit(v[k])
+        elif isinstance(v,(tuple,list)):
+            for item in v:visit(item)
+    visit(value)
+    return sorted(devices)
+
+
 def load_evaluator(directory, expected):
     """Use only the separately pinned addon; never modify core site-packages."""
     root=Path(directory).resolve()
@@ -122,9 +137,10 @@ def predict(checkpoint, images_dir, annotation_json, mapping, output, *, smoke_b
     if model.model.model[-1].nc!=80 or len(model.model.names)!=80 or model.model.names[0]!='person':
         raise ValueError('Not a COCO80/Person0 checkpoint')
     counter=dict(raw_forward_calls=0,raw_tensors_checked=0)
-    signatures=[]
+    signatures=[];forward_devices=set()
     def checked(module,args,result):
         counter['raw_forward_calls']+=1
+        forward_devices.update(raw_tensor_devices(result))
         def check(v):
             if torch.is_tensor(v):
                 counter['raw_tensors_checked']+=1
@@ -159,6 +175,8 @@ def predict(checkpoint, images_dir, annotation_json, mapping, output, *, smoke_b
         raise ValueError('Val prediction IDs missing, repeated or out of bound')
     if not counter['raw_tensors_checked'] or not counter['raw_forward_calls']:
         raise ValueError('No pre-NMS finite raw forward evidence')
+    if not forward_devices:
+        raise ValueError('No tensor-device evidence from the production pre-NMS forward')
     if sha(checkpoint)!=initial:
         raise ValueError('Read-only evaluation modified checkpoint bytes')
     target=Path(output)/'detections.json'
@@ -167,7 +185,8 @@ def predict(checkpoint, images_dir, annotation_json, mapping, output, *, smoke_b
                  predict_args=dict(PREDICT_ARGS),image_count=len(seen),detections=len(detections),
                  finite_outputs=True,checked_outputs='all raw tensor outputs of DetectionModel, before NMS',
                  sparse_category_id_mapping_explicit=True,original_pixel_xywh=True,**counter,
-                 raw_output_signatures=signatures,actual_device=str(next(model.model.parameters()).device),
+                 raw_output_signatures=signatures,actual_forward_tensor_devices=sorted(forward_devices),
+                 actual_device=(next(iter(forward_devices)) if len(forward_devices)==1 else 'mixed'),
                  official_metrics_disabled=bool(smoke_batches),artifact_ingest_disabled=bool(smoke_batches),
                  cleanup_policy='retain_all',deleted_paths=[])
     write_once(Path(output)/'prediction_audit.json',receipt)

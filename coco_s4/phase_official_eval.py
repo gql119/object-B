@@ -11,7 +11,7 @@ import os
 from pathlib import Path
 import random
 
-from .coco_eval import PREDICT_ARGS, official_metrics, predict, raw_signature
+from .coco_eval import PREDICT_ARGS, official_metrics, predict, raw_signature, raw_tensor_devices
 from .evaluation import paired_metrics
 from .phase_contract import OWNED, WORKFLOW, WORKFLOW_OUTPUT, phase_release
 from .runtime import DATA_ROOT, ROOT, atomic, load, now, sha, write_once
@@ -133,7 +133,9 @@ def _formal_gate(registration, release_path, manifest, config_sha):
         raise ValueError("A current-release paired bounded inference smoke is required")
     for probe in smoke["victim_probes"].values():
         eq = probe.get("baseline_equivalence_probe", {})
-        if (probe.get("finite_outputs") is not True or not eq.get("raw_outputs_exact")
+        if (probe.get("actual_device") != "cuda:0" or probe.get("finite_outputs") is not True
+                or eq.get("reference_actual_device") != probe.get("actual_device")
+                or not eq.get("raw_outputs_exact")
                 or not eq.get("decoded_predictions_exact") or eq.get("absolute_difference") != 0
                 or eq.get("tolerance") != 0):
             raise ValueError("Each matched victim needs exact native reference equivalence")
@@ -148,8 +150,11 @@ def _native_reference(checkpoint, images, annotation, mapping, batches, candidat
     entries = sorted(load(annotation)["images"], key=lambda im: im["id"])
     paths = [str(Path(images) / x["file_name"]) for x in entries[:PREDICT_ARGS["batch"] * batches]]
     model = YOLO(str(checkpoint))
-    signatures = []
-    hook = model.model.register_forward_hook(lambda module, args, result: signatures.append(raw_signature(result)))
+    signatures = []; reference_devices = set()
+    def reference_hook(module, args, result):
+        reference_devices.update(raw_tensor_devices(result))
+        signatures.append(raw_signature(result))
+    hook = model.model.register_forward_hook(reference_hook)
     table = {r["yolo_class_id"]: r["category_id"] for r in mapping}
     detections = []
     try:
@@ -163,8 +168,11 @@ def _native_reference(checkpoint, images, annotation, mapping, batches, candidat
     audit = load(Path(candidate).parent / "prediction_audit.json")
     if signatures != audit["raw_output_signatures"] or detections != load(candidate):
         raise ValueError("Independent native YOLO.predict reference differs from production sink")
+    if len(reference_devices) != 1:
+        raise ValueError("Independent reference did not expose one unambiguous forward device")
     return dict(raw_outputs_exact=True, decoded_predictions_exact=True, absolute_difference=0, tolerance=0,
-                reference_raw_forward_calls=len(signatures), weights_sha256=sha(checkpoint))
+                reference_raw_forward_calls=len(signatures),
+                reference_actual_device=next(iter(reference_devices)), weights_sha256=sha(checkpoint))
 
 
 def _checkpoint_check(path):
@@ -240,6 +248,8 @@ def run(release_path, output, *, registration=None, smoke_batches=0):
                 reference = _native_reference(checkpoint, DATA_ROOT / "images/val",
                     DATA_ROOT / "metadata/instances_val2017.json",
                     mapping, smoke_batches, predictions)
+                if reference["reference_actual_device"] != audit["actual_device"]:
+                    raise ValueError("Independent reference and production sink used different devices")
                 audits[name]["baseline_equivalence_probe"] = reference
             else:
                 rows = official_metrics(DATA_ROOT / "metadata/instances_val2017.json",

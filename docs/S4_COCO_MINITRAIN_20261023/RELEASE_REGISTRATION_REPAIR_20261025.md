@@ -35,3 +35,29 @@ These checks do not establish RRCTL remote readiness or GPU behavior. A fresh
 unique `teacher_eval` candidate still needs a real RRCTL bounded CUDA smoke,
 exactly one independent review, and closure before the serial workflow can
 start the full fixed-last COCO evaluation.
+
+The first fresh candidate, `coco_teacher_eval_20261025_0203z`, passed RRCTL
+thin readiness and reached the prediction entrypoint, then exited with code 1
+before review or formal registration. Its retained status says the production
+forward produced finite outputs for 72 images, but the audit recorded `cpu`
+from the wrapper model parameters after prediction and rejected the phase. That
+post-prediction parameter device does not establish the device of the actual
+pre-NMS forward, so this smoke did not prove CUDA reachability and was not
+accepted. The candidate is preserved and will not be retried. Exact RRCTL
+process identities are now absent; the serial controller is still waiting at
+`teacher_eval` with no active job. No official metrics, checkpoint changes, or
+cleanup occurred.
+
+The follow-up implementation records tensor devices inside both the production
+pre-NMS forward hook and the independent native reference hook. The CUDA0
+requirement remains strict, and both paths must report the same actual forward
+device. The paired official-evaluation path uses the same forward-device
+evidence. A new published commit and unique candidate are required before
+another smoke; no review is performed for the failed candidate.
+
+After this telemetry correction, the retained two-image random COCO80 CPU
+prediction probe passed with raw and decoded predictions identical, the
+production and reference forward tensors both reported `cpu`, nonfinite raw
+outputs were rejected, and CUDA remained uninitialized. This is CPU-only
+contract evidence, not a CUDA smoke or scientific review; see
+`execution/TEACHER_EVAL_NATIVE_CPU_DEVICE_AUDIT_20261025.json`.

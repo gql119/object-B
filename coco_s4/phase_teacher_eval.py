@@ -28,11 +28,14 @@ def validate_config(cfg):
 def native_reference(checkpoint, images, annotation, mapping, smoke_batches, candidate):
     """Independent native YOLO.predict invocation, same weights/inputs/protocol."""
     from ultralytics import YOLO
-    from .coco_eval import raw_signature
+    from .coco_eval import raw_signature, raw_tensor_devices
     entries=sorted(load(annotation)['images'],key=lambda im:im['id'])[:PREDICT_ARGS['batch']*smoke_batches]
     paths=[str(Path(images)/x['file_name']) for x in entries]
-    model=YOLO(str(checkpoint));signatures=[]
-    hook=model.model.register_forward_hook(lambda module,args,result:signatures.append(raw_signature(result)))
+    model=YOLO(str(checkpoint));signatures=[];reference_devices=set()
+    def reference_hook(module,args,result):
+        reference_devices.update(raw_tensor_devices(result))
+        signatures.append(raw_signature(result))
+    hook=model.model.register_forward_hook(reference_hook)
     table={r['yolo_class_id']:r['category_id'] for r in mapping};detections=[]
     try:
         for r in model.predict(source=paths,**PREDICT_ARGS):
@@ -47,12 +50,15 @@ def native_reference(checkpoint, images, annotation, mapping, smoke_batches, can
     decoded_equal=detections==load(candidate)
     if not raw_equal or not decoded_equal:
         raise ValueError('Independent canonical native inference differs from production sink')
+    if len(reference_devices)!=1:
+        raise ValueError('Independent reference did not expose one unambiguous forward device')
     return dict(reference_id='pinned ultralytics.YOLO.predict, independent model instance',
                 candidate_id='coco_s4.coco_eval.predict production sink',
                 reference_weights_path=str(checkpoint),candidate_weights_path=str(checkpoint),
                 weights_sha256=sha(checkpoint),metric_name='raw and decoded native inference exact identity',
                 reference_metric=0,candidate_metric=0,absolute_difference=0,tolerance=0,
                 raw_outputs_exact=raw_equal,decoded_predictions_exact=decoded_equal,
+                reference_actual_device=next(iter(reference_devices)),
                 reference_raw_forward_calls=len(signatures),
                 raw_reference_sha256=hashlib.sha256(json.dumps(signatures,sort_keys=True).encode()).hexdigest(),
                 evaluation_setting=dict(dataset='first sorted annotation image IDs',sample_count=len(paths),seed=0,
@@ -111,6 +117,8 @@ def run(release_path,output,*,registration=None,smoke_batches=0):
         if smoke_batches:
             baseline=native_reference(checkpoint,DATA_ROOT/'images/val',DATA_ROOT/'metadata/instances_val2017.json',
                                       mapping,smoke_batches,predictions)
+            if baseline['reference_actual_device']!=audit['actual_device']:
+                raise ValueError('Independent reference and production sink used different devices')
             if sha(checkpoint)!=manifest['teacher_dependency']['checkpoint_sha256']:
                 raise ValueError('Read-only inference probe changed checkpoint bytes')
             total_forwards=audit['raw_forward_calls']+baseline['reference_raw_forward_calls']

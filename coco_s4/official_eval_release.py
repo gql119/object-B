@@ -224,7 +224,9 @@ def register(tag, review_path):
         eq = probe.get("baseline_equivalence_probe", {})
         if probe.get("actual_device") != "cuda:0" or not probe.get("finite_outputs"):
             raise ValueError("GPU smoke did not produce finite output on CUDA0")
-        if not eq.get("raw_outputs_exact") or not eq.get("decoded_predictions_exact") or eq.get("tolerance") != 0:
+        if (eq.get("reference_actual_device") != probe.get("actual_device")
+                or not eq.get("raw_outputs_exact") or not eq.get("decoded_predictions_exact")
+                or eq.get("tolerance") != 0):
             raise ValueError("Candidate differs from independent native YOLO inference")
     review = load(review_path)
     if (review.get("phase") != "official_eval" or review.get("source_commit") != spec["source"]["commit"]
