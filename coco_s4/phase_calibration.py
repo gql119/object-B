@@ -277,6 +277,7 @@ def run(release_path, output, *, registration=None, smoke_images=0):
     write_once(output/'phase_spec.json', dict(common, computation_kind='gradient-calibration',
                image_count=(1 if smoke_images else FIXED_COUNTS['images']), class_count=80,
                target_class_id=0, config_path=manifest['config_path'], artifact_root=str(artifact_root),
+               source_root=str(ROOT.resolve()),
                teacher_eval_metrics_read=False, validation_images_opened=False,
                expected_statistics_manifest_sha256=expected_digest if not smoke_images else None,
                expected_teacher_receipt=teacher_receipt,
