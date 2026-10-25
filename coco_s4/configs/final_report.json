@@ -1,0 +1,19 @@
+{
+  "schema": "s4.coco.final-report-config.v1",
+  "phase": "final_report",
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261025_v3",
+  "accepted_stages": [
+    "teacher200", "teacher_eval", "calibration", "fourier24", "export25k",
+    "clean200", "s4_200", "official_eval"
+  ],
+  "target_class_id": 0,
+  "class_count": 80,
+  "seed_count": 1,
+  "checkpoint_policy": "fixed last.pt@200; best.pt secondary only",
+  "selection_from_val": false,
+  "parameter_updates": false,
+  "significance_claims": false,
+  "causal_claims": false,
+  "LPIPS_policy": "null until independently validated",
+  "cleanup_policy": "retain_all"
+}
