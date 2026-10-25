@@ -11,7 +11,7 @@ import subprocess
 from .runtime import ROOT, DATA_ROOT, DATA_FILES, PARENT, VICTIM_PARENT, commit, load, now, sha, write_once
 from .phase_contract import OWNED, WORKFLOW, LEGACY_WORKFLOW, ORIGIN_OUTPUT, WORKFLOW_OUTPUT
 from .dimension_protocol import PROTOCOL, validate_receipt_dimension
-from .release_transport import anchor_path,validate_anchor_outside_lifecycle
+from .release_transport import anchor_path,validate_anchor_outside_lifecycle,ensure_remote_exact
 
 EX=ROOT/'execution'
 PYTHON='/project/guoqinglong/miniconda3/envs/cfbdm/bin/python'
@@ -82,6 +82,8 @@ def release(head,phase):
     files=subprocess.check_output(['git','-C',str(ROOT),'ls-files'],text=True).splitlines()
     names=[n for n in files if n.startswith(('coco_s4/','ue_framework/','configs/')) or n in
            (MAIN,'docs/S4_COCO_MINITRAIN_20261023/COCO_CATEGORY_MAPPING.json',
+            'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_DIMENSION_CPU_NUMERICS_20261025.json',
+            'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_DIMENSION_REGRESSION_20261025.json',
             'docs/S4_COCO_MINITRAIN_20261023/USER_DYNAMIC_DIMENSION_AUTHORIZATION_20261025.md')]
     return dict(schema='s4.coco.release.v1',phase=phase,source_commit=head,workflow_run_id=WORKFLOW,
                 scientific_parent=PARENT,victim_parent=VICTIM_PARENT,dimension_protocol=PROTOCOL,
@@ -136,6 +138,15 @@ def prepare(tag,kind,rebuild_tag=None):
     if kind=='rebuild':
         m.update(retained_calibration=load(EX/'COCO_DYNAMIC_DIMENSION_REUSE_AUDIT_20261025.json'),
                  artifact_relative_root='execution/generated_calibration/coco_dimension_template')
+        if rebuild_tag:
+            previous=load(EX/(check_tag(rebuild_tag)+'.json'))
+            folder=Path(previous['local_pull_root'])/rebuild_tag/'result'
+            if load(folder/'status.json')['state']!='passed':raise ValueError('Prior coordinate component did not pass')
+            m['reuse_reconstructed_coordinates']=dict(
+                receipt_path=previous['remote']['output_root']+'/result/candidate_receipt.json',
+                receipt_sha256=sha(folder/'candidate_receipt.json'),
+                phase_spec_path=previous['remote']['output_root']+'/result/phase_spec.json',
+                phase_spec_sha256=sha(folder/'phase_spec.json'))
     else:
         rebuild_tag=check_tag(rebuild_tag)
         prev=load(EX/(rebuild_tag+'.json'));folder=Path(prev['local_pull_root'])/rebuild_tag/'result'
@@ -145,12 +156,16 @@ def prepare(tag,kind,rebuild_tag=None):
         validate_receipt_dimension(receipt)
         phase_spec=load(folder/'phase_spec.json')
         old_release=load(EX/rebuild_tag/'source_release.json')
+        ensure_remote_exact(t,EX/rebuild_tag/'source_release.json',prev['remote']['repo_root']+'/source_release.json')
         # Bind semantic consumers exactly even if only scaffolding changed later.
         for name in ('ue_framework/methods/safebg.py','ue_framework/methods/b2_semantic.py',
                      'ue_framework/methods/semantic_coordinates.py','ue_framework/methods/orth_reference_design.py'):
             if m['files'][name]!=old_release['files'][name]:raise ValueError('Reconstruction semantic consumer drift')
         remote_out=prev['remote']['output_root']+'/result'
         m.update(phase_config_path='coco_s4/configs/fourier24.json',dimension_reconstruction_validation_allowed=True,
+                 canonical_safebg_reference=dict(
+                     path=load(EX/'COCO_DYNAMIC_DIMENSION_REUSE_AUDIT_20261025.json')['source_root']+'/ue_framework/methods/safebg.py',
+                     sha256=load(ROOT/'docs/S4_COCO_MINITRAIN_20261023/ORIGINAL_S4_METHOD_SOURCE_LOCK.json')['files']['ue_framework/methods/safebg.py']),
                  dimension_reconstruction_dependency=dict(receipt_path=remote_out+'/candidate_receipt.json',
                      receipt_sha256=sha(folder/'candidate_receipt.json'),phase_spec_path=remote_out+'/phase_spec.json'),
                  calibration_dependency=dict(accepted_path=(WORKFLOW_OUTPUT/'calibration/accepted.json').as_posix(),

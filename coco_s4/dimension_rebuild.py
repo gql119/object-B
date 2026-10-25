@@ -96,9 +96,50 @@ def run(release_path,output):
                                prototype_bank_sha256=sha(paths['prototype_bank.pt']),
                                retained_input_binding_sha256=__import__('hashlib').sha256(
                                    __import__('json').dumps(m['retained_calibration'],sort_keys=True).encode()).hexdigest())
-        coordinates=build_coordinates(raw,cfg,artifact_root/'method',builder_path=ROOT/'coco_s4/calibration.py',
-                                     source_root=ROOT,reference_files=reference,
-                                     expected_selection=selected,recovery_identity=recovery_identity)
+        previous=m.get('reuse_reconstructed_coordinates')
+        if previous:
+            parent_path=Path(previous['receipt_path']).resolve();parent_spec=Path(previous['phase_spec_path']).resolve()
+            if (not parent_path.is_relative_to((OWNED/'validation').resolve())
+                    or sha(parent_path)!=previous['receipt_sha256'] or sha(parent_spec)!=previous['phase_spec_sha256']):
+                raise ValueError('Previously reconstructed coordinate binding drift')
+            parent=load(parent_path);ps=load(parent_spec)
+            parent_source=Path(ps['source_root']).resolve();parent_artifact=Path(ps['artifact_root']).resolve()
+            if (not parent_source.is_relative_to((OWNED/'releases').resolve()) or not parent_artifact.is_relative_to(parent_source)
+                    or parent['selected_channels']!=selected
+                    or parent['teacher_checkpoint_sha256']!=m['teacher_dependency']['checkpoint_sha256']):
+                raise ValueError('Cannot reuse a different reconstructed coordinate/Teacher identity')
+            for item in parent['artifact_files']:
+                path=(parent_source/item['path']).resolve()
+                if not path.is_relative_to(parent_artifact) or sha(path)!=item['sha256']:
+                    raise ValueError('Previously reconstructed artifact changed')
+                suffix=path.relative_to(parent_artifact);dest=artifact_root/suffix
+                if suffix.as_posix() in ('prototype_bank.pt','collected/eligible_support_manifest.json'):
+                    if sha(dest)!=item['sha256']:raise ValueError('Retained prototype/support identity mismatch')
+                    continue
+                dest.parent.mkdir(parents=True,exist_ok=True)
+                if dest.exists():raise FileExistsError('Coordinate copy collision')
+                if suffix.as_posix()=='method/coordinates/strict_tsfl_summary.json':
+                    summary=load(path);target=raw['layers']['model.21']['target_sum']/raw['target_count']
+                    mask=torch.zeros(target.numel(),dtype=torch.bool);mask[torch.tensor(selected)]=True
+                    summary['mean_target_sensitivity_selected_raw']=float(target[mask].mean())
+                    summary['mean_target_sensitivity_unselected_raw']=float(target[~mask].mean())
+                    write_once(dest,summary)
+                    recovery_identity['diagnostic_summary_schema_repair']=dict(
+                        parent_summary_sha256=item['sha256'],raw_statistics_sha256=recovery_identity['raw_statistics_sha256'],
+                        changed_fields=['mean_target_sensitivity_selected_raw','mean_target_sensitivity_unselected_raw'],
+                        builder_sha256=sha(ROOT/'coco_s4/dimension_rebuild.py'))
+                else:shutil.copyfile(path,dest)
+            recovery_identity['basis_parent_receipt_sha256']=previous['receipt_sha256']
+            coordinates=dict(reference=str(artifact_root/'method/reference'),coordinates=str(artifact_root/'method/coordinates'),
+                             selected_channels=selected,eligible_count=len(raw['eligible_person_images']),validation_used=False)
+        else:
+            coordinates=build_coordinates(raw,cfg,artifact_root/'method',builder_path=ROOT/'coco_s4/calibration.py',
+                                         source_root=ROOT,reference_files=reference,
+                                         expected_selection=selected,recovery_identity=recovery_identity)
+        strict_summary=load(artifact_root/'method/coordinates/strict_tsfl_summary.json')
+        for key in ('mean_target_sensitivity_selected_raw','mean_target_sensitivity_unselected_raw',
+                    'final_selected_channels','mean_S_nt_worst_selected','mean_S_nt_worst_unselected','mean_ratio_selected'):
+            if key not in strict_summary:raise ValueError('Actual B2 consumer diagnostic schema missing: '+key)
         teacher,frozen=load_teacher(checkpoint,m['teacher_dependency']['checkpoint_sha256'],torch.device('cpu'))
         consumer=B2SemanticTrainer(cfg,cfg['methods']['legacy_kproto_ret'],torch.device('cpu'),
                                    copy.deepcopy(teacher),copy.deepcopy(teacher))

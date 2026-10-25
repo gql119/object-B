@@ -1,0 +1,15 @@
+# Selective recovery bindings and actual retained-coordinate verification
+
+Required label: Original S4 — COCO80 Dimension-Compatible Implementation.
+
+The finite CPU reconstruction coco_dim_20261025_1305z_rebuild completed with exit0. An independent read-only audit verified all20 artifact hashes, exact original39 indices, all79 class bases, selected-basis ranks12..19, maximum Gram error2.384185791015625e-7 and byte-identical original P3 references/48 selected P3 channels. Actual Teacher SHA9749a7b6… is unchanged. No image was opened, no model forward ran and CUDA was not initialized. The bounded production cache limit is8192 entries/10,878,976 bytes plus221,052 bytes of stored class bases.
+
+Static native-consumer schema inspection subsequently identified two diagnostic-only summary aliases missing from that component: mean_target_sensitivity_selected_raw and mean_target_sensitivity_unselected_raw. The retained raw statistics contain the required exact raw sums/count. The new finite repair copies the already verified bases/prototypes/P3/support unchanged into a fresh isolated release, fills only these two diagnostic means from retained P5 statistics, and records parent receipt/raw/summary hashes. It does not repeat SVD, image calibration or Teacher training. The first component and old failed original calibration remain unchanged. This repair is not a change to L_BG/L_rel/L_orth/L_ret.
+
+The unique planned recovery is s4_coco_experiment_a_seed0_20261025_dimcompat_v1. serial_recovery reuses the existing serial run_job, capacity, ordinary user scopes and phase READY semantics. It requires the old v3 state/status hashes and dead PID/start identities, exact accepted Teacher/evaluation receipts, a new reconstructed-component receipt, current-source learned-Teacher CPU/CUDA full-loss evidence and one actual independent scientific review/main closure. A shared exclusive recovery lock prevents overlapping recovery controllers. Only after these gates may it reference the old accepted Teacher/evaluation through owned symlinks and create its new calibration provenance; no accepted upstream stage is executed again.
+
+The unchanged ordered downstream stages remain Fourier24, export25K, matched Clean200, matched S4200, official5K evaluation and final report. Each immutable phase release is registered with the same current serial owner; there is no second watcher or concurrent GPU scheduler. The finite validation helper cannot launch formal training.
+
+Fifteen adversarial closure/device/class/rank-coordinate/gradient/budget admissions were rejected in local contract tests. Their fixtures are explicitly not GPU evidence. The new independent frozen24D kernel helper was measured exact on CPU and its RNG state restoration passed. It uses an isolated test generator; formal experiment seed and optimizer state are unchanged.
+
+OPEN: repaired component execution, actual learned-Teacher full-loss CPU and current-source CUDA smoke, one scientific review/main closure and actual unique formal recovery. No formal COCO Fourier/victim has yet started.

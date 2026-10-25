@@ -199,6 +199,9 @@ def build_coordinates(raw,cfg,output,*,builder_path,source_root,
     summary=dict(selected['summary'],images=raw['images'],target_objects=raw['target_count'],
                  non_target_objects_by_class=p5['nt_counts'],identity=identity5,
                  calibration_split='all clean training only; validation never opened')
+    selected_mask=torch.zeros(len(p5t),dtype=torch.bool);selected_mask[idx]=True
+    summary['mean_target_sensitivity_selected_raw']=float(p5t[selected_mask].mean())
+    summary['mean_target_sensitivity_unselected_raw']=float(p5t[~selected_mask].mean())
     write_once(strict_dir/'strict_tsfl_summary.json',summary)
     chosen=torch.zeros(len(p5t),dtype=torch.bool);chosen[idx]=True
     write_once(strict_dir/'tsfl_summary.json',dict(num_channels_total=len(p5t),num_channels_selected=dimension,indices=idx.tolist(),

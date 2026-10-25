@@ -451,8 +451,16 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
         if len(eligible) != calibration['eligible_person_image_count']:
             raise ValueError('Eligible support schedule changed before the original trainer call')
         forward_calls = []
+        baseline_equivalence=None
+        if smoke_images or cpu_probe_images:
+            from .dimension_equivalence import probe
+            baseline_equivalence=probe(manifest['canonical_safebg_reference'],device,checkpoint)
         forward_devices=set();forward_cuda_indices=set()
         def audit_forward(module,args,result):
+            # Every bounded-probe forward is checked. Formal training retains
+            # first-forward device proof and the native per-step loss checks.
+            if forward_calls and not (smoke_images or cpu_probe_images):
+                forward_calls.append(1);return
             def tensors(value):
                 if torch.is_tensor(value):yield value
                 elif isinstance(value,(tuple,list)):
@@ -536,6 +544,7 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                           selected_channel_count=trainer.channels.numel(),non_target_class_count=len(trainer.safe_bases),
                           independent_P3_selected_count=trainer.orth_channels.numel(),
                           SafeBG_loss_Fourier_gradient_norms=loss_gradients,cache_memory=trainer.safe_bg_cache.memory_report(),
+                          baseline_equivalence_probe=baseline_equivalence,
                           production_forward_calls=len(forward_calls), actual_fourier_optimizer_updates=1,
                           actual_eot_samples=2, validation_used=False, parameter_updates=True,
                           official_metrics_disabled=True, artifact_ingest_disabled=True,

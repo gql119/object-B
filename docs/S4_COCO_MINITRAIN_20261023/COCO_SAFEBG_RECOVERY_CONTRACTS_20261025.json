@@ -1,0 +1,12 @@
+{
+  "state": "passed",
+  "UTC": "2026-10-25T13:36:00.687702+00:00",
+  "adversarial_recovery_contracts_rejected": 15,
+  "test_fixture_only": true,
+  "actual_GPU_evidence": false,
+  "model_forwards": 0,
+  "no_remote_write": true,
+  "no_controller_created": true,
+  "retained_temporary_artifacts": true,
+  "new_baseline_helper_actual_CPU_exact_and_RNG_restored": true
+}
