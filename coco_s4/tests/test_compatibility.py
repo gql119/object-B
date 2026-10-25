@@ -77,7 +77,12 @@ class SpatialTests(unittest.TestCase):
         import hashlib
         root=Path(__file__).resolve().parents[2]
         lock=json.loads((root/'docs/S4_COCO_MINITRAIN_20261023/ORIGINAL_S4_METHOD_SOURCE_LOCK.json').read_text())
+        delta=json.loads((root/'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_DYNAMIC_DIMENSION_SOURCE_DELTA.json').read_text())
         for rel,expected in lock['files'].items():
+            if rel in delta['authorized_changes']:
+                change=delta['authorized_changes'][rel]
+                self.assertEqual(change['original_sha256'],expected)
+                expected=change['candidate_sha256']
             self.assertEqual(hashlib.sha256((root/rel).read_bytes()).hexdigest(),expected,rel)
     def test_real_parent_support_all_geometry_cases(self):
         for h,w in [(10,30),(31,9),(1,5),(64,64)]:

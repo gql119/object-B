@@ -93,8 +93,13 @@ def collect(trainer, model, images, label_dir, output, *, expected_hashes=None):
     return result
 
 
-def build_coordinates(raw,cfg,output,*,builder_path,source_root):
-    """Write native coordinate schemas; actual incompatible24D space blocks."""
+def build_coordinates(raw,cfg,output,*,builder_path,source_root,
+                      reference_files=None,expected_selection=None,recovery_identity=None):
+    """Write selected coordinates; explicit new protocol permits actual D.
+
+    Recovery can consume retained raw statistics and byte-identical P3 files.
+    It never recollects images, refits the Teacher, or changes StrictTSFL gates.
+    """
     output=Path(output);output.mkdir(parents=True,exist_ok=False)
     reference=output/'reference';reference.mkdir()
     strict_dir=output/'coordinates';strict_dir.mkdir()
@@ -124,18 +129,47 @@ def build_coordinates(raw,cfg,output,*,builder_path,source_root):
     p3t=p3['target_sum']/raw['target_count']
     p3n=p3['nt_sum']/sum(p3['nt_counts'].values())
     indices,st,sn,score=select_channels(p3t,p3n,s['target_channel_fraction'],s['lambda_specificity'])
-    identity3=dict(base,feature_layer='model.15',channels=len(p3t))
-    channels3=dict(indices=indices,S_target=p3t,S_nt=p3n,S_target_normalized=st,S_nt_normalized=sn,specificity=score,identity=identity3)
-    p3spaces={c:class_subspace(p3['pools'][c],s['subspace_variance'],s['subspace_min_rank'],s['subspace_max_rank_fraction']) for c in classes}
-    torch.save(channels3,reference/'target_specific_channels.pt')
-    torch.save(dict(classes=p3spaces,identity=identity3),reference/'non_target_subspaces.pt')
-    write_once(reference/'coordinates_identity.json',identity3)
+    if reference_files is None:
+        identity3=dict(base,feature_layer='model.15',channels=len(p3t))
+        channels3=dict(indices=indices,S_target=p3t,S_nt=p3n,S_target_normalized=st,S_nt_normalized=sn,specificity=score,identity=identity3)
+        p3spaces={c:class_subspace(p3['pools'][c],s['subspace_variance'],s['subspace_min_rank'],s['subspace_max_rank_fraction']) for c in classes}
+        torch.save(channels3,reference/'target_specific_channels.pt')
+        torch.save(dict(classes=p3spaces,identity=identity3),reference/'non_target_subspaces.pt')
+        write_once(reference/'coordinates_identity.json',identity3)
+    else:
+        names=('target_specific_channels.pt','non_target_subspaces.pt','coordinates_identity.json')
+        if set(reference_files)!=set(names):
+            raise ValueError('Recovery requires the complete frozen P3 reference')
+        for name in names:
+            item=reference_files[name]
+            if sha(item['path'])!=item['sha256']:
+                raise ValueError('Retained P3 reference hash drift: '+name)
+            shutil.copyfile(item['path'],reference/name)
+        prior=torch.load(reference/'target_specific_channels.pt',map_location='cpu',weights_only=True)
+        identity3=prior['identity']
+        if (not torch.equal(prior['indices'],indices) or identity3['feature_layer']!='model.15'
+                or identity3['checkpoint_sha256']!=base['checkpoint_sha256']
+                or identity3['clean_train_manifest_sha256']!=base['clean_train_manifest_sha256']):
+            raise ValueError('Retained P3 reference is not the same Teacher/train coordinate space')
+        p3spaces=torch.load(reference/'non_target_subspaces.pt',map_location='cpu',weights_only=True)
+        if p3spaces['identity']!=identity3 or sorted(p3spaces['classes'])!=classes:
+            raise ValueError('Retained P3 class identity/coverage mismatch')
     p5t=p5['target_sum']/raw['target_count']
     p5by={c:p5['nt_sums'][c]/p5['nt_counts'][c] for c in classes}
     selected=select_strict_tsfl(p5t,p5by,candidate_fraction=.4,safety_quantile=.6,worst_k=3,
                               selected_fraction=.15,min_selected=4,eps=s['orth_eps'])
     idx=selected['indices'].cpu()
-    if idx.numel()!=24:
+    dynamic=s['safe_bg'].get('dimension_protocol')
+    if dynamic is not None:
+        from .dimension_protocol import PROTOCOL,selected_dimension
+        if dynamic!=PROTOCOL or cfg['experiment']['num_classes']!=80 or cfg['experiment']['target_class_id']!=0:
+            raise ValueError('Unauthorized selected-space dimension protocol')
+        dimension=selected_dimension(idx,len(p5t))
+        if expected_selection is None or idx.tolist()!=list(expected_selection) or not recovery_identity:
+            raise ValueError('Dynamic recovery must preserve the original recorded selection and calibration identity')
+    else:
+        dimension=int(idx.numel())
+    if dynamic is None and dimension!=24:
         write_once(output/'BLOCKED_PROTOCOL_COMPATIBILITY.json',dict(state='BLOCKED_PROTOCOL_COMPATIBILITY',
                    actual_selected_count=idx.numel(),required_original_space=24,actual_summary=selected['summary'],
                    thresholds_unchanged=True,raw_statistics_retained=True))
@@ -145,6 +179,10 @@ def build_coordinates(raw,cfg,output,*,builder_path,source_root):
                    reference_target_channels_sha256=sha(reference/'target_specific_channels.pt'),
                    reference_non_target_subspaces_sha256=sha(reference/'non_target_subspaces.pt'),
                    strict_tsfl_settings=copy.deepcopy(strict),safe_bg_settings=copy.deepcopy(s['safe_bg']))
+    if dynamic is not None:
+        identity5.update(dimension_protocol=dynamic,selected_space_dimension=dimension,
+                         selected_channel_indices=idx.tolist(),num_classes=80,target_class_id=0,
+                         retained_calibration=copy.deepcopy(recovery_identity))
     mean_nt=torch.stack(list(p5by.values())).mean(0)
     channels5=dict(indices=idx,S_target=p5t,S_nt=mean_nt,S_target_normalized=selected['S_target_normalized'],
                    S_nt_normalized=selected['S_nt_worst_normalized'],S_nt_by_class=p5by,
@@ -163,8 +201,8 @@ def build_coordinates(raw,cfg,output,*,builder_path,source_root):
                  calibration_split='all clean training only; validation never opened')
     write_once(strict_dir/'strict_tsfl_summary.json',summary)
     chosen=torch.zeros(len(p5t),dtype=torch.bool);chosen[idx]=True
-    write_once(strict_dir/'tsfl_summary.json',dict(num_channels_total=len(p5t),num_channels_selected=24,indices=idx.tolist(),
-               target_channel_fraction=24/len(p5t),images=raw['images'],target_objects=raw['target_count'],
+    write_once(strict_dir/'tsfl_summary.json',dict(num_channels_total=len(p5t),num_channels_selected=dimension,indices=idx.tolist(),
+               target_channel_fraction=dimension/len(p5t),images=raw['images'],target_objects=raw['target_count'],
                non_target_objects=sum(p5['nt_counts'].values()),
                mean_S_target_selected=float(selected['S_target_normalized'][chosen].mean()),
                mean_S_nt_selected=float(mean_nt[chosen].mean()),
@@ -179,12 +217,21 @@ def build_coordinates(raw,cfg,output,*,builder_path,source_root):
                clean_train_manifest_sha256=raw['clean_train_manifest_sha256'],gate=dict(target_top_fraction=.4,worst_nt_quantile=.6)))
     torch.save(dict(selected_layer='P5',selected_channel_indices=idx,layer_selection_sha256=sha(selection_path)),strict_dir/'strict_tsfl_selected_layer.pt')
     write_once(strict_dir/'strict_tsfl_selected_layer_summary.json',dict(selected_layer='P5',feature_layer='model.21',
-               total_channels=len(p5t),candidate_count=summary['safe_candidates'],selected_count=24,
-               selected_fraction=24/len(p5t),LS=None,pearson_rho=None,spearman_rho=None,
+               total_channels=len(p5t),candidate_count=summary['safe_candidates'],selected_count=dimension,
+               selected_fraction=dimension/len(p5t),LS=None,pearson_rho=None,spearman_rho=None,
                diagnostic_policy='fixed P5; layer-search diagnostics not measured',layer_selection_sha256=sha(selection_path)))
     write_once(strict_dir/'tsfl_sensitivity_stats.json',dict(target_mean_sensitivity=p5t.tolist(),
                classes={str(c):dict(object_count=p5['nt_counts'][c],mean_sensitivity=p5by[c].tolist()) for c in classes},identity=identity5))
     write_once(strict_dir/'subspace_summary.json',{cfg['experiment']['class_names'][c]:
                {k:v for k,v in item.items() if k not in ('basis','mean')} for c,item in full.items()})
+    if dynamic is not None:
+        eligible=torch.nonzero(selected['safe_candidate_mask']).flatten()
+        order=eligible[torch.argsort(selected['ratio'][eligible],descending=True,stable=True)]
+        ranking={int(c):rank+1 for rank,c in enumerate(order.tolist())}
+        write_once(strict_dir/'selected_dimension_audit.json',dict(identity=identity5,
+                   selected=[dict(index=i,eligible_rank=ranking[i],ratio=float(selected['ratio'][i]),
+                                  target_normalized=float(selected['S_target_normalized'][i]),
+                                  nt_worst_normalized=float(selected['S_nt_worst_normalized'][i])) for i in idx.tolist()],
+                   thresholds_unchanged=True,selection_preserved=True,P3_reference_byte_reused=reference_files is not None))
     return dict(reference=str(reference),coordinates=str(strict_dir),selected_channels=idx.tolist(),
                 eligible_count=len(raw['eligible_person_images']),validation_used=False)

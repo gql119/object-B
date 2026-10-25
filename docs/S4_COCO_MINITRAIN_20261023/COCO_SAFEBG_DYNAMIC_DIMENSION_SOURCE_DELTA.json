@@ -1,0 +1,15 @@
+{
+  "protocol": "coco80-strict-tsfl-selected-dimension-v1",
+  "reference_commit": "3a8db4c4277d2ffbcadef7864240063d84fff6b9",
+  "authorized_changes": {
+    "ue_framework/methods/safebg.py": {
+      "original_sha256": "9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+      "candidate_sha256": "e0bfe9a5c86591c91e2ac1b560923994f1a322e6d34ec567e44bbeb01b673043"
+    },
+    "ue_framework/methods/b2_semantic.py": {
+      "original_sha256": "929d7764578c9f4bcb0c6ff5216c37c600416c51990ad53d022f9a36684d7a6f",
+      "candidate_sha256": "121902603a6536889b867db63e866450cffa0c98f799c969a661a8fadee45679"
+    }
+  },
+  "changes": "dimension guards and identity only; original projection/loss formulas unchanged"
+}

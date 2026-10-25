@@ -1,0 +1,22 @@
+{
+  "protocol": "coco80-strict-tsfl-selected-dimension-v1",
+  "label": "Original S4 — COCO80 Dimension-Compatible Implementation",
+  "selection_rule": "min(ceil(.15*C), N_eligible)",
+  "selected_dimension_source": "actual StrictTSFL selected indices",
+  "COCO_actual_selected_count": 39,
+  "VOC_original_selected_count": 24,
+  "rank": 8,
+  "removal_alpha": 0.5,
+  "active_k": 3,
+  "projection": "unchanged ordered low-rank SVD and norm restoration",
+  "P5_layer": "model.21",
+  "independent_P3_layer": "model.15",
+  "budgets_bytes": [
+    8,
+    4,
+    0
+  ],
+  "tfss_eta": 0.85,
+  "source_delta": "COCO_SAFEBG_DYNAMIC_DIMENSION_SOURCE_DELTA.json",
+  "formal_readiness": "OPEN: production full-loss CPU, current-candidate CUDA, one scientific review, recovery contracts"
+}

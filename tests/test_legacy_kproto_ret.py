@@ -100,6 +100,7 @@ class FrozenModelAndSupport(unittest.TestCase):
     def test_strict_prebaked_support_fails_closed(self):
         trainer = LegacyKProtoTrainer.__new__(LegacyKProtoTrainer)
         trainer.target_class_id = 14
+        trainer.support_mode = "prebaked"
         trainer.use_prebaked_instance_mask = True
         trainer.strict_instance_mask = True
         with tempfile.TemporaryDirectory() as root:

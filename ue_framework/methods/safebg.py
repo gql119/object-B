@@ -22,15 +22,16 @@ class SafeBGTripletCache:
         if len(classes) != 19 or safe_rank not in (4, 8):
             raise ValueError("Safe-BG triplet cache requires 19 classes and rank 4 or 8")
         first = class_bases[classes[0]]
-        if first.ndim != 2 or first.shape[0] != 24:
-            raise ValueError("Safe-LR triplet cache requires 24 selected channels")
+        if first.ndim != 2 or first.shape[0] < safe_rank:
+            raise ValueError("Safe-LR triplet cache selected space is smaller than its fixed rank")
+        self.selected_dim = first.shape[0]
         self.classes = classes
         self.device, self.dtype = first.device, first.dtype
         self.projector_rtol = projector_rtol
         self.safe_rank = safe_rank
         for cls in classes:
             basis = class_bases[cls]
-            if (basis.ndim != 2 or basis.shape[0] != 24
+            if (basis.ndim != 2 or basis.shape[0] != self.selected_dim
                     or basis.device != self.device or basis.dtype != self.dtype
                     or not torch.isfinite(basis).all()):
                 raise ValueError(f"Invalid selected-space basis for class {cls}")
@@ -165,14 +166,15 @@ def safe_background_direction(target_clean, background, class_bases, active_k=3,
         raise ValueError("Invalid Safe-BG numerical tolerance")
     if mode not in ("full_rank", "low_rank"):
         raise ValueError("Unknown Safe-BG projection mode")
-    if mode == "low_rank" and (safe_rank not in (4, 8) or target_clean.shape[1] != 24):
-        raise ValueError("Safe-BG requires preregistered rank 4 or 8 in 24 dimensions")
+    if mode == "low_rank" and (safe_rank not in (4, 8) or target_clean.shape[1] < safe_rank):
+        raise ValueError("Safe-BG requires preregistered rank 4 or 8 within the selected space")
     if removal_alpha not in (0.5, 1.0) or (safe_rank == 4 and removal_alpha != 1.0):
         raise ValueError("Only rank-4 hard or rank-8 hard/half removal is admitted")
     if triplet_cache is not None and (mode != "low_rank" or active_k != 3
             or triplet_cache.classes != tuple(classes)
             or triplet_cache.device != target_clean.device
             or triplet_cache.dtype != target_clean.dtype
+            or triplet_cache.selected_dim != target_clean.shape[1]
             or triplet_cache.projector_rtol != projector_rtol
             or triplet_cache.safe_rank != safe_rank):
         raise ValueError("Safe-BG triplet cache does not match runtime inputs")
@@ -221,6 +223,8 @@ def safe_background_direction(target_clean, background, class_bases, active_k=3,
             if not torch.isfinite(gram_error) or gram_error > 1e-5:
                 raise ValueError("Active non-target projector basis is not orthonormal")
             projector_rank = torch.linalg.matrix_rank(u_active @ u_active.T, rtol=projector_rtol)
+            if mode == "low_rank" and int(projector_rank) != safe_rank:
+                raise ValueError("Active non-target projector does not have the fixed Safe-BG rank")
             spectrum_energy = singular.square()
             top8_energy = spectrum_energy[:8].sum() / spectrum_energy.sum().clamp_min(eps)
             singular_top16 = singular[:16]

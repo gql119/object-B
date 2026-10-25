@@ -1,0 +1,10 @@
+{
+  "reference_commit": "3a8db4c4277d2ffbcadef7864240063d84fff6b9",
+  "historical_B2_fixture_preserved": "b2_frozen_source_manifest.json",
+  "files": {
+    "ue_framework/methods/legacy_kproto_ret.py": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb",
+    "ue_framework/methods/tausb_universal.py": "d62757e31c5832c675a525889d71589e1bb2621c2c7d05693eb39f0f5dff000a",
+    "ue_framework/methods/b2_adaptive.py": "429348b91ec4909b8806aa1b25daa81dc6adbb4318462f42b82167e5639ae145",
+    "ue_framework/methods/adaptive_learner.py": "02cd607b8c3e389c639bbf82859952dfb5c9528524e6ebc18a373860e7954518"
+  }
+}

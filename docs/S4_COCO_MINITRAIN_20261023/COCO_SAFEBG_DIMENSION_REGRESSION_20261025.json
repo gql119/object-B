@@ -1,0 +1,21 @@
+{
+  "state": "passed",
+  "tests": 55,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "temporary_artifacts_retained": true,
+  "modules": [
+    "test_b2_semantic",
+    "test_b2_adaptive",
+    "test_legacy_kproto_ret",
+    "test_bbox_half_overlap",
+    "test_tfss_spatial",
+    "test_tfss_static_control",
+    "test_orth_reference_design",
+    "coco_s4.tests.test_compatibility"
+  ],
+  "integration_fixture": "random-YAML VOC20, synthetic inputs, no pretrained or formal weights",
+  "log": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\dynamic_dimension_regression_20261025_v4\\unittest.log",
+  "UTC": "2026-10-25T10:49:26.837669+00:00"
+}

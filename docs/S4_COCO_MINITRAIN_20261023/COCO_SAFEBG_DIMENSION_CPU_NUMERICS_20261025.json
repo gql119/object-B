@@ -1,0 +1,62 @@
+{
+  "state": "passed",
+  "UTC": "2026-10-25T10:45:30.691874+00:00",
+  "protocol": "coco80-strict-tsfl-selected-dimension-v1",
+  "reference_commit": "3a8db4c4277d2ffbcadef7864240063d84fff6b9",
+  "reference_source_sha256": "9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+  "VOC24_equivalence": [
+    {
+      "dtype": "torch.float32",
+      "output_max_absolute_difference": 0,
+      "all_diagnostics_exact": true,
+      "eager_cache_projector_hash_exact": true
+    },
+    {
+      "dtype": "torch.float64",
+      "output_max_absolute_difference": 0,
+      "all_diagnostics_exact": true,
+      "eager_cache_projector_hash_exact": true
+    }
+  ],
+  "COCO39_rank": 8,
+  "COCO39_all_NT_classes": 79,
+  "COCO39_direct_cache_exact": true,
+  "class79_ranks_first": true,
+  "cache_memory": {
+    "selected_dim": 39,
+    "classes": 79,
+    "entries": 3,
+    "max_entries": 3,
+    "misses": 76,
+    "basis_bytes": 147888,
+    "entry_bytes": 3984,
+    "entry_upper_bound_bytes": 3984
+  },
+  "synthetic_Fourier_gradients": {
+    "L_BG": {
+      "loss": 0.2816290855407715,
+      "Fourier_gradient_norm": 0.021624747663736343
+    },
+    "L_rel": {
+      "loss": 0.47825825214385986,
+      "Fourier_gradient_norm": 0.022693516686558723
+    }
+  },
+  "P3_coordinates": {
+    "full_dimension": 64,
+    "selected_dimension": 48,
+    "loss_and_conflicts_exact": true
+  },
+  "invalid_cases_rejected": 6,
+  "GPU_initialized": false,
+  "real_Teacher_full_loss_CPU": "OPEN",
+  "current_candidate_GPU": "OPEN",
+  "scientific_review": "OPEN",
+  "sources": {
+    "ue_framework/methods/safebg.py": "e0bfe9a5c86591c91e2ac1b560923994f1a322e6d34ec567e44bbeb01b673043",
+    "ue_framework/methods/b2_semantic.py": "121902603a6536889b867db63e866450cffa0c98f799c969a661a8fadee45679",
+    "coco_s4/cache.py": "b1b78edc8ae1ad1fe0935824099426e798b2390b60e978b254958a9c1dc0ccde",
+    "coco_s4/dimension_protocol.py": "fc78cd275257b695c27c749ef2c316ee1b1e281e382acf74f5d75957fb72a441",
+    "coco_s4/calibration.py": "7c291dd8899404e39e44ab2b20650913807e091e56fb13c2e7356c0fb4c2a3ee"
+  }
+}

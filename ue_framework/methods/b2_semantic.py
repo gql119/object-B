@@ -358,11 +358,19 @@ class B2SemanticTrainer(B2AdaptiveTrainer, SemanticFrozenTrainer):
             self.safe_bg_mode = settings["safe_bg"].get("mode", "full_rank")
             self.safe_bg_rank = settings["safe_bg"].get("rank")
             self.safe_bg_removal_alpha = float(settings["safe_bg"].get("removal_alpha", 1.0))
+            dimension_protocol = settings["safe_bg"].get("dimension_protocol")
+            if dimension_protocol is not None:
+                from coco_s4.dimension_protocol import PROTOCOL, validate_identity
+                if dimension_protocol != PROTOCOL or self.num_classes != 80 or self.target_class_id != 0:
+                    raise ValueError("Dynamic selected-space protocol is restricted to authorized COCO80")
+                validate_identity(identity, self.channels, identity["channels"])
+                if self.safe_bg_rank != 8 or self.safe_bg_removal_alpha != .5:
+                    raise ValueError("COCO dimension compatibility preserves rank8/half removal")
             if self.safe_bg_mode == "low_rank":
                 if ((self.safe_bg_rank, self.safe_bg_removal_alpha) not in ((4, 1.0), (8, 0.5), (8, 1.0))
-                        or self.channels.numel() != 24
+                        or (dimension_protocol is None and self.channels.numel() != 24)
                         or self.safe_bg_active_k != 3 or self.feature_layer != "model.21"):
-                    raise ValueError("Safe-BG preregistered P5/24D/active-3 rank/alpha protocol changed")
+                    raise ValueError("Safe-BG preregistered P5/selected-space/active-3 rank/alpha protocol changed")
             if not 1 <= self.safe_bg_active_k <= len(self.safe_bases):
                 raise ValueError("Invalid Safe-BG active_k")
             if self.safe_bg_mode == "low_rank":

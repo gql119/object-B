@@ -59,9 +59,20 @@ class SemanticTests(unittest.TestCase):
         import hashlib
         from pathlib import Path
         root=Path(__file__).resolve().parent.parent
-        manifest=root/'b2_frozen_source_manifest.json'
         import json
-        for name,expected in json.loads(manifest.read_text()).items():
+        docs=root/'docs/S4_COCO_MINITRAIN_20261023'
+        # The historical B2 fixture predates the actual Original S4 snapshot.
+        # Keep its file set and preserve it; pin the actual pre-adaptation S4
+        # bytes, with only the explicitly authorized dimension delta admitted.
+        lock=json.loads((docs/'ORIGINAL_S4_BASELINE_REGRESSION_LOCK.json').read_text())
+        historical=json.loads((root/'b2_frozen_source_manifest.json').read_text())
+        self.assertEqual(set(lock['files']),set(historical))
+        delta=json.loads((docs/'COCO_SAFEBG_DYNAMIC_DIMENSION_SOURCE_DELTA.json').read_text())
+        for name,expected in lock['files'].items():
+            if name in delta['authorized_changes']:
+                change=delta['authorized_changes'][name]
+                self.assertEqual(change['original_sha256'],expected)
+                expected=change['candidate_sha256']
             actual=hashlib.sha256((root/name).read_bytes()).hexdigest()
             self.assertEqual(actual,expected,name)
 
