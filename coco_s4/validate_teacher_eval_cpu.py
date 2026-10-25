@@ -24,7 +24,7 @@ def main():
     checkpoint=out/'random_native80.pt';model.save(checkpoint)
     images=out/'images';images.mkdir()
     rng=np.random.default_rng(42)
-    for i in range(2):Image.fromarray(rng.integers(0,256,(64,80,3),dtype=np.uint8)).save(images/f'{i:012d}.jpg')
+    for i in range(4):Image.fromarray(rng.integers(0,256,(64,80,3),dtype=np.uint8)).save(images/f'{i:012d}.jpg')
     meta=out/'synthetic_5000_id_schema.json'
     meta.write_text(json.dumps(dict(images=[dict(id=i,file_name=f'{i:012d}.jpg',width=80,height=64) for i in range(5000)])))
     predictions=out/'prediction';predictions.mkdir()
@@ -32,11 +32,15 @@ def main():
     try:
         # Explicit CPU-only test overrides; production config remains device0/b36.
         coco_eval.PREDICT_ARGS.update(device='cpu',batch=2)
-        path,audit=coco_eval.predict(checkpoint,images,meta,mapping,predictions,smoke_batches=1)
-        baseline=native_reference(checkpoint,images,meta,mapping,1,path)
+        path,audit=coco_eval.predict(checkpoint,images,meta,mapping,predictions,smoke_batches=2)
+        baseline=native_reference(checkpoint,images,meta,mapping,2,path)
     finally:
         coco_eval.PREDICT_ARGS.clear();coco_eval.PREDICT_ARGS.update(original)
-    assert audit['image_count']==2 and audit['raw_tensors_checked']>0 and audit['raw_output_signatures']
+    assert audit['image_count']==4 and audit['raw_tensors_checked']>0 and audit['raw_output_signatures']
+    assert audit['planned_input_batch_sizes']==[2,2] and audit['observed_max_input_batch']==2
+    assert audit['forward_input_batch_sizes'] and all(1<=v<=2 for v in audit['forward_input_batch_sizes'])
+    assert baseline['reference_observed_max_input_batch']==2
+    assert audit['forward_input_batch_sizes']==baseline['reference_forward_input_batch_sizes']
     assert baseline['raw_outputs_exact'] and baseline['decoded_predictions_exact']
     assert baseline['evaluation_setting']['parameters']['device']=='cpu'
     assert baseline['evaluation_setting']['parameters']['batch']==2
@@ -49,14 +53,16 @@ def main():
     try:coco_eval.raw_signature(torch.tensor([float('nan')]))
     except FloatingPointError:rejected_nan=True
     assert rejected_nan and not torch.cuda.is_initialized()
-    proof=dict(state='passed',UTC=now(),data='two synthetic CPU images; random native COCO80 head',
+    proof=dict(state='passed',UTC=now(),data='four synthetic CPU images; two actual native batches of two; random COCO80 head',
                native_raw_and_decoded_predictions_exact=True,pre_NMS_nonfinite_rejected=True,
-               image_count=2,production_parameters_except_explicit_CPU_test=dict(device='cpu',batch=2,imgsz=640),
+               image_count=4,production_parameters_except_explicit_CPU_test=dict(device='cpu',batch=2,imgsz=640),
+               forward_input_batch_sizes=audit['forward_input_batch_sizes'],planned_input_batch_sizes=audit['planned_input_batch_sizes'],
                GPU_initialized=False,official_COCO_metrics_computed=False,scientific_review_passed=False,
                formal_phase_allowed=False,baseline_equivalence_probe=baseline,
                source_sha256={n:sha(ROOT/n) for n in ['coco_s4/coco_eval.py','coco_s4/phase_teacher_eval.py']},
                output=str(out),deleted_paths=[])
-    (ROOT/'execution/TEACHER_EVAL_DEVICE_INDEX_CPU_VALIDATION_20261025.json').write_text(json.dumps(proof,indent=2))
+    with (ROOT/'execution/TEACHER_EVAL_BATCH_CPU_VALIDATION_20261025.json').open('x',encoding='utf-8') as f:
+        json.dump(proof,f,indent=2)
     print(json.dumps(proof))
 
 

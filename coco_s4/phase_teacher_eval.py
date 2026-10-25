@@ -31,15 +31,22 @@ def native_reference(checkpoint, images, annotation, mapping, smoke_batches, can
     from .coco_eval import raw_signature, raw_tensor_device_details
     entries=sorted(load(annotation)['images'],key=lambda im:im['id'])[:PREDICT_ARGS['batch']*smoke_batches]
     paths=[str(Path(images)/x['file_name']) for x in entries]
-    model=YOLO(str(checkpoint));signatures=[];reference_devices=set();reference_cuda_indices=set()
+    model=YOLO(str(checkpoint));signatures=[];reference_devices=set();reference_cuda_indices=set();input_batch_sizes=[]
     def reference_hook(module,args,result):
+        batch=int(args[0].shape[0])
+        if not 1<=batch<=PREDICT_ARGS['batch']:
+            raise ValueError('Independent native reference batch exceeded frozen batch setting')
+        input_batch_sizes.append(batch)
         devices,indices=raw_tensor_device_details(result)
         reference_devices.update(devices);reference_cuda_indices.update(indices)
         signatures.append(raw_signature(result))
     hook=model.model.register_forward_hook(reference_hook)
     table={r['yolo_class_id']:r['category_id'] for r in mapping};detections=[]
+    source=Path(candidate).parent/'reference_images.txt'
+    with source.open('x',encoding='utf-8') as f:
+        f.write(''.join(p+'\n' for p in paths))
     try:
-        for r in model.predict(source=paths,**PREDICT_ARGS):
+        for r in model.predict(source=str(source),**PREDICT_ARGS):
             for box in r.boxes.data.detach().cpu().tolist():
                 x1,y1,x2,y2,score,cls=box
                 detections.append(dict(image_id=int(Path(r.path).stem),category_id=table[int(cls)],
@@ -64,6 +71,8 @@ def native_reference(checkpoint, images, annotation, mapping, smoke_batches, can
                 reference_forward_tensor_devices=sorted(reference_devices),
                 reference_cuda_device_indices=sorted(reference_cuda_indices),
                 reference_raw_forward_calls=len(signatures),
+                reference_forward_input_batch_sizes=input_batch_sizes,
+                reference_observed_max_input_batch=max(input_batch_sizes),
                 raw_reference_sha256=hashlib.sha256(json.dumps(signatures,sort_keys=True).encode()).hexdigest(),
                 evaluation_setting=dict(dataset='first sorted annotation image IDs',sample_count=len(paths),seed=0,
                                         parameters=dict(PREDICT_ARGS),post_processing='identical native NMS'))
@@ -144,6 +153,11 @@ def run(release_path,output,*,registration=None,smoke_batches=0):
                           reference_cuda_device_index=baseline['reference_cuda_device_indices'][0],
                           reference_forward_tensor_devices=baseline['reference_forward_tensor_devices'],
                           reference_cuda_device_indices=baseline['reference_cuda_device_indices'],
+                          forward_input_batch_sizes=audit['forward_input_batch_sizes'],
+                          observed_max_input_batch=audit['observed_max_input_batch'],
+                          planned_input_batch_sizes=audit['planned_input_batch_sizes'],
+                          reference_forward_input_batch_sizes=baseline['reference_forward_input_batch_sizes'],
+                          reference_observed_max_input_batch=baseline['reference_observed_max_input_batch'],
                           baseline_equivalence_probe=baseline,completed_UTC=now(),checkpoint_paths_remaining=[])
             write_once(output/'smoke_summary.json',status)
         else:

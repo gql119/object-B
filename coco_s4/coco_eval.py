@@ -145,9 +145,13 @@ def predict(checkpoint, images_dir, annotation_json, mapping, output, *, smoke_b
     if model.model.model[-1].nc!=80 or len(model.model.names)!=80 or model.model.names[0]!='person':
         raise ValueError('Not a COCO80/Person0 checkpoint')
     counter=dict(raw_forward_calls=0,raw_tensors_checked=0)
-    signatures=[];forward_devices=set();forward_cuda_indices=set()
+    signatures=[];forward_devices=set();forward_cuda_indices=set();input_batch_sizes=[]
     def checked(module,args,result):
         counter['raw_forward_calls']+=1
+        batch=int(args[0].shape[0])
+        if not 1<=batch<=PREDICT_ARGS['batch']:
+            raise ValueError('Actual native inference batch exceeded the frozen batch setting')
+        input_batch_sizes.append(batch)
         devices,indices=raw_tensor_device_details(result)
         forward_devices.update(devices);forward_cuda_indices.update(indices)
         def check(v):
@@ -164,8 +168,13 @@ def predict(checkpoint, images_dir, annotation_json, mapping, output, *, smoke_b
     hook=model.model.register_forward_hook(checked)
     table={r['yolo_class_id']:r['category_id'] for r in mapping}
     seen=[];detections=[]
+    # A Python path list is eagerly loaded as one native in-memory batch. A
+    # text source selects LoadImagesAndVideos, which consumes batch=36.
+    source=Path(output)/'inference_images.txt'
+    with source.open('x',encoding='utf-8') as f:
+        f.write(''.join(p+'\n' for p in paths))
     try:
-        for result in model.predict(source=paths,**PREDICT_ARGS):
+        for result in model.predict(source=str(source),**PREDICT_ARGS):
             image_id=int(Path(result.path).stem)
             im=by_id[image_id]
             if tuple(result.orig_shape)!=(im['height'],im['width']):
@@ -195,6 +204,9 @@ def predict(checkpoint, images_dir, annotation_json, mapping, output, *, smoke_b
                  finite_outputs=True,checked_outputs='all raw tensor outputs of DetectionModel, before NMS',
                  sparse_category_id_mapping_explicit=True,original_pixel_xywh=True,**counter,
                  raw_output_signatures=signatures,actual_forward_tensor_devices=sorted(forward_devices),
+                 forward_input_batch_sizes=input_batch_sizes,observed_max_input_batch=max(input_batch_sizes),
+                 planned_input_batch_sizes=[min(PREDICT_ARGS['batch'],len(paths)-i) for i in range(0,len(paths),PREDICT_ARGS['batch'])],
+                 native_source_kind='LoadImagesAndVideos text manifest',input_manifest_sha256=sha(source),
                  actual_cuda_device_index=(next(iter(forward_cuda_indices)) if len(forward_cuda_indices)==1 else None),
                  actual_cuda_device_indices=sorted(forward_cuda_indices),
                  actual_device=(next(iter(forward_devices)) if len(forward_devices)==1 else 'mixed'),

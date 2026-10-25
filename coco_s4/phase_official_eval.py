@@ -157,8 +157,11 @@ def _native_reference(checkpoint, images, annotation, mapping, batches, candidat
     hook = model.model.register_forward_hook(reference_hook)
     table = {r["yolo_class_id"]: r["category_id"] for r in mapping}
     detections = []
+    source = Path(candidate).parent / 'reference_images.txt'
+    with source.open('x', encoding='utf-8') as f:
+        f.write(''.join(p + '\n' for p in paths))
     try:
-        for result in model.predict(source=paths, **PREDICT_ARGS):
+        for result in model.predict(source=str(source), **PREDICT_ARGS):
             for box in result.boxes.data.detach().cpu().tolist():
                 x1, y1, x2, y2, score, cls = box
                 detections.append(dict(image_id=int(Path(result.path).stem), category_id=table[int(cls)],

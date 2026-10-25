@@ -121,7 +121,7 @@ def build(tag,head,observation):
         h['adapter_argv']=[PYTHON,'-B','-c',adapter];h['gpu_utilization_policy']='advisory';h['timeout_seconds']=600
     template['artifacts']=[dict(path='result/'+n,required=True) for n in
                            ('smoke_summary.json','prediction_audit.json','phase_spec.json')]
-    template['local_pull_root']=str(EX/tag/'small_pull')
+    template['local_pull_root']=str(EX/'p')
     template['metadata']=dict(execution_purpose='isolated_teacher_eval_pre_review_smoke',computation_kind='inference',
         candidate_commit=head,cleanup_policy='retain_all',official_metrics_disabled=True,artifact_ingest_disabled=True,
         selected_inputs='first72sorted officialval2017 IDs',inference_batches=4,raw_forwards_including_warmups_maximum=100,
@@ -179,13 +179,13 @@ def register(tag, review_path):
     spec=load(spec_path)
     if current_source()!=spec['source']['commit']:
         raise ValueError('Review source is no longer the prepared published candidate')
-    summary_path=Path(spec['local_pull_root'])/'result'/'smoke_summary.json'
+    summary_path=Path(spec['local_pull_root'])/tag/'result'/'smoke_summary.json'
     if not summary_path.is_file():
         raise ValueError('RRCTL has not pulled the completed inference smoke')
     smoke=load(summary_path);release_path=EX/tag/'source_release.json';release=load(release_path)
     cfg_sha=sha(ROOT/release['phase_config_path'])
     baseline=smoke.get('baseline_equivalence_probe',{})
-    audit_path=Path(spec['local_pull_root'])/'result'/'prediction_audit.json'
+    audit_path=Path(spec['local_pull_root'])/tag/'result'/'prediction_audit.json'
     if not audit_path.is_file():raise ValueError('Missing pulled raw pre-NMS tensor-device audit')
     audit=load(audit_path)
     if (smoke.get('state')!='passed' or smoke.get('phase')!='teacher_eval'
@@ -198,6 +198,14 @@ def register(tag, review_path):
             or smoke.get('actual_forward_tensor_devices')!=['cuda:0']
             or smoke.get('actual_cuda_device_indices')!=[0]
             or smoke.get('image_count')!=72
+            or smoke.get('planned_input_batch_sizes')!=[36,36]
+            or smoke.get('observed_max_input_batch')!=36
+            or smoke.get('forward_input_batch_sizes')!=audit.get('forward_input_batch_sizes')
+            or not smoke.get('forward_input_batch_sizes')
+            or any(not 1<=v<=36 for v in smoke['forward_input_batch_sizes'])
+            or baseline.get('reference_observed_max_input_batch')!=36
+            or not baseline.get('reference_forward_input_batch_sizes')
+            or any(not 1<=v<=36 for v in baseline['reference_forward_input_batch_sizes'])
             or smoke.get('actual_device')!=audit.get('actual_device')
             or smoke.get('actual_cuda_device_index')!=audit.get('actual_cuda_device_index')
             or smoke.get('actual_forward_tensor_devices')!=audit.get('actual_forward_tensor_devices')
@@ -222,7 +230,7 @@ def register(tag, review_path):
             or baseline.get('reference_cuda_device_indices')!=[0]
             or baseline.get('absolute_difference')!=0 or baseline.get('tolerance')!=0
             or audit.get('state')!='passed'
-            or audit.get('teacher_checkpoint_sha256')!=release['teacher_dependency']['checkpoint_sha256']
+            or audit.get('checkpoint_sha256')!=release['teacher_dependency']['checkpoint_sha256']
             or audit.get('actual_device')!='cuda:0'
             or audit.get('actual_cuda_device_index')!=0
             or audit.get('actual_forward_tensor_devices')!=['cuda:0']
