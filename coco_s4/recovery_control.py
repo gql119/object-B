@@ -26,6 +26,8 @@ def review_inputs(tag,review_path,cpu_tag):
     if current_source()!=spec['source']['commit']:raise ValueError('Recovery review is not the exact current published source')
     summary=Path(spec['local_pull_root'])/tag/'result/smoke_summary.json'
     smoke=load(summary);review=load(review_path)
+    from .fourier_gradient_audit import validate_summary
+    validate_summary(smoke)
     required=dict(phase='fourier24',source_commit=spec['source']['commit'],release_sha256=sha(manifest_path),
                   phase_config_sha256=sha(ROOT/manifest['phase_config_path']),smoke_sha256=sha(summary),
                   calibration_receipt_sha256=manifest['calibration_dependency']['accepted_sha256'],
@@ -45,6 +47,7 @@ def review_inputs(tag,review_path,cpu_tag):
     cpu_spec=load(EX/(cpu_tag+'.json'))
     cpu_path=Path(cpu_spec['local_pull_root'])/cpu_tag/'result/cpu_probe_summary.json'
     cpu=load(cpu_path)
+    validate_summary(cpu)
     if (cpu.get('state')!='passed' or cpu.get('source_commit')!=spec['source']['commit']
             or cpu.get('actual_device')!='cpu' or cpu.get('actual_fourier_optimizer_updates')!=1
             or cpu.get('calibration_receipt_sha256')!=smoke.get('calibration_receipt_sha256')):
@@ -73,7 +76,11 @@ def prepare(tag,review_path,cpu_tag):
         review_sha256=sha(review_path),reviewer_count=1,reviewer_independence=True,pre_run_result='pass',
         scientific_verdict='allow_run',scientifically_correct=True,allow_run=True,blockers=[],
         teacher_checkpoint_sha256=m['teacher_dependency']['checkpoint_sha256'],
-        calibration_receipt_sha256=m['calibration_dependency']['accepted_sha256'],closed_UTC=now())
+        calibration_receipt_sha256=m['calibration_dependency']['accepted_sha256'],closed_UTC=now(),
+        independent_review_original_decision=review.get('independent_review_original_decision'),
+        independent_review_original_commit=review.get('independent_review_original_commit'),
+        main_agent_findings_closed=review.get('main_agent_findings_closed'),
+        independent_review_count_remains_one=True)
     closure_local=EX/tag/'scientific_closure.json';write_once(closure_local,closure)
     binding=(OWNED/'recovery_bindings'/WORKFLOW).as_posix()
     template=load(EX/'s4_coco_experiment_a_seed0_20261025_v3.json')

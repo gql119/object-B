@@ -425,6 +425,25 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
         if semantic_identity_result != expected_identity:
             raise ValueError('Imported calibration consumer identity differs from accepted Original S4 artifacts')
         class EligibleCOCOB2Trainer(B2SemanticTrainer):
+            def _get_active_freq_indices(self, epoch, step):
+                self.audit_epoch, self.audit_step = epoch, step
+                return super()._get_active_freq_indices(epoch, step)
+
+            def _batch_loss(self, *args, **kwargs):
+                result = super()._batch_loss(*args, **kwargs)
+                if result is None:
+                    return None
+                total, metrics = result
+                # Preserve categorical IDs before the inherited numeric EOT averaging.
+                ids = [int(metrics['active_nt_class_'+str(i)].detach().item()) for i in (1, 2, 3)]
+                with (output/'categorical_diagnostics.jsonl').open('a', encoding='utf-8') as stream:
+                    stream.write(json.dumps(dict(epoch=self.audit_epoch, step=self.audit_step,
+                        active_nt_class_ids=ids, scope='per-EOT-draw; native CSV numeric means are not class IDs'))+'\n')
+                if smoke_images or cpu_probe_images:
+                    from .fourier_gradient_audit import measure
+                    self.coefficient_gradient_draws.append(measure(self._semantic_terms, self.fourier_coeff))
+                return total, metrics
+
             def _collect_target_images(self, train_img_dir, train_label_dir):
                 if (Path(train_img_dir).resolve() != (DATA_ROOT/'images/train').resolve()
                         or Path(train_label_dir).resolve() != (DATA_ROOT/'labels/train').resolve()):
@@ -435,6 +454,7 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
 
         trainer = EligibleCOCOB2Trainer(cfg, method_cfg, device,
                                         original_teacher, adaptive_teacher)
+        trainer.coefficient_gradient_draws = []
         if (trainer.channels.numel() != validate_receipt_dimension(calibration) or len(trainer.bases) != 79
                 or len(trainer.safe_bases) != 79 or trainer.safe_bg_rank != 8
                 or trainer.safe_bg_removal_alpha != .5 or trainer.safe_bg_active_k != 3
@@ -525,10 +545,20 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                 raise FloatingPointError('Nonfinite Original S4 Fourier full loss/delta/gradient')
             if float(rows[-1]['grad_norm_fourier']) <= 0 or float(rows[-1]['outside_support_max']) > 1e-7:
                 raise ValueError('Fourier smoke has zero gradient or perturbation outside the original support')
-            loss_gradients={name:float(rows[-1].get(key,'nan')) for name,key in
-                            (('L_BG','grad_BG_safe_norm'),('L_rel','grad_rel_safe_norm'))}
-            if any(not _finite_number(value) or value<=0 for value in loss_gradients.values()):
-                raise ValueError('Actual SafeBG L_BG/L_rel gradient does not reach Fourier coefficients')
+            from .fourier_gradient_audit import MEASUREMENT, validate_summary
+            draws = trainer.coefficient_gradient_draws
+            if len(draws) != 2:
+                raise ValueError('Expected two actual EOT coefficient-gradient measurements')
+            loss_gradients = {name:float(torch.stack([d[name] for d in draws]).mean(0).norm().item())
+                              for name in ('L_BG', 'L_rel')}
+            coefficient_proof = dict(measurement=MEASUREMENT, target='trainer.fourier_coeff',
+                parameter_shape=list(trainer.fourier_coeff.shape), parameter_device=str(trainer.fourier_coeff.device),
+                parameter_is_leaf=trainer.fourier_coeff.is_leaf, EOT_draws=len(draws),
+                optimizer_gradient_accumulation_unchanged=True,
+                per_draw_norms=[{name:float(g.norm().item()) for name,g in d.items()} for d in draws],
+                mean_EOT_gradient_norms=loss_gradients,
+                gradients=[{name:g.cpu().tolist() for name,g in d.items()} for d in draws])
+            write_once(output/'per_loss_fourier_gradients.json', coefficient_proof)
             pack = torch.load(params_path, map_location='cpu', weights_only=True)
             if (len(pack.get('coords', [])) != 16 or tuple(pack['fourier_coeff'].shape) != (16, 3)
                     or abs(float(pack['eps'])-8/255) > 1e-9
@@ -544,6 +574,10 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                           selected_channel_count=trainer.channels.numel(),non_target_class_count=len(trainer.safe_bases),
                           independent_P3_selected_count=trainer.orth_channels.numel(),
                           SafeBG_loss_Fourier_gradient_norms=loss_gradients,cache_memory=trainer.safe_bg_cache.memory_report(),
+                          per_loss_fourier_gradient_measurement={k:v for k,v in coefficient_proof.items() if k!='gradients'},
+                          per_loss_fourier_gradient_proof_sha256=sha(output/'per_loss_fourier_gradients.json'),
+                          poison_image_gradient_norms={name:float(rows[-1][key]) for name,key in
+                              (('L_BG','grad_BG_safe_norm'),('L_rel','grad_rel_safe_norm'))},
                           baseline_equivalence_probe=baseline_equivalence,
                           production_forward_calls=len(forward_calls), actual_fourier_optimizer_updates=1,
                           actual_eot_samples=2, validation_used=False, parameter_updates=True,
@@ -556,6 +590,7 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                           retained=['phase_spec.json','global_params.pt','diagnostics.csv','diagnostics.json',
                                     'native_rng_state.pt','imported_calibration/'], completed_UTC=now())
             probe_name = 'cpu_probe_summary.json' if is_cpu_probe else 'smoke_summary.json'
+            validate_summary(status)
             write_once(output/probe_name, status)
             atomic(output/'status.json', status)
             return status

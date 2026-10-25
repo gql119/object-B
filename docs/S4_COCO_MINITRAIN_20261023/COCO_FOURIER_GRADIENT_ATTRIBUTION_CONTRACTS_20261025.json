@@ -1,0 +1,29 @@
+{
+  "state": "passed",
+  "fixture_only": true,
+  "actual_GPU_evidence": false,
+  "gradient_target": "native-shaped Fourier coefficient leaf",
+  "first_draw_grad_None_preserved": true,
+  "existing_optimizer_grad_exact_preserved": true,
+  "invalid_measurements_rejected": [
+    "measurement",
+    "target",
+    "parameter_device",
+    "parameter_shape",
+    "EOT_draws",
+    "optimizer_gradient_accumulation_unchanged"
+  ],
+  "source_AST_files": 5,
+  "recovery_admission_contracts": {
+    "state": "passed",
+    "UTC": "2026-10-25T14:25:32.544239+00:00",
+    "adversarial_recovery_contracts_rejected": 15,
+    "test_fixture_only": true,
+    "actual_GPU_evidence": false,
+    "model_forwards": 0,
+    "no_remote_write": true,
+    "no_controller_created": true,
+    "retained_temporary_artifacts": true,
+    "new_baseline_helper_actual_CPU_exact_and_RNG_restored": true
+  }
+}

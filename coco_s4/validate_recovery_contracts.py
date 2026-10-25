@@ -22,6 +22,9 @@ def run(output):
            independent_P3_selected_count=48,finite_outputs=True,frozen_teacher_unchanged=True,
            official_metrics_disabled=True,artifact_ingest_disabled=True,validation_used=False,
            production_forward_calls=8,SafeBG_loss_Fourier_gradient_norms=dict(L_BG=1.,L_rel=1.),
+           per_loss_fourier_gradient_measurement=dict(measurement='direct_autograd_fourier_coeff_v1',
+               target='trainer.fourier_coeff',parameter_shape=[64,3],parameter_device='cuda:0',EOT_draws=2,
+               optimizer_gradient_accumulation_unchanged=True),
            baseline_equivalence_probe=dict(absolute_difference=0,tolerance=0,
                                           all_outputs_and_diagnostics_exact=True,RNG_restored=True))
     smoke_path.write_text(json.dumps(s))

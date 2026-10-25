@@ -27,6 +27,8 @@ def validate_closure(closure,manifest,release_sha,component_sha):
     if not smoke_path.is_relative_to((OWNED/'validation').resolve()) or sha(smoke_path)!=closure['smoke_sha256']:
         raise ValueError('Recovery smoke binding is not the retained owned candidate')
     s=load(smoke_path)
+    from .fourier_gradient_audit import validate_summary
+    validate_summary(s)
     required=dict(state='passed',source_commit=manifest['source_commit'],release_sha256=release_sha,
                   calibration_receipt_sha256=component_sha,computation_kind='fourier-gradient',
                   actual_device='cuda:0',actual_forward_tensor_devices=['cuda:0'],actual_cuda_device_indices=[0],
@@ -96,6 +98,8 @@ def main():
     if not cpu_path.is_relative_to((OWNED/'validation').resolve()) or sha(cpu_path)!=cfg['CPU_full_loss_sha256']:
         raise ValueError('Learned-Teacher native CPU evidence path/hash drift')
     cpu=load(cpu_path)
+    from .fourier_gradient_audit import validate_summary
+    validate_summary(cpu)
     if any(cpu.get(k)!=v for k,v in dict(state='passed',source_commit=commit(),actual_device='cpu',
         actual_forward_tensor_devices=['cpu'],actual_fourier_optimizer_updates=1,finite_outputs=True,
         calibration_receipt_sha256=sha(component_path)).items()):

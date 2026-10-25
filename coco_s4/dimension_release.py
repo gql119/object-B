@@ -116,6 +116,7 @@ def finite_spec(tag,manifest,kind):
         h['adapter_argv']=[PYTHON,'-B','-c',adapter];h['gpu_utilization_policy']='advisory';h['timeout_seconds']=1800
     names=['status.json','candidate_receipt.json','phase_spec.json'] if kind=='rebuild' else [
         'status.json','phase_spec.json','diagnostics.csv','diagnostics.json',
+        'per_loss_fourier_gradients.json','categorical_diagnostics.jsonl',
         'cpu_probe_summary.json' if kind=='cpu' else 'smoke_summary.json']
     template['artifacts']=[dict(path='result/'+n,required=True) for n in names]
     template['local_pull_root']=str(EX/'p')
