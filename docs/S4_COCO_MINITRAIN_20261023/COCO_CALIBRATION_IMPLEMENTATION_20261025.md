@@ -18,6 +18,20 @@ paths, and previous-receipt summary field are explicit transport/binding fixes.
 No Original S4 math, thresholds, data split, checkpoint bytes, or training
 hyperparameters changed. Historical implementation notes below are retained.
 
+The first CUDA calibration smoke is retained as FAILED: default cuDNN backward
+did not reproduce bitwise sensitivity sums. Two bounded diagnostics established
+that raw forward tensors are byte-identical, but even the original reference
+compared with itself changes by about 1e-11 in sensitivity sums. A separate
+deterministic-cuDNN diagnostic made every candidate/reference sum and repeated
+reference exactly equal (zero tolerance). Therefore the equivalence probe now
+uses an extra isolated candidate/reference collection with shared deterministic
+cuDNN flags, restores the original flags, and explicitly records this setting.
+The primary production smoke and formal 25K collection keep their original
+backend settings. No tolerance or StrictP5 threshold was relaxed. This extra
+probe costs three forwards; with the primary one-image collection the smoke
+totals four measured forwards. Its new actual GPU execution and scientific
+review remain required.
+
 ## State
 
 This is a local, CPU-contract-validated implementation candidate for the

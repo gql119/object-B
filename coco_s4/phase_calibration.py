@@ -221,7 +221,11 @@ def formal_gate(registration, release_path, manifest, config_sha):
             or baseline.get('all_sensitivity_sums_exact') is not True
             or baseline.get('absolute_difference') != 0 or baseline.get('tolerance') != 0
             or baseline.get('reference_actual_forward_tensor_devices') != ['cuda:0']
-            or baseline.get('reference_actual_cuda_device_indices') != [0]):
+            or baseline.get('reference_actual_cuda_device_indices') != [0]
+            or baseline.get('candidate_actual_forward_tensor_devices') != ['cuda:0']
+            or baseline.get('candidate_actual_cuda_device_indices') != [0]
+            or baseline.get('backend_flags_restored') is not True
+            or baseline.get('formal_backend_flags_changed') is not False):
         raise ValueError('Calibration smoke exceeded its 1..100 forward bound')
     return review, smoke
 
@@ -285,6 +289,42 @@ def canonical_gradient_reference(trainer, image_path, label_dir, raw):
         reference_forward_calls=len(calls),reference_forward_input_batch_sizes=calls,
         reference_actual_forward_tensor_devices=sorted(devices),reference_actual_cuda_device_indices=sorted(indices),
         frozen_model_unchanged=True)
+
+
+def canonical_equivalence_probe(cfg, method_cfg, device, seed, image_path, label_dir, output):
+    """Bitwise comparison in a shared deterministic cuDNN probe context only.
+
+    Default cuDNN backward is not bitwise repeatable even against itself. Run
+    this extra candidate/reference comparison under the same deterministic
+    setting, then restore every flag. Formal calibration and the primary
+    production smoke collection retain the original backend settings.
+    """
+    import torch
+    from ue_framework.methods.legacy_kproto_ret import LegacyKProtoTrainer
+    from .coco_eval import raw_tensor_device_details, raw_signature
+    def flags():
+        return dict(enabled=torch.backends.cudnn.enabled,benchmark=torch.backends.cudnn.benchmark,
+                    deterministic=torch.backends.cudnn.deterministic,allow_tf32=torch.backends.cudnn.allow_tf32)
+    before=flags();calls=[];devices=set();indices=set()
+    candidate=copy.deepcopy(seed);reference=copy.deepcopy(seed)
+    def hook(module,inputs,outputs):
+        ds,ix=raw_tensor_device_details(outputs);devices.update(ds);indices.update(ix)
+        raw_signature(outputs);calls.append(int(inputs[0].shape[0]))
+    handle=candidate.register_forward_hook(hook)
+    try:
+        setting=dict(before,deterministic=True)
+        with torch.backends.cudnn.flags(**setting):
+            trainer=LegacyKProtoTrainer(cfg,method_cfg,device,candidate)
+            raw=collect(trainer,candidate,[image_path],label_dir,output)
+            ref=LegacyKProtoTrainer(cfg,method_cfg,device,reference)
+            result=canonical_gradient_reference(ref,image_path,label_dir,raw)
+    finally:handle.remove()
+    if flags()!=before:raise ValueError('Isolated equivalence probe did not restore original backend flags')
+    result.update(candidate_forward_calls=len(calls),candidate_forward_input_batch_sizes=calls,
+        candidate_actual_forward_tensor_devices=sorted(devices),candidate_actual_cuda_device_indices=sorted(indices),
+        comparison_backend_flags=setting,original_backend_flags=before,backend_flags_restored=True,
+        formal_backend_flags_changed=False,comparison_uses_extra_isolated_collection=True)
+    return result
 
 
 def run(release_path, output, *, registration=None, smoke_images=0):
@@ -387,15 +427,18 @@ def run(release_path, output, *, registration=None, smoke_images=0):
                     or not 1 <= len(forward_calls) <= 100
                     or forward_devices!={'cuda:0'} or forward_cuda_indices!={0}):
                 raise ValueError('One-image calibration smoke did not exercise eligible Person statistics')
-            reference_trainer=LegacyKProtoTrainer(cfg,method_cfg,device,consumer_seed)
-            baseline=canonical_gradient_reference(reference_trainer,selected,DATA_ROOT/'labels/train',raw)
-            total_calls=len(forward_calls)+baseline['reference_forward_calls']
+            baseline=canonical_equivalence_probe(cfg,method_cfg,device,consumer_seed,selected,
+                        DATA_ROOT/'labels/train',output/'baseline_statistics')
+            total_calls=len(forward_calls)+baseline['reference_forward_calls']+baseline['candidate_forward_calls']
             if (not 1<=total_calls<=100 or baseline['reference_actual_forward_tensor_devices']!=['cuda:0']
-                    or baseline['reference_actual_cuda_device_indices']!=[0]):
+                    or baseline['reference_actual_cuda_device_indices']!=[0]
+                    or baseline['candidate_actual_forward_tensor_devices']!=['cuda:0']
+                    or baseline['candidate_actual_cuda_device_indices']!=[0]):
                 raise ValueError('Canonical calibration reference did not prove bounded CUDA0 execution')
             baseline.update(reference_weights_path=str(checkpoint),candidate_weights_path=str(checkpoint),
                 weights_sha256=sha(checkpoint),evaluation_setting=dict(dataset=str(selected),sample_count=1,seed=0,
-                parameters=dict(imgsz=640,device='cuda:0',target_class_id=0,num_classes=80),
+                parameters=dict(imgsz=640,device='cuda:0',target_class_id=0,num_classes=80,
+                                comparison_cudnn_flags=baseline['comparison_backend_flags']),
                 post_processing='original per-GT evidence and channel sensitivity reduction'))
             status = dict(common, state='passed', computation_kind='gradient-calibration',
                           production_entrypoint_reached=True, finite_outputs=True, model_unchanged=True,

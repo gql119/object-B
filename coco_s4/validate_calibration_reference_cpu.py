@@ -13,7 +13,7 @@ def main():
     import torch
     import yaml
     from PIL import Image
-    from .phase_calibration import load_teacher, canonical_gradient_reference
+    from .phase_calibration import load_teacher, canonical_equivalence_probe
     from .calibration import collect
     from ue_framework.methods.legacy_kproto_ret import LegacyKProtoTrainer
     torch.set_num_threads(1);torch.manual_seed(0)
@@ -29,11 +29,13 @@ def main():
     seed=copy.deepcopy(model)
     trainer=LegacyKProtoTrainer(cfg,cfg['methods']['legacy_kproto_ret'],torch.device('cpu'),model)
     raw=collect(trainer,model,[path],labels,output/'collected')
-    reference=LegacyKProtoTrainer(cfg,cfg['methods']['legacy_kproto_ret'],torch.device('cpu'),seed)
-    result=canonical_gradient_reference(reference,path,labels,raw)
+    result=canonical_equivalence_probe(cfg,cfg['methods']['legacy_kproto_ret'],torch.device('cpu'),seed,
+                                      path,labels,output/'baseline_statistics')
     assert result['all_sensitivity_sums_exact'] and result['reference_forward_calls']==2
     assert result['reference_actual_forward_tensor_devices']==['cpu']
     assert result['reference_actual_cuda_device_indices']==[]
+    assert result['candidate_forward_calls']==1 and result['backend_flags_restored']
+    assert result['formal_backend_flags_changed'] is False
     assert raw['target_count']==1 and raw['layers']['model.21']['nt_counts'][1]==1
     assert not torch.cuda.is_initialized()
     proof=dict(state='passed',UTC=now(),synthetic_images=1,imgsz=640,classes=80,
@@ -41,7 +43,7 @@ def main():
         frozen_model_hash=before,canonical_reference=result,GPU_initialized=False,
         source_sha256=sha(ROOT/'coco_s4/phase_calibration.py'),retained_output=str(output),
         official_metrics_generated=False,deleted_paths=[])
-    write_once(ROOT/'execution/CALIBRATION_REFERENCE_CPU_VALIDATION_20261025.json',proof)
+    write_once(ROOT/'execution/CALIBRATION_DETERMINISTIC_PROBE_CPU_VALIDATION_20261025.json',proof)
     print(json.dumps(proof))
 
 

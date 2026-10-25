@@ -229,7 +229,11 @@ def register(tag, review_path):
             or baseline.get('all_sensitivity_sums_exact') is not True
             or baseline.get('absolute_difference')!=0 or baseline.get('tolerance')!=0
             or baseline.get('reference_actual_forward_tensor_devices')!=['cuda:0']
-            or baseline.get('reference_actual_cuda_device_indices')!=[0]):
+            or baseline.get('reference_actual_cuda_device_indices')!=[0]
+            or baseline.get('candidate_actual_forward_tensor_devices')!=['cuda:0']
+            or baseline.get('candidate_actual_cuda_device_indices')!=[0]
+            or baseline.get('backend_flags_restored') is not True
+            or baseline.get('formal_backend_flags_changed') is not False):
         raise ValueError('Calibration smoke lacks the exact bounded native CUDA evidence')
     review=load(review_path)
     if review.get('previous_stage_receipt_sha256')!=release['teacher_eval_dependency']['accepted_sha256']:
