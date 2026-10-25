@@ -167,7 +167,7 @@ def build(phase, tag, head, observation):
         health['gpu_utilization_policy']='advisory'; health['timeout_seconds']=900
     template['artifacts']=[dict(path='result/'+n,required=True) for n in
                            ('smoke_summary.json','baseline_equivalence.json','phase_spec.json','status.json')]
-    template['local_pull_root'] = str(EX/tag/'small_pull')
+    template['local_pull_root'] = str(EX/'p')
     template['metadata'] = dict(execution_purpose='isolated_matched_victim_pre_review_smoke',
         computation_kind='native-train-only-victim',candidate_commit=head,cleanup_policy='retain_all',
         official_metrics_disabled=True,artifact_ingest_disabled=True,validation_used=False,
@@ -226,7 +226,7 @@ def register(phase, tag, review_path):
     spec=load(spec_path)
     if current_source()!=spec['source']['commit']:
         raise ValueError('Victim review source differs from the current published commit')
-    summary_path=Path(spec['local_pull_root'])/'result'/'smoke_summary.json'
+    summary_path=Path(spec['local_pull_root'])/tag/'result'/'smoke_summary.json'
     if not summary_path.is_file():
         raise ValueError('RRCTL has not pulled the completed victim smoke summary')
     smoke=load(summary_path)

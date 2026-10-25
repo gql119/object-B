@@ -169,7 +169,7 @@ def build(tag, head, observation, *, validation_kind):
     summary_name = 'cpu_probe_summary.json' if validation_kind == 'cpu_probe' else 'smoke_summary.json'
     template['artifacts'] = [dict(path='result/'+name, required=True) for name in
         (summary_name, 'phase_spec.json', 'diagnostics.csv', 'diagnostics.json')]
-    template['local_pull_root'] = str(EX/tag/'small_pull')
+    template['local_pull_root'] = str(EX/'p')
     template['metadata'] = dict(execution_purpose=('isolated_fourier24_cpu_full_loss_validation'
                                                    if validation_kind == 'cpu_probe'
                                                    else 'isolated_fourier24_pre_review_smoke'),
@@ -266,7 +266,7 @@ def register(tag, review_path):
     spec = load(spec_path)
     if current_source() != spec['source']['commit']:
         raise ValueError('Fourier review source differs from the published candidate')
-    summary_path = Path(spec['local_pull_root'])/'result'/'smoke_summary.json'
+    summary_path = Path(spec['local_pull_root'])/tag/'result'/'smoke_summary.json'
     if not summary_path.is_file(): raise ValueError('RRCTL has not pulled the Fourier smoke evidence')
     smoke = load(summary_path); release_path = EX/tag/'source_release.json'; release = load(release_path)
     cfg_sha = sha(ROOT/release['phase_config_path'])

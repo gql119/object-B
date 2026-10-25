@@ -142,7 +142,7 @@ def build(tag, head, observation):
         health["timeout_seconds"] = 900
     template["artifacts"] = [dict(path="result/" + name, required=True) for name in
         ("smoke_summary.json", "phase_spec.json", "status.json")]
-    template["local_pull_root"] = str(EX / tag / "small_pull")
+    template["local_pull_root"] = str(EX / "p")
     template["metadata"] = dict(execution_purpose="isolated_paired_official_eval_pre_review_smoke",
         computation_kind="inference", candidate_commit=head, cleanup_policy="retain_all",
         official_metrics_disabled=True, artifact_ingest_disabled=True,
@@ -204,7 +204,7 @@ def register(tag, review_path):
     spec = load(spec_path)
     if current_source() != spec["source"]["commit"]:
         raise ValueError("Review source is no longer current")
-    summary_path = Path(spec["local_pull_root"]) / "result/smoke_summary.json"
+    summary_path = Path(spec["local_pull_root"]) / tag / "result/smoke_summary.json"
     if not summary_path.is_file():
         raise ValueError("RRCTL has not pulled the isolated smoke result")
     smoke = load(summary_path); release_path = EX / tag / "source_release.json"
