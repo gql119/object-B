@@ -1,0 +1,50 @@
+{
+  "state": "DIAGNOSTIC_COMPLETE",
+  "scientific_formal_ready": false,
+  "production_implementation_changed": false,
+  "actual_model_forwards": 0,
+  "actual_SVD_calls": 3,
+  "basis_SHA256": "07f06b89d2a507076a810a97eb21020023f15615b0c43154ca102db2d15c65e2",
+  "ordered_classes": [
+    38,
+    24,
+    26
+  ],
+  "unchanged_Gram_threshold": 1e-05,
+  "unchanged_rank_rtol": 1e-06,
+  "results": [
+    {
+      "label": "original_cuda_float32",
+      "actual_device": "cuda:0",
+      "dtype": "torch.float32",
+      "SVD_driver": null,
+      "rank": 8,
+      "float32_Gram": 1.0371208190917969e-05,
+      "double_check_Gram": 1.0364261922468643e-05,
+      "original_criteria_satisfied": false,
+      "projector_Frobenius_error_vs_CPU64": 0.0009004869365338809
+    },
+    {
+      "label": "cuda_float32_gesvd",
+      "actual_device": "cuda:0",
+      "dtype": "torch.float32",
+      "SVD_driver": "gesvd",
+      "rank": 8,
+      "float32_Gram": 6.491318345069885e-07,
+      "double_check_Gram": 6.470028730658217e-07,
+      "original_criteria_satisfied": true,
+      "projector_Frobenius_error_vs_CPU64": 9.100048238711427e-05
+    },
+    {
+      "label": "cuda_float64_default",
+      "actual_device": "cuda:0",
+      "dtype": "torch.float64",
+      "SVD_driver": null,
+      "rank": 8,
+      "float32_Gram": 1.1920928955078125e-07,
+      "double_check_Gram": 3.684194260777929e-08,
+      "original_criteria_satisfied": true,
+      "projector_Frobenius_error_vs_CPU64": 9.718573340179088e-08
+    }
+  ]
+}

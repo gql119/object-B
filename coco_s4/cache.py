@@ -12,6 +12,12 @@ class OnDemandSafeBGTripletCache:
         if first.ndim!=2 or first.shape[0]<safe_rank or not 0<projector_rtol<1:
             raise ValueError('Invalid selected dimension or projector tolerance')
         self.selected_dim=first.shape[0];self.device,self.dtype=first.device,first.dtype
+        # Preserve the existing 24D arithmetic exactly. New selected dimensions
+        # use the same ordered SVD in float64, then return the original dtype.
+        # This prevents the measured CUDA float32 orthogonality failure without
+        # relaxing rank/Gram checks or changing any projection/loss formula.
+        self.svd_precision_policy=('legacy_24d' if self.selected_dim==24 else
+                                   'selected_dimension_float64_svd_v1')
         self.projector_rtol=projector_rtol;self.safe_rank=safe_rank;self.max_entries=max_entries
         self.bases={};self.entries=OrderedDict();h=hashlib.sha256()
         for cls in self.classes:
@@ -25,6 +31,8 @@ class OnDemandSafeBGTripletCache:
                 raise ValueError(f'Nonorthonormal class basis {cls}')
             self.bases[cls]=b.detach().clone()
             h.update(str(cls).encode());h.update(b.detach().cpu().contiguous().numpy().tobytes())
+        if self.selected_dim!=24:
+            h.update(self.svd_precision_policy.encode())
         self.sha256=h.hexdigest();self.precompute_seconds=0.;self.misses=0
 
     def lookup(self,active):
@@ -35,14 +43,16 @@ class OnDemandSafeBGTripletCache:
             self.entries.move_to_end(order);return self.entries[order]
         # Same concatenation ORDER and same SVD as the original six variants.
         concatenated=torch.cat([self.bases[c] for c in order],dim=1)
-        u,singular,_=torch.linalg.svd(concatenated,full_matrices=False)
+        svd_input=concatenated if self.selected_dim==24 else concatenated.to(torch.float64)
+        u,singular,_=torch.linalg.svd(svd_input,full_matrices=False)
         if u.shape[1]<self.safe_rank or not torch.isfinite(singular).all() or singular[self.safe_rank-1]<=singular.max()*self.projector_rtol:
             raise ValueError(f'Invalid rank8 triplet {order}')
-        q=u[:,:self.safe_rank]
+        q=u[:,:self.safe_rank].to(self.dtype)
+        singular=singular.to(self.dtype)
         gram=(q.T@q-torch.eye(self.safe_rank,device=self.device,dtype=self.dtype)).abs().max()
         rank=torch.linalg.matrix_rank(q@q.T,rtol=self.projector_rtol)
         if not torch.isfinite(gram) or gram>1e-5 or int(rank)!=self.safe_rank:
-            raise ValueError('Invalid Safe-BG projector')
+            raise ValueError(f'Invalid Safe-BG projector: order={order}, rank={int(rank)}, Gram={float(gram)}')
         energy=singular.square()
         # Compact owned tensors keep the bound proportional to D*rank, rather
         # than retaining the full U storage through a tensor view.
@@ -55,6 +65,7 @@ class OnDemandSafeBGTripletCache:
         element_bytes=torch.empty((),dtype=self.dtype).element_size()
         per_entry=(self.selected_dim*self.safe_rank+min(self.selected_dim,16)+2)*element_bytes+8
         return dict(selected_dim=self.selected_dim,classes=len(self.classes),entries=len(self.entries),
+                    svd_precision_policy=self.svd_precision_policy,output_dtype=str(self.dtype),
                     max_entries=self.max_entries,misses=self.misses,
                     basis_bytes=sum(b.numel()*b.element_size() for b in self.bases.values()),
                     entry_bytes=sum(v.numel()*v.element_size() for entry in self.entries.values() for v in entry),

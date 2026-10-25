@@ -1,0 +1,13 @@
+# SafeBG numerical implementation candidate: internal SVD precision
+
+Label: Original S4 — COCO80 Dimension-Compatible Implementation.
+
+The first formal batch16 failed the unchanged Gram limit1e-5. A finite diagnosis on the exact retained ordered classes38,24,26 measured CUDA float32 Gram1.03712e-5; evaluating the same q in double still failed. A separate3-SVD/0-model-forward diagnosis measured CUDA float64 SVD followed by conversion to the original float32 output: Gram1.19209e-7, rank8 and projector Frobenius error9.71857e-8 against CPU float64. These diagnoses are not formal validation.
+
+The new candidate changes only the arithmetic used internally by the COCO bounded cache. Selected dimensions other than the preserved24D path factor the same ordered concatenated bases using float64 SVD, then convert q and singular values to the original dtype before the original projection, spectrum/energy diagnostics and norm-restoration/loss code. The24D branch uses the original arithmetic exactly. No literal39 is used in this implementation. Numerical-policy identity is selected_dimension_float64_svd_v1 and participates in the dynamic cache hash. Cached output tensors and bounds retain their original dtype/size.
+
+Rank8, alpha.5, active3, ordered concatenation, SVD definition, Gram1e-5/rank rtol1e-6, class completeness and rejection behavior remain unchanged. No QR replacement, conditional rank reduction, omitted class or threshold relaxation is used. This is an explicit numerical implementation change rather than a change to the loss/projection mathematical definition. All original24D mathematical sources and VOC path remain unchanged. P3 coordinates and all original8/4/0/eta.85/Fourier/FrozenAdaptive/weights/data stay unchanged.
+
+Targeted actual local CPU tests pass: float32 and float64 original24D cache outputs and hash are exactly equal to retained34fee63; dimensions37,39,41 each test79 ordered triplets covering all79 classes, compare exact same ordered float64 SVD/cast output, enforce rank8 and unchanged Gram tolerance, and confirm the3-entry cache bound. These are synthetic CPU arithmetic tests, with0 model forwards and no GPU initialization.
+
+OPEN: current-source learned-Teacher formalbatch16 CPU/full-loss/gradient validation and real bounded CUDA production-path validation; preservation of the failed batch matrix checks; main-agent closure of the existing single review; versioned unique v2 recovery binding with oldv1/v3 dead-state evidence. No new reviewer or formal recovery is authorized by these CPU tests alone. Existing bound workflows remain inspect-only. The candidate is not formally ready.
