@@ -26,8 +26,8 @@ def review_inputs(tag,review_path,cpu_tag):
     if current_source()!=spec['source']['commit']:raise ValueError('Recovery review is not the exact current published source')
     summary=Path(spec['local_pull_root'])/tag/'result/smoke_summary.json'
     smoke=load(summary);review=load(review_path)
-    from .fourier_gradient_audit import validate_summary
-    validate_summary(smoke)
+    from .fourier_gradient_audit import validate_production_batch16
+    validate_production_batch16(smoke)
     required=dict(phase='fourier24',source_commit=spec['source']['commit'],release_sha256=sha(manifest_path),
                   phase_config_sha256=sha(ROOT/manifest['phase_config_path']),smoke_sha256=sha(summary),
                   calibration_receipt_sha256=manifest['calibration_dependency']['accepted_sha256'],
@@ -47,7 +47,7 @@ def review_inputs(tag,review_path,cpu_tag):
     cpu_spec=load(EX/(cpu_tag+'.json'))
     cpu_path=Path(cpu_spec['local_pull_root'])/cpu_tag/'result/cpu_probe_summary.json'
     cpu=load(cpu_path)
-    validate_summary(cpu)
+    validate_production_batch16(cpu)
     if (cpu.get('state')!='passed' or cpu.get('source_commit')!=spec['source']['commit']
             or cpu.get('actual_device')!='cpu' or cpu.get('actual_fourier_optimizer_updates')!=1
             or cpu.get('calibration_receipt_sha256')!=smoke.get('calibration_receipt_sha256')):
@@ -59,6 +59,9 @@ def review_inputs(tag,review_path,cpu_tag):
         raise ValueError('VOC equivalence/regression evidence is not a pass')
     for name in ('ue_framework/methods/safebg.py','ue_framework/methods/b2_semantic.py'):
         if numeric['sources'][name]!=manifest['files'][name]:raise ValueError('VOC numerical proof does not cover this SafeBG consumer')
+    precision=component_report('COCO_SAFEBG_PRECISION_CANDIDATE_CPU_20261025.json')
+    if precision['cache_source_sha256']!=manifest['files']['coco_s4/cache.py']:
+        raise ValueError('Cache arithmetic evidence does not cover the exact current implementation')
     return spec,manifest_path,manifest,summary,review,cpu_path
 
 
@@ -67,6 +70,8 @@ def prepare(tag,review_path,cpu_tag):
     spec,release_path,m,summary,review,cpu_path=review_inputs(tag,review_path,cpu_tag)
     _,t=services();observation=preflight(t)
     if observation['state']!='READY':print(json.dumps(observation));return
+    if observation['failed_dimension_predecessor']!=m['failed_dimension_predecessor']:
+        raise ValueError('Failed predecessor evidence changed since isolated validation')
     # Construct exactly the closure that close_and_register will later install
     # beneath the new controller. Its input anchor is outside all lifecycle roots.
     out=(OWNED/'outputs'/WORKFLOW).as_posix();receipt_root=out+'/receipts'
@@ -95,6 +100,7 @@ def prepare(tag,review_path,cpu_tag):
     if read.returncode:raise RuntimeError(read.stderr.decode(errors='replace')[-2000:])
     cfg=dict(schema='s4.coco.dimension-recovery-config.v1',run_id=WORKFLOW,source_commit=m['source_commit'],
         dimension_protocol=PROTOCOL,release_sha256=sha(release_path),origin_state_sha256=origin['origin'],
+        failed_dimension_predecessor=m['failed_dimension_predecessor'],
         origin_calibration_status_sha256=origin['phase'],component_receipt_path=probe['receipt_path'],
         component_receipt_sha256=probe['receipt_sha256'],component_phase_spec_path=rebuild_status,
         component_phase_spec_sha256=read.stdout.decode().strip(),

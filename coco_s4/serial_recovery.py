@@ -12,7 +12,7 @@ import sys
 import time
 
 from .runtime import ROOT,atomic,commit,load,now,sha,safe_relative,verify_release,write_once
-from .phase_contract import OWNED,WORKFLOW,WORKFLOW_OUTPUT,ORIGIN_OUTPUT,teacher_dependency
+from .phase_contract import OWNED,WORKFLOW,WORKFLOW_OUTPUT,ORIGIN_OUTPUT,teacher_dependency,PREVIOUS_DIMENSION_OUTPUT,PREVIOUS_DIMENSION_WORKFLOW
 from .dimension_protocol import PROTOCOL,validate_receipt_dimension
 from .serial import ORDER,identity,live,capacity,run_job
 
@@ -27,8 +27,8 @@ def validate_closure(closure,manifest,release_sha,component_sha):
     if not smoke_path.is_relative_to((OWNED/'validation').resolve()) or sha(smoke_path)!=closure['smoke_sha256']:
         raise ValueError('Recovery smoke binding is not the retained owned candidate')
     s=load(smoke_path)
-    from .fourier_gradient_audit import validate_summary
-    validate_summary(s)
+    from .fourier_gradient_audit import validate_production_batch16
+    validate_production_batch16(s)
     required=dict(state='passed',source_commit=manifest['source_commit'],release_sha256=release_sha,
                   calibration_receipt_sha256=component_sha,computation_kind='fourier-gradient',
                   actual_device='cuda:0',actual_forward_tensor_devices=['cuda:0'],actual_cuda_device_indices=[0],
@@ -66,6 +66,26 @@ def origin_preconditions(cfg,manifest):
     return origin
 
 
+def previous_dimension_preconditions(cfg,manifest):
+    proof=cfg.get('failed_dimension_predecessor')
+    if not proof or proof!=manifest.get('failed_dimension_predecessor') or proof.get('run_id')!=PREVIOUS_DIMENSION_WORKFLOW:
+        raise ValueError('Missing immutable failed dimension-v1 predecessor binding')
+    expected_files={'pipeline_state.json','fourier24/status.json','jobs/fourier24/exit.json'}
+    if set(proof.get('files',{}))!=expected_files:
+        raise ValueError('Incomplete failed dimension-v1 evidence')
+    for name,digest in proof['files'].items():
+        if sha(PREVIOUS_DIMENSION_OUTPUT/name)!=digest:
+            raise ValueError('Failed dimension-v1 evidence changed: '+name)
+    state=load(PREVIOUS_DIMENSION_OUTPUT/'pipeline_state.json')
+    if (state.get('state')!='FAILED' or state.get('current_stage')!='fourier24'
+            or state.get('source_commit')!=proof['source_commit']
+            or live(state.get('controller')) or live(state.get('active_child'))
+            or load(PREVIOUS_DIMENSION_OUTPUT/'fourier24/status.json').get('state')!='FAILED'
+            or load(PREVIOUS_DIMENSION_OUTPUT/'jobs/fourier24/exit.json').get('returncode',0)==0):
+        raise ValueError('Dimension-v1 is not a dead, retained failed predecessor')
+    return proof
+
+
 def main():
     import fcntl
     p=argparse.ArgumentParser();p.add_argument('--config',required=True,type=Path)
@@ -81,6 +101,7 @@ def main():
     lock=(OWNED/'single_dimension_recovery_controller.lock').open('a+b')
     fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     origin=origin_preconditions(cfg,m)
+    dimension_history=previous_dimension_preconditions(cfg,m)
     component_path=Path(cfg['component_receipt_path']).resolve()
     if (not component_path.is_relative_to((OWNED/'validation').resolve())
             or sha(component_path)!=cfg['component_receipt_sha256']):
@@ -98,8 +119,8 @@ def main():
     if not cpu_path.is_relative_to((OWNED/'validation').resolve()) or sha(cpu_path)!=cfg['CPU_full_loss_sha256']:
         raise ValueError('Learned-Teacher native CPU evidence path/hash drift')
     cpu=load(cpu_path)
-    from .fourier_gradient_audit import validate_summary
-    validate_summary(cpu)
+    from .fourier_gradient_audit import validate_production_batch16
+    validate_production_batch16(cpu)
     if any(cpu.get(k)!=v for k,v in dict(state='passed',source_commit=commit(),actual_device='cpu',
         actual_forward_tensor_devices=['cpu'],actual_fourier_optimizer_updates=1,finite_outputs=True,
         calibration_receipt_sha256=sha(component_path)).items()):
@@ -112,6 +133,10 @@ def main():
         raise ValueError('Frozen24D numerical/regression gate is not closed')
     for name in ('ue_framework/methods/safebg.py','ue_framework/methods/b2_semantic.py'):
         if numeric['sources'][name]!=m['files'][name]:raise ValueError('VOC24 evidence consumer source drift')
+    precision=load(ROOT/'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_PRECISION_CANDIDATE_CPU_20261025.json')
+    if (precision.get('state')!='passed' or precision.get('cache_source_sha256')!=m['files']['coco_s4/cache.py']
+            or not all(row.get('VOC24_all_cache_outputs_and_hash_exact') is True for row in precision['VOC24'])):
+        raise ValueError('Current cache precision candidate lacks exact legacy24 arithmetic evidence')
     if sha(ROOT/'docs/S4_COCO_MINITRAIN_20261023/USER_DYNAMIC_DIMENSION_AUTHORIZATION_20261025.md')!=cfg['authorization_sha256']:
         raise ValueError('Human dimension-only authorization drift')
     out.mkdir(parents=True,exist_ok=True)
@@ -130,6 +155,7 @@ def main():
         component_receipt_sha256=sha(component_path),scientific_closure_sha256=sha(closure_path),
         protocol=PROTOCOL,old_failed_calibration_unchanged=True,UTC=now()))
     write_once(out/'RECOVERY_PROVENANCE.json',dict(origin_run_id=origin['run_id'],origin_state_sha256=cfg['origin_state_sha256'],
+        failed_dimension_predecessor=dimension_history,
         origin_calibration_status_sha256=cfg['origin_calibration_status_sha256'],reused_without_execution=['teacher200','teacher_eval'],
         reconstructed_from_retained25K_statistics=True,component_receipt_sha256=sha(component_path),
         scientific_closure_sha256=sha(closure_path),exact_worker_prefetch_resume_claim=False,UTC=now()))

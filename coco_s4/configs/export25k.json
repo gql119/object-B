@@ -1,7 +1,7 @@
 {
   "schema": "s4.coco.export25k-config.v1",
   "phase": "export25k",
-  "workflow_run_id": "s4_coco_experiment_a_seed0_20261025_dimcompat_v1",
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261026_dimcompat_v2",
   "predecessor_phase": "fourier24",
   "predecessor_receipt_kind": "accepted.json",
   "teacher_policy": "fixed native EMA last@200",

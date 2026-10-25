@@ -183,12 +183,15 @@ def validate_original_support_manifest(document, train_image_root):
 
 
 def select_validation_images(eligible, *, smoke_images=0, cpu_probe_images=0):
-    """Keep both isolated probe types to one accepted eligible train image."""
-    if smoke_images not in (0, 1) or cpu_probe_images not in (0, 1):
-        raise ValueError('Fourier smoke and CPU-probe image counts must be zero or one')
-    if smoke_images + cpu_probe_images > 1:
+    """A full-batch probe preserves the original complete-list permutation."""
+    if smoke_images not in (0, 1, 16) or cpu_probe_images not in (0, 1, 16):
+        raise ValueError('Fourier validation accepts one image or one original batch16')
+    if smoke_images and cpu_probe_images:
         raise ValueError('Fourier smoke and CPU probe are separate bounded runs')
-    if smoke_images or cpu_probe_images:
+    count=max(smoke_images,cpu_probe_images)
+    if count==16 and len(eligible)<16:
+        raise ValueError('Original batch16 validation requires at least16 eligible images')
+    if count==1:
         return list(eligible[:1])
     return list(eligible)
 
@@ -239,7 +242,7 @@ def copy_calibration_consumer_artifacts(output, dependency):
     return import_root, imported
 
 
-def runtime_config(phase_cfg, manifest, imported_root, *, smoke):
+def runtime_config(phase_cfg, manifest, imported_root, *, smoke, validation_batch_size=1):
     import yaml
     if manifest.get('config_path') != MAIN_CONFIG or MAIN_CONFIG not in manifest.get('files', {}):
         raise ValueError('Fourier phase must bind the fixed Original S4 COCO configuration')
@@ -258,8 +261,10 @@ def runtime_config(phase_cfg, manifest, imported_root, *, smoke):
     semantic['safe_bg']['reference_artifact_dir'] = str(imported_root/'method'/'reference')
     semantic['strict_tsfl']['layer_selection_path'] = str(imported_root/'fixed_p5_identity.json')
     if smoke:
+        if validation_batch_size not in (1,16):
+            raise ValueError('Invalid bounded native validation batch size')
         method['kproto']['max_steps'] = 1
-        method['universal_batch_size'] = 1
+        method['universal_batch_size'] = validation_batch_size
     return cfg, checkpoint
 
 
@@ -305,8 +310,10 @@ def formal_gate(registration, release_path, manifest, config_sha):
                           actual_device='cuda:0')
     if any(smoke.get(key) != value for key, value in expected_smoke.items()):
         raise ValueError('Current Fourier release lacks the required bounded native CUDA evidence')
-    if smoke.get('actual_training_images') != 1 or not 1 <= smoke.get('production_forward_calls', 0) <= 100:
-        raise ValueError('Fourier smoke must execute one eligible training image within 100 forwards')
+    from .fourier_gradient_audit import validate_production_batch16
+    validate_production_batch16(smoke)
+    if not 1 <= smoke.get('production_forward_calls', 0) <= 100:
+        raise ValueError('Fourier smoke must stay within100 native forwards')
     return review, smoke
 
 
@@ -351,10 +358,10 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
         (ROOT/manifest['config_path']).read_text(encoding='utf-8')))
     config_sha = sha(ROOT/manifest['phase_config_path'])
     if smoke_images or cpu_probe_images:
-        if (smoke_images not in (0, 1) or cpu_probe_images not in (0, 1)
-                or smoke_images + cpu_probe_images != 1
+        if (smoke_images not in (0, 1, 16) or cpu_probe_images not in (0, 1, 16)
+                or bool(smoke_images)==bool(cpu_probe_images)
                 or not output.is_relative_to((OWNED/'validation').resolve())):
-            raise ValueError('Fourier validation probe is one real eligible Person train image in owned validation')
+            raise ValueError('Fourier validation requires an isolated one-image or original-batch16 run')
     else:
         if output != (WORKFLOW_OUTPUT/'fourier24').resolve() or registration is None:
             raise ValueError('Formal Fourier must use the existing serial stage output and READY gate')
@@ -393,8 +400,10 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                          phase_spec=load(Path(manifest['dimension_reconstruction_dependency']['phase_spec_path']))
                          if manifest.get('dimension_reconstruction_dependency') else
                          load(WORKFLOW_OUTPUT/'calibration'/'phase_spec.json')))
+        validation_batch_size=max(smoke_images,cpu_probe_images)
         cfg, checkpoint = runtime_config(phase_cfg, manifest, imported_root,
-                                         smoke=bool(smoke_images or cpu_probe_images))
+                                         smoke=bool(validation_batch_size),
+                                         validation_batch_size=validation_batch_size or 1)
         images, expected_hashes, expected_digest = train_manifest()
         if expected_digest != calibration['accepted_clean_train_manifest_sha256']:
             raise ValueError('Accepted fixed25K train image/label manifest changed')
@@ -407,7 +416,9 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
         if not set(map(str, eligible)).issubset(set(map(str, images))):
             raise ValueError('Accepted eligible image list is not a subset of the fixed train split')
         # Revalidate only the support-eligible images actually consumed by Fourier.
-        probe_paths = eligible[:1] if smoke_images or cpu_probe_images else eligible
+        expected_probe_paths=([eligible[int(i)] for i in np.random.RandomState(0).permutation(len(eligible))[:16]]
+                              if validation_batch_size==16 else eligible[:1])
+        probe_paths = expected_probe_paths if validation_batch_size else eligible
         eligible_before = _hash_eligible(probe_paths, expected_hashes)
         teacher, frozen_sha = load_teacher(checkpoint,
                                            manifest['teacher_dependency']['checkpoint_sha256'],
@@ -434,6 +445,8 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                 if result is None:
                     return None
                 total, metrics = result
+                if smoke_images or cpu_probe_images:
+                    self.native_probe_batch_sizes.append(len(args[0]))
                 # Preserve categorical IDs before the inherited numeric EOT averaging.
                 ids = [int(metrics['active_nt_class_'+str(i)].detach().item()) for i in (1, 2, 3)]
                 with (output/'categorical_diagnostics.jsonl').open('a', encoding='utf-8') as stream:
@@ -455,6 +468,7 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
         trainer = EligibleCOCOB2Trainer(cfg, method_cfg, device,
                                         original_teacher, adaptive_teacher)
         trainer.coefficient_gradient_draws = []
+        trainer.native_probe_batch_sizes = []
         if (trainer.channels.numel() != validate_receipt_dimension(calibration) or len(trainer.bases) != 79
                 or len(trainer.safe_bases) != 79 or trainer.safe_bg_rank != 8
                 or trainer.safe_bg_removal_alpha != .5 or trainer.safe_bg_active_k != 3
@@ -512,6 +526,15 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                    teacher_eval_metrics_read=False, validation_images_opened=False,
                    parameter_update_scope='original S4 Fourier coefficients plus existing one-step adaptive inner model',
                    optimizer_resume_claim=False, resume_policy='complete accepted stages only; retain failed outputs'))
+        actual_loaded_paths=[]
+        import ue_framework.methods.legacy_kproto_ret as native_trainer_module
+        original_loader=native_trainer_module.load_image_rgb_float
+        def audited_training_loader(path):
+            value=original_loader(path)
+            actual_loaded_paths.append(Path(path).resolve())
+            return value
+        if validation_batch_size:
+            native_trainer_module.load_image_rgb_float=audited_training_loader
         try:
             params_path = output/'global_params.pt'
             csv_path = output/'diagnostics.csv'
@@ -519,6 +542,7 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
             trainer.train_universal(str(DATA_ROOT/'images/train'), str(DATA_ROOT/'labels/train'),
                                     str(params_path), str(csv_path), str(json_path), seed=0)
         finally:
+            native_trainer_module.load_image_rgb_float=original_loader
             for hook in hooks:
                 hook.remove()
         rng_after = _rng_state(torch, np, include_cuda=(device.type == 'cuda'))
@@ -546,6 +570,9 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
             if float(rows[-1]['grad_norm_fourier']) <= 0 or float(rows[-1]['outside_support_max']) > 1e-7:
                 raise ValueError('Fourier smoke has zero gradient or perturbation outside the original support')
             from .fourier_gradient_audit import MEASUREMENT, validate_summary
+            if (trainer.native_probe_batch_sizes!=[validation_batch_size]*2
+                    or actual_loaded_paths!=[Path(p).resolve() for p in expected_probe_paths]):
+                raise ValueError('Bounded native batch/image order differs from the original seeded first batch')
             draws = trainer.coefficient_gradient_draws
             if len(draws) != 2:
                 raise ValueError('Expected two actual EOT coefficient-gradient measurements')
@@ -568,7 +595,12 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
             status.update(state='passed', computation_kind=('fourier-gradient-cpu-validation' if is_cpu_probe
                                                              else 'fourier-gradient'),
                           production_entrypoint_reached=True, finite_outputs=True,
-                          frozen_teacher_unchanged=True, actual_device=str(device), actual_training_images=1,
+                          frozen_teacher_unchanged=True, actual_device=str(device), actual_training_images=validation_batch_size,
+                          actual_native_batch_sizes=trainer.native_probe_batch_sizes,
+                          sample_order_policy=('original_full_eligible_numpy_seed0' if validation_batch_size==16 else 'single_image_probe'),
+                          full_eligible_image_count=len(eligible),
+                          actual_training_image_ids=[p.stem for p in actual_loaded_paths],
+                          expected_training_image_ids=[p.stem for p in expected_probe_paths],
                           actual_forward_tensor_devices=sorted(forward_devices),
                           actual_cuda_device_indices=sorted(forward_cuda_indices),
                           selected_channel_count=trainer.channels.numel(),non_target_class_count=len(trainer.safe_bases),
@@ -590,7 +622,19 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                           retained=['phase_spec.json','global_params.pt','diagnostics.csv','diagnostics.json',
                                     'native_rng_state.pt','imported_calibration/'], completed_UTC=now())
             probe_name = 'cpu_probe_summary.json' if is_cpu_probe else 'smoke_summary.json'
+            entries=trainer.safe_bg_cache.entries
+            failed_triplet=(38,24,26)
+            status['projector_precision_validation']=dict(
+                all_native_cached_ranks_eight=all(int(v[3])==8 for v in entries.values()),
+                maximum_native_cached_Gram=max(float(v[2]) for v in entries.values()),
+                historical_failed_order=list(failed_triplet),
+                historical_failed_order_in_native_cache=failed_triplet in entries,
+                historical_failed_order_Gram=float(entries[failed_triplet][2]) if failed_triplet in entries else None,
+                thresholds_unchanged=True)
             validate_summary(status)
+            if validation_batch_size==16:
+                from .fourier_gradient_audit import validate_production_batch16
+                validate_production_batch16(status)
             write_once(output/probe_name, status)
             atomic(output/'status.json', status)
             return status

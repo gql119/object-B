@@ -31,3 +31,28 @@ def validate_summary(summary):
         value = summary.get('SafeBG_loss_Fourier_gradient_norms', {}).get(name, 0)
         if not math.isfinite(value) or value <= 0:
             raise ValueError('Invalid mean-EOT coefficient gradient: '+name)
+
+
+def validate_production_batch16(summary):
+    """Fail closed on old single-image evidence and unverified numerical fixes."""
+    validate_summary(summary)
+    ids=summary.get('actual_training_image_ids',[])
+    if (summary.get('actual_training_images')!=16 or summary.get('actual_native_batch_sizes')!=[16,16]
+            or summary.get('sample_order_policy')!='original_full_eligible_numpy_seed0'
+            or summary.get('full_eligible_image_count',0)<16 or len(ids)!=16 or len(set(ids))!=16
+            or ids!=summary.get('expected_training_image_ids')):
+        raise ValueError('Actual original seeded batch16 validation is missing')
+    cache=summary.get('cache_memory',{})
+    check=summary.get('projector_precision_validation',{})
+    gram=check.get('maximum_native_cached_Gram',float('nan'))
+    if (cache.get('svd_precision_policy')!='selected_dimension_float64_svd_v1'
+            or check.get('thresholds_unchanged') is not True
+            or check.get('all_native_cached_ranks_eight') is not True
+            or not math.isfinite(gram) or gram>1e-5):
+        raise ValueError('Native fixed-threshold rank8/orthogonality precision gate is open')
+    if summary.get('actual_device')=='cuda:0':
+        if (check.get('historical_failed_order')!=[38,24,26]
+                or check.get('historical_failed_order_in_native_cache') is not True
+                or not math.isfinite(check.get('historical_failed_order_Gram',float('nan')))
+                or check['historical_failed_order_Gram']>1e-5):
+            raise ValueError('The original failing CUDA triplet was not exercised successfully')

@@ -72,11 +72,16 @@ def run():
         _expect_reject(lambda: eligible_paths_from_manifest(altered, root), 'unsorted')
         assert select_validation_images(paths, smoke_images=1) == paths[:1]
         assert select_validation_images(paths, cpu_probe_images=1) == paths[:1]
+        full_list=[root/(str(i)+'.jpg') for i in range(20)]
+        assert select_validation_images(full_list,smoke_images=16)==full_list
+        assert select_validation_images(full_list,cpu_probe_images=16)==full_list
+        _expect_reject(lambda: select_validation_images(paths,smoke_images=16),'too_few_batch16_images')
+        _expect_reject(lambda: select_validation_images(full_list,smoke_images=2),'nonoriginal_batch')
         assert select_validation_images(paths) == paths
         _expect_reject(lambda: select_validation_images(paths, smoke_images=1, cpu_probe_images=1),
                        'combined_probe_kinds')
     return dict(state='passed', invalid_phase_contracts=15, invalid_source_protocols=13,
-                eligible_manifest_cases=13, dataset_images_opened=0, GPU_units=0,
+                eligible_manifest_cases=13, full_batch16_order_cases=4, dataset_images_opened=0, GPU_units=0,
                 official_metrics_enabled=False, formal_registration=False)
 
 

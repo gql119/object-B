@@ -9,7 +9,7 @@ import re
 import subprocess
 
 from .runtime import ROOT, DATA_ROOT, DATA_FILES, PARENT, VICTIM_PARENT, commit, load, now, sha, write_once
-from .phase_contract import OWNED, WORKFLOW, LEGACY_WORKFLOW, ORIGIN_OUTPUT, WORKFLOW_OUTPUT
+from .phase_contract import OWNED, WORKFLOW, LEGACY_WORKFLOW, ORIGIN_OUTPUT, WORKFLOW_OUTPUT, PREVIOUS_DIMENSION_OUTPUT
 from .dimension_protocol import PROTOCOL, validate_receipt_dimension
 from .release_transport import anchor_path,validate_anchor_outside_lifecycle,ensure_remote_exact
 
@@ -33,6 +33,15 @@ def live(ident):
  return int(a[19])==ident['start_ticks'] and p.stat().st_uid==ident['uid'] and a[0]!='Z'
 assert not live(state['controller']) and not live(state.get('active_child'))
 for item in ('teacher200','teacher_eval'):assert state['stages'][item]['state']=='ACCEPTED'
+previous=Path(sys.argv[3]);ps=json.loads((previous/'pipeline_state.json').read_text())
+assert ps['state']=='FAILED' and ps['current_stage']=='fourier24'
+assert not live(ps['controller']) and not live(ps.get('active_child'))
+assert ps['source_commit']=='34fee63a232d489ae54d61eb37a42483091c40d4'
+assert json.loads((previous/'fourier24/status.json').read_text())['state']=='FAILED'
+assert json.loads((previous/'jobs/fourier24/exit.json').read_text())['returncode']!=0
+proof=dict(run_id=ps['run_id'],source_commit=ps['source_commit'],
+ files={name:__import__('hashlib').sha256((previous/name).read_bytes()).hexdigest()
+ for name in ('pipeline_state.json','fourier24/status.json','jobs/fourier24/exit.json')})
 sys.path.insert(0,sys.argv[2]);from coco_s4.serial import capacity
 resources=capacity(old)
 # GPU utility/CPU load are telemetry. Capacity checks exactly match the existing controller.
@@ -47,7 +56,7 @@ for p in Path('/proc').iterdir():
  except (FileNotFoundError,ProcessLookupError):pass
 print(json.dumps(dict(state='READY' if resources['admitted'] else 'WAITING_RESOURCES',capacity=resources,
  old_state_sha256=__import__('hashlib').sha256((old/'pipeline_state.json').read_bytes()).hexdigest(),
- old_controller_absent=True,old_child_absent=True)))
+ old_controller_absent=True,old_child_absent=True,failed_dimension_predecessor=proof)))
 '''
 
 
@@ -57,7 +66,7 @@ def services():
 
 
 def current_source():
-    if subprocess.check_output(['git','-C',str(ROOT),'diff','--name-only']):
+    if subprocess.check_output(['git','-C',str(ROOT),'diff','HEAD','--name-only']):
         raise ValueError('Commit all tracked candidate changes before preparation')
     head=commit()
     remote=subprocess.check_output(['git','-C',str(ROOT),'ls-remote','origin','refs/heads/'+BRANCH],text=True).split()
@@ -71,7 +80,7 @@ def check_tag(tag):
 
 
 def preflight(transport):
-    r=transport.run([PYTHON,'-B','-c',PREFLIGHT,ORIGIN_OUTPUT.as_posix(),(OWNED/'repos'/LEGACY_WORKFLOW).as_posix()])
+    r=transport.run([PYTHON,'-B','-c',PREFLIGHT,ORIGIN_OUTPUT.as_posix(),(OWNED/'repos'/LEGACY_WORKFLOW).as_posix(),PREVIOUS_DIMENSION_OUTPUT.as_posix()])
     if r.returncode:raise RuntimeError(r.stderr.decode(errors='replace')[-3000:])
     return json.loads(r.stdout)
 
@@ -84,6 +93,7 @@ def release(head,phase):
            (MAIN,'docs/S4_COCO_MINITRAIN_20261023/COCO_CATEGORY_MAPPING.json',
             'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_DIMENSION_CPU_NUMERICS_20261025.json',
             'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_DIMENSION_REGRESSION_20261025.json',
+            'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_PRECISION_CANDIDATE_CPU_20261025.json',
             'docs/S4_COCO_MINITRAIN_20261023/USER_DYNAMIC_DIMENSION_AUTHORIZATION_20261025.md')]
     return dict(schema='s4.coco.release.v1',phase=phase,source_commit=head,workflow_run_id=WORKFLOW,
                 scientific_parent=PARENT,victim_parent=VICTIM_PARENT,dimension_protocol=PROTOCOL,
@@ -104,8 +114,8 @@ def finite_spec(tag,manifest,kind):
     validate_anchor_outside_lifecycle(anchor,template['remote'])
     module='coco_s4.dimension_rebuild' if kind=='rebuild' else 'coco_s4.phase_fourier'
     argv=[PYTHON,'-B','-m',module,'--release',anchor,'--output',out+'/result']
-    if kind=='cpu':argv+=['--cpu-probe-images','1']
-    if kind=='gpu':argv+=['--smoke-images','1']
+    if kind=='cpu':argv+=['--cpu-probe-images','16']
+    if kind=='gpu':argv+=['--smoke-images','16']
     unit='s4coco-dim-'+hashlib.sha256(tag.encode()).hexdigest()[:24]
     template['workload']=dict(cwd='.',argv=['systemd-run','--user','--scope','--quiet','--unit='+unit,
         PYTHON,'-B','-m','coco_s4.process','--job',out+'/supervision','--cwd',repo,'--',*argv])
@@ -136,6 +146,7 @@ def prepare(tag,kind,rebuild_tag=None):
     _,t=services();observation=preflight(t)
     if observation['state']!='READY':print(json.dumps(observation));return
     head=current_source();m=release(head,'dimension_rebuild' if kind=='rebuild' else 'fourier24')
+    m['failed_dimension_predecessor']=observation['failed_dimension_predecessor']
     if kind=='rebuild':
         m.update(retained_calibration=load(EX/'COCO_DYNAMIC_DIMENSION_REUSE_AUDIT_20261025.json'),
                  artifact_relative_root='execution/generated_calibration/coco_dimension_template')

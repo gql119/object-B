@@ -1,0 +1,80 @@
+{
+  "state": "passed",
+  "UTC": "2026-10-25T17:45:57.269656+00:00",
+  "test_fixture_only": true,
+  "actual_GPU": false,
+  "formal_ready": false,
+  "reports": {
+    "wrapper_contracts": {
+      "state": "passed",
+      "UTC": "2026-10-25T17:43:53.734855+00:00",
+      "reports": [
+        {
+          "module": "validate_fourier_phase_contracts",
+          "state": "passed",
+          "result": {
+            "state": "passed",
+            "invalid_phase_contracts": 15,
+            "invalid_source_protocols": 13,
+            "eligible_manifest_cases": 13,
+            "dataset_images_opened": 0,
+            "GPU_units": 0,
+            "official_metrics_enabled": false,
+            "formal_registration": false
+          },
+          "stdout": ""
+        },
+        {
+          "module": "validate_export_phase_contracts",
+          "state": "passed",
+          "result": null,
+          "stdout": "{\"accepted_calibration_contracts\": 3, \"accepted_fourier_contracts\": 2, \"artifact_ingest_disabled\": true, \"dataset_images_read\": 0, \"gpu_initialized\": false, \"max_overlap_byte_difference\": 4, \"max_person_byte_difference\": 8, \"official_metrics_disabled\": true, \"outside_nonzero_pixels\": 0, \"state\": \"passed\", \"tfss_formula\": \"1-.15*Rnt*(1-Qt)\"}\n"
+        },
+        {
+          "module": "validate_victim_phase_contracts",
+          "state": "passed",
+          "result": null,
+          "stdout": "{\"GPU_units\": 0, \"canonical_state_hash_cases\": 3, \"dataset_images_opened\": 0, \"formal_registration\": false, \"invalid_contracts_rejected\": 13, \"matched_training_protocol\": true, \"official_metrics_enabled\": false, \"phases\": [\"clean200\", \"s4_200\"], \"predecessor_bindings\": 2, \"state\": \"passed\"}\n"
+        },
+        {
+          "module": "validate_post_eval_contracts",
+          "state": "passed",
+          "result": null,
+          "stdout": "{\"GPU_units\": 0, \"dataset_images_opened\": 0, \"formal_registration\": false, \"invalid_official_eval_contracts_rejected\": 4, \"official_metrics_generated\": 0, \"paired_metric_cases\": 1, \"phases\": [\"official_eval\", \"final_report\"], \"report_rows\": 80, \"shared_voc_names\": 20, \"state\": \"passed\"}\n"
+        }
+      ],
+      "temporary_artifacts_retained": true
+    },
+    "recovery_admission": {
+      "state": "passed",
+      "UTC": "2026-10-25T17:43:58.160183+00:00",
+      "adversarial_recovery_contracts_rejected": 22,
+      "test_fixture_only": true,
+      "actual_GPU_evidence": false,
+      "model_forwards": 0,
+      "no_remote_write": true,
+      "no_controller_created": true,
+      "retained_temporary_artifacts": true,
+      "new_baseline_helper_actual_CPU_exact_and_RNG_restored": true
+    },
+    "failed_predecessor": {
+      "state": "passed",
+      "fixture_only": true,
+      "actual_remote_audit": false,
+      "rejected": [
+        "missing",
+        "wrong_run",
+        "missing_exit",
+        "state_hash",
+        "live_previous_controller"
+      ],
+      "retained_artifacts": true
+    }
+  },
+  "unchanged_cache_precision_source_sha256": "4e990445bea46fc6741d8f31177c694de4e1273657d5b17abfb499ba520e9dc8",
+  "original_scientific_YAML_sha256": "63cfa2b61d6d0fdb8d346772badb5fb5547c09536a2b4ef733bfafc020e108be",
+  "validation_batch": 16,
+  "sample_order": "Full eligible manifest then original native np.random.seed(0)/permutation; passive actual loader path check",
+  "new_run_id": "s4_coco_experiment_a_seed0_20261026_dimcompat_v2",
+  "old_v1_restarted": false
+}
