@@ -61,3 +61,12 @@ production and reference forward tensors both reported `cpu`, nonfinite raw
 outputs were rejected, and CUDA remained uninitialized. This is CPU-only
 contract evidence, not a CUDA smoke or scientific review; see
 `execution/TEACHER_EVAL_NATIVE_CPU_DEVICE_AUDIT_20261025.json`.
+
+The first post-fix CUDA smoke recorded `cuda:0` from the actual pre-NMS
+prediction tensors and the independent reference tensors, but its summary did
+not carry those fields to the phase registration gate. It remains preserved as
+raw CUDA evidence and was not registered. The follow-up contract now records
+CUDA indices directly from each forward tensor, propagates the candidate and
+reference device evidence into the summary, and cross-checks the pulled raw
+prediction audit before registration. This changes telemetry and its gate only;
+checkpoint, inference settings, data, metrics policy, and S4 method are fixed.

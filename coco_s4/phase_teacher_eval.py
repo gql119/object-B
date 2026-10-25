@@ -28,12 +28,13 @@ def validate_config(cfg):
 def native_reference(checkpoint, images, annotation, mapping, smoke_batches, candidate):
     """Independent native YOLO.predict invocation, same weights/inputs/protocol."""
     from ultralytics import YOLO
-    from .coco_eval import raw_signature, raw_tensor_devices
+    from .coco_eval import raw_signature, raw_tensor_device_details
     entries=sorted(load(annotation)['images'],key=lambda im:im['id'])[:PREDICT_ARGS['batch']*smoke_batches]
     paths=[str(Path(images)/x['file_name']) for x in entries]
-    model=YOLO(str(checkpoint));signatures=[];reference_devices=set()
+    model=YOLO(str(checkpoint));signatures=[];reference_devices=set();reference_cuda_indices=set()
     def reference_hook(module,args,result):
-        reference_devices.update(raw_tensor_devices(result))
+        devices,indices=raw_tensor_device_details(result)
+        reference_devices.update(devices);reference_cuda_indices.update(indices)
         signatures.append(raw_signature(result))
     hook=model.model.register_forward_hook(reference_hook)
     table={r['yolo_class_id']:r['category_id'] for r in mapping};detections=[]
@@ -59,6 +60,9 @@ def native_reference(checkpoint, images, annotation, mapping, smoke_batches, can
                 reference_metric=0,candidate_metric=0,absolute_difference=0,tolerance=0,
                 raw_outputs_exact=raw_equal,decoded_predictions_exact=decoded_equal,
                 reference_actual_device=next(iter(reference_devices)),
+                reference_cuda_device_index=(next(iter(reference_cuda_indices)) if len(reference_cuda_indices)==1 else None),
+                reference_forward_tensor_devices=sorted(reference_devices),
+                reference_cuda_device_indices=sorted(reference_cuda_indices),
                 reference_raw_forward_calls=len(signatures),
                 raw_reference_sha256=hashlib.sha256(json.dumps(signatures,sort_keys=True).encode()).hexdigest(),
                 evaluation_setting=dict(dataset='first sorted annotation image IDs',sample_count=len(paths),seed=0,
@@ -113,19 +117,33 @@ def run(release_path,output,*,registration=None,smoke_batches=0):
     try:
         predictions,audit=predict(checkpoint,DATA_ROOT/'images/val',DATA_ROOT/'metadata/instances_val2017.json',
                                   mapping,output,smoke_batches=smoke_batches)
-        if audit['actual_device']!='cuda:0':raise ValueError('Production inference did not reach admitted GPU0')
+        if (audit['actual_device']!='cuda:0' or audit.get('actual_forward_tensor_devices')!=['cuda:0']
+                or audit.get('actual_cuda_device_indices')!=[0]):
+            raise ValueError('Production pre-NMS forward tensors did not prove admitted CUDA0')
         if smoke_batches:
             baseline=native_reference(checkpoint,DATA_ROOT/'images/val',DATA_ROOT/'metadata/instances_val2017.json',
                                       mapping,smoke_batches,predictions)
-            if baseline['reference_actual_device']!=audit['actual_device']:
-                raise ValueError('Independent reference and production sink used different devices')
+            if (baseline['reference_actual_device']!=audit['actual_device']
+                    or baseline['reference_cuda_device_index']!=0
+                    or baseline['reference_forward_tensor_devices']!=['cuda:0']
+                    or baseline['reference_cuda_device_indices']!=[0]):
+                raise ValueError('Independent reference and production tensors did not prove the same CUDA0 device')
             if sha(checkpoint)!=manifest['teacher_dependency']['checkpoint_sha256']:
                 raise ValueError('Read-only inference probe changed checkpoint bytes')
             total_forwards=audit['raw_forward_calls']+baseline['reference_raw_forward_calls']
             if not 1<=total_forwards<=100:raise ValueError('Total raw inference work exceeded bounded smoke')
             status.update(state='passed',finite_outputs=audit['finite_outputs'],
                           actual_inference_batches=smoke_batches*2,total_raw_forwards_including_warmup=total_forwards,
-                          image_count=audit['image_count'],
+                          production_raw_forward_calls=audit['raw_forward_calls'],
+                          raw_tensors_checked=audit['raw_tensors_checked'],image_count=audit['image_count'],
+                          actual_device=audit['actual_device'],
+                          actual_cuda_device_index=audit['actual_cuda_device_indices'][0],
+                          actual_forward_tensor_devices=audit['actual_forward_tensor_devices'],
+                          actual_cuda_device_indices=audit['actual_cuda_device_indices'],
+                          reference_actual_device=baseline['reference_actual_device'],
+                          reference_cuda_device_index=baseline['reference_cuda_device_indices'][0],
+                          reference_forward_tensor_devices=baseline['reference_forward_tensor_devices'],
+                          reference_cuda_device_indices=baseline['reference_cuda_device_indices'],
                           baseline_equivalence_probe=baseline,completed_UTC=now(),checkpoint_paths_remaining=[])
             write_once(output/'smoke_summary.json',status)
         else:

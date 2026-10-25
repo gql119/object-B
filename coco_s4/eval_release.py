@@ -185,12 +185,27 @@ def register(tag, review_path):
     smoke=load(summary_path);release_path=EX/tag/'source_release.json';release=load(release_path)
     cfg_sha=sha(ROOT/release['phase_config_path'])
     baseline=smoke.get('baseline_equivalence_probe',{})
+    audit_path=Path(spec['local_pull_root'])/'result'/'prediction_audit.json'
+    if not audit_path.is_file():raise ValueError('Missing pulled raw pre-NMS tensor-device audit')
+    audit=load(audit_path)
     if (smoke.get('state')!='passed' or smoke.get('phase')!='teacher_eval'
             or smoke.get('source_commit')!=spec['source']['commit']
             or smoke.get('release_sha256')!=sha(release_path)
             or smoke.get('phase_config_sha256')!=cfg_sha
             or smoke.get('teacher_checkpoint_sha256')!=release['teacher_dependency']['checkpoint_sha256']
             or smoke.get('actual_device')!='cuda:0'
+            or smoke.get('actual_cuda_device_index')!=0
+            or smoke.get('actual_forward_tensor_devices')!=['cuda:0']
+            or smoke.get('actual_cuda_device_indices')!=[0]
+            or smoke.get('image_count')!=72
+            or smoke.get('actual_device')!=audit.get('actual_device')
+            or smoke.get('actual_cuda_device_index')!=audit.get('actual_cuda_device_index')
+            or smoke.get('actual_forward_tensor_devices')!=audit.get('actual_forward_tensor_devices')
+            or smoke.get('actual_cuda_device_indices')!=audit.get('actual_cuda_device_indices')
+            or smoke.get('reference_actual_device')!=baseline.get('reference_actual_device')
+            or smoke.get('reference_cuda_device_index')!=baseline.get('reference_cuda_device_index')
+            or smoke.get('reference_forward_tensor_devices')!=baseline.get('reference_forward_tensor_devices')
+            or smoke.get('reference_cuda_device_indices')!=baseline.get('reference_cuda_device_indices')
             or smoke.get('official_metrics_disabled') is not True
             or smoke.get('artifact_ingest_disabled') is not True
             or smoke.get('parameter_updates') is not False
@@ -202,7 +217,23 @@ def register(tag, review_path):
             or baseline.get('raw_outputs_exact') is not True
             or baseline.get('decoded_predictions_exact') is not True
             or baseline.get('reference_actual_device')!='cuda:0'
-            or baseline.get('absolute_difference')!=0 or baseline.get('tolerance')!=0):
+            or baseline.get('reference_cuda_device_index')!=0
+            or baseline.get('reference_forward_tensor_devices')!=['cuda:0']
+            or baseline.get('reference_cuda_device_indices')!=[0]
+            or baseline.get('absolute_difference')!=0 or baseline.get('tolerance')!=0
+            or audit.get('state')!='passed'
+            or audit.get('teacher_checkpoint_sha256')!=release['teacher_dependency']['checkpoint_sha256']
+            or audit.get('actual_device')!='cuda:0'
+            or audit.get('actual_cuda_device_index')!=0
+            or audit.get('actual_forward_tensor_devices')!=['cuda:0']
+            or audit.get('actual_cuda_device_indices')!=[0]
+            or audit.get('image_count')!=72
+            or audit.get('raw_forward_calls',0)<1 or audit.get('raw_tensors_checked',0)<1
+            or len(audit.get('raw_output_signatures',[]))!=audit.get('raw_forward_calls')
+            or audit.get('finite_outputs') is not True
+            or audit.get('official_metrics_disabled') is not True
+            or audit.get('artifact_ingest_disabled') is not True
+            or audit.get('deleted_paths')!=[]):
         raise ValueError('Teacher-evaluation smoke failed its fixed-checkpoint/read-only contract')
     _,transport=services();observation=read_dependency(transport)
     if observation.get('state')!='READY_FOR_ISOLATED_PHASE_VALIDATION':

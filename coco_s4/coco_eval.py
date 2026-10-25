@@ -36,19 +36,27 @@ def raw_signature(value):
     return rows
 
 
-def raw_tensor_devices(value):
-    """Return device names observed on the actual pre-NMS forward outputs."""
+def raw_tensor_device_details(value):
+    """Return device names and CUDA indices from actual pre-NMS tensors."""
     import torch
-    devices=set()
+    devices=set();cuda_indices=set()
     def visit(v):
         if torch.is_tensor(v):
-            devices.add(str(v.device))
+            device=v.device
+            devices.add(str(device))
+            if device.type=='cuda' and device.index is not None:
+                cuda_indices.add(int(device.index))
         elif isinstance(v,dict):
             for k in sorted(v):visit(v[k])
         elif isinstance(v,(tuple,list)):
             for item in v:visit(item)
     visit(value)
-    return sorted(devices)
+    return sorted(devices),sorted(cuda_indices)
+
+
+def raw_tensor_devices(value):
+    """Compatibility helper for callers that need the observed device names."""
+    return raw_tensor_device_details(value)[0]
 
 
 def load_evaluator(directory, expected):
@@ -137,10 +145,11 @@ def predict(checkpoint, images_dir, annotation_json, mapping, output, *, smoke_b
     if model.model.model[-1].nc!=80 or len(model.model.names)!=80 or model.model.names[0]!='person':
         raise ValueError('Not a COCO80/Person0 checkpoint')
     counter=dict(raw_forward_calls=0,raw_tensors_checked=0)
-    signatures=[];forward_devices=set()
+    signatures=[];forward_devices=set();forward_cuda_indices=set()
     def checked(module,args,result):
         counter['raw_forward_calls']+=1
-        forward_devices.update(raw_tensor_devices(result))
+        devices,indices=raw_tensor_device_details(result)
+        forward_devices.update(devices);forward_cuda_indices.update(indices)
         def check(v):
             if torch.is_tensor(v):
                 counter['raw_tensors_checked']+=1
@@ -186,6 +195,8 @@ def predict(checkpoint, images_dir, annotation_json, mapping, output, *, smoke_b
                  finite_outputs=True,checked_outputs='all raw tensor outputs of DetectionModel, before NMS',
                  sparse_category_id_mapping_explicit=True,original_pixel_xywh=True,**counter,
                  raw_output_signatures=signatures,actual_forward_tensor_devices=sorted(forward_devices),
+                 actual_cuda_device_index=(next(iter(forward_cuda_indices)) if len(forward_cuda_indices)==1 else None),
+                 actual_cuda_device_indices=sorted(forward_cuda_indices),
                  actual_device=(next(iter(forward_devices)) if len(forward_devices)==1 else 'mixed'),
                  official_metrics_disabled=bool(smoke_batches),artifact_ingest_disabled=bool(smoke_batches),
                  cleanup_policy='retain_all',deleted_paths=[])
