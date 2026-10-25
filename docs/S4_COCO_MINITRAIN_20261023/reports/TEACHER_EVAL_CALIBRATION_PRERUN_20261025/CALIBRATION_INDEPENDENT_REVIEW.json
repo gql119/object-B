@@ -1,0 +1,269 @@
+{
+  "schema_version": "prerun.independent-scientific-review.v1",
+  "review_mode": "scientific_review",
+  "reviewer_id": "/root/coco_calibration_scientific_review",
+  "independent": true,
+  "reviewer_count": 1,
+  "independence_basis": "Separate delegated context; this reviewer did not implement candidate and did not call another reviewer.",
+  "reviewer_model": "Inherited Codex session model; exact serving model identifier not exposed to reviewer.",
+  "reviewed_UTC": "2026-10-25T08:35:16.986Z",
+  "phase": "calibration",
+  "source_commit": "4679cef71843c13feb9a7604e1acc52f032e6d44",
+  "pre_run_code_commit": "4679cef71843c13feb9a7604e1acc52f032e6d44",
+  "review_diff_base_commit": "3499e1fadfd40bec500f2ce7f9a0c55c8b4b2c62",
+  "packet_sha256": "d362397b1019d555cff23e55cedef815a32808a84f7037c474bdf21e74856ebd",
+  "packet_file_sha256": "e0d62a0d3266ccf24867674e0494284a2ec337d3e057a8881e6c969598b91e5d",
+  "release_sha256": "5e16ca9f00af6e827cec3efea66b0ee930d90301ec95ac2d73a8b58ab04960ce",
+  "phase_config_sha256": "c8c732494757d394bf99ddd8cdcc5ff68cd94eb8a9d8c60bf011e396e76b2ccb",
+  "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+  "previous_stage_receipt_sha256": "69655e8c89aa282a5ace5eff89b45412d9631f76409d269d778728c1df868b51",
+  "result": "scientifically_correct",
+  "decision": "allow_run",
+  "scientifically_correct": true,
+  "allow_run": true,
+  "pre_run_result": "pass",
+  "exact_command": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.phase_calibration --release /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_calibration_20261025_0825z_detprobe/source_release.json --output /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/calibration --registration /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/receipts/calibration_READY.json",
+  "approved_basis": [
+    "docs/S4_COCO_MINITRAIN_20261023/USER_AUTOSTART_TASK_20261025.md",
+    "docs/S4_COCO_MINITRAIN_20261023/USER_TASK_SOURCE.md",
+    "coco_s4/configs/calibration.json"
+  ],
+  "scope": "CALIBRATION scientific computation, train-only data flow, canonical statistics/prototype/artifact producer and B2 consumer identity only.",
+  "excluded_scope": [
+    "Later Fourier/export/victim/final-evaluation scientific phases",
+    "Transport/process/PID/controller/scheduler scaffolding",
+    "Final AP prediction and method efficacy"
+  ],
+  "dimensions": {
+    "Intent alignment": "correct",
+    "Canonical code location": "correct",
+    "Critical data flow": "correct",
+    "Computation sink effect": "correct",
+    "Runtime scientific state": "correct",
+    "Baseline/disabled path": "correct",
+    "Experiment identity": "correct"
+  },
+  "findings": [
+    {
+      "id": "CAL-SCI-01",
+      "dimension": "Intent alignment",
+      "status": "correct",
+      "finding": "The phase computes clean-training statistics for Original S4 COCO80 Person0 using the accepted fixed native EMA last@200. It does not optimize parameters, select checkpoints, use Teacher AP for method decisions or open validation images for method statistics.",
+      "sources": [
+        "coco_s4/phase_calibration.py:39",
+        "coco_s4/phase_calibration.py:77",
+        "coco_s4/phase_calibration.py:148",
+        "coco_s4/phase_contract.py:20"
+      ],
+      "evidence": [
+        "execution/coco_calibration_20261025_0825z_detprobe/source_release.json",
+        "execution/p/coco_calibration_20261025_0825z_detprobe/result/phase_spec.json"
+      ]
+    },
+    {
+      "id": "CAL-SCI-02",
+      "dimension": "Canonical code location",
+      "status": "correct",
+      "finding": "Native EMA stays a DetectionModel, converts serialized FP16 to canonical FP32, enters eval and is frozen. P3 model.15 and P5 model.21 hooks feed unchanged gt_evidence, select_channels, class_subspace and select_strict_tsfl mathematics. Relevant ue_framework code is unchanged across the supplied review diff base and reviewed commit.",
+      "sources": [
+        "coco_s4/phase_calibration.py:148",
+        "coco_s4/calibration.py:33",
+        "ue_framework/methods/base.py:45",
+        "ue_framework/methods/semantic_coordinates.py:23",
+        "ue_framework/methods/tausb_universal.py:192"
+      ],
+      "evidence": [
+        "execution/CALIBRATION_NATIVE_LOADER_CPU_VALIDATION_20261025.json",
+        "execution/CALIBRATION_COMPONENT_CPU_VALIDATION_20261025.json"
+      ]
+    },
+    {
+      "id": "CAL-SCI-03",
+      "dimension": "Critical data flow",
+      "status": "correct",
+      "finding": "The formal list is the hash-bound accepted 25K train manifest; each image and label SHA is checked during collection. Before acceptance the phase checks 25,000 images, 55,096 Person GT, 181,475 total GT, all79 NT classes and the complete digest. No-Person/empty-label images stay in that list. Sensitivity is per-GT abs-gradient spatial/batch mean, accumulated in canonical order then divided by object counts. Per-class bbox pooling uses original centered letterbox and area-mask geometry.",
+      "sources": [
+        "coco_s4/phase_calibration.py:102",
+        "coco_s4/phase_calibration.py:460",
+        "coco_s4/calibration.py:33",
+        "ue_framework/methods/semantic_coordinates.py:37",
+        "ue_framework/methods/legacy_kproto_ret.py:106"
+      ],
+      "evidence": [
+        "execution/CALIBRATION_COMPONENT_CPU_VALIDATION_20261025.json",
+        "execution/p/coco_calibration_20261025_0825z_detprobe/result/smoke_statistics/raw_statistics.pt"
+      ]
+    },
+    {
+      "id": "CAL-SCI-04",
+      "dimension": "Computation sink effect",
+      "status": "correct",
+      "finding": "K=8 background prototypes use the original LegacyKProtoTrainer._build_bank in a separate clean no-grad P5 context pass with original masks, seed0 and max_images0. GT-gradient features are not substituted for that bank. Eligible support remains support.sum()>10, with reported later optimizer steps 24*ceil(N/16).",
+      "sources": [
+        "coco_s4/phase_calibration.py:473",
+        "ue_framework/methods/legacy_kproto_ret.py:234",
+        "ue_framework/methods/legacy_kproto_ret.py:292",
+        "coco_s4/calibration.py:89"
+      ],
+      "evidence": [
+        "execution/p/coco_calibration_20261025_0825z_detprobe/result/smoke_statistics/eligible_support_manifest.json",
+        "coco_s4/configs/calibration.json"
+      ]
+    },
+    {
+      "id": "CAL-SCI-05",
+      "dimension": "Computation sink effect",
+      "status": "correct",
+      "finding": "StrictP5 keeps .4/.6/.15/min4/top3 and requires exactly24 channels; insufficient pools, degenerate PCA or incompatible space blocks without relaxing gates. P3 keeps .75/specificity1/variance.9/minrank4/maxfraction.5, and P3 orth reference copies are byte-exact. All79 full/selected NT bases are emitted. runtime_config binds these generated files; semantic_identity hashes them, then the formal phase instantiates the actual B2SemanticTrainer and checks24D/79 bases/P3 orth-retention/rank8/alpha.5/active3 before acceptance.",
+      "sources": [
+        "coco_s4/calibration.py:95",
+        "coco_s4/phase_calibration.py:127",
+        "coco_s4/phase_calibration.py:485",
+        "ue_framework/methods/semantic_coordinates.py:127",
+        "ue_framework/methods/b2_semantic.py:291"
+      ],
+      "evidence": [
+        "execution/CALIBRATION_COMPONENT_CPU_VALIDATION_20261025.json",
+        "coco_s4/configs/calibration.json"
+      ]
+    },
+    {
+      "id": "CAL-SCI-06",
+      "dimension": "Runtime scientific state",
+      "status": "correct",
+      "finding": "The actual current-commit primary smoke reached raw cuda:0/index0 tensors before evidence reduction on one real accepted Person train image, with finite output/statistics and unchanged frozen model. It used one primary plus three isolated comparison forwards, total4, with no parameter update, official metrics or ingest.",
+      "sources": [
+        "coco_s4/phase_calibration.py:402",
+        "coco_s4/phase_calibration.py:427"
+      ],
+      "evidence": [
+        "execution/p/coco_calibration_20261025_0825z_detprobe/result/smoke_summary.json",
+        "execution/p/coco_calibration_20261025_0825z_detprobe/result/status.json",
+        "execution/CALIBRATION_CURRENT_GPU_SMOKE_LOCAL_AUDIT_20261025.json",
+        "execution/rrctl_state/coco_calibration_20261025_0825z_detprobe/last_status.json"
+      ]
+    },
+    {
+      "id": "CAL-SCI-07",
+      "dimension": "Baseline/disabled path",
+      "status": "correct",
+      "finding": "The measured comparison is an extra isolated deterministic-cuDNN collection against independent original per-layer forward/GT-gradient loops. All960 present target/pooledNT/per-classNT sensitivity values match bitwise at tolerance0; both sides use actual CUDA0/index0 and identical fixed checkpoint bytes. Original backend flags are restored; primary smoke and formal collection keep them. This establishes exact equivalence in that explicit comparison setting, not default-backend bitwise repeatability or all79 real classes from one GPU image.",
+      "sources": [
+        "coco_s4/phase_calibration.py:247",
+        "coco_s4/phase_calibration.py:294",
+        "coco_s4/phase_calibration.py:427"
+      ],
+      "evidence": [
+        "execution/p/coco_calibration_20261025_0825z_detprobe/result/smoke_summary.json",
+        "execution/CALIBRATION_DETERMINISTIC_PROBE_CPU_VALIDATION_20261025.json",
+        "execution/CALIBRATION_COMPONENT_CPU_VALIDATION_20261025.json"
+      ]
+    },
+    {
+      "id": "CAL-SCI-08",
+      "dimension": "Experiment identity",
+      "status": "correct",
+      "finding": "Packet canonical digest, reviewed commit, release SHA, frozen phase config, fixed Teacher checkpoint, prior teacher_eval receipt and exact official command agree. All5 retained smoke artifacts match declared SHA256/byte lengths; eight committed critical source/config files match release hashes. Collision policy is fail and the official gate requires the current smoke plus one review closure.",
+      "sources": [
+        "coco_s4/phase_calibration.py:173",
+        "coco_s4/runtime.py:65"
+      ],
+      "evidence": [
+        "execution/CALIBRATION_SCIENTIFIC_REVIEW_PACKET_20261025.json",
+        "execution/coco_calibration_20261025_0825z_detprobe/source_release.json",
+        "execution/p/coco_calibration_20261025_0825z_detprobe/artifact_manifest.json"
+      ]
+    }
+  ],
+  "blockers": [],
+  "validation_gaps": [],
+  "local_validation": {
+    "source": "Existing retained validations; not rerun by reviewer",
+    "reports": [
+      "execution/CALIBRATION_COMPONENT_CPU_VALIDATION_20261025.json",
+      "execution/CALIBRATION_NATIVE_LOADER_CPU_VALIDATION_20261025.json",
+      "execution/CALIBRATION_DETERMINISTIC_PROBE_CPU_VALIDATION_20261025.json"
+    ],
+    "outcome": "All retained reports passed. Two synthetic all80 native CPU images match canonical gradient loops; synthetic79 artifact flow and incompatible24D blocking pass; random EMA/FP16 loading matches canonical state/raw/input gradients; current CPU isolated deterministic comparison passes.",
+    "limits": "Component/loader reports precede final probe-only change; collector mathematics and native loader are unchanged. Current CPU probe and current-commit GPU smoke cover final comparison path."
+  },
+  "gpu_smoke": {
+    "run_id": "coco_calibration_20261025_0825z_detprobe",
+    "exit_code": 0,
+    "primary_forward_calls": 1,
+    "extra_equivalence_forward_calls": 3,
+    "total_forward_calls": 4,
+    "actual_raw_tensor_devices": [
+      "cuda:0"
+    ],
+    "actual_cuda_device_indices": [
+      0
+    ],
+    "compared_values": 960,
+    "absolute_difference": 0,
+    "tolerance": 0,
+    "formal_backend_flags_changed": false,
+    "evidence": "execution/p/coco_calibration_20261025_0825z_detprobe/result/smoke_summary.json",
+    "summary_sha256": "8752a3ea3d980eed25ae82d98ad96d6c652fc7d32ee2fd848d19be4acdcb4253",
+    "raw_statistics_sha256": "98e1ba562a8838916f8821cf965ff92d2bef973b5acdb7f02617827da076c50f"
+  },
+  "reviewer_checks_performed": [
+    "Read approved sources, committed candidate and scientific diff",
+    "Verified canonical packet SHA and release SHA",
+    "Verified eight committed critical source/config files against release hashes",
+    "Verified all5 retained artifact SHA256 and byte lengths",
+    "Inspected raw-statistics zip metadata without executing its pickle"
+  ],
+  "limitations": [
+    "Formal all25K statistics, actual selected channels, real class PCA ranks, prototype count and generated B2 construction result are outputs of the calibration run and remain unmeasured before it. Their explicit fail-closed gates were reviewed.",
+    "One-image CUDA evidence contains only its observed NT class. The all80-class CPU gradients and79-class artifact flow are synthetic component evidence, not COCO-wide empirical feasibility.",
+    "The deterministic probe does not establish default-backend bitwise repeatability. Original enabled=true, benchmark=false, deterministic=false, allow_tf32=true flags are restored.",
+    "No experiments were launched or scientific source files edited by this reviewer. Existing CPU/GPU evidence was inspected. Local reviewer interpreters lacked torch; no tensor deserialization or numerical rerun is claimed. The retained raw archive metadata and bytes were checked with standard library tools.",
+    "The packet's local console.log path is absent from the pull directory. Completed exit-code evidence, production status, retained raw-statistics archive and matching artifact hashes provide scientific smoke evidence; console transport is outside this scientific verdict."
+  ],
+  "evidence_references": [
+    {
+      "path": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/execution/coco_calibration_20261025_0825z_detprobe/source_release.json"
+    },
+    {
+      "path": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/execution/p/coco_calibration_20261025_0825z_detprobe/result/phase_spec.json"
+    },
+    {
+      "path": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/execution/CALIBRATION_NATIVE_LOADER_CPU_VALIDATION_20261025.json"
+    },
+    {
+      "path": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/execution/CALIBRATION_COMPONENT_CPU_VALIDATION_20261025.json"
+    },
+    {
+      "path": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/execution/p/coco_calibration_20261025_0825z_detprobe/result/smoke_statistics/raw_statistics.pt"
+    },
+    {
+      "path": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/execution/p/coco_calibration_20261025_0825z_detprobe/result/smoke_statistics/eligible_support_manifest.json"
+    },
+    {
+      "path": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/coco_s4/configs/calibration.json"
+    },
+    {
+      "path": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/execution/p/coco_calibration_20261025_0825z_detprobe/result/smoke_summary.json"
+    },
+    {
+      "path": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/execution/p/coco_calibration_20261025_0825z_detprobe/result/status.json"
+    },
+    {
+      "path": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/execution/CALIBRATION_CURRENT_GPU_SMOKE_LOCAL_AUDIT_20261025.json"
+    },
+    {
+      "path": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/execution/rrctl_state/coco_calibration_20261025_0825z_detprobe/last_status.json"
+    },
+    {
+      "path": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/execution/CALIBRATION_DETERMINISTIC_PROBE_CPU_VALIDATION_20261025.json"
+    },
+    {
+      "path": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/execution/CALIBRATION_SCIENTIFIC_REVIEW_PACKET_20261025.json"
+    },
+    {
+      "path": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/execution/p/coco_calibration_20261025_0825z_detprobe/artifact_manifest.json"
+    }
+  ]
+}
+

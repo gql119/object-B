@@ -1,0 +1,54 @@
+{
+  "schema": "s4.coco.main-agent-scientific-blocker-closure.v1",
+  "UTC": "2026-10-25T07:54:38.419542+00:00",
+  "phase": "teacher_eval",
+  "original_independent_review": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\TEACHER_EVAL_INDEPENDENT_SCIENTIFIC_REVIEW_20261025.json",
+  "original_review_sha256": "2f1c6b86f902efecd2be1501593861fb841f7e9fa3efbfbdd64b038db0f7b643",
+  "original_review_result": "scientifically_incorrect",
+  "original_reviewed_commit": "52cb88ef0c2db4c187af4040cd158bdb0f3ee80c",
+  "reviewer_count": 1,
+  "second_review_performed": false,
+  "current_source_commit": "3ce80a512157b46cdeca8ab52799bd01bf94dc76",
+  "current_release_sha256": "8ca567a5ee6507a2b9b2e3222c68e1ba1bf7e7b8fd2f315e43348bc1dff0cc69",
+  "current_smoke": "coco_teacher_eval_20261025_0748z_batch36",
+  "smoke_sha256": "9fa892d73cb7ff371bfef6925f8f4ee4dd596ce5c92516f0df53193fe18fb18e",
+  "prediction_audit_sha256": "7c9fe14453da9809827d22569726e2c706f0f923e719998d1651d0e1a44e538b",
+  "B1": {
+    "state": "CLOSED",
+    "fix": "Native LoadImagesAndVideos ordered text source consumes frozen batch36; actual-input guard rejects oversize batches",
+    "CPU_report": "execution/TEACHER_EVAL_BATCH_CPU_VALIDATION_20261025.json",
+    "selected_inputs": 72,
+    "planned_data_batch_sizes": [
+      36,
+      36
+    ],
+    "actual_candidate_raw_input_batch_sizes": [
+      36,
+      36,
+      36
+    ],
+    "actual_reference_raw_input_batch_sizes": [
+      36,
+      36,
+      36
+    ],
+    "candidate_data_batches": 2,
+    "reference_data_batches": 2,
+    "candidate_native_warmup_forwards": 1,
+    "reference_native_warmup_forwards": 1,
+    "total_actual_raw_forwards": 6,
+    "warmup_evidence": "TEACHER_EVAL_BATCH_GPU_SOURCE_EVIDENCE_20261025.json pinned native warmup+batch loop; 72 exact selected IDs; 3 forwards per model",
+    "actual_tensor_device": "cuda:0",
+    "actual_tensor_cuda_index": 0,
+    "finite_outputs": true,
+    "raw_and_decoded_exact": true
+  },
+  "checkpoint_unchanged_SHA256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+  "official_metrics_generated": false,
+  "parameter_updates": false,
+  "protocol_config_unchanged": true,
+  "Original_S4_budget": "8/4/0 unchanged",
+  "pre_run_result": "pass",
+  "allow_run": true,
+  "validation_gaps": []
+}

@@ -1,0 +1,19 @@
+{
+  "state": "CLOSED",
+  "UTC": "2026-10-25T08:36:57.299727+00:00",
+  "phase": "calibration",
+  "reviewer_count": 1,
+  "independent_verdict_preserved": true,
+  "independent_review_sha256": "ce2ac7046203b9f58736697ca852a7a88a37fe0a211fda58952e4bbe4f00aba3",
+  "scientific_blockers": [],
+  "scientific_source_changed_after_review": false,
+  "nonblocking_console_transport": {
+    "resolved": true,
+    "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_calibration_20261025_0825z_detprobe\\console.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "explanation": "Actual remote control/console.log is empty because phase returns JSON to files and prints nothing; exact bytes retrieved/readback retained."
+  },
+  "current_GPU_audit_sha256": "9e167f35d1c328f700377a6e739bcd74099215daedea5f083c8fc1d818b905c5",
+  "no_second_review": true
+}

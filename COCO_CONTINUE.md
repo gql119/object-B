@@ -1,3 +1,24 @@
+# Current: Teacher assessment accepted; calibration READY registered (2026-10-25)
+
+Read execution/COCO_CURRENT_STATE.json and
+execution/COCO_CALIBRATION_RUNNING_CONTINUE_20261025.md first, then live small query.
+Teacher200 and fixed-last full5K COCO80 evaluation are independently ACCEPTED.
+Teacher eval receipt69655e8c89aa282a5ace5eff89b45412d9631f76409d269d778728c1df868b51.
+The one calibration scientific reviewer returned scientifically_correct/allow_run,
+no blockers. Actual source4679cef71843c13feb9a7604e1acc52f032e6d44, current smoke
+coco_calibration_20261025_0825z_detprobe: four raw CUDA0 forwards,960 exact sums
+in isolated deterministic comparison, flags restored, formal settings unchanged.
+READYfcdf3e1b10152f26c6e7ddac3226cc1273234c53ab7f9afa99457ab28b93e591
+uploaded/readback exact to existing workflow v3. Existing controller runtimeee0
+owns automatic formal calibration after normal poll; never launch manually.
+Actual state determines whether it has started. No real25K statistics/24D/K8
+compatibility acceptance is inferred yet. Strict incompatibility must BLOCK.
+All old failed runs/logs and Teacher B1 verdict are retained; no second reviewers.
+Exact original3b3a0af is now in remote ancestry by nonforce normal push.
+Same sole monitor, no repeated accepted tasks, OriginalS4/8-4-0 unchanged.
+
+Historical continuation text follows; current actual state overrides it.
+
 # Current: formal COCO Teacher200 is running (2026-10-25)
 
 Read execution/COCO_CURRENT_STATE.json and execution/COCO_TEACHER_RUNNING_CONTINUE_20261025.md first. Actual source ee0b4256fdd344c5a275e6d15efc78cb7636d6e1, workflow s4_coco_experiment_a_seed0_20261025_v3. Controller3797092/start349641321, Teacher3800540/start349706115,uid1014. Healthy current binding is inspect-only; never run control prepare/launch/restart or repeat Teacher smoke/review. Server consumed the exact closure and automatically started formal Teacher200; no new user confirmation is required. No AP/completion is implied by progress.

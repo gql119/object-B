@@ -1,0 +1,91 @@
+{
+  "state": "passed",
+  "UTC": "2026-10-25T08:28:39.437617+00:00",
+  "source_commit": "4679cef71843c13feb9a7604e1acc52f032e6d44",
+  "summary_sha256": "8752a3ea3d980eed25ae82d98ad96d6c652fc7d32ee2fd848d19be4acdcb4253",
+  "release_sha256": "5e16ca9f00af6e827cec3efea66b0ee930d90301ec95ac2d73a8b58ab04960ce",
+  "all5_pulled_artifact_SHAs_exact": true,
+  "raw_statistics_images": 1,
+  "actual_GPU_devices": [
+    "cuda:0"
+  ],
+  "actual_GPU_indices": [
+    0
+  ],
+  "primary_forwards": 1,
+  "extra_equivalence_forwards": 3,
+  "total_forwards": 4,
+  "GPU_initialized_by_local_audit": false,
+  "model_unchanged": true,
+  "Teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+  "baseline": {
+    "reference_id": "independent original per-layer GT-evidence gradient loops",
+    "reference_metric": 0,
+    "candidate_metric": 0,
+    "metric_name": "P3/P5 target, pooledNT and per-class sensitivity sums exact identity",
+    "absolute_difference": 0,
+    "tolerance": 0,
+    "all_sensitivity_sums_exact": true,
+    "compared_values": 960,
+    "reference_forward_calls": 2,
+    "reference_forward_input_batch_sizes": [
+      1,
+      1
+    ],
+    "reference_actual_forward_tensor_devices": [
+      "cuda:0"
+    ],
+    "reference_actual_cuda_device_indices": [
+      0
+    ],
+    "frozen_model_unchanged": true,
+    "candidate_forward_calls": 1,
+    "candidate_forward_input_batch_sizes": [
+      1
+    ],
+    "candidate_actual_forward_tensor_devices": [
+      "cuda:0"
+    ],
+    "candidate_actual_cuda_device_indices": [
+      0
+    ],
+    "comparison_backend_flags": {
+      "enabled": true,
+      "benchmark": false,
+      "deterministic": true,
+      "allow_tf32": true
+    },
+    "original_backend_flags": {
+      "enabled": true,
+      "benchmark": false,
+      "deterministic": false,
+      "allow_tf32": true
+    },
+    "backend_flags_restored": true,
+    "formal_backend_flags_changed": false,
+    "comparison_uses_extra_isolated_collection": true,
+    "reference_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+    "candidate_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+    "weights_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+    "evaluation_setting": {
+      "dataset": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/images/train/000000000036.jpg",
+      "sample_count": 1,
+      "seed": 0,
+      "parameters": {
+        "imgsz": 640,
+        "device": "cuda:0",
+        "target_class_id": 0,
+        "num_classes": 80,
+        "comparison_cudnn_flags": {
+          "enabled": true,
+          "benchmark": false,
+          "deterministic": true,
+          "allow_tf32": true
+        }
+      },
+      "post_processing": "original per-GT evidence and channel sensitivity reduction"
+    }
+  },
+  "failed_smoke_retained": true,
+  "formal_registered": false
+}

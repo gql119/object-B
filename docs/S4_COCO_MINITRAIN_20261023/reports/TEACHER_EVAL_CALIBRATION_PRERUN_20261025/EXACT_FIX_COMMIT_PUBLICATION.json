@@ -1,0 +1,18 @@
+{
+  "state": "VERIFIED",
+  "UTC": "2026-10-25T08:12:42.056221+00:00",
+  "commit": "5833f527b44453c40b23872cabd1060194409af6",
+  "tree": "d6d210bc532064c4003895be861965b6c39728f1",
+  "remote_ref_readback": "5833f527b44453c40b23872cabd1060194409af6",
+  "exact_original_fix_commit": "3b3a0af92d2ae2ab224879cd6dc296b68bbc9f35",
+  "fix_is_merge_parent": true,
+  "normal_non_force_push": true,
+  "scoped_blob_bytes_exact": {
+    "coco_s4/phase_calibration.py": "3fce5b19bc9982d05f8d15dcb0b679ef9df8cb24d1098a31011dd385aaa9f9e0",
+    "coco_s4/calibration_release.py": "e9e80a48dc6461069f33ae12c6f36c6794512538cfb9cbf2e0adf174a5c3de5d",
+    "coco_s4/validate_calibration_loader_cpu.py": "044a9165fa65a4fd66cef16846dc85639643ee0946951a868c75e46d1a1ea4f8",
+    "coco_s4/validate_calibration_reference_cpu.py": "b3903d16ba5ec0ddc976688a4f96c2212fd31940fa1fdedd9e7d3a123faafe2d",
+    "docs/S4_COCO_MINITRAIN_20261023/COCO_CALIBRATION_IMPLEMENTATION_20261025.md": "331505843db521233aa17cfda551931ab6f00c942fbd60ec675b1e00a1c709cf"
+  },
+  "scientific_runtime_not_started": true
+}

@@ -1,0 +1,58 @@
+{
+  "state": "passed",
+  "UTC": "2026-10-25T08:23:54.009976+00:00",
+  "synthetic_images": 1,
+  "imgsz": 640,
+  "classes": 80,
+  "reused_retained_random_EMA_checkpoint": true,
+  "actual_formal_checkpoint_used": false,
+  "frozen_model_hash": "0ca2da53c85ca837726a7aeab49ec2ad6c0aaac17db43736bfbefa75366c8ca7",
+  "canonical_reference": {
+    "reference_id": "independent original per-layer GT-evidence gradient loops",
+    "reference_metric": 0,
+    "candidate_metric": 0,
+    "metric_name": "P3/P5 target, pooledNT and per-class sensitivity sums exact identity",
+    "absolute_difference": 0,
+    "tolerance": 0,
+    "all_sensitivity_sums_exact": true,
+    "compared_values": 960,
+    "reference_forward_calls": 2,
+    "reference_forward_input_batch_sizes": [
+      1,
+      1
+    ],
+    "reference_actual_forward_tensor_devices": [
+      "cpu"
+    ],
+    "reference_actual_cuda_device_indices": [],
+    "frozen_model_unchanged": true,
+    "candidate_forward_calls": 1,
+    "candidate_forward_input_batch_sizes": [
+      1
+    ],
+    "candidate_actual_forward_tensor_devices": [
+      "cpu"
+    ],
+    "candidate_actual_cuda_device_indices": [],
+    "comparison_backend_flags": {
+      "enabled": true,
+      "benchmark": false,
+      "deterministic": true,
+      "allow_tf32": true
+    },
+    "original_backend_flags": {
+      "enabled": true,
+      "benchmark": false,
+      "deterministic": false,
+      "allow_tf32": true
+    },
+    "backend_flags_restored": true,
+    "formal_backend_flags_changed": false,
+    "comparison_uses_extra_isolated_collection": true
+  },
+  "GPU_initialized": false,
+  "source_sha256": "fe18c83a2a2657ff5a26a0ff41d3461283abf6635c06723c7591f448edb2c003",
+  "retained_output": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\calibration_reference_cpu_2026-10-25T082348.510078_0000",
+  "official_metrics_generated": false,
+  "deleted_paths": []
+}

@@ -1,0 +1,15 @@
+{
+  "phase": "calibration",
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261025_v3",
+  "pre_run_result": "pass",
+  "source_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_calibration_20261025_0825z_detprobe",
+  "release_sha256": "5e16ca9f00af6e827cec3efea66b0ee930d90301ec95ac2d73a8b58ab04960ce",
+  "release_relative": "source_release.json",
+  "module": "coco_s4.phase_calibration",
+  "previous_stage_receipt_sha256": "69655e8c89aa282a5ace5eff89b45412d9631f76409d269d778728c1df868b51",
+  "scientific_closure_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/receipts/calibration_SCIENTIFIC_CLOSURE.json",
+  "scientific_closure_sha256": "0097e2ee05a4ad3fdd5dd7ed0cad6e7b22c20d40740962128a86c8899bdb357f",
+  "smoke_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_calibration_20261025_0825z_detprobe/result/smoke_summary.json",
+  "smoke_sha256": "8752a3ea3d980eed25ae82d98ad96d6c652fc7d32ee2fd848d19be4acdcb4253",
+  "registered_UTC": "2026-10-25T08:37:22.061737+00:00"
+}

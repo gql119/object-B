@@ -1,3 +1,16 @@
+# Current accepted Teacher assessment — 2026-10-25
+
+Teacher200 and its separate fixed native EMA last@200 full original val2017 5K
+official COCO80 assessment are independently accepted. Person AP50=0.711971060380,
+AP75=0.486437733439, AP50–95=0.462561678095. All80 macro AP50=0.395154267840,
+AP75=0.283989529772, AP50–95=0.264909898204. Raw actual tensors were CUDA0/index0;
+139 native data batches (maximum36, last32) plus one warmup. Checkpoint SHA
+9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f unchanged.
+No training/statistics/selection/tuning used validation. These are Teacher
+measurements; they do not establish S4 effectiveness or full Experiment A completion.
+Full per-class rows and immutable acceptance evidence are in
+reports/TEACHER_EVAL_CALIBRATION_PRERUN_20261025. Historical progress below is retained.
+
 # COCO Teacher formal training
 
 Actual server verification: 2026-10-24T20:10:08Z (Hong Kong October25 04:10).

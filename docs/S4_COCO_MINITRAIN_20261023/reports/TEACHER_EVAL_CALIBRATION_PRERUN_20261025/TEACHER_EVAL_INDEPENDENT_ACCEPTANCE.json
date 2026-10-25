@@ -1,0 +1,81 @@
+{
+  "schema": "s4.coco.teacher-eval-independent-local-acceptance.v1",
+  "UTC": "2026-10-25T08:02:29.420778+00:00",
+  "state": "ACCEPTED",
+  "source_commit": "3ce80a512157b46cdeca8ab52799bd01bf94dc76",
+  "release_sha256": "8ca567a5ee6507a2b9b2e3222c68e1ba1bf7e7b8fd2f315e43348bc1dff0cc69",
+  "checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+  "server_acceptance_sha256": "69655e8c89aa282a5ace5eff89b45412d9631f76409d269d778728c1df868b51",
+  "complete_original5000_IDs": true,
+  "class_count": 80,
+  "actual_device": "cuda:0",
+  "actual_cuda_device_index": 0,
+  "data_batches": 139,
+  "native_warmup_forwards": 1,
+  "total_raw_forwards": 140,
+  "actual_last_batch": 32,
+  "observed_max_input_batch": 36,
+  "finite_outputs": true,
+  "parameter_updates": false,
+  "checkpoint_selection": false,
+  "method_statistics_from_validation": false,
+  "Teacher_person": {
+    "category_id": 1,
+    "yolo_class_id": 0,
+    "name": "person",
+    "AP50": 0.7119710603798745,
+    "AP75": 0.48643773343875596,
+    "AP50_95": 0.4625616780946983,
+    "Recall50": 0.8769601930036188,
+    "Precision50": 0.08458330350110976
+  },
+  "all80_macro": {
+    "AP50": 0.3951542678402508,
+    "AP75": 0.2839895297721414,
+    "AP50_95": 0.2649098982039467
+  },
+  "formal_results_only": true,
+  "smoke_metrics_ingested": false,
+  "second_scientific_review": false,
+  "next_stage": "calibration",
+  "server_evidence": {
+    "phase": {
+      "state": "ACCEPTED",
+      "receipt_sha256": "69655e8c89aa282a5ace5eff89b45412d9631f76409d269d778728c1df868b51"
+    },
+    "pipeline_state": "WAITING_PHASE_RELEASE",
+    "current_stage": "calibration",
+    "active_job": null,
+    "files": {
+      "accepted.json": {
+        "size": 1263,
+        "sha256": "69655e8c89aa282a5ace5eff89b45412d9631f76409d269d778728c1df868b51"
+      },
+      "status.json": {
+        "size": 1263,
+        "sha256": "69655e8c89aa282a5ace5eff89b45412d9631f76409d269d778728c1df868b51"
+      },
+      "phase_spec.json": {
+        "size": 44118,
+        "sha256": "11ea03a58776936641744c89e5c6c91fef1ca00c2f11d1ec1b704002704c280f"
+      },
+      "prediction_audit.json": {
+        "size": 3596,
+        "sha256": "8d6bf1137d60e404f4d850ff124dd70ab5fef372eb7973d8115962caccda133c"
+      },
+      "official_metrics.json": {
+        "size": 22616,
+        "sha256": "495e3479cb1ef6ba85093cc1ad67c46d2f18ec103208d1b00af4240bd3b9b0fa"
+      },
+      "COCO_PER_CLASS_AP.csv": {
+        "size": 8883,
+        "sha256": "593b42b713e55320c2a6a16c8cffe3d31bbcc269f1c4cb3d6956bcea65b13b78"
+      }
+    },
+    "checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+    "all5000_original_IDs_in_order": true,
+    "input_manifest_sha256": "13ed0ce143890ec790217137164c5d8669f07eb41ee746fb20aa13f86b495776"
+  },
+  "full_official_metric_recomputation_repeated": false,
+  "audit_scope": "All metric rows/hashes/category identity/actual input batches/pre-NMS device/5000 IDs and accepted checkpoint independently checked; no GPU initialized locally; server official COCOeval retained"
+}
