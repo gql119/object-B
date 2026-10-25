@@ -1,0 +1,124 @@
+{
+  "phase": "fourier24",
+  "source_commit": "34fee63a232d489ae54d61eb37a42483091c40d4",
+  "release_sha256": "8614b4476a851d57c21fab8a6a5ba92c283f1c5969a555912b232b62f35e7a2d",
+  "phase_config_sha256": "73cdfb480b2c2d5dcb4c57e351665477b1a218bedc1ac3b7ae5518a6c0900b60",
+  "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+  "teacher_receipt_sha256": "f06302c55aad6870c877aed3f79f1defb280a392d6bf96d4f40ca018245c3ade",
+  "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+  "accepted_calibration_manifest_sha256": "181e9c203b2d5a147888aac7ded702673c2084994d722c9ca4633fad0210ee64",
+  "validation_used": false,
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "cleanup_policy": "retain_all",
+  "deleted_paths": [],
+  "state": "passed",
+  "started_UTC": "2026-10-25T14:30:28.852858+00:00",
+  "smoke": false,
+  "cpu_probe": true,
+  "computation_kind": "fourier-gradient-cpu-validation",
+  "production_entrypoint_reached": true,
+  "finite_outputs": true,
+  "frozen_teacher_unchanged": true,
+  "actual_device": "cpu",
+  "actual_training_images": 1,
+  "actual_forward_tensor_devices": [
+    "cpu"
+  ],
+  "actual_cuda_device_indices": [],
+  "selected_channel_count": 39,
+  "non_target_class_count": 79,
+  "independent_P3_selected_count": 48,
+  "SafeBG_loss_Fourier_gradient_norms": {
+    "L_BG": 0.051655400544404984,
+    "L_rel": 0.05180947110056877
+  },
+  "cache_memory": {
+    "selected_dim": 39,
+    "classes": 79,
+    "entries": 2,
+    "max_entries": 8192,
+    "misses": 2,
+    "basis_bytes": 221052,
+    "entry_bytes": 2656,
+    "entry_upper_bound_bytes": 10878976
+  },
+  "per_loss_fourier_gradient_measurement": {
+    "measurement": "direct_autograd_fourier_coeff_v1",
+    "target": "trainer.fourier_coeff",
+    "parameter_shape": [
+      64,
+      3
+    ],
+    "parameter_device": "cpu",
+    "parameter_is_leaf": true,
+    "EOT_draws": 2,
+    "optimizer_gradient_accumulation_unchanged": true,
+    "per_draw_norms": [
+      {
+        "L_BG": 0.06900731474161148,
+        "L_rel": 0.06920333951711655
+      },
+      {
+        "L_BG": 0.049511510878801346,
+        "L_rel": 0.04957796260714531
+      }
+    ],
+    "mean_EOT_gradient_norms": {
+      "L_BG": 0.051655400544404984,
+      "L_rel": 0.05180947110056877
+    }
+  },
+  "per_loss_fourier_gradient_proof_sha256": "904a7bc79ebc41ddc170e9f0e28c202ca1b16370428ec01c2ea6ce0f65b04216",
+  "poison_image_gradient_norms": {
+    "L_BG": 0.25216104835271835,
+    "L_rel": 0.2526334971189499
+  },
+  "baseline_equivalence_probe": {
+    "reference_id": "frozen original SafeBG weightless24D kernel 9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+    "reference_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+    "candidate_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+    "weights_usage": "checkpoint belongs to the production loss path; this isolated projection kernel has no learned weights",
+    "reference_source_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_calibration_20261025_0825z_detprobe/ue_framework/methods/safebg.py",
+    "reference_source_sha256": "9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+    "candidate_source_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1430z_cpu/ue_framework/methods/safebg.py",
+    "candidate_source_sha256": "e0bfe9a5c86591c91e2ac1b560923994f1a322e6d34ec567e44bbeb01b673043",
+    "metric_name": "24D projected output Frobenius norm",
+    "reference_metric": 9.069275856018066,
+    "candidate_metric": 9.069275856018066,
+    "absolute_difference": 0.0,
+    "tolerance": 0,
+    "all_outputs_and_diagnostics_exact": true,
+    "RNG_restored": true,
+    "actual_tensor_device": "cpu",
+    "evaluation_setting": {
+      "dataset": "fixed synthetic24D tensor fixture; no VOC/COCO AP",
+      "seed": 157,
+      "sample_count": 2,
+      "parameters": {
+        "rank": 8,
+        "removal_alpha": 0.5,
+        "active_k": 3
+      },
+      "post_processing": "none"
+    }
+  },
+  "production_forward_calls": 12,
+  "actual_fourier_optimizer_updates": 1,
+  "actual_eot_samples": 2,
+  "parameter_updates": true,
+  "Fourier_gradient_norm": 0.10342428833246231,
+  "max_abs_delta": 0.00788235291838646,
+  "outside_support_max": 0.0,
+  "learned_fourier_max_abs_change": 0.0009999996982514858,
+  "native_rng_sha256": "6c6e5e6c0703f19b2899ed46b8b3a9a50265fbf1f6842c615dfe5e0fa351ded1",
+  "retained": [
+    "phase_spec.json",
+    "global_params.pt",
+    "diagnostics.csv",
+    "diagnostics.json",
+    "native_rng_state.pt",
+    "imported_calibration/"
+  ],
+  "completed_UTC": "2026-10-25T14:30:54.485247+00:00"
+}

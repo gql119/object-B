@@ -1,0 +1,56 @@
+{
+  "schema": "s4.coco.main-agent-single-review-finding-closure.v1",
+  "UTC": "2026-10-25T14:36:43.910044+00:00",
+  "phase": "fourier24",
+  "source_commit": "34fee63a232d489ae54d61eb37a42483091c40d4",
+  "release_sha256": "8614b4476a851d57c21fab8a6a5ba92c283f1c5969a555912b232b62f35e7a2d",
+  "phase_config_sha256": "73cdfb480b2c2d5dcb4c57e351665477b1a218bedc1ac3b7ae5518a6c0900b60",
+  "smoke_sha256": "05585404e77594b90e9c3edca6c7b5e7f2c9b412d9da32977f3b580e19c338b8",
+  "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+  "reviewer_count": 1,
+  "reviewer_independence": true,
+  "additional_reviewer_called": false,
+  "independent_review_original_decision": "do_not_run",
+  "independent_review_original_commit": "e89102474b064e1973e57964a19297f117a181a0",
+  "independent_review_original_path": "execution\\COCO_DIMENSION_FOURIER_INDEPENDENT_SCIENTIFIC_REVIEW_20261025.json",
+  "independent_review_original_sha256": "7fd1c71f7034f0ba3f7693c5292b5aed1e292de64f2b734893293dcac6d583b6",
+  "independent_review_original_unchanged": true,
+  "closure_author": "main agent; not a second independent scientific review",
+  "main_agent_findings_closed": [
+    {
+      "id": "F01",
+      "state": "CLOSED",
+      "change": "Direct production weighted BG_sel/rel_sel derivatives to native Fourier coefficient leaf, per-EOT and averaged, accumulation unchanged; old image derivative evidence no longer admitted",
+      "CPU_evidence": "coco_dim_20261025_1430z_cpu",
+      "GPU_evidence": "coco_dim_20261025_1438z_gpu"
+    },
+    {
+      "id": "F02",
+      "state": "CLOSED_REPORTING",
+      "change": "Retain inherited raw numeric CSV unchanged; additive per-EOT integer active-class sidecar",
+      "evidence": "categorical_diagnostics.jsonl"
+    }
+  ],
+  "actual_CPU_coefficient_gradient_norms": {
+    "L_BG": 0.051655400544404984,
+    "L_rel": 0.05180947110056877
+  },
+  "actual_CUDA_coefficient_gradient_norms": {
+    "L_BG": 0.05308785289525986,
+    "L_rel": 0.053252384066581726
+  },
+  "CPU_audit_sha256": "ed5a201483fd0f1f137976c60500b5ba1c845518096119127cb4f043877a02e7",
+  "GPU_audit_sha256": "9f665960cc106ed31559e32ad214bff89fd5e796d2775fd9a9c36a293d114a5a",
+  "retained_failed_or_nonaccepted_evidence": [
+    "e891024 review",
+    "1345zCPU and1350zGPU image-gradient labels"
+  ],
+  "loss_formula_or_config_changed": false,
+  "VOC24_core_sources_unchanged": true,
+  "original_8_4_0_unchanged": true,
+  "pre_run_result": "pass",
+  "scientifically_correct": true,
+  "allow_run": true,
+  "scientific_verdict": "allow_run",
+  "blockers": []
+}

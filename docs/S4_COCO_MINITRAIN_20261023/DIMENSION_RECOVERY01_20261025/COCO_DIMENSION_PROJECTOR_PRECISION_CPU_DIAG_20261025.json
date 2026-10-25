@@ -1,0 +1,18 @@
+{
+  "state": "DIAGNOSTIC_COMPLETE",
+  "scientific_formal_ready": false,
+  "actual_model_forwards": 0,
+  "GPU_initialized": false,
+  "basis_SHA256": "07f06b89d2a507076a810a97eb21020023f15615b0c43154ca102db2d15c65e2",
+  "order": [
+    38,
+    24,
+    26
+  ],
+  "rank": 8,
+  "double_gram": 3.552713678800501e-15,
+  "cast_float32_gram": 5.960464477539063e-08,
+  "original_q_double_gram": 1.0364261922468643e-05,
+  "projector_Frobenius_difference": 0.0009004869365338809,
+  "note": "Unmodified retained bases, independent CPU float64 same ordered SVD/rank8; no production solver/config/threshold change or formal recovery"
+}

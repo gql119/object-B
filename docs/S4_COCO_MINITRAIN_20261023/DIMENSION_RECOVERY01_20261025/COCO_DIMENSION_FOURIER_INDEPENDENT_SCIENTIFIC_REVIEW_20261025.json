@@ -1,0 +1,201 @@
+{
+  "schema_version": "prerun.independent-scientific-review.v1",
+  "review_mode": "scientific_review",
+  "reviewer": {
+    "identity": "Codex independent subagent /root/coco_dynamic_dimension_fourier_scientific_review",
+    "mode": "independent_read_only_subagent",
+    "implementation_authorship": false,
+    "exact_backend_model_id": null,
+    "model_identity_note": "Exact backend model ID is not exposed in this reviewer runtime; no model name or fork setting is invented.",
+    "scientific_reviewer_count": 1,
+    "additional_reviewer_called": false,
+    "tests_or_probes_launched": false,
+    "remote_commands_launched": false,
+    "code_edits": false,
+    "reviewer_writes": [
+      "execution/COCO_DIMENSION_FOURIER_INDEPENDENT_SCIENTIFIC_REVIEW_20261025.md",
+      "execution/COCO_DIMENSION_FOURIER_INDEPENDENT_SCIENTIFIC_REVIEW_20261025.json"
+    ]
+  },
+  "review_date": "2026-10-25",
+  "pre_run_code_commit": "e89102474b064e1973e57964a19297f117a181a0",
+  "review_diff_base_commit": "3a8db4c4277d2ffbcadef7864240063d84fff6b9",
+  "packet_path": "execution/COCO_DIMENSION_FOURIER_SCIENTIFIC_REVIEW_PACKET_20261025.json",
+  "packet_canonical_sha256": "2260841e24be9843956d4f06563a43f1ebcaf21afa3aaf9cacf3aa40585b87b4",
+  "packet_raw_sha256": "c95a85d6f7c5398756b650f5488e422727634705ce89e0ff69b2e98e06c5d271",
+  "result": "scientifically_incorrect",
+  "decision": "do_not_run",
+  "scientifically_correct": false,
+  "allow_run": false,
+  "pre_run_result": "fail",
+  "scope": "Only the exact formal Fourier24 command; later export/victim/evaluation are separately gated. Excludes RRCTL/process/controller/scheduler scaffolding and method-quality predictions.",
+  "exact_command": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.phase_fourier --release /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1350z_gpu/source_release.json --output /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_dimcompat_v1/fourier24 --registration /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_dimcompat_v1/receipts/fourier24_READY.json",
+  "approved_basis": [
+    "docs/S4_COCO_MINITRAIN_20261023/USER_DYNAMIC_DIMENSION_AUTHORIZATION_20261025.md",
+    "docs/S4_COCO_MINITRAIN_20261023/USER_AUTOSTART_TASK_20261025.md",
+    "coco_s4/configs/fourier24.json"
+  ],
+  "dimensions": {
+    "intent_alignment": "correct",
+    "canonical_code_location": "correct",
+    "critical_data_flow": "not_evaluable",
+    "computation_sink_effect": "not_evaluable",
+    "scientific_validation_and_result_attribution": "incorrect",
+    "runtime_scientific_state": "correct",
+    "baseline_disabled_path": "correct",
+    "experiment_identity": "correct"
+  },
+  "blockers": [
+    {
+      "id": "F01",
+      "priority": 1,
+      "title": "Image-space gradients mislabeled and admitted as separate Fourier coefficient gradients",
+      "source_references": [
+        "ue_framework/methods/b2_semantic.py:408",
+        "ue_framework/methods/b2_semantic.py:416",
+        "ue_framework/methods/b2_semantic.py:417",
+        "ue_framework/methods/b2_adaptive.py:38",
+        "coco_s4/phase_fourier.py:528",
+        "coco_s4/phase_fourier.py:546",
+        "ue_framework/methods/legacy_kproto_ret.py:508",
+        "ue_framework/methods/legacy_kproto_ret.py:513"
+      ],
+      "observed": "grad_BG_safe_norm and grad_rel_safe_norm are explicitly derivatives with respect to self._last_poison, the composed image. phase_fourier republishes these fields under SafeBG_loss_Fourier_gradient_norms and uses their nonzero values to admit the Fourier reachability requirement.",
+      "actual_GPU_mislabeled_values": {
+        "L_BG": 0.249729186296463,
+        "L_rel": 0.2502170205116272
+      },
+      "actual_total_loss_Fourier_gradient_norm": 0.10577037930488586,
+      "why_blocking": "A nonzero derivative with respect to the image does not prove a finite nonzero derivative through the native Fourier/support/composition Jacobian; the total-loss coefficient gradient can include other losses. The human authorization explicitly requires actual L_BG and L_rel gradients to Fourier. CPU and GPU summaries and the independent GPU audit all consume the same image-gradient fields. The only true separate coefficient derivatives supplied are synthetic primitive probes, not the learned-Teacher production path.",
+      "does_not_claim_actual_gradients_are_zero": true,
+      "required_closure": "Measure each actual production BG and rel term directly with respect to trainer.fourier_coeff before freeing the graph; record coefficient identity/shape, finiteness and positive norm. Correct the new gate and published summary to consume these actual derivatives, preserve existing image diagnostics with accurate names, supply current-source bounded production evidence, and record main-agent blocker closure. Preserve losses/weights/budgets; no second formal review is requested.",
+      "evidence_paths": [
+        "execution/p/coco_dim_20261025_1350z_gpu/result/diagnostics.csv",
+        "execution/p/coco_dim_20261025_1350z_gpu/result/smoke_summary.json",
+        "execution/p/coco_dim_20261025_1345z_cpu/result/cpu_probe_summary.json",
+        "execution/COCO_DIMENSION_CURRENT_GPU_INDEPENDENT_AUDIT_20261025.json",
+        "execution/audit_dimension_gpu_20261025.py",
+        "coco_s4/validate_dimension_cpu.py:87"
+      ]
+    }
+  ],
+  "nonblocking_findings": [
+    {
+      "id": "F02",
+      "priority": 2,
+      "inherited_before_dimension_diff": true,
+      "title": "Categorical active SafeBG IDs averaged across EOT",
+      "source_references": [
+        "ue_framework/methods/b2_semantic.py:267",
+        "ue_framework/methods/b2_semantic.py:270",
+        "ue_framework/methods/legacy_kproto_ret.py:519",
+        "ue_framework/methods/legacy_kproto_ret.py:520"
+      ],
+      "observed": "Actual current GPU CSV records active_nt_class_3=70.5. Numeric EOT averaging treats categorical IDs as continuous values; B2 repairs only worst_class IDs afterward.",
+      "effect": "Serialized active class IDs cannot establish actual selected category identities. Mathematical all79 ranking remains correct; this is not an additional Fourier gate.",
+      "suggested_fix": "Preserve per-draw active IDs or serialize categorical counts/modes explicitly, without averaging class IDs.",
+      "evidence_paths": [
+        "execution/p/coco_dim_20261025_1350z_gpu/result/diagnostics.csv"
+      ]
+    }
+  ],
+  "validation_gaps": [
+    "Separate finite nonzero derivatives of the actual learned-Teacher production BG and rel terms with respect to the native Fourier coefficient parameter have not been measured. The existing SafeBG_loss_Fourier_gradient_norms fields are image derivatives."
+  ],
+  "verified_observations": {
+    "source_hash_only_audit": {
+      "release_files_checked_against_checkout": 135,
+      "release_files_checked_against_commit": 135,
+      "mismatches": [],
+      "release_sha256": "b6e562e572502f172853c24437e054526ec76224a9e2c53be98e17dd349a87ca",
+      "phase_config_sha256": "73cdfb480b2c2d5dcb4c57e351665477b1a218bedc1ac3b7ae5518a6c0900b60"
+    },
+    "selection": {
+      "total_channels": 256,
+      "target_candidates": 103,
+      "safe_candidates": 78,
+      "selected_count": 39,
+      "rule": "min(ceil(.15*C), N_eligible)",
+      "gates": [0.4, 0.6, 3, 0.15, 4],
+      "original_indices_preserved": true,
+      "selected_channels": [5,6,7,14,16,22,23,36,42,43,50,59,62,66,70,73,84,97,99,102,105,118,119,126,130,175,183,184,203,205,216,218,228,236,237,238,240,250,253]
+    },
+    "SafeBG": {
+      "all_non_target_classes": 79,
+      "rank": 8,
+      "removal_alpha": 0.5,
+      "active_k": 3,
+      "ordered_SVD_preserved": true,
+      "norm_restoration_preserved": true,
+      "selected_class_rank_min": 12,
+      "selected_class_rank_max": 19,
+      "reconstruction_max_gram_error": 2.384185791015625e-7,
+      "actual_GPU_projector_gram_error": 8.225440979003906e-6,
+      "actual_GPU_raw_and_restored_direction_norm": 1.4666229486465454,
+      "cache_max_entries": 8192,
+      "cache_entry_upper_bound_bytes": 10878976,
+      "cache_basis_bytes": 221052
+    },
+    "P3": {
+      "feature_layer": "model.15",
+      "full_dimension": 64,
+      "selected_dimension": 48,
+      "reference_byte_reused": true,
+      "separate_from_P5": true
+    },
+    "numerical_equivalence": {
+      "scope": "Weightless24D SafeBG projection kernel; no full VOC detector/AP equivalence claimed",
+      "reference_source_sha256": "9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+      "candidate_source_sha256": "e0bfe9a5c86591c91e2ac1b560923994f1a322e6d34ec567e44bbeb01b673043",
+      "CPU_float32_float64_outputs_diagnostics_cache_exact": true,
+      "GPU_reference_metric": 9.589117050170898,
+      "GPU_candidate_metric": 9.589117050170898,
+      "absolute_difference": 0,
+      "tolerance": 0,
+      "GPU_all_outputs_and_diagnostics_exact": true,
+      "RNG_restored": true
+    },
+    "actual_GPU": {
+      "run_id": "coco_dim_20261025_1350z_gpu",
+      "native_forward_calls": 12,
+      "Fourier_optimizer_updates": 1,
+      "training_images": 1,
+      "EOT_samples": 2,
+      "actual_device": "cuda:0",
+      "L_BG": 0.4655998945236206,
+      "L_rel": 0.6655962467193604,
+      "L_total": 1.204453468322754,
+      "total_Fourier_gradient_norm": 0.10577037930488586,
+      "coefficient_max_abs_change": 0.0009999996982514858,
+      "outside_support_max": 0,
+      "finite_outputs": true,
+      "frozen_Teacher_unchanged": true,
+      "official_metrics_disabled": true,
+      "artifact_ingest_disabled": true
+    },
+    "identity": {
+      "Teacher_EMA_last200_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+      "raw_full25K_statistics_sha256": "8be0361d373f1278075c5e8dff1ae21ae7a792b0488ef7cfeb3b8fd930c1995d",
+      "K8_bank_sha256": "9aa1a3d75f1b8d76737fb18ddea4af4849cfa7886a443750f9f58ea874560a06",
+      "support_manifest_sha256": "c7ef1f83682428a38bf1ab63bc3c4b96ece6a88d51a8080d91f79cf5979440bf",
+      "eligible_train_images": 13630,
+      "formal_optimizer_steps": 20448,
+      "validation_used_by_Fourier": false,
+      "original_scientific_config_unchanged_except_dimension_protocol": true,
+      "original_8_4_0_support_computation_preserved": true
+    }
+  },
+  "prior_validation_evidence_read_not_rerun": [
+    {"path":"docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_DIMENSION_CPU_NUMERICS_20261025.json","result":"passed; exact CPU32/64 frozen24D numerics; synthetic39D/cache/primitive gradients"},
+    {"path":"docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_DIMENSION_REGRESSION_20261025.json","result":"55 tests, 0 failures, 0 errors, 0 skips; random-YAML synthetic VOC fixture"},
+    {"path":"docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_PRODUCTION_CONTRACTS_20261025.json","result":"passed; 13 invalid contracts rejected; scientific config equality except explicit dimension protocol"},
+    {"path":"execution/COCO_DIMENSION_RECONSTRUCTION_INDEPENDENT_AUDIT_20261025.json","result":"20 artifact hashes, original39, all79, ranks12..19 and byte-identical P3"},
+    {"path":"execution/p/coco_dim_20261025_1340z_schema/result/candidate_receipt.json","result":"current reconstructed component identity and two diagnostic-only raw-mean repairs"},
+    {"path":"execution/p/coco_dim_20261025_1345z_cpu/result/cpu_probe_summary.json","result":"actual production learned-Teacher CPU path; gradient attribution is affected by F01"},
+    {"path":"execution/p/coco_dim_20261025_1350z_gpu/result/smoke_summary.json","result":"actual current-source CUDA path; gradient attribution is affected by F01"},
+    {"path":"execution/p/coco_dim_20261025_1350z_gpu/result/phase_spec.json","result":"exact source/config/checkpoint/calibration and formal schedule binding"},
+    {"path":"execution/p/coco_dim_20261025_1350z_gpu/result/diagnostics.csv","result":"one actual EOT2 row; F01 pixel gradients and F02 fractional active class identity"},
+    {"path":"execution/COCO_DIMENSION_CURRENT_GPU_INDEPENDENT_AUDIT_20261025.json","result":"integrity/current-source audit; no separate loss-to-coefficient differentiation"},
+    {"path":"docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_RETAINED_SELECTION_20261025.json","result":"retained raw/bank/support/P3/Teacher hashes and exact selection scores/ranks"}
+  ]
+}

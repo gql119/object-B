@@ -1,0 +1,21 @@
+{
+  "schema": "s4.coco.dimension-recovery-config.v1",
+  "run_id": "s4_coco_experiment_a_seed0_20261025_dimcompat_v1",
+  "source_commit": "34fee63a232d489ae54d61eb37a42483091c40d4",
+  "dimension_protocol": "coco80-strict-tsfl-selected-dimension-v1",
+  "release_sha256": "8614b4476a851d57c21fab8a6a5ba92c283f1c5969a555912b232b62f35e7a2d",
+  "origin_state_sha256": "1aaff56d1818a88917425895471310ca87b777354efd22c695b6b38546e4f61c",
+  "origin_calibration_status_sha256": "62ea8871638eed83b30aa7c338fa5e1e532fe5011efe881138d02ff1a4e6e736",
+  "component_receipt_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261025_1340z_schema/result/candidate_receipt.json",
+  "component_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+  "component_phase_spec_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261025_1340z_schema/result/phase_spec.json",
+  "component_phase_spec_sha256": "76b18d6d8bc3b241224ddbc94fa818d29865da887fc798cfac936f4ed2bbf05d",
+  "scientific_closure_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/recovery_bindings/s4_coco_experiment_a_seed0_20261025_dimcompat_v1/scientific_closure.json",
+  "scientific_closure_sha256": "b6cec51336745f842310ab4f0cc00b8f094416f4c8e2b8d82aa0776bba51ded9",
+  "CPU_full_loss_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261025_1430z_cpu/result/cpu_probe_summary.json",
+  "CPU_full_loss_sha256": "38ee234f7645d3e4bffd33ebcf49d1b16ee180763e0c4b8b397a3bbd9ef960cb",
+  "authorization_sha256": "30e5f2b3ea9fb6d241692e33b075b205f061a112cb0e2226eb1d8275c0625d10",
+  "no_second_controller": true,
+  "OP_enabled": false,
+  "retain_all": true
+}

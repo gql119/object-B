@@ -1,0 +1,79 @@
+{
+  "UTC": "2026-10-25T14:48:52.282511+00:00",
+  "runtime_source": "34fee63a232d489ae54d61eb37a42483091c40d4",
+  "files": {
+    "COCO_DIMENSION_FOURIER_INDEPENDENT_SCIENTIFIC_REVIEW_20261025.json": {
+      "bytes": 12390,
+      "sha256": "7fd1c71f7034f0ba3f7693c5292b5aed1e292de64f2b734893293dcac6d583b6"
+    },
+    "COCO_DIMENSION_FOURIER_INDEPENDENT_SCIENTIFIC_REVIEW_20261025.md": {
+      "bytes": 12232,
+      "sha256": "a7546e0039b859619ec1711b794bcf6115e23dda4d4b2705701f45a07d490019"
+    },
+    "COCO_DIMENSION_FOURIER_MAIN_REVIEW_CLOSURE_20261025.json": {
+      "bytes": 2637,
+      "sha256": "7579225763703de8c8d7cd9bbaac516cdeefbb88aea60a991a1d89077f5e00b1"
+    },
+    "COCO_DIMENSION_PROJECTOR_PRECISION_CPU_DIAG_20261025.json": {
+      "bytes": 636,
+      "sha256": "67d8bf0a855f35f1839f691618a1046f82758101d387cfb9be0667d4f897adf1"
+    },
+    "COCO_DIMENSION_RECONSTRUCTION_INDEPENDENT_AUDIT_20261025.json": {
+      "bytes": 13272,
+      "sha256": "3761010d1e3e121029ff8993614f5171712db30d70ec1a32caec7e0e14cf77a3"
+    },
+    "COCO_DIMENSION_RECOVERY01_FAILURE_EVIDENCE_20261025.json": {
+      "bytes": 29364,
+      "sha256": "9f0a72d7fa2dbfda4eb2712a5cfd44ce98865f9283a8498d85852f27ea6bb8ee"
+    },
+    "failed_recovery_binding.json": {
+      "bytes": 1780,
+      "sha256": "730d5c9239d3c06d520917277b34e4d060bfa3d9523af8b658806cf189cf0908"
+    },
+    "projector_failure_diagnostic.json": {
+      "bytes": 13419,
+      "sha256": "83074bc7cbcb751f49e45a1ca9678e05b0cbbb99089c043d7dd0972cf03fcdd9"
+    },
+    "coco_dim_20261025_1430z_cpu\\categorical_diagnostics.jsonl": {
+      "bytes": 260,
+      "sha256": "821c78146ceb8a1b21175ee1bfa6a80dd7882124ee7feb9199326f62e4caa862"
+    },
+    "coco_dim_20261025_1430z_cpu\\cpu_probe_summary.json": {
+      "bytes": 4944,
+      "sha256": "38ee234f7645d3e4bffd33ebcf49d1b16ee180763e0c4b8b397a3bbd9ef960cb"
+    },
+    "coco_dim_20261025_1430z_cpu\\independent_audit.json": {
+      "bytes": 51904,
+      "sha256": "ed5a201483fd0f1f137976c60500b5ba1c845518096119127cb4f043877a02e7"
+    },
+    "coco_dim_20261025_1430z_cpu\\per_loss_fourier_gradients.json": {
+      "bytes": 20758,
+      "sha256": "904a7bc79ebc41ddc170e9f0e28c202ca1b16370428ec01c2ea6ce0f65b04216"
+    },
+    "coco_dim_20261025_1430z_cpu\\phase_spec.json": {
+      "bytes": 16835,
+      "sha256": "730115364997db15b92c1254412301b177784aa39196786a89064b29b8f8ebbc"
+    },
+    "coco_dim_20261025_1438z_gpu\\categorical_diagnostics.jsonl": {
+      "bytes": 260,
+      "sha256": "9b98904abb6d9acedf0728d600ebe29ee0f55ebb653dab359dca83d510594e51"
+    },
+    "coco_dim_20261025_1438z_gpu\\independent_audit.json": {
+      "bytes": 51947,
+      "sha256": "9f665960cc106ed31559e32ad214bff89fd5e796d2775fd9a9c36a293d114a5a"
+    },
+    "coco_dim_20261025_1438z_gpu\\per_loss_fourier_gradients.json": {
+      "bytes": 20776,
+      "sha256": "cc5952001d08f9d6d8087a1acb48049a596b8d211503ecd0d7b15fa1dee04d1d"
+    },
+    "coco_dim_20261025_1438z_gpu\\phase_spec.json": {
+      "bytes": 16824,
+      "sha256": "2cd43c69626b0595be075327d8964ee58a191d06f8654b9239664b6c19ee8119"
+    },
+    "coco_dim_20261025_1438z_gpu\\smoke_summary.json": {
+      "bytes": 4946,
+      "sha256": "05585404e77594b90e9c3edca6c7b5e7f2c9b412d9da32977f3b580e19c338b8"
+    }
+  },
+  "weights_or_images_included": false
+}
