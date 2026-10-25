@@ -1,3 +1,13 @@
+# Current state: BLOCKED at Original S4 24D compatibility gate
+
+The existing serial controller processed all 25,000 clean training images. StrictP5 selected 39 of 256 channels, while the frozen Original S4 SafeBG consumer requires 24. Calibration recorded `BLOCKED_PROTOCOL_COMPATIBILITY`; the controller ended `FAILED` without automatic retry. Its controller and calibration child were verified absent. No downstream Fourier, export, poisoned-data, matched-victim, or final evaluation phase started.
+
+The run retained raw statistics (182,681,792 bytes), a 13,630-image Person support manifest, the K=8 prototype bank, and the strict-space block receipt on the owned server. No validation images or parameter updates were used; official metrics and cleanup were disabled. See `docs/S4_COCO_MINITRAIN_20261023/COCO_CALIBRATION_PROTOCOL_BLOCK_20261025.md` and `execution/COCO_CALIBRATION_PROTOCOL_BLOCK_20261025.json`. The full bounded audit is `execution/CALIBRATION_PROTOCOL_BLOCK_REMOTE_AUDIT_20261025.json`.
+
+This is a real method/data compatibility block, not a CUDA runtime failure or a completed Experiment A. Under the frozen protocol no downstream phase can start. Keep the same monitor for human scope changes; do not restart the failed bound workflow.
+
+Historical records below are retained as-is.
+
 # Current: Teacher assessment accepted; calibration READY registered (2026-10-25)
 
 Read execution/COCO_CURRENT_STATE.json and
