@@ -12,6 +12,7 @@ import re
 import subprocess
 
 from .phase_contract import OWNED, WORKFLOW, WORKFLOW_OUTPUT
+from .release_transport import anchor_path, ensure_remote_exact, validate_anchor_outside_lifecycle
 from .runtime import DATA_FILES, DATA_ROOT, ROOT, load, now, sha, write_once
 
 EX = ROOT / "execution"
@@ -118,13 +119,14 @@ def build(tag, head, observation):
     template = load(EX / (WORKFLOW + ".json"))
     remote_repo = (OWNED / "releases" / tag).as_posix()
     remote_output = (OWNED / "validation" / tag).as_posix()
-    remote_release = remote_repo + "/source_release.json"
+    remote_release = anchor_path(tag)
     template.update(run_id=tag, project="s4-coco-paired-official-eval-validation")
     template["source"] = dict(repo_root=str(ROOT), branch="codex/s4-coco-minitrain25k-generalization",
                               commit=head, allowed_post_commit_paths=["execution/", "Ultralytics/"])
     template["remote"].update(repo_root=remote_repo, output_root=remote_output,
                               stage_root=(OWNED / "stage" / tag).as_posix(),
                               control_root=(OWNED / "control" / tag).as_posix())
+    validate_anchor_outside_lifecycle(remote_release, template["remote"])
     template["session"]["name"] = tag
     unit = "s4coco-official-eval-" + hashlib.sha256(tag.encode()).hexdigest()[:20]
     template["workload"] = dict(cwd=".", argv=["systemd-run", "--user", "--scope", "--quiet", "--unit=" + unit,
@@ -290,6 +292,7 @@ print(json.dumps(out,sort_keys=True))'''
     wanted = {remote_review: sha(reviewer_local), remote_closure: sha(closure_path), remote_ready: sha(registration_path)}
     if any(existing.get(p) not in (None, digest) for p, digest in wanted.items()):
         raise ValueError("Conflicting serial phase receipt exists; no overwrite or duplicate registration")
+    ensure_remote_exact(transport, release_path, spec["remote"]["repo_root"] + "/source_release.json")
     local_uploads = {remote_review: reviewer_local, remote_closure: closure_path, remote_ready: registration_path}
     for remote_path, local_path in local_uploads.items():
         if existing.get(remote_path) is None:

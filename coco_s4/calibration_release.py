@@ -13,6 +13,7 @@ import subprocess
 
 from .runtime import ROOT, DATA_FILES, PARENT, VICTIM_PARENT, commit, load, now, sha, write_once
 from .phase_contract import OWNED, WORKFLOW, WORKFLOW_OUTPUT
+from .release_transport import anchor_path, close_and_register, validate_anchor_outside_lifecycle
 
 EX = ROOT/'execution'
 PYTHON = '/project/guoqinglong/miniconda3/envs/cfbdm/bin/python'
@@ -117,12 +118,13 @@ def build(tag, head, observation):
     write_once(local,release)
     template=load(EX/(WORKFLOW+'.json'))
     repo=(OWNED/'releases'/tag).as_posix();output=(OWNED/'validation'/tag).as_posix()
-    remote_release=repo+'/source_release.json'
+    remote_release=anchor_path(tag)
     template.update(run_id=tag,project='s4-coco-calibration-validation')
     template['source']=dict(repo_root=str(ROOT),branch='codex/s4-coco-minitrain25k-generalization',commit=head,
                             allowed_post_commit_paths=['execution/','Ultralytics/'])
     template['remote'].update(repo_root=repo,output_root=output,stage_root=(OWNED/'stage'/tag).as_posix(),
                               control_root=(OWNED/'control'/tag).as_posix())
+    validate_anchor_outside_lifecycle(remote_release, template['remote'])
     template['session']['name']=tag
     unit='s4coco-cal-'+hashlib.sha256(tag.encode()).hexdigest()[:24]
     template['workload']=dict(cwd='.',argv=['systemd-run','--user','--scope','--quiet','--unit='+unit,
@@ -201,9 +203,46 @@ def launch_smoke(tag):
     print(json.dumps(dict(launched_once=True,run_id=tag,result=launched,formal_registered=False)))
 
 
+def register(tag, review_path):
+    tag=candidate_name(tag);spec_path=EX/(tag+'.json')
+    if not spec_path.is_file() or not (EX/'rrctl_state'/tag).exists():
+        raise ValueError('No RRCTL-bound calibration smoke')
+    spec=load(spec_path)
+    if current_source()!=spec['source']['commit']:
+        raise ValueError('Calibration review source differs from the published candidate')
+    summary_path=Path(spec['local_pull_root'])/'result'/'smoke_summary.json'
+    if not summary_path.is_file():raise ValueError('RRCTL has not pulled calibration smoke evidence')
+    smoke=load(summary_path);release_path=EX/tag/'source_release.json';release=load(release_path)
+    cfg_sha=sha(ROOT/release['phase_config_path'])
+    expected=dict(state='passed',phase=PHASE,source_commit=spec['source']['commit'],
+        release_sha256=sha(release_path),phase_config_sha256=cfg_sha,
+        teacher_checkpoint_sha256=release['teacher_dependency']['checkpoint_sha256'],
+        previous_stage_receipt_sha256=release['teacher_eval_dependency']['accepted_sha256'],
+        computation_kind='gradient-calibration',production_entrypoint_reached=True,finite_outputs=True,
+        model_unchanged=True,validation_used=False,parameter_updates=False,official_metrics_disabled=True,
+        artifact_ingest_disabled=True,actual_device='cuda:0',actual_training_images=1)
+    if (any(smoke.get(k)!=v for k,v in expected.items())
+            or not 1<=smoke.get('production_forward_calls',0)<=100):
+        raise ValueError('Calibration smoke lacks the exact bounded native CUDA evidence')
+    review=load(review_path)
+    if review.get('previous_stage_receipt_sha256')!=release['teacher_eval_dependency']['accepted_sha256']:
+        raise ValueError('Review is not bound to the accepted fixed-last Teacher evaluation')
+    _,transport=services();observation=read_dependency(transport)
+    if observation.get('state')!='READY_FOR_ISOLATED_PHASE_VALIDATION':
+        raise ValueError('Serial predecessor/capacity gate changed; no registration')
+    if observation.get('previous_dependency',{}).get('accepted_sha256')!=release['teacher_eval_dependency']['accepted_sha256']:
+        raise ValueError('Accepted Teacher-evaluation receipt changed; no registration')
+    result=close_and_register(transport,tag=tag,phase=PHASE,module='coco_s4.phase_calibration',
+        spec=spec,release_path=release_path,smoke_path=summary_path,review_path=review_path,
+        previous_stage_receipt_sha256=release['teacher_eval_dependency']['accepted_sha256'],
+        closure_extra={'previous_stage_receipt_sha256':release['teacher_eval_dependency']['accepted_sha256']})
+    print(json.dumps(result))
+
+
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('action',choices=('prepare','launch-smoke'))
-    parser.add_argument('--tag',required=True)
+    parser.add_argument('action',choices=('prepare','launch-smoke','register'))
+    parser.add_argument('--tag',required=True);parser.add_argument('--review',type=Path)
     args=parser.parse_args()
-    {'prepare':prepare,'launch-smoke':launch_smoke}[args.action](args.tag)
+    if args.action=='register' and args.review is None:parser.error('register requires --review JSON')
+    {'prepare':prepare,'launch-smoke':launch_smoke,'register':register}[args.action](args.tag,*(([args.review] if args.action=='register' else [])))

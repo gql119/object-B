@@ -13,6 +13,7 @@ import subprocess
 
 from .runtime import ROOT, DATA_FILES, PARENT, VICTIM_PARENT, commit, load, now, sha, write_once
 from .phase_contract import OWNED, WORKFLOW, WORKFLOW_OUTPUT
+from .release_transport import anchor_path, close_and_register, validate_anchor_outside_lifecycle
 from .phase_fourier import CALIBRATION_ARTIFACT_SUFFIXES, MAIN_CONFIG, validate_phase_config
 
 EX = ROOT/'execution'
@@ -139,12 +140,13 @@ def build(tag, head, observation, *, validation_kind):
     write_once(local, release)
     template = load(EX/(WORKFLOW+'.json'))
     repo = (OWNED/'releases'/tag).as_posix(); output = (OWNED/'validation'/tag).as_posix()
-    remote_release = repo+'/source_release.json'
+    remote_release = anchor_path(tag)
     template.update(run_id=tag, project='s4-coco-fourier24-validation')
     template['source'] = dict(repo_root=str(ROOT), branch='codex/s4-coco-minitrain25k-generalization',
                               commit=head, allowed_post_commit_paths=['execution/', 'Ultralytics/'])
     template['remote'].update(repo_root=repo, output_root=output, stage_root=(OWNED/'stage'/tag).as_posix(),
                               control_root=(OWNED/'control'/tag).as_posix())
+    validate_anchor_outside_lifecycle(remote_release, template['remote'])
     template['session']['name'] = tag
     unit = 's4coco-fourier-'+hashlib.sha256(tag.encode()).hexdigest()[:24]
     phase_args = [PYTHON, '-B', '-m', 'coco_s4.phase_fourier', '--release', remote_release,
@@ -257,10 +259,47 @@ def launch_smoke(tag):
     return _launch_candidate(tag, 'gpu_smoke')
 
 
+def register(tag, review_path):
+    tag = candidate_name(tag); spec_path = EX/(tag+'.json')
+    if not spec_path.is_file() or not (EX/'rrctl_state'/tag).exists():
+        raise ValueError('No RRCTL-bound Fourier CUDA smoke')
+    spec = load(spec_path)
+    if current_source() != spec['source']['commit']:
+        raise ValueError('Fourier review source differs from the published candidate')
+    summary_path = Path(spec['local_pull_root'])/'result'/'smoke_summary.json'
+    if not summary_path.is_file(): raise ValueError('RRCTL has not pulled the Fourier smoke evidence')
+    smoke = load(summary_path); release_path = EX/tag/'source_release.json'; release = load(release_path)
+    cfg_sha = sha(ROOT/release['phase_config_path'])
+    expected = dict(state='passed', phase='fourier24', source_commit=spec['source']['commit'],
+        release_sha256=sha(release_path), phase_config_sha256=cfg_sha,
+        calibration_receipt_sha256=release['calibration_dependency']['accepted_sha256'],
+        teacher_checkpoint_sha256=release['teacher_dependency']['checkpoint_sha256'],
+        computation_kind='fourier-gradient', production_entrypoint_reached=True, finite_outputs=True,
+        frozen_teacher_unchanged=True, validation_used=False, parameter_updates=True,
+        actual_fourier_optimizer_updates=1, official_metrics_disabled=True,
+        artifact_ingest_disabled=True, actual_device='cuda:0', actual_training_images=1)
+    if any(smoke.get(k) != v for k,v in expected.items()) or not 1 <= smoke.get('production_forward_calls',0) <= 100:
+        raise ValueError('Fourier candidate lacks the bounded native CUDA update evidence')
+    review = load(review_path)
+    if review.get('calibration_receipt_sha256') != release['calibration_dependency']['accepted_sha256']:
+        raise ValueError('Fourier review is not bound to accepted calibration')
+    _, transport = services(); observation = read_dependency(transport)
+    if (observation.get('state') != 'READY_FOR_ISOLATED_PHASE_VALIDATION'
+            or observation.get('calibration_dependency',{}).get('accepted_sha256')
+               != release['calibration_dependency']['accepted_sha256']):
+        raise ValueError('Serial calibration/capacity gate changed; no Fourier registration')
+    result = close_and_register(transport, tag=tag, phase='fourier24', module='coco_s4.phase_fourier',
+        spec=spec, release_path=release_path, smoke_path=summary_path, review_path=review_path,
+        previous_stage_receipt_sha256=release['calibration_dependency']['accepted_sha256'],
+        closure_extra={'calibration_receipt_sha256':release['calibration_dependency']['accepted_sha256']})
+    print(json.dumps(result))
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('action', choices=('prepare', 'launch-smoke', 'prepare-cpu-probe', 'launch-cpu-probe'))
-    parser.add_argument('--tag', required=True)
+    parser.add_argument('action', choices=('prepare', 'launch-smoke', 'prepare-cpu-probe', 'launch-cpu-probe','register'))
+    parser.add_argument('--tag', required=True);parser.add_argument('--review',type=Path)
     args = parser.parse_args()
     {'prepare': prepare, 'launch-smoke': launch_smoke,
-     'prepare-cpu-probe': prepare_cpu_probe, 'launch-cpu-probe': launch_cpu_probe}[args.action](args.tag)
+     'prepare-cpu-probe': prepare_cpu_probe, 'launch-cpu-probe': launch_cpu_probe,
+     'register':register}[args.action](args.tag,*(([args.review] if args.action=='register' else [])))

@@ -13,6 +13,7 @@ import subprocess
 
 from .runtime import ROOT, DATA_FILES, PARENT, VICTIM_PARENT, commit, load, now, sha, write_once
 from .phase_contract import OWNED, WORKFLOW, WORKFLOW_OUTPUT
+from .release_transport import anchor_path, close_and_register, validate_anchor_outside_lifecycle
 from .phase_export import MAIN_CONFIG, TFSS_LOCK, validate_phase_config
 
 EX = ROOT/'execution'
@@ -161,12 +162,13 @@ def build(tag, head, observation):
     write_once(local, release)
     template = load(EX/(WORKFLOW+'.json'))
     repo = (OWNED/'releases'/tag).as_posix(); output = (OWNED/'validation'/tag).as_posix()
-    remote_release = repo+'/source_release.json'
+    remote_release = anchor_path(tag)
     template.update(run_id=tag, project='s4-coco-export25k-validation')
     template['source'] = dict(repo_root=str(ROOT), branch='codex/s4-coco-minitrain25k-generalization',
                               commit=head, allowed_post_commit_paths=['execution/', 'Ultralytics/'])
     template['remote'].update(repo_root=repo, output_root=output, stage_root=(OWNED/'stage'/tag).as_posix(),
                               control_root=(OWNED/'control'/tag).as_posix())
+    validate_anchor_outside_lifecycle(remote_release, template['remote'])
     template['session']['name'] = tag
     unit = 's4coco-export-'+hashlib.sha256(tag.encode()).hexdigest()[:24]
     phase_args = [PYTHON, '-B', '-m', 'coco_s4.phase_export', '--release', remote_release,
@@ -243,9 +245,42 @@ def launch_smoke(tag):
     print(json.dumps(dict(launched_once=True, run_id=tag, result=result, formal_registered=False)))
 
 
+def register(tag, review_path):
+    tag=candidate_name(tag);spec_path=EX/(tag+'.json')
+    if not spec_path.is_file() or not (EX/'rrctl_state'/tag).exists():
+        raise ValueError('No RRCTL-bound export CUDA smoke')
+    spec=load(spec_path)
+    if current_source()!=spec['source']['commit']:
+        raise ValueError('Export review source differs from the published candidate')
+    summary_path=Path(spec['local_pull_root'])/'result'/'smoke_summary.json'
+    if not summary_path.is_file():raise ValueError('RRCTL has not pulled export smoke evidence')
+    smoke=load(summary_path);release_path=EX/tag/'source_release.json';release=load(release_path)
+    cfg_sha=sha(ROOT/release['phase_config_path']);fourier_sha=release['fourier_dependency']['accepted_sha256']
+    expected=dict(state='passed',phase='export25k',source_commit=spec['source']['commit'],
+        release_sha256=sha(release_path),phase_config_sha256=cfg_sha,
+        Fourier_receipt_sha256=fourier_sha,computation_kind='poisoned-export',finite_outputs=True,
+        production_entrypoint_reached=True,decoded_budget_passed=True,labels_byte_identical=True,
+        validation_used=False,parameter_updates=False,official_metrics_disabled=True,
+        artifact_ingest_disabled=True,actual_device='cuda:0',actual_training_images=1)
+    if any(smoke.get(k)!=v for k,v in expected.items()) or not 1<=smoke.get('production_forward_calls',0)<=100:
+        raise ValueError('Export candidate lacks decoded 8/4/0, label identity, and bounded CUDA evidence')
+    review=load(review_path)
+    if review.get('Fourier_receipt_sha256')!=fourier_sha:
+        raise ValueError('Export review is not bound to the accepted Fourier receipt')
+    _,transport=services();observation=read_dependency(transport)
+    if (observation.get('state')!='READY_FOR_ISOLATED_PHASE_VALIDATION'
+            or observation.get('fourier_dependency',{}).get('accepted_sha256')!=fourier_sha):
+        raise ValueError('Serial Fourier/capacity gate changed; no export registration')
+    result=close_and_register(transport,tag=tag,phase='export25k',module='coco_s4.phase_export',
+        spec=spec,release_path=release_path,smoke_path=summary_path,review_path=review_path,
+        previous_stage_receipt_sha256=fourier_sha,closure_extra={'Fourier_receipt_sha256':fourier_sha})
+    print(json.dumps(result))
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('action', choices=('prepare', 'launch-smoke'))
-    parser.add_argument('--tag', required=True)
+    parser.add_argument('action', choices=('prepare', 'launch-smoke','register'))
+    parser.add_argument('--tag', required=True);parser.add_argument('--review',type=Path)
     args = parser.parse_args()
-    {'prepare': prepare, 'launch-smoke': launch_smoke}[args.action](args.tag)
+    if args.action=='register' and args.review is None:parser.error('register requires --review JSON')
+    {'prepare': prepare, 'launch-smoke': launch_smoke,'register':register}[args.action](args.tag,*(([args.review] if args.action=='register' else [])))

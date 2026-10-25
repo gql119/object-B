@@ -14,6 +14,7 @@ import subprocess
 
 from .runtime import ROOT, DATA_ROOT, DATA_FILES, PARENT, VICTIM_PARENT, commit, load, now, sha, write_once
 from .phase_contract import OWNED, WORKFLOW, WORKFLOW_OUTPUT, TEACHER_COMMIT, TEACHER_RELEASE
+from .release_transport import anchor_path, close_and_register, validate_anchor_outside_lifecycle
 
 EX=ROOT/'execution'
 PYTHON='/project/guoqinglong/miniconda3/envs/cfbdm/bin/python'
@@ -101,12 +102,13 @@ def build(tag,head,observation):
     local=EX/tag/'source_release.json';write_once(local,release)
     template=load(EX/(WORKFLOW+'.json'))
     repo=(OWNED/'releases'/tag).as_posix();output=(OWNED/'validation'/tag).as_posix()
-    remote_release=repo+'/source_release.json'
+    remote_release=anchor_path(tag)
     template.update(run_id=tag,project='s4-coco-teacher-evaluation-validation')
     template['source']=dict(repo_root=str(ROOT),branch='codex/s4-coco-minitrain25k-generalization',commit=head,
                             allowed_post_commit_paths=['execution/','Ultralytics/'])
     template['remote'].update(repo_root=repo,output_root=output,stage_root=(OWNED/'stage'/tag).as_posix(),
                               control_root=(OWNED/'control'/tag).as_posix())
+    validate_anchor_outside_lifecycle(remote_release, template['remote'])
     template['session']['name']=tag
     unit='s4coco-eval-'+hashlib.sha256(tag.encode()).hexdigest()[:24]
     template['workload']=dict(cwd='.',argv=['systemd-run','--user','--scope','--quiet','--unit='+unit,
@@ -169,6 +171,48 @@ def launch_smoke(tag):
     print(json.dumps(dict(launched_once=True,run_id=tag,result=result,formal_registered=False)))
 
 
+def register(tag, review_path):
+    """Register the exact reviewed fixed-last Teacher assessment candidate."""
+    tag=candidate_name(tag);spec_path=EX/(tag+'.json')
+    if not spec_path.is_file() or not (EX/'rrctl_state'/tag).exists():
+        raise ValueError('No bound RRCTL Teacher-evaluation smoke')
+    spec=load(spec_path)
+    if current_source()!=spec['source']['commit']:
+        raise ValueError('Review source is no longer the prepared published candidate')
+    summary_path=Path(spec['local_pull_root'])/'result'/'smoke_summary.json'
+    if not summary_path.is_file():
+        raise ValueError('RRCTL has not pulled the completed inference smoke')
+    smoke=load(summary_path);release_path=EX/tag/'source_release.json';release=load(release_path)
+    cfg_sha=sha(ROOT/release['phase_config_path'])
+    baseline=smoke.get('baseline_equivalence_probe',{})
+    if (smoke.get('state')!='passed' or smoke.get('phase')!='teacher_eval'
+            or smoke.get('source_commit')!=spec['source']['commit']
+            or smoke.get('release_sha256')!=sha(release_path)
+            or smoke.get('phase_config_sha256')!=cfg_sha
+            or smoke.get('teacher_checkpoint_sha256')!=release['teacher_dependency']['checkpoint_sha256']
+            or smoke.get('official_metrics_disabled') is not True
+            or smoke.get('artifact_ingest_disabled') is not True
+            or smoke.get('parameter_updates') is not False
+            or smoke.get('checkpoint_selection_allowed') is not False
+            or smoke.get('method_statistics_allowed') is not False
+            or smoke.get('finite_outputs') is not True
+            or not 1<=smoke.get('actual_inference_batches',0)<=100
+            or not 1<=smoke.get('total_raw_forwards_including_warmup',0)<=100
+            or baseline.get('raw_outputs_exact') is not True
+            or baseline.get('decoded_predictions_exact') is not True
+            or baseline.get('absolute_difference')!=0 or baseline.get('tolerance')!=0):
+        raise ValueError('Teacher-evaluation smoke failed its fixed-checkpoint/read-only contract')
+    _,transport=services();observation=read_dependency(transport)
+    if observation.get('state')!='READY_FOR_ISOLATED_PHASE_VALIDATION':
+        raise ValueError('The existing controller/dependency/capacity gate changed; no registration')
+    result=close_and_register(transport,tag=tag,phase='teacher_eval',module='coco_s4.phase_teacher_eval',
+        spec=spec,release_path=release_path,smoke_path=summary_path,review_path=review_path,
+        previous_stage_receipt_sha256=release['teacher_dependency']['accepted_sha256'])
+    print(json.dumps(result))
+
+
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('action',choices=['prepare','launch-smoke']);p.add_argument('--tag',required=True)
-    a=p.parse_args();{'prepare':prepare,'launch-smoke':launch_smoke}[a.action](a.tag)
+    p=argparse.ArgumentParser();p.add_argument('action',choices=['prepare','launch-smoke','register']);p.add_argument('--tag',required=True);p.add_argument('--review',type=Path)
+    a=p.parse_args()
+    if a.action=='register' and a.review is None:p.error('register requires --review JSON')
+    {'prepare':prepare,'launch-smoke':launch_smoke,'register':register}[a.action](a.tag,*(([a.review] if a.action=='register' else [])))

@@ -13,6 +13,7 @@ import re
 import subprocess
 
 from .phase_contract import OWNED, WORKFLOW, WORKFLOW_OUTPUT
+from .release_transport import anchor_path, close_and_register, validate_anchor_outside_lifecycle
 from .phase_victim import PHASES, validate_phase_config
 from .runtime import ROOT, DATA_FILES, PARENT, VICTIM_PARENT, commit, load, now, sha, write_once
 
@@ -146,12 +147,13 @@ def build(phase, tag, head, observation):
     local = EX/tag/'source_release.json'; write_once(local, release)
     template = load(EX/(WORKFLOW+'.json'))
     repo = (OWNED/'releases'/tag).as_posix(); output = (OWNED/'validation'/tag).as_posix()
-    remote_release = repo+'/source_release.json'
+    remote_release = anchor_path(tag)
     template.update(run_id=tag, project='s4-coco-'+phase+'-validation')
     template['source'] = dict(repo_root=str(ROOT), branch='codex/s4-coco-minitrain25k-generalization',
                               commit=head, allowed_post_commit_paths=['execution/','Ultralytics/'])
     template['remote'].update(repo_root=repo, output_root=output,
                               stage_root=(OWNED/'stage'/tag).as_posix(), control_root=(OWNED/'control'/tag).as_posix())
+    validate_anchor_outside_lifecycle(remote_release, template['remote'])
     template['session']['name'] = tag
     unit = 's4coco-victim-'+hashlib.sha256(tag.encode()).hexdigest()[:24]
     template['workload'] = dict(cwd='.', argv=['systemd-run','--user','--scope','--quiet','--unit='+unit,
@@ -261,71 +263,10 @@ def register(phase, tag, review_path):
     if observation['dependencies']!=release['phase_dependencies']:
         raise ValueError('Victim predecessor receipts changed after smoke')
     pred_name='export25k' if phase=='clean200' else 'clean200'
-    closure_path=EX/tag/'scientific_closure.json'
-    registration_path=EX/tag/'phase_registration.json'
-    remote_smoke=spec['remote']['output_root']+'/result/smoke_summary.json'
-    remote_closure=(WORKFLOW_OUTPUT/'receipts'/(phase+'_SCIENTIFIC_CLOSURE.json')).as_posix()
-    remote_ready=(WORKFLOW_OUTPUT/'receipts'/(phase+'_READY.json')).as_posix()
-    closure_core=dict(phase=phase,source_commit=spec['source']['commit'],release_sha256=sha(release_path),
-                 phase_config_sha256=config_sha,smoke_path=remote_smoke,smoke_sha256=sha(summary_path),
-                 review_path=str(Path(review_path).resolve()),review_sha256=sha(review_path),
-                 reviewer_count=1,pre_run_result='pass',teacher_checkpoint_sha256=release['teacher_dependency']['checkpoint_sha256'],
-                 reviewer_independence=True,scientific_verdict='allow_run',blockers=[])
-    if closure_path.exists():
-        closure=load(closure_path)
-        if any(closure.get(k)!=v for k,v in closure_core.items()) or not closure.get('closed_UTC'):
-            raise ValueError('Retained local scientific closure differs from the exact reviewed candidate')
-    else:
-        closure=dict(closure_core,closed_UTC=now())
-        write_once(closure_path,closure)
-    ready_core=dict(phase=phase,workflow_run_id=WORKFLOW,pre_run_result='pass',
-               source_root=spec['remote']['repo_root'],
-               release_sha256=sha(release_path),release_relative='source_release.json',
-               module='coco_s4.phase_victim',previous_stage_receipt_sha256=release['phase_dependencies'][pred_name]['accepted_sha256'],
-               scientific_closure_path=remote_closure,scientific_closure_sha256=sha(closure_path),
-               smoke_path=remote_smoke,smoke_sha256=sha(summary_path))
-    if registration_path.exists():
-        ready=load(registration_path)
-        if any(ready.get(k)!=v for k,v in ready_core.items()) or not ready.get('registered_UTC'):
-            raise ValueError('Retained local registration differs from the exact reviewed candidate')
-    else:
-        ready=dict(ready_core,registered_UTC=now())
-        write_once(registration_path,ready)
-    inspect_remote = r'''
-import hashlib,json,sys
-from pathlib import Path
-out={}
-for name in sys.argv[1:]:
- p=Path(name)
- if p.exists():
-  h=hashlib.sha256()
-  with p.open('rb') as f:
-   for b in iter(lambda:f.read(8*2**20),b''):h.update(b)
-  out[name]=h.hexdigest()
- else:out[name]=None
-print(json.dumps(out,sort_keys=True))
-'''
-    preflight=transport.run([PYTHON,'-B','-c',inspect_remote,remote_closure,remote_ready])
-    if preflight.returncode:
-        raise ValueError('RRCTL could not inspect existing READY/closure paths')
-    remote_state=json.loads(preflight.stdout)
-    expected_hashes={remote_closure:sha(closure_path),remote_ready:sha(registration_path)}
-    if any(remote_state.get(path) not in (None,digest) for path,digest in expected_hashes.items()):
-        raise ValueError('Existing remote READY/closure differs; never overwrite or duplicate registration')
-    if remote_state[remote_closure] is None:
-        transport.upload(closure_path,remote_closure,expected_hashes[remote_closure])
-    closure_check=transport.run([PYTHON,'-B','-c',inspect_remote,remote_closure])
-    if closure_check.returncode or json.loads(closure_check.stdout).get(remote_closure)!=expected_hashes[remote_closure]:
-        raise ValueError('Uploaded scientific closure failed exact remote readback')
-    if remote_state[remote_ready] is None:
-        transport.upload(registration_path,remote_ready,expected_hashes[remote_ready])
-    ready_check=transport.run([PYTHON,'-B','-c',inspect_remote,remote_ready])
-    if ready_check.returncode or json.loads(ready_check.stdout).get(remote_ready)!=expected_hashes[remote_ready]:
-        raise ValueError('Uploaded phase registration failed exact remote readback')
-    print(json.dumps(dict(phase=phase,reviewer_count=1,pre_run_result='pass',
-                          registered_existing_controller=True,ready_path=remote_ready,
-                          ready_uploaded_and_readback=True,serial_controller_owns_next_start=True,
-                          active_formal_start_rechecked=False)))
+    result=close_and_register(transport,tag=tag,phase=phase,module='coco_s4.phase_victim',
+        spec=spec,release_path=release_path,smoke_path=summary_path,review_path=review_path,
+        previous_stage_receipt_sha256=release['phase_dependencies'][pred_name]['accepted_sha256'])
+    print(json.dumps(result))
 
 
 def main():
