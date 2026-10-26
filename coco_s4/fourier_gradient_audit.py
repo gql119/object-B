@@ -21,6 +21,8 @@ def measure(terms, parameter):
 
 
 def validate_summary(summary):
+    from .canonical_s4_training import validate_proof
+    validate_proof(summary.get('tfss_training_proof', {}), draws=2)
     evidence = summary.get('per_loss_fourier_gradient_measurement', {})
     if (evidence.get('measurement') != MEASUREMENT or evidence.get('target') != 'trainer.fourier_coeff'
             or evidence.get('parameter_device') != summary.get('actual_device')

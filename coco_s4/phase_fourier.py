@@ -1,6 +1,6 @@
 """Original S4 COCO Fourier stage, bound to accepted clean-train calibration.
 
-The native Fourier/B2 loss and optimizer implementations remain unchanged.
+The canonical S4Trainer and optimize_s4 implementations remain unchanged.
 This wrapper enforces the frozen COCO eligible-image schedule and imports the
 accepted calibration artifacts byte-for-byte into this phase's retained output.
 """
@@ -347,8 +347,8 @@ def _finite_number(value):
 def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_images=0):
     import numpy as np
     import torch
-    from ue_framework.methods.b2_semantic import B2SemanticTrainer
-    from ue_framework.methods.s4_tfss import model_hash
+    from ue_framework.methods.s4_tfss import S4Trainer, model_hash
+    from . import canonical_s4_training
     from .phase_calibration import load_teacher, train_manifest
 
     output = Path(output).resolve()
@@ -435,16 +435,19 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
         expected_identity['safe_bg_settings']['reference_artifact_dir'] = method_cfg['semantic']['safe_bg']['reference_artifact_dir']
         if semantic_identity_result != expected_identity:
             raise ValueError('Imported calibration consumer identity differs from accepted Original S4 artifacts')
-        class EligibleCOCOB2Trainer(B2SemanticTrainer):
+        class EligibleCOCOS4Trainer(S4Trainer):
             def _get_active_freq_indices(self, epoch, step):
                 self.audit_epoch, self.audit_step = epoch, step
                 return super()._get_active_freq_indices(epoch, step)
 
             def _batch_loss(self, *args, **kwargs):
+                sinks_before = (self.tfss_frozen_inputs, self.tfss_adaptive_inputs)
                 result = super()._batch_loss(*args, **kwargs)
                 if result is None:
                     return None
                 total, metrics = result
+                canonical_s4_training.audit_draw(self, sinks_before,
+                    retain=bool(smoke_images or cpu_probe_images or self.audit_step == 0))
                 if smoke_images or cpu_probe_images:
                     self.native_probe_batch_sizes.append(len(args[0]))
                 # Preserve categorical IDs before the inherited numeric EOT averaging.
@@ -465,8 +468,9 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                                                     cpu_probe_images=cpu_probe_images)
                 return [str(path) for path in selected]
 
-        trainer = EligibleCOCOB2Trainer(cfg, method_cfg, device,
+        trainer = EligibleCOCOS4Trainer(cfg, method_cfg, device,
                                         original_teacher, adaptive_teacher)
+        restore_tfss_observers = canonical_s4_training.configure(trainer, manifest, output, ROOT)
         trainer.coefficient_gradient_draws = []
         trainer.native_probe_batch_sizes = []
         if (trainer.channels.numel() != validate_receipt_dimension(calibration) or len(trainer.bases) != 79
@@ -527,7 +531,7 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                    parameter_update_scope='original S4 Fourier coefficients plus existing one-step adaptive inner model',
                    optimizer_resume_claim=False, resume_policy='complete accepted stages only; retain failed outputs'))
         actual_loaded_paths=[]
-        import ue_framework.methods.legacy_kproto_ret as native_trainer_module
+        import ue_framework.methods.s4_optimization as native_trainer_module
         original_loader=native_trainer_module.load_image_rgb_float
         def audited_training_loader(path):
             value=original_loader(path)
@@ -539,13 +543,26 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
             params_path = output/'global_params.pt'
             csv_path = output/'diagnostics.csv'
             json_path = output/'diagnostics.json'
-            trainer.train_universal(str(DATA_ROOT/'images/train'), str(DATA_ROOT/'labels/train'),
-                                    str(params_path), str(csv_path), str(json_path), seed=0)
+            optimizer_images = trainer._collect_target_images(
+                str(DATA_ROOT/'images/train'), str(DATA_ROOT/'labels/train'))
+            canonical_s4_training.run(trainer, optimizer_images, DATA_ROOT/'labels/train',
+                prototypes.to(device), output,
+                dict(source_commit=manifest['source_commit'], release_sha256=sha(release_path),
+                     phase_config_sha256=config_sha, teacher_checkpoint_sha256=sha(checkpoint),
+                     calibration_receipt_sha256=sha(calibration_path),
+                     training_contract=canonical_s4_training.CONTRACT,
+                     cache_identity=trainer.s4_cache.identity),
+                bounded=bool(smoke_images or cpu_probe_images))
         finally:
             native_trainer_module.load_image_rgb_float=original_loader
+            restore_tfss_observers()
             for hook in hooks:
                 hook.remove()
         rng_after = _rng_state(torch, np, include_cuda=(device.type == 'cuda'))
+        tfss_proof = canonical_s4_training.proof(trainer, ROOT)
+        canonical_s4_training.validate_proof(tfss_proof,
+            draws=2 if (smoke_images or cpu_probe_images) else expected_steps*2)
+        write_once(output/'TFSS_OPTIMIZATION_PROOF.json', tfss_proof)
         torch.save(dict(before=rng_before, after=rng_after), output/'native_rng_state.pt')
         if model_hash(trainer.surrogate) != frozen_sha or sha(checkpoint) != manifest['teacher_dependency']['checkpoint_sha256']:
             raise ValueError('Frozen accepted Teacher changed during Fourier optimization')
@@ -611,6 +628,7 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                           poison_image_gradient_norms={name:float(rows[-1][key]) for name,key in
                               (('L_BG','grad_BG_safe_norm'),('L_rel','grad_rel_safe_norm'))},
                           baseline_equivalence_probe=baseline_equivalence,
+                          tfss_training_proof=tfss_proof,
                           production_forward_calls=len(forward_calls), actual_fourier_optimizer_updates=1,
                           actual_eot_samples=2, validation_used=False, parameter_updates=True,
                           official_metrics_disabled=True, artifact_ingest_disabled=True,
@@ -645,7 +663,11 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
             if step != index or not 1 <= epoch <= 24:
                 raise ValueError('Fourier optimizer step sequence is incomplete or reordered')
             counts[epoch-1] += 1
-            if any(not _finite_number(value) for key, value in row.items() if key not in ('selected_proto_ids',)):
+            optional_spatial = {'s4_protection_Fourier_norm', 's4_high_Q_energy',
+                                's4_high_R_energy', 's4_high_R_low_Q_energy'}
+            if any(not _finite_number(value) for key, value in row.items()
+                   if key != 'selected_proto_ids'
+                   and not (key in optional_spatial and value in (None, ''))):
                 raise FloatingPointError('Nonfinite full Fourier diagnostic row')
         per_epoch = (len(eligible)+15)//16
         if len(rows) != expected_steps or counts != [per_epoch]*24:
@@ -670,6 +692,7 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                         selected_channels=calibration['selected_channels'],
                         calibration_receipt_sha256=sha(calibration_path),
                         semantic_identity=semantic_identity_result,
+                        tfss_training_proof=tfss_proof,
                         Fourier_params_sha256=sha(params_path), diagnostics_csv_sha256=sha(csv_path),
                         diagnostics_json_sha256=sha(json_path), native_rng_sha256=sha(output/'native_rng_state.pt'),
                         learned_fourier_max_abs_change=learned_change,

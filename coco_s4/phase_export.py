@@ -97,6 +97,8 @@ def accepted_fourier_dependency(manifest):
     if not path.is_file() or sha(path) != expected.get('accepted_sha256'):
         raise ValueError('Accepted Original S4 Fourier24 receipt is absent or changed')
     receipt = load(path)
+    from .canonical_s4_training import validate_proof
+    validate_proof(receipt.get('tfss_training_proof', {}), draws=receipt.get('optimizer_steps', 0)*2)
     required = dict(state='ACCEPTED', computation_kind='original-S4-Fourier24',
                     validation_used=False, official_metrics_disabled=True,
                     artifact_ingest_disabled=True, epochs_completed=24,

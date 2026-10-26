@@ -90,7 +90,7 @@ def release(head,phase):
     native=load(EX/'ACTUAL_TEACHER_NATIVE_SOURCE_AUDIT_20261025.json')
     files=subprocess.check_output(['git','-C',str(ROOT),'ls-files'],text=True).splitlines()
     names=[n for n in files if n.startswith(('coco_s4/','ue_framework/','configs/')) or n in
-           (MAIN,'docs/S4_COCO_MINITRAIN_20261023/COCO_CATEGORY_MAPPING.json',
+           (MAIN,'docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json','docs/S4_COCO_MINITRAIN_20261023/COCO_CATEGORY_MAPPING.json',
             'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_DIMENSION_CPU_NUMERICS_20261025.json',
             'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_DIMENSION_REGRESSION_20261025.json',
             'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_PRECISION_CANDIDATE_CPU_20261025.json',
@@ -126,7 +126,7 @@ def finite_spec(tag,manifest,kind):
         h['adapter_argv']=[PYTHON,'-B','-c',adapter];h['gpu_utilization_policy']='advisory';h['timeout_seconds']=1800
     names=['status.json','candidate_receipt.json','phase_spec.json'] if kind=='rebuild' else [
         'status.json','phase_spec.json','diagnostics.csv','diagnostics.json',
-        'per_loss_fourier_gradients.json','categorical_diagnostics.jsonl',
+        'per_loss_fourier_gradients.json','categorical_diagnostics.jsonl','TFSS_OPTIMIZATION_PROOF.json',
         'cpu_probe_summary.json' if kind=='cpu' else 'smoke_summary.json']
     template['artifacts']=[dict(path='result/'+n,required=True) for n in names]
     template['local_pull_root']=str(EX/'p')

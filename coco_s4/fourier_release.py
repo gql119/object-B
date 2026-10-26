@@ -114,7 +114,8 @@ def build(tag, head, observation, *, validation_kind):
     native = load(EX/'ACTUAL_TEACHER_NATIVE_SOURCE_AUDIT_20261025.json')
     names = subprocess.check_output(['git', '-C', str(ROOT), 'ls-files'], text=True).splitlines()
     selected = [name for name in names if name.startswith(('coco_s4/', 'ue_framework/', 'configs/')) or name in
-                ('docs/S4_COCO_MINITRAIN_20261023/COCO_CATEGORY_MAPPING.json', MAIN_CONFIG)]
+                ('docs/S4_COCO_MINITRAIN_20261023/COCO_CATEGORY_MAPPING.json', MAIN_CONFIG,
+                 'docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json')]
     required = ('coco_s4/phase_fourier.py', 'coco_s4/phase_calibration.py', 'coco_s4/calibration.py',
                 'coco_s4/phase_contract.py', 'coco_s4/configs/fourier24.json', MAIN_CONFIG)
     if any(name not in selected for name in required):
@@ -170,7 +171,8 @@ def build(tag, head, observation, *, validation_kind):
         health['timeout_seconds'] = 900
     summary_name = 'cpu_probe_summary.json' if validation_kind == 'cpu_probe' else 'smoke_summary.json'
     template['artifacts'] = [dict(path='result/'+name, required=True) for name in
-        (summary_name, 'phase_spec.json', 'diagnostics.csv', 'diagnostics.json')]
+        (summary_name, 'phase_spec.json', 'diagnostics.csv', 'diagnostics.json',
+         'TFSS_OPTIMIZATION_PROOF.json')]
     template['local_pull_root'] = str(EX/'p')
     template['metadata'] = dict(execution_purpose=('isolated_fourier24_cpu_full_loss_validation'
                                                    if validation_kind == 'cpu_probe'

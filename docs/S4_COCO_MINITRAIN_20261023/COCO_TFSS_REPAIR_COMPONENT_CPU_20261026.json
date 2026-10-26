@@ -1,0 +1,40 @@
+{
+  "state": "passed",
+  "scope": "component-only CPU validation",
+  "compiled_sources": 6,
+  "actual_canonical_optimizer_toy_Adam_updates": 1,
+  "actual_toy_EOT_draws": 2,
+  "original_full_list_seed0_first16_exact": true,
+  "retained_candidate_shape": [
+    64,
+    3
+  ],
+  "retained_final_shape": [
+    16,
+    3
+  ],
+  "old_B2_evidence_rejected": true,
+  "no_learned_Teacher_model": true,
+  "invalid_TFSS_proofs_rejected": 5,
+  "actual_dataset_images_read": 0,
+  "model_forwards": 0,
+  "GPU_initialized": false,
+  "full_native_CPU_gate_passed": false,
+  "CUDA_gate_passed": false,
+  "formal_launch": false,
+  "cleanup_policy": "retain_all",
+  "candidate_sources": {
+    "coco_s4/canonical_s4_training.py": "6a3e08a438455bbdc60d95a73e1b4b5fb3591751a3fe289d705fbc959e5a4cb0",
+    "coco_s4/phase_fourier.py": "23481d083a81e795778be2f783f106801b16e614286f05d35b2a6633dbdf61f2",
+    "coco_s4/fourier_gradient_audit.py": "c8b38a3bae3f92c07705cfe1d8f10911e409779d2ac664c09a7db6c30f30b7c3",
+    "coco_s4/dimension_release.py": "df82970207a3a27a58397dc9c7cf72c06c865f76f7bed15d54612d67eca422b7",
+    "coco_s4/fourier_release.py": "9700aaf26c5a6302df893d0ca69a55b905f49dbbfa4f91960330ccf5f1ba52ea",
+    "coco_s4/phase_export.py": "f254f91b9a39d6e2230d360d0b2c81c78e8c04587f82e658790e300cda538aa3",
+    "coco_s4/validate_canonical_s4_training_cpu.py": "5c5f8251343c2b81b1e19a5c09f14498aeb5d740a2fc4fd5b918b78db16dbe44"
+  },
+  "canonical_unchanged_sources": {
+    "ue_framework/methods/s4_tfss.py": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d",
+    "ue_framework/methods/tfss_spatial.py": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd",
+    "ue_framework/methods/s4_optimization.py": "26fda46bddd9ac30a0386870ccef6074b06b916a25669afeb6b9d7abcedd8604"
+  }
+}
