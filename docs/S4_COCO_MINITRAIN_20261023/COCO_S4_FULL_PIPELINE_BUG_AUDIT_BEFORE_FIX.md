@@ -193,3 +193,24 @@ No new scientific source edits since emergency task. Candidate433 predates task 
 - **recalibration_required:** False
 - **downstream_effect:** Real TFSS smoke must reject until corrected
 - **status_at_freeze:** OPEN
+
+## Additive BEFORE_FIX S4-009 - validation context only
+
+- **id:** S4-009
+- **classification:** Confirmed Bug
+- **severity:** P2
+- **file:** coco_s4/repair_validation.py
+- **function:** export_link final-image equality observer
+- **VOC_expected:** Original training includes random scale0.6..1 and15percent dropout; canonical final export uses generation mode without those stochastic augmentations
+- **COCO_actual:** New observer compared stochastic train-mode composition to deterministic generator, even at epoch23; realCPU44forwards/1Adam passed then observer rejected
+- **root_cause:** Validation context mismatch: is_universal_training remainedTrue on trainer while generator usesFalse
+- **affects_loss_or_gradient:** False
+- **affects_poisoned_export:** False
+- **AP_interpretation:** No experiment AP affected; validation cannot be declared passed
+- **evidence:** Actual failedCPU coco_dim_20261026_2145hk_cpu16/status; tausb_universal.py lines349-371; TAUSBMaskGenerator.is_universal_training=False
+- **minimal_reproduction:** Original source explicitly applies random scale/dropout only in train mode; failed same-artifact CPU comparison retained
+- **repair_plan:** For validation-only final-generation comparison temporarily use original generation mode and restore flag; do not change actual training/EOT/optimizer/export
+- **scientific_change_risk:** Test observer only; retain original stochastic training behavior
+- **recalibration_required:** False
+- **downstream_effect:** Revalidate with unique bounded run after source commit; no GPU until CPU pass
+- **status_at_freeze:** OPEN

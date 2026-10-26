@@ -1,0 +1,28 @@
+{
+  "state": "REPAIR_VALIDATION_IN_PROGRESS",
+  "formal_relaunch_allowed": false,
+  "requires_later_explicit_human_relaunch": true,
+  "before_fix_audit_commit": "40f5890",
+  "candidate_commit": "c6910bbb5bfd63d0fa151b13fedf6bc5b68aa51b",
+  "branch": "codex/s4-coco-full-pipeline-bugfix-20261026",
+  "wrong_Fourier_physically_stopped": true,
+  "no_formal_controller": true,
+  "accepted_prerequisites_reusable": true,
+  "confirmed_bugs": 9,
+  "VOC55_regressions": "passed",
+  "CPU_contracts": "passed",
+  "real_Teacher_CPU16": "FAILED_NOT_ACCEPTED",
+  "CPU_tag": "coco_dim_20261026_2145hk_cpu16",
+  "actual_GPU": "OPEN_NOT_LAUNCHED",
+  "final_target": "REPAIRED_AWAITING_FORMAL_RELAUNCH",
+  "missing": [
+    "Real learnedTeacherCPU sink/exportlink acceptance",
+    "Actual currentGPU bounded full loss/device/exportlink proof",
+    "Independent main artifact audits and final parity closure"
+  ],
+  "emergency_confirmed_bugs": 9,
+  "emergency_CPU_probe_state": "FAILED",
+  "tfss_repair_component_state": "REAL_CPU16_FAILED_EXPORT_OBSERVER_CONTEXT_FIXED_REVALIDATION_OPEN",
+  "tfss_repair_full_native_CPU_passed": false,
+  "tfss_repair_actual_GPU_passed": false
+}

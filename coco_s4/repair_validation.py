@@ -27,13 +27,19 @@ def export_link(trainer,cfg,method_cfg,params_path,image_path,output):
     # Same original final-generation context: a single original image, epoch23
     # final JND/tanh schedule. No claim of arbitrary padded-batch equality.
     old_weight=trainer.tfss_weight
+    old_training_mode=trainer.is_universal_training
     with torch.no_grad():
         x=trainer._to_tensor(clean);s=torch.as_tensor(support,device=trainer.device)[None,None]
         trainer.tfss_weight=spatial_weights(q,risk,s[0,0],mode='TFSS-U',eta=.85)[None,None]
+        # Compare two original FINAL-GENERATION constructions, not an original
+        # stochastic training draw (which retains random scale/dropout).
+        trainer.is_universal_training=False
         try:
             _,delta,poison,_,_=trainer._compose_delta_batched(x,s,torch.zeros_like(s),params['coords'],
                 params['fourier_coeff'].to(trainer.device),params['suppress_small'].to(trainer.device),current_epoch=23)
-        finally:trainer.tfss_weight=old_weight
+        finally:
+            trainer.tfss_weight=old_weight
+            trainer.is_universal_training=old_training_mode
     native=poison[0].permute(1,2,0).cpu().numpy()
     if not np.array_equal(native,candidate):raise ValueError('Native final-image S4/export construction differs')
     path=output/(Path(image_path).stem+'.png');_save_png(path,png,cv2)
@@ -47,6 +53,7 @@ def export_link(trainer,cfg,method_cfg,params_path,image_path,output):
         image_id=Path(image_path).stem,source_label_sha256=sha(label),output_label_sha256=sha(target),
         native_parameter_schema_accepted=True,native_parameter_identity=identity,
         selected_parameter_shape=list(params['fourier_coeff'].shape),native_final_image_matches_export_exact=True,
+        comparison_context='original generation mode on both sides; stochastic training unchanged',
         decoded_PNG_roundtrip_exact=True,decoded_budget=audit,actual_composition_device=str(delta.device),
         TFSS_map_source=records[0],W_min=float(weight.min()),W_max=float(weight.max()),
         Teacher_unchanged=True,official_metrics_disabled=True,artifact_ingest_disabled=True,
