@@ -34,7 +34,7 @@
   "consumer_simulation": "passed",
   "extra_exact_export_device_observer": "WAITING_RESOURCES",
   "formal_relaunch_allowed": false,
-  "requires_later_explicit_human_relaunch": true,
+  "requires_later_explicit_human_relaunch": false,
   "new_formal_binding": null,
   "invalid_workflow_reusable": false,
   "invalid_Fourier_resume_allowed": false,
@@ -44,5 +44,10 @@
   ],
   "no_own_formal_controller": true,
   "scientific_protocol_changed_in_this_repair": false,
-  "cleanup_performed": false
+  "cleanup_performed": false,
+  "conditional_formal_relaunch_authorized": true,
+  "conditional_formal_relaunch_authorization": "docs/S4_COCO_MINITRAIN_20261023/USER_CONDITIONAL_FORMAL_RELAUNCH_20261026.md",
+  "conditional_formal_relaunch_authorization_sha256": "6ca3adf1ec4ece1f38ccea2ef3022507488ddbeb633435ad7ad125ac1b8729bc",
+  "authorization_condition": "ALL actual repair validations and fresh no-conflict admission passed; new unique formal binding only",
+  "human_input_required": false
 }
