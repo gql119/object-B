@@ -1,0 +1,42 @@
+{
+  "state": "MISMATCH_REPRODUCED",
+  "scope": "synthetic CPU counterexample using unchanged canonical SoftSpatialProjection; not learned-Teacher full-loss probe",
+  "bare_class_MRO": [
+    "B2SemanticTrainer",
+    "B2AdaptiveTrainer",
+    "SemanticFrozenTrainer",
+    "LegacyKProtoTrainer",
+    "_StrictTargetSupport",
+    "TAUSBUniversalTrainer",
+    "_TAUSBCommon",
+    "BasePoisonGenerator",
+    "object"
+  ],
+  "canonical_class_MRO": [
+    "S4Trainer",
+    "SoftSpatialProjection",
+    "B2SemanticTrainer",
+    "B2AdaptiveTrainer",
+    "SemanticFrozenTrainer",
+    "LegacyKProtoTrainer",
+    "_StrictTargetSupport",
+    "TAUSBUniversalTrainer",
+    "_TAUSBCommon",
+    "BasePoisonGenerator",
+    "object"
+  ],
+  "max_preclamp_delta_difference": 0.004705881699919701,
+  "bare_coefficient_derivative": 9.0,
+  "TFSS_U_coefficient_derivative": 7.65000057220459,
+  "TFSS_U_weight_on_support": 0.8500000238418579,
+  "original_thresholds_changed": false,
+  "model_forwards": 0,
+  "optimizer_updates": 0,
+  "data_images_read": 0,
+  "GPU_initialized": false,
+  "source_hashes": {
+    "coco_s4/phase_fourier.py": "44faeb43f1c4d5da5aabdc06284c5102fa6f5d38481bdcd4686eb58eae89b4f0",
+    "ue_framework/methods/s4_tfss.py": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d",
+    "ue_framework/methods/tfss_spatial.py": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd"
+  }
+}

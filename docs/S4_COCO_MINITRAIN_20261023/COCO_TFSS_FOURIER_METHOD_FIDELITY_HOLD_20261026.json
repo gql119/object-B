@@ -1,0 +1,161 @@
+{
+  "schema": "s4.coco.method-fidelity-hold.v1",
+  "state": "BLOCKED_METHOD_FIDELITY",
+  "observed_UTC": "2026-10-26T11:49:35.783344+00:00",
+  "finding_id": "TFSS01",
+  "source_commit": "dcd91b33d90dfd2472b8eacb843a994a4801d1cf",
+  "workflow": "s4_coco_experiment_a_seed0_20261026_dimcompat_v2",
+  "native_pipeline_state": "RUNNING",
+  "native_stage": "fourier24",
+  "scientific_acceptance_suspended": true,
+  "downstream_registration_allowed": false,
+  "physical_process_stopped": false,
+  "process_signals_sent": false,
+  "active_runtime_hotpatched": false,
+  "new_GPU_or_controller_started": false,
+  "repeat_Teacher_or_calibration": false,
+  "original_review_verdict_retained": true,
+  "reviewer_count_unchanged": 1,
+  "approved_method": "Original S4 Safe-Soft05 + TFSS-Utility, including W=1-.15*Rnt*(1-Qt) inside optimization before the original image clamp and adaptive loss",
+  "actual_computation": "EligibleCOCOB2Trainer inherits B2SemanticTrainer directly; no SoftSpatialProjection or S4Trainer; TFSS mode/cache not configured in the optimization entrypoint",
+  "native_files": {
+    "coco_s4/phase_fourier.py": {
+      "sha256": "44faeb43f1c4d5da5aabdc06284c5102fa6f5d38481bdcd4686eb58eae89b4f0",
+      "bound_sha256": "44faeb43f1c4d5da5aabdc06284c5102fa6f5d38481bdcd4686eb58eae89b4f0",
+      "classes": [
+        {
+          "name": "EligibleCOCOB2Trainer",
+          "bases": [
+            "B2SemanticTrainer"
+          ]
+        }
+      ],
+      "tfss_mode_assignments": [],
+      "clean_map_cache_calls": 0
+    },
+    "ue_framework/methods/s4_tfss.py": {
+      "sha256": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d",
+      "bound_sha256": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d",
+      "classes": [
+        {
+          "name": "CleanMapCache",
+          "bases": []
+        },
+        {
+          "name": "S4Trainer",
+          "bases": [
+            "SoftSpatialProjection",
+            "B2SemanticTrainer"
+          ]
+        }
+      ],
+      "tfss_mode_assignments": [],
+      "clean_map_cache_calls": 0
+    },
+    "ue_framework/methods/tfss_spatial.py": {
+      "sha256": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd",
+      "bound_sha256": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd",
+      "classes": [
+        {
+          "name": "SoftSpatialProjection",
+          "bases": []
+        }
+      ],
+      "tfss_mode_assignments": [
+        "tfss_mode = 'S0'"
+      ],
+      "clean_map_cache_calls": 0
+    },
+    "ue_framework/methods/legacy_kproto_ret.py": {
+      "sha256": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb",
+      "bound_sha256": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb",
+      "classes": [
+        {
+          "name": "_StrictTargetSupport",
+          "bases": []
+        },
+        {
+          "name": "LegacyKProtoGenerator",
+          "bases": [
+            "_StrictTargetSupport",
+            "TAUSBMaskGenerator"
+          ]
+        },
+        {
+          "name": "LegacyKProtoTrainer",
+          "bases": [
+            "_StrictTargetSupport",
+            "TAUSBUniversalTrainer"
+          ]
+        }
+      ],
+      "tfss_mode_assignments": [],
+      "clean_map_cache_calls": 0
+    },
+    "scripts/run_s4_tfss_pipeline.py": {
+      "sha256": "c3c9807892597ece79ca8b5645a3c2cc968ff0dc9b3d2bcd083a2c429043f701",
+      "bound_sha256": null,
+      "classes": [],
+      "tfss_mode_assignments": [
+        "trainer.tfss_mode = 'TFSS-U'"
+      ],
+      "clean_map_cache_calls": 1
+    }
+  },
+  "actual_TFSS_diagnostic_columns": [],
+  "clean_map_cache_present": false,
+  "CPU_counterexample": {
+    "state": "MISMATCH_REPRODUCED",
+    "scope": "synthetic CPU counterexample using unchanged canonical SoftSpatialProjection; not learned-Teacher full-loss probe",
+    "bare_class_MRO": [
+      "B2SemanticTrainer",
+      "B2AdaptiveTrainer",
+      "SemanticFrozenTrainer",
+      "LegacyKProtoTrainer",
+      "_StrictTargetSupport",
+      "TAUSBUniversalTrainer",
+      "_TAUSBCommon",
+      "BasePoisonGenerator",
+      "object"
+    ],
+    "canonical_class_MRO": [
+      "S4Trainer",
+      "SoftSpatialProjection",
+      "B2SemanticTrainer",
+      "B2AdaptiveTrainer",
+      "SemanticFrozenTrainer",
+      "LegacyKProtoTrainer",
+      "_StrictTargetSupport",
+      "TAUSBUniversalTrainer",
+      "_TAUSBCommon",
+      "BasePoisonGenerator",
+      "object"
+    ],
+    "max_preclamp_delta_difference": 0.004705881699919701,
+    "bare_coefficient_derivative": 9.0,
+    "TFSS_U_coefficient_derivative": 7.65000057220459,
+    "TFSS_U_weight_on_support": 0.8500000238418579,
+    "original_thresholds_changed": false,
+    "model_forwards": 0,
+    "optimizer_updates": 0,
+    "data_images_read": 0,
+    "GPU_initialized": false,
+    "source_hashes": {
+      "coco_s4/phase_fourier.py": "44faeb43f1c4d5da5aabdc06284c5102fa6f5d38481bdcd4686eb58eae89b4f0",
+      "ue_framework/methods/s4_tfss.py": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d",
+      "ue_framework/methods/tfss_spatial.py": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd"
+    }
+  },
+  "complete_CSV_rows_at_last_query": 17052,
+  "last_row": {
+    "step": "17051",
+    "epoch": "21",
+    "L_total": "1.3879225254058838",
+    "grad_norm_fourier": "0.14827685058116913",
+    "outside_support_max": "0.0"
+  },
+  "consequence": "Finite current Fourier losses and gradients establish numerical liveness only. They do not validate the authorized Original S4 optimization. Do not use a native accepted receipt from this runtime to register export or Victims.",
+  "action": "Hold downstream by leaving export25k_READY absent; preserve current source/output/native statuses. Same sole monitor continues restoration of the canonical S4 training path and a uniquely bound recovery after actual current-job identity/death and current CPU/GPU evidence. No second reviewer for current Fourier repairs.",
+  "secondary_export_issue": "phase_export currently requires params.num_classes=80, but the native LegacyKProtoTrainer final artifact has no num_classes field. Validate COCO80 using already bound trainer/Teacher/data plus the actual native artifact schema; do not rewrite the current trained artifact.",
+  "missing_future_export_evidence": "Export smoke currently assigns cuda:0 from configuration; add direct finite pre-reduction forward tensor device/index evidence before its future smoke/review gate."
+}
