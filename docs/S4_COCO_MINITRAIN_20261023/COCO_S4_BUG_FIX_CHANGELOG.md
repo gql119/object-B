@@ -5,7 +5,7 @@
 - **S4-001 — Canonical TFSS optimization missing**：CLOSED_REAL_CPU_CUDA。Restored original S4Trainer + SoftSpatialProjection + CleanMapCache + optimize_s4;2/2 actual Frozen/Adaptive sinks per run
 - **S4-002 — Wrong optimizer entry bypassed native persistence**：CLOSED_NATIVE_CHECKPOINT_RNG。Actual64x3 completed-update state/Adam/scheduler/RNG verified; original final16x3 pack validated. Old unsaved state remains unavailable
 - **S4-003 — Exporter demanded absent num_classes metadata**：CLOSED_REAL_PARAMETER_EXPORT。Original native pack validator checks actual bound COCO80 model/config; actual savedpack→generator→PNG passed CPU/CUDA
-- **S4-004 — Exporter claimed CUDA from counter/availability**：IMPLEMENTED_ADDITIONAL_EXACT_HOOK_PROBE_WAITING_RESOURCES。Full S4 actual raw CUDA44forwards proved; additional exact export callback CPU-negative/CUDA-positive check WAITING_RESOURCES
+- **S4-004 — Exporter claimed CUDA from counter/availability**：CLOSED_EXACT_HOOK。Full S4 actual raw CUDA44forwards proved; additional exact export callback CPU-negative/CUDA-positive check passed
 - **S4-005 — File SHA compared to tensor-state SHA**：CLOSED_CONTRACT_TEST。Canonical state digest matched; real production victim/evaluation dependency validators accept good synthetic contracts and reject mismatched initialization
 - **S4-006 — CPU helper initialized CUDA RNG**：CLOSED_REAL_CPU_ISOLATION。Adapter CPU-only context preserves original source; actual learnedTeacherCPU16 passed with no-init guard and empty native CUDA RNG; CUDA original RNG unchanged
 - **S4-007 — Superseding invalidation/no-formal scope not consumed**：CLOSED_LAUNCH_GUARDS。5 formal prepare/launch/READY guards reject; explicit validation-only manifest bound exact latest human-task SHA
@@ -16,4 +16,4 @@
 
 准确的源码锁范围：原始锁8文件中7个逐字节不变，Safe-BG使用已授权维度差异；b2_semantic的已授权适配另有差异清单。不能声称8个原文件全未改变。当前修复未新增科学定义变化。
 
-本轮绝未启动24epoch正式Fourier、Export25K、Clean200、S4_200或正式评价。下一次正式运行必须后续明确人类授权、新RunID/源与配置绑定、原始初始化；禁止从错误训练续训。
+本轮绝未启动24epoch正式Fourier、Export25K、Clean200、S4_200或正式评价。已收到后续人类条件启动授权；下一次正式运行仍必须新RunID/源与配置绑定、原始初始化；禁止从错误训练续训。

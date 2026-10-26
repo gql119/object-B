@@ -49,7 +49,18 @@ def capacity(root):
                           capture_output=True, text=True, check=True, timeout=20).stdout.strip()
     r = dict(UTC=now(), RAM_available_GiB=mem, disk_free_GiB=disk, GPU_free_MiB=free,
              IOwait_percent=io, GPU_compute_pids=apps, CPU_load_is_advisory=True)
-    r['admitted'] = mem >= 32 and disk >= 150 and free >= 24000 and not all(v >= 20 for v in io) and not apps
+    scope=load(ROOT/'coco_s4/configs/EMERGENCY_REPAIR_SCOPE.json')
+    owners=[]
+    for value in apps.splitlines():
+        if value.strip():
+            proc=Path('/proc')/str(int(value.strip()))
+            owners.append(dict(pid=int(value.strip()),uid=proc.stat().st_uid))
+    shared=(scope.get('allow_other_user_gpu') is True
+            and sha(ROOT/scope['human_relaunch_authorization_path'])==scope['human_relaunch_authorization_sha256'])
+    r.update(GPU_compute_owners=owners,other_user_GPU_coexistence_authorized=shared,
+             human_shared_admission_sha256=scope.get('human_relaunch_authorization_sha256'))
+    r['admitted'] = (mem >= 32 and disk >= 150 and free >= 24000 and not all(v >= 20 for v in io)
+                     and (not apps or (shared and all(row['uid']!=1014 for row in owners))))
     return r
 
 

@@ -94,10 +94,20 @@ def verify_release(manifest_path, *, native=True):
 
 
 def assert_formal_launch_authorized():
-    """Latest explicit emergency scope blocks formal jobs/READY, even stale ACCEPTED."""
+    """Current human conditional approval plus actual closed repair gates; never old v2."""
     scope=load(ROOT/'coco_s4/configs/EMERGENCY_REPAIR_SCOPE.json')
     if scope.get('formal_relaunch_allowed') is not True:
-        raise ValueError('EMERGENCY_REPAIR_ONLY: later explicit human formal-relaunch authorization required')
+        raise ValueError('EMERGENCY_REPAIR_ONLY: explicit human formal-relaunch authorization required')
+    from .phase_contract import WORKFLOW,INVALIDATED_WORKFLOW
+    if scope.get('workflow_run_id')!=WORKFLOW or WORKFLOW==INVALIDATED_WORKFLOW:
+        raise ValueError('Formal authorization is not bound to the unique repaired workflow')
+    if sha(ROOT/safe_relative(scope['human_relaunch_authorization_path']))!=scope['human_relaunch_authorization_sha256']:
+        raise ValueError('Direct human relaunch authorization changed')
+    ready=load(ROOT/safe_relative(scope['actual_readiness_path']))
+    if (ready.get('state')!='ALL_REPAIR_VALIDATIONS_PASSED' or ready.get('native_CPU16')!='passed'
+            or ready.get('native_CUDA16')!='passed' or ready.get('extra_exact_export_device_observer')!='passed'
+            or ready.get('read_only_main_audits')!='passed' or ready.get('consumer_simulation')!='passed'):
+        raise ValueError('Actual repair validation gates remain open')
 
 
 def require_review(path, release_path, smoke_path):

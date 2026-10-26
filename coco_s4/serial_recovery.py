@@ -29,7 +29,9 @@ def validate_closure(closure,manifest,release_sha,component_sha):
     s=load(smoke_path)
     from .fourier_gradient_audit import validate_production_batch16
     validate_production_batch16(s)
-    required=dict(state='passed',source_commit=manifest['source_commit'],release_sha256=release_sha,
+    from .relaunch_binding import evidence_identity
+    evidence=evidence_identity(manifest)
+    required=dict(state='passed',source_commit=evidence['source_commit'],release_sha256=evidence['release_sha256'] or release_sha,
                   calibration_receipt_sha256=component_sha,computation_kind='fourier-gradient',
                   actual_device='cuda:0',actual_forward_tensor_devices=['cuda:0'],actual_cuda_device_indices=[0],
                   actual_fourier_optimizer_updates=1,non_target_class_count=79,independent_P3_selected_count=48,
@@ -102,6 +104,9 @@ def main():
     fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     origin=origin_preconditions(cfg,m)
     dimension_history=previous_dimension_preconditions(cfg,m)
+    from .relaunch_binding import invalidated_predecessor,evidence_identity
+    invalid_history=invalidated_predecessor(cfg)
+    evidence=evidence_identity(m)
     component_path=Path(cfg['component_receipt_path']).resolve()
     if (not component_path.is_relative_to((OWNED/'validation').resolve())
             or sha(component_path)!=cfg['component_receipt_sha256']):
@@ -121,7 +126,7 @@ def main():
     cpu=load(cpu_path)
     from .fourier_gradient_audit import validate_production_batch16
     validate_production_batch16(cpu)
-    if any(cpu.get(k)!=v for k,v in dict(state='passed',source_commit=commit(),actual_device='cpu',
+    if any(cpu.get(k)!=v for k,v in dict(state='passed',source_commit=evidence['source_commit'],actual_device='cpu',
         actual_forward_tensor_devices=['cpu'],actual_fourier_optimizer_updates=1,finite_outputs=True,
         calibration_receipt_sha256=sha(component_path)).items()):
         raise ValueError('Current learned-Teacher native CPU loss chain did not pass')
@@ -155,7 +160,8 @@ def main():
         component_receipt_sha256=sha(component_path),scientific_closure_sha256=sha(closure_path),
         protocol=PROTOCOL,old_failed_calibration_unchanged=True,UTC=now()))
     write_once(out/'RECOVERY_PROVENANCE.json',dict(origin_run_id=origin['run_id'],origin_state_sha256=cfg['origin_state_sha256'],
-        failed_dimension_predecessor=dimension_history,
+        failed_dimension_predecessor=dimension_history,invalidated_TFSS_predecessor=invalid_history,
+        validated_computation_binding=m.get('validated_computation_binding'),
         origin_calibration_status_sha256=cfg['origin_calibration_status_sha256'],reused_without_execution=['teacher200','teacher_eval'],
         reconstructed_from_retained25K_statistics=True,component_receipt_sha256=sha(component_path),
         scientific_closure_sha256=sha(closure_path),exact_worker_prefetch_resume_claim=False,UTC=now()))

@@ -24,6 +24,6 @@ W detached、实际加权delta严格等于base*W，Frozen与Adaptive各观察2�
 
 ## 尚未闭合
 
-额外执行生产phase_export.observe_forward同一AST函数的CPU负例/CUDA正例（总2前向/0更新）状态：WAITING_RESOURCES。GPU容量门检测到其他UID的占用，未创建该作业；不放宽无冲突门，也不影响已经完成的44前向CUDA验收。后续只补此检查，不重复已通过CPU/CUDA16。
+额外执行生产phase_export.observe_forward同一AST函数的CPU负例/CUDA正例（总2前向/0更新）状态：passed。已按人类允许其他UID共存的新授权完成2前向设备检查；显存/RAM/磁盘/IOwait门不变，不重复已经通过的CPU/CUDA16。
 
 当前没有完整24epoch、正式25K导出或两份Victim200结果；验证成功不等于正式实验完成。

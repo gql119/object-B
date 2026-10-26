@@ -1,0 +1,85 @@
+{
+  "state": "passed",
+  "reference_actual_computation_commit": "0113b9b65b0aba4b0132ff5b1f4f58782756cc53",
+  "reference_source_files": 145,
+  "byte_exact_source_files": 131,
+  "explicit_routing_deltas": {
+    "coco_s4/configs/EMERGENCY_REPAIR_SCOPE.json": {
+      "before": "987557490c2c2f0999c8b5e052b6eab776330e48105f95e28896115256081750",
+      "after": "331e988be04b26ca316f03666270d60225d721616eafda8f2f7c04cc61eac5c4",
+      "reason": "explicit_human_conditional_relaunch_and_shared_admission"
+    },
+    "coco_s4/configs/clean200.json": {
+      "before": "17acd1f64d1c0a9d8cfa3a030f557357645213d7c3aa7a38b56e75541a00cb46",
+      "after": "90ec707170a6dd9ea79a5be07174d495caabd28f922d4c07879051a3d225b394",
+      "reason": "workflow_literal_only"
+    },
+    "coco_s4/configs/export25k.json": {
+      "before": "10bab08c2e0eb44a5e481f361bab5251d9d50065596ba5e80dca26b4a657b364",
+      "after": "8d0c2d32ff503a8fd383ed9748adfc3664224b2353a7bfa63ab00c19ea096b59",
+      "reason": "workflow_literal_only"
+    },
+    "coco_s4/configs/final_report.json": {
+      "before": "0e8fec8447749733d3bf12d0a527c098eb68e3dcaf1b82a4ef57dca00751d17c",
+      "after": "7ed2cf0aa992f30652808899c3f3d2a6ac8e4d9c75b55d783ff51dfd424c5b3c",
+      "reason": "workflow_literal_only"
+    },
+    "coco_s4/configs/fourier24.json": {
+      "before": "9f2830c5d6a2a608f881cb5d7c2616bc77f6340ca597ae74ab4070229361ce4a",
+      "after": "b1be5c387abce022185591d19424a1278ac96d393b0bfbce25b15043ff43220a",
+      "reason": "workflow_literal_only"
+    },
+    "coco_s4/configs/official_eval.json": {
+      "before": "2552f4ad685c07e431b7d5affc86f149a7342417722add2b3cadb0a4bffe7e65",
+      "after": "8bda0a7ecad5220201350f6a331e08660eb3e0bcd7adf83905fe8855d38c9c80",
+      "reason": "workflow_literal_only"
+    },
+    "coco_s4/configs/s4_200.json": {
+      "before": "ec40d102b18875169b5089659246e37aa8e4e172a332cc4773452c3298ad5c36",
+      "after": "c0c2eaa5d5708e5e7fdf718082f682ec4e3fe3f261d456628c6ff24b2c119853",
+      "reason": "workflow_literal_only"
+    },
+    "coco_s4/dimension_release.py": {
+      "before": "9447698f417e2d83acbab03772bde670911d9d5d52daf38926c5e2c79ffc3a48",
+      "after": "8585ea83c1f67d5f718a8f9685a1fe680ff657e461d5d812b58ee3e6e4a16509",
+      "reason": "explicitly_bound_serial_control_only"
+    },
+    "coco_s4/phase_contract.py": {
+      "before": "18c4962cb75f165e96c93d957315dad95219873e16811d974e589c82b1c31866",
+      "after": "6cb95e28b5141432c511d9ff5a2787a7fcfd49b8b561f872c9a716c608d0c527",
+      "reason": "unique_workflow_and_invalid_predecessor_literals_only"
+    },
+    "coco_s4/phase_fourier.py": {
+      "before": "a67fee66c659942f68e5ed26ed1c76622554c82a02b658d28b8dea24ffdf5758",
+      "after": "b2c460c772759e48d9632b8b36c01004eaf0d7a8f85ea71aba70264d7d5d9dc5",
+      "reason": "authorization_capacity_or_formal_evidence_guard_only"
+    },
+    "coco_s4/recovery_control.py": {
+      "before": "19885c16aaaab91f27c1c0f0abf5c70cbc874f9a8baff937cdc5e944511622cb",
+      "after": "56fe9f21389468e13e5eaf2233fff1464bfdb5dd20ccc72a20b4aed6e72798b9",
+      "reason": "explicitly_bound_serial_control_only"
+    },
+    "coco_s4/runtime.py": {
+      "before": "4fefc34eb6e132adcf3b1302c9c3afb786a7a2f5295c783bcaf5b9884a3bb8f2",
+      "after": "f2c6499c6a7f100157d9aae6ab96eab1dde80a310e45effe6fbede641573a40d",
+      "reason": "authorization_capacity_or_formal_evidence_guard_only"
+    },
+    "coco_s4/serial.py": {
+      "before": "f20c177b3a5bcea401dab7ec6e2b32b834c6aa856e28ce51511aca9b70d3f4fb",
+      "after": "2ae896fe9fdb8657b86e23869a701ec2b225010ba8ebd88094bbcc3946e264dc",
+      "reason": "authorization_capacity_or_formal_evidence_guard_only"
+    },
+    "coco_s4/serial_recovery.py": {
+      "before": "c5d73c02707695d3534e67b1e50500a7ee15b10d4f38b270ca17816f64353e2a",
+      "after": "e17a72308dea3d200b450afe4b788fb09191f2b1ad09d58703dfbb19c99c1cbf",
+      "reason": "explicitly_bound_serial_control_only"
+    }
+  },
+  "negative_contracts_rejected": 6,
+  "original_model_and_optimization_AST_unchanged": true,
+  "model_forwards": 0,
+  "GPU_initialized": false,
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261027_tfss_repaired_v1",
+  "invalid_workflow_reused": false,
+  "existing_scientific_review_count": 1
+}

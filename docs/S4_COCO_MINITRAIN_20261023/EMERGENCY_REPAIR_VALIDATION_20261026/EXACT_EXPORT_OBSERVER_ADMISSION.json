@@ -1,9 +1,9 @@
 {
-  "state": "WAITING_RESOURCES",
+  "state": "READY",
   "capacity": {
-    "UTC": "2026-10-26T14:36:32.904656+00:00",
-    "RAM_available_GiB": 96.8647346496582,
-    "disk_free_GiB": 979.9880790710449,
+    "UTC": "2026-10-26T15:53:43.423203+00:00",
+    "RAM_available_GiB": 101.27188873291016,
+    "disk_free_GiB": 979.0049133300781,
     "GPU_free_MiB": 41336,
     "IOwait_percent": [
       0.0,
@@ -12,7 +12,9 @@
     ],
     "GPU_compute_pids": "nonempty; other UID; individual identity withheld from public report",
     "CPU_load_is_advisory": true,
-    "admitted": false
+    "admitted": true,
+    "shared_GPU_human_authorization_sha256": "28477655ac7f4c2c09d452511e531cddba4802242f19c3d0a74eb8e5a4634c59",
+    "other_user_GPU_coexistence_authorized": true
   },
   "old_state_sha256": "1aaff56d1818a88917425895471310ca87b777354efd22c695b6b38546e4f61c",
   "old_controller_absent": true,

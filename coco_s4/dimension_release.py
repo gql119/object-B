@@ -9,7 +9,7 @@ import re
 import subprocess
 
 from .runtime import ROOT, DATA_ROOT, DATA_FILES, PARENT, VICTIM_PARENT, commit, load, now, sha, write_once
-from .phase_contract import OWNED, WORKFLOW, LEGACY_WORKFLOW, ORIGIN_OUTPUT, WORKFLOW_OUTPUT, PREVIOUS_DIMENSION_OUTPUT
+from .phase_contract import OWNED, WORKFLOW, LEGACY_WORKFLOW, ORIGIN_OUTPUT, WORKFLOW_OUTPUT, PREVIOUS_DIMENSION_OUTPUT, INVALIDATED_OUTPUT
 from .dimension_protocol import PROTOCOL, validate_receipt_dimension
 from .release_transport import anchor_path,validate_anchor_outside_lifecycle,ensure_remote_exact
 
@@ -51,6 +51,20 @@ assert not live(current.get('controller')) and not live(current.get('active_chil
 assert not (invalid/'receipts/export25k_READY.json').exists() and not (invalid/'export25k').exists()
 sys.path.insert(0,sys.argv[2]);from coco_s4.serial import capacity
 resources=capacity(old)
+policy=json.loads(sys.argv[5])
+owners=[]
+for text in resources['GPU_compute_pids'].splitlines():
+ if text.strip():
+  proc=Path('/proc')/str(int(text.strip()));owners.append(dict(pid=int(text.strip()),uid=proc.stat().st_uid))
+shared=policy.get('allow_other_user_gpu') is True
+resources.update(GPU_compute_owners=owners,other_user_GPU_coexistence_authorized=shared,
+ human_shared_admission_sha256=policy.get('human_relaunch_authorization_sha256'))
+resources['admitted']=(resources['RAM_available_GiB']>=32 and resources['disk_free_GiB']>=150
+ and resources['GPU_free_MiB']>=24000 and not all(v>=20 for v in resources['IOwait_percent'])
+ and (not owners or (shared and all(row['uid']!=1014 for row in owners))))
+invalidproof=dict(run_id=current['run_id'],source_commit=current['source_commit'],
+ files={name:__import__('hashlib').sha256((invalid/name).read_bytes()).hexdigest() for name in
+ ('pipeline_state.json','fourier24/status.json','jobs/fourier24/exit.json','receipts/SCIENTIFIC_INVALIDATION_20261026.json')})
 # GPU utility/CPU load are telemetry. Capacity checks exactly match the existing controller.
 for p in Path('/proc').iterdir():
  if not p.name.isdigit() or int(p.name)==os.getpid():continue
@@ -63,7 +77,7 @@ for p in Path('/proc').iterdir():
  except (FileNotFoundError,ProcessLookupError):pass
 print(json.dumps(dict(state='READY' if resources['admitted'] else 'WAITING_RESOURCES',capacity=resources,
  old_state_sha256=__import__('hashlib').sha256((old/'pipeline_state.json').read_bytes()).hexdigest(),
- old_controller_absent=True,old_child_absent=True,failed_dimension_predecessor=proof)))
+ old_controller_absent=True,old_child_absent=True,failed_dimension_predecessor=proof,invalidated_predecessor=invalidproof)))
 '''
 
 
@@ -87,7 +101,10 @@ def check_tag(tag):
 
 
 def preflight(transport):
-    r=transport.run([PYTHON,'-B','-c',PREFLIGHT,ORIGIN_OUTPUT.as_posix(),(OWNED/'repos'/LEGACY_WORKFLOW).as_posix(),PREVIOUS_DIMENSION_OUTPUT.as_posix(),WORKFLOW_OUTPUT.as_posix()])
+    policy=load(ROOT/'coco_s4/configs/EMERGENCY_REPAIR_SCOPE.json')
+    if policy.get('allow_other_user_gpu'):
+        assert sha(ROOT/policy['human_relaunch_authorization_path'])==policy['human_relaunch_authorization_sha256']
+    r=transport.run([PYTHON,'-B','-c',PREFLIGHT,ORIGIN_OUTPUT.as_posix(),(OWNED/'repos'/LEGACY_WORKFLOW).as_posix(),PREVIOUS_DIMENSION_OUTPUT.as_posix(),INVALIDATED_OUTPUT.as_posix(),json.dumps(policy)])
     if r.returncode:raise RuntimeError(r.stderr.decode(errors='replace')[-3000:])
     return json.loads(r.stdout)
 
@@ -101,7 +118,9 @@ def release(head,phase):
             'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_DIMENSION_CPU_NUMERICS_20261025.json',
             'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_DIMENSION_REGRESSION_20261025.json',
             'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_PRECISION_CANDIDATE_CPU_20261025.json',
-            'docs/S4_COCO_MINITRAIN_20261023/USER_DYNAMIC_DIMENSION_AUTHORIZATION_20261025.md')]
+            'docs/S4_COCO_MINITRAIN_20261023/USER_DYNAMIC_DIMENSION_AUTHORIZATION_20261025.md',
+            'docs/S4_COCO_MINITRAIN_20261023/USER_SHARED_GPU_AND_AUTOSTART_20261026.md',
+            'docs/S4_COCO_MINITRAIN_20261023/COCO_S4_RECOVERY_READINESS.json')]
     return dict(schema='s4.coco.release.v1',phase=phase,source_commit=head,workflow_run_id=WORKFLOW,
                 validation_only=True,repair_authorization_sha256=load(ROOT/'coco_s4/configs/EMERGENCY_REPAIR_SCOPE.json')['authorization_sha256'],
                 scientific_parent=PARENT,victim_parent=VICTIM_PARENT,dimension_protocol=PROTOCOL,

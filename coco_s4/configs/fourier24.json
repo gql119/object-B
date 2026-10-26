@@ -1,7 +1,7 @@
 {
   "schema": "s4.coco.fourier24-config.v1",
   "phase": "fourier24",
-  "workflow_run_id": "s4_coco_experiment_a_seed0_20261026_dimcompat_v2",
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261027_tfss_repaired_v1",
   "predecessor_phase": "calibration",
   "predecessor_receipt_kind": "accepted.json",
   "teacher_policy": "fixed native EMA last@200",

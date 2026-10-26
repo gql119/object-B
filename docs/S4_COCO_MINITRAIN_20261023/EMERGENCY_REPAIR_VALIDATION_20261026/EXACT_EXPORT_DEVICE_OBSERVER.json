@@ -1,0 +1,112 @@
+{
+  "source_commit": "6bf3434e134b473b7d514eca1931e6f079591bf9",
+  "release_sha256": "f19fdc2e262869bc3f33cfe7e2333ea6f6b54e50d5f8662cbdc7efd5cf2b639b",
+  "validation_only": true,
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "parameter_updates": 0,
+  "formal_READY_written": false,
+  "state": "passed",
+  "actual_native_forward_calls": 2,
+  "CPU_negative_forward_calls": 1,
+  "CUDA_positive_forward_calls": 1,
+  "CPU_output_rejected": true,
+  "actual_forward_evidence": [
+    {
+      "device": "cpu",
+      "raw": [
+        [
+          "cpu"
+        ],
+        []
+      ]
+    },
+    {
+      "device": "cuda:0",
+      "raw": [
+        [
+          "cuda:0"
+        ],
+        [
+          0
+        ]
+      ]
+    }
+  ],
+  "exact_production_hook_source_sha256": "25b346067ca76c8bd8f55d7cc34e3a0d28ae187a90b13420b3f3fd2503d181d3",
+  "exact_production_hook_line": 339,
+  "production_hook_evidence": [
+    {
+      "devices": [
+        "cuda:0"
+      ],
+      "cuda_indices": [
+        0
+      ],
+      "raw_tensors": [
+        {
+          "shape": [
+            1,
+            84,
+            8400
+          ],
+          "dtype": "torch.float32",
+          "sha256": "ba4345f477116ba9d7d5a2ebbc61e94ca045f668a2c304f97db28ab2d92a32cb"
+        },
+        {
+          "shape": [
+            1,
+            64,
+            8400
+          ],
+          "dtype": "torch.float32",
+          "sha256": "455dbaca1416da21c400a6419e82661a4100552cdf324458c7727cefcb5e4021"
+        },
+        {
+          "shape": [
+            1,
+            64,
+            80,
+            80
+          ],
+          "dtype": "torch.float32",
+          "sha256": "ca75519154a4ee097b29bacb140c8269e25a1114cda9650ce2d47d1f869cebf8"
+        },
+        {
+          "shape": [
+            1,
+            128,
+            40,
+            40
+          ],
+          "dtype": "torch.float32",
+          "sha256": "1b75802e0e4532ff463d249c953711bf46ef0a3288f78da38dc768dddc7bc18e"
+        },
+        {
+          "shape": [
+            1,
+            256,
+            20,
+            20
+          ],
+          "dtype": "torch.float32",
+          "sha256": "49da31199a5ba26fd98eb4a0382f1c2bc4b11182321981041e3944341c4f2665"
+        },
+        {
+          "shape": [
+            1,
+            80,
+            8400
+          ],
+          "dtype": "torch.float32",
+          "sha256": "643720048d07d899692772508dea01c6f4d940680d0c7845100a9143d1b591a3"
+        }
+      ]
+    }
+  ],
+  "actual_image_id": "000000168353",
+  "actual_image_sha256": "d66793791af5bfa0b8c1f57355ee28b26bd63585d3a8be70a07fb5668697c23a",
+  "Teacher_unchanged": true,
+  "checkpoint_unchanged": true,
+  "model_parameter_updates": 0
+}

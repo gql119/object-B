@@ -1,7 +1,7 @@
 {
   "schema": "s4.coco.official-eval-config.v1",
   "phase": "official_eval",
-  "workflow_run_id": "s4_coco_experiment_a_seed0_20261026_dimcompat_v2",
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261027_tfss_repaired_v1",
   "checkpoint_policy": "fixed clean200 and s4_200 native last.pt@200",
   "image_count": 5000,
   "class_count": 80,

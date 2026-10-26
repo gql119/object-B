@@ -1,5 +1,5 @@
 {
-  "state": "FINAL_EXACT_HOOK_VALIDATION_PENDING",
+  "state": "CLOSED_ALL_ACTUAL_VALIDATIONS",
   "source_commit": "0113b9b65b0aba4b0132ff5b1f4f58782756cc53",
   "release_sha256": "acd5c930f319da3ad9a0afd9136461bb14e7406b7e8142b4bbcd8823a429580f",
   "findings": [
@@ -24,8 +24,8 @@
     {
       "id": "S4-004",
       "root_cause": "Exporter claimed CUDA from counter/availability",
-      "closure": "IMPLEMENTED_ADDITIONAL_EXACT_HOOK_PROBE_WAITING_RESOURCES",
-      "evidence": "Full S4 actual raw CUDA44forwards proved; additional exact export callback CPU-negative/CUDA-positive check WAITING_RESOURCES"
+      "closure": "CLOSED_EXACT_HOOK",
+      "evidence": "Full S4 actual raw CUDA44forwards proved; additional exact export callback CPU-negative/CUDA-positive check passed"
     },
     {
       "id": "S4-005",
@@ -75,5 +75,5 @@
       "audit_GPU_initialized": false
     }
   ],
-  "formal_relaunch_allowed": false
+  "formal_relaunch_allowed": true
 }

@@ -1,13 +1,13 @@
 {
   "schema": "s4.coco.emergency-repair-readiness.v1",
-  "state": "WAITING_FINAL_BOUNDED_DEVICE_OBSERVER",
-  "generated_UTC": "2026-10-26T14:40:29.366785+00:00",
+  "state": "ALL_REPAIR_VALIDATIONS_PASSED",
+  "generated_UTC": "2026-10-26T16:06:02.298149+00:00",
   "method_label": "Original S4 — COCO80 Dimension-Compatible Implementation",
   "computation_commit": "0113b9b65b0aba4b0132ff5b1f4f58782756cc53",
   "branch": "codex/s4-coco-full-pipeline-bugfix-20261026",
   "release_sha256": "acd5c930f319da3ad9a0afd9136461bb14e7406b7e8142b4bbcd8823a429580f",
   "scientific_phase_config_sha256": "9f2830c5d6a2a608f881cb5d7c2616bc77f6340ca597ae74ab4070229361ce4a",
-  "new_repair_scope_config_sha256": "987557490c2c2f0999c8b5e052b6eab776330e48105f95e28896115256081750",
+  "new_repair_scope_config_sha256": "331e988be04b26ca316f03666270d60225d721616eafda8f2f7c04cc61eac5c4",
   "Teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
   "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
   "selected_dimension": 39,
@@ -32,22 +32,15 @@
   "production_forward_calls_each": 44,
   "read_only_main_audits": "passed",
   "consumer_simulation": "passed",
-  "extra_exact_export_device_observer": "WAITING_RESOURCES",
-  "formal_relaunch_allowed": false,
+  "extra_exact_export_device_observer": "passed",
+  "formal_relaunch_allowed": true,
   "requires_later_explicit_human_relaunch": false,
   "new_formal_binding": null,
   "invalid_workflow_reusable": false,
   "invalid_Fourier_resume_allowed": false,
   "prerequisites_reusable": true,
-  "pending": [
-    "Only additional exact production export-device callback probe under fresh no-conflict capacity"
-  ],
+  "pending": [],
   "no_own_formal_controller": true,
   "scientific_protocol_changed_in_this_repair": false,
-  "cleanup_performed": false,
-  "conditional_formal_relaunch_authorized": true,
-  "conditional_formal_relaunch_authorization": "docs/S4_COCO_MINITRAIN_20261023/USER_CONDITIONAL_FORMAL_RELAUNCH_20261026.md",
-  "conditional_formal_relaunch_authorization_sha256": "6ca3adf1ec4ece1f38ccea2ef3022507488ddbeb633435ad7ad125ac1b8729bc",
-  "authorization_condition": "ALL actual repair validations and fresh no-conflict admission passed; new unique formal binding only",
-  "human_input_required": false
+  "cleanup_performed": false
 }

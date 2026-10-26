@@ -301,8 +301,10 @@ def formal_gate(registration, release_path, manifest, config_sha):
     if not smoke_path.is_relative_to((OWNED/'validation').resolve()) or sha(smoke_path) != review['smoke_sha256']:
         raise ValueError('Fourier smoke must be retained under the owned validation root')
     smoke = load(smoke_path)
-    expected_smoke = dict(state='passed', phase=PHASE, source_commit=manifest['source_commit'],
-                          release_sha256=sha(release_path), phase_config_sha256=config_sha,
+    from .relaunch_binding import evidence_identity
+    evidence=evidence_identity(manifest)
+    expected_smoke = dict(state='passed', phase=PHASE, source_commit=evidence['source_commit'],
+                          release_sha256=evidence['release_sha256'] or sha(release_path), phase_config_sha256=evidence['phase_config_sha256'],
                           calibration_receipt_sha256=dependency['accepted_sha256'],
                           teacher_checkpoint_sha256=manifest['teacher_dependency']['checkpoint_sha256'],
                           computation_kind='fourier-gradient', production_entrypoint_reached=True,
