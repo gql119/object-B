@@ -1,0 +1,941 @@
+{
+  "schema": "s4.coco.artifact-reuse.v1",
+  "state": "REUSABLE_PREREQUISITES_ONLY",
+  "evidence_sha256": "d66aa6e64947fedcb3df8e18c56d5cde9cca17cac054d7ef455281e536342ad7",
+  "data": {
+    "state": "REUSABLE",
+    "files": [
+      {
+        "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/metadata/instances_minitrain2017.json",
+        "bytes": 112648466,
+        "sha256": "5682389c3bb0a356912771811f7836659cc6de5a588413752922ccb94a6df1a8"
+      },
+      {
+        "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/metadata/instances_val2017.json",
+        "bytes": 19987840,
+        "sha256": "e8c7f7908f1d7278341fae127d0da654f102f11bd7b21d8aeefa635b8c810b6f"
+      },
+      {
+        "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/metadata/TRAIN25K_KAGGLE_IMAGE_MANIFEST_20261024.jsonl",
+        "bytes": 9049914,
+        "sha256": "a8bd9bd336685bba1573d0401ad686f76e156daf35ea9867499a34c2fb31a343"
+      },
+      {
+        "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/metadata/VAL2017_IMAGE_MANIFEST_20261025.jsonl",
+        "bytes": 1789977,
+        "sha256": "6fef2d07ef94fbc190519f44959eacdca0139d551514c671bf42843d33b18f67"
+      }
+    ],
+    "scope": "Retained full30K acceptance; current metadata/manifests plus3image-label samples per split; NOT a repeated full30K scan",
+    "samples": [
+      {
+        "split": "train",
+        "stem": "000000000025",
+        "image": {
+          "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/images/train/000000000025.jpg",
+          "bytes": 196370,
+          "sha256": "d8f12a26d8803701cabac80494b080f998e5ed9bafaf61a2825ce6212c85487a"
+        },
+        "label": {
+          "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/labels/train/000000000025.txt",
+          "bytes": 151,
+          "sha256": "37a13c650a710ac89df42c9c4a290345961f199f8669812fff81e24f6c9d9061"
+        }
+      },
+      {
+        "split": "train",
+        "stem": "000000290183",
+        "image": {
+          "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/images/train/000000290183.jpg",
+          "bytes": 109783,
+          "sha256": "976fc4117fd1debc35e7f041a0194dc5e8edc93b3f752131fb655be9bccd0d45"
+        },
+        "label": {
+          "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/labels/train/000000290183.txt",
+          "bytes": 72,
+          "sha256": "d170cdc4c6e934db58e422dba206fe587babd2a64991758d2180f5eb1c2cb63b"
+        }
+      },
+      {
+        "split": "train",
+        "stem": "000000581929",
+        "image": {
+          "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/images/train/000000581929.jpg",
+          "bytes": 315416,
+          "sha256": "ddf07c79d321aa18e5c31429495eedf8c84b4405e6b8c3e579adbc2e018bbbe6"
+        },
+        "label": {
+          "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/labels/train/000000581929.txt",
+          "bytes": 159,
+          "sha256": "c4ff0d7e354d638166da07f0d54ba6c9e292985ef9e94c7370aaa7fea5e19dbf"
+        }
+      },
+      {
+        "split": "val",
+        "stem": "000000000139",
+        "image": {
+          "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/images/val/000000000139.jpg",
+          "bytes": 161811,
+          "sha256": "ffe0f0cec3b2e27aab1967229cdf0a0d7751dcdd5800322f0b8ac0dffb3b8a8d"
+        },
+        "label": {
+          "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/labels/val/000000000139.txt",
+          "bytes": 1610,
+          "sha256": "ebbeaf10e9ae92f100627e44799a3139a0c3d1fe4435b1fd5c6f3dc3abed424e"
+        }
+      },
+      {
+        "split": "val",
+        "stem": "000000289594",
+        "image": {
+          "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/images/val/000000289594.jpg",
+          "bytes": 131980,
+          "sha256": "6ea6d77f15b4f91be09e0a15bcae0e583c2224c24ab05ceca54ba906bcd5314a"
+        },
+        "label": {
+          "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/labels/val/000000289594.txt",
+          "bytes": 244,
+          "sha256": "501ba825d6a01a1866a732a820becb441b31c12e82599e25e7e721f83d988520"
+        }
+      },
+      {
+        "split": "val",
+        "stem": "000000581781",
+        "image": {
+          "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/images/val/000000581781.jpg",
+          "bytes": 245864,
+          "sha256": "59b1da30af12f76b691990363e0d221050a59cf53fc4a97e776bcb00228c6c2a"
+        },
+        "label": {
+          "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/labels/val/000000581781.txt",
+          "bytes": 1052,
+          "sha256": "ec7a03d66f9ebe8a5ca546401868a5c55379430d486e6cbf9bcca1233a338592"
+        }
+      }
+    ]
+  },
+  "teacher": {
+    "state": "REUSABLE",
+    "files": [
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+        "bytes": 12893955,
+        "sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/state_snapshots/epoch_200_full_state.pt",
+        "bytes": 25486273,
+        "sha256": "2c0d008722e78e826fd2380954970e5d881cc8cd9c6c0136e284ad8567448dfd"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/accepted.json",
+        "bytes": 41838,
+        "sha256": "f06302c55aad6870c877aed3f79f1defb280a392d6bf96d4f40ca018245c3ade"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_eval/accepted.json",
+        "bytes": 1263,
+        "sha256": "69655e8c89aa282a5ace5eff89b45412d9631f76409d269d778728c1df868b51"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_eval/official_metrics.json",
+        "bytes": 22616,
+        "sha256": "495e3479cb1ef6ba85093cc1ad67c46d2f18ec103208d1b00af4240bd3b9b0fa"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher_eval/COCO_PER_CLASS_AP.csv",
+        "bytes": 8883,
+        "sha256": "593b42b713e55320c2a6a16c8cffe3d31bbcc269f1c4cb3d6956bcea65b13b78"
+      }
+    ],
+    "retrain": false
+  },
+  "calibration": {
+    "state": "REUSABLE",
+    "files": [
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/collected/eligible_support_manifest.json",
+        "bytes": 1295017,
+        "sha256": "c7ef1f83682428a38bf1ab63bc3c4b96ece6a88d51a8080d91f79cf5979440bf"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/fixed_p5_identity.json",
+        "bytes": 713,
+        "sha256": "3a80301f832cbe7496b39f6692961a4986701611d87eaa2fba5fe37bdd8131c4"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/coordinates_identity.json",
+        "bytes": 3292,
+        "sha256": "3cc7618a645b7f37146a2954f6313cc83e8918c00b70111d453aa0a08b0de2ae"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/non_target_subspaces.pt",
+        "bytes": 5301655,
+        "sha256": "ba4dd5d42585fa3d93514ee740e06b52e0abcde7b4aca916408ebe4a31e2b6e7"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/orth_non_target_subspaces.pt",
+        "bytes": 533271,
+        "sha256": "ff5d706869ce8b1bed84f1fcb703b67d37006b4cd13e18ad95f2b0300e4ee187"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/orth_target_specific_channels.pt",
+        "bytes": 7201,
+        "sha256": "ef573aadada40fb6c657ef23a143d21465dc61b744bb8c94970b9b65cf228be3"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/safe_bg_selected_subspaces.pt",
+        "bytes": 282287,
+        "sha256": "07f06b89d2a507076a810a97eb21020023f15615b0c43154ca102db2d15c65e2"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/selected_dimension_audit.json",
+        "bytes": 10969,
+        "sha256": "3c9ea07516af546027443a807584b70774d16e05655415eaa6851f577af57386"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/strict_tsfl_channels.pt",
+        "bytes": 6404,
+        "sha256": "bbb2b6b295e1786d2c4b3ed1239b8abab5cac0e926de5848d0254c09e43db0d5"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/strict_tsfl_selected_layer.pt",
+        "bytes": 2286,
+        "sha256": "3e648fa3dbe718fc09e5345a68b0cb20d65575eab27bd70e9f48fb1294d97c6e"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/strict_tsfl_selected_layer_summary.json",
+        "bytes": 399,
+        "sha256": "3df4899a1406a9d0df6f212095e105e4c4faebc4f79645b2c373a2e5243eb89b"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/strict_tsfl_summary.json",
+        "bytes": 8011,
+        "sha256": "c73600cd7f9924774e77cc8a02c11442b0f9ae6398095cfacb036d86ba120663"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/subspace_summary.json",
+        "bytes": 14150,
+        "sha256": "ba8059c9fe2cda3005a34c5ff32f72553034efafb430ab7f26fb2f3aca3ec4a3"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/target_specific_channels.pt",
+        "bytes": 362621,
+        "sha256": "5380af6448b4848c8e65258bb8fc106f02fdbb74f0354c929ed0fbbd0e6ee142"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/tsfl_sensitivity_stats.json",
+        "bytes": 651942,
+        "sha256": "c0c18375fd720a2b545f84a753c8ef31fca8e7cecaf3ea1014933589ce507a27"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/tsfl_summary.json",
+        "bytes": 996,
+        "sha256": "7a3491283e86db921e3c33af6e8b28a42fb11b1aa1801ce4f01ba2e847dc97c1"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/reference/coordinates_identity.json",
+        "bytes": 1025,
+        "sha256": "d8344e08ad9d3f53383af5c3cd0cc4e95da729baae68a96afde6d8cf6499dfb5"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/reference/non_target_subspaces.pt",
+        "bytes": 533271,
+        "sha256": "ff5d706869ce8b1bed84f1fcb703b67d37006b4cd13e18ad95f2b0300e4ee187"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/reference/target_specific_channels.pt",
+        "bytes": 7201,
+        "sha256": "ef573aadada40fb6c657ef23a143d21465dc61b744bb8c94970b9b65cf228be3"
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/prototype_bank.pt",
+        "bytes": 9946,
+        "sha256": "9aa1a3d75f1b8d76737fb18ddea4af4849cfa7886a443750f9f58ea874560a06"
+      }
+    ],
+    "selected_channels": [
+      5,
+      6,
+      7,
+      14,
+      16,
+      22,
+      23,
+      36,
+      42,
+      43,
+      50,
+      59,
+      62,
+      66,
+      70,
+      73,
+      84,
+      97,
+      99,
+      102,
+      105,
+      118,
+      119,
+      126,
+      130,
+      175,
+      183,
+      184,
+      203,
+      205,
+      216,
+      218,
+      228,
+      236,
+      237,
+      238,
+      240,
+      250,
+      253
+    ],
+    "identity": {
+      "seed": 0,
+      "checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+      "frozen_state_sha256": "afa0e0899a6db8fb7db7b6a7f5f1826879601c5587779146cc37aef705355063",
+      "clean_train_manifest_sha256": "181e9c203b2d5a147888aac7ded702673c2084994d722c9ca4633fad0210ee64",
+      "images": 25000,
+      "data_root": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023",
+      "train_images": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/images/train",
+      "train_labels": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/labels/train",
+      "validation_used": false,
+      "builder_sha256": "7c291dd8899404e39e44ab2b20650913807e091e56fb13c2e7356c0fb4c2a3ee",
+      "coordinate_code_sha256": "54798bb76dec96a6e160690ecbb3729e574169b00dd8439a5a4ae5c37cd38e05",
+      "settings": {
+        "target_channel_fraction": 0.75,
+        "lambda_specificity": 1.0,
+        "subspace_variance": 0.9,
+        "subspace_min_rank": 4,
+        "subspace_max_rank_fraction": 0.5
+      },
+      "feature_layer": "model.21",
+      "channels": 256,
+      "safe_bg_code_sha256": "e0bfe9a5c86591c91e2ac1b560923994f1a322e6d34ec567e44bbeb01b673043",
+      "reference_target_channels_sha256": "ef573aadada40fb6c657ef23a143d21465dc61b744bb8c94970b9b65cf228be3",
+      "reference_non_target_subspaces_sha256": "ff5d706869ce8b1bed84f1fcb703b67d37006b4cd13e18ad95f2b0300e4ee187",
+      "strict_tsfl_settings": {
+        "enabled": true,
+        "target_candidate_fraction": 0.4,
+        "nt_safety_quantile": 0.6,
+        "strict_tsfl_feature_level": "P5",
+        "layer_selection_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1305z_rebuild/execution/generated_calibration/coco_dimension_template/fixed_p5_identity.json",
+        "sensitivity_worst_k": 3,
+        "target_channel_fraction": 0.15,
+        "min_selected_channels": 4
+      },
+      "safe_bg_settings": {
+        "dimension_protocol": "coco80-strict-tsfl-selected-dimension-v1",
+        "enabled": true,
+        "mode": "low_rank",
+        "rank": 8,
+        "removal_alpha": 0.5,
+        "active_k": 3,
+        "projector_rank_rtol": 1e-06,
+        "reference_artifact_dir": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1305z_rebuild/execution/generated_calibration/coco_dimension_template/method/reference"
+      },
+      "dimension_protocol": "coco80-strict-tsfl-selected-dimension-v1",
+      "selected_space_dimension": 39,
+      "selected_channel_indices": [
+        5,
+        6,
+        7,
+        14,
+        16,
+        22,
+        23,
+        36,
+        42,
+        43,
+        50,
+        59,
+        62,
+        66,
+        70,
+        73,
+        84,
+        97,
+        99,
+        102,
+        105,
+        118,
+        119,
+        126,
+        130,
+        175,
+        183,
+        184,
+        203,
+        205,
+        216,
+        218,
+        228,
+        236,
+        237,
+        238,
+        240,
+        250,
+        253
+      ],
+      "num_classes": 80,
+      "target_class_id": 0,
+      "retained_calibration": {
+        "origin_release_sha256": "5e16ca9f00af6e827cec3efea66b0ee930d90301ec95ac2d73a8b58ab04960ce",
+        "raw_statistics_sha256": "8be0361d373f1278075c5e8dff1ae21ae7a792b0488ef7cfeb3b8fd930c1995d",
+        "original_selection_sha256": "cdbabe07c68ce6a4801480d6a9aadb97d9d9dd09d7f6eedb0a500e933e966cb6",
+        "prototype_bank_sha256": "9aa1a3d75f1b8d76737fb18ddea4af4849cfa7886a443750f9f58ea874560a06",
+        "retained_input_binding_sha256": "2726a975e2455d0ad91fb5146c6d7b6b77eea1d772eaadd0e09aa585ae69d4e0"
+      }
+    },
+    "all79_ranks": [
+      {
+        "class_id": 1,
+        "rank": 16,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 2,
+        "rank": 18,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 3,
+        "rank": 16,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 4,
+        "rank": 15,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 5,
+        "rank": 16,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 6,
+        "rank": 18,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 7,
+        "rank": 18,
+        "gram_error": 5.960464477539063e-08
+      },
+      {
+        "class_id": 8,
+        "rank": 18,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 9,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 10,
+        "rank": 15,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 11,
+        "rank": 17,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 12,
+        "rank": 16,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 13,
+        "rank": 19,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 14,
+        "rank": 19,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 15,
+        "rank": 19,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 16,
+        "rank": 19,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 17,
+        "rank": 15,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 18,
+        "rank": 17,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 19,
+        "rank": 16,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 20,
+        "rank": 15,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 21,
+        "rank": 17,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 22,
+        "rank": 16,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 23,
+        "rank": 16,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 24,
+        "rank": 19,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 25,
+        "rank": 19,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 26,
+        "rank": 18,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 27,
+        "rank": 19,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 28,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 29,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 30,
+        "rank": 17,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 31,
+        "rank": 18,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 32,
+        "rank": 19,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 33,
+        "rank": 18,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 34,
+        "rank": 19,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 35,
+        "rank": 17,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 36,
+        "rank": 17,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 37,
+        "rank": 17,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 38,
+        "rank": 17,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 39,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 40,
+        "rank": 19,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 41,
+        "rank": 19,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 42,
+        "rank": 19,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 43,
+        "rank": 19,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 44,
+        "rank": 19,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 45,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 46,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 47,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 48,
+        "rank": 19,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 49,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 50,
+        "rank": 19,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 51,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 52,
+        "rank": 19,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 53,
+        "rank": 19,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 54,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 55,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 56,
+        "rank": 19,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 57,
+        "rank": 18,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 58,
+        "rank": 19,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 59,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 60,
+        "rank": 19,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 61,
+        "rank": 16,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 62,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 63,
+        "rank": 19,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 64,
+        "rank": 19,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 65,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 66,
+        "rank": 19,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 67,
+        "rank": 19,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 68,
+        "rank": 16,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 69,
+        "rank": 17,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 70,
+        "rank": 12,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 71,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 72,
+        "rank": 17,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 73,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 74,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 75,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 76,
+        "rank": 19,
+        "gram_error": 2.384185791015625e-07
+      },
+      {
+        "class_id": 77,
+        "rank": 19,
+        "gram_error": 1.1920928955078125e-07
+      },
+      {
+        "class_id": 78,
+        "rank": 13,
+        "gram_error": 1.7881393432617188e-07
+      },
+      {
+        "class_id": 79,
+        "rank": 19,
+        "gram_error": 1.7881393432617188e-07
+      }
+    ],
+    "P3_48_byte_exact": true,
+    "K8_shape": [
+      8,
+      256
+    ],
+    "eligible": 13630,
+    "recalibrate": false
+  },
+  "wrong_fourier": {
+    "state": "INVALID_FOR_ORIGINAL_S4",
+    "inventory": [
+      {
+        "path": "fourier24/categorical_diagnostics.jsonl",
+        "bytes": 4783880,
+        "sha256": "a18515e30238f287d87460b60bd7e5651d66320da362589df5a99985f14669bd"
+      },
+      {
+        "path": "fourier24/diagnostics.csv",
+        "bytes": 90663427,
+        "sha256": "d148a1496c435264d15601ae6a144f05a4e8e5d1ce4b64d0e6b84e3c2484c2c3"
+      },
+      {
+        "path": "fourier24/imported_calibration/collected/eligible_support_manifest.json",
+        "bytes": 1295017,
+        "sha256": "c7ef1f83682428a38bf1ab63bc3c4b96ece6a88d51a8080d91f79cf5979440bf"
+      },
+      {
+        "path": "fourier24/imported_calibration/fixed_p5_identity.json",
+        "bytes": 713,
+        "sha256": "3a80301f832cbe7496b39f6692961a4986701611d87eaa2fba5fe37bdd8131c4"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/coordinates/coordinates_identity.json",
+        "bytes": 3292,
+        "sha256": "3cc7618a645b7f37146a2954f6313cc83e8918c00b70111d453aa0a08b0de2ae"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/coordinates/non_target_subspaces.pt",
+        "bytes": 5301655,
+        "sha256": "ba4dd5d42585fa3d93514ee740e06b52e0abcde7b4aca916408ebe4a31e2b6e7"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/coordinates/orth_non_target_subspaces.pt",
+        "bytes": 533271,
+        "sha256": "ff5d706869ce8b1bed84f1fcb703b67d37006b4cd13e18ad95f2b0300e4ee187"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/coordinates/orth_target_specific_channels.pt",
+        "bytes": 7201,
+        "sha256": "ef573aadada40fb6c657ef23a143d21465dc61b744bb8c94970b9b65cf228be3"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/coordinates/safe_bg_selected_subspaces.pt",
+        "bytes": 282287,
+        "sha256": "07f06b89d2a507076a810a97eb21020023f15615b0c43154ca102db2d15c65e2"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/coordinates/strict_tsfl_channels.pt",
+        "bytes": 6404,
+        "sha256": "bbb2b6b295e1786d2c4b3ed1239b8abab5cac0e926de5848d0254c09e43db0d5"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/coordinates/strict_tsfl_selected_layer.pt",
+        "bytes": 2286,
+        "sha256": "3e648fa3dbe718fc09e5345a68b0cb20d65575eab27bd70e9f48fb1294d97c6e"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/coordinates/strict_tsfl_selected_layer_summary.json",
+        "bytes": 399,
+        "sha256": "3df4899a1406a9d0df6f212095e105e4c4faebc4f79645b2c373a2e5243eb89b"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/coordinates/strict_tsfl_summary.json",
+        "bytes": 8011,
+        "sha256": "c73600cd7f9924774e77cc8a02c11442b0f9ae6398095cfacb036d86ba120663"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/coordinates/subspace_summary.json",
+        "bytes": 14150,
+        "sha256": "ba8059c9fe2cda3005a34c5ff32f72553034efafb430ab7f26fb2f3aca3ec4a3"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/coordinates/target_specific_channels.pt",
+        "bytes": 362621,
+        "sha256": "5380af6448b4848c8e65258bb8fc106f02fdbb74f0354c929ed0fbbd0e6ee142"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/coordinates/tsfl_sensitivity_stats.json",
+        "bytes": 651942,
+        "sha256": "c0c18375fd720a2b545f84a753c8ef31fca8e7cecaf3ea1014933589ce507a27"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/coordinates/tsfl_summary.json",
+        "bytes": 996,
+        "sha256": "7a3491283e86db921e3c33af6e8b28a42fb11b1aa1801ce4f01ba2e847dc97c1"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/reference/coordinates_identity.json",
+        "bytes": 1025,
+        "sha256": "d8344e08ad9d3f53383af5c3cd0cc4e95da729baae68a96afde6d8cf6499dfb5"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/reference/non_target_subspaces.pt",
+        "bytes": 533271,
+        "sha256": "ff5d706869ce8b1bed84f1fcb703b67d37006b4cd13e18ad95f2b0300e4ee187"
+      },
+      {
+        "path": "fourier24/imported_calibration/method/reference/target_specific_channels.pt",
+        "bytes": 7201,
+        "sha256": "ef573aadada40fb6c657ef23a143d21465dc61b744bb8c94970b9b65cf228be3"
+      },
+      {
+        "path": "fourier24/imported_calibration/prototype_bank.pt",
+        "bytes": 9946,
+        "sha256": "9aa1a3d75f1b8d76737fb18ddea4af4849cfa7886a443750f9f58ea874560a06"
+      },
+      {
+        "path": "fourier24/phase_spec.json",
+        "bytes": 17265,
+        "sha256": "2b84b0550d90a13bc18abeddee75aa9638a8906addc0e16422d59017368e0c7f"
+      },
+      {
+        "path": "fourier24/status.json",
+        "bytes": 948,
+        "sha256": "6f6637ac823ad2fa0ceac732039ac39c3da592a6f1be9f9c62384aa0e717d88f"
+      },
+      {
+        "path": "fourier24/ue_framework/methods/b2_semantic.py",
+        "bytes": 30890
+      },
+      {
+        "path": "fourier24/ue_framework/methods/orth_reference_design.py",
+        "bytes": 1686
+      },
+      {
+        "path": "fourier24/ue_framework/methods/safebg.py",
+        "bytes": 15877
+      },
+      {
+        "path": "fourier24/ue_framework/methods/semantic_coordinates.py",
+        "bytes": 9027
+      }
+    ],
+    "parameters_or_checkpoints_found": false,
+    "unsaved_state_recoverable": false,
+    "allowed_use": "bug analysis only",
+    "resume_allowed": false
+  },
+  "formal_relaunch_allowed": false
+}

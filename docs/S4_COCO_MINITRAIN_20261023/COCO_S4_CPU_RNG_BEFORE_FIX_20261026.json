@@ -1,0 +1,11 @@
+{
+  "cuda_available": true,
+  "caught": "RuntimeError('AUDIT_BLOCKED_CUDA_INITIALIZATION_BEFORE_DRIVER')",
+  "lazy_init_calls": [
+    "CUDA_lazy_init_attempt"
+  ],
+  "GPU_initialized": false,
+  "model_forwards": 0,
+  "get_rng_source": "def get_rng_state(device: Union[int, str, torch.device] = \"cuda\") -> Tensor:\n    r\"\"\"Return the random number generator state of the specified GPU as a ByteTensor.\n\n    Args:\n        device (torch.device or int, optional): The device to return the RNG state of.\n            Default: ``'cuda'`` (i.e., ``torch.device('cuda')``, the current CUDA device).\n\n    .. warning::\n        This function eagerly initializes CUDA.\n    \"\"\"\n    _lazy_init()\n    if isinstance(device, str):\n        device = torch.device(device)\n    elif isinstance(device, int):\n        device = torch.device(\"cuda\", device)\n    idx = device.index\n    if idx is None:\n        idx = current_device()\n    default_generator = torch.cuda.default_generators[idx]\n    return default_generator.get_state()\n",
+  "prior_probe_failure": "First observer patched torch.cuda._lazy_init instead of cuda.random module binding; DeferredCudaCallError. Process exited; no model forward/update; no validated no-driver-initialization claim for that failed observer."
+}

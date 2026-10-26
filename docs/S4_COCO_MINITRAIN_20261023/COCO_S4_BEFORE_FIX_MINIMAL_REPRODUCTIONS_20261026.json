@@ -1,0 +1,19 @@
+{
+  "native_pack_fields": [
+    "coords",
+    "fourier_coeff",
+    "suppress_small",
+    "method",
+    "support_mode",
+    "target_class_id",
+    "eps",
+    "feature_layer",
+    "s4_identity",
+    "num_prototypes",
+    "margin"
+  ],
+  "export_rejects_native_pack": true,
+  "state_digest": "e799250ba2e5edaadb4dd44e7844ab8e35aae2b86612b301a024cb5245d8e16f",
+  "file_digest": "e452ca9f3cc61f7556cfb31761fe62680cee809e2d242bcf64745bb166ca94dd",
+  "current_matched_metadata_false": true
+}

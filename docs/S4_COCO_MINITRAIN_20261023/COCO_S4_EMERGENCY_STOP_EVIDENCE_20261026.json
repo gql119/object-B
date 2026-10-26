@@ -1,0 +1,118 @@
+{
+  "state": "STOPPED_SCIENTIFIC_INVALID",
+  "reason": "MISSING_TFSS_OPTIMIZATION_WIRING",
+  "run_id": "s4_coco_experiment_a_seed0_20261026_dimcompat_v2",
+  "source_commit": "dcd91b33d90dfd2472b8eacb843a994a4801d1cf",
+  "UTC": "2026-10-26T12:34:47.183202+00:00",
+  "authorization_sha256": "1400d8427587481949f8f78017ca3916d8663ae6cd2a6332416f40a37156bb68",
+  "incident_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/emergency_stops/COCO_S4_TFSS_20261026T1231Z",
+  "original_snapshots": {
+    "pipeline_state.json": {
+      "sha256": "49edbb46aab8358681f3abed29bb7a957ee2e5f5c4dd6fc5bda584c1d2566ee3",
+      "bytes": 2709,
+      "snapshot": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/emergency_stops/COCO_S4_TFSS_20261026T1231Z/before/pipeline_state.json"
+    },
+    "fourier24/status.json": {
+      "sha256": "6f6637ac823ad2fa0ceac732039ac39c3da592a6f1be9f9c62384aa0e717d88f",
+      "bytes": 948,
+      "snapshot": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/emergency_stops/COCO_S4_TFSS_20261026T1231Z/before/fourier24/status.json"
+    },
+    "jobs/fourier24/child.json": {
+      "sha256": "15db8ea4928b86ef5a158243457f9f7853d1b93b60823ced3ef4190add79c71f",
+      "bytes": 1219,
+      "snapshot": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/emergency_stops/COCO_S4_TFSS_20261026T1231Z/before/jobs/fourier24/child.json"
+    },
+    "jobs/fourier24/intent.json": {
+      "sha256": "66d8f9826de66228cb2264006bae111b87ba0a646f1592ead7ce287d0cdbeff0",
+      "bytes": 837,
+      "snapshot": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/emergency_stops/COCO_S4_TFSS_20261026T1231Z/before/jobs/fourier24/intent.json"
+    },
+    "jobs/fourier24/scope_launch.json": {
+      "sha256": "1103c7c19ed506285a70b11e7bba57905acb83b430769cb5cc9ae1f3e0fdd70b",
+      "bytes": 1685,
+      "snapshot": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/emergency_stops/COCO_S4_TFSS_20261026T1231Z/before/jobs/fourier24/scope_launch.json"
+    },
+    "jobs/fourier24/scope_launcher.json": {
+      "sha256": "0e37adffd3cd9ec1c7b7ef901ab622538ca4248be34a86a24f97a6509aca3bcc",
+      "bytes": 61,
+      "snapshot": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/emergency_stops/COCO_S4_TFSS_20261026T1231Z/before/jobs/fourier24/scope_launcher.json"
+    },
+    "receipts/fourier24_READY.json": {
+      "sha256": "9493828ad915f83be75b507fc6a7b6c046c8340bbec9a574762b4091c935560d",
+      "bytes": 1114,
+      "snapshot": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/emergency_stops/COCO_S4_TFSS_20261026T1231Z/before/receipts/fourier24_READY.json"
+    },
+    "RECOVERY_PROVENANCE.json": {
+      "sha256": "ee3113f54b1922e7e764e365fa5c053a5e851b77ff57c395433cb2f808b9aac7",
+      "bytes": 1168,
+      "snapshot": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/emergency_stops/COCO_S4_TFSS_20261026T1231Z/before/RECOVERY_PROVENANCE.json"
+    },
+    "workflow_config": {
+      "sha256": "8228eca879de4619a01080f8d3fb959df555a4d9e0d3b2d764dbe83f7c82e3c8",
+      "bytes": 2282,
+      "snapshot": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/emergency_stops/COCO_S4_TFSS_20261026T1231Z/workflow_config.json"
+    },
+    "source_release": {
+      "sha256": "63eb86142add014c647558d256873c94e2d480023780903761b45423ed5ac80f",
+      "bytes": 25712,
+      "snapshot": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/emergency_stops/COCO_S4_TFSS_20261026T1231Z/source_release.json"
+    }
+  },
+  "processes": [
+    {
+      "pid": 63444,
+      "live": false,
+      "absent": true
+    },
+    {
+      "pid": 64595,
+      "live": false,
+      "absent": true
+    }
+  ],
+  "remaining_workflow_processes": [],
+  "matching_GPU_processes": [],
+  "native_pipeline_state": "FAILED",
+  "native_error": "RuntimeError('Scientific child failed; no automatic retry: fourier24')",
+  "native_exit_record": {
+    "returncode": -15,
+    "child": {
+      "pid": 64595,
+      "start_ticks": 357618769,
+      "uid": 1014,
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "coco_s4.phase_fourier",
+        "--release",
+        "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261026_0200hk_gpu16/source_release.json",
+        "--output",
+        "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261026_dimcompat_v2/fourier24",
+        "--registration",
+        "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261026_dimcompat_v2/receipts/fourier24_READY.json"
+      ],
+      "cwd": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261026_0200hk_gpu16",
+      "UTC": "2026-10-25T18:05:12.906185+00:00",
+      "memory_scope": {
+        "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4coco-job-d763ee15e39ba85b141ffdfc.scope",
+        "memory.current": "10829824",
+        "memory.peak": "10829824",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+      }
+    },
+    "ended_UTC": "2026-10-26T12:33:40.446641+00:00"
+  },
+  "stop_signal": "single exact PID64595 SIGTERM in initial stop call; no process-group or SIGKILL signal",
+  "observer_failure_after_signal": "First stop observer raced process exit while resolving /proc/64595/cwd; original exception retained in tool log; this follow-up only verifies/finalizes",
+  "forced_kill": false,
+  "export_READY_exists": false,
+  "export_output_exists": false,
+  "outputs_retained_in_place": true,
+  "cleanup_performed": false,
+  "formal_relaunch_allowed": false,
+  "invalid_for_original_s4": true,
+  "automatic_retry": "Native run_job nonzero exit raises, controller has exited; no retry loop",
+  "original_native_statuses_not_manually_rewritten": true
+}

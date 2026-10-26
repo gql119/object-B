@@ -1,0 +1,225 @@
+{
+  "schema": "s4.coco.full-pipeline-audit.before-fix.v1",
+  "state": "BEFORE_FIX_FROZEN",
+  "baseline_commit": "433a9dd35198bc5c007b849a34a6f4b42fbb81fc",
+  "invalid_runtime": "dcd91b33d90dfd2472b8eacb843a994a4801d1cf",
+  "confirmed_bug_count": 7,
+  "findings": [
+    {
+      "id": "S4-001",
+      "classification": "Confirmed Bug",
+      "severity": "P0",
+      "file": "coco_s4/phase_fourier.py",
+      "function": "EligibleCOCOB2Trainer/run",
+      "VOC_expected": "Canonical S4Trainer+SoftSpatialProjection+CleanMapCache; TFSS weighted image consumed by Frozen/Adaptive",
+      "COCO_actual": "dcd runtime instantiated B2SemanticTrainer, no TFSS in optimization; 433 is a toy-tested pretask candidate",
+      "root_cause": "Wrong inherited B2 entry; finite gradient mistaken for complete S4 fidelity",
+      "affects_loss_or_gradient": true,
+      "affects_poisoned_export": true,
+      "AP_interpretation": "Old Fourier invalid for Original S4 AP",
+      "evidence": "COCO_TFSS_FOURIER_METHOD_FIDELITY_HOLD_20261026.json; COCO_TFSS_WIRING_CPU_COUNTEREXAMPLE_20261026.json",
+      "minimal_reproduction": "COCO_TFSS_FOURIER_METHOD_FIDELITY_HOLD_20261026.json; COCO_TFSS_WIRING_CPU_COUNTEREXAMPLE_20261026.json",
+      "repair_plan": "Audit/reuse433 only after real learnedTeacher CPU/CUDA source-to-sink evidence",
+      "scientific_change_risk": "Restore original math/identity; CPU RNG guard must preserve initialized CUDA path exact",
+      "recalibration_required": false,
+      "downstream_effect": "Block affected stage until fixed and actually validated",
+      "status_at_freeze": "OPEN"
+    },
+    {
+      "id": "S4-002",
+      "classification": "Confirmed Bug",
+      "severity": "P2",
+      "file": "coco_s4/phase_fourier.py",
+      "function": "inherited train_universal/persistence",
+      "VOC_expected": "Canonical optimize_s4 saves completed-boundary coefficients/Adam/scheduler/cursor/full RNG",
+      "COCO_actual": "Stopped invalid run has CSV/sidecar but no global_params or continuation checkpoint; unsaved GPU memory cannot be recovered",
+      "root_cause": "Wrong optimizer entry bypasses original persistence; wrapper RNG saved only after successful entire loop",
+      "affects_loss_or_gradient": false,
+      "affects_poisoned_export": false,
+      "AP_interpretation": "No saved learned state or exact resume claim",
+      "evidence": "COCO_S4_REUSE_REMOTE_AUDIT_20261026.json:invalid_fourier_inventory",
+      "minimal_reproduction": "COCO_S4_REUSE_REMOTE_AUDIT_20261026.json:invalid_fourier_inventory",
+      "repair_plan": "Use original optimize_s4 and verify native saved state; future formal run starts fresh",
+      "scientific_change_risk": "Restore original math/identity; CPU RNG guard must preserve initialized CUDA path exact",
+      "recalibration_required": false,
+      "downstream_effect": "Block affected stage until fixed and actually validated",
+      "status_at_freeze": "OPEN"
+    },
+    {
+      "id": "S4-003",
+      "classification": "Confirmed Bug",
+      "severity": "P1",
+      "file": "coco_s4/phase_export.py",
+      "function": "run params metadata gate",
+      "VOC_expected": "Consumer accepts original16x3/coords/eps/target/support/P5/identity pack; class80 bound by actual Teacher/config",
+      "COCO_actual": "Rejects original pack because num_classes field is absent from original saver",
+      "root_cause": "Producer/consumer schema mismatch",
+      "affects_loss_or_gradient": false,
+      "affects_poisoned_export": true,
+      "AP_interpretation": "Would block export; no current victim AP exists",
+      "evidence": "COCO_S4_BEFORE_FIX_MINIMAL_REPRODUCTIONS_20261026.json",
+      "minimal_reproduction": "COCO_S4_BEFORE_FIX_MINIMAL_REPRODUCTIONS_20261026.json",
+      "repair_plan": "Shared strict native-pack validator; class80 from actual bound model/config; optional metadata validated if present",
+      "scientific_change_risk": "Restore original math/identity; CPU RNG guard must preserve initialized CUDA path exact",
+      "recalibration_required": false,
+      "downstream_effect": "Block affected stage until fixed and actually validated",
+      "status_at_freeze": "OPEN"
+    },
+    {
+      "id": "S4-004",
+      "classification": "Confirmed Bug",
+      "severity": "P2",
+      "file": "coco_s4/phase_export.py",
+      "function": "forward hook/smoke summary",
+      "VOC_expected": "Actual raw finite tensor devices/CUDA indices required",
+      "COCO_actual": "Counter-only hook and hardcoded cuda:0",
+      "root_cause": "Incomplete device evidence instrumentation",
+      "affects_loss_or_gradient": false,
+      "affects_poisoned_export": false,
+      "AP_interpretation": "Cannot declare exporter CUDA readiness",
+      "evidence": "phase_export.py:forward_calls.append(1)/actual_device",
+      "minimal_reproduction": "phase_export.py:forward_calls.append(1)/actual_device",
+      "repair_plan": "Capture nested actual forward tensors; fail closed on device/nonfinite mismatch",
+      "scientific_change_risk": "Restore original math/identity; CPU RNG guard must preserve initialized CUDA path exact",
+      "recalibration_required": false,
+      "downstream_effect": "Block affected stage until fixed and actually validated",
+      "status_at_freeze": "OPEN"
+    },
+    {
+      "id": "S4-005",
+      "classification": "Confirmed Bug",
+      "severity": "P2",
+      "file": "coco_s4/phase_victim.py",
+      "function": "run matched_clean_initial_state receipt",
+      "VOC_expected": "Compare canonical model-state SHA with canonical state SHA",
+      "COCO_actual": "Compares serialized .pt file SHA with state SHA; same initialized models marked unmatched",
+      "root_cause": "File identity confused with tensor-state identity",
+      "affects_loss_or_gradient": false,
+      "affects_poisoned_export": false,
+      "AP_interpretation": "Would block correct paired evaluation",
+      "evidence": "COCO_S4_BEFORE_FIX_MINIMAL_REPRODUCTIONS_20261026.json; phase_official_eval.accepted_dependencies",
+      "minimal_reproduction": "COCO_S4_BEFORE_FIX_MINIMAL_REPRODUCTIONS_20261026.json; phase_official_eval.accepted_dependencies",
+      "repair_plan": "Use canonical state digest for matching, retain file SHA separately",
+      "scientific_change_risk": "Restore original math/identity; CPU RNG guard must preserve initialized CUDA path exact",
+      "recalibration_required": false,
+      "downstream_effect": "Block affected stage until fixed and actually validated",
+      "status_at_freeze": "OPEN"
+    },
+    {
+      "id": "S4-006",
+      "classification": "Confirmed Bug",
+      "severity": "P2",
+      "file": "ue_framework/methods/s4_tfss.py",
+      "function": "rng_state/restore_rng",
+      "VOC_expected": "CPU validation creates no CUDA context; formal CUDA generator state preserved",
+      "COCO_actual": "get_rng_state_all invokes lazy CUDA init even for CPU model on server",
+      "root_cause": "CUDA-only helper reused for CPU validation",
+      "affects_loss_or_gradient": false,
+      "affects_poisoned_export": false,
+      "AP_interpretation": "CPU isolation claim unreliable",
+      "evidence": "COCO_S4_CPU_RNG_BEFORE_FIX_20261026.json",
+      "minimal_reproduction": "COCO_S4_CPU_RNG_BEFORE_FIX_20261026.json",
+      "repair_plan": "Capture CUDA RNG only if initialized; restore nonempty CUDA state; verify formal initialized behavior exact",
+      "scientific_change_risk": "Restore original math/identity; CPU RNG guard must preserve initialized CUDA path exact",
+      "recalibration_required": false,
+      "downstream_effect": "Block affected stage until fixed and actually validated",
+      "status_at_freeze": "OPEN"
+    },
+    {
+      "id": "S4-007",
+      "classification": "Confirmed Bug",
+      "severity": "P1",
+      "file": "coco_s4/phase_contract.py; runtime.py; recovery_control.py",
+      "function": "release/admission gates",
+      "VOC_expected": "Superseding scientific invalidation/latest no-formal scope overrides stale native acceptance",
+      "COCO_actual": "No invalidation consumption guard; repair probes still routed via historical branch/run constants",
+      "root_cause": "Lifecycle contracts predate emergency cancellation",
+      "affects_loss_or_gradient": false,
+      "affects_poisoned_export": true,
+      "AP_interpretation": "Native ACCEPTED cannot legalize invalid Fourier or trigger automatic relaunch",
+      "evidence": "COCO_S4_EMERGENCY_STOP_EVIDENCE_20261026.json; phase_contract.phase_release; dimension_release.PREFLIGHT",
+      "minimal_reproduction": "COCO_S4_EMERGENCY_STOP_EVIDENCE_20261026.json; phase_contract.phase_release; dimension_release.PREFLIGHT",
+      "repair_plan": "Explicit emergency-validation-only release; block formal prepare/launch/READY in repair revision and invalidated workflow",
+      "scientific_change_risk": "Restore original math/identity; CPU RNG guard must preserve initialized CUDA path exact",
+      "recalibration_required": false,
+      "downstream_effect": "Block affected stage until fixed and actually validated",
+      "status_at_freeze": "OPEN"
+    }
+  ],
+  "coverage": [
+    {
+      "stage": "Data",
+      "classification": "No Issue",
+      "assessment": "Official25K/5K metadata/manifests and current6image-label samples exact; retained full30K acceptance, no repeated fullscan; Person0/COCO80/alllabels/empty/noPerson preserved"
+    },
+    {
+      "stage": "Teacher",
+      "classification": "No Issue",
+      "assessment": "Fixed nativeEMA last200/fullstate/accepted/eval hashes reverified. No retraining. Prior actual CUDA evidence retained; never useTeacherAP as Clean200"
+    },
+    {
+      "stage": "TSFL/K8",
+      "classification": "No Issue",
+      "assessment": "Full25K raw sensitivity/39indices-scores-ranks/all79pools/K8/eligible13630 rehashed. Later Fourier bug cannot mutate these frozen artifacts"
+    },
+    {
+      "stage": "Dimension",
+      "classification": "Intentional COCO Compatibility Change",
+      "assessment": "39selectedD vsVOC24; same .4/.6/top3/.15/min4 strict rule; dynamic ordered rank8 SVD precision policy versioned, thresholds retained"
+    },
+    {
+      "stage": "P3",
+      "classification": "No Issue",
+      "assessment": "Independent48 selected P3 reference files byte exact; not selected P5=39. Original Orth/Retention kernels retained"
+    },
+    {
+      "stage": "SafeBG",
+      "classification": "No Issue",
+      "assessment": "All79 bases rank12..19; top3\u2192rank8/alpha.5/orderedSVD/normrestore/bounded8192cache. Actual safe target passed into kproto BG/rel; currentTFSS full model test pending"
+    },
+    {
+      "stage": "Loss/Frozen/Adaptive",
+      "classification": "Confirmed Bug",
+      "assessment": "S4-001: loss formulas/weights/signs unchanged, but poison source lacked TFSS; canonical candidate real CPU/GPU sink/gradient tests OPEN. inner1/lr1e-4, clean pairing, Teacher freeze retained"
+    },
+    {
+      "stage": "Support/Fourier",
+      "classification": "No Issue",
+      "assessment": "1/.5/0\u21928/4/0, STE2.01/255,JND,64candidate/16saved,Adam/EOT2/b16/24epochs preserved; persistence bypass S4-002"
+    },
+    {
+      "stage": "TFSS maps",
+      "classification": "No Issue",
+      "assessment": "Original clean P5-energy Qt/nativeGT-aligned risk Rnt,perPerson max/equalNT mean,canonicalcanvas,detached W formula eta.85. Invalid runtime never used maps; repaired real path pending"
+    },
+    {
+      "stage": "Export",
+      "classification": "Confirmed Bug",
+      "assessment": "S4-003/004. Generator delta is preclamp; W then clamp/png_project. NonPerson bytecopy,alllabels,decoded8/4/0 required; real roundtrip pending"
+    },
+    {
+      "stage": "Victim",
+      "classification": "Confirmed Bug",
+      "assessment": "S4-005 metadata. Bothfresh randomYAML80/nativeSGD/seed0/200/640/b36/w16; stricttrainonly; Teacher not initialization"
+    },
+    {
+      "stage": "OfficialEval/report",
+      "classification": "No Issue",
+      "assessment": "Sparsecategory mapping,original5K,crowdignore,maxDets100,lastprimary/bestsecondary identity,AP50/75/5095/Recall/explicitPrecision50. signedPUS/noClip/zeroNull/WCD/TCD3/LPIPSnullreason; no formal result"
+    },
+    {
+      "stage": "Lifecycle",
+      "classification": "Confirmed Bug",
+      "assessment": "S4-007. Exact ownedSIGTERM once/native-15/controllerFAILEDnoRetry/dead/noGPU/downstream. No formal continuation authorized"
+    }
+  ],
+  "source_snapshot_sha256": "730668d5ef8b074d09f4148930da88b283d8c9c3832596e98ea745fdaa6b207d",
+  "scientific_edits_after_task": 0,
+  "limitations": [
+    "Real repaired learnedTeacher CPU/GPU tests remain OPEN",
+    "No formal export/victim/final metrics",
+    "No saved learned coefficients in invalidrun; unsaved memory cannot be archived retroactively",
+    "Further confirmed findings require additive BEFORE_FIX entry before repair"
+  ],
+  "formal_relaunch_allowed": false
+}
