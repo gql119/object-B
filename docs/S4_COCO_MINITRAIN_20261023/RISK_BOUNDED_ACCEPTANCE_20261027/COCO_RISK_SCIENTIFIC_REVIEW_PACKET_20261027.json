@@ -1,0 +1,153 @@
+{
+  "schema_version": "prerun.scientific-review.v1",
+  "review_mode": "scientific_review",
+  "repo_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023",
+  "pre_run_code_commit": "352425896f31c3e67df0902ec562e67bf88b0a0b",
+  "review_diff_base_commit": "49fa2c58aaa1d99e3e3804ec0995a42e3d788141",
+  "approved_basis": [
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\docs\\S4_COCO_MINITRAIN_20261023\\USER_RISK_FALLBACK_AUTHORIZATION_20261027.md",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\docs\\S4_COCO_MINITRAIN_20261023\\USER_AUTONOMOUS_BUGFIX_AUTHORIZATION_20261027.md",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\docs\\S4_COCO_MINITRAIN_20261023\\COCO_TFSS_RISK_FALLBACK_SPEC.md"
+  ],
+  "implementation_intent": "Review this independent COCO80 NT-risk boundary extension as a Methodological Extension, NOT globally equivalent strict OriginalS4. Check the explicit detection-risk semantics/trigger/normal-GT invariance/all-GT and class reductions/cache/real Fourier sinks and the train-only population statistics entrypoint. Only bounded validation and the full25K risk-incidence/conditional-W AUDIT are in scope. NO full formal24epoch Fourier/poison25K/victims/evaluation is authorized. Future mathematical-quality/AP claims are excluded. Wrapper3524258 contains exactly all152 computation files from the actually validated a0c32b9 full CPU/CUDA Fourier closure plus2 additional validation/audit modules; the current-commit statistics GPU path is independently tested and hashed. Default backend repeatability incident and both failed mixed regression harnesses remain failed and retained; no tolerances were relaxed.",
+  "exact_command": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.risk_population --release /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/_anchors/coco_dim_20261027_risk_population01/source_release.json --output /project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261027_risk_population01/result --device cuda:0 --limit 0",
+  "output_collision_policy": "fail",
+  "local_validation": [
+    {
+      "command": "AST parse affected Python sources",
+      "exit_code": 0,
+      "observation": "actual local standard-library parse passed; no local Torch/GPU claim"
+    },
+    {
+      "command": "RRCTL risk_component CPU actual7 native forwards",
+      "exit_code": 0,
+      "observation": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_FALLBACK_CPU_COMPONENT_INDEPENDENT_AUDIT_20261027.json"
+    },
+    {
+      "command": "RRCTL full failed-image Fourier CPU one native Adam update",
+      "exit_code": 0,
+      "observation": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_FULL_CHAIN_CPU_INDEPENDENT_AUDIT_20261027.json"
+    },
+    {
+      "command": "RRCTL outstanding55 VOC regressions CPU",
+      "exit_code": 0,
+      "observation": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_dim_20261027_risk_reg_cpu01\\result\\regression_summary.json;55tests/0fail/0error/0skip; randomVOC fixture retained"
+    },
+    {
+      "command": "RRCTL eight-image risk_population CPU",
+      "exit_code": 0,
+      "observation": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_STATISTICS_CPU_INDEPENDENT_AUDIT_20261027.json"
+    }
+  ],
+  "pre_review_smoke": {
+    "schema_version": "prerun.pre-review-smoke.v1",
+    "disposition": "passed",
+    "computation_kind": "inference",
+    "candidate_commit": "352425896f31c3e67df0902ec562e67bf88b0a0b",
+    "run_id": "coco_dim_20261027_risk_stat_gpu01",
+    "exact_command": "systemd-run --user --scope --quiet --unit=s4coco-dim-0f110646e9176e35559d6ed4 /project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.process --job /project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261027_risk_stat_gpu01/supervision --cwd /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261027_risk_stat_gpu01 -- /project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.risk_population --release /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/_anchors/coco_dim_20261027_risk_stat_gpu01/source_release.json --output /project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261027_risk_stat_gpu01/result --device cuda:0 --limit 8",
+    "exit_code": 0,
+    "step_budget": 100,
+    "completed_steps": 11,
+    "unit_description": "actual frozen Teacher forward/input-risk-gradient calls;11 observed native forwards/eight declared train images, no optimizer. Separate actual full Fourier GPU evidence15forwards/oneAdam update is attached.",
+    "finite_outputs": true,
+    "finite_loss": null,
+    "production_entrypoint_reached": true,
+    "isolated_output": true,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "cleanup_policy": "retain_all",
+    "checkpoint_cleanup_completed": false,
+    "checkpoint_paths_remaining": [],
+    "deleted_paths": [],
+    "evidence_paths": [
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_dim_20261027_risk_stat_gpu01\\result\\risk_population_summary.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_STATISTICS_GPU_INDEPENDENT_AUDIT_20261027.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_FULL_CHAIN_GPU_INDEPENDENT_AUDIT_20261027.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_FALLBACK_GPU_COMPONENT_INDEPENDENT_AUDIT_20261027.json"
+    ],
+    "retained_evidence_paths": [
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\risk_review_20261027\\console.log",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_dim_20261027_risk_stat_gpu01\\result\\status.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\risk_review_20261027\\smoke_summary.json"
+    ],
+    "baseline_equivalence_required": true,
+    "baseline_equivalence_probe": {
+      "reference_id": "byte-exact original NT estimator on covered COCO image168353, repeat controlled",
+      "reference_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+      "candidate_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+      "metric_name": "nonidentical covered input-gradient tensor count (four present classes)",
+      "reference_metric": 0,
+      "candidate_metric": 0,
+      "absolute_difference": 0,
+      "tolerance": 0,
+      "evaluation_setting": {
+        "dataset": "one actual original COCO train image168353, all real GT; no val images",
+        "parameters": {
+          "imgsz": 640,
+          "Teacher_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+          "comparison_domain": "same deterministic cuDNN/torch, restored for normal production"
+        },
+        "seed": 0,
+        "sample_count": 1,
+        "post_processing": "identical original input-gradient and map operations, no AP/NMS"
+      },
+      "evidence_paths": [
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_FALLBACK_GPU_COMPONENT_INDEPENDENT_AUDIT_20261027.json",
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_dim_20261027_voceq_diag01\\result\\voc_equivalence_diagnostic.json"
+      ]
+    }
+  },
+  "critical_values": [
+    {
+      "name": "trigger and detected small-GT cause",
+      "source": "official annotation1827724/image247692/category27->24; both native TAL passes no effective supervision",
+      "sink": "risk_fallback.gradients original-first -> explicit undefined exception -> independent same-TAL -> fallback only when undefined",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\docs\\S4_COCO_MINITRAIN_20261023\\COCO_TFSS_NO_POSITIVE_ROOT_CAUSE.md"
+    },
+    {
+      "name": "fallback detection meaning",
+      "source": "real class/xyxy; native geometric candidates, empty only nearest size-normalized center; hard true NT class/uniform weights",
+      "sink": "risk_candidate_mask -> original CIoU+BCE79+DFL/native gains -> GT once/class mean/input gradient norm",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\docs\\S4_COCO_MINITRAIN_20261023\\COCO_TFSS_RISK_FALLBACK_SPEC.md; C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_FALLBACK_GPU_COMPONENT_INDEPENDENT_AUDIT_20261027.json"
+    },
+    {
+      "name": "covered computation equality",
+      "source": "original function bytes e25118c6...; reference and candidate same frozen checkpoint/comparison domain",
+      "sink": "original covered whole-call delegation; mixed13 defined per-GT native losses and full gradients; undefined original stays null",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_dim_20261027_risk_mixed_cpu02\\diagnostics\\a8fb18c6d2be44a8833bc0dd6cc058d0\\output\\result\\mixed_pre_regression.json; C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_FALLBACK_GPU_COMPONENT_INDEPENDENT_AUDIT_20261027.json"
+    },
+    {
+      "name": "Qt/R/W and cache provenance",
+      "source": "instance-local original build_maps/CleanMapCache code objects, only explicit risk dependency rebound; policy/source/spec in identity",
+      "sink": "RiskCleanMapCache -> original per-class normalization/equal mean -> original Qt/W -> Frozen EOT/letterbox and Adaptive/Fourier",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_FULL_CHAIN_GPU_INDEPENDENT_AUDIT_20261027.json"
+    },
+    {
+      "name": "unchanged method boundaries",
+      "source": "original framework bytes exact49fa,39 StrictTSFL/all79/SafeBG rank8/alpha.5/active3/P348/8-4-0/eta.85/Fourier/EOT2/losses/Adam",
+      "sink": "native full S4 chain15 forwards/one update per backend, coefficient BG/rel gradients and exact final generation/export",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_FULL_CHAIN_GPU_INDEPENDENT_AUDIT_20261027.json; C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_FULL_CHAIN_CPU_INDEPENDENT_AUDIT_20261027.json; C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_dim_20261027_risk_reg_cpu01\\result\\regression_summary.json"
+    },
+    {
+      "name": "population accounting and limits",
+      "source": "official fixed25K/COCO80/Person0 accepted hashes;8-image probe is explicitly not the population",
+      "sink": "risk_population coverage rows every NTGT once/all79 bins -> affected eligible images actual Qt/R/W -> conditional histogram; original undefined null",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_dim_20261027_risk_stat_gpu01\\result\\risk_population_summary.json; C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_STATISTICS_GPU_INDEPENDENT_AUDIT_20261027.json"
+    },
+    {
+      "name": "no unauthorized optimization",
+      "source": "validation_only true and formal guard false; independent new policy, old12step run preserved",
+      "sink": "population review guard only permits train-only no-optimizer statistics, never formal Fourier/export/victims/evaluation",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\coco_s4\\configs\\EMERGENCY_REPAIR_SCOPE.json"
+    }
+  ],
+  "experiment": {
+    "benchmark": "Independent COCO80 NT-risk methodological boundary extension: validation only",
+    "dataset": "accepted official minitrain25K/COCO80; cleanval2017 never opened",
+    "checkpoint": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt SHA9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+    "seed": 0,
+    "metric_policy": "risk incidence/conditional W descriptive validation only; no AP, no population extrapolation from eight images, no causal/significance claim",
+    "output_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261027_risk_population01/result"
+  }
+}

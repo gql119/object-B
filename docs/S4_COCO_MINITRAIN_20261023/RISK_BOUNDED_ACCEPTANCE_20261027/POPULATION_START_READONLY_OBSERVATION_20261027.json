@@ -1,0 +1,133 @@
+{
+  "tag": "coco_dim_20261027_risk_population01",
+  "source_commit": "6f54647243e2a5c7bffe3b91ca2f734454fa30ab",
+  "release_sha256": "b40d311857b6159d518820f2eb633c6057386226ceb7b842132c59dc4c1a443a",
+  "inspect_status": {
+    "detail": {},
+    "reason": "periodic_monitoring_enabled",
+    "run_id": "coco_dim_20261027_risk_population01",
+    "schema_version": "rrctl.status.v1",
+    "sequence": 5,
+    "state": "running",
+    "updated_at": "2026-10-26T20:32:52.722878+00:00"
+  },
+  "binding": {
+    "branch": "codex/s4-coco-risk-fallback-20261027",
+    "bundle_sha256": "109c4b2f15b03bcb6bcda0645ba6875b98aff60febb6304a37f2451216e4b813",
+    "commit": "6f54647243e2a5c7bffe3b91ca2f734454fa30ab",
+    "control_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/coco_dim_20261027_risk_population01",
+    "created_at": "2026-10-26T20:32:49.623799+00:00",
+    "executor_cmdline_sha256": "efe74a0b41d91bbfe0f2ae1649d4e7fda2b00d51d50bcc12ff060298c0232201",
+    "executor_pid": 2197401,
+    "executor_process_group_id": 2197401,
+    "executor_start_ticks": 367144450,
+    "executor_started_at": "2026-10-26T20:32:49.774449+00:00",
+    "output_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261027_risk_population01",
+    "project": "s4-coco-dimension-validation",
+    "repo_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261027_risk_population01",
+    "run_id": "coco_dim_20261027_risk_population01",
+    "run_spec_sha256": "98c4a3182a79801f92214dd77f650ebe377e8d62b71fcbd3c3f3c7d39c214be5",
+    "schema_version": "rrctl.binding.v1",
+    "session": "coco_dim_20261027_risk_population01",
+    "source_content_sha256": "25a1767508987d124c05a76be9485cf18b501dcb3f44cfbdef456f2e1bf2cfde",
+    "stage_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/stage/coco_dim_20261027_risk_population01",
+    "transport_bundle_sha256": "109c4b2f15b03bcb6bcda0645ba6875b98aff60febb6304a37f2451216e4b813",
+    "worker_sha256": "696cb314eb11784a9099728b117eac69cd2e01315d7732154d1ddeab609eff6a",
+    "workload_argv_sha256": "0a545a61e47c195f9c3d654b66dd30aa9705dfbf8f4c56e95dedd26bc0e408f8",
+    "workload_cmdline_sha256": "0a545a61e47c195f9c3d654b66dd30aa9705dfbf8f4c56e95dedd26bc0e408f8",
+    "workload_pid": 2197406,
+    "workload_process_group_id": 2197401,
+    "workload_start_ticks": 367144464,
+    "workload_started_at": "2026-10-26T20:32:50.291370+00:00"
+  },
+  "health": {
+    "adapter": {
+      "artifacts": [
+        "result/status.json",
+        "result/progress.json"
+      ],
+      "complete": false,
+      "healthy": true,
+      "observations": {},
+      "progress": {
+        "actual_model_forwards": 2247,
+        "artifact_ingest_disabled": true,
+        "counts": {
+          "GT": 15840,
+          "NT_GT": 10881,
+          "Person_images": 1206,
+          "affected_Person_images": 17,
+          "affected_eligible_Person_images": 17,
+          "affected_images": 18,
+          "eligible_Person_images": 1206,
+          "fallback_GT": 27,
+          "gradient_validated_fallback_GT_in_eligible_images": 26,
+          "images": 2200
+        },
+        "device": "cuda:0",
+        "formal_READY_written": false,
+        "official_metrics_disabled": true,
+        "parameter_updates": 0,
+        "population": true,
+        "release_sha256": "b40d311857b6159d518820f2eb633c6057386226ceb7b842132c59dc4c1a443a",
+        "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+        "source_commit": "6f54647243e2a5c7bffe3b91ca2f734454fa30ab",
+        "state": "RUNNING",
+        "validation_only": true
+      },
+      "protocol": "rrctl.adapter.v1"
+    },
+    "complete": false,
+    "degraded_reasons": [],
+    "errors": [],
+    "healthy": true,
+    "observations": {
+      "console_age_seconds": 71.69448161125183,
+      "executor_alive": true,
+      "executor_pid": 2197401,
+      "gpu_utilization_policy": "advisory",
+      "process_alive": true,
+      "process_pid": 2197406,
+      "session_alive": true,
+      "state": "running",
+      "workload_alive": true,
+      "workload_pid": 2197406
+    },
+    "phase": "periodic",
+    "schema_version": "rrctl.health.v2",
+    "status": "healthy"
+  },
+  "process": {
+    "child": {
+      "pid": 2197406,
+      "start_ticks": 367144464,
+      "uid": 1014,
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "coco_s4.risk_population",
+        "--release",
+        "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/_anchors/coco_dim_20261027_risk_population01/source_release.json",
+        "--output",
+        "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261027_risk_population01/result",
+        "--device",
+        "cuda:0",
+        "--limit",
+        "0"
+      ],
+      "cwd": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261027_risk_population01",
+      "UTC": "2026-10-26T20:32:50.384931+00:00",
+      "memory_scope": {
+        "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4coco-dim-ad57b4942d81c4ecf4c0eabd.scope",
+        "memory.current": "10813440",
+        "memory.peak": "10813440",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+      }
+    },
+    "child_identity_alive": true
+  },
+  "scope": "train-only risk validation census, not formal optimization",
+  "formal_optimization_started": false
+}

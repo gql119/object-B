@@ -1,0 +1,11 @@
+{
+  "state": "PREPARATION_FAILED_BEFORE_ANY_BINDING_OR_JOB",
+  "UTC": "2026-10-26T20:31:52.934859+00:00",
+  "error": "RRCTL upload target review directory did not exist; transport.upload does not create parents",
+  "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/reviews/risk_fallback_20261027/main_closure.json",
+  "source_commit": "6f54647243e2a5c7bffe3b91ca2f734454fa30ab",
+  "scientific_failure": false,
+  "RunSpec_created": false,
+  "job_launched": false,
+  "repair": "create verified owned receipt parent before exact immutable upload"
+}

@@ -1,0 +1,616 @@
+{
+  "state": "passed",
+  "source_files_verified": 152,
+  "native_files_verified": 7,
+  "Teacher_checkpoint_fullstate_receipt_hash_exact": true,
+  "child_absent_or_different_identity": true,
+  "audit_Torch_imported": false,
+  "audit_model_forwards": 0,
+  "source_commit": "a0c32b9c2c5a4df8706f726e8e2b8ff45b081228",
+  "summary_sha256": "b0c94f1f12ddb7385c385c3b0cd8373f3ee871fb36b11390d70df90fd17edf38",
+  "actual_component_summary": {
+    "source_commit": "a0c32b9c2c5a4df8706f726e8e2b8ff45b081228",
+    "release_sha256": "18cc8fd122ad2c11a3e334344161276a716bed86b527221b81c5786951f1b857",
+    "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "parameter_updates": 0,
+    "formal_READY_written": false,
+    "validation_only": true,
+    "device": "cuda:0",
+    "state": "passed",
+    "actual_native_forwards": 10,
+    "actual_forward_evidence": [
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "device": "cuda:0"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "device": "cuda:0"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "device": "cuda:0"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "device": "cuda:0"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "device": "cuda:0"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          256,
+          256
+        ],
+        "device": "cpu"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          64,
+          64
+        ],
+        "device": "cuda:0"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          64,
+          64
+        ],
+        "device": "cuda:0"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          64,
+          64
+        ],
+        "device": "cuda:0"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          64,
+          64
+        ],
+        "device": "cuda:0"
+      }
+    ],
+    "real_Teacher_raw_evidence": [
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "devices": [
+          "cuda:0"
+        ],
+        "cuda_indices": [
+          0
+        ],
+        "actual_feature_shapes": [
+          [
+            1,
+            64,
+            80,
+            80
+          ],
+          [
+            1,
+            128,
+            40,
+            40
+          ],
+          [
+            1,
+            256,
+            20,
+            20
+          ]
+        ]
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "devices": [
+          "cuda:0"
+        ],
+        "cuda_indices": [
+          0
+        ],
+        "actual_feature_shapes": [
+          [
+            1,
+            64,
+            80,
+            80
+          ],
+          [
+            1,
+            128,
+            40,
+            40
+          ],
+          [
+            1,
+            256,
+            20,
+            20
+          ]
+        ]
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "devices": [
+          "cuda:0"
+        ],
+        "cuda_indices": [
+          0
+        ],
+        "actual_feature_shapes": [
+          [
+            1,
+            64,
+            80,
+            80
+          ],
+          [
+            1,
+            128,
+            40,
+            40
+          ],
+          [
+            1,
+            256,
+            20,
+            20
+          ]
+        ]
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "devices": [
+          "cuda:0"
+        ],
+        "cuda_indices": [
+          0
+        ],
+        "actual_feature_shapes": [
+          [
+            1,
+            64,
+            80,
+            80
+          ],
+          [
+            1,
+            128,
+            40,
+            40
+          ],
+          [
+            1,
+            256,
+            20,
+            20
+          ]
+        ]
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "devices": [
+          "cuda:0"
+        ],
+        "cuda_indices": [
+          0
+        ],
+        "actual_feature_shapes": [
+          [
+            1,
+            64,
+            80,
+            80
+          ],
+          [
+            1,
+            128,
+            40,
+            40
+          ],
+          [
+            1,
+            256,
+            20,
+            20
+          ]
+        ]
+      }
+    ],
+    "covered_COCO": {
+      "id": "000000168353",
+      "image_sha256": "d66793791af5bfa0b8c1f57355ee28b26bd63585d3a8be70a07fb5668697c23a",
+      "label_sha256": "8307f7e6f5ce6970eae38eacc808fca5c14e1ea266c35b6717c28c37a2aa2619",
+      "state": "passed",
+      "maps_exact": true,
+      "records_exact": true,
+      "full_input_gradients_exact": true,
+      "input_gradient_hashes": [
+        "bc4bcedcbfa5d35e35d7353ed5b5df3419beeae918bbf1d9b61b6d7ca485a771",
+        "fcc74e6a9763bf1ece46337a7cbaeaabd932b3e4dc99c6cadddf09397e4389c0",
+        "92fc13e0965129115a7919c83f2411cfee4f993897102bf8f4a479ae44ac5620",
+        "0cf7384e27d8b2a4edd33ce1ebeabc805395ae5a135e8b85fb44079d79df8454"
+      ],
+      "classes": [
+        27,
+        43,
+        55,
+        60
+      ],
+      "reference_repeat_exact": true,
+      "tolerance": 0,
+      "comparison_backend": "same deterministic cuDNN/torch comparison domain; restored"
+    },
+    "failed_GT": {
+      "id": "000000247692",
+      "image_sha256": "71963e6212e93ead2469cf3e219a2151c70350c8688deef8de27c5c5f5adc393",
+      "label_sha256": "b8e0567da839ed04c0ebd9eea69346aa47a9bb5cc546909c2f1fa6c23ce63718",
+      "state": "passed",
+      "GT_count": 23,
+      "NT_GT_count": 14,
+      "risk_class_count": 3,
+      "GT_indices_each_once": true,
+      "class_keys_exact": true,
+      "overlap_pairs": 19,
+      "fallback_GT_records": [
+        {
+          "gt_index": 13,
+          "cls": 24,
+          "positive_count": 0,
+          "native_positive_count": 0,
+          "coverage_mode": "independent_GT_conditioned_risk_candidates",
+          "coverage_status": "INDEPENDENT_RISK_ESTIMATED",
+          "box": 1.0175538063049316,
+          "cls_bce79": 8.66635799407959,
+          "dfl": 3.76521635055542,
+          "gains": [
+            7.5,
+            0.5,
+            1.5
+          ],
+          "weighted_loss": 17.61265754699707,
+          "risk_candidate_count": 5,
+          "native_evidence_positive_count": 0,
+          "native_evidence_weight_sum": 0.0,
+          "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+          "selection": {
+            "rule": "pinned native GT geometric candidate rule; not assignment",
+            "count": 5,
+            "anchor_indices_sha256": "0ea665feea8e87a336bdda5dd501ac749f837a6825bd5a21bea7354f54307e0d",
+            "indices": [
+              2118,
+              2119,
+              2198,
+              2199,
+              6939
+            ],
+            "GT_xyxy": [
+              311.80999755859375,
+              209.3900146484375,
+              316.239990234375,
+              215.79000854492188
+            ]
+          },
+          "risk_class_target": "hard true NT class; all other NT classes negative",
+          "risk_candidate_weights": "uniform"
+        }
+      ],
+      "class_input_gradient_norms": {
+        "24": 4.080303192138672,
+        "30": 5.706051826477051,
+        "31": 6.425909996032715
+      },
+      "original_complete_risk": null,
+      "original_undefined_reason": "NO_VALID_POSITIVE; no zero imputation"
+    },
+    "empty_NT": {
+      "fixture": "empty annotation contract only; original dataset unchanged",
+      "state": "passed",
+      "model_forwards": 0
+    },
+    "VOC20_real_random_YAML_gradient_maps_exact": true,
+    "Teacher_unchanged": true,
+    "checkpoint_unchanged": true,
+    "VOC20": {
+      "state": "passed",
+      "reference_repeat_exact": true,
+      "candidate_repeat_exact": true,
+      "maps_exact": true,
+      "records_exact": true,
+      "full_input_gradients_exact": true,
+      "tolerance": 0,
+      "raw_evidence": [
+        {
+          "devices": [
+            "cuda:0"
+          ],
+          "cuda_indices": [
+            0
+          ],
+          "input_shape": [
+            1,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "devices": [
+            "cuda:0"
+          ],
+          "cuda_indices": [
+            0
+          ],
+          "input_shape": [
+            1,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "devices": [
+            "cuda:0"
+          ],
+          "cuda_indices": [
+            0
+          ],
+          "input_shape": [
+            1,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "devices": [
+            "cuda:0"
+          ],
+          "cuda_indices": [
+            0
+          ],
+          "input_shape": [
+            1,
+            3,
+            64,
+            64
+          ]
+        }
+      ],
+      "comparison_backend": "same deterministic cuDNN/torch comparison domain; restored"
+    },
+    "completed_stages": {
+      "covered_COCO": {
+        "id": "000000168353",
+        "image_sha256": "d66793791af5bfa0b8c1f57355ee28b26bd63585d3a8be70a07fb5668697c23a",
+        "label_sha256": "8307f7e6f5ce6970eae38eacc808fca5c14e1ea266c35b6717c28c37a2aa2619",
+        "state": "passed",
+        "maps_exact": true,
+        "records_exact": true,
+        "full_input_gradients_exact": true,
+        "input_gradient_hashes": [
+          "bc4bcedcbfa5d35e35d7353ed5b5df3419beeae918bbf1d9b61b6d7ca485a771",
+          "fcc74e6a9763bf1ece46337a7cbaeaabd932b3e4dc99c6cadddf09397e4389c0",
+          "92fc13e0965129115a7919c83f2411cfee4f993897102bf8f4a479ae44ac5620",
+          "0cf7384e27d8b2a4edd33ce1ebeabc805395ae5a135e8b85fb44079d79df8454"
+        ],
+        "classes": [
+          27,
+          43,
+          55,
+          60
+        ],
+        "reference_repeat_exact": true,
+        "tolerance": 0,
+        "comparison_backend": "same deterministic cuDNN/torch comparison domain; restored"
+      },
+      "failed_GT": {
+        "id": "000000247692",
+        "image_sha256": "71963e6212e93ead2469cf3e219a2151c70350c8688deef8de27c5c5f5adc393",
+        "label_sha256": "b8e0567da839ed04c0ebd9eea69346aa47a9bb5cc546909c2f1fa6c23ce63718",
+        "state": "passed",
+        "GT_count": 23,
+        "NT_GT_count": 14,
+        "risk_class_count": 3,
+        "GT_indices_each_once": true,
+        "class_keys_exact": true,
+        "overlap_pairs": 19,
+        "fallback_GT_records": [
+          {
+            "gt_index": 13,
+            "cls": 24,
+            "positive_count": 0,
+            "native_positive_count": 0,
+            "coverage_mode": "independent_GT_conditioned_risk_candidates",
+            "coverage_status": "INDEPENDENT_RISK_ESTIMATED",
+            "box": 1.0175538063049316,
+            "cls_bce79": 8.66635799407959,
+            "dfl": 3.76521635055542,
+            "gains": [
+              7.5,
+              0.5,
+              1.5
+            ],
+            "weighted_loss": 17.61265754699707,
+            "risk_candidate_count": 5,
+            "native_evidence_positive_count": 0,
+            "native_evidence_weight_sum": 0.0,
+            "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+            "selection": {
+              "rule": "pinned native GT geometric candidate rule; not assignment",
+              "count": 5,
+              "anchor_indices_sha256": "0ea665feea8e87a336bdda5dd501ac749f837a6825bd5a21bea7354f54307e0d",
+              "indices": [
+                2118,
+                2119,
+                2198,
+                2199,
+                6939
+              ],
+              "GT_xyxy": [
+                311.80999755859375,
+                209.3900146484375,
+                316.239990234375,
+                215.79000854492188
+              ]
+            },
+            "risk_class_target": "hard true NT class; all other NT classes negative",
+            "risk_candidate_weights": "uniform"
+          }
+        ],
+        "class_input_gradient_norms": {
+          "24": 4.080303192138672,
+          "30": 5.706051826477051,
+          "31": 6.425909996032715
+        },
+        "original_complete_risk": null,
+        "original_undefined_reason": "NO_VALID_POSITIVE; no zero imputation"
+      },
+      "empty_NT": {
+        "fixture": "empty annotation contract only; original dataset unchanged",
+        "state": "passed",
+        "model_forwards": 0
+      },
+      "VOC20": {
+        "state": "passed",
+        "reference_repeat_exact": true,
+        "candidate_repeat_exact": true,
+        "maps_exact": true,
+        "records_exact": true,
+        "full_input_gradients_exact": true,
+        "tolerance": 0,
+        "raw_evidence": [
+          {
+            "devices": [
+              "cuda:0"
+            ],
+            "cuda_indices": [
+              0
+            ],
+            "input_shape": [
+              1,
+              3,
+              64,
+              64
+            ]
+          },
+          {
+            "devices": [
+              "cuda:0"
+            ],
+            "cuda_indices": [
+              0
+            ],
+            "input_shape": [
+              1,
+              3,
+              64,
+              64
+            ]
+          },
+          {
+            "devices": [
+              "cuda:0"
+            ],
+            "cuda_indices": [
+              0
+            ],
+            "input_shape": [
+              1,
+              3,
+              64,
+              64
+            ]
+          },
+          {
+            "devices": [
+              "cuda:0"
+            ],
+            "cuda_indices": [
+              0
+            ],
+            "input_shape": [
+              1,
+              3,
+              64,
+              64
+            ]
+          }
+        ],
+        "comparison_backend": "same deterministic cuDNN/torch comparison domain; restored"
+      }
+    },
+    "full25K_trigger_statistics": null,
+    "full25K_state": "NOT_RUN",
+    "Fourier_gradient_gate": "OPEN_SEPARATE_FULL_CHAIN_VALIDATION",
+    "current_scope": "component risk estimator only; not full phase readiness"
+  },
+  "full_chain_readiness": false
+}

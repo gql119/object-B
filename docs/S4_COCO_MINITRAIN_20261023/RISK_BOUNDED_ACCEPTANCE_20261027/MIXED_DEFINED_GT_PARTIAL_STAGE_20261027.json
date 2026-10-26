@@ -1,0 +1,135 @@
+{
+  "source_commit": "a0c32b9c2c5a4df8706f726e8e2b8ff45b081228",
+  "validation_only": true,
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "formal_READY_written": false,
+  "real_Teacher_parameter_updates": 0,
+  "actual_risk_Fourier_updates": 0,
+  "device": "cpu",
+  "state": "mixed_contracts_passed_regressions_pending",
+  "covered_per_object_comparisons": [
+    {
+      "gt_index": 0,
+      "cls": 30,
+      "loss_exact": true,
+      "full_input_gradient_exact": true,
+      "tolerance": 0
+    },
+    {
+      "gt_index": 1,
+      "cls": 31,
+      "loss_exact": true,
+      "full_input_gradient_exact": true,
+      "tolerance": 0
+    },
+    {
+      "gt_index": 9,
+      "cls": 24,
+      "loss_exact": true,
+      "full_input_gradient_exact": true,
+      "tolerance": 0
+    },
+    {
+      "gt_index": 10,
+      "cls": 24,
+      "loss_exact": true,
+      "full_input_gradient_exact": true,
+      "tolerance": 0
+    },
+    {
+      "gt_index": 11,
+      "cls": 24,
+      "loss_exact": true,
+      "full_input_gradient_exact": true,
+      "tolerance": 0
+    },
+    {
+      "gt_index": 12,
+      "cls": 24,
+      "loss_exact": true,
+      "full_input_gradient_exact": true,
+      "tolerance": 0
+    },
+    {
+      "gt_index": 14,
+      "cls": 24,
+      "loss_exact": true,
+      "full_input_gradient_exact": true,
+      "tolerance": 0
+    },
+    {
+      "gt_index": 15,
+      "cls": 24,
+      "loss_exact": true,
+      "full_input_gradient_exact": true,
+      "tolerance": 0
+    },
+    {
+      "gt_index": 16,
+      "cls": 24,
+      "loss_exact": true,
+      "full_input_gradient_exact": true,
+      "tolerance": 0
+    },
+    {
+      "gt_index": 17,
+      "cls": 30,
+      "loss_exact": true,
+      "full_input_gradient_exact": true,
+      "tolerance": 0
+    },
+    {
+      "gt_index": 20,
+      "cls": 30,
+      "loss_exact": true,
+      "full_input_gradient_exact": true,
+      "tolerance": 0
+    },
+    {
+      "gt_index": 21,
+      "cls": 30,
+      "loss_exact": true,
+      "full_input_gradient_exact": true,
+      "tolerance": 0
+    },
+    {
+      "gt_index": 22,
+      "cls": 30,
+      "loss_exact": true,
+      "full_input_gradient_exact": true,
+      "tolerance": 0
+    }
+  ],
+  "original_undefined_objects": [
+    {
+      "gt_index": 13,
+      "cls": 24,
+      "original_loss": null,
+      "reason": "no native effective supervision"
+    }
+  ],
+  "real_boundary_cases": [
+    {
+      "image_id": "000000000025",
+      "image_sha256": "d8f12a26d8803701cabac80494b080f998e5ed9bafaf61a2825ce6212c85487a",
+      "label_sha256": "37a13c650a710ac89df42c9c4a290345961f199f8669812fff81e24f6c9d9061",
+      "kind": "real_no_Person",
+      "state": "passed",
+      "GT_count": 2,
+      "forward_count": 1
+    },
+    {
+      "image_id": "000000029020",
+      "image_sha256": "4377279d97ed641287150d72a974a9406c0304d06fbaa85afc6d6631a9757356",
+      "label_sha256": "e8f65ab5df0e912dac43da28072213124202dccac0a640c122e8b0a4fd762a7f",
+      "kind": "real_Person_only",
+      "state": "passed",
+      "GT_count": 1,
+      "forward_count": 0
+    }
+  ],
+  "class_normalization_and_mean_matches_native_cache_exact": true,
+  "W_min": 0.8694276809692383,
+  "W_max": 1.0
+}

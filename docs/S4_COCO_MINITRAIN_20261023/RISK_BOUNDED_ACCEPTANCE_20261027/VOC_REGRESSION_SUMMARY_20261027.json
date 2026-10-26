@@ -1,0 +1,26 @@
+{
+  "source_commit": "352425896f31c3e67df0902ec562e67bf88b0a0b",
+  "validation_only": true,
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "formal_READY_written": false,
+  "real_COCO_updates": 0,
+  "synthetic_VOC_Adam_updates": 1,
+  "state": "passed",
+  "tests": 55,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "fixture_artifacts_retained": true,
+  "GPU_initialized": false,
+  "modules": [
+    "test_b2_semantic",
+    "test_b2_adaptive",
+    "test_legacy_kproto_ret",
+    "test_bbox_half_overlap",
+    "test_tfss_spatial",
+    "test_tfss_static_control",
+    "test_orth_reference_design",
+    "coco_s4.tests.test_compatibility"
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "state": "passed",
+  "source_commit": "0cd3730edef3fab46601eb3950bafa0227e502e0",
+  "source_files_verified": 152,
+  "actual_component_summary": {
+    "source_commit": "0cd3730edef3fab46601eb3950bafa0227e502e0",
+    "release_sha256": "fb7857ef99cc15a9cac542bd64c1dca33be962cbd58b0f5e99a103c39401d2da",
+    "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "parameter_updates": 0,
+    "formal_READY_written": false,
+    "validation_only": true,
+    "device": "cpu",
+    "state": "passed",
+    "actual_native_forwards": 7,
+    "actual_forward_evidence": [
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "device": "cpu"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "device": "cpu"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "device": "cpu"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "device": "cpu"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          256,
+          256
+        ],
+        "device": "cpu"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          64,
+          64
+        ],
+        "device": "cpu"
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          64,
+          64
+        ],
+        "device": "cpu"
+      }
+    ],
+    "real_Teacher_raw_evidence": [
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "devices": [
+          "cpu"
+        ],
+        "cuda_indices": [],
+        "actual_feature_shapes": [
+          [
+            1,
+            64,
+            80,
+            80
+          ],
+          [
+            1,
+            128,
+            40,
+            40
+          ],
+          [
+            1,
+            256,
+            20,
+            20
+          ]
+        ]
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "devices": [
+          "cpu"
+        ],
+        "cuda_indices": [],
+        "actual_feature_shapes": [
+          [
+            1,
+            64,
+            80,
+            80
+          ],
+          [
+            1,
+            128,
+            40,
+            40
+          ],
+          [
+            1,
+            256,
+            20,
+            20
+          ]
+        ]
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "devices": [
+          "cpu"
+        ],
+        "cuda_indices": [],
+        "actual_feature_shapes": [
+          [
+            1,
+            64,
+            80,
+            80
+          ],
+          [
+            1,
+            128,
+            40,
+            40
+          ],
+          [
+            1,
+            256,
+            20,
+            20
+          ]
+        ]
+      },
+      {
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "devices": [
+          "cpu"
+        ],
+        "cuda_indices": [],
+        "actual_feature_shapes": [
+          [
+            1,
+            64,
+            80,
+            80
+          ],
+          [
+            1,
+            128,
+            40,
+            40
+          ],
+          [
+            1,
+            256,
+            20,
+            20
+          ]
+        ]
+      }
+    ],
+    "covered_COCO": {
+      "id": "000000168353",
+      "image_sha256": "d66793791af5bfa0b8c1f57355ee28b26bd63585d3a8be70a07fb5668697c23a",
+      "label_sha256": "8307f7e6f5ce6970eae38eacc808fca5c14e1ea266c35b6717c28c37a2aa2619",
+      "state": "passed",
+      "maps_exact": true,
+      "records_exact": true,
+      "full_input_gradients_exact": true,
+      "input_gradient_hashes": [
+        "3d7b7d2cd19c9447e475dd8678d331cb14978486876c61798c2b842345ced480",
+        "fe245c0f495567e762ebfec19193c72ad6cebdb36f095275b9363e84e67b57fd",
+        "9f05d34b4f92f9f68780b5eef7e3f2e70b3f1862fe9458e3e2f7cf48f3395683",
+        "9dd765548ec2a1e55b3dc386995428382ac85b6a6645685f98f2916974a73a86"
+      ],
+      "classes": [
+        27,
+        43,
+        55,
+        60
+      ],
+      "comparison_backend": "same actual CPU"
+    },
+    "failed_GT": {
+      "id": "000000247692",
+      "image_sha256": "71963e6212e93ead2469cf3e219a2151c70350c8688deef8de27c5c5f5adc393",
+      "label_sha256": "b8e0567da839ed04c0ebd9eea69346aa47a9bb5cc546909c2f1fa6c23ce63718",
+      "state": "passed",
+      "GT_count": 23,
+      "NT_GT_count": 14,
+      "risk_class_count": 3,
+      "GT_indices_each_once": true,
+      "class_keys_exact": true,
+      "overlap_pairs": 19,
+      "fallback_GT_records": [
+        {
+          "gt_index": 13,
+          "cls": 24,
+          "positive_count": 0,
+          "native_positive_count": 0,
+          "coverage_mode": "independent_GT_conditioned_risk_candidates",
+          "coverage_status": "INDEPENDENT_RISK_ESTIMATED",
+          "box": 1.0175524950027466,
+          "cls_bce79": 8.66768741607666,
+          "dfl": 3.7652359008789062,
+          "gains": [
+            7.5,
+            0.5,
+            1.5
+          ],
+          "weighted_loss": 17.61334228515625,
+          "risk_candidate_count": 5,
+          "native_evidence_positive_count": 0,
+          "native_evidence_weight_sum": 0.0,
+          "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+          "selection": {
+            "rule": "pinned native GT geometric candidate rule; not assignment",
+            "count": 5,
+            "anchor_indices_sha256": "0ea665feea8e87a336bdda5dd501ac749f837a6825bd5a21bea7354f54307e0d",
+            "indices": [
+              2118,
+              2119,
+              2198,
+              2199,
+              6939
+            ],
+            "GT_xyxy": [
+              311.80999755859375,
+              209.38999938964844,
+              316.239990234375,
+              215.7899932861328
+            ]
+          },
+          "risk_class_target": "hard true NT class; all other NT classes negative",
+          "risk_candidate_weights": "uniform"
+        }
+      ],
+      "class_input_gradient_norms": {
+        "24": 4.08596658706665,
+        "30": 5.704800128936768,
+        "31": 5.9802045822143555
+      },
+      "original_complete_risk": null,
+      "original_undefined_reason": "NO_VALID_POSITIVE; no zero imputation"
+    },
+    "empty_NT": {
+      "fixture": "empty annotation contract only; original dataset unchanged",
+      "state": "passed",
+      "model_forwards": 0
+    },
+    "VOC20_real_random_YAML_gradient_maps_exact": true,
+    "Teacher_unchanged": true,
+    "checkpoint_unchanged": true,
+    "full25K_trigger_statistics": null,
+    "full25K_state": "NOT_RUN",
+    "Fourier_gradient_gate": "OPEN_SEPARATE_FULL_CHAIN_VALIDATION",
+    "current_scope": "component risk estimator only; not full phase readiness"
+  },
+  "audit_model_forwards": 0,
+  "audit_GPU_initialized": false,
+  "full_chain_readiness": false
+}

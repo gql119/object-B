@@ -1,5 +1,5 @@
 {
-  "state": "RISK_COMPONENT_AND_FAILED_IMAGE_FULL_CHAIN_PASSED_POPULATION_AND_REVIEW_OPEN",
+  "state": "RISK_BOUNDED_GATES_CLOSED_POPULATION_VALIDATION_RUNNING",
   "classification": "Level C",
   "protocol": "coco80-ntgt-native-tal-then-gt-risk-v1",
   "branch": "codex/s4-coco-risk-fallback-20261027",
@@ -11,7 +11,9 @@
   "formal_optimization_started": false,
   "old12step_checkpoint_reusable_for_changed_risk": false,
   "Teacher_calibration_reusable_after_hash_verification": true,
-  "candidate_source": "a0c32b9c2c5a4df8706f726e8e2b8ff45b081228",
+  "candidate_source": "6f54647243e2a5c7bffe3b91ca2f734454fa30ab",
   "mixed_defined_GT": "13_per_object_losses_and_full_gradients_exact",
-  "VOC_regressions": "NEW_RETAINED_FIXTURE_HARNESS_RETEST_PENDING"
+  "VOC_regressions": "55_PASS_0FAIL_0ERROR_0SKIP",
+  "single_review_result": "negative_F01_preserved_main_closed_with_CPU_CUDA",
+  "population_validation_run": "coco_dim_20261027_risk_population01"
 }

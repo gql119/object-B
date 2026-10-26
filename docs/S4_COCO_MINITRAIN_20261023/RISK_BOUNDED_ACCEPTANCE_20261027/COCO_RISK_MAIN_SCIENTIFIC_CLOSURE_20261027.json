@@ -1,0 +1,31 @@
+{
+  "schema": "s4.coco.risk.main-scientific-closure.v1",
+  "reviewer_count": 1,
+  "reviewer_id": "/root/coco_nt_risk_boundary_scientific_review",
+  "independent_review_source": "352425896f31c3e67df0902ec562e67bf88b0a0b",
+  "independent_verdict_file_sha256": "8b53de8bc0d852d1ebb6d1a0510855d6121171be5d7c2b240316793fc63daec4",
+  "independent_negative_verdict_preserved": true,
+  "source_commit": "6f54647243e2a5c7bffe3b91ca2f734454fa30ab",
+  "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+  "pre_run_result": "pass",
+  "scientific_blockers_closed": true,
+  "validation_population_allowed": true,
+  "formal_optimization_allowed": false,
+  "classification": "Level A implementation precision repair inside Level C methodological boundary extension",
+  "blockers_closed": [
+    {
+      "id": "F01",
+      "fix": "promote endpoints before center/size and same float64 distance/argmin",
+      "evidence": [
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_F01_CPU_MAIN_AUDIT_20261027.json",
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_F01_GPU_MAIN_AUDIT_20261027.json"
+      ]
+    }
+  ],
+  "unchanged_definitions": "all other risk AST and153 bound source files exact3524258; entire Original S4 framework unchanged",
+  "allowed_command": "complete25K train-only incidence and affected-eligible conditional-W audit; no optimizer",
+  "old_12step_Fourier_resume_allowed": false,
+  "second_or_closing_reviewer_invoked": false,
+  "full25K_results_available": false,
+  "formal_training_restarted": false
+}

@@ -1,0 +1,124 @@
+{
+  "schema_version": "prerun.independent-scientific-review.v1",
+  "review_mode": "scientific_review",
+  "reviewer": {
+    "id": "/root/coco_nt_risk_boundary_scientific_review",
+    "mode": "independent subagent; packet, approved sources, committed code and referenced evidence inspection",
+    "model": "inherited current model; exact deployment identifier unavailable",
+    "other_reviewers_invoked": 0,
+    "model_forwards_by_reviewer": 0,
+    "remote_or_GPU_runs_by_reviewer": 0,
+    "source_changes_by_reviewer": 0
+  },
+  "reviewer_count": 1,
+  "repo_root": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023",
+  "branch": "codex/s4-coco-risk-fallback-20261027",
+  "source_commit": "352425896f31c3e67df0902ec562e67bf88b0a0b",
+  "pre_run_code_commit": "352425896f31c3e67df0902ec562e67bf88b0a0b",
+  "diff_base_commit": "49fa2c58aaa1d99e3e3804ec0995a42e3d788141",
+  "packet_path": "execution/COCO_RISK_SCIENTIFIC_REVIEW_PACKET_20261027.json",
+  "packet_file_sha256": "18498ca8440fa42e5ad18306e378a609bb5894e55759fc3b7e01b82a7229c3bb",
+  "packet_canonical_json_sha256": "ed1451e4e5007c34654176143ab148cae473250758d08f8cbe9b0b89a378047e",
+  "hash_note": "Both hashes independently recomputed; the dispatch hash is canonical JSON, not raw file bytes. No packet drift was found.",
+  "result": "scientifically_incorrect",
+  "decision": "do_not_run",
+  "pre_run_result": "fail",
+  "scientific_blockers_closed": false,
+  "validation_population_allowed": false,
+  "formal_optimization_allowed": false,
+  "classification": "Level C methodological boundary extension; not globally equivalent strict Original S4",
+  "gated_command": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.risk_population --release /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/_anchors/coco_dim_20261027_risk_population01/source_release.json --output /project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261027_risk_population01/result --device cuda:0 --limit 0",
+  "intended_post_closure_scope": "Only the complete fixed25K TRAIN incidence and affected-eligible-Person conditional-W audit, no optimizer or parameter updates. Formal Fourier24, poison25K, victims and evaluation remain unauthorized. No final AP claim is made.",
+  "approved_basis": [
+    "docs/S4_COCO_MINITRAIN_20261023/USER_RISK_FALLBACK_AUTHORIZATION_20261027.md",
+    "docs/S4_COCO_MINITRAIN_20261023/USER_AUTONOMOUS_BUGFIX_AUTHORIZATION_20261027.md",
+    "docs/S4_COCO_MINITRAIN_20261023/COCO_TFSS_RISK_FALLBACK_SPEC.md"
+  ],
+  "dimensions": {
+    "intent_alignment": "incorrect",
+    "canonical_code_location": "correct",
+    "critical_data_flow": "correct",
+    "computation_sink_effect": "incorrect",
+    "runtime_scientific_state": "correct",
+    "baseline_disabled_path": "correct",
+    "baseline_scope": "Covered COCO and VOC20 bounded equivalence only; no equivalence is claimed where original risk is undefined.",
+    "experiment_identity": "correct"
+  },
+  "blockers": [
+    {
+      "id": "F01",
+      "priority": 2,
+      "title": "Promote GT endpoints before computing the float64 nearest-candidate rule",
+      "source": "coco_s4/risk_fallback.py:147-155",
+      "spec_source": "docs/S4_COCO_MINITRAIN_20261023/COCO_TFSS_RISK_FALLBACK_SPEC.md: Candidate detection locations",
+      "finding": "The empty-geometric-mask branch computes size and center using the incoming float32 GT, then casts those rounded derived values to double. This does not implement the specified float64 size-normalized-center ranking. It can create a spurious tie and choose a different native anchor, changing the GT-conditioned loss, input-risk gradient and conditional W on that branch.",
+      "reproduction": {
+        "kind": "Read-only IEEE754 arithmetic counterexample; no detector, GPU or experiment executed",
+        "precondition": "Native geometric candidate mask is empty, the explicitly supported nearest-candidate branch",
+        "float32_GT_box_constructor_values": [7.99, 3.99, 8.010001, 4.01],
+        "float32_anchor_pixels": [[4, 4], [12, 4]],
+        "actual_float32_x1": 7.989999771118164,
+        "actual_float32_x2": 8.010001182556152,
+        "current_float32_derived_center_x": 8.0,
+        "float64_center_from_same_endpoints_x": 8.000000476837158,
+        "current_x_distance_squared": [39994.354845637805, 39994.354845637805],
+        "specified_x_distance_squared": [39994.36438103562, 39994.34531024112],
+        "current_selected_anchor_index": 0,
+        "specified_selected_anchor_index": 1,
+        "y_note": "The two anchors share y, so their y-distance contributions are equal and cannot change this ordering."
+      },
+      "precise_fix": "In the empty-mask branch, convert the actual GT endpoints to float64 FIRST, then compute both size64 = box64[2:] - box64[:2] and center64 = (box64[:2] + box64[2:]) / 2; compute distance from float64 anchors using only those values. Retain the no-epsilon, unchanged-GT, native-index argmin tie policy.",
+      "closure_required": "Exercise the actual risk_candidate_mask helper with the stated noncentral box and an explicitly empty geometric mask; expect [false,true]. Retain the exact-center tie test expecting the lowest native index and invalid-box tests. Commit the fix, verify source-to-selection evidence and rerun the relevant current-commit bounded CUDA production smoke because a scientific sink changed. The main agent records blocker-to-fix-to-evidence closure; no second or closing scientific reviewer is required.",
+      "impact_limit": "The measured real failed backpack used five native geometric candidates, so this counterexample does not invalidate its measured loss/gradient or assert that the eight-image probe encountered this nearest branch. Population frequency and impact of the branch are unmeasured."
+    }
+  ],
+  "verified_findings": [
+    {
+      "topic": "Valid GT and boundary trigger",
+      "observation": "Official annotation1827724 on image247692 is a legitimate backpack/category27 -> YOLO24, all23 converted labels checked. Both TAL calls lack effective supervision; negative unclamped CIoU and native zero alignment explain this boundary. The new path distinguishes risk candidates from native positives.",
+      "sources": ["coco_s4/risk_fallback.py:67-106"],
+      "evidence": ["execution/COCO_RISK_FALLBACK_OFFICIAL_COORDINATE_AUDIT_20261027.json", "docs/S4_COCO_MINITRAIN_20261023/COCO_S4_NATIVE_TAL_ZERO_EVIDENCE_20261027.json", "execution/p/coco_dim_20261027_risk_gpu02/result/risk_validation_summary.json"]
+    },
+    {
+      "topic": "Detection semantics and reductions",
+      "observation": "The hard true NT class, BCE over79 logits, original CIoU/DFL/native gains and uniform fallback-candidate weights have localized detection-supervision meaning. Each GT contributes once, losses are averaged within present classes, then original class-gradient norms/maps and equal present-class mean are used. No second class vote or zero substitution was found.",
+      "sources": ["coco_s4/risk_fallback.py:88-141", "ue_framework/methods/tfss_clean_maps.py:87-109"],
+      "evidence": ["execution/p/coco_dim_20261027_risk_mixed_cpu02/diagnostics/a8fb18c6d2be44a8833bc0dd6cc058d0/output/result/mixed_pre_regression.json"]
+    },
+    {
+      "topic": "Covered-path numerical equivalence",
+      "observation": "Actual covered COCO CPU/CUDA outputs, records and full input gradients match the original, tolerance0. CUDA uses a common deterministic comparison domain with original-repeat controls. All13 originally defined per-GT losses/full gradients on the mixed failed image match exactly on CPU; the undefined original GT remains null. VOC20 bounded equivalence and55 zero-skip regressions pass. Failed default-backend and mixed harness runs remain failed.",
+      "evidence": ["execution/p/coco_dim_20261027_risk_cpu01/result/risk_validation_summary.json", "execution/p/coco_dim_20261027_risk_gpu02/result/risk_validation_summary.json", "execution/p/coco_dim_20261027_voceq_diag01/result/voc_equivalence_diagnostic.json", "execution/p/coco_dim_20261027_risk_mixed_cpu02/diagnostics/a8fb18c6d2be44a8833bc0dd6cc058d0/output/result/mixed_pre_regression.json", "execution/p/coco_dim_20261027_risk_reg_cpu01/result/regression_summary.json"]
+    },
+    {
+      "topic": "Cache and actual Fourier sinks",
+      "observation": "Instance-local code-object reuse changes only the explicit estimator dependency and records policy/source/spec/cache hashes. Training and export select that policy. Learned-Teacher CPU/CUDA one-image chains each show15 native forwards, EOT2, one Adam update, actual nonunit W entering Frozen/Adaptive, nonzero coefficient BG/rel gradients and exact native final-image/export construction within8/4/0.",
+      "sources": ["coco_s4/risk_fallback_cache.py:12-37", "coco_s4/canonical_s4_training.py:57-65", "coco_s4/phase_export.py:320-330"],
+      "evidence": ["execution/p/coco_dim_20261027_risk_chain_cpu01/result/cpu_probe_summary.json", "execution/p/coco_dim_20261027_risk_chain_gpu01/result/smoke_summary.json", "execution/p/coco_dim_20261027_risk_chain_cpu01/result/per_loss_fourier_gradients.json", "execution/p/coco_dim_20261027_risk_chain_gpu01/result/per_loss_fourier_gradients.json", "execution/p/coco_dim_20261027_risk_chain_gpu01/result/validation_export/export_link_proof.json"]
+    },
+    {
+      "topic": "Current wrapper identity and train-only audit",
+      "observation": "All154 current release files independently match their hashes. All152 computation files from validated a0c32b9 match exactly; only risk_population.py and validate_risk_mixed.py were added. Current-commit CPU/CUDA eight-image statistics probes pass11 native forwards each,0 updates,69 GT/35 NTGT with one fallback, unchanged Teacher and no validation-image reads. Population code scans accepted train hashes, checks once-per-GT accounting and79 class bins, uses gradients/W only on affected eligible Person images, and correctly labels conditional W rather than global W. No optimizer is instantiated by this entrypoint.",
+      "sources": ["coco_s4/risk_population.py:32-145"],
+      "evidence": ["execution/coco_dim_20261027_risk_chain_gpu01/source_release.json", "execution/coco_dim_20261027_risk_stat_gpu01/source_release.json", "execution/p/coco_dim_20261027_risk_stat_cpu01/result/risk_population_summary.json", "execution/p/coco_dim_20261027_risk_stat_gpu01/result/risk_population_summary.json", "execution/COCO_RISK_STATISTICS_GPU_INDEPENDENT_AUDIT_20261027.json"]
+    }
+  ],
+  "reviewer_local_checks": {
+    "type": "read-only standard-library metadata/hash/numerical arithmetic checks; no model execution",
+    "all154_release_file_hashes_match": true,
+    "validated152_computation_files_unchanged": true,
+    "raw_CPU_CUDA_summaries_equal_supplied_audit_copies": true,
+    "coefficient_proof_hashes_and_finite_mean_EOT_norms_match": true,
+    "statistics_histogram_and_per_class_totals_match": true,
+    "both_packet_hashes_recomputed": true
+  },
+  "limitations": [
+    "Full25K incidence/class fractions and conditional W results do not exist yet; the eight-image probe is deliberately seeded with the known failed image and is not a prevalence estimate.",
+    "Original complete Rnt/W are undefined on affected inputs and must remain null; do not compute an old/new difference against an imputed zero.",
+    "The gradient-validated fallback count denotes inclusion in the validated class-reduced risk path on eligible images; it is not an independently measured derivative norm for every individual GT. No-Person and ineligible-image coverage counts alone do not validate their individual gradients.",
+    "Exact covered equivalence is measured in the recorded common comparison domain. Default CUDA repeatability incident remains failed; separate CPU/CUDA measurements are not evidence of cross-backend equality.",
+    "No inference about final AP, background absorption, causality, efficacy or strict Original S4 equivalence follows from this implementation review."
+  ],
+  "excluded_from_findings": "rrctl, process supervision, monitoring, transport, scheduler and bookkeeping scaffolding",
+  "next_action": "Close F01 in the original implementation work with production-reaching selection evidence and relevant current-commit GPU smoke. Then the main agent may allow only the specified validation population audit after recording closure; full formal optimization remains unauthorized."
+}

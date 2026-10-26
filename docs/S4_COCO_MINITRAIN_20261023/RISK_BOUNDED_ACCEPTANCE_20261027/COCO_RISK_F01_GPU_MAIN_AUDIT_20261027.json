@@ -1,0 +1,1082 @@
+{
+  "state": "passed",
+  "source_files_verified": 155,
+  "native_files_verified": 7,
+  "Teacher_checkpoint_fullstate_receipt_hash_exact": true,
+  "child_absent_or_different_identity": true,
+  "audit_Torch_imported": false,
+  "audit_model_forwards": 0,
+  "source_commit": "6f54647243e2a5c7bffe3b91ca2f734454fa30ab",
+  "selection_evidence": {
+    "state": "passed",
+    "device": "cuda:0",
+    "cuda_index": 0,
+    "actual_helper": "coco_s4.risk_fallback.risk_candidate_mask",
+    "fixture_scope": "explicit empty-mask arithmetic fixture; no real label mutation",
+    "actual_float32_endpoints": [
+      7.989999771118164,
+      3.990000009536743,
+      8.010001182556152,
+      4.010000228881836
+    ],
+    "independent_float64_center": [
+      8.000000476837158,
+      4.0000001192092896
+    ],
+    "independent_float64_distances": [
+      39994.36438103566,
+      39994.34531024116
+    ],
+    "old_float32_derived_distances": [
+      39994.354845637805,
+      39994.354845637805
+    ],
+    "old_selected_index": 0,
+    "correct_selected_index": 1,
+    "actual_selection": {
+      "rule": "single nearest GT-size-normalized center; tie native anchor index",
+      "count": 1,
+      "anchor_indices_sha256": "7c9fa136d4413fa6173637e883b6998d32e1d675f88cddff9dcbcf331820f4b8",
+      "indices": [
+        1
+      ],
+      "GT_xyxy": [
+        7.989999771118164,
+        3.990000009536743,
+        8.010001182556152,
+        4.010000228881836
+      ]
+    },
+    "exact_center_tie_lowest_native_index": true,
+    "invalid_boxes_rejected": 3,
+    "existing_geometric_mask_unchanged": true,
+    "model_forwards": 0,
+    "parameter_updates": 0,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "formal_READY_written": false
+  },
+  "actual_production_summary": {
+    "source_commit": "6f54647243e2a5c7bffe3b91ca2f734454fa30ab",
+    "release_sha256": "31d42b287dfb01d1adec65c7f4103205b4a2e63eb187820cee900c3e971500b9",
+    "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+    "validation_only": true,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "parameter_updates": 0,
+    "formal_READY_written": false,
+    "population": false,
+    "device": "cuda:0",
+    "state": "passed",
+    "counts": {
+      "images": 8,
+      "GT": 69,
+      "NT_GT": 35,
+      "Person_images": 6,
+      "eligible_Person_images": 6,
+      "affected_images": 1,
+      "fallback_GT": 1,
+      "affected_Person_images": 1,
+      "affected_eligible_Person_images": 1,
+      "gradient_validated_fallback_GT_in_eligible_images": 1
+    },
+    "per_NT_class": {
+      "1": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "2": {
+        "NT_GT": 4,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "3": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "4": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "5": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "6": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "7": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "8": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "9": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "10": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "11": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "12": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "13": {
+        "NT_GT": 2,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "14": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "15": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "16": {
+        "NT_GT": 1,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "17": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "18": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "19": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "20": {
+        "NT_GT": 2,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "21": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "22": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "23": {
+        "NT_GT": 2,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "24": {
+        "NT_GT": 8,
+        "fallback_GT": 1,
+        "affected_images": 1
+      },
+      "25": {
+        "NT_GT": 1,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "26": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "27": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "28": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "29": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "30": {
+        "NT_GT": 5,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "31": {
+        "NT_GT": 1,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "32": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "33": {
+        "NT_GT": 6,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "34": {
+        "NT_GT": 1,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "35": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "36": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "37": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "38": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "39": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "40": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "41": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "42": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "43": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "44": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "45": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "46": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "47": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "48": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "49": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "50": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "51": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "52": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "53": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "54": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "55": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "56": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "57": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "58": {
+        "NT_GT": 1,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "59": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "60": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "61": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "62": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "63": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "64": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "65": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "66": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "67": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "68": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "69": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "70": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "71": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "72": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "73": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "74": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "75": {
+        "NT_GT": 1,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "76": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "77": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "78": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "79": {
+        "NT_GT": 0,
+        "fallback_GT": 0,
+        "affected_images": 0
+      }
+    },
+    "affected_train_image_fraction": 0.125,
+    "affected_NT_GT_fraction": 0.02857142857142857,
+    "affected_TFSS_active_image_fraction": 0.16666666666666666,
+    "conditional_affected_eligible_W": {
+      "pixel_count": 23111,
+      "min": 0.8707771301269531,
+      "max": 1.0,
+      "mean": 0.9746148925290569,
+      "variance": 0.0004979772240779612,
+      "histogram": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        2,
+        0,
+        1,
+        0,
+        2,
+        1,
+        2,
+        1,
+        0,
+        1,
+        3,
+        0,
+        1,
+        1,
+        2,
+        0,
+        4,
+        4,
+        1,
+        2,
+        7,
+        1,
+        10,
+        14,
+        13,
+        13,
+        10,
+        6,
+        11,
+        15,
+        12,
+        19,
+        14,
+        26,
+        22,
+        26,
+        17,
+        32,
+        19,
+        19,
+        23,
+        30,
+        31,
+        38,
+        41,
+        35,
+        41,
+        37,
+        45,
+        56,
+        55,
+        69,
+        74,
+        83,
+        83,
+        71,
+        82,
+        69,
+        81,
+        92,
+        78,
+        90,
+        114,
+        116,
+        98,
+        129,
+        133,
+        134,
+        118,
+        149,
+        134,
+        180,
+        160,
+        180,
+        187,
+        158,
+        198,
+        208,
+        206,
+        211,
+        190,
+        237,
+        228,
+        223,
+        248,
+        247,
+        274,
+        253,
+        262,
+        287,
+        290,
+        270,
+        293,
+        303,
+        297,
+        292,
+        298,
+        353,
+        345,
+        342,
+        351,
+        347,
+        350,
+        362,
+        337,
+        400,
+        374,
+        402,
+        390,
+        387,
+        451,
+        429,
+        456,
+        457,
+        500,
+        434,
+        492,
+        429,
+        440,
+        430,
+        406,
+        378,
+        288,
+        246,
+        3590
+      ],
+      "histogram_edges": [
+        0.85,
+        0.851,
+        0.852,
+        0.853,
+        0.854,
+        0.855,
+        0.856,
+        0.857,
+        0.858,
+        0.859,
+        0.86,
+        0.861,
+        0.862,
+        0.863,
+        0.864,
+        0.865,
+        0.866,
+        0.867,
+        0.868,
+        0.869,
+        0.87,
+        0.871,
+        0.872,
+        0.873,
+        0.874,
+        0.875,
+        0.876,
+        0.877,
+        0.878,
+        0.879,
+        0.88,
+        0.881,
+        0.882,
+        0.883,
+        0.884,
+        0.885,
+        0.886,
+        0.887,
+        0.888,
+        0.889,
+        0.89,
+        0.891,
+        0.892,
+        0.893,
+        0.894,
+        0.895,
+        0.896,
+        0.897,
+        0.898,
+        0.899,
+        0.9,
+        0.901,
+        0.902,
+        0.903,
+        0.904,
+        0.905,
+        0.906,
+        0.907,
+        0.908,
+        0.909,
+        0.91,
+        0.911,
+        0.912,
+        0.913,
+        0.914,
+        0.915,
+        0.916,
+        0.917,
+        0.918,
+        0.919,
+        0.92,
+        0.921,
+        0.922,
+        0.923,
+        0.924,
+        0.925,
+        0.9259999999999999,
+        0.927,
+        0.9279999999999999,
+        0.929,
+        0.9299999999999999,
+        0.931,
+        0.9319999999999999,
+        0.933,
+        0.9339999999999999,
+        0.935,
+        0.9359999999999999,
+        0.937,
+        0.938,
+        0.9390000000000001,
+        0.94,
+        0.9410000000000001,
+        0.942,
+        0.9430000000000001,
+        0.944,
+        0.9450000000000001,
+        0.946,
+        0.947,
+        0.948,
+        0.949,
+        0.95,
+        0.951,
+        0.952,
+        0.953,
+        0.954,
+        0.955,
+        0.956,
+        0.957,
+        0.958,
+        0.959,
+        0.96,
+        0.961,
+        0.962,
+        0.963,
+        0.964,
+        0.965,
+        0.966,
+        0.967,
+        0.968,
+        0.969,
+        0.97,
+        0.971,
+        0.972,
+        0.973,
+        0.974,
+        0.975,
+        0.976,
+        0.977,
+        0.978,
+        0.979,
+        0.98,
+        0.981,
+        0.982,
+        0.983,
+        0.984,
+        0.985,
+        0.986,
+        0.987,
+        0.988,
+        0.989,
+        0.99,
+        0.991,
+        0.992,
+        0.993,
+        0.994,
+        0.995,
+        0.996,
+        0.997,
+        0.998,
+        0.999,
+        1.0
+      ]
+    },
+    "original_complete_Rnt_on_affected_images": null,
+    "original_W_on_affected_images": null,
+    "full_training_W_distribution": null,
+    "distribution_scope": "affected eligible Person images only",
+    "unaffected_comparison": "original estimator delegation; bounded exact equivalence evidence, not a new whole-dataset comparison",
+    "actual_model_forwards": 11,
+    "actual_raw_evidence": [
+      {
+        "devices": [
+          "cuda:0"
+        ],
+        "cuda_indices": [
+          0
+        ],
+        "signature": [
+          {
+            "shape": [
+              1,
+              84,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "d8f1cc85fb1cf5ffb57d3512c0f70cc86702b0237dc98b262733f1ed10c14959"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "e2766eb18d0923bbca6c534b2dd1331a30f97aaa1c2cd6d10e7387b5587ebc8c"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              80,
+              80
+            ],
+            "dtype": "torch.float32",
+            "sha256": "a5414f844511c865cd87f2c7d0deeb0ee502f85a3738ceca69532b569debfaec"
+          },
+          {
+            "shape": [
+              1,
+              128,
+              40,
+              40
+            ],
+            "dtype": "torch.float32",
+            "sha256": "e0f1e76f059858f6b2e6b0a3ca352e945e0fb87184b9c1c1e81544d3b90e96be"
+          },
+          {
+            "shape": [
+              1,
+              256,
+              20,
+              20
+            ],
+            "dtype": "torch.float32",
+            "sha256": "c2d76ba4d1ef57fa779b116b099f4f0b800c118bd147fbbd8e53d3017c19f133"
+          },
+          {
+            "shape": [
+              1,
+              80,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "7f2132e4806e317085d9d109ad70950873b0ec6373db4dd3cf4f1790470b5ad9"
+          }
+        ]
+      },
+      {
+        "devices": [
+          "cuda:0"
+        ],
+        "cuda_indices": [
+          0
+        ],
+        "signature": [
+          {
+            "shape": [
+              1,
+              84,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "76f794a6c01d95b783787f5e1d075507af55dfbc7875aa3ef49b85a4a0a16ccc"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "64c527ef758f7c1b34351b5bd6bc1a4ff2012ef8e9468682cb791ba8d87de3e8"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              80,
+              80
+            ],
+            "dtype": "torch.float32",
+            "sha256": "93f373318cd9d91044a07dae013f330aa7f1034ec8bd745b3e6d98735bf14a7c"
+          },
+          {
+            "shape": [
+              1,
+              128,
+              40,
+              40
+            ],
+            "dtype": "torch.float32",
+            "sha256": "09f387cf4f7a2efc0425d27dff42782178afcf6da45fb342d88d47b6bfce752c"
+          },
+          {
+            "shape": [
+              1,
+              256,
+              20,
+              20
+            ],
+            "dtype": "torch.float32",
+            "sha256": "370c7cf6c61d9314ae3778573469b36c6fdd53c7362a4fb7b5c5169388f2f890"
+          },
+          {
+            "shape": [
+              1,
+              80,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "2319b9ed1187c739a5facd82f066ef3bff85ae4546e557582dc2f733ac212e1b"
+          }
+        ]
+      },
+      {
+        "devices": [
+          "cuda:0"
+        ],
+        "cuda_indices": [
+          0
+        ],
+        "signature": [
+          {
+            "shape": [
+              1,
+              84,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "d8f1cc85fb1cf5ffb57d3512c0f70cc86702b0237dc98b262733f1ed10c14959"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "e2766eb18d0923bbca6c534b2dd1331a30f97aaa1c2cd6d10e7387b5587ebc8c"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              80,
+              80
+            ],
+            "dtype": "torch.float32",
+            "sha256": "a5414f844511c865cd87f2c7d0deeb0ee502f85a3738ceca69532b569debfaec"
+          },
+          {
+            "shape": [
+              1,
+              128,
+              40,
+              40
+            ],
+            "dtype": "torch.float32",
+            "sha256": "e0f1e76f059858f6b2e6b0a3ca352e945e0fb87184b9c1c1e81544d3b90e96be"
+          },
+          {
+            "shape": [
+              1,
+              256,
+              20,
+              20
+            ],
+            "dtype": "torch.float32",
+            "sha256": "c2d76ba4d1ef57fa779b116b099f4f0b800c118bd147fbbd8e53d3017c19f133"
+          },
+          {
+            "shape": [
+              1,
+              80,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "7f2132e4806e317085d9d109ad70950873b0ec6373db4dd3cf4f1790470b5ad9"
+          }
+        ]
+      },
+      {
+        "devices": [
+          "cuda:0"
+        ],
+        "cuda_indices": [
+          0
+        ],
+        "signature": [
+          {
+            "shape": [
+              1,
+              84,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "d8f1cc85fb1cf5ffb57d3512c0f70cc86702b0237dc98b262733f1ed10c14959"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "e2766eb18d0923bbca6c534b2dd1331a30f97aaa1c2cd6d10e7387b5587ebc8c"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              80,
+              80
+            ],
+            "dtype": "torch.float32",
+            "sha256": "a5414f844511c865cd87f2c7d0deeb0ee502f85a3738ceca69532b569debfaec"
+          },
+          {
+            "shape": [
+              1,
+              128,
+              40,
+              40
+            ],
+            "dtype": "torch.float32",
+            "sha256": "e0f1e76f059858f6b2e6b0a3ca352e945e0fb87184b9c1c1e81544d3b90e96be"
+          },
+          {
+            "shape": [
+              1,
+              256,
+              20,
+              20
+            ],
+            "dtype": "torch.float32",
+            "sha256": "c2d76ba4d1ef57fa779b116b099f4f0b800c118bd147fbbd8e53d3017c19f133"
+          },
+          {
+            "shape": [
+              1,
+              80,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "7f2132e4806e317085d9d109ad70950873b0ec6373db4dd3cf4f1790470b5ad9"
+          }
+        ]
+      }
+    ],
+    "Teacher_unchanged": true,
+    "input_manifest_sha256": "181e9c203b2d5a147888aac7ded702673c2084994d722c9ca4633fad0210ee64",
+    "per_image_report_sha256": "986e53bdcf3d8feec1ce55098fe80a01e5e76b5471bbf8fa4ecb60dc3c536a5d",
+    "no_optimizer_instantiated": true,
+    "no_validation_images_opened": true,
+    "population_state": "BOUNDED_FIXTURE_ONLY"
+  },
+  "actual_production_summary_sha256": "f57a5d4b8997240d090b8e30efb2fa52fdab3950c620a221836f929c8d57963d",
+  "unaffected_bound_source_files": 153,
+  "all_other_risk_AST_exact": true,
+  "real_five_geometry_indices_preserved": true
+}
