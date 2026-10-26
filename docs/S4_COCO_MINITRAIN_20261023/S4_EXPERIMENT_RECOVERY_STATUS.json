@@ -1,11 +1,22 @@
 {
-  "state": "RISK_BOUNDED_GATES_CLOSED_POPULATION_VALIDATION_RUNNING",
+  "state": "RISK_EXTENSION_ISOLATED_VALIDATION_ACCEPTED_AWAITING_FORMAL_PROTOCOL_DECISION",
   "classification": "Level C",
   "protocol": "coco80-ntgt-native-tal-then-gt-risk-v1",
   "branch": "codex/s4-coco-risk-fallback-20261027",
   "real_Teacher_candidate_CPU": "COMPONENT_PASSED",
   "actual_candidate_CUDA": "COMPONENT_AND_ONE_IMAGE_FULL_CHAIN_PASSED",
-  "full25K_coverage_statistics": null,
+  "full25K_coverage_statistics": {
+    "images": 25000,
+    "GT": 181475,
+    "NT_GT": 126379,
+    "Person_images": 13630,
+    "eligible_Person_images": 13630,
+    "affected_images": 239,
+    "fallback_GT": 304,
+    "affected_Person_images": 204,
+    "affected_eligible_Person_images": 204,
+    "gradient_validated_fallback_GT_in_eligible_images": 255
+  },
   "Fourier_gradient": "PASSED_CPU_CUDA_ONE_UPDATE_EACH",
   "formal_restart_conditions_satisfied": false,
   "formal_optimization_started": false,
@@ -15,5 +26,8 @@
   "mixed_defined_GT": "13_per_object_losses_and_full_gradients_exact",
   "VOC_regressions": "55_PASS_0FAIL_0ERROR_0SKIP",
   "single_review_result": "negative_F01_preserved_main_closed_with_CPU_CUDA",
-  "population_validation_run": "coco_dim_20261027_risk_population01"
+  "population_validation_run": "coco_dim_20261027_risk_population01",
+  "current_scope_validation_complete": true,
+  "formal_optimization_authorized": false,
+  "formal_native_batch_preflight": "NOT_BOUND_OR_RUN_FOR_NEW_RISK_PROTOCOL"
 }

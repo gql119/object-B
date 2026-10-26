@@ -1,0 +1,1526 @@
+{
+  "state": "passed",
+  "source_commit": "6f54647243e2a5c7bffe3b91ca2f734454fa30ab",
+  "source_files_verified": 155,
+  "native_files_verified": 7,
+  "official_JSON_class_denominators_exact": true,
+  "all25000_order_and_GTs_exact": true,
+  "eligible13630_ID_set_exact": true,
+  "cache_files_SHA_and_policy_verified": 204,
+  "conditional_W_reconstructed_from_q_risk_CPU_exact": true,
+  "all_conditional_W_histogram_means_quantiles_exact": true,
+  "selection_rule_counts": {
+    "pinned native GT geometric candidate rule; not assignment": 304
+  },
+  "counts": {
+    "images": 25000,
+    "GT": 181475,
+    "NT_GT": 126379,
+    "Person_images": 13630,
+    "eligible_Person_images": 13630,
+    "affected_images": 239,
+    "fallback_GT": 304,
+    "affected_Person_images": 204,
+    "affected_eligible_Person_images": 204,
+    "gradient_validated_fallback_GT_in_eligible_images": 255
+  },
+  "per_NT_class": {
+    "1": {
+      "name": "bicycle",
+      "NT_GT": 1504,
+      "fallback_GT": 1,
+      "affected_images": 1
+    },
+    "2": {
+      "name": "car",
+      "NT_GT": 8873,
+      "fallback_GT": 9,
+      "affected_images": 7
+    },
+    "3": {
+      "name": "motorcycle",
+      "NT_GT": 1884,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "4": {
+      "name": "airplane",
+      "NT_GT": 1054,
+      "fallback_GT": 1,
+      "affected_images": 1
+    },
+    "5": {
+      "name": "bus",
+      "NT_GT": 1215,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "6": {
+      "name": "train",
+      "NT_GT": 976,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "7": {
+      "name": "truck",
+      "NT_GT": 2040,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "8": {
+      "name": "boat",
+      "NT_GT": 2259,
+      "fallback_GT": 1,
+      "affected_images": 1
+    },
+    "9": {
+      "name": "traffic light",
+      "NT_GT": 2631,
+      "fallback_GT": 19,
+      "affected_images": 16
+    },
+    "10": {
+      "name": "fire hydrant",
+      "NT_GT": 353,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "11": {
+      "name": "stop sign",
+      "NT_GT": 376,
+      "fallback_GT": 1,
+      "affected_images": 1
+    },
+    "12": {
+      "name": "parking meter",
+      "NT_GT": 214,
+      "fallback_GT": 3,
+      "affected_images": 3
+    },
+    "13": {
+      "name": "bench",
+      "NT_GT": 2229,
+      "fallback_GT": 5,
+      "affected_images": 5
+    },
+    "14": {
+      "name": "bird",
+      "NT_GT": 2102,
+      "fallback_GT": 17,
+      "affected_images": 10
+    },
+    "15": {
+      "name": "cat",
+      "NT_GT": 1033,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "16": {
+      "name": "dog",
+      "NT_GT": 1099,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "17": {
+      "name": "horse",
+      "NT_GT": 1349,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "18": {
+      "name": "sheep",
+      "NT_GT": 2006,
+      "fallback_GT": 6,
+      "affected_images": 3
+    },
+    "19": {
+      "name": "cow",
+      "NT_GT": 1634,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "20": {
+      "name": "elephant",
+      "NT_GT": 1190,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "21": {
+      "name": "bear",
+      "NT_GT": 296,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "22": {
+      "name": "zebra",
+      "NT_GT": 1081,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "23": {
+      "name": "giraffe",
+      "NT_GT": 1085,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "24": {
+      "name": "backpack",
+      "NT_GT": 1854,
+      "fallback_GT": 3,
+      "affected_images": 3
+    },
+    "25": {
+      "name": "umbrella",
+      "NT_GT": 2432,
+      "fallback_GT": 2,
+      "affected_images": 1
+    },
+    "26": {
+      "name": "handbag",
+      "NT_GT": 2802,
+      "fallback_GT": 7,
+      "affected_images": 7
+    },
+    "27": {
+      "name": "tie",
+      "NT_GT": 1265,
+      "fallback_GT": 20,
+      "affected_images": 18
+    },
+    "28": {
+      "name": "suitcase",
+      "NT_GT": 1291,
+      "fallback_GT": 1,
+      "affected_images": 1
+    },
+    "29": {
+      "name": "frisbee",
+      "NT_GT": 573,
+      "fallback_GT": 2,
+      "affected_images": 2
+    },
+    "30": {
+      "name": "skis",
+      "NT_GT": 1431,
+      "fallback_GT": 18,
+      "affected_images": 16
+    },
+    "31": {
+      "name": "snowboard",
+      "NT_GT": 570,
+      "fallback_GT": 3,
+      "affected_images": 3
+    },
+    "32": {
+      "name": "sports ball",
+      "NT_GT": 1353,
+      "fallback_GT": 34,
+      "affected_images": 21
+    },
+    "33": {
+      "name": "kite",
+      "NT_GT": 1808,
+      "fallback_GT": 2,
+      "affected_images": 2
+    },
+    "34": {
+      "name": "baseball bat",
+      "NT_GT": 713,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "35": {
+      "name": "baseball glove",
+      "NT_GT": 842,
+      "fallback_GT": 4,
+      "affected_images": 4
+    },
+    "36": {
+      "name": "skateboard",
+      "NT_GT": 1254,
+      "fallback_GT": 1,
+      "affected_images": 1
+    },
+    "37": {
+      "name": "surfboard",
+      "NT_GT": 1190,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "38": {
+      "name": "tennis racket",
+      "NT_GT": 1078,
+      "fallback_GT": 5,
+      "affected_images": 5
+    },
+    "39": {
+      "name": "bottle",
+      "NT_GT": 5152,
+      "fallback_GT": 10,
+      "affected_images": 6
+    },
+    "40": {
+      "name": "wine glass",
+      "NT_GT": 1654,
+      "fallback_GT": 2,
+      "affected_images": 2
+    },
+    "41": {
+      "name": "cup",
+      "NT_GT": 4478,
+      "fallback_GT": 10,
+      "affected_images": 6
+    },
+    "42": {
+      "name": "fork",
+      "NT_GT": 1264,
+      "fallback_GT": 3,
+      "affected_images": 3
+    },
+    "43": {
+      "name": "knife",
+      "NT_GT": 1733,
+      "fallback_GT": 15,
+      "affected_images": 11
+    },
+    "44": {
+      "name": "spoon",
+      "NT_GT": 1373,
+      "fallback_GT": 3,
+      "affected_images": 3
+    },
+    "45": {
+      "name": "bowl",
+      "NT_GT": 3224,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "46": {
+      "name": "banana",
+      "NT_GT": 2157,
+      "fallback_GT": 2,
+      "affected_images": 2
+    },
+    "47": {
+      "name": "apple",
+      "NT_GT": 1357,
+      "fallback_GT": 2,
+      "affected_images": 2
+    },
+    "48": {
+      "name": "sandwich",
+      "NT_GT": 1053,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "49": {
+      "name": "orange",
+      "NT_GT": 1444,
+      "fallback_GT": 5,
+      "affected_images": 4
+    },
+    "50": {
+      "name": "broccoli",
+      "NT_GT": 1548,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "51": {
+      "name": "carrot",
+      "NT_GT": 1539,
+      "fallback_GT": 1,
+      "affected_images": 1
+    },
+    "52": {
+      "name": "hot dog",
+      "NT_GT": 705,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "53": {
+      "name": "pizza",
+      "NT_GT": 1174,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "54": {
+      "name": "donut",
+      "NT_GT": 1508,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "55": {
+      "name": "cake",
+      "NT_GT": 1299,
+      "fallback_GT": 2,
+      "affected_images": 2
+    },
+    "56": {
+      "name": "chair",
+      "NT_GT": 8158,
+      "fallback_GT": 14,
+      "affected_images": 11
+    },
+    "57": {
+      "name": "couch",
+      "NT_GT": 1231,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "58": {
+      "name": "potted plant",
+      "NT_GT": 1855,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "59": {
+      "name": "bed",
+      "NT_GT": 937,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "60": {
+      "name": "dining table",
+      "NT_GT": 3450,
+      "fallback_GT": 7,
+      "affected_images": 7
+    },
+    "61": {
+      "name": "toilet",
+      "NT_GT": 885,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "62": {
+      "name": "tv",
+      "NT_GT": 1174,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "63": {
+      "name": "laptop",
+      "NT_GT": 1060,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "64": {
+      "name": "mouse",
+      "NT_GT": 441,
+      "fallback_GT": 1,
+      "affected_images": 1
+    },
+    "65": {
+      "name": "remote",
+      "NT_GT": 1204,
+      "fallback_GT": 2,
+      "affected_images": 2
+    },
+    "66": {
+      "name": "keyboard",
+      "NT_GT": 571,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "67": {
+      "name": "cell phone",
+      "NT_GT": 1309,
+      "fallback_GT": 29,
+      "affected_images": 26
+    },
+    "68": {
+      "name": "microwave",
+      "NT_GT": 367,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "69": {
+      "name": "oven",
+      "NT_GT": 698,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "70": {
+      "name": "toaster",
+      "NT_GT": 46,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "71": {
+      "name": "sink",
+      "NT_GT": 1258,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "72": {
+      "name": "refrigerator",
+      "NT_GT": 622,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "73": {
+      "name": "book",
+      "NT_GT": 4976,
+      "fallback_GT": 19,
+      "affected_images": 10
+    },
+    "74": {
+      "name": "clock",
+      "NT_GT": 1336,
+      "fallback_GT": 5,
+      "affected_images": 5
+    },
+    "75": {
+      "name": "vase",
+      "NT_GT": 1423,
+      "fallback_GT": 4,
+      "affected_images": 3
+    },
+    "76": {
+      "name": "scissors",
+      "NT_GT": 323,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "77": {
+      "name": "teddy bear",
+      "NT_GT": 1014,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "78": {
+      "name": "hair drier",
+      "NT_GT": 40,
+      "fallback_GT": 0,
+      "affected_images": 0
+    },
+    "79": {
+      "name": "toothbrush",
+      "NT_GT": 400,
+      "fallback_GT": 3,
+      "affected_images": 3
+    }
+  },
+  "actual_population_summary": {
+    "source_commit": "6f54647243e2a5c7bffe3b91ca2f734454fa30ab",
+    "release_sha256": "b40d311857b6159d518820f2eb633c6057386226ceb7b842132c59dc4c1a443a",
+    "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+    "validation_only": true,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "parameter_updates": 0,
+    "formal_READY_written": false,
+    "population": true,
+    "device": "cuda:0",
+    "state": "passed",
+    "counts": {
+      "images": 25000,
+      "GT": 181475,
+      "NT_GT": 126379,
+      "Person_images": 13630,
+      "eligible_Person_images": 13630,
+      "affected_images": 239,
+      "fallback_GT": 304,
+      "affected_Person_images": 204,
+      "affected_eligible_Person_images": 204,
+      "gradient_validated_fallback_GT_in_eligible_images": 255
+    },
+    "per_NT_class": {
+      "1": {
+        "NT_GT": 1504,
+        "fallback_GT": 1,
+        "affected_images": 1
+      },
+      "2": {
+        "NT_GT": 8873,
+        "fallback_GT": 9,
+        "affected_images": 7
+      },
+      "3": {
+        "NT_GT": 1884,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "4": {
+        "NT_GT": 1054,
+        "fallback_GT": 1,
+        "affected_images": 1
+      },
+      "5": {
+        "NT_GT": 1215,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "6": {
+        "NT_GT": 976,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "7": {
+        "NT_GT": 2040,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "8": {
+        "NT_GT": 2259,
+        "fallback_GT": 1,
+        "affected_images": 1
+      },
+      "9": {
+        "NT_GT": 2631,
+        "fallback_GT": 19,
+        "affected_images": 16
+      },
+      "10": {
+        "NT_GT": 353,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "11": {
+        "NT_GT": 376,
+        "fallback_GT": 1,
+        "affected_images": 1
+      },
+      "12": {
+        "NT_GT": 214,
+        "fallback_GT": 3,
+        "affected_images": 3
+      },
+      "13": {
+        "NT_GT": 2229,
+        "fallback_GT": 5,
+        "affected_images": 5
+      },
+      "14": {
+        "NT_GT": 2102,
+        "fallback_GT": 17,
+        "affected_images": 10
+      },
+      "15": {
+        "NT_GT": 1033,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "16": {
+        "NT_GT": 1099,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "17": {
+        "NT_GT": 1349,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "18": {
+        "NT_GT": 2006,
+        "fallback_GT": 6,
+        "affected_images": 3
+      },
+      "19": {
+        "NT_GT": 1634,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "20": {
+        "NT_GT": 1190,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "21": {
+        "NT_GT": 296,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "22": {
+        "NT_GT": 1081,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "23": {
+        "NT_GT": 1085,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "24": {
+        "NT_GT": 1854,
+        "fallback_GT": 3,
+        "affected_images": 3
+      },
+      "25": {
+        "NT_GT": 2432,
+        "fallback_GT": 2,
+        "affected_images": 1
+      },
+      "26": {
+        "NT_GT": 2802,
+        "fallback_GT": 7,
+        "affected_images": 7
+      },
+      "27": {
+        "NT_GT": 1265,
+        "fallback_GT": 20,
+        "affected_images": 18
+      },
+      "28": {
+        "NT_GT": 1291,
+        "fallback_GT": 1,
+        "affected_images": 1
+      },
+      "29": {
+        "NT_GT": 573,
+        "fallback_GT": 2,
+        "affected_images": 2
+      },
+      "30": {
+        "NT_GT": 1431,
+        "fallback_GT": 18,
+        "affected_images": 16
+      },
+      "31": {
+        "NT_GT": 570,
+        "fallback_GT": 3,
+        "affected_images": 3
+      },
+      "32": {
+        "NT_GT": 1353,
+        "fallback_GT": 34,
+        "affected_images": 21
+      },
+      "33": {
+        "NT_GT": 1808,
+        "fallback_GT": 2,
+        "affected_images": 2
+      },
+      "34": {
+        "NT_GT": 713,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "35": {
+        "NT_GT": 842,
+        "fallback_GT": 4,
+        "affected_images": 4
+      },
+      "36": {
+        "NT_GT": 1254,
+        "fallback_GT": 1,
+        "affected_images": 1
+      },
+      "37": {
+        "NT_GT": 1190,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "38": {
+        "NT_GT": 1078,
+        "fallback_GT": 5,
+        "affected_images": 5
+      },
+      "39": {
+        "NT_GT": 5152,
+        "fallback_GT": 10,
+        "affected_images": 6
+      },
+      "40": {
+        "NT_GT": 1654,
+        "fallback_GT": 2,
+        "affected_images": 2
+      },
+      "41": {
+        "NT_GT": 4478,
+        "fallback_GT": 10,
+        "affected_images": 6
+      },
+      "42": {
+        "NT_GT": 1264,
+        "fallback_GT": 3,
+        "affected_images": 3
+      },
+      "43": {
+        "NT_GT": 1733,
+        "fallback_GT": 15,
+        "affected_images": 11
+      },
+      "44": {
+        "NT_GT": 1373,
+        "fallback_GT": 3,
+        "affected_images": 3
+      },
+      "45": {
+        "NT_GT": 3224,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "46": {
+        "NT_GT": 2157,
+        "fallback_GT": 2,
+        "affected_images": 2
+      },
+      "47": {
+        "NT_GT": 1357,
+        "fallback_GT": 2,
+        "affected_images": 2
+      },
+      "48": {
+        "NT_GT": 1053,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "49": {
+        "NT_GT": 1444,
+        "fallback_GT": 5,
+        "affected_images": 4
+      },
+      "50": {
+        "NT_GT": 1548,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "51": {
+        "NT_GT": 1539,
+        "fallback_GT": 1,
+        "affected_images": 1
+      },
+      "52": {
+        "NT_GT": 705,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "53": {
+        "NT_GT": 1174,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "54": {
+        "NT_GT": 1508,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "55": {
+        "NT_GT": 1299,
+        "fallback_GT": 2,
+        "affected_images": 2
+      },
+      "56": {
+        "NT_GT": 8158,
+        "fallback_GT": 14,
+        "affected_images": 11
+      },
+      "57": {
+        "NT_GT": 1231,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "58": {
+        "NT_GT": 1855,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "59": {
+        "NT_GT": 937,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "60": {
+        "NT_GT": 3450,
+        "fallback_GT": 7,
+        "affected_images": 7
+      },
+      "61": {
+        "NT_GT": 885,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "62": {
+        "NT_GT": 1174,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "63": {
+        "NT_GT": 1060,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "64": {
+        "NT_GT": 441,
+        "fallback_GT": 1,
+        "affected_images": 1
+      },
+      "65": {
+        "NT_GT": 1204,
+        "fallback_GT": 2,
+        "affected_images": 2
+      },
+      "66": {
+        "NT_GT": 571,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "67": {
+        "NT_GT": 1309,
+        "fallback_GT": 29,
+        "affected_images": 26
+      },
+      "68": {
+        "NT_GT": 367,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "69": {
+        "NT_GT": 698,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "70": {
+        "NT_GT": 46,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "71": {
+        "NT_GT": 1258,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "72": {
+        "NT_GT": 622,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "73": {
+        "NT_GT": 4976,
+        "fallback_GT": 19,
+        "affected_images": 10
+      },
+      "74": {
+        "NT_GT": 1336,
+        "fallback_GT": 5,
+        "affected_images": 5
+      },
+      "75": {
+        "NT_GT": 1423,
+        "fallback_GT": 4,
+        "affected_images": 3
+      },
+      "76": {
+        "NT_GT": 323,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "77": {
+        "NT_GT": 1014,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "78": {
+        "NT_GT": 40,
+        "fallback_GT": 0,
+        "affected_images": 0
+      },
+      "79": {
+        "NT_GT": 400,
+        "fallback_GT": 3,
+        "affected_images": 3
+      }
+    },
+    "affected_train_image_fraction": 0.00956,
+    "affected_NT_GT_fraction": 0.0024054629329239826,
+    "affected_TFSS_active_image_fraction": 0.014966984592809977,
+    "conditional_affected_eligible_W": {
+      "pixel_count": 8749487,
+      "min": 0.8500000238418579,
+      "max": 1.0,
+      "mean": 0.9776006529831719,
+      "variance": 0.0005282741018377557,
+      "histogram": [
+        2770,
+        357,
+        332,
+        377,
+        391,
+        420,
+        444,
+        447,
+        473,
+        523,
+        549,
+        581,
+        617,
+        641,
+        658,
+        694,
+        743,
+        756,
+        873,
+        866,
+        886,
+        939,
+        955,
+        1045,
+        1042,
+        1100,
+        1185,
+        1181,
+        1351,
+        1389,
+        1430,
+        1552,
+        1626,
+        1725,
+        1865,
+        1981,
+        2004,
+        2216,
+        2232,
+        2368,
+        2587,
+        2804,
+        2869,
+        3075,
+        3237,
+        3428,
+        3606,
+        3860,
+        3958,
+        4270,
+        4417,
+        4804,
+        4911,
+        5307,
+        5590,
+        5873,
+        6263,
+        6516,
+        6980,
+        7248,
+        7707,
+        7978,
+        8532,
+        8995,
+        9525,
+        10187,
+        10553,
+        11391,
+        11714,
+        12390,
+        13120,
+        13873,
+        14703,
+        15755,
+        17270,
+        20023,
+        18126,
+        18682,
+        19832,
+        20670,
+        21684,
+        22666,
+        23625,
+        24895,
+        25751,
+        26546,
+        27979,
+        29192,
+        30860,
+        32354,
+        33684,
+        34940,
+        36452,
+        37829,
+        39366,
+        41069,
+        42675,
+        44733,
+        46257,
+        50142,
+        50372,
+        52139,
+        54210,
+        56325,
+        58108,
+        60830,
+        63091,
+        65520,
+        67965,
+        70786,
+        72991,
+        76129,
+        79239,
+        80732,
+        83993,
+        86447,
+        90787,
+        93166,
+        97084,
+        101720,
+        104466,
+        107529,
+        111606,
+        115665,
+        119486,
+        123598,
+        127691,
+        131579,
+        135966,
+        140194,
+        145374,
+        148903,
+        153227,
+        157787,
+        162312,
+        167362,
+        170531,
+        174838,
+        180035,
+        183627,
+        186451,
+        190870,
+        192941,
+        196360,
+        198618,
+        200981,
+        204803,
+        209325,
+        220187,
+        1546629
+      ],
+      "histogram_edges": [
+        0.85,
+        0.851,
+        0.852,
+        0.853,
+        0.854,
+        0.855,
+        0.856,
+        0.857,
+        0.858,
+        0.859,
+        0.86,
+        0.861,
+        0.862,
+        0.863,
+        0.864,
+        0.865,
+        0.866,
+        0.867,
+        0.868,
+        0.869,
+        0.87,
+        0.871,
+        0.872,
+        0.873,
+        0.874,
+        0.875,
+        0.876,
+        0.877,
+        0.878,
+        0.879,
+        0.88,
+        0.881,
+        0.882,
+        0.883,
+        0.884,
+        0.885,
+        0.886,
+        0.887,
+        0.888,
+        0.889,
+        0.89,
+        0.891,
+        0.892,
+        0.893,
+        0.894,
+        0.895,
+        0.896,
+        0.897,
+        0.898,
+        0.899,
+        0.9,
+        0.901,
+        0.902,
+        0.903,
+        0.904,
+        0.905,
+        0.906,
+        0.907,
+        0.908,
+        0.909,
+        0.91,
+        0.911,
+        0.912,
+        0.913,
+        0.914,
+        0.915,
+        0.916,
+        0.917,
+        0.918,
+        0.919,
+        0.92,
+        0.921,
+        0.922,
+        0.923,
+        0.924,
+        0.925,
+        0.9259999999999999,
+        0.927,
+        0.9279999999999999,
+        0.929,
+        0.9299999999999999,
+        0.931,
+        0.9319999999999999,
+        0.933,
+        0.9339999999999999,
+        0.935,
+        0.9359999999999999,
+        0.937,
+        0.938,
+        0.9390000000000001,
+        0.94,
+        0.9410000000000001,
+        0.942,
+        0.9430000000000001,
+        0.944,
+        0.9450000000000001,
+        0.946,
+        0.947,
+        0.948,
+        0.949,
+        0.95,
+        0.951,
+        0.952,
+        0.953,
+        0.954,
+        0.955,
+        0.956,
+        0.957,
+        0.958,
+        0.959,
+        0.96,
+        0.961,
+        0.962,
+        0.963,
+        0.964,
+        0.965,
+        0.966,
+        0.967,
+        0.968,
+        0.969,
+        0.97,
+        0.971,
+        0.972,
+        0.973,
+        0.974,
+        0.975,
+        0.976,
+        0.977,
+        0.978,
+        0.979,
+        0.98,
+        0.981,
+        0.982,
+        0.983,
+        0.984,
+        0.985,
+        0.986,
+        0.987,
+        0.988,
+        0.989,
+        0.99,
+        0.991,
+        0.992,
+        0.993,
+        0.994,
+        0.995,
+        0.996,
+        0.997,
+        0.998,
+        0.999,
+        1.0
+      ]
+    },
+    "original_complete_Rnt_on_affected_images": null,
+    "original_W_on_affected_images": null,
+    "full_training_W_distribution": null,
+    "distribution_scope": "affected eligible Person images only",
+    "unaffected_comparison": "original estimator delegation; bounded exact equivalence evidence, not a new whole-dataset comparison",
+    "actual_model_forwards": 25541,
+    "actual_raw_evidence": [
+      {
+        "devices": [
+          "cuda:0"
+        ],
+        "cuda_indices": [
+          0
+        ],
+        "signature": [
+          {
+            "shape": [
+              1,
+              84,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "13ba569c628802fde1b203a745132c367f32707d0311b9b2cbecf748451821a3"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "29d0d4ba90da259a48b184dd4ec205c121d8d169047c18ba1a6f8a99e818c6eb"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              80,
+              80
+            ],
+            "dtype": "torch.float32",
+            "sha256": "8fbab09b1f44cf81af16513e9e89f783252315c5612a9bdb091ad4e344ea8179"
+          },
+          {
+            "shape": [
+              1,
+              128,
+              40,
+              40
+            ],
+            "dtype": "torch.float32",
+            "sha256": "8a2d0aefe19bbab0950b1cb45aa40e6290827fb26d624c1547bf38a76987dc42"
+          },
+          {
+            "shape": [
+              1,
+              256,
+              20,
+              20
+            ],
+            "dtype": "torch.float32",
+            "sha256": "2e242a46ef9322d564c289a24b1b3747703cd42290f0390d05993f075d790ffd"
+          },
+          {
+            "shape": [
+              1,
+              80,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "08169b4fad541d3a497c8a66a5246a2d7133c86135299b2387ad3cce2bd8259e"
+          }
+        ]
+      },
+      {
+        "devices": [
+          "cuda:0"
+        ],
+        "cuda_indices": [
+          0
+        ],
+        "signature": [
+          {
+            "shape": [
+              1,
+              84,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "914f31743edb4c08817f6a201e558e3458fbc504bb9771e060ca66015e900bbe"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "8c26cd5f51226ab51e4a4d0a09be0051c1d1d693511b5d542a6d8cdf6b5e3437"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              80,
+              80
+            ],
+            "dtype": "torch.float32",
+            "sha256": "ff90a7dc75a3767ab9fc47c76bc42771eec2b989539f83882225a64a629338bc"
+          },
+          {
+            "shape": [
+              1,
+              128,
+              40,
+              40
+            ],
+            "dtype": "torch.float32",
+            "sha256": "7c62ae5c60ac4395f7693eba047c4b051a2b205106f96782395b6b5a342eef51"
+          },
+          {
+            "shape": [
+              1,
+              256,
+              20,
+              20
+            ],
+            "dtype": "torch.float32",
+            "sha256": "0b4c21ee95b6c96620f68c06c5f7a4ed077e2629a4395120c5e9b84384c4395d"
+          },
+          {
+            "shape": [
+              1,
+              80,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "c253444338a1bcf2fc2f460dc1b3204627908d40a04613cef16da67115c09853"
+          }
+        ]
+      },
+      {
+        "devices": [
+          "cuda:0"
+        ],
+        "cuda_indices": [
+          0
+        ],
+        "signature": [
+          {
+            "shape": [
+              1,
+              84,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "9853e93c5f956b08318584ff14c91efa6ed68216b71b3a284187a50646522b02"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "9e8c3c5775fb4add6d1b569664dc6f352e1f4ff7a162beab83ad209d4a69ac72"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              80,
+              80
+            ],
+            "dtype": "torch.float32",
+            "sha256": "33a2fc1bdf43da20068c4bfa303d8dca0ce2aa2661368d96559f3acb9599c077"
+          },
+          {
+            "shape": [
+              1,
+              128,
+              40,
+              40
+            ],
+            "dtype": "torch.float32",
+            "sha256": "9d818bef6815e7a544d6fa09291490f036dfd4260f76533b573eaf800bae4820"
+          },
+          {
+            "shape": [
+              1,
+              256,
+              20,
+              20
+            ],
+            "dtype": "torch.float32",
+            "sha256": "72f79fd60cb0d06269cd6a8f95d636cc4f8181fe2db2ab00b3486b31c9ba27fc"
+          },
+          {
+            "shape": [
+              1,
+              80,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "9bfe06aa84cdef86fe495fb8adf921796b91ef72e430ced50d255f12b9a5b46c"
+          }
+        ]
+      },
+      {
+        "devices": [
+          "cuda:0"
+        ],
+        "cuda_indices": [
+          0
+        ],
+        "signature": [
+          {
+            "shape": [
+              1,
+              84,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "d4b243c525b210ae5ef356fa593fd94bb28c4dfe8ffc945c2765ebae2d1664d7"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "ec1f7756f3153b01ca027569cf8e88887c2dd2860489cde54d5aa4a5f68e4997"
+          },
+          {
+            "shape": [
+              1,
+              64,
+              80,
+              80
+            ],
+            "dtype": "torch.float32",
+            "sha256": "601d6e6b3f8307b20169cf39146e6cf5d4b6696d18c23b88942fd27fa1318706"
+          },
+          {
+            "shape": [
+              1,
+              128,
+              40,
+              40
+            ],
+            "dtype": "torch.float32",
+            "sha256": "bbf05a0fe39731cf4f02ebde27764cafa7bbb778e380f91ce1b581efe9d554d9"
+          },
+          {
+            "shape": [
+              1,
+              256,
+              20,
+              20
+            ],
+            "dtype": "torch.float32",
+            "sha256": "67831631e80109dfec9dc111103be3f8519be9b9ca3174137d3a0ea4b3dfa459"
+          },
+          {
+            "shape": [
+              1,
+              80,
+              8400
+            ],
+            "dtype": "torch.float32",
+            "sha256": "8d37d4d1a06ee1a4d6164149db3f8720d7e540afd4f19115512be01ebb02b0a6"
+          }
+        ]
+      }
+    ],
+    "Teacher_unchanged": true,
+    "input_manifest_sha256": "181e9c203b2d5a147888aac7ded702673c2084994d722c9ca4633fad0210ee64",
+    "per_image_report_sha256": "8eca8e8724be2be2d6e60556c96199dbf607d0a01dbecf8ff78973226d656460",
+    "no_optimizer_instantiated": true,
+    "no_validation_images_opened": true,
+    "population_state": "COMPLETE_25K"
+  },
+  "audit_model_forwards": 0,
+  "audit_Torch_imported": false,
+  "audit_GPU_initialized": false,
+  "formal_optimization_started": false
+}
