@@ -150,8 +150,12 @@ def risk_candidate_mask(assigner, anchor_pixels, box):
     mask=assigner.select_candidates_in_gts(anchor_pixels,box,valid)[0,0].bool()
     rule='pinned native GT geometric candidate rule; not assignment'
     if not bool(mask.any()):
-        center=(box[0,0,:2]+box[0,0,2:])/2
-        distance=((anchor_pixels.double()-center.double())/size.double()).square().sum(-1)
+        # Promote the actual endpoints before deriving center/size. Deriving in
+        # float32 first can round an off-center GT into a false distance tie.
+        box64=box[0,0].double()
+        size64=box64[2:]-box64[:2]
+        center64=(box64[:2]+box64[2:])/2
+        distance=((anchor_pixels.double()-center64)/size64).square().sum(-1)
         if not torch.isfinite(distance).all():raise FloatingPointError('Nonfinite GT-normalized candidate distance')
         mask=torch.zeros(anchor_pixels.shape[0],dtype=torch.bool,device=anchor_pixels.device)
         mask[int(distance.argmin())]=True
