@@ -1,0 +1,87 @@
+{
+  "state": "DIAGNOSTIC_ONLY_NOT_A_PASS",
+  "checkpoint_sha256": "b43f8fe3467c901462fcce734d381a6d1fff7f3ddf6020ba7a3601ab43b39e3e",
+  "completed_optimizer_updates": 12,
+  "epoch_zero_based": 0,
+  "next_cursor": 192,
+  "next_batch_ids": [
+    "000000247692",
+    "000000059623",
+    "000000050389",
+    "000000437332",
+    "000000505890",
+    "000000359099",
+    "000000293864",
+    "000000409707",
+    "000000379578",
+    "000000561214",
+    "000000024912",
+    "000000470350",
+    "000000054563",
+    "000000307732",
+    "000000026375",
+    "000000188955"
+  ],
+  "candidate_GT_rows": [
+    {
+      "image_id": "000000247692",
+      "image_path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/images/train/000000247692.jpg",
+      "image_dimensions": [
+        640,
+        458
+      ],
+      "label_sha256": "b8e0567da839ed04c0ebd9eea69346aa47a9bb5cc546909c2f1fa6c23ce63718",
+      "GT_index": 13,
+      "YOLO_class": 24,
+      "bbox_normalized": [
+        0.49066406249999994,
+        0.26548034934497816,
+        0.006921874999999999,
+        0.013973799126637555
+      ],
+      "letterbox_xyxy": [
+        311.80999999999995,
+        209.39,
+        316.23999999999995,
+        215.79
+      ],
+      "letterbox_box_size": [
+        4.430000000000007,
+        6.400000000000006
+      ],
+      "native_stride_center_counts": {
+        "8": 1,
+        "16": 0,
+        "32": 0
+      },
+      "total_centers": 1,
+      "actual_TAL_record": {
+        "gt_index": 13,
+        "cls": 24,
+        "native_positive_count": 0,
+        "positive_count": 0,
+        "coverage_mode": "independent_same_TAL_rematch",
+        "coverage_status": "NO_VALID_POSITIVE"
+      },
+      "actual_NO_VALID_POSITIVE_records": [
+        {
+          "gt_index": 13,
+          "cls": 24,
+          "native_positive_count": 0,
+          "positive_count": 0,
+          "coverage_mode": "independent_same_TAL_rematch",
+          "coverage_status": "NO_VALID_POSITIVE"
+        }
+      ]
+    }
+  ],
+  "actual_model_forwards": 1,
+  "actual_forward_devices": [
+    "cpu"
+  ],
+  "GPU_initialized": false,
+  "Teacher_unchanged": true,
+  "parameter_updates": 0,
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true
+}

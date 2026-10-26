@@ -1,0 +1,79 @@
+{
+  "state": "FAILED_RETAINED",
+  "run_id": "s4_coco_experiment_a_seed0_20261027_tfss_repaired_v1",
+  "source_commit": "0eb162097ab07ea641a9b5167c0fe3d70d38d349",
+  "release_sha256": "a06228078c72724db40f5a22c949c5fde9af0951d3842cc2a70696a3806b0107",
+  "config_sha256": "2ea04106f0ab63880d08816f2f4641b5a7acf418831103de3bc6e631f880babe",
+  "controller": {
+    "pid": 2106847,
+    "start_ticks": 365647905,
+    "uid": 1014
+  },
+  "child": {
+    "pid": 2108510,
+    "start_ticks": 365666366,
+    "uid": 1014,
+    "argv": [
+      "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+      "-B",
+      "-m",
+      "coco_s4.phase_fourier",
+      "--release",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261027_relaunch_binding/source_release.json",
+      "--output",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_tfss_repaired_v1/fourier24",
+      "--registration",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_tfss_repaired_v1/receipts/fourier24_READY.json"
+    ],
+    "cwd": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261027_relaunch_binding",
+    "UTC": "2026-10-26T16:26:28.910226+00:00",
+    "memory_scope": {
+      "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4coco-job-5a1944f4f82f7396107915e1.scope",
+      "memory.current": "10813440",
+      "memory.peak": "10813440",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+    }
+  },
+  "controller_absent": true,
+  "child_absent": true,
+  "error": "ValueError('NO_VALID_POSITIVE: GT index=13, class=24')",
+  "retained_files": {
+    "pipeline_state.json": {
+      "sha256": "e5a3c107cf453fb4f3db48e4ec4c73b8994c0ceea2efd7841d2a99da904cbab8",
+      "bytes": 2868
+    },
+    "fourier24/status.json": {
+      "sha256": "2b53e4646c0ebd94b078eba7268798a629f794e2ba6bc97ea93175c312568a9a",
+      "bytes": 1067
+    },
+    "jobs/fourier24/exit.json": {
+      "sha256": "3c62bda4d0fde571b32399247e3de89d8d0d0db689163c887bd0705aa042fa93",
+      "bytes": 1372
+    },
+    "jobs/fourier24/console.log": {
+      "sha256": "051b0237f43d8685b82d5920b71f0e44339309ef2626ba3f7e63c97beebc9b1a",
+      "bytes": 2716
+    }
+  },
+  "completed_optimizer_updates": 12,
+  "latest_completed_boundary_checkpoint_sha256": "b43f8fe3467c901462fcce734d381a6d1fff7f3ddf6020ba7a3601ab43b39e3e",
+  "retained_native_files": [
+    "fourier24/native_s4/diagnostics_journal.jsonl",
+    "fourier24/native_s4/latest_continuation.pt",
+    "fourier24/native_s4/live_checkpoint.json",
+    "fourier24/native_s4/ordered_support_manifest.json",
+    "fourier24/native_s4/diagnostics.csv",
+    "fourier24/native_s4/checkpoints",
+    "fourier24/native_s4/status.json",
+    "fourier24/native_s4/spatial_per_image.jsonl"
+  ],
+  "last_completed_TFSS_weight_range": [
+    "0.8670507073402405",
+    "1.0"
+  ],
+  "last_completed_Fourier_gradient_norm": "0.0665549710392952",
+  "Teacher_calibration_reusable": true,
+  "formal_downstream_started": false,
+  "method_definition_gate": "OPEN_UNCOVERED_NATIVE_NT_GT"
+}
