@@ -9,7 +9,7 @@ from .runtime import ROOT, load, safe_relative, sha, verify_release
 
 LEGACY_WORKFLOW = 's4_coco_experiment_a_seed0_20261025_v3'
 PREVIOUS_DIMENSION_WORKFLOW = 's4_coco_experiment_a_seed0_20261025_dimcompat_v1'
-WORKFLOW = 's4_coco_experiment_a_seed0_20261027_tfss_repaired_v1'
+WORKFLOW = 's4_coco_risk_candidate_20261027_v1'
 INVALIDATED_WORKFLOW = 's4_coco_experiment_a_seed0_20261026_dimcompat_v2'
 OWNED = Path('/project/guoqinglong/projects/s4_coco_experiment_a_20261025')
 WORKFLOW_OUTPUT = OWNED/'outputs'/WORKFLOW

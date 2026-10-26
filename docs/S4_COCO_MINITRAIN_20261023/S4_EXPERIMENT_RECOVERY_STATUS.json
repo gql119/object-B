@@ -1,0 +1,14 @@
+{
+  "state": "ISOLATED_IMPLEMENTATION_LOCAL_CONTRACTS_ONLY",
+  "classification": "Level C",
+  "protocol": "coco80-ntgt-native-tal-then-gt-risk-v1",
+  "branch": "codex/s4-coco-risk-fallback-20261027",
+  "real_Teacher_candidate_CPU": "OPEN",
+  "actual_candidate_CUDA": "OPEN",
+  "full25K_coverage_statistics": null,
+  "Fourier_gradient": "OPEN",
+  "formal_restart_conditions_satisfied": false,
+  "formal_optimization_started": false,
+  "old12step_checkpoint_reusable_for_changed_risk": false,
+  "Teacher_calibration_reusable_after_hash_verification": true
+}

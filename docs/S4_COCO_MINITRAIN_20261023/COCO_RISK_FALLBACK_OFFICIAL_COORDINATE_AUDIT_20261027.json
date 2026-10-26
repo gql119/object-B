@@ -1,0 +1,33 @@
+{
+  "state": "passed",
+  "official_JSON_sha256": "5682389c3bb0a356912771811f7836659cc6de5a588413752922ccb94a6df1a8",
+  "image_id": 247692,
+  "image_size": [
+    640,
+    458
+  ],
+  "official_annotation_id": 1827724,
+  "official_category_id": 27,
+  "mapped_YOLO_class": 24,
+  "category_name": "backpack",
+  "official_bbox_xywh": [
+    311.81,
+    118.39,
+    4.43,
+    6.4
+  ],
+  "all_image_GT_rows_checked": 23,
+  "all_converted_label_rows_exact": true,
+  "actual_letterbox_input": [
+    640,
+    640
+  ],
+  "ratio": 1.0,
+  "padding_top_bottom": [
+    91,
+    91
+  ],
+  "coordinate_bug_found": false,
+  "model_forwards": 0,
+  "GPU_units": 0
+}

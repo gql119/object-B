@@ -77,7 +77,7 @@ def current_source():
         raise ValueError("Tracked computation source must be committed before official-evaluation validation")
     head = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
     remote = subprocess.check_output(["git", "-C", str(ROOT), "ls-remote", "origin",
-        "refs/heads/codex/s4-coco80-dynamic-dimension-20261025"], text=True).split()
+        "refs/heads/codex/s4-coco-risk-fallback-20261027"], text=True).split()
     if not remote or remote[0] != head:
         raise ValueError("Official-evaluation candidate must be published and remotely verified")
     return head
@@ -121,7 +121,7 @@ def build(tag, head, observation):
     remote_output = (OWNED / "validation" / tag).as_posix()
     remote_release = anchor_path(tag)
     template.update(run_id=tag, project="s4-coco-paired-official-eval-validation")
-    template["source"] = dict(repo_root=str(ROOT), branch="codex/s4-coco80-dynamic-dimension-20261025",
+    template["source"] = dict(repo_root=str(ROOT), branch="codex/s4-coco-risk-fallback-20261027",
                               commit=head, allowed_post_commit_paths=["execution/", "Ultralytics/"])
     template["remote"].update(repo_root=remote_repo, output_root=remote_output,
                               stage_root=(OWNED / "stage" / tag).as_posix(),

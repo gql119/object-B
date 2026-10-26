@@ -422,6 +422,15 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
         # Revalidate only the support-eligible images actually consumed by Fourier.
         expected_probe_paths=([eligible[int(i)] for i in np.random.RandomState(0).permutation(len(eligible))[:16]]
                               if validation_batch_size==16 else eligible[:1])
+        fixture_ids=manifest.get('validation_fixture_image_ids')
+        if fixture_ids is not None:
+            from .risk_fallback import POLICY
+            if (manifest.get('risk_estimator_policy')!=POLICY or manifest.get('validation_only') is not True
+                    or validation_batch_size!=1 or len(fixture_ids)!=1):
+                raise ValueError('Explicit risk fixture is restricted to isolated one-image validation')
+            matches=[path for path in eligible if path.stem==fixture_ids[0]]
+            if len(matches)!=1:raise ValueError('Risk validation fixture outside original eligible training manifest')
+            expected_probe_paths=matches
         probe_paths = expected_probe_paths if validation_batch_size else eligible
         eligible_before = _hash_eligible(probe_paths, expected_hashes)
         teacher, frozen_sha = load_teacher(checkpoint,
@@ -468,8 +477,8 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
                 if (Path(train_img_dir).resolve() != (DATA_ROOT/'images/train').resolve()
                         or Path(train_label_dir).resolve() != (DATA_ROOT/'labels/train').resolve()):
                     raise ValueError('Fourier attempted to read a different COCO split')
-                selected = select_validation_images(eligible, smoke_images=smoke_images,
-                                                    cpu_probe_images=cpu_probe_images)
+                selected = (expected_probe_paths if validation_batch_size==1 else
+                            select_validation_images(eligible, smoke_images=smoke_images,cpu_probe_images=cpu_probe_images))
                 return [str(path) for path in selected]
 
         trainer = EligibleCOCOS4Trainer(cfg, method_cfg, device,

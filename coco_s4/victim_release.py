@@ -98,7 +98,7 @@ def current_source():
         raise ValueError('Tracked source must be committed and clean before victim validation')
     head = commit()
     remote = subprocess.check_output(['git', '-C', str(ROOT), 'ls-remote', 'origin',
-        'refs/heads/codex/s4-coco80-dynamic-dimension-20261025'], text=True).split()
+        'refs/heads/codex/s4-coco-risk-fallback-20261027'], text=True).split()
     if not remote or remote[0] != head:
         raise ValueError('Current matched-victim candidate must be published and remotely verified')
     return head
@@ -151,7 +151,7 @@ def build(phase, tag, head, observation):
     repo = (OWNED/'releases'/tag).as_posix(); output = (OWNED/'validation'/tag).as_posix()
     remote_release = anchor_path(tag)
     template.update(run_id=tag, project='s4-coco-'+phase+'-validation')
-    template['source'] = dict(repo_root=str(ROOT), branch='codex/s4-coco80-dynamic-dimension-20261025',
+    template['source'] = dict(repo_root=str(ROOT), branch='codex/s4-coco-risk-fallback-20261027',
                               commit=head, allowed_post_commit_paths=['execution/','Ultralytics/'])
     template['remote'].update(repo_root=repo, output_root=output,
                               stage_root=(OWNED/'stage'/tag).as_posix(), control_root=(OWNED/'control'/tag).as_posix())

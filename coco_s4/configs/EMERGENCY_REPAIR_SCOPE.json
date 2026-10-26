@@ -1,14 +1,17 @@
 {
   "schema": "s4.coco.emergency-repair-scope.v1",
-  "authorization_sha256": "1400d8427587481949f8f78017ca3916d8663ae6cd2a6332416f40a37156bb68",
-  "validation_only": false,
-  "formal_relaunch_allowed": true,
-  "requires_later_explicit_human_relaunch": false,
+  "authorization_sha256": "0dd180749cfd57c8e6800cfc3ca7242b37497a7ed0246010cb3d40722175b34b",
+  "validation_only": true,
+  "formal_relaunch_allowed": false,
+  "requires_later_explicit_human_relaunch": true,
   "invalid_workflow": "s4_coco_experiment_a_seed0_20261026_dimcompat_v2",
   "invalid_runtime": "dcd91b33d90dfd2472b8eacb843a994a4801d1cf",
-  "workflow_run_id": "s4_coco_experiment_a_seed0_20261027_tfss_repaired_v1",
+  "workflow_run_id": "s4_coco_risk_candidate_20261027_v1",
   "allow_other_user_gpu": true,
   "human_relaunch_authorization_path": "docs/S4_COCO_MINITRAIN_20261023/USER_SHARED_GPU_AND_AUTOSTART_20261026.md",
   "human_relaunch_authorization_sha256": "28477655ac7f4c2c09d452511e531cddba4802242f19c3d0a74eb8e5a4634c59",
-  "actual_readiness_path": "docs/S4_COCO_MINITRAIN_20261023/COCO_S4_RECOVERY_READINESS.json"
+  "actual_readiness_path": "docs/S4_COCO_MINITRAIN_20261023/COCO_S4_RECOVERY_READINESS.json",
+  "classification": "Level C methodological boundary extension candidate only",
+  "risk_definition_validation_authorized": true,
+  "failed_repaired_workflow": "s4_coco_experiment_a_seed0_20261027_tfss_repaired_v1"
 }

@@ -15,7 +15,7 @@ from .release_transport import anchor_path,validate_anchor_outside_lifecycle,ens
 
 EX=ROOT/'execution'
 PYTHON='/project/guoqinglong/miniconda3/envs/cfbdm/bin/python'
-BRANCH='codex/s4-coco-full-pipeline-bugfix-20261026'
+BRANCH='codex/s4-coco-risk-fallback-20261027'
 MAIN='docs/S4_COCO_MINITRAIN_20261023/COCO_EXPERIMENT_A_CONFIG.yaml'
 PREFLIGHT=r'''
 import json,os,sys

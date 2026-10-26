@@ -1,0 +1,10 @@
+{
+  "state": "LOCAL_CONTRACTS_PASSED_ONLY",
+  "native_model_math_validation": "OPEN",
+  "AST_files": 64,
+  "routing_contracts": 4,
+  "all_ue_framework_source_byte_exact_to_49fa2c5": true,
+  "model_forwards": 0,
+  "GPU_units": 0,
+  "formal_optimization": false
+}

@@ -64,7 +64,7 @@ def current_source():
         raise ValueError("Final-report source must be committed and clean")
     head = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
     remote = subprocess.check_output(["git", "-C", str(ROOT), "ls-remote", "origin",
-        "refs/heads/codex/s4-coco80-dynamic-dimension-20261025"], text=True).split()
+        "refs/heads/codex/s4-coco-risk-fallback-20261027"], text=True).split()
     if not remote or remote[0] != head:
         raise ValueError("Final-report candidate must be published and remotely verified")
     return head

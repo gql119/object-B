@@ -54,11 +54,14 @@ def configure(trainer, manifest, output, root):
         if manifest['files'].get(relative) != sha(Path(root)/relative):
             raise ValueError('Canonical S4 computation is outside the bound source release')
     trainer.tfss_mode = 'TFSS-U'
-    trainer.s4_cache = CleanMapCache(Path(output)/'clean_maps', dict(
+    from .risk_fallback import bind as bind_risk
+    risk_identity=bind_risk(trainer,manifest,root)
+    from .risk_fallback_cache import cache_class
+    trainer.s4_cache = cache_class(manifest)(Path(output)/'clean_maps', dict(
         reference_sha256=manifest['teacher_dependency']['checkpoint_sha256'],
         maps_code_sha256=manifest['files']['ue_framework/methods/tfss_clean_maps.py'],
         risk_code_sha256=manifest['files']['ue_framework/methods/tfss_nt_sensitivity.py'],
-        map_version=MAP_VERSION, canonical_lock_sha256=TFSS_LOCK_SHA256))
+        map_version=MAP_VERSION, canonical_lock_sha256=TFSS_LOCK_SHA256,**risk_identity))
     trainer.tfss_draws = []
     trainer.tfss_total_draws = 0
     trainer.tfss_nonunit_draws = 0

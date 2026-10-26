@@ -1,0 +1,11 @@
+# Exact NO_VALID_POSITIVE root cause
+
+Confirmed on actual fixed Teacher. Image `000000247692`, annotation1827724, official COCO category27/backpack -> YOLO24, GT index13. Official bbox `[311.81,118.39,4.43,6.4]`; image640x458. All23 image label rows were independently reconstructed from the official fixed train JSON and matched within1e-12. Official JSON SHA5682389c3bb0a356912771811f7836659cc6de5a588413752922ccb94a6df1a8. This is a legal GT, not a coordinate/class conversion bug.
+
+Native input is640x640: ratio1, top/bottom padding91. Actual float32 GT xyxy `[311.8099976,209.3899994,316.2399902,215.7899933]`. Pinned detector grids are stride8/16/32 at640; exact feature-shape recording will also be retained in candidate tests. Raw GT contains one stride8 center. Pinned native small-GT geometric expansion supplies5 candidates: stride8 global indices2118,2119,2198,2199 and stride16 global index6939. These are geometric candidates, not positive assignments.
+
+Two bounded actual CPU diagnostics (one Teacher forward each, no parameter updates or CUDA initialization) showed native all-GT assignment and independent same-TAL rematching both have0 positives/0 supervision weights. At all5 geometric candidates, actual predicted-vs-GT unclamped CIoU is negative (approximately−.01294 to−.01983), including float64 recomputation. Native assignment clamps it to0, yielding zero alignment. This is not the earlier SVD precision issue and is not a GPU OOM/shared-resource failure. The trained Teacher does not supply the strict estimator's required supervision on this tiny backpack.
+
+The original strict per-GT NT risk definition is therefore undefined here. Its guards correctly stopped formal optimization after12 completed updates. Saved native CSV, continuation/Adam/scheduler/RNG, logs and old RunID remain intact. No GT has been dropped and no failure has been marked accepted. A separately versioned boundary estimator is now explicitly authorized for isolated research and validation only.
+
+Evidence: `COCO_S4_NT_GT_COVERAGE_DIAGNOSIS_20261027.json`, `COCO_S4_NATIVE_TAL_ZERO_EVIDENCE_20261027.json`, and private `execution/COCO_RISK_FALLBACK_OFFICIAL_COORDINATE_AUDIT_20261027.json`. Counts from this diagnostic are not whole25K trigger statistics.

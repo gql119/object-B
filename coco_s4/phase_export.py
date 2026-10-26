@@ -317,12 +317,15 @@ def run(release_path, output, *, registration=None, smoke_images=0):
         adaptive = copy.deepcopy(teacher).to(device)
         trainer = S4Trainer(cfg, method_cfg, device, teacher, adaptive)
         trainer.tfss_mode = 'TFSS-U'
-        trainer.s4_cache = CleanMapCache(output/'clean_maps', dict(
+        from .risk_fallback import bind as bind_risk
+        risk_identity=bind_risk(trainer,manifest,ROOT)
+        from .risk_fallback_cache import cache_class
+        trainer.s4_cache = cache_class(manifest)(output/'clean_maps', dict(
             reference_sha256=manifest['teacher_dependency']['checkpoint_sha256'],
             maps_code_sha256=manifest['files']['ue_framework/methods/tfss_clean_maps.py'],
             risk_code_sha256=manifest['files']['ue_framework/methods/tfss_nt_sensitivity.py'],
             map_version=phase_cfg['tfss']['map_version'],
-            canonical_lock_sha256=phase_cfg['tfss']['canonical_lock_sha256']))
+            canonical_lock_sha256=phase_cfg['tfss']['canonical_lock_sha256'],**risk_identity))
         if (trainer.target_class_id != 0 or trainer.num_classes != 80
                 or trainer.feature_layer != 'model.21' or trainer.adaptive_feature_layer != 'model.15'):
             raise ValueError('Export did not construct the fixed Original S4 COCO80 P5/P3 trainer')

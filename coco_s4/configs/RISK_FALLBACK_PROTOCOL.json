@@ -1,0 +1,35 @@
+{
+  "schema": "s4.coco.risk-boundary-extension.v1",
+  "protocol_version": "coco80-ntgt-native-tal-then-gt-risk-v1",
+  "classification": "Level C methodological boundary extension; isolated candidate",
+  "validation_only": true,
+  "formal_optimization_authorized": false,
+  "trigger": "original native TAL and independent same-TAL both provide no positive nonzero supervision for valid NTGT",
+  "normal_path": "call original estimator unchanged; original normal weights and outputs",
+  "candidates": "pinned native GT geometric candidate rule; if empty, unique argmin GT-size-normalized center distance with native anchor-index ties",
+  "candidate_semantics": "independent risk candidates, never called native TAL positives",
+  "candidate_weights": "uniform exactly 1/count",
+  "classification_target": "hard real GT NT class over same non-target logits; not zero native soft targets",
+  "terms": [
+    "original CIoU box loss",
+    "original BCE over non-target classes",
+    "original DFL"
+  ],
+  "gains": "unchanged pinned native criterion gains",
+  "reduction": "each GT once -> original mean per present NT class -> original input gradient norm -> original map normalization -> original equal mean of present NT classes",
+  "undefined_original_risk": "null with explicit reason, never imputed zero for comparison",
+  "unchanged": [
+    "8/4/0",
+    "Q_t",
+    "W_U=1-.15*R_nt*(1-Q_t)",
+    "eta=.85",
+    "StrictTSFL",
+    "SafeBG",
+    "P3Orth",
+    "loss weights",
+    "FrozenAdaptive",
+    "Fourier",
+    "optimizer",
+    "data labels and splits"
+  ]
+}
