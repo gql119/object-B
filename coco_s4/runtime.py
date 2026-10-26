@@ -64,6 +64,9 @@ def safe_relative(name):
 def verify_release(manifest_path, *, native=True):
     """Hash the committed computation closure, not mutable progress/report files."""
     m = load(manifest_path)
+    scope=load(ROOT/'coco_s4/configs/EMERGENCY_REPAIR_SCOPE.json')
+    if not (m.get('validation_only') is True and m.get('repair_authorization_sha256')==scope['authorization_sha256']):
+        assert_formal_launch_authorized()
     if m['schema'] != 's4.coco.release.v1' or m['scientific_parent'] != PARENT or m['victim_parent'] != VICTIM_PARENT:
         raise ValueError('Original S4 scientific identity differs')
     if m['source_commit'] != commit():
@@ -88,6 +91,13 @@ def verify_release(manifest_path, *, native=True):
             if sha(DATA_ROOT / rel) != expected:
                 raise ValueError('Accepted data receipt/metadata drift: ' + rel)
     return m
+
+
+def assert_formal_launch_authorized():
+    """Latest explicit emergency scope blocks formal jobs/READY, even stale ACCEPTED."""
+    scope=load(ROOT/'coco_s4/configs/EMERGENCY_REPAIR_SCOPE.json')
+    if scope.get('formal_relaunch_allowed') is not True:
+        raise ValueError('EMERGENCY_REPAIR_ONLY: later explicit human formal-relaunch authorization required')
 
 
 def require_review(path, release_path, smoke_path):

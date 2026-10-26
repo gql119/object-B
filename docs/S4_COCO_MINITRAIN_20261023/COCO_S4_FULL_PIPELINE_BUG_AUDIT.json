@@ -3,7 +3,7 @@
   "state": "BEFORE_FIX_FROZEN",
   "baseline_commit": "433a9dd35198bc5c007b849a34a6f4b42fbb81fc",
   "invalid_runtime": "dcd91b33d90dfd2472b8eacb843a994a4801d1cf",
-  "confirmed_bug_count": 7,
+  "confirmed_bug_count": 8,
   "findings": [
     {
       "id": "S4-001",
@@ -143,6 +143,31 @@
       "scientific_change_risk": "Restore original math/identity; CPU RNG guard must preserve initialized CUDA path exact",
       "recalibration_required": false,
       "downstream_effect": "Block affected stage until fixed and actually validated",
+      "status_at_freeze": "OPEN"
+    },
+    {
+      "id": "S4-008",
+      "classification": "Confirmed Bug",
+      "severity": "P2",
+      "file": "coco_s4/canonical_s4_training.py",
+      "function": "configure/frozen_input",
+      "VOC_expected": "Frozen consumes shared-EOT-transformed weighted poison after native letterbox",
+      "COCO_actual": "433 prehook counts only tensor identity is _last_poison; original sharedEOT creates a different tensor then letterboxes, so real Frozen count stays0",
+      "root_cause": "Passive observer targets pre-EOT identity at post-letterbox boundary",
+      "affects_loss_or_gradient": false,
+      "affects_poisoned_export": false,
+      "AP_interpretation": "False-negative TFSS admission; toy test failed to cover real source-to-sink geometry",
+      "evidence": "COCO_S4_EOT_OBSERVER_BEFORE_FIX_20261026.json; SemanticFrozenTrainer._batch_loss; BaseGenerator._forward_raw",
+      "minimal_reproduction": {
+        "actual_original_EOT_returns_new_poison_tensor": true,
+        "candidate433_identity_hook_can_observe_Frozen": false,
+        "model_forwards": 0,
+        "GPU_initialized": false
+      },
+      "repair_plan": "Observe canonical sharedEOT pair boundary and actual Frozen letterbox forward without altering output/RNG, require both exact links",
+      "scientific_change_risk": "Instrumentation only; original EOT/Frozen arithmetic retained",
+      "recalibration_required": false,
+      "downstream_effect": "Real TFSS smoke must reject until corrected",
       "status_at_freeze": "OPEN"
     }
   ],

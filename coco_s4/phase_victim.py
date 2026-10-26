@@ -133,6 +133,8 @@ def validate_phase_binding(manifest, cfg, phase, workflow_output=WORKFLOW_OUTPUT
 
 
 def _phase_formal_gate(registration, release_path, manifest, config_sha, phase):
+    from .runtime import assert_formal_launch_authorized
+    assert_formal_launch_authorized()
     registration = Path(registration).resolve()
     if registration != (WORKFLOW_OUTPUT/'receipts'/(phase+'_READY.json')).resolve():
         raise ValueError('Wrong serial controller registration path')
@@ -455,7 +457,7 @@ def run(release_path, output, *, registration=None, smoke_batches=0):
                         initial_state_sha256=load(output/'baseline_equivalence.json')['initial_state_sha256'],
                         initial_state_file_sha256=sha(output/'baseline_preupdate_state.pt'),
                         matched_clean_initial_state=(phase_hint == 'clean200' or
-                            sha(output/'baseline_preupdate_state.pt') == binding.get('matched_clean_initial_state_sha256')),
+                            load(output/'baseline_equivalence.json')['initial_state_sha256'] == binding.get('matched_clean_initial_state_sha256')),
                         pretrained=False, actual_native_batches=observer.total_batches,
                         actual_native_updates=observer.updates, legal_amp_skips=observer.skips,
                         zero_validation_forwards=True, validation_forwards=0,

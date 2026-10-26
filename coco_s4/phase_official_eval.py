@@ -85,6 +85,8 @@ def accepted_dependencies(manifest, workflow_output=WORKFLOW_OUTPUT):
 
 
 def _formal_gate(registration, release_path, manifest, config_sha):
+    from .runtime import assert_formal_launch_authorized
+    assert_formal_launch_authorized()
     registration = Path(registration).resolve()
     if registration != (WORKFLOW_OUTPUT / "receipts/official_eval_READY.json").resolve():
         raise ValueError("Wrong existing-controller registration path")

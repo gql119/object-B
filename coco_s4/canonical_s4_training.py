@@ -7,11 +7,35 @@ import hashlib
 import json
 import shutil
 from pathlib import Path
+from contextlib import contextmanager
 
 CONTRACT = 'canonical-original-S4-TFSS-U-v1'
 TFSS_LOCK = 'docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json'
 TFSS_LOCK_SHA256 = '33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec'
 MAP_VERSION = 'masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-image-canonical-canvas-v2'
+
+
+@contextmanager
+def cpu_rng_isolation(device):
+    """CPU-only adapter boundary; original CUDA/VOC sources and arithmetic untouched."""
+    if device.type!='cpu':
+        yield
+        return
+    import random,numpy as np,torch
+    from ue_framework.methods import s4_tfss,s4_optimization
+    if torch.cuda.is_initialized():raise ValueError('CPU probe already initialized CUDA')
+    def capture():
+        return dict(python=random.getstate(),numpy=np.random.get_state(),torch=torch.get_rng_state(),cuda=[])
+    def restore(state):
+        if state['cuda']:raise ValueError('CPU-only probe cannot restore CUDA RNG')
+        random.setstate(state['python']);np.random.set_state(state['numpy']);torch.set_rng_state(state['torch'])
+    originals=[(module,module.rng_state,module.restore_rng) for module in (s4_tfss,s4_optimization)]
+    try:
+        for module,_,_ in originals:module.rng_state=capture;module.restore_rng=restore
+        yield
+        if torch.cuda.is_initialized():raise ValueError('CPU production path initialized CUDA')
+    finally:
+        for module,capture0,restore0 in originals:module.rng_state=capture0;module.restore_rng=restore0
 
 
 def configure(trainer, manifest, output, root):
@@ -39,11 +63,32 @@ def configure(trainer, manifest, output, root):
     trainer.tfss_total_draws = 0
     trainer.tfss_nonunit_draws = 0
     trainer.tfss_frozen_inputs = trainer.tfss_adaptive_inputs = 0
+    original_eot = trainer._apply_shared_eot_pair_batched
+    original_feature = trainer._feature
+    original_letterbox = trainer._letterbox_tensor
+    trainer.tfss_eot_poison = trainer.tfss_pending_frozen = trainer.tfss_letterboxed = None
+    def eot_pair(clean,poison):
+        if not torch.equal(poison,(trainer.tfss_input+trainer.tfss_delta).clamp(0,1)):
+            raise ValueError('Shared EOT did not consume TFSS weighted poison')
+        pair=original_eot(clean,poison)
+        trainer.tfss_eot_poison=pair[1]
+        return pair
+    def feature(image,grad):
+        trainer.tfss_pending_frozen=image if grad and image is trainer.tfss_eot_poison else None
+        try:return original_feature(image,grad)
+        finally:trainer.tfss_pending_frozen=trainer.tfss_letterboxed=None
+    def letterbox(image):
+        result=original_letterbox(image)
+        if image is trainer.tfss_pending_frozen:
+            trainer.tfss_letterboxed=result
+        return result
+    trainer._apply_shared_eot_pair_batched=eot_pair
+    trainer._feature=feature
+    trainer._letterbox_tensor=letterbox
     def frozen_input(module, args):
-        if args and args[0] is getattr(trainer, '_last_poison', None):
-            expected = (trainer.tfss_input+trainer.tfss_delta).clamp(0, 1)
-            if not torch.equal(args[0], expected):
-                raise ValueError('Frozen loss did not consume the actual TFSS-weighted image')
+        if trainer.tfss_pending_frozen is not None:
+            if not args or args[0] is not trainer.tfss_letterboxed:
+                raise ValueError('Frozen forward bypassed the observed native TFSS/EOT/letterbox chain')
             trainer.tfss_frozen_inputs += 1
     handle = trainer.surrogate.register_forward_pre_hook(frozen_input)
     original = trainer.adaptive.losses
@@ -60,6 +105,9 @@ def configure(trainer, manifest, output, root):
     def restore():
         handle.remove()
         trainer.adaptive.losses = original
+        trainer._apply_shared_eot_pair_batched=original_eot
+        trainer._feature=original_feature
+        trainer._letterbox_tensor=original_letterbox
     return restore
 
 
@@ -74,8 +122,21 @@ def audit_draw(trainer, before, *, retain):
     trainer.tfss_total_draws += 1
     trainer.tfss_nonunit_draws += int(bool((weight < 1).any()))
     if retain:
+        base_gradient,=torch.autograd.grad(trainer.tfss_s0_delta.sum(),trainer.fourier_coeff,retain_graph=True)
+        weighted_gradient,=torch.autograd.grad(trainer.tfss_delta.sum(),trainer.fourier_coeff,retain_graph=True)
+        support=(trainer.tfss_support>0).expand_as(trainer.tfss_delta)
+        weights=weight.masked_select(trainer.tfss_support>0).detach().float()
+        delta_difference=(trainer.tfss_delta-trainer.tfss_s0_delta).detach()
         trainer.tfss_draws.append(dict(image_ids=[Path(p).stem for p in trainer.s4_item_paths],
             W_min=float(weight.detach().min()), W_max=float(weight.detach().max()),
+            W_support_quantiles=torch.quantile(weights,weights.new_tensor([0,.1,.5,.9,1])).cpu().tolist(),
+            W_support_mean=float(weights.mean()),W_detached=not weight.requires_grad,
+            weighted_vs_base_delta_max=float(delta_difference.abs().max()),
+            weighted_vs_base_delta_support_l2=float(delta_difference.masked_select(support).norm()),
+            weighted_vs_base_coefficient_gradient_max=float((weighted_gradient-base_gradient).abs().max()),
+            weighted_delta_coefficient_gradient_finite=bool(torch.isfinite(weighted_gradient).all()),
+            Frozen_sink='shared EOT output -> unchanged native letterbox -> actual Frozen forward',
+            Adaptive_sink='actual TFSS weighted poison -> original selected inner batch',
             weighted_delta_exact=True, frozen_scaled_input_observed=True,
             adaptive_scaled_input_observed=True,
             map_records_sha256=hashlib.sha256(json.dumps(trainer.s4_map_records,
@@ -117,8 +178,9 @@ def run(trainer, images, labels, prototypes, output, identity, *, bounded):
     from .runtime import write_once
     native = Path(output)/'native_s4'
     schedule = expected_noise_schedule(trainer.num_classes, len(images))
-    result = optimize_s4(trainer, images, labels, prototypes, native, identity,
-        stop_after=1 if bounded else 0, formal_lock={'noise_schedule':schedule})
+    with cpu_rng_isolation(getattr(trainer,'device',torch.device('cpu'))):
+        result = optimize_s4(trainer, images, labels, prototypes, native, identity,
+            stop_after=1 if bounded else 0, formal_lock={'noise_schedule':schedule})
     def copy_once(source, destination):
         with Path(source).open('rb') as source_stream, Path(destination).open('xb') as target_stream:
             shutil.copyfileobj(source_stream, target_stream)

@@ -58,6 +58,8 @@ def phase_release(path, phase):
 
 def formal_phase_gate(registration_path, phase, release_path, manifest, config_sha256):
     """The stable controller verifies order; the scientific child verifies closure."""
+    from .runtime import assert_formal_launch_authorized
+    assert_formal_launch_authorized()
     registration_path=Path(registration_path).resolve()
     if registration_path!=(WORKFLOW_OUTPUT/'receipts'/(phase+'_READY.json')).resolve():
         raise ValueError('Wrong existing-controller registration route')

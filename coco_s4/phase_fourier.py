@@ -269,6 +269,8 @@ def runtime_config(phase_cfg, manifest, imported_root, *, smoke, validation_batc
 
 
 def formal_gate(registration, release_path, manifest, config_sha):
+    from .runtime import assert_formal_launch_authorized
+    assert_formal_launch_authorized()
     registration = Path(registration).resolve()
     expected_registration = (WORKFLOW_OUTPUT/'receipts'/'fourier24_READY.json').resolve()
     if registration != expected_registration:
@@ -653,6 +655,10 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
             if validation_batch_size==16:
                 from .fourier_gradient_audit import validate_production_batch16
                 validate_production_batch16(status)
+            if manifest.get('validation_only') is True:
+                from .repair_validation import export_link
+                status['native_export_link_validation']=export_link(trainer,cfg,method_cfg,
+                    params_path,actual_loaded_paths[0],output)
             write_once(output/probe_name, status)
             atomic(output/'status.json', status)
             return status

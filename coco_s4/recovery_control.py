@@ -66,6 +66,8 @@ def review_inputs(tag,review_path,cpu_tag):
 
 
 def prepare(tag,review_path,cpu_tag):
+    from .runtime import assert_formal_launch_authorized
+    assert_formal_launch_authorized()
     if SPEC.exists() or (EX/'rrctl_state'/WORKFLOW).exists():raise FileExistsError('Prepared/bound recovery identity is inspect-only')
     spec,release_path,m,summary,review,cpu_path=review_inputs(tag,review_path,cpu_tag)
     _,t=services();observation=preflight(t)
@@ -127,6 +129,8 @@ def prepare(tag,review_path,cpu_tag):
 
 
 def launch():
+    from .runtime import assert_formal_launch_authorized
+    assert_formal_launch_authorized()
     if (EX/'rrctl_state'/WORKFLOW).exists() or (EX/WORKFLOW/'launch_intent.json').exists():
         raise FileExistsError('Existing unique recovery binding; no restart')
     s=load(SPEC)
@@ -145,6 +149,8 @@ def launch():
 
 
 def register_fourier(tag,review_path):
+    from .runtime import assert_formal_launch_authorized
+    assert_formal_launch_authorized()
     tag=check_tag(tag);spec=load(EX/(tag+'.json'));m_path=EX/tag/'source_release.json';m=load(m_path)
     if current_source()!=spec['source']['commit']:raise ValueError('Fourier registration source drift')
     summary=Path(spec['local_pull_root'])/tag/'result/smoke_summary.json'

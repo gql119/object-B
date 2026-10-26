@@ -81,6 +81,8 @@ def ensure_remote_exact(transport, local_path, remote_path):
 def close_and_register(transport, *, tag, phase, module, spec, release_path, smoke_path,
                        review_path, previous_stage_receipt_sha256, closure_extra=None):
     """Upload exact release/review/closure/READY bytes; READY is always last."""
+    from .runtime import assert_formal_launch_authorized
+    assert_formal_launch_authorized()
     spec = spec if isinstance(spec, dict) else json.loads(Path(spec).read_text(encoding='utf-8'))
     release_path = Path(release_path)
     smoke_path = Path(smoke_path)

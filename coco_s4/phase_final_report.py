@@ -142,6 +142,8 @@ def _accepted_chain(manifest):
 
 
 def _formal_gate(registration, manifest, release_path):
+    from .runtime import assert_formal_launch_authorized
+    assert_formal_launch_authorized()
     ready_path = Path(registration).resolve()
     expected_ready = (WORKFLOW_OUTPUT / "receipts/final_report_READY.json").resolve()
     if ready_path != expected_ready:

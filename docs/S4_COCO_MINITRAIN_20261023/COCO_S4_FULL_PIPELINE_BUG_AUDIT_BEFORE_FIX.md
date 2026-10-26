@@ -172,3 +172,24 @@ No new scientific source edits since emergency task. Candidate433 predates task 
 - No formal export/victim/final metrics
 - No saved learned coefficients in invalidrun; unsaved memory cannot be archived retroactively
 - Further confirmed findings require additive BEFORE_FIX entry before repair
+
+## BEFORE_FIX addendum S4-008
+
+- **id:** S4-008
+- **classification:** Confirmed Bug
+- **severity:** P2
+- **file:** coco_s4/canonical_s4_training.py
+- **function:** configure/frozen_input
+- **VOC_expected:** Frozen consumes shared-EOT-transformed weighted poison after native letterbox
+- **COCO_actual:** 433 prehook counts only tensor identity is _last_poison; original sharedEOT creates a different tensor then letterboxes, so real Frozen count stays0
+- **root_cause:** Passive observer targets pre-EOT identity at post-letterbox boundary
+- **affects_loss_or_gradient:** False
+- **affects_poisoned_export:** False
+- **AP_interpretation:** False-negative TFSS admission; toy test failed to cover real source-to-sink geometry
+- **evidence:** COCO_S4_EOT_OBSERVER_BEFORE_FIX_20261026.json; SemanticFrozenTrainer._batch_loss; BaseGenerator._forward_raw
+- **minimal_reproduction:** {'actual_original_EOT_returns_new_poison_tensor': True, 'candidate433_identity_hook_can_observe_Frozen': False, 'model_forwards': 0, 'GPU_initialized': False}
+- **repair_plan:** Observe canonical sharedEOT pair boundary and actual Frozen letterbox forward without altering output/RNG, require both exact links
+- **scientific_change_risk:** Instrumentation only; original EOT/Frozen arithmetic retained
+- **recalibration_required:** False
+- **downstream_effect:** Real TFSS smoke must reject until corrected
+- **status_at_freeze:** OPEN

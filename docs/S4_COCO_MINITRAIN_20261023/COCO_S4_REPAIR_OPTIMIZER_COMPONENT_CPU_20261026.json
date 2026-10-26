@@ -1,0 +1,26 @@
+{
+  "state": "passed",
+  "scope": "component-only CPU validation",
+  "compiled_sources": 6,
+  "actual_canonical_optimizer_toy_Adam_updates": 1,
+  "actual_toy_EOT_draws": 2,
+  "original_full_list_seed0_first16_exact": true,
+  "retained_candidate_shape": [
+    64,
+    3
+  ],
+  "retained_final_shape": [
+    16,
+    3
+  ],
+  "old_B2_evidence_rejected": true,
+  "no_learned_Teacher_model": true,
+  "invalid_TFSS_proofs_rejected": 5,
+  "actual_dataset_images_read": 0,
+  "model_forwards": 0,
+  "GPU_initialized": false,
+  "full_native_CPU_gate_passed": false,
+  "CUDA_gate_passed": false,
+  "formal_launch": false,
+  "cleanup_policy": "retain_all"
+}

@@ -1,0 +1,6 @@
+{
+  "actual_original_EOT_returns_new_poison_tensor": true,
+  "candidate433_identity_hook_can_observe_Frozen": false,
+  "model_forwards": 0,
+  "GPU_initialized": false
+}

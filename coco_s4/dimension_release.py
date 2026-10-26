@@ -15,7 +15,7 @@ from .release_transport import anchor_path,validate_anchor_outside_lifecycle,ens
 
 EX=ROOT/'execution'
 PYTHON='/project/guoqinglong/miniconda3/envs/cfbdm/bin/python'
-BRANCH='codex/s4-coco80-dynamic-dimension-20261025'
+BRANCH='codex/s4-coco-full-pipeline-bugfix-20261026'
 MAIN='docs/S4_COCO_MINITRAIN_20261023/COCO_EXPERIMENT_A_CONFIG.yaml'
 PREFLIGHT=r'''
 import json,os,sys
@@ -42,6 +42,13 @@ assert json.loads((previous/'jobs/fourier24/exit.json').read_text())['returncode
 proof=dict(run_id=ps['run_id'],source_commit=ps['source_commit'],
  files={name:__import__('hashlib').sha256((previous/name).read_bytes()).hexdigest()
  for name in ('pipeline_state.json','fourier24/status.json','jobs/fourier24/exit.json')})
+invalid=Path(sys.argv[4]);invalidation=json.loads((invalid/'receipts/SCIENTIFIC_INVALIDATION_20261026.json').read_text())
+assert invalidation['state']=='STOPPED_SCIENTIFIC_INVALID'
+assert invalidation['reason']=='MISSING_TFSS_OPTIMIZATION_WIRING'
+current=json.loads((invalid/'pipeline_state.json').read_text())
+assert current['state']=='FAILED' and current['current_stage']=='fourier24'
+assert not live(current.get('controller')) and not live(current.get('active_child'))
+assert not (invalid/'receipts/export25k_READY.json').exists() and not (invalid/'export25k').exists()
 sys.path.insert(0,sys.argv[2]);from coco_s4.serial import capacity
 resources=capacity(old)
 # GPU utility/CPU load are telemetry. Capacity checks exactly match the existing controller.
@@ -80,7 +87,7 @@ def check_tag(tag):
 
 
 def preflight(transport):
-    r=transport.run([PYTHON,'-B','-c',PREFLIGHT,ORIGIN_OUTPUT.as_posix(),(OWNED/'repos'/LEGACY_WORKFLOW).as_posix(),PREVIOUS_DIMENSION_OUTPUT.as_posix()])
+    r=transport.run([PYTHON,'-B','-c',PREFLIGHT,ORIGIN_OUTPUT.as_posix(),(OWNED/'repos'/LEGACY_WORKFLOW).as_posix(),PREVIOUS_DIMENSION_OUTPUT.as_posix(),WORKFLOW_OUTPUT.as_posix()])
     if r.returncode:raise RuntimeError(r.stderr.decode(errors='replace')[-3000:])
     return json.loads(r.stdout)
 
@@ -96,6 +103,7 @@ def release(head,phase):
             'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_PRECISION_CANDIDATE_CPU_20261025.json',
             'docs/S4_COCO_MINITRAIN_20261023/USER_DYNAMIC_DIMENSION_AUTHORIZATION_20261025.md')]
     return dict(schema='s4.coco.release.v1',phase=phase,source_commit=head,workflow_run_id=WORKFLOW,
+                validation_only=True,repair_authorization_sha256=load(ROOT/'coco_s4/configs/EMERGENCY_REPAIR_SCOPE.json')['authorization_sha256'],
                 scientific_parent=PARENT,victim_parent=VICTIM_PARENT,dimension_protocol=PROTOCOL,
                 files={n:sha(ROOT/n) for n in names},data_root=DATA_ROOT.as_posix(),data_files=DATA_FILES,
                 native_sources={n:x['sha256'] for n,x in native['files'].items()},versions=native['versions'],
@@ -140,6 +148,8 @@ def finite_spec(tag,manifest,kind):
 
 
 def prepare(tag,kind,rebuild_tag=None):
+    if kind not in ('cpu','gpu'):
+        raise ValueError('Emergency repair reuses accepted calibration; only finite CPU/GPU validation permitted')
     tag=check_tag(tag)
     if (EX/tag).exists() or (EX/(tag+'.json')).exists() or (EX/'rrctl_state'/tag).exists():
         raise FileExistsError('Existing candidate identity; inspect only')

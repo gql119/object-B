@@ -166,6 +166,8 @@ def _eligible_probe_path(document, root):
 
 
 def formal_gate(registration, release_path, manifest, config_sha):
+    from .runtime import assert_formal_launch_authorized
+    assert_formal_launch_authorized()
     from .phase_contract import OWNED, WORKFLOW, WORKFLOW_OUTPUT
     from .runtime import load, safe_relative, sha
     registration = Path(registration).resolve()
@@ -325,17 +327,22 @@ def run(release_path, output, *, registration=None, smoke_images=0):
                 or trainer.feature_layer != 'model.21' or trainer.adaptive_feature_layer != 'model.15'):
             raise ValueError('Export did not construct the fixed Original S4 COCO80 P5/P3 trainer')
         params = torch.load(params_path, map_location='cpu', weights_only=True)
-        if (params.get('method') != 'legacy_kproto_ret' or params.get('support_mode') != 'bbox_half_overlap'
-                or int(params.get('target_class_id', -1)) != 0 or int(params.get('num_classes', -1)) != 80
-                or len(params.get('coords', [])) != 16 or tuple(params.get('fourier_coeff', torch.empty(0)).shape) != (16, 3)
-                or abs(float(params.get('eps', 0))-8/255) > 1e-9):
-            raise ValueError('Accepted learned Fourier artifact does not match frozen Original S4 COCO protocol')
+        from .fourier_artifact import validate_native_params
+        validate_native_params(params,num_classes=trainer.num_classes,
+                               target_class_id=trainer.target_class_id,feature_layer=trainer.feature_layer)
         generator = LegacyKProtoGenerator(cfg, method_cfg, device, teacher, str(params_path))
         params_hash_before = sha(params_path)
         model_before = model_hash(teacher)
         adaptive_before = model_hash(trainer.adaptive.model)
         forward_calls = []
-        hook = teacher.register_forward_hook(lambda module, args, result: forward_calls.append(1))
+        from .coco_eval import raw_signature,raw_tensor_device_details
+        def observe_forward(module,args,result):
+            devices,indices=raw_tensor_device_details(result)
+            signature=raw_signature(result)
+            if not signature or devices!=['cuda:0'] or indices!=[0]:
+                raise ValueError('Actual export TFSS native forward did not return finite CUDA0 tensors')
+            forward_calls.append(dict(devices=devices,cuda_indices=indices,raw_tensors=signature))
+        hook = teacher.register_forward_hook(observe_forward)
         images_out = output/'poisoned'/'images'/'train'
         labels_out = output/'poisoned'/'labels'/'train'
         images_out.mkdir(parents=True, exist_ok=False); labels_out.mkdir(parents=True, exist_ok=False)
@@ -459,6 +466,7 @@ def run(release_path, output, *, registration=None, smoke_images=0):
                           decoded_budget_passed=True, labels_byte_identical=True,
                           actual_device='cuda:0', actual_training_images=1,
                           production_forward_calls=len(forward_calls), parameter_updates=False,
+                          actual_forward_evidence=forward_calls,
                           validation_used=False, official_metrics_disabled=True,
                           artifact_ingest_disabled=True, row_count=row_count,
                           manifest_sha256=manifest_sha, max_decoded_byte_difference=max_bytes,

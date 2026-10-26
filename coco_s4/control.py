@@ -32,6 +32,8 @@ def remote(t, code, payload):
 
 
 def prepare():
+    from .runtime import assert_formal_launch_authorized
+    assert_formal_launch_authorized()
     if SPEC.exists() or (EX/'rrctl_state'/RUN_ID).exists():
         raise FileExistsError('Existing prepared/bound RunID: inspect only')
     actual = load(EX/'ACTUAL_TEACHER_NATIVE_SOURCE_AUDIT_20261025.json')
@@ -101,6 +103,8 @@ print(json.dumps(dict(paths_absent=True,uid=os.getuid())))
 
 
 def launch():
+    from .runtime import assert_formal_launch_authorized
+    assert_formal_launch_authorized()
     if (EX/'rrctl_state'/RUN_ID).exists() or (EX/(RUN_ID+'_launch_intent.json')).exists():
         raise FileExistsError('Bound RunID or launch intent: inspect only')
     specdata=load(SPEC)
