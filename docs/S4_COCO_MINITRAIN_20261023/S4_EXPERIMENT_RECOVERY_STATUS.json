@@ -1,15 +1,17 @@
 {
-  "state": "RISK_FALLBACK_CUDA_VOC_EQUIVALENCE_FAILURE_UNDER_DIAGNOSIS",
+  "state": "RISK_COMPONENT_AND_FAILED_IMAGE_FULL_CHAIN_PASSED_POPULATION_AND_REVIEW_OPEN",
   "classification": "Level C",
   "protocol": "coco80-ntgt-native-tal-then-gt-risk-v1",
   "branch": "codex/s4-coco-risk-fallback-20261027",
   "real_Teacher_candidate_CPU": "COMPONENT_PASSED",
-  "actual_candidate_CUDA": "FAILED_VOC_EXACT_COMPARISON",
+  "actual_candidate_CUDA": "COMPONENT_AND_ONE_IMAGE_FULL_CHAIN_PASSED",
   "full25K_coverage_statistics": null,
-  "Fourier_gradient": "OPEN",
+  "Fourier_gradient": "PASSED_CPU_CUDA_ONE_UPDATE_EACH",
   "formal_restart_conditions_satisfied": false,
   "formal_optimization_started": false,
   "old12step_checkpoint_reusable_for_changed_risk": false,
   "Teacher_calibration_reusable_after_hash_verification": true,
-  "candidate_source": "0cd3730edef3fab46601eb3950bafa0227e502e0"
+  "candidate_source": "a0c32b9c2c5a4df8706f726e8e2b8ff45b081228",
+  "mixed_defined_GT": "13_per_object_losses_and_full_gradients_exact",
+  "VOC_regressions": "NEW_RETAINED_FIXTURE_HARNESS_RETEST_PENDING"
 }
