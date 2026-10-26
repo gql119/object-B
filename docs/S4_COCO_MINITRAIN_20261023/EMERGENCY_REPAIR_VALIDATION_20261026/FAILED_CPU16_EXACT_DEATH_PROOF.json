@@ -1,0 +1,325 @@
+{
+  "child_identity": {
+    "pid": 1932343,
+    "start_ticks": 364676284,
+    "uid": 1014,
+    "argv": [
+      "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+      "-B",
+      "-m",
+      "coco_s4.phase_fourier",
+      "--release",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/_anchors/coco_dim_20261026_2145hk_cpu16/source_release.json",
+      "--output",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261026_2145hk_cpu16/result",
+      "--cpu-probe-images",
+      "16"
+    ],
+    "cwd": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261026_2145hk_cpu16",
+    "UTC": "2026-10-26T13:41:28.361849+00:00",
+    "memory_scope": {
+      "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4coco-dim-81a73d929b959b37d0d2885c.scope",
+      "memory.current": "10833920",
+      "memory.peak": "10833920",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+    }
+  },
+  "child_alive": false,
+  "supervision_files": [
+    {
+      "name": "child.json",
+      "content": "{\n  \"pid\": 1932343,\n  \"start_ticks\": 364676284,\n  \"uid\": 1014,\n  \"argv\": [\n    \"/project/guoqinglong/miniconda3/envs/cfbdm/bin/python\",\n    \"-B\",\n    \"-m\",\n    \"coco_s4.phase_fourier\",\n    \"--release\",\n    \"/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/_anchors/coco_dim_20261026_2145hk_cpu16/source_release.json\",\n    \"--output\",\n    \"/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261026_2145hk_cpu16/result\",\n    \"--cpu-probe-images\",\n    \"16\"\n  ],\n  \"cwd\": \"/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261026_2145hk_cpu16\",\n  \"UTC\": \"2026-10-26T13:41:28.361849+00:00\",\n  \"memory_scope\": {\n    \"path\": \"/user.slice/user-1014.slice/user@1014.service/app.slice/s4coco-dim-81a73d929b959b37d0d2885c.scope\",\n    \"memory.current\": \"10833920\",\n    \"memory.peak\": \"10833920\",\n    \"memory.events\": \"low 0\\nhigh 0\\nmax 0\\noom 0\\noom_kill 0\\noom_group_kill 0\",\n    \"memory.pressure\": \"some avg10=0.00 avg60=0.00 avg300=0.00 total=0\\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\"\n  }\n}"
+    }
+  ],
+  "status": {
+    "phase": "fourier24",
+    "source_commit": "c6910bbb5bfd63d0fa151b13fedf6bc5b68aa51b",
+    "release_sha256": "a47553b4e29c2fb3927b5f31f9453d2e8723d35d9292ed2ffce708e60656426d",
+    "phase_config_sha256": "9f2830c5d6a2a608f881cb5d7c2616bc77f6340ca597ae74ab4070229361ce4a",
+    "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+    "teacher_receipt_sha256": "f06302c55aad6870c877aed3f79f1defb280a392d6bf96d4f40ca018245c3ade",
+    "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+    "accepted_calibration_manifest_sha256": "181e9c203b2d5a147888aac7ded702673c2084994d722c9ca4633fad0210ee64",
+    "validation_used": false,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "cleanup_policy": "retain_all",
+    "deleted_paths": [],
+    "state": "FAILED",
+    "started_UTC": "2026-10-26T13:41:29.563812+00:00",
+    "smoke": false,
+    "cpu_probe": true,
+    "computation_kind": "fourier-gradient-cpu-validation",
+    "production_entrypoint_reached": true,
+    "finite_outputs": true,
+    "frozen_teacher_unchanged": true,
+    "actual_device": "cpu",
+    "actual_training_images": 16,
+    "actual_native_batch_sizes": [
+      16,
+      16
+    ],
+    "sample_order_policy": "original_full_eligible_numpy_seed0",
+    "full_eligible_image_count": 13630,
+    "actual_training_image_ids": [
+      "000000168353",
+      "000000048204",
+      "000000394240",
+      "000000531061",
+      "000000234986",
+      "000000379914",
+      "000000122453",
+      "000000043248",
+      "000000027522",
+      "000000268941",
+      "000000426118",
+      "000000338745",
+      "000000286042",
+      "000000396611",
+      "000000218467",
+      "000000284680"
+    ],
+    "expected_training_image_ids": [
+      "000000168353",
+      "000000048204",
+      "000000394240",
+      "000000531061",
+      "000000234986",
+      "000000379914",
+      "000000122453",
+      "000000043248",
+      "000000027522",
+      "000000268941",
+      "000000426118",
+      "000000338745",
+      "000000286042",
+      "000000396611",
+      "000000218467",
+      "000000284680"
+    ],
+    "actual_forward_tensor_devices": [
+      "cpu"
+    ],
+    "actual_cuda_device_indices": [],
+    "selected_channel_count": 39,
+    "non_target_class_count": 79,
+    "independent_P3_selected_count": 48,
+    "SafeBG_loss_Fourier_gradient_norms": {
+      "L_BG": 0.023283958435058594,
+      "L_rel": 0.023184968158602715
+    },
+    "cache_memory": {
+      "selected_dim": 39,
+      "classes": 79,
+      "entries": 55,
+      "svd_precision_policy": "selected_dimension_float64_svd_v1",
+      "output_dtype": "torch.float32",
+      "max_entries": 8192,
+      "misses": 55,
+      "basis_bytes": 221052,
+      "entry_bytes": 73040,
+      "entry_upper_bound_bytes": 10878976
+    },
+    "per_loss_fourier_gradient_measurement": {
+      "measurement": "direct_autograd_fourier_coeff_v1",
+      "target": "trainer.fourier_coeff",
+      "parameter_shape": [
+        64,
+        3
+      ],
+      "parameter_device": "cpu",
+      "parameter_is_leaf": true,
+      "EOT_draws": 2,
+      "optimizer_gradient_accumulation_unchanged": true,
+      "per_draw_norms": [
+        {
+          "L_BG": 0.02461523748934269,
+          "L_rel": 0.024507222697138786
+        },
+        {
+          "L_BG": 0.024345427751541138,
+          "L_rel": 0.024279490113258362
+        }
+      ],
+      "mean_EOT_gradient_norms": {
+        "L_BG": 0.023283958435058594,
+        "L_rel": 0.023184968158602715
+      }
+    },
+    "per_loss_fourier_gradient_proof_sha256": "dbb715d8b8f88684c875dda4db0f45f7d19c82c53fbc1b8a9e908f61a8acf82f",
+    "poison_image_gradient_norms": {
+      "L_BG": 0.11806595697999,
+      "L_rel": 0.11805259436368942
+    },
+    "baseline_equivalence_probe": {
+      "reference_id": "frozen original SafeBG weightless24D kernel 9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+      "reference_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+      "candidate_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+      "weights_usage": "checkpoint belongs to the production loss path; this isolated projection kernel has no learned weights",
+      "reference_source_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_calibration_20261025_0825z_detprobe/ue_framework/methods/safebg.py",
+      "reference_source_sha256": "9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+      "candidate_source_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261026_2145hk_cpu16/ue_framework/methods/safebg.py",
+      "candidate_source_sha256": "e0bfe9a5c86591c91e2ac1b560923994f1a322e6d34ec567e44bbeb01b673043",
+      "metric_name": "24D projected output Frobenius norm",
+      "reference_metric": 9.069275856018066,
+      "candidate_metric": 9.069275856018066,
+      "absolute_difference": 0.0,
+      "tolerance": 0,
+      "all_outputs_and_diagnostics_exact": true,
+      "RNG_restored": true,
+      "actual_tensor_device": "cpu",
+      "evaluation_setting": {
+        "dataset": "fixed synthetic24D tensor fixture; no VOC/COCO AP",
+        "seed": 157,
+        "sample_count": 2,
+        "parameters": {
+          "rank": 8,
+          "removal_alpha": 0.5,
+          "active_k": 3
+        },
+        "post_processing": "none"
+      }
+    },
+    "tfss_training_proof": {
+      "contract": "canonical-original-S4-TFSS-U-v1",
+      "trainer": "ue_framework.methods.s4_tfss.S4Trainer",
+      "optimizer": "ue_framework.methods.s4_optimization.optimize_s4",
+      "TFSS_mode": "TFSS-U",
+      "eta": 0.85,
+      "canonical_lock_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+      "total_EOT_draws": 2,
+      "nonunit_weight_draws": 2,
+      "frozen_scaled_inputs": 2,
+      "adaptive_scaled_inputs": 2,
+      "retained_draws": [
+        {
+          "image_ids": [
+            "000000168353",
+            "000000048204",
+            "000000394240",
+            "000000531061",
+            "000000234986",
+            "000000379914",
+            "000000122453",
+            "000000043248",
+            "000000027522",
+            "000000268941",
+            "000000426118",
+            "000000338745",
+            "000000286042",
+            "000000396611",
+            "000000218467",
+            "000000284680"
+          ],
+          "W_min": 0.8500000238418579,
+          "W_max": 1.0,
+          "W_support_quantiles": [
+            0.8500000238418579,
+            0.9364238977432251,
+            0.9844449758529663,
+            1.0,
+            1.0
+          ],
+          "W_support_mean": 0.9753718376159668,
+          "W_detached": true,
+          "weighted_vs_base_delta_max": 0.0011823526583611965,
+          "weighted_vs_base_delta_support_l2": 0.40959957242012024,
+          "weighted_vs_base_coefficient_gradient_max": 4.8558502197265625,
+          "weighted_delta_coefficient_gradient_finite": true,
+          "Frozen_sink": "shared EOT output -> unchanged native letterbox -> actual Frozen forward",
+          "Adaptive_sink": "actual TFSS weighted poison -> original selected inner batch",
+          "weighted_delta_exact": true,
+          "frozen_scaled_input_observed": true,
+          "adaptive_scaled_input_observed": true,
+          "map_records_sha256": "e24d74754e404afba04b5c6d17260416f7aac2bd8771692a1ce338d8977a1c68"
+        },
+        {
+          "image_ids": [
+            "000000168353",
+            "000000048204",
+            "000000394240",
+            "000000531061",
+            "000000234986",
+            "000000379914",
+            "000000122453",
+            "000000043248",
+            "000000027522",
+            "000000268941",
+            "000000426118",
+            "000000338745",
+            "000000286042",
+            "000000396611",
+            "000000218467",
+            "000000284680"
+          ],
+          "W_min": 0.8500000238418579,
+          "W_max": 1.0,
+          "W_support_quantiles": [
+            0.8500000238418579,
+            0.9364238977432251,
+            0.9844449758529663,
+            1.0,
+            1.0
+          ],
+          "W_support_mean": 0.9753718376159668,
+          "W_detached": true,
+          "weighted_vs_base_delta_max": 0.0011823526583611965,
+          "weighted_vs_base_delta_support_l2": 0.40959957242012024,
+          "weighted_vs_base_coefficient_gradient_max": 3.7780284881591797,
+          "weighted_delta_coefficient_gradient_finite": true,
+          "Frozen_sink": "shared EOT output -> unchanged native letterbox -> actual Frozen forward",
+          "Adaptive_sink": "actual TFSS weighted poison -> original selected inner batch",
+          "weighted_delta_exact": true,
+          "frozen_scaled_input_observed": true,
+          "adaptive_scaled_input_observed": true,
+          "map_records_sha256": "e24d74754e404afba04b5c6d17260416f7aac2bd8771692a1ce338d8977a1c68"
+        }
+      ],
+      "cache_identity": {
+        "reference_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+        "maps_code_sha256": "11a4d7b330c63b5e8c7ef65182b5fb0c65adb017d21fcd908843b741fd912129",
+        "risk_code_sha256": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e",
+        "map_version": "masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-image-canonical-canvas-v2",
+        "canonical_lock_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec"
+      },
+      "canonical_sources": {
+        "ue_framework/methods/s4_tfss.py": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d",
+        "ue_framework/methods/tfss_spatial.py": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd",
+        "ue_framework/methods/s4_optimization.py": "26fda46bddd9ac30a0386870ccef6074b06b916a25669afeb6b9d7abcedd8604"
+      }
+    },
+    "production_forward_calls": 44,
+    "actual_fourier_optimizer_updates": 1,
+    "actual_eot_samples": 2,
+    "parameter_updates": true,
+    "Fourier_gradient_norm": 0.04630262032151222,
+    "max_abs_delta": 0.00788235291838646,
+    "outside_support_max": 0.0,
+    "learned_fourier_max_abs_change": 0.0009999993490055203,
+    "native_rng_sha256": "cec97ba18bdb55d391910fee3cdd3564cbf0f1970d0fbcfeb619a29d74445865",
+    "retained": [
+      "phase_spec.json",
+      "global_params.pt",
+      "diagnostics.csv",
+      "diagnostics.json",
+      "native_rng_state.pt",
+      "imported_calibration/"
+    ],
+    "completed_UTC": "2026-10-26T13:43:27.598787+00:00",
+    "projector_precision_validation": {
+      "all_native_cached_ranks_eight": true,
+      "maximum_native_cached_Gram": 2.980232238769531e-07,
+      "historical_failed_order": [
+        38,
+        24,
+        26
+      ],
+      "historical_failed_order_in_native_cache": true,
+      "historical_failed_order_Gram": 5.960464477539063e-08,
+      "thresholds_unchanged": true
+    },
+    "error": "ValueError('Native final-image S4/export construction differs')",
+    "ended_UTC": "2026-10-26T13:43:27.762054+00:00"
+  }
+}

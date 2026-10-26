@@ -1,0 +1,88 @@
+{
+  "adversarial_rejections": [
+    "clean200_old_receipt_hash",
+    "clean200_Teacher_initialization",
+    "clean200_batch_drift",
+    "s4_200_old_receipt_hash",
+    "s4_200_Teacher_initialization",
+    "s4_200_batch_drift",
+    "eval_initial_state_sha256",
+    "eval_matched_clean_initial_state",
+    "teacher_best_not_last",
+    "synthetic_acceptance_cannot_override_emergency_scope"
+  ],
+  "fixture_ACCEPTED_location": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\emergency_consumer_graph_20261026_v1",
+  "fixture_files": [
+    {
+      "path": "pipeline_state.json",
+      "sha256": "3b6ec99cafb2963d8497245bd8e1dde7a3c28ce9ac38cdf7968a49a48f48d346"
+    },
+    {
+      "path": "calibration\\accepted.json",
+      "sha256": "2d10eea8c4e9a805e7f33bc062cb4aada4ce0f730288683e244284ea2223c1ce"
+    },
+    {
+      "path": "clean200\\accepted.json",
+      "sha256": "884f0a93c45931c66968e17fbba9a82107a860d4dacb757ed9898ccf3b506fc4"
+    },
+    {
+      "path": "export25k\\accepted.json",
+      "sha256": "ae3944e6c84b91e1afc3707ad7a1872bac2ad46b7b9a9e585673397d2d544724"
+    },
+    {
+      "path": "export25k\\poisoned_manifest.jsonl",
+      "sha256": "3dff756735a62f9d86b7c76917c24f57000ad30b08b00d6d5064fb33c9274acb"
+    },
+    {
+      "path": "fourier24\\accepted.json",
+      "sha256": "9405d7491d70a9f44c016ce1e2ae7281f4ffbc7682e52f720ccec4f80057b8a2"
+    },
+    {
+      "path": "s4_200\\accepted.json",
+      "sha256": "884f0a93c45931c66968e17fbba9a82107a860d4dacb757ed9898ccf3b506fc4"
+    },
+    {
+      "path": "teacher200\\accepted.json",
+      "sha256": "ffcbcd46d21d00cd77011b08051dc3c3057f73b79bb5947cb6e8c6ae2bbaf9c9"
+    },
+    {
+      "path": "teacher_eval\\accepted.json",
+      "sha256": "1d0a3594028031b6d5dee88c9199e01707c6986885c372b7972e1a7bce980eab"
+    },
+    {
+      "path": "clean200\\train\\state_snapshots\\epoch_200_full_state.pt",
+      "sha256": "3dff756735a62f9d86b7c76917c24f57000ad30b08b00d6d5064fb33c9274acb"
+    },
+    {
+      "path": "clean200\\train\\weights\\last.pt",
+      "sha256": "3dff756735a62f9d86b7c76917c24f57000ad30b08b00d6d5064fb33c9274acb"
+    },
+    {
+      "path": "s4_200\\train\\state_snapshots\\epoch_200_full_state.pt",
+      "sha256": "3dff756735a62f9d86b7c76917c24f57000ad30b08b00d6d5064fb33c9274acb"
+    },
+    {
+      "path": "s4_200\\train\\weights\\last.pt",
+      "sha256": "3dff756735a62f9d86b7c76917c24f57000ad30b08b00d6d5064fb33c9274acb"
+    },
+    {
+      "path": "teacher200\\train\\weights\\last.pt",
+      "sha256": "3dff756735a62f9d86b7c76917c24f57000ad30b08b00d6d5064fb33c9274acb"
+    }
+  ],
+  "formal_launch": false,
+  "model_forwards": 0,
+  "official_ACCEPTED_written": false,
+  "official_READY_written": false,
+  "parameter_updates": 0,
+  "production_validators_exercised": [
+    "clean200_production_dependency_validator",
+    "s4_200_production_dependency_validator",
+    "official_eval_production_dependency_validator",
+    "official_eval_exact_config",
+    "final_report_exact_config",
+    "actual_final_report_builder_Clean_not_Teacher_denominator"
+  ],
+  "scope": "SIMULATED contract fixtures only; NO model/training/inference/AP result",
+  "state": "passed"
+}

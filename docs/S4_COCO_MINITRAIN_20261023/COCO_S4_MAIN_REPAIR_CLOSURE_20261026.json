@@ -1,0 +1,79 @@
+{
+  "state": "FINAL_EXACT_HOOK_VALIDATION_PENDING",
+  "source_commit": "0113b9b65b0aba4b0132ff5b1f4f58782756cc53",
+  "release_sha256": "acd5c930f319da3ad9a0afd9136461bb14e7406b7e8142b4bbcd8823a429580f",
+  "findings": [
+    {
+      "id": "S4-001",
+      "root_cause": "Canonical TFSS optimization missing",
+      "closure": "CLOSED_REAL_CPU_CUDA",
+      "evidence": "Restored original S4Trainer + SoftSpatialProjection + CleanMapCache + optimize_s4;2/2 actual Frozen/Adaptive sinks per run"
+    },
+    {
+      "id": "S4-002",
+      "root_cause": "Wrong optimizer entry bypassed native persistence",
+      "closure": "CLOSED_NATIVE_CHECKPOINT_RNG",
+      "evidence": "Actual64x3 completed-update state/Adam/scheduler/RNG verified; original final16x3 pack validated. Old unsaved state remains unavailable"
+    },
+    {
+      "id": "S4-003",
+      "root_cause": "Exporter demanded absent num_classes metadata",
+      "closure": "CLOSED_REAL_PARAMETER_EXPORT",
+      "evidence": "Original native pack validator checks actual bound COCO80 model/config; actual savedpack→generator→PNG passed CPU/CUDA"
+    },
+    {
+      "id": "S4-004",
+      "root_cause": "Exporter claimed CUDA from counter/availability",
+      "closure": "IMPLEMENTED_ADDITIONAL_EXACT_HOOK_PROBE_WAITING_RESOURCES",
+      "evidence": "Full S4 actual raw CUDA44forwards proved; additional exact export callback CPU-negative/CUDA-positive check WAITING_RESOURCES"
+    },
+    {
+      "id": "S4-005",
+      "root_cause": "File SHA compared to tensor-state SHA",
+      "closure": "CLOSED_CONTRACT_TEST",
+      "evidence": "Canonical state digest matched; real production victim/evaluation dependency validators accept good synthetic contracts and reject mismatched initialization"
+    },
+    {
+      "id": "S4-006",
+      "root_cause": "CPU helper initialized CUDA RNG",
+      "closure": "CLOSED_REAL_CPU_ISOLATION",
+      "evidence": "Adapter CPU-only context preserves original source; actual learnedTeacherCPU16 passed with no-init guard and empty native CUDA RNG; CUDA original RNG unchanged"
+    },
+    {
+      "id": "S4-007",
+      "root_cause": "Superseding invalidation/no-formal scope not consumed",
+      "closure": "CLOSED_LAUNCH_GUARDS",
+      "evidence": "5 formal prepare/launch/READY guards reject; explicit validation-only manifest bound exact latest human-task SHA"
+    },
+    {
+      "id": "S4-008",
+      "root_cause": "433 observer compared preEOT identity at postEOT/letterbox",
+      "closure": "CLOSED_REAL_FROZEN_CHAIN",
+      "evidence": "Passive originalEOT→originalletterbox→actualFrozeninput identity chain recorded; actual Adaptive weighted inputs recorded"
+    },
+    {
+      "id": "S4-009",
+      "root_cause": "New test compared stochastictraining with deterministicexport",
+      "closure": "CLOSED_REAL_CPU_CUDA",
+      "evidence": "Original generation context used on both sides only in validation, training randomscale/dropout preserved; failed probe retained"
+    }
+  ],
+  "reviewer_count_remains_one": true,
+  "original_negative_review_preserved": true,
+  "second_reviewer_called": false,
+  "main_agent_readonly_runtime_audits": [
+    {
+      "tag": "coco_dim_20261026_2215hk_cpu16",
+      "source_files": 145,
+      "native_files": 7,
+      "audit_GPU_initialized": false
+    },
+    {
+      "tag": "coco_dim_20261026_2230hk_gpu16",
+      "source_files": 145,
+      "native_files": 7,
+      "audit_GPU_initialized": false
+    }
+  ],
+  "formal_relaunch_allowed": false
+}

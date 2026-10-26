@@ -1,0 +1,108 @@
+{
+  "contract": "canonical-original-S4-TFSS-U-v1",
+  "trainer": "ue_framework.methods.s4_tfss.S4Trainer",
+  "optimizer": "ue_framework.methods.s4_optimization.optimize_s4",
+  "TFSS_mode": "TFSS-U",
+  "eta": 0.85,
+  "canonical_lock_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+  "total_EOT_draws": 2,
+  "nonunit_weight_draws": 2,
+  "frozen_scaled_inputs": 2,
+  "adaptive_scaled_inputs": 2,
+  "retained_draws": [
+    {
+      "image_ids": [
+        "000000168353",
+        "000000048204",
+        "000000394240",
+        "000000531061",
+        "000000234986",
+        "000000379914",
+        "000000122453",
+        "000000043248",
+        "000000027522",
+        "000000268941",
+        "000000426118",
+        "000000338745",
+        "000000286042",
+        "000000396611",
+        "000000218467",
+        "000000284680"
+      ],
+      "W_min": 0.8500000238418579,
+      "W_max": 1.0,
+      "W_support_quantiles": [
+        0.8500000238418579,
+        0.936423122882843,
+        0.9844533205032349,
+        1.0,
+        1.0
+      ],
+      "W_support_mean": 0.975372850894928,
+      "W_detached": true,
+      "weighted_vs_base_delta_max": 0.0011823526583611965,
+      "weighted_vs_base_delta_support_l2": 0.4096975326538086,
+      "weighted_vs_base_coefficient_gradient_max": 4.705778121948242,
+      "weighted_delta_coefficient_gradient_finite": true,
+      "Frozen_sink": "shared EOT output -> unchanged native letterbox -> actual Frozen forward",
+      "Adaptive_sink": "actual TFSS weighted poison -> original selected inner batch",
+      "weighted_delta_exact": true,
+      "frozen_scaled_input_observed": true,
+      "adaptive_scaled_input_observed": true,
+      "map_records_sha256": "ce043d006b89f014eafeefb7a570841cbe56e08b47130a5901444fbba393d176"
+    },
+    {
+      "image_ids": [
+        "000000168353",
+        "000000048204",
+        "000000394240",
+        "000000531061",
+        "000000234986",
+        "000000379914",
+        "000000122453",
+        "000000043248",
+        "000000027522",
+        "000000268941",
+        "000000426118",
+        "000000338745",
+        "000000286042",
+        "000000396611",
+        "000000218467",
+        "000000284680"
+      ],
+      "W_min": 0.8500000238418579,
+      "W_max": 1.0,
+      "W_support_quantiles": [
+        0.8500000238418579,
+        0.936423122882843,
+        0.9844533205032349,
+        1.0,
+        1.0
+      ],
+      "W_support_mean": 0.975372850894928,
+      "W_detached": true,
+      "weighted_vs_base_delta_max": 0.0011823526583611965,
+      "weighted_vs_base_delta_support_l2": 0.4096975326538086,
+      "weighted_vs_base_coefficient_gradient_max": 3.9277124404907227,
+      "weighted_delta_coefficient_gradient_finite": true,
+      "Frozen_sink": "shared EOT output -> unchanged native letterbox -> actual Frozen forward",
+      "Adaptive_sink": "actual TFSS weighted poison -> original selected inner batch",
+      "weighted_delta_exact": true,
+      "frozen_scaled_input_observed": true,
+      "adaptive_scaled_input_observed": true,
+      "map_records_sha256": "ce043d006b89f014eafeefb7a570841cbe56e08b47130a5901444fbba393d176"
+    }
+  ],
+  "cache_identity": {
+    "reference_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+    "maps_code_sha256": "11a4d7b330c63b5e8c7ef65182b5fb0c65adb017d21fcd908843b741fd912129",
+    "risk_code_sha256": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e",
+    "map_version": "masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-image-canonical-canvas-v2",
+    "canonical_lock_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec"
+  },
+  "canonical_sources": {
+    "ue_framework/methods/s4_tfss.py": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d",
+    "ue_framework/methods/tfss_spatial.py": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd",
+    "ue_framework/methods/s4_optimization.py": "26fda46bddd9ac30a0386870ccef6074b06b916a25669afeb6b9d7abcedd8604"
+  }
+}

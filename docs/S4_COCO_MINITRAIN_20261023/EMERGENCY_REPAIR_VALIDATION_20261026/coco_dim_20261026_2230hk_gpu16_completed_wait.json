@@ -1,0 +1,46 @@
+{
+  "binding": {
+    "branch": "codex/s4-coco-full-pipeline-bugfix-20261026",
+    "bundle_sha256": "2fc319307ea264690e3f2572521d2d147467c3b4c79ddaa789fd05a606a61c90",
+    "commit": "0113b9b65b0aba4b0132ff5b1f4f58782756cc53",
+    "control_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/coco_dim_20261026_2230hk_gpu16",
+    "created_at": "2026-10-26T14:26:09.209881+00:00",
+    "executor_cmdline_sha256": "f0b9e815c81da6894c4b292da7da2f4968e8c221f75c1856a2608700ff371121",
+    "executor_pid": 2030981,
+    "executor_process_group_id": 2030981,
+    "executor_start_ticks": 364944408,
+    "executor_started_at": "2026-10-26T14:26:09.352211+00:00",
+    "output_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261026_2230hk_gpu16",
+    "project": "s4-coco-dimension-validation",
+    "repo_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261026_2230hk_gpu16",
+    "run_id": "coco_dim_20261026_2230hk_gpu16",
+    "run_spec_sha256": "2c011074fe49f1bea9bbc6ee284dbb46d54064ea6c7af64c43e06f3231a89bb6",
+    "schema_version": "rrctl.binding.v1",
+    "session": "coco_dim_20261026_2230hk_gpu16",
+    "source_content_sha256": "3950f58cb4f53488baa388c414616b6f01fff40691d954bb53225b83457237ae",
+    "stage_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/stage/coco_dim_20261026_2230hk_gpu16",
+    "transport_bundle_sha256": "2fc319307ea264690e3f2572521d2d147467c3b4c79ddaa789fd05a606a61c90",
+    "worker_sha256": "696cb314eb11784a9099728b117eac69cd2e01315d7732154d1ddeab609eff6a",
+    "workload_argv_sha256": "da5a4e068bf0431f1564a1538a1737e2235881490f5434fe6be8da4de102c88a",
+    "workload_cmdline_sha256": "9531a1104e8cb88f4281df611b0113ff38a40c3a7af0fb47309a195bcf4e193a",
+    "workload_pid": 2030983,
+    "workload_process_group_id": 2030981,
+    "workload_start_ticks": 364944421,
+    "workload_started_at": "2026-10-26T14:26:10.070738+00:00"
+  },
+  "control_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/coco_dim_20261026_2230hk_gpu16",
+  "run_id": "coco_dim_20261026_2230hk_gpu16",
+  "status": {
+    "detail": {
+      "artifact_count": 8,
+      "exit_code": 0
+    },
+    "reason": "external_completion_and_artifact_contract_passed",
+    "run_id": "coco_dim_20261026_2230hk_gpu16",
+    "schema_version": "rrctl.status.v1",
+    "sequence": 7,
+    "state": "completed",
+    "updated_at": "2026-10-26T14:28:02.711029+00:00"
+  },
+  "status_recovered": false
+}

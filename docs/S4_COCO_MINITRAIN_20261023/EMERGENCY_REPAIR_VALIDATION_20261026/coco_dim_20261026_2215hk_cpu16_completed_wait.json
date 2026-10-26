@@ -1,0 +1,44 @@
+{
+  "binding": {
+    "branch": "codex/s4-coco-full-pipeline-bugfix-20261026",
+    "bundle_sha256": "5446accf8ec077ee68e85f99ef93062aafd629aa1eaf3ffa2aab7ac2e38f54b8",
+    "commit": "0113b9b65b0aba4b0132ff5b1f4f58782756cc53",
+    "control_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/coco_dim_20261026_2215hk_cpu16",
+    "created_at": "2026-10-26T14:19:14.513739+00:00",
+    "executor_cmdline_sha256": "3080c720e042a46804a1810f3778f465ad2775758fc5208128a2bce1543fc730",
+    "executor_pid": 2014662,
+    "executor_process_group_id": 2014662,
+    "executor_start_ticks": 364902939,
+    "executor_started_at": "2026-10-26T14:19:14.604001+00:00",
+    "output_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261026_2215hk_cpu16",
+    "project": "s4-coco-dimension-validation",
+    "repo_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261026_2215hk_cpu16",
+    "run_id": "coco_dim_20261026_2215hk_cpu16",
+    "run_spec_sha256": "d54767b488b81fd7551bfb36689cfaf7dbd9d6f0ef2367f55a00ed7b2def80fd",
+    "schema_version": "rrctl.binding.v1",
+    "session": "coco_dim_20261026_2215hk_cpu16",
+    "source_content_sha256": "3950f58cb4f53488baa388c414616b6f01fff40691d954bb53225b83457237ae",
+    "stage_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/stage/coco_dim_20261026_2215hk_cpu16",
+    "transport_bundle_sha256": "5446accf8ec077ee68e85f99ef93062aafd629aa1eaf3ffa2aab7ac2e38f54b8",
+    "worker_sha256": "696cb314eb11784a9099728b117eac69cd2e01315d7732154d1ddeab609eff6a",
+    "workload_argv_sha256": "3fa03716a0bc021b8b116f38b6d11780c6ac12f99b04634688f2111ff964bce9",
+    "workload_pid": 2014665,
+    "workload_process_group_id": 2014662,
+    "workload_started_at": "2026-10-26T14:19:14.615594+00:00"
+  },
+  "control_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/coco_dim_20261026_2215hk_cpu16",
+  "run_id": "coco_dim_20261026_2215hk_cpu16",
+  "status": {
+    "detail": {
+      "artifact_count": 8,
+      "exit_code": 0
+    },
+    "reason": "external_completion_and_artifact_contract_passed",
+    "run_id": "coco_dim_20261026_2215hk_cpu16",
+    "schema_version": "rrctl.status.v1",
+    "sequence": 7,
+    "state": "completed",
+    "updated_at": "2026-10-26T14:22:53.307846+00:00"
+  },
+  "status_recovered": false
+}

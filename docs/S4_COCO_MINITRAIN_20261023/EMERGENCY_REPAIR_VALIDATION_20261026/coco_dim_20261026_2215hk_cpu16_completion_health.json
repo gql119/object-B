@@ -1,0 +1,538 @@
+{
+  "adapter": {
+    "artifacts": [
+      "result/status.json"
+    ],
+    "complete": true,
+    "healthy": true,
+    "observations": {},
+    "progress": {
+      "Fourier_gradient_norm": 0.04630262032151222,
+      "SafeBG_loss_Fourier_gradient_norms": {
+        "L_BG": 0.023283958435058594,
+        "L_rel": 0.023184968158602715
+      },
+      "accepted_calibration_manifest_sha256": "181e9c203b2d5a147888aac7ded702673c2084994d722c9ca4633fad0210ee64",
+      "actual_cuda_device_indices": [],
+      "actual_device": "cpu",
+      "actual_eot_samples": 2,
+      "actual_forward_tensor_devices": [
+        "cpu"
+      ],
+      "actual_fourier_optimizer_updates": 1,
+      "actual_native_batch_sizes": [
+        16,
+        16
+      ],
+      "actual_training_image_ids": [
+        "000000168353",
+        "000000048204",
+        "000000394240",
+        "000000531061",
+        "000000234986",
+        "000000379914",
+        "000000122453",
+        "000000043248",
+        "000000027522",
+        "000000268941",
+        "000000426118",
+        "000000338745",
+        "000000286042",
+        "000000396611",
+        "000000218467",
+        "000000284680"
+      ],
+      "actual_training_images": 16,
+      "artifact_ingest_disabled": true,
+      "baseline_equivalence_probe": {
+        "RNG_restored": true,
+        "absolute_difference": 0.0,
+        "actual_tensor_device": "cpu",
+        "all_outputs_and_diagnostics_exact": true,
+        "candidate_metric": 9.069275856018066,
+        "candidate_source_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261026_2215hk_cpu16/ue_framework/methods/safebg.py",
+        "candidate_source_sha256": "e0bfe9a5c86591c91e2ac1b560923994f1a322e6d34ec567e44bbeb01b673043",
+        "candidate_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+        "evaluation_setting": {
+          "dataset": "fixed synthetic24D tensor fixture; no VOC/COCO AP",
+          "parameters": {
+            "active_k": 3,
+            "rank": 8,
+            "removal_alpha": 0.5
+          },
+          "post_processing": "none",
+          "sample_count": 2,
+          "seed": 157
+        },
+        "metric_name": "24D projected output Frobenius norm",
+        "reference_id": "frozen original SafeBG weightless24D kernel 9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+        "reference_metric": 9.069275856018066,
+        "reference_source_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_calibration_20261025_0825z_detprobe/ue_framework/methods/safebg.py",
+        "reference_source_sha256": "9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+        "reference_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+        "tolerance": 0,
+        "weights_usage": "checkpoint belongs to the production loss path; this isolated projection kernel has no learned weights"
+      },
+      "cache_memory": {
+        "basis_bytes": 221052,
+        "classes": 79,
+        "entries": 55,
+        "entry_bytes": 73040,
+        "entry_upper_bound_bytes": 10878976,
+        "max_entries": 8192,
+        "misses": 55,
+        "output_dtype": "torch.float32",
+        "selected_dim": 39,
+        "svd_precision_policy": "selected_dimension_float64_svd_v1"
+      },
+      "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+      "cleanup_policy": "retain_all",
+      "completed_UTC": "2026-10-26T14:21:12.181351+00:00",
+      "computation_kind": "fourier-gradient-cpu-validation",
+      "cpu_probe": true,
+      "deleted_paths": [],
+      "expected_training_image_ids": [
+        "000000168353",
+        "000000048204",
+        "000000394240",
+        "000000531061",
+        "000000234986",
+        "000000379914",
+        "000000122453",
+        "000000043248",
+        "000000027522",
+        "000000268941",
+        "000000426118",
+        "000000338745",
+        "000000286042",
+        "000000396611",
+        "000000218467",
+        "000000284680"
+      ],
+      "finite_outputs": true,
+      "frozen_teacher_unchanged": true,
+      "full_eligible_image_count": 13630,
+      "independent_P3_selected_count": 48,
+      "learned_fourier_max_abs_change": 0.0009999993490055203,
+      "max_abs_delta": 0.00788235291838646,
+      "native_export_link_validation": {
+        "TFSS_map_source": {
+          "canvas_hw": [
+            640,
+            448
+          ],
+          "extra_nt_risk_seconds": 0.763201245572418,
+          "image_shape_hwc": [
+            640,
+            426,
+            3
+          ],
+          "no_nt_gt": false,
+          "nt_matching": [
+            {
+              "box": 0.20619948208332062,
+              "cls": 60,
+              "cls_bce79": 1.3294165134429932,
+              "coverage_mode": "native_all_GT_competition",
+              "coverage_status": "COVERED",
+              "dfl": 0.8682444095611572,
+              "gains": [
+                7.5,
+                0.5,
+                1.5
+              ],
+              "gt_index": 0,
+              "native_positive_count": 10,
+              "positive_count": 10,
+              "weighted_loss": 3.513571262359619
+            },
+            {
+              "box": 0.14025422930717468,
+              "cls": 55,
+              "cls_bce79": 1.1163616180419922,
+              "coverage_mode": "native_all_GT_competition",
+              "coverage_status": "COVERED",
+              "dfl": 0.8373492360115051,
+              "gains": [
+                7.5,
+                0.5,
+                1.5
+              ],
+              "gt_index": 3,
+              "native_positive_count": 10,
+              "positive_count": 10,
+              "weighted_loss": 2.8661112785339355
+            },
+            {
+              "box": 0.13589367270469666,
+              "cls": 55,
+              "cls_bce79": 1.1753958463668823,
+              "coverage_mode": "native_all_GT_competition",
+              "coverage_status": "COVERED",
+              "dfl": 1.0028657913208008,
+              "gains": [
+                7.5,
+                0.5,
+                1.5
+              ],
+              "gt_index": 4,
+              "native_positive_count": 10,
+              "positive_count": 10,
+              "weighted_loss": 3.111199140548706
+            },
+            {
+              "box": 0.25888365507125854,
+              "cls": 27,
+              "cls_bce79": 2.310053825378418,
+              "coverage_mode": "native_all_GT_competition",
+              "coverage_status": "COVERED",
+              "dfl": 1.1573275327682495,
+              "gains": [
+                7.5,
+                0.5,
+                1.5
+              ],
+              "gt_index": 6,
+              "native_positive_count": 10,
+              "positive_count": 10,
+              "weighted_loss": 4.832645416259766
+            },
+            {
+              "box": 0.2779574692249298,
+              "cls": 43,
+              "cls_bce79": 4.251708984375,
+              "coverage_mode": "native_all_GT_competition",
+              "coverage_status": "COVERED",
+              "dfl": 0.7203598022460938,
+              "gains": [
+                7.5,
+                0.5,
+                1.5
+              ],
+              "gt_index": 8,
+              "native_positive_count": 10,
+              "positive_count": 10,
+              "weighted_loss": 5.291075229644775
+            }
+          ],
+          "q_target_seconds": 0.6219176780432463,
+          "risk_classes": [
+            {
+              "cls": 27,
+              "q10": 0.00016898030298762023,
+              "q90": 0.02254507690668106,
+              "valid": true
+            },
+            {
+              "cls": 43,
+              "q10": 7.188459858298302e-05,
+              "q90": 0.011144924908876419,
+              "valid": true
+            },
+            {
+              "cls": 55,
+              "q10": 0.00018566976359579712,
+              "q90": 0.01151797641068697,
+              "valid": true
+            },
+            {
+              "cls": 60,
+              "q10": 9.513186114418204e-07,
+              "q90": 0.016795966774225235,
+              "valid": true
+            }
+          ],
+          "target_objects": [
+            {
+              "bbox": [
+                0.6804342723004695,
+                0.5047499999999999,
+                0.518755868544601,
+                0.748875
+              ],
+              "q10": 0.00027892590151168406,
+              "q90": 0.0021635505836457014,
+              "raw_norm": 0.827782154083252,
+              "valid": true
+            },
+            {
+              "bbox": [
+                0.31495305164319254,
+                0.4565,
+                0.6231924882629108,
+                0.88340625
+              ],
+              "q10": 0.00019464289653114974,
+              "q90": 0.0019408221123740077,
+              "raw_norm": 0.5481624603271484,
+              "valid": true
+            },
+            {
+              "bbox": [
+                0.8602816901408451,
+                0.24142187499999998,
+                0.27624413145539906,
+                0.26503125
+              ],
+              "q10": 0.002094653435051441,
+              "q90": 0.01951243355870247,
+              "raw_norm": 3.1460132598876953,
+              "valid": true
+            },
+            {
+              "bbox": [
+                0.9586384976525821,
+                0.2117265625,
+                0.07854460093896713,
+                0.22473437500000001
+              ],
+              "q10": 0.0024187983945012093,
+              "q90": 0.011538227088749409,
+              "raw_norm": 1.6377370357513428,
+              "valid": true
+            }
+          ]
+        },
+        "Teacher_unchanged": true,
+        "W_max": 1.0,
+        "W_min": 0.877368152141571,
+        "actual_composition_device": "cpu",
+        "artifact_ingest_disabled": true,
+        "comparison_context": "original generation mode on both sides; stochastic training unchanged",
+        "decoded_PNG_roundtrip_exact": true,
+        "decoded_budget": {
+          "max_bytes": 2,
+          "outside_nonzero": 0,
+          "overlap_max_bytes": 1
+        },
+        "extra_model_forwards": 0,
+        "formal_receipt_written": false,
+        "image_id": "000000168353",
+        "native_final_image_matches_export_exact": true,
+        "native_parameter_identity": {
+          "cache_identity": {
+            "canonical_lock_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+            "map_version": "masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-image-canonical-canvas-v2",
+            "maps_code_sha256": "11a4d7b330c63b5e8c7ef65182b5fb0c65adb017d21fcd908843b741fd912129",
+            "reference_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+            "risk_code_sha256": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e"
+          },
+          "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+          "phase_config_sha256": "9f2830c5d6a2a608f881cb5d7c2616bc77f6340ca597ae74ab4070229361ce4a",
+          "release_sha256": "acd5c930f319da3ad9a0afd9136461bb14e7406b7e8142b4bbcd8823a429580f",
+          "source_commit": "0113b9b65b0aba4b0132ff5b1f4f58782756cc53",
+          "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+          "training_contract": "canonical-original-S4-TFSS-U-v1"
+        },
+        "native_parameter_schema_accepted": true,
+        "official_metrics_disabled": true,
+        "output_label_sha256": "8307f7e6f5ce6970eae38eacc808fca5c14e1ea266c35b6717c28c37a2aa2619",
+        "scope": "one real training image; bounded learned coefficients; NOT formal export",
+        "selected_parameter_shape": [
+          16,
+          3
+        ],
+        "source_label_sha256": "8307f7e6f5ce6970eae38eacc808fca5c14e1ea266c35b6717c28c37a2aa2619",
+        "state": "passed"
+      },
+      "native_rng_sha256": "cec97ba18bdb55d391910fee3cdd3564cbf0f1970d0fbcfeb619a29d74445865",
+      "non_target_class_count": 79,
+      "official_metrics_disabled": true,
+      "outside_support_max": 0.0,
+      "parameter_updates": true,
+      "per_loss_fourier_gradient_measurement": {
+        "EOT_draws": 2,
+        "mean_EOT_gradient_norms": {
+          "L_BG": 0.023283958435058594,
+          "L_rel": 0.023184968158602715
+        },
+        "measurement": "direct_autograd_fourier_coeff_v1",
+        "optimizer_gradient_accumulation_unchanged": true,
+        "parameter_device": "cpu",
+        "parameter_is_leaf": true,
+        "parameter_shape": [
+          64,
+          3
+        ],
+        "per_draw_norms": [
+          {
+            "L_BG": 0.02461523748934269,
+            "L_rel": 0.024507222697138786
+          },
+          {
+            "L_BG": 0.024345427751541138,
+            "L_rel": 0.024279490113258362
+          }
+        ],
+        "target": "trainer.fourier_coeff"
+      },
+      "per_loss_fourier_gradient_proof_sha256": "dbb715d8b8f88684c875dda4db0f45f7d19c82c53fbc1b8a9e908f61a8acf82f",
+      "phase": "fourier24",
+      "phase_config_sha256": "9f2830c5d6a2a608f881cb5d7c2616bc77f6340ca597ae74ab4070229361ce4a",
+      "poison_image_gradient_norms": {
+        "L_BG": 0.11806595697999,
+        "L_rel": 0.11805259436368942
+      },
+      "production_entrypoint_reached": true,
+      "production_forward_calls": 44,
+      "projector_precision_validation": {
+        "all_native_cached_ranks_eight": true,
+        "historical_failed_order": [
+          38,
+          24,
+          26
+        ],
+        "historical_failed_order_Gram": 5.960464477539063e-08,
+        "historical_failed_order_in_native_cache": true,
+        "maximum_native_cached_Gram": 2.980232238769531e-07,
+        "thresholds_unchanged": true
+      },
+      "release_sha256": "acd5c930f319da3ad9a0afd9136461bb14e7406b7e8142b4bbcd8823a429580f",
+      "retained": [
+        "phase_spec.json",
+        "global_params.pt",
+        "diagnostics.csv",
+        "diagnostics.json",
+        "native_rng_state.pt",
+        "imported_calibration/"
+      ],
+      "sample_order_policy": "original_full_eligible_numpy_seed0",
+      "selected_channel_count": 39,
+      "smoke": false,
+      "source_commit": "0113b9b65b0aba4b0132ff5b1f4f58782756cc53",
+      "started_UTC": "2026-10-26T14:19:16.104852+00:00",
+      "state": "passed",
+      "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+      "teacher_receipt_sha256": "f06302c55aad6870c877aed3f79f1defb280a392d6bf96d4f40ca018245c3ade",
+      "tfss_training_proof": {
+        "TFSS_mode": "TFSS-U",
+        "adaptive_scaled_inputs": 2,
+        "cache_identity": {
+          "canonical_lock_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+          "map_version": "masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-image-canonical-canvas-v2",
+          "maps_code_sha256": "11a4d7b330c63b5e8c7ef65182b5fb0c65adb017d21fcd908843b741fd912129",
+          "reference_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+          "risk_code_sha256": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e"
+        },
+        "canonical_lock_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+        "canonical_sources": {
+          "ue_framework/methods/s4_optimization.py": "26fda46bddd9ac30a0386870ccef6074b06b916a25669afeb6b9d7abcedd8604",
+          "ue_framework/methods/s4_tfss.py": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d",
+          "ue_framework/methods/tfss_spatial.py": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd"
+        },
+        "contract": "canonical-original-S4-TFSS-U-v1",
+        "eta": 0.85,
+        "frozen_scaled_inputs": 2,
+        "nonunit_weight_draws": 2,
+        "optimizer": "ue_framework.methods.s4_optimization.optimize_s4",
+        "retained_draws": [
+          {
+            "Adaptive_sink": "actual TFSS weighted poison -> original selected inner batch",
+            "Frozen_sink": "shared EOT output -> unchanged native letterbox -> actual Frozen forward",
+            "W_detached": true,
+            "W_max": 1.0,
+            "W_min": 0.8500000238418579,
+            "W_support_mean": 0.9753718376159668,
+            "W_support_quantiles": [
+              0.8500000238418579,
+              0.9364238977432251,
+              0.9844449758529663,
+              1.0,
+              1.0
+            ],
+            "adaptive_scaled_input_observed": true,
+            "frozen_scaled_input_observed": true,
+            "image_ids": [
+              "000000168353",
+              "000000048204",
+              "000000394240",
+              "000000531061",
+              "000000234986",
+              "000000379914",
+              "000000122453",
+              "000000043248",
+              "000000027522",
+              "000000268941",
+              "000000426118",
+              "000000338745",
+              "000000286042",
+              "000000396611",
+              "000000218467",
+              "000000284680"
+            ],
+            "map_records_sha256": "a4944ca37c6055e468f7c38445cd8d995726874b7952a83654a908f84fef2b53",
+            "weighted_delta_coefficient_gradient_finite": true,
+            "weighted_delta_exact": true,
+            "weighted_vs_base_coefficient_gradient_max": 4.8558502197265625,
+            "weighted_vs_base_delta_max": 0.0011823526583611965,
+            "weighted_vs_base_delta_support_l2": 0.40959957242012024
+          },
+          {
+            "Adaptive_sink": "actual TFSS weighted poison -> original selected inner batch",
+            "Frozen_sink": "shared EOT output -> unchanged native letterbox -> actual Frozen forward",
+            "W_detached": true,
+            "W_max": 1.0,
+            "W_min": 0.8500000238418579,
+            "W_support_mean": 0.9753718376159668,
+            "W_support_quantiles": [
+              0.8500000238418579,
+              0.9364238977432251,
+              0.9844449758529663,
+              1.0,
+              1.0
+            ],
+            "adaptive_scaled_input_observed": true,
+            "frozen_scaled_input_observed": true,
+            "image_ids": [
+              "000000168353",
+              "000000048204",
+              "000000394240",
+              "000000531061",
+              "000000234986",
+              "000000379914",
+              "000000122453",
+              "000000043248",
+              "000000027522",
+              "000000268941",
+              "000000426118",
+              "000000338745",
+              "000000286042",
+              "000000396611",
+              "000000218467",
+              "000000284680"
+            ],
+            "map_records_sha256": "a4944ca37c6055e468f7c38445cd8d995726874b7952a83654a908f84fef2b53",
+            "weighted_delta_coefficient_gradient_finite": true,
+            "weighted_delta_exact": true,
+            "weighted_vs_base_coefficient_gradient_max": 3.7780284881591797,
+            "weighted_vs_base_delta_max": 0.0011823526583611965,
+            "weighted_vs_base_delta_support_l2": 0.40959957242012024
+          }
+        ],
+        "total_EOT_draws": 2,
+        "trainer": "ue_framework.methods.s4_tfss.S4Trainer"
+      },
+      "validation_used": false
+    },
+    "protocol": "rrctl.adapter.v1"
+  },
+  "complete": true,
+  "degraded_reasons": [],
+  "errors": [],
+  "healthy": true,
+  "observations": {
+    "console_age_seconds": 213.07792234420776,
+    "executor_alive": false,
+    "executor_pid": 2014662,
+    "gpu_utilization_policy": "advisory",
+    "process_alive": false,
+    "process_pid": 2014665,
+    "session_alive": false,
+    "state": "workload_complete",
+    "workload_alive": false,
+    "workload_pid": 2014665
+  },
+  "phase": "completion",
+  "schema_version": "rrctl.health.v2",
+  "status": "healthy"
+}
