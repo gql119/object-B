@@ -1,9 +1,29 @@
 """Bounded real-Teacher risk-estimator validation; no optimizer or formal metrics."""
 import argparse,hashlib,json
+from contextlib import contextmanager
 from pathlib import Path
 
 
+@contextmanager
+def comparison_backend(device):
+    """Exact comparison domain only; restore the production backend afterwards."""
+    import torch
+    before=(torch.backends.cudnn.deterministic,torch.backends.cudnn.benchmark,
+            torch.are_deterministic_algorithms_enabled(),torch.is_deterministic_algorithms_warn_only_enabled())
+    if device.type=='cuda':
+        torch.backends.cudnn.deterministic=True;torch.backends.cudnn.benchmark=False
+        torch.use_deterministic_algorithms(True)
+    try:yield
+    finally:
+        torch.backends.cudnn.deterministic,torch.backends.cudnn.benchmark=before[:2]
+        torch.use_deterministic_algorithms(before[2],warn_only=before[3])
+
+
 def run(release,output,device_name):
+    # This validator is a separate finite process. CUDA reads this before its
+    # first context/BLAS operation; formal training environment is unchanged.
+    import os
+    if device_name=='cuda:0':os.environ['CUBLAS_WORKSPACE_CONFIG']=':4096:8'
     import numpy as np,torch
     from .runtime import ROOT,DATA_ROOT,verify_release,load,sha,atomic,write_once
     from .phase_contract import teacher_dependency
@@ -21,6 +41,10 @@ def run(release,output,device_name):
         official_metrics_disabled=True,artifact_ingest_disabled=True,parameter_updates=0,formal_READY_written=False,
         validation_only=True,device=device_name)
     atomic(output/'status.json',dict(common,state='RUNNING'))
+    stages={}
+    def stage(name,value):
+        stages[name]=value
+        atomic(output/'partial_validation.json',dict(common,state='IN_PROGRESS',stages=stages))
     device=torch.device(device_name)
     if device.type=='cpu' and torch.cuda.is_initialized():raise ValueError('CPU validation initialized CUDA')
     counter=[];forward0=DetectionModel.forward
@@ -47,14 +71,14 @@ def run(release,output,device_name):
             image=DATA_ROOT/'images/train'/(stem+'.jpg');label=DATA_ROOT/'labels/train'/(stem+'.txt')
             return load_image_rgb_float(str(image)),read_yolo_annotations(str(label)),dict(id=stem,image_sha256=sha(image),label_sha256=sha(label))
         kwargs=dict(imgsz=640,coverage_policy='independent_same_TAL_for_uncovered_valid_GT',target_class_id=0,num_classes=80)
-        def captured(function,image,anns,**options):
+        def captured(function,image,anns,*,subject=None,**options):
             captures=[];grad0=torch.autograd.grad
             def record_grad(*args,**kw):
                 result=grad0(*args,**kw)
                 captures.append(result[0].detach().cpu().clone())
                 return result
             torch.autograd.grad=record_grad
-            try:result=function(model,image,anns,**options)
+            try:result=function(model if subject is None else subject,image,anns,**options)
             finally:torch.autograd.grad=grad0
             return result,captures
         for stem in m['covered_fixture_image_ids']:
@@ -63,17 +87,19 @@ def run(release,output,device_name):
         else:raise ValueError('Normal equivalence fixture has no NT GT')
         # CUDA equality uses the same explicitly deterministic comparison domain
         # for both sides; restore production backend before the new branch test.
-        backend=(torch.backends.cudnn.deterministic,torch.backends.cudnn.benchmark)
-        if device.type=='cuda':torch.backends.cudnn.deterministic=True;torch.backends.cudnn.benchmark=False
-        try:
+        with comparison_backend(device):
             (old,old_rows),old_grad=captured(reference,image,anns,**kwargs)
+            (repeat,repeat_rows),repeat_grad=captured(reference,image,anns,**kwargs)
             (new,new_rows),new_grad=captured(candidate,image,anns,**kwargs)
-        finally:torch.backends.cudnn.deterministic,torch.backends.cudnn.benchmark=backend
+        assert old_rows==repeat_rows and all(np.array_equal(old[k],repeat[k]) for k in old)
+        assert len(old_grad)==len(repeat_grad) and all(torch.equal(a,b) for a,b in zip(old_grad,repeat_grad))
         assert old and old_rows==new_rows and set(old)==set(new) and all(np.array_equal(old[k],new[k]) for k in old)
         assert len(old_grad)==len(new_grad) and all(torch.equal(a,b) for a,b in zip(old_grad,new_grad))
         normal=dict(**normal_meta,state='passed',maps_exact=True,records_exact=True,full_input_gradients_exact=True,
             input_gradient_hashes=[hashlib.sha256(v.numpy().tobytes()).hexdigest() for v in new_grad],classes=sorted(new),
-            comparison_backend='same deterministic cuDNN comparison domain; restored' if device.type=='cuda' else 'same actual CPU')
+            reference_repeat_exact=True,tolerance=0,
+            comparison_backend='same deterministic cuDNN/torch comparison domain; restored' if device.type=='cuda' else 'same actual CPU')
+        stage('covered_COCO',normal)
         image,anns,failed_meta=data('000000247692')
         (maps,rows),grads=captured(candidate,image,anns,**kwargs)
         expected={i for i,a in enumerate(anns) if a['cls']!=0}
@@ -96,11 +122,13 @@ def run(release,output,device_name):
             GT_indices_each_once=True,class_keys_exact=True,overlap_pairs=overlap_pairs,fallback_GT_records=fallback,
             class_input_gradient_norms={str(c):float(v.norm()) for c,v in zip(sorted(maps),grads)},
             original_complete_risk=None,original_undefined_reason='NO_VALID_POSITIVE; no zero imputation')
+        stage('failed_GT',failed)
         # Empty-NT and schema contracts are fixtures only, never altered files.
         calls_before=len(counter)
         assert candidate(model,image,[],**kwargs)==({},[])
         assert len(counter)==calls_before
         noNT=dict(fixture='empty annotation contract only; original dataset unchanged',state='passed',model_forwards=0)
+        stage('empty_NT',noNT)
         handle.remove()
         assert model_hash(model)==before and sha(checkpoint)==m['teacher_dependency']['checkpoint_sha256']
         # Real random-YAML VOC regression on the exact original input fixture.
@@ -110,13 +138,36 @@ def run(release,output,device_name):
         im=np.random.default_rng(1).random((96,160,3),dtype=np.float32)
         ann=[{'cls':14,'bbox':[.3,.5,.35,.5]},{'cls':19,'bbox':[.7,.5,.4,.5]}]
         vk=dict(imgsz=64,coverage_policy='independent_same_TAL_for_uncovered_valid_GT',target_class_id=14,num_classes=20)
-        a,ar=reference(voc,im,ann,**vk);b,br=candidate(voc,im,ann,**vk)
+        voc_before=model_hash(voc);voc_raw=[]
+        def voc_hook(module,args,value):
+            from .coco_eval import raw_signature,raw_tensor_device_details
+            signature=raw_signature(value);devices,indices=raw_tensor_device_details(value)
+            assert signature
+            if device.type=='cuda':assert devices==['cuda:0'] and indices==[0]
+            voc_raw.append(dict(devices=devices,cuda_indices=indices,input_shape=list(args[0].shape)))
+        vh=voc.register_forward_hook(voc_hook)
+        with comparison_backend(device):
+            (a,ar),ag=captured(reference,im,ann,subject=voc,**vk)
+            (aa,aar),aag=captured(reference,im,ann,subject=voc,**vk)
+            (b,br),bg=captured(candidate,im,ann,subject=voc,**vk)
+            (bb,bbr),bbg=captured(candidate,im,ann,subject=voc,**vk)
+        vh.remove()
+        assert ar==aar==br==bbr and set(a)==set(aa)==set(b)==set(bb)
+        assert all(np.array_equal(a[k],aa[k]) and np.array_equal(a[k],bb[k]) for k in a)
         assert ar==br and all(np.array_equal(a[k],b[k]) for k in a)
+        assert len(ag)==len(aag)==len(bg)==len(bbg) and all(torch.equal(x,y) and torch.equal(x,z) and torch.equal(x,w)
+            for x,y,z,w in zip(ag,aag,bg,bbg))
+        assert model_hash(voc)==voc_before
+        voc_result=dict(state='passed',reference_repeat_exact=True,candidate_repeat_exact=True,maps_exact=True,
+            records_exact=True,full_input_gradients_exact=True,tolerance=0,raw_evidence=voc_raw,
+            comparison_backend='same deterministic cuDNN/torch comparison domain; restored' if device.type=='cuda' else 'same actual CPU')
+        stage('VOC20',voc_result)
         assert not any(p.grad is not None for p in model.parameters())
         if device.type=='cpu':assert not torch.cuda.is_initialized()
         result=dict(common,state='passed',actual_native_forwards=len(counter),actual_forward_evidence=counter,
             real_Teacher_raw_evidence=raw_records,covered_COCO=normal,failed_GT=failed,empty_NT=noNT,
             VOC20_real_random_YAML_gradient_maps_exact=True,Teacher_unchanged=True,checkpoint_unchanged=True,
+            VOC20=voc_result,completed_stages=stages,
             full25K_trigger_statistics=None,full25K_state='NOT_RUN',Fourier_gradient_gate='OPEN_SEPARATE_FULL_CHAIN_VALIDATION',
             current_scope='component risk estimator only; not full phase readiness')
         write_once(output/'risk_validation_summary.json',result);atomic(output/'status.json',result)
