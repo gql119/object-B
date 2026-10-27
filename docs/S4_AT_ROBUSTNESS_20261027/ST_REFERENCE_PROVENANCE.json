@@ -1,0 +1,51 @@
+{
+  "source_report_sha256": "27e32b0a37e299dc06671dbdd71301a839adda6c29b9e01dbb8b63c2838a3db9",
+  "exact_reference_ST": {
+    "clean_Person_AP50": 0.8679432194172523,
+    "clean_NT_AP50": 0.7664619054561049,
+    "poison_Person_AP50": 0.028158895413428475,
+    "poison_NT_AP50": 0.6937870442308225
+  },
+  "source_provenance": {
+    "formal_run_id": "s4_tfss_utility_seed0_20261017_v1_victim_recovery01",
+    "parent_noise_run_id": "s4_tfss_utility_seed0_20261017_v1",
+    "repair_commit_sha": "ab626917f20917e58cf30033ac99df00938cb561",
+    "frozen_s4_config_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+    "noise_checkpoint_sha256": "4413e45aa9c448bb768cac50e0ae40b5b0a1a580e38ff37cf66023bdab07c6e5",
+    "dataset_manifest_sha256": "194d05cba8674c5699f83ad70178e93d6df7389a54fb0914d140342607598d36",
+    "dataset_integrity_sha256": "3eece1fc62df963f7d4aa15d378395273bd3963f812c0f7764ea9115dc82fe82",
+    "last_sha256": "cc1b03eca939732599817abb97150907463ab10913456afa6cc6ae473b4bbdc3",
+    "best_sha256": "155e83155640ccff7b8406291bf50fb6849381b4f370c36e46f60f7be5805f0b"
+  },
+  "training": {
+    "epochs": 200,
+    "results_rows": 200,
+    "args": {
+      "data": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/outputs/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/train_data.yaml",
+      "epochs": 200,
+      "imgsz": 640,
+      "batch": 36,
+      "workers": 16,
+      "project": "/project/guoqinglong/projects/legacy_kproto_ret_dev_20260923/b2_adaptive_dev_20260926/semantic_dev_20260926/b2_to_safebg_20261002/ue_project/ablation_safe_bg_20261004/candidate/s1_csb_20261014/s2_s3_counterfactual_20261015/s4_tfss_utility_20261017/amp_recovery_20261018/outputs/s4_tfss_utility_seed0_20261017_v1_victim_recovery01/victim_run",
+      "name": "victim",
+      "exist_ok": true,
+      "optimizer": "SGD",
+      "cos_lr": true,
+      "close_mosaic": 100,
+      "cache": true,
+      "amp": true,
+      "save_period": 10,
+      "device": "0",
+      "lr0": 0.01,
+      "lrf": 0.01,
+      "momentum": 0.937,
+      "weight_decay": 0.0005,
+      "seed": 0,
+      "pretrained": false,
+      "val": true,
+      "patience": 0
+    },
+    "amp_failure_repair": "native optimizer_step semantics preserved; native scaler skip/backoff observed"
+  },
+  "reference_only_not_AT_denominator": true
+}

@@ -1,0 +1,10 @@
+{
+  "state": "LOCAL_PROVENANCE_VERIFIED_REMOTE_RECHECK_PENDING",
+  "parent": "b1e29510e7b1ed5fa0fe361a27132d8790e65c14",
+  "base": "ab626917f20917e58cf30033ac99df00938cb561",
+  "original_files_byte_exact": 60,
+  "reused_reference_queue_sha256": "e35f7119a929b678c2f074c64ebb4641cf25fa41d1963eae7a9f4bbecf262677",
+  "authorization_sha256": "787d4e204cea5c04d3c9fb3e0546b54c4b0bb83bfcd3af034b3ac64d3253b6a6",
+  "native_defaults_sha256": "27d6c46184efc16d404f8b3bd1e12069f3ba10379adbbc415ffc10cc41088d7a",
+  "no_GPU_job_launched": true
+}
