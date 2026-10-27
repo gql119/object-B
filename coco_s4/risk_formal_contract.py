@@ -4,7 +4,7 @@ from .runtime import ROOT,load,sha
 from .phase_contract import OWNED,WORKFLOW,FAILED_REPAIRED_WORKFLOW
 POLICY='coco80-ntgt-native-tal-then-gt-risk-v1'
 
-CPU_TAG='coco_dim_20261027_risk_formal_cpu16a'
+CPU_TAG='coco_dim_20261027_risk_formal_cpu16b'
 GPU_TAG='coco_dim_20261027_risk_formal_gpu16a'
 
 def failed_repaired_predecessor(cfg,manifest):

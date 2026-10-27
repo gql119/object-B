@@ -40,7 +40,9 @@ def prepare(tag,review_path,cpu_tag):
     assert observation['invalidated_predecessor']==m['invalidated_predecessor']
     assert observation['failed_repaired_predecessor']==m['failed_repaired_predecessor']
     output=WORKFLOW_OUTPUT.as_posix();receipts=output+'/receipts';binding=(OWNED/'recovery_bindings'/WORKFLOW).as_posix()
-    formal=dict(m,validation_only=False,formal_precheck_receipt=dict(path=binding+'/formal_precheck.json',sha256=sha(review_path)))
+    formal=dict(m,validation_only=False,
+        native_validation_release=dict(path=spec['anchors'][0]['remote_path'],sha256=sha(path)),
+        formal_precheck_receipt=dict(path=binding+'/formal_precheck.json',sha256=sha(review_path)))
     path=EX/tag/'formal_source_release.json';write_once(path,formal)
     gpu_spec=load(EX/(tag+'.json'))
     review=dict(phase='fourier24',source_commit=m['source_commit'],release_sha256=sha(path),

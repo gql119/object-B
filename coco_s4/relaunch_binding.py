@@ -55,6 +55,23 @@ def validate_source_delta(name, before, after, workflow):
 
 def evidence_identity(manifest):
     """Return real evidence identity only after verifying the entire explicit binding."""
+    native=manifest.get('native_validation_release')
+    if native:
+        from .phase_contract import OWNED
+        anchor=Path(native['path']).resolve()
+        if not anchor.is_relative_to((OWNED/'releases'/'_anchors').resolve()) or sha(anchor)!=native['sha256']:
+            raise ValueError('Native validation release anchor drift')
+        original=load(anchor)
+        formal=dict(manifest)
+        formal.pop('native_validation_release')
+        formal.pop('formal_precheck_receipt')
+        if formal.get('validation_only') is not False or original.get('validation_only') is not True:
+            raise ValueError('Expected isolated-to-formal authorization-only transition')
+        formal['validation_only']=True
+        if formal!=original or original['source_commit']!=commit():
+            raise ValueError('Formal computation differs from exact current-source validation')
+        return dict(source_commit=original['source_commit'],release_sha256=native['sha256'],
+                    phase_config_sha256=original['files'][original['phase_config_path']])
     binding=manifest.get('validated_computation_binding')
     if not binding:
         return dict(source_commit=manifest['source_commit'],release_sha256=None,
