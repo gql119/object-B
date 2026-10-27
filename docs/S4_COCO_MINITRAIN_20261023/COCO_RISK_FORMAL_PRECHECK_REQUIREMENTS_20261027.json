@@ -1,0 +1,18 @@
+{
+  "state": "REQUIRES_IMMUTABLE_ACTUAL_PRECHECK",
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1",
+  "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+  "human_authorization_sha256": "a57df356ac2da01b488e60d14d9ec292f6866d2006ef252283f79981e6be4f9f",
+  "native_CPU16": "REQUIRED",
+  "native_CUDA16": "REQUIRED",
+  "immutable_actual_receipt_required": true,
+  "fresh_Fourier_initialization": true,
+  "old12step_resume_allowed": false,
+  "retained_failed12step_files": {
+    "pipeline_state.json": "e5a3c107cf453fb4f3db48e4ec4c73b8994c0ceea2efd7841d2a99da904cbab8",
+    "fourier24/status.json": "2b53e4646c0ebd94b078eba7268798a629f794e2ba6bc97ea93175c312568a9a",
+    "jobs/fourier24/exit.json": "3c62bda4d0fde571b32399247e3de89d8d0d0db689163c887bd0705aa042fa93",
+    "fourier24/native_s4/latest_continuation.pt": "b43f8fe3467c901462fcce734d381a6d1fff7f3ddf6020ba7a3601ab43b39e3e",
+    "fourier24/native_s4/diagnostics.csv": "c5e313c1056f8609d87d1269c66fd228f5d31f10e03aa95de203c9c961f88dd0"
+  }
+}

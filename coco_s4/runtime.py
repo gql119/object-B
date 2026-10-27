@@ -66,7 +66,7 @@ def verify_release(manifest_path, *, native=True):
     m = load(manifest_path)
     scope=load(ROOT/'coco_s4/configs/EMERGENCY_REPAIR_SCOPE.json')
     if not (m.get('validation_only') is True and m.get('repair_authorization_sha256')==scope['authorization_sha256']):
-        assert_formal_launch_authorized()
+        assert_formal_launch_authorized(m)
     if m['schema'] != 's4.coco.release.v1' or m['scientific_parent'] != PARENT or m['victim_parent'] != VICTIM_PARENT:
         raise ValueError('Original S4 scientific identity differs')
     if m['source_commit'] != commit():
@@ -93,7 +93,7 @@ def verify_release(manifest_path, *, native=True):
     return m
 
 
-def assert_formal_launch_authorized():
+def assert_formal_launch_authorized(manifest=None):
     """Current human conditional approval plus actual closed repair gates; never old v2."""
     scope=load(ROOT/'coco_s4/configs/EMERGENCY_REPAIR_SCOPE.json')
     if scope.get('formal_relaunch_allowed') is not True:
@@ -103,11 +103,37 @@ def assert_formal_launch_authorized():
         raise ValueError('Formal authorization is not bound to the unique repaired workflow')
     if sha(ROOT/safe_relative(scope['human_relaunch_authorization_path']))!=scope['human_relaunch_authorization_sha256']:
         raise ValueError('Direct human relaunch authorization changed')
-    ready=load(ROOT/safe_relative(scope['actual_readiness_path']))
-    if (ready.get('state')!='ALL_REPAIR_VALIDATIONS_PASSED' or ready.get('native_CPU16')!='passed'
-            or ready.get('native_CUDA16')!='passed' or ready.get('extra_exact_export_device_observer')!='passed'
-            or ready.get('read_only_main_audits')!='passed' or ready.get('consumer_simulation')!='passed'):
-        raise ValueError('Actual repair validation gates remain open')
+    requirements=load(ROOT/safe_relative(scope['actual_readiness_path']))
+    if (requirements.get('workflow_run_id')!=WORKFLOW
+            or requirements.get('risk_estimator_policy')!=scope.get('risk_estimator_policy')
+            or requirements.get('state')!='REQUIRES_IMMUTABLE_ACTUAL_PRECHECK'):
+        raise ValueError('Formal precheck requirements are not bound to this independent protocol')
+    if manifest is not None:
+        from .phase_contract import OWNED
+        binding=manifest.get('formal_precheck_receipt',{})
+        path=Path(binding.get('path','')).resolve()
+        if not path.is_relative_to((OWNED/'recovery_bindings'/WORKFLOW).resolve()) or sha(path)!=binding.get('sha256'):
+            raise ValueError('Formal execution lacks immutable actual precheck receipt')
+        ready=load(path)
+        required=dict(state='ALL_FORMAL_PRECHECKS_PASSED',workflow_run_id=WORKFLOW,
+            source_commit=manifest['source_commit'],risk_estimator_policy=scope['risk_estimator_policy'],
+            human_authorization_sha256=scope['human_relaunch_authorization_sha256'],
+            native_CPU16='passed',native_CUDA16='passed',read_only_main_audits='passed',
+            consumer_simulation='passed',full25K_risk_audit='accepted',fresh_Fourier_initialization=True,
+            old12step_resume_allowed=False,strict_Original_S4_equivalence_claim=False)
+        if any(ready.get(k)!=v for k,v in required.items()):
+            raise ValueError('Actual formal prechecks remain open')
+        for key in ('CPU','GPU'):
+            entry=ready[key];summary=load(entry['path'])
+            if sha(entry['path'])!=entry['sha256'] or summary.get('source_commit')!=manifest['source_commit']:
+                raise ValueError('Formal native validation evidence drift')
+            if (summary.get('state')!='passed' or summary.get('actual_device')!=('cpu' if key=='CPU' else 'cuda:0')
+                    or summary.get('actual_cuda_device_indices')!=([] if key=='CPU' else [0])
+                    or summary.get('actual_fourier_optimizer_updates')!=1
+                    or summary.get('finite_outputs') is not True or summary.get('frozen_teacher_unchanged') is not True):
+                raise ValueError('Actual native CPU/CUDA proof is incomplete')
+            from .fourier_gradient_audit import validate_production_batch16
+            validate_production_batch16(summary)
 
 
 def require_review(path, release_path, smoke_path):

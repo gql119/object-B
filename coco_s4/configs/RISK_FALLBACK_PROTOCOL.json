@@ -2,8 +2,8 @@
   "schema": "s4.coco.risk-boundary-extension.v1",
   "protocol_version": "coco80-ntgt-native-tal-then-gt-risk-v1",
   "classification": "Level C methodological boundary extension; isolated candidate",
-  "validation_only": true,
-  "formal_optimization_authorized": false,
+  "validation_only": false,
+  "formal_optimization_authorized": true,
   "trigger": "original native TAL and independent same-TAL both provide no positive nonzero supervision for valid NTGT",
   "normal_path": "call original estimator unchanged; original normal weights and outputs",
   "candidates": "pinned native GT geometric candidate rule; if empty, unique argmin GT-size-normalized center distance with native anchor-index ties",
@@ -31,5 +31,6 @@
     "Fourier",
     "optimizer",
     "data labels and splits"
-  ]
+  ],
+  "formal_authorization_sha256": "a57df356ac2da01b488e60d14d9ec292f6866d2006ef252283f79981e6be4f9f"
 }

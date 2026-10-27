@@ -49,6 +49,17 @@ current=json.loads((invalid/'pipeline_state.json').read_text())
 assert current['state']=='FAILED' and current['current_stage']=='fourier24'
 assert not live(current.get('controller')) and not live(current.get('active_child'))
 assert not (invalid/'receipts/export25k_READY.json').exists() and not (invalid/'export25k').exists()
+repaired=invalid.parent/'s4_coco_experiment_a_seed0_20261027_tfss_repaired_v1'
+rs=json.loads((repaired/'pipeline_state.json').read_text())
+assert rs['state']=='FAILED' and rs['current_stage']=='fourier24'
+assert rs['source_commit']=='0eb162097ab07ea641a9b5167c0fe3d70d38d349'
+assert not live(rs.get('controller')) and not live(rs.get('active_child'))
+assert json.loads((repaired/'jobs/fourier24/exit.json').read_text())['returncode']!=0
+assert not (repaired/'receipts/export25k_READY.json').exists() and not (repaired/'export25k').exists()
+repairedproof=dict(run_id=rs['run_id'],source_commit=rs['source_commit'],
+ files={name:__import__('hashlib').sha256((repaired/name).read_bytes()).hexdigest() for name in
+ ('pipeline_state.json','fourier24/status.json','jobs/fourier24/exit.json',
+  'fourier24/native_s4/latest_continuation.pt','fourier24/native_s4/diagnostics.csv')})
 sys.path.insert(0,sys.argv[2]);from coco_s4.serial import capacity
 resources=capacity(old)
 policy=json.loads(sys.argv[5])
@@ -77,7 +88,8 @@ for p in Path('/proc').iterdir():
  except (FileNotFoundError,ProcessLookupError):pass
 print(json.dumps(dict(state='READY' if resources['admitted'] else 'WAITING_RESOURCES',capacity=resources,
  old_state_sha256=__import__('hashlib').sha256((old/'pipeline_state.json').read_bytes()).hexdigest(),
- old_controller_absent=True,old_child_absent=True,failed_dimension_predecessor=proof,invalidated_predecessor=invalidproof)))
+ old_controller_absent=True,old_child_absent=True,failed_dimension_predecessor=proof,invalidated_predecessor=invalidproof,
+ failed_repaired_predecessor=repairedproof)))
 '''
 
 
@@ -120,8 +132,12 @@ def release(head,phase):
             'docs/S4_COCO_MINITRAIN_20261023/COCO_SAFEBG_PRECISION_CANDIDATE_CPU_20261025.json',
             'docs/S4_COCO_MINITRAIN_20261023/USER_DYNAMIC_DIMENSION_AUTHORIZATION_20261025.md',
             'docs/S4_COCO_MINITRAIN_20261023/USER_SHARED_GPU_AND_AUTOSTART_20261026.md',
+            'docs/S4_COCO_MINITRAIN_20261023/USER_RISK_FORMAL_RELAUNCH_AUTHORIZATION_20261027.md',
+            'docs/S4_COCO_MINITRAIN_20261023/COCO_RISK_FORMAL_PRECHECK_REQUIREMENTS_20261027.json',
             'docs/S4_COCO_MINITRAIN_20261023/COCO_S4_RECOVERY_READINESS.json')]
     return dict(schema='s4.coco.release.v1',phase=phase,source_commit=head,workflow_run_id=WORKFLOW,
+                risk_estimator_policy='coco80-ntgt-native-tal-then-gt-risk-v1',
+                strict_Original_S4_equivalence_claim=False,
                 validation_only=True,repair_authorization_sha256=load(ROOT/'coco_s4/configs/EMERGENCY_REPAIR_SCOPE.json')['authorization_sha256'],
                 scientific_parent=PARENT,victim_parent=VICTIM_PARENT,dimension_protocol=PROTOCOL,
                 files={n:sha(ROOT/n) for n in names},data_root=DATA_ROOT.as_posix(),data_files=DATA_FILES,

@@ -18,6 +18,8 @@ from .serial import ORDER,identity,live,capacity,run_job
 
 
 def validate_closure(closure,manifest,release_sha,component_sha):
+    from .risk_formal_contract import validate_adoption
+    validate_adoption(closure,manifest)
     expected=dict(source_commit=manifest['source_commit'],release_sha256=release_sha,
         calibration_receipt_sha256=component_sha,pre_run_result='pass',reviewer_count=1,
         reviewer_independence=True,scientifically_correct=True,allow_run=True,blockers=[])
@@ -106,6 +108,8 @@ def main():
     dimension_history=previous_dimension_preconditions(cfg,m)
     from .relaunch_binding import invalidated_predecessor,evidence_identity
     invalid_history=invalidated_predecessor(cfg)
+    from .risk_formal_contract import failed_repaired_predecessor
+    repaired_history=failed_repaired_predecessor(cfg,m)
     evidence=evidence_identity(m)
     component_path=Path(cfg['component_receipt_path']).resolve()
     if (not component_path.is_relative_to((OWNED/'validation').resolve())
@@ -161,6 +165,8 @@ def main():
         protocol=PROTOCOL,old_failed_calibration_unchanged=True,UTC=now()))
     write_once(out/'RECOVERY_PROVENANCE.json',dict(origin_run_id=origin['run_id'],origin_state_sha256=cfg['origin_state_sha256'],
         failed_dimension_predecessor=dimension_history,invalidated_TFSS_predecessor=invalid_history,
+        failed12step_predecessor=repaired_history,risk_estimator_policy=m['risk_estimator_policy'],
+        strict_Original_S4_equivalence_claim=False,Fourier_restart='original initialization; no12step state loaded',
         validated_computation_binding=m.get('validated_computation_binding'),
         origin_calibration_status_sha256=cfg['origin_calibration_status_sha256'],reused_without_execution=['teacher200','teacher_eval'],
         reconstructed_from_retained25K_statistics=True,component_receipt_sha256=sha(component_path),
@@ -171,6 +177,8 @@ def main():
         source_commit=commit(),config_sha256=sha(a.config),release_sha256=sha(a.release),controller=identity(),
         stages=stages,current_stage='fourier24',active_job=None,active_child=None,OP_enabled=False,
         phase_order=list(ORDER),dimension_protocol=PROTOCOL,created_UTC=now())
+    status['risk_estimator_policy']=m['risk_estimator_policy']
+    status['strict_Original_S4_equivalence_claim']=False
     atomic(out/'pipeline_state.json',status)
     try:
         # Same phase order, job supervisor, capacities and immutable READY

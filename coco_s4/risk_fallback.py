@@ -195,7 +195,10 @@ def bind(trainer,manifest,root):
     if policy!=POLICY or getattr(trainer,'num_classes',None)!=80 or getattr(trainer,'target_class_id',None)!=0:
         raise ValueError('Independent NT-risk policy is restricted to explicit COCO80/Person0')
     if manifest.get('validation_only') is not True:
-        raise ValueError('Risk boundary extension currently has validation-only human authorization')
+        from .runtime import assert_formal_launch_authorized
+        assert_formal_launch_authorized(manifest)
+        if manifest.get('risk_estimator_policy')!=POLICY:
+            raise ValueError('Formal risk extension requires its independent protocol')
     root=Path(root);name='coco_s4/risk_fallback.py';spec='coco_s4/configs/RISK_FALLBACK_PROTOCOL.json';adapter='coco_s4/risk_fallback_cache.py'
     if sha(root/name)!=manifest['files'][name] or sha(root/spec)!=manifest['files'][spec]:raise ValueError('Risk policy source/spec drift')
     if sha(root/'ue_framework/methods/tfss_nt_sensitivity.py')!=REFERENCE_SHA256:raise ValueError('Original covered estimator changed')

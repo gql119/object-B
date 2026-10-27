@@ -1,7 +1,7 @@
 {
   "schema": "s4.coco.teacher-eval-config.v1",
   "phase": "teacher_eval",
-  "workflow_run_id": "s4_coco_experiment_a_seed0_20261025_v3",
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1",
   "checkpoint_policy": "fixed native EMA last@200",
   "image_count": 5000,
   "nc": 80,
