@@ -192,6 +192,8 @@ def prepare(tag,kind,rebuild_tag=None):
     if observation['state']!='READY':print(json.dumps(observation));return
     head=current_source();m=release(head,'dimension_rebuild' if kind=='rebuild' else 'fourier24')
     m['failed_dimension_predecessor']=observation['failed_dimension_predecessor']
+    m['invalidated_predecessor']=observation['invalidated_predecessor']
+    m['failed_repaired_predecessor']=observation['failed_repaired_predecessor']
     if kind=='rebuild':
         m.update(retained_calibration=load(EX/'COCO_DYNAMIC_DIMENSION_REUSE_AUDIT_20261025.json'),
                  artifact_relative_root='execution/generated_calibration/coco_dimension_template')
