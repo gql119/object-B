@@ -1,0 +1,479 @@
+{
+  "state": "PASSED_CPU_NATIVE_COMPONENT",
+  "started_UTC": "2026-10-27T13:31:46.709726+00:00",
+  "device": "cpu",
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "cleanup_policy": "retain_all",
+  "deleted_paths": [],
+  "actual_VOC_train_fixtures": true,
+  "production_GPU_readiness": false,
+  "native_identity": {
+    "version": "8.4.150",
+    "sources": {
+      "data/augment.py": "3631af29958e17bc442cbaa49a6bd32b660615b1bb1171a4e8e8692bace1f428",
+      "data/dataset.py": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e",
+      "data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+      "engine/trainer.py": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+      "cfg/default.yaml": "27d6c46184efc16d404f8b3bd1e12069f3ba10379adbbc415ffc10cc41088d7a",
+      "models/yolo/detect/train.py": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f",
+      "utils/instance.py": "609e24de399439afe3eeb453334d1e700afa53047c07701e3f25c3e97bdd2b98",
+      "nn/tasks.py": "c3896877977a1dca2ffaa1f4ad755ebd57342cae0ec80c78fa45edaa67f5823e",
+      "utils/loss.py": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d",
+      "utils/tal.py": "9468fb73df7805a4d297302aa221e0d7a6e46e224d0a0768e5abf3f4d2cf2861",
+      "utils/metrics.py": "a2125a0e9269fbb2e186e0a972d35465a9a81049b0cd6b568448abb784587869",
+      "utils/torch_utils.py": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5"
+    },
+    "differing_from_reference": []
+  },
+  "native_pipeline": {
+    "dataset": "YOLODataset",
+    "augmentation": "Compose(Compose(<ultralytics.data.augment.Mosaic object at 0x000001A2FD529C40>, <ultralytics.data.augment.CopyPaste object at 0x000001A2823516D0>, <ultralytics.data.augment.RandomPerspective object at 0x000001A281C59B50>), <ultralytics.data.augment.MixUp object at 0x000001A2F7C408F0>, <ultralytics.data.augment.CutMix object at 0x000001A282208680>, <ultralytics.data.augment.Albumentations object at 0x000001A28220A3F0>, <ultralytics.data.augment.RandomHSV object at 0x000001A2821D6BA0>, <ultralytics.data.augment.RandomFlip object at 0x000001A281BFD550>, <ultralytics.data.augment.RandomFlip object at 0x000001A282382D20>, <ultralytics.data.augment.Format object at 0x000001A2823368A0>)",
+    "uint8_shape": [
+      2,
+      3,
+      160,
+      160
+    ],
+    "actual_ids": [
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\poison_fixtures\\images\\train\\000470.png",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\poison_fixtures\\images\\train\\002472.png"
+    ],
+    "GT_count": 16,
+    "classes": [
+      0,
+      12,
+      14
+    ],
+    "native_augmentation_before_AT": true,
+    "validation_forwards": 0,
+    "fixture_imgsz": 160,
+    "fixture_batch": 2,
+    "fixture_workers": 0,
+    "formal_imgsz": 640,
+    "formal_batch": 36,
+    "formal_workers": 16
+  },
+  "budgets": [
+    {
+      "epsilon_pixels": 4,
+      "step_pixels": 1,
+      "native_PGD10": {
+        "pgd_steps": [
+          {
+            "step": 0,
+            "loss": 31.981945037841797,
+            "loss_parts": {
+              "box_loss": 6.57310676574707,
+              "cls_loss": 5.258925437927246,
+              "dfl_loss": 4.158940315246582
+            },
+            "input_grad_norm": 8.831821673993545e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 1,
+            "loss": 31.981952667236328,
+            "loss_parts": {
+              "box_loss": 6.573108673095703,
+              "cls_loss": 5.2589263916015625,
+              "dfl_loss": 4.158941268920898
+            },
+            "input_grad_norm": 8.831627695826683e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 2,
+            "loss": 31.981948852539062,
+            "loss_parts": {
+              "box_loss": 6.5731072425842285,
+              "cls_loss": 5.258926868438721,
+              "dfl_loss": 4.15894079208374
+            },
+            "input_grad_norm": 8.831429454403406e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 3,
+            "loss": 31.981952667236328,
+            "loss_parts": {
+              "box_loss": 6.573107719421387,
+              "cls_loss": 5.258926868438721,
+              "dfl_loss": 4.158941268920898
+            },
+            "input_grad_norm": 8.831241871121165e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 4,
+            "loss": 31.98194694519043,
+            "loss_parts": {
+              "box_loss": 6.5731072425842285,
+              "cls_loss": 5.2589263916015625,
+              "dfl_loss": 4.158940315246582
+            },
+            "input_grad_norm": 8.831112552343257e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 5,
+            "loss": 31.981948852539062,
+            "loss_parts": {
+              "box_loss": 6.5731072425842285,
+              "cls_loss": 5.2589263916015625,
+              "dfl_loss": 4.158941268920898
+            },
+            "input_grad_norm": 8.830842546103668e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 6,
+            "loss": 31.981948852539062,
+            "loss_parts": {
+              "box_loss": 6.5731072425842285,
+              "cls_loss": 5.2589263916015625,
+              "dfl_loss": 4.15894079208374
+            },
+            "input_grad_norm": 8.830675568560764e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 7,
+            "loss": 31.981952667236328,
+            "loss_parts": {
+              "box_loss": 6.573107719421387,
+              "cls_loss": 5.258926868438721,
+              "dfl_loss": 4.158941268920898
+            },
+            "input_grad_norm": 8.83064430468039e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 8,
+            "loss": 31.981952667236328,
+            "loss_parts": {
+              "box_loss": 6.573107719421387,
+              "cls_loss": 5.258926868438721,
+              "dfl_loss": 4.158941268920898
+            },
+            "input_grad_norm": 8.830652120650484e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 9,
+            "loss": 31.981952667236328,
+            "loss_parts": {
+              "box_loss": 6.573107719421387,
+              "cls_loss": 5.258926868438721,
+              "dfl_loss": 4.158941268920898
+            },
+            "input_grad_norm": 8.830703279727459e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          }
+        ],
+        "actual_inner_forwards": 10,
+        "epsilon": 0.01568627450980392,
+        "alpha": 0.00392156862745098,
+        "linf": 0.01568627450980392,
+        "actual_raw_devices": [
+          [
+            "cpu",
+            null
+          ]
+        ],
+        "GT_sha256": {
+          "batch_idx": "d6d2a6f0e6834db052bf04f8337678255d045d02cc0056dce2dbacd4170da781",
+          "cls": "98b0810d8f0107e55d0df169af0d2b5e0305d3d30a8efd4ba8347ef98d4d912c",
+          "bboxes": "fedef61f1bccd035c8c93bad021f47871143e5245d4bd6590623299659ccfabb"
+        },
+        "GT_count": 16,
+        "class_histogram": [
+          6,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          8,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "BN_running_state_unchanged": true,
+        "parameter_grad_accumulation_unchanged": true,
+        "attack_scope": "whole actual augmented normalized training input",
+        "TAL_definition": "unmodified native assignment; unmatched GT are reported",
+        "prediction_head_classes": 20,
+        "call": 2,
+        "batch": 2,
+        "epoch": 1,
+        "UTC": "2026-10-27T13:31:52.860433+00:00",
+        "run_id": "CPU_FIXTURE_AT4",
+        "normalized_after_native_augmentation": true,
+        "actual_input_shape": [
+          2,
+          3,
+          160,
+          160
+        ],
+        "actual_input_device": "cpu"
+      },
+      "outer_detection_loss": 32.10713195800781,
+      "loss_parts": {
+        "box_loss": 6.5087890625,
+        "cls_loss": 5.219001770019531,
+        "dfl_loss": 4.325774192810059
+      },
+      "native_SGD_and_EMA_updates": 2,
+      "inner_model_and_optimizer_exact": true,
+      "outer_BN_updates_per_forward": 1,
+      "controlled_next_update_restore_exact": true,
+      "cross_arm_restore_rejected": true,
+      "checkpoint_sha256": "1fb102fb9f48a474293c353ae1fd4e53a601222f4bf658853f038178dde58619",
+      "input_RNG_and_GT_exact": true
+    },
+    {
+      "epsilon_pixels": 8,
+      "step_pixels": 2,
+      "native_PGD10": {
+        "pgd_steps": [
+          {
+            "step": 0,
+            "loss": 31.98204231262207,
+            "loss_parts": {
+              "box_loss": 6.573118209838867,
+              "cls_loss": 5.258946418762207,
+              "dfl_loss": 4.158956527709961
+            },
+            "input_grad_norm": 8.879059265609612e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 1,
+            "loss": 31.982040405273438,
+            "loss_parts": {
+              "box_loss": 6.573117256164551,
+              "cls_loss": 5.258946418762207,
+              "dfl_loss": 4.158956527709961
+            },
+            "input_grad_norm": 8.87851001607487e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 2,
+            "loss": 31.982038497924805,
+            "loss_parts": {
+              "box_loss": 6.573117256164551,
+              "cls_loss": 5.258945941925049,
+              "dfl_loss": 4.1589555740356445
+            },
+            "input_grad_norm": 8.878091506403507e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 3,
+            "loss": 31.982040405273438,
+            "loss_parts": {
+              "box_loss": 6.573117733001709,
+              "cls_loss": 5.258946418762207,
+              "dfl_loss": 4.158956050872803
+            },
+            "input_grad_norm": 8.877587731603853e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 4,
+            "loss": 31.982040405273438,
+            "loss_parts": {
+              "box_loss": 6.573117733001709,
+              "cls_loss": 5.258945941925049,
+              "dfl_loss": 4.158956050872803
+            },
+            "input_grad_norm": 8.877213986124843e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 5,
+            "loss": 31.982038497924805,
+            "loss_parts": {
+              "box_loss": 6.573117256164551,
+              "cls_loss": 5.258945941925049,
+              "dfl_loss": 4.1589555740356445
+            },
+            "input_grad_norm": 8.876773449628672e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 6,
+            "loss": 31.982040405273438,
+            "loss_parts": {
+              "box_loss": 6.573117256164551,
+              "cls_loss": 5.258945941925049,
+              "dfl_loss": 4.158956050872803
+            },
+            "input_grad_norm": 8.876758528231221e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 7,
+            "loss": 31.98203468322754,
+            "loss_parts": {
+              "box_loss": 6.573116302490234,
+              "cls_loss": 5.258945941925049,
+              "dfl_loss": 4.1589555740356445
+            },
+            "input_grad_norm": 8.876980928107514e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 8,
+            "loss": 31.982040405273438,
+            "loss_parts": {
+              "box_loss": 6.573117256164551,
+              "cls_loss": 5.258945941925049,
+              "dfl_loss": 4.158956050872803
+            },
+            "input_grad_norm": 8.877282908770212e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          },
+          {
+            "step": 9,
+            "loss": 31.982040405273438,
+            "loss_parts": {
+              "box_loss": 6.573117256164551,
+              "cls_loss": 5.258945941925049,
+              "dfl_loss": 4.158956050872803
+            },
+            "input_grad_norm": 8.8776403117663e-08,
+            "submitted_GT": 16,
+            "matched_GT": 15,
+            "foreground_anchors": 94
+          }
+        ],
+        "actual_inner_forwards": 10,
+        "epsilon": 0.03137254901960784,
+        "alpha": 0.00784313725490196,
+        "linf": 0.03137254901960784,
+        "actual_raw_devices": [
+          [
+            "cpu",
+            null
+          ]
+        ],
+        "GT_sha256": {
+          "batch_idx": "d6d2a6f0e6834db052bf04f8337678255d045d02cc0056dce2dbacd4170da781",
+          "cls": "98b0810d8f0107e55d0df169af0d2b5e0305d3d30a8efd4ba8347ef98d4d912c",
+          "bboxes": "fedef61f1bccd035c8c93bad021f47871143e5245d4bd6590623299659ccfabb"
+        },
+        "GT_count": 16,
+        "class_histogram": [
+          6,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          8,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "BN_running_state_unchanged": true,
+        "parameter_grad_accumulation_unchanged": true,
+        "attack_scope": "whole actual augmented normalized training input",
+        "TAL_definition": "unmodified native assignment; unmatched GT are reported",
+        "prediction_head_classes": 20,
+        "call": 2,
+        "batch": 2,
+        "epoch": 1,
+        "UTC": "2026-10-27T13:31:58.037564+00:00",
+        "run_id": "CPU_FIXTURE_AT8",
+        "normalized_after_native_augmentation": true,
+        "actual_input_shape": [
+          2,
+          3,
+          160,
+          160
+        ],
+        "actual_input_device": "cpu"
+      },
+      "outer_detection_loss": 32.521907806396484,
+      "loss_parts": {
+        "box_loss": 6.584442138671875,
+        "cls_loss": 5.267745018005371,
+        "dfl_loss": 4.408766746520996
+      },
+      "native_SGD_and_EMA_updates": 2,
+      "inner_model_and_optimizer_exact": true,
+      "outer_BN_updates_per_forward": 1,
+      "controlled_next_update_restore_exact": true,
+      "cross_arm_restore_rejected": true,
+      "checkpoint_sha256": "a64b50048dff4c54a269b43f196b7505eb0c9c555eebded0876510cf8d04e58c",
+      "input_RNG_and_GT_exact": true
+    }
+  ],
+  "valid_empty_GT_background_loss_supported": true,
+  "cuda_initialized": false,
+  "completed_UTC": "2026-10-27T13:32:00.912471+00:00",
+  "CUDA_smoke": "PENDING_EXISTING_COCO_GPU_JOB",
+  "scientific_review": "NOT_CALLED_BEFORE_CUDA",
+  "formal_run_allowed": false
+}

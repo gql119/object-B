@@ -1,0 +1,18 @@
+{
+  "candidate_commit": "a8c3f4cc08b5392804e2b30148398096feaaa943",
+  "errors": [],
+  "reason_codes": [
+    "full_surface_changed"
+  ],
+  "requires_pre_review_smoke": true,
+  "requires_prerun": true,
+  "requires_smoke": false,
+  "review_mode": "scientific_review",
+  "reviewed_commit": "ab626917f20917e58cf30033ac99df00938cb561",
+  "reviewer_delta": 1,
+  "route": "full_review",
+  "route_sha256": "b857af2b8b922994050f3ee059db6c9a41af962b4441b93066b9e5eaf731cd99",
+  "schema_version": "prerun.change-route.v1",
+  "valid": true,
+  "validation_passed": false
+}

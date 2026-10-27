@@ -1,0 +1,61 @@
+{
+  "state": "FAILED",
+  "started_UTC": "2026-10-27T12:55:37.634068+00:00",
+  "device": "cpu",
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "cleanup_policy": "retain_all",
+  "deleted_paths": [],
+  "actual_VOC_train_fixtures": true,
+  "production_GPU_readiness": false,
+  "native_identity": {
+    "version": "8.4.150",
+    "sources": {
+      "data/augment.py": "3631af29958e17bc442cbaa49a6bd32b660615b1bb1171a4e8e8692bace1f428",
+      "data/dataset.py": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e",
+      "data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+      "engine/trainer.py": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+      "cfg/default.yaml": "27d6c46184efc16d404f8b3bd1e12069f3ba10379adbbc415ffc10cc41088d7a",
+      "models/yolo/detect/train.py": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f",
+      "utils/instance.py": "609e24de399439afe3eeb453334d1e700afa53047c07701e3f25c3e97bdd2b98",
+      "nn/tasks.py": "c3896877977a1dca2ffaa1f4ad755ebd57342cae0ec80c78fa45edaa67f5823e",
+      "utils/loss.py": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d",
+      "utils/tal.py": "9468fb73df7805a4d297302aa221e0d7a6e46e224d0a0768e5abf3f4d2cf2861",
+      "utils/metrics.py": "a2125a0e9269fbb2e186e0a972d35465a9a81049b0cd6b568448abb784587869",
+      "utils/torch_utils.py": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5"
+    },
+    "differing_from_reference": []
+  },
+  "native_pipeline": {
+    "dataset": "YOLODataset",
+    "augmentation": "Compose(Compose(<ultralytics.data.augment.Mosaic object at 0x000001BD2B762870>, <ultralytics.data.augment.CopyPaste object at 0x000001BD2DB67230>, <ultralytics.data.augment.RandomPerspective object at 0x000001BD2DBC5A30>), <ultralytics.data.augment.MixUp object at 0x000001BD2D8AD760>, <ultralytics.data.augment.CutMix object at 0x000001BD2DAF1370>, <ultralytics.data.augment.Albumentations object at 0x000001BD2DBC5AF0>, <ultralytics.data.augment.RandomHSV object at 0x000001BD2DB7A1B0>, <ultralytics.data.augment.RandomFlip object at 0x000001BD2DB7A4B0>, <ultralytics.data.augment.RandomFlip object at 0x000001BD2DB7A630>, <ultralytics.data.augment.Format object at 0x000001BD2DBDF140>)",
+    "uint8_shape": [
+      2,
+      3,
+      160,
+      160
+    ],
+    "actual_ids": [
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\fixtures\\images\\train\\000470.jpg",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\fixtures\\images\\train\\002472.jpg"
+    ],
+    "GT_count": 16,
+    "classes": [
+      0,
+      12,
+      14
+    ],
+    "native_augmentation_before_AT": true,
+    "validation_forwards": 0,
+    "fixture_imgsz": 160,
+    "fixture_batch": 2,
+    "fixture_workers": 0,
+    "formal_imgsz": 640,
+    "formal_batch": 36,
+    "formal_workers": 16
+  },
+  "budgets": [],
+  "error": "ValueError('PGD budget/range/nonzero failure: linf=0.01568627543747425, epsilon=0.01568627450980392, min=0.0, max=1.0')",
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\robustness_s4_at\\validate_cpu.py\", line 98, in main\n    batch = t.preprocess_batch(deepcopy(raw))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\robustness_s4_at\\trainer.py\", line 67, in preprocess_batch\n    adv, audit = self.attack(self.model, batch)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\robustness_s4_at\\pgd.py\", line 171, in __call__\n    raise ValueError(f'PGD budget/range/nonzero failure: linf={linf!r}, epsilon={epsilon!r}, min={float(adv.min())!r}, max={float(adv.max())!r}')\nValueError: PGD budget/range/nonzero failure: linf=0.01568627543747425, epsilon=0.01568627450980392, min=0.0, max=1.0\n",
+  "completed_UTC": "2026-10-27T12:55:40.930901+00:00"
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "prerun.change-route.v1",
+  "reviewed_commit": "ab626917f20917e58cf30033ac99df00938cb561",
+  "candidate_commit": "a8c3f4cc08b5392804e2b30148398096feaaa943",
+  "changes": [
+    {
+      "path": "robustness_s4_at/pgd.py",
+      "change_class": "loss",
+      "production_reachable": true,
+      "dependency_closure_changed": true,
+      "blocker_ids": [],
+      "probes": []
+    },
+    {
+      "path": "robustness_s4_at/trainer.py",
+      "change_class": "computation_sink",
+      "production_reachable": true,
+      "dependency_closure_changed": true,
+      "blocker_ids": [],
+      "probes": []
+    },
+    {
+      "path": "robustness_s4_at/data.py",
+      "change_class": "data",
+      "production_reachable": true,
+      "dependency_closure_changed": true,
+      "blocker_ids": [],
+      "probes": []
+    },
+    {
+      "path": "robustness_s4_at/checkpoint.py",
+      "change_class": "checkpoint",
+      "production_reachable": true,
+      "dependency_closure_changed": true,
+      "blocker_ids": [],
+      "probes": []
+    },
+    {
+      "path": "robustness_s4_at/metrics.py",
+      "change_class": "metric",
+      "production_reachable": true,
+      "dependency_closure_changed": true,
+      "blocker_ids": [],
+      "probes": []
+    },
+    {
+      "path": "robustness_s4_at/worker.py",
+      "change_class": "entrypoint",
+      "production_reachable": true,
+      "dependency_closure_changed": true,
+      "blocker_ids": [],
+      "probes": []
+    }
+  ]
+}

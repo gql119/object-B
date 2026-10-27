@@ -1,0 +1,13 @@
+test_all_classes_and_legal_empty_GT (test_s4_at.ATContracts.test_all_classes_and_legal_empty_GT) ... ok
+test_bad_GT_and_input_rejected (test_s4_at.ATContracts.test_bad_GT_and_input_rejected) ... ok
+test_fixed_budgets_and_no_silent_protocol_variants (test_s4_at.ATContracts.test_fixed_budgets_and_no_silent_protocol_variants) ... ok
+test_four_runs_only_budget_and_arm_differ (test_s4_at.ATContracts.test_four_runs_only_budget_and_arm_differ) ... ok
+test_invalid_denominators_not_zero_imputed (test_s4_at.ATContracts.test_invalid_denominators_not_zero_imputed) ... ok
+test_matched_scores_and_absolute_differences (test_s4_at.ATContracts.test_matched_scores_and_absolute_differences) ... ok
+test_signed_scores_are_not_clipped (test_s4_at.ATContracts.test_signed_scores_are_not_clipped) ... ok
+test_strict_interval_all_decoded_levels_and_arbitrary_floats (test_s4_at.ATContracts.test_strict_interval_all_decoded_levels_and_arbitrary_floats) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.012s
+
+OK

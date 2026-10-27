@@ -1,0 +1,60 @@
+{
+  "state": "CPU_PREFLIGHT_ACCEPTED_CUDA_PENDING",
+  "source_commit": "a8c3f4cc08b5392804e2b30148398096feaaa943",
+  "UTC": "2026-10-27T13:40:05.605864+00:00",
+  "generation_parent": "b1e29510e7b1ed5fa0fe361a27132d8790e65c14",
+  "victim_parent": "ab626917f20917e58cf30033ac99df00938cb561",
+  "protocol_sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+  "original_files_exact": 60,
+  "native_files_exact": 12,
+  "current_server_manifest_and_integrity_SHA_exact": true,
+  "materialized_train_records": 16551,
+  "real_VOC_clean_fixtures": 2,
+  "real_original_S4_poison_fixtures": 2,
+  "observed_native_CPU_classes": [
+    0,
+    12,
+    14
+  ],
+  "unit_tests": 8,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "actual_native_training_loop_arms": [
+    "lc4",
+    "lp4",
+    "lc8",
+    "lp8"
+  ],
+  "each_loop": {
+    "PGD10_forwards": 10,
+    "outer_forwards": 1,
+    "actual_SGD_updates": 1,
+    "EMA_updates": 1,
+    "validation_forwards": 0
+  },
+  "matched_initial_parameter_sha256": "4dae04e61e1d571c6499570fb169a06a9ecce0d4f43db4072a0de91c15a4b7f1",
+  "controlled_CPU_resume_next_PGD_and_update_exact": true,
+  "production_Trainer_resume_method_exercised": true,
+  "source_files_and_protocol_in_own_checkpoints_matched_to_commit": true,
+  "CUDA_initialized": false,
+  "CUDA_smoke": false,
+  "reviewer_called": false,
+  "formal_runs_started": 0,
+  "failures_retained": [
+    {
+      "tag": "cpu_native01",
+      "report_sha256": "31e556fb3b597bdb7bcd06f5b46ac1b6d9fb4919802cfed68cd14561e1310257",
+      "error": "ValueError('PGD violated exact L-inf/range/nonzero contract')"
+    },
+    {
+      "tag": "cpu_native02",
+      "report_sha256": "ecd6e46eec14e195db745174e4e3ddcd00d00a469e6f1414b876d68635d76ada",
+      "error": "ValueError('PGD budget/range/nonzero failure: linf=0.01568627543747425, epsilon=0.01568627450980392, min=0.0, max=1.0')"
+    }
+  ],
+  "budget_fix": "FP64 interval endpoints then inward FP32 cast; no budget tolerance",
+  "resume_limitation": "workers16 prefetch is not proven bitwise equivalent; only safe completed optimizer boundaries",
+  "active_COCO_untouched": true,
+  "no_new_server_controller_or_monitor": true
+}

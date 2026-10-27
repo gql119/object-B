@@ -1,0 +1,31 @@
+{
+  "schema": "s4.at.current-state.v1",
+  "state": "PENDING_COCO_COMPLETION_AND_CUDA_PREFLIGHT",
+  "UTC": "2026-10-27T13:40:05.769529+00:00",
+  "branch": "codex/s4-at-robustness-20261027",
+  "candidate_runtime_commit": "a8c3f4cc08b5392804e2b30148398096feaaa943",
+  "source_publication_API_verified": true,
+  "source_commit_url": "https://github.com/gql119/object-B/commit/a8c3f4cc08b5392804e2b30148398096feaaa943",
+  "CPU_preflight": "PASS",
+  "CUDA_preflight": "PENDING",
+  "scientific_review": "NOT_CALLED_BEFORE_GPU",
+  "formal_preflight": "INCOMPLETE",
+  "formal_run_allowed": false,
+  "formal_runs_started": 0,
+  "AT_results": null,
+  "existing_COCO_run": "s4_coco_experiment_a_seed0_20261027_risk_v1",
+  "existing_COCO_last_actual_query_UTC": "2026-10-27T11:47:45.039182+00:00",
+  "existing_COCO_last_actual_step": 6824,
+  "existing_COCO_health_UTC": "2026-10-27T11:56:34.092138+00:00",
+  "sole_monitor": "s4-robustness-existing-run-status",
+  "AT_server_controller_started": false,
+  "pending": [
+    "current-source real CUDA native batch36/imgsz640 PGD10+AMP+update and peak VRAM",
+    "CUDA/native-loader safe checkpoint resume validation",
+    "one independent scientific review then main closure",
+    "full current server data-view/label/budget identity recheck and fresh resource admission",
+    "COCO controller and own GPU conflict must be absent",
+    "actual immutable RRCTL launch binding"
+  ],
+  "next": "Use same monitor after COCO completes; no AT GPU probe or second long controller during active COCO"
+}
