@@ -1,0 +1,45 @@
+{
+  "state": "passed",
+  "actual_dependency_readers": {
+    "export25k": {
+      "state": "WAITING_PREVIOUS_PHASE",
+      "native_state": "RUNNING",
+      "current_stage": "fourier24",
+      "active_job": "fourier24"
+    },
+    "clean200": {
+      "state": "WAITING_SERIAL_SLOT",
+      "native_state": "RUNNING",
+      "current_stage": "fourier24",
+      "active_job": "fourier24"
+    },
+    "s4_200": {
+      "state": "WAITING_SERIAL_SLOT",
+      "native_state": "RUNNING",
+      "current_stage": "fourier24",
+      "active_job": "fourier24"
+    },
+    "official_eval": {
+      "state": "WAITING_SERIAL_SLOT",
+      "native_state": "RUNNING",
+      "current_stage": "fourier24",
+      "active_job": "fourier24"
+    },
+    "final_report": {
+      "state": "WAITING_SERIAL_SLOT",
+      "native_state": "RUNNING",
+      "current_stage": "fourier24",
+      "active_job": "fourier24"
+    }
+  },
+  "successful_transport_run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1_transport02",
+  "actual_controller_source": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+  "model_forwards": 0,
+  "GPU_initialized": false,
+  "Torch_imported": true,
+  "new_remote_release_created": false,
+  "new_RunSpec_created": false,
+  "formal_READY_written": false,
+  "no_current_phase_mutation": true,
+  "future_scientific_readiness": false
+}

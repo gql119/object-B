@@ -1,0 +1,127 @@
+{
+  "state": "passed",
+  "SIMULATION_ONLY": true,
+  "cases": [
+    {
+      "case": "different_phase_source_same_controller_export25k",
+      "passed": true
+    },
+    {
+      "case": "formal_running_slot_export25k",
+      "passed": true
+    },
+    {
+      "case": "different_phase_source_same_controller_clean200",
+      "passed": true
+    },
+    {
+      "case": "formal_running_slot_clean200",
+      "passed": true
+    },
+    {
+      "case": "different_phase_source_same_controller_s4_200",
+      "passed": true
+    },
+    {
+      "case": "formal_running_slot_s4_200",
+      "passed": true
+    },
+    {
+      "case": "different_phase_source_same_controller_official_eval",
+      "passed": true
+    },
+    {
+      "case": "formal_running_slot_official_eval",
+      "passed": true
+    },
+    {
+      "case": "different_phase_source_same_controller_final_report",
+      "passed": true
+    },
+    {
+      "case": "formal_running_slot_final_report",
+      "passed": true
+    },
+    {
+      "case": "missing_controller",
+      "passed": true
+    },
+    {
+      "case": "wrong_policy",
+      "passed": true
+    },
+    {
+      "case": "false_equivalence",
+      "passed": true
+    },
+    {
+      "case": "validation_flag_no_bypass",
+      "passed": true
+    },
+    {
+      "case": "controller_source_drift",
+      "passed": true
+    },
+    {
+      "case": "controller_config_hash",
+      "passed": true
+    },
+    {
+      "case": "controller_release_hash",
+      "passed": true
+    },
+    {
+      "case": "manifest_precheck_hash",
+      "passed": true
+    },
+    {
+      "case": "wrong_slot",
+      "passed": true
+    },
+    {
+      "case": "wrong_controller_start",
+      "passed": true
+    },
+    {
+      "case": "wrong_pipeline_config",
+      "passed": true
+    },
+    {
+      "case": "previous_not_accepted",
+      "passed": true
+    },
+    {
+      "case": "previous_receipt_drift",
+      "passed": true
+    },
+    {
+      "case": "dead_controller",
+      "passed": true
+    },
+    {
+      "case": "verify_release_rejects_validation_flag_bypass",
+      "passed": true
+    },
+    {
+      "case": "Fourier_same_source_guard_unchanged",
+      "passed": true
+    },
+    {
+      "case": "CPU_native_evidence_still_required",
+      "passed": true
+    },
+    {
+      "case": "GPU_native_evidence_still_required",
+      "passed": true
+    }
+  ],
+  "model_forwards": 0,
+  "GPU_initialized": false,
+  "actual_controller_mutated": false,
+  "production_READY_written": false,
+  "production_ACCEPTED_written": false,
+  "active_scientific_source_unchanged": true,
+  "future_phase_scientific_readiness": false,
+  "unchanged_runtime_functions_and_phase_gates": true,
+  "fixture": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4fg01"
+}

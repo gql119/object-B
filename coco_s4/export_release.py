@@ -110,10 +110,12 @@ def current_source():
 
 
 def read_dependency(transport):
-    active = OWNED/'repos'/WORKFLOW
+    from .workflow_admission import local_controller_binding
+    controller = local_controller_binding()
+    active = Path(controller['remote_repo_root'])
     from .phase_fourier import CALIBRATION_ARTIFACT_SUFFIXES
     result = transport.run([PYTHON, '-B', '-c', READ_DEPENDENCY, WORKFLOW_OUTPUT.as_posix(), WORKFLOW,
-                            load(EX/(WORKFLOW+'.json'))['source']['commit'], OWNED.as_posix(),
+                            controller['source_commit'], OWNED.as_posix(),
                             json.dumps(CALIBRATION_ARTIFACT_SUFFIXES), active.as_posix()])
     if result.returncode:
         raise RuntimeError(result.stderr.decode(errors='replace')[-2500:])
@@ -161,6 +163,8 @@ def build(tag, head, observation):
                        calibration_receipt_sha256=fourier['calibration_receipt_sha256']))
     validate_phase_config(load(ROOT/'coco_s4/configs/export25k.json'))
     local = EX/tag/'source_release.json'
+    from .workflow_admission import attach
+    attach(release)
     write_once(local, release)
     template = load(EX/(WORKFLOW+'.json'))
     repo = (OWNED/'releases'/tag).as_posix(); output = (OWNED/'validation'/tag).as_posix()

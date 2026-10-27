@@ -71,9 +71,11 @@ def current_source():
 
 
 def read_dependency(transport):
-    active = OWNED / "repos" / WORKFLOW
+    from .workflow_admission import local_controller_binding
+    controller = local_controller_binding()
+    active = Path(controller['remote_repo_root'])
     r = transport.run([PYTHON, "-B", "-c", READ_DEPENDENCY, WORKFLOW_OUTPUT.as_posix(), WORKFLOW,
-                       load(EX/(WORKFLOW+".json"))["source"]["commit"], active.as_posix()])
+                       controller['source_commit'], active.as_posix()])
     if r.returncode:
         raise RuntimeError(r.stderr.decode(errors="replace")[-2500:])
     return json.loads(r.stdout)
@@ -100,6 +102,8 @@ def build(tag, head, observation):
         config_path="docs/S4_COCO_MINITRAIN_20261023/COCO_EXPERIMENT_A_CONFIG.yaml",
         phase_config_path="coco_s4/configs/final_report.json", phase_dependencies=observation["dependencies"])
     local = EX / tag / "final_report_release.json"
+    from .workflow_admission import attach
+    attach(release)
     write_once(local, release)
     return local
 

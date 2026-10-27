@@ -84,9 +84,11 @@ def current_source():
 
 
 def read_dependency(transport):
-    active = OWNED / "repos" / WORKFLOW
+    from .workflow_admission import local_controller_binding
+    controller = local_controller_binding()
+    active = Path(controller['remote_repo_root'])
     r = transport.run([PYTHON, "-B", "-c", READ_DEPENDENCY, WORKFLOW_OUTPUT.as_posix(), WORKFLOW,
-                       load(EX/(WORKFLOW+".json"))["source"]["commit"], active.as_posix()])
+                       controller['source_commit'], active.as_posix()])
     if r.returncode:
         raise RuntimeError(r.stderr.decode(errors="replace")[-3000:])
     return json.loads(r.stdout)
@@ -115,6 +117,8 @@ def build(tag, head, observation):
                    teacher_dependency=observation["teacher_dependency"], phase_dependencies=observation["dependencies"],
                    evaluator=dict(directory=addon["addon"], files=addon["files"], wheel_sha256=addon["wheel_sha256"]))
     local_release = EX / tag / "source_release.json"
+    from .workflow_admission import attach
+    attach(release)
     write_once(local_release, release)
     template = load(EX / (WORKFLOW + ".json"))
     remote_repo = (OWNED / "releases" / tag).as_posix()

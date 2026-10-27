@@ -65,7 +65,8 @@ def verify_release(manifest_path, *, native=True):
     """Hash the committed computation closure, not mutable progress/report files."""
     m = load(manifest_path)
     scope=load(ROOT/'coco_s4/configs/EMERGENCY_REPAIR_SCOPE.json')
-    if not (m.get('validation_only') is True and m.get('repair_authorization_sha256')==scope['authorization_sha256']):
+    future_phase=m.get('phase') in ('export25k','clean200','s4_200','official_eval','final_report')
+    if not (not future_phase and m.get('validation_only') is True and m.get('repair_authorization_sha256')==scope['authorization_sha256']):
         assert_formal_launch_authorized(m)
     if m['schema'] != 's4.coco.release.v1' or m['scientific_parent'] != PARENT or m['victim_parent'] != VICTIM_PARENT:
         raise ValueError('Original S4 scientific identity differs')
@@ -110,13 +111,17 @@ def assert_formal_launch_authorized(manifest=None):
         raise ValueError('Formal precheck requirements are not bound to this independent protocol')
     if manifest is not None:
         from .phase_contract import OWNED
+        admission_source=manifest['source_commit']
+        if manifest.get('phase') in ('export25k','clean200','s4_200','official_eval','final_report'):
+            from .workflow_admission import validate
+            admission_source=validate(manifest)['source_commit']
         binding=manifest.get('formal_precheck_receipt',{})
         path=Path(binding.get('path','')).resolve()
         if not path.is_relative_to((OWNED/'recovery_bindings'/WORKFLOW).resolve()) or sha(path)!=binding.get('sha256'):
             raise ValueError('Formal execution lacks immutable actual precheck receipt')
         ready=load(path)
         required=dict(state='ALL_FORMAL_PRECHECKS_PASSED',workflow_run_id=WORKFLOW,
-            source_commit=manifest['source_commit'],risk_estimator_policy=scope['risk_estimator_policy'],
+            source_commit=admission_source,risk_estimator_policy=scope['risk_estimator_policy'],
             human_authorization_sha256=scope['human_relaunch_authorization_sha256'],
             native_CPU16='passed',native_CUDA16='passed',read_only_main_audits='passed',
             consumer_simulation='passed',full25K_risk_audit='accepted',fresh_Fourier_initialization=True,
@@ -125,7 +130,7 @@ def assert_formal_launch_authorized(manifest=None):
             raise ValueError('Actual formal prechecks remain open')
         for key in ('CPU','GPU'):
             entry=ready[key];summary=load(entry['path'])
-            if sha(entry['path'])!=entry['sha256'] or summary.get('source_commit')!=manifest['source_commit']:
+            if sha(entry['path'])!=entry['sha256'] or summary.get('source_commit')!=admission_source:
                 raise ValueError('Formal native validation evidence drift')
             if (summary.get('state')!='passed' or summary.get('actual_device')!=('cpu' if key=='CPU' else 'cuda:0')
                     or summary.get('actual_cuda_device_indices')!=([] if key=='CPU' else [0])
