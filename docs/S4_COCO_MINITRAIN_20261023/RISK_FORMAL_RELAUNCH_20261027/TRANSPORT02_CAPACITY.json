@@ -1,0 +1,53 @@
+{
+  "state": "READY",
+  "capacity": {
+    "UTC": "2026-10-27T03:26:49.793617+00:00",
+    "RAM_available_GiB": 115.03451919555664,
+    "disk_free_GiB": 974.3742866516113,
+    "GPU_free_MiB": 45166,
+    "IOwait_percent": [
+      0.15644555694618273,
+      0.0,
+      0.0
+    ],
+    "GPU_compute_pids": "",
+    "CPU_load_is_advisory": true,
+    "admitted": true,
+    "GPU_compute_owners": [],
+    "other_user_GPU_coexistence_authorized": true,
+    "human_shared_admission_sha256": "a57df356ac2da01b488e60d14d9ec292f6866d2006ef252283f79981e6be4f9f"
+  },
+  "old_state_sha256": "1aaff56d1818a88917425895471310ca87b777354efd22c695b6b38546e4f61c",
+  "old_controller_absent": true,
+  "old_child_absent": true,
+  "failed_dimension_predecessor": {
+    "run_id": "s4_coco_experiment_a_seed0_20261025_dimcompat_v1",
+    "source_commit": "34fee63a232d489ae54d61eb37a42483091c40d4",
+    "files": {
+      "pipeline_state.json": "fb302a5fe280492fd42f6edf6e27387a7ffdc47ce258b8933f42a39f20a31b90",
+      "fourier24/status.json": "18ef7ce17a42f31a91584154fb57040e79f19f3e7806a8dd1c371bae0dc60306",
+      "jobs/fourier24/exit.json": "28654f4ccacada1bd57615314a7cf80175bb998888997084d2b48ed717bb8e9e"
+    }
+  },
+  "invalidated_predecessor": {
+    "run_id": "s4_coco_experiment_a_seed0_20261026_dimcompat_v2",
+    "source_commit": "dcd91b33d90dfd2472b8eacb843a994a4801d1cf",
+    "files": {
+      "pipeline_state.json": "6dae28af6145410c8e5042297aa0e3f17dc9f84512f2caa88dc871db1359d887",
+      "fourier24/status.json": "6f6637ac823ad2fa0ceac732039ac39c3da592a6f1be9f9c62384aa0e717d88f",
+      "jobs/fourier24/exit.json": "e293f295f148ba88c9ebe9ff2f5224c2a974f1ce737289ebb033f43365b75d3d",
+      "receipts/SCIENTIFIC_INVALIDATION_20261026.json": "9c69d65da8b921ac5ccb4f91e36de05b1406324561a79a0dcdc117891d8439b1"
+    }
+  },
+  "failed_repaired_predecessor": {
+    "run_id": "s4_coco_experiment_a_seed0_20261027_tfss_repaired_v1",
+    "source_commit": "0eb162097ab07ea641a9b5167c0fe3d70d38d349",
+    "files": {
+      "pipeline_state.json": "e5a3c107cf453fb4f3db48e4ec4c73b8994c0ceea2efd7841d2a99da904cbab8",
+      "fourier24/status.json": "2b53e4646c0ebd94b078eba7268798a629f794e2ba6bc97ea93175c312568a9a",
+      "jobs/fourier24/exit.json": "3c62bda4d0fde571b32399247e3de89d8d0d0db689163c887bd0705aa042fa93",
+      "fourier24/native_s4/latest_continuation.pt": "b43f8fe3467c901462fcce734d381a6d1fff7f3ddf6020ba7a3601ab43b39e3e",
+      "fourier24/native_s4/diagnostics.csv": "c5e313c1056f8609d87d1269c66fd228f5d31f10e03aa95de203c9c961f88dd0"
+    }
+  }
+}

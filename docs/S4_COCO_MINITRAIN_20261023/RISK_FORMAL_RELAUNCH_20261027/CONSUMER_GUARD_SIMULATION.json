@@ -1,0 +1,62 @@
+{
+  "state": "passed",
+  "SIMULATION_ONLY": true,
+  "source_commit": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+  "cases": [
+    {
+      "name": "valid_bound_actual_native_inputs",
+      "expected": true,
+      "observed": true
+    },
+    {
+      "name": "wrong_hash",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "name": "wrong_source",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "name": "bad_native_CPU16",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "name": "bad_native_CUDA16",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "name": "bad_old12step_resume_allowed",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "name": "bad_strict_Original_S4_equivalence_claim",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "name": "bad_risk_estimator_policy",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "name": "bad_consumer_simulation",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "name": "bad_GPU_evidence_hash",
+      "expected": false,
+      "observed": false
+    }
+  ],
+  "model_forwards": 0,
+  "GPU_initialized": false,
+  "formal_controller_started": false,
+  "production_READY_written": false,
+  "production_ACCEPTED_written": false
+}

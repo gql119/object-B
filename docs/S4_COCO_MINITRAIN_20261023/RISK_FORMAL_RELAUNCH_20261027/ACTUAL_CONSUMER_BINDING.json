@@ -1,0 +1,16 @@
+{
+  "state": "passed",
+  "SIMULATION_ONLY_phase_READY": true,
+  "source_commit": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+  "release_sha256": "d3b99e959732b2e4cf70d26328edda450b360086a25dcc7b8d9244841ce66ca6",
+  "config_sha256": "6e395fb26f7f1f064d1857918cf0751c33a1a33be243c914266588f2cd6f447a",
+  "real_release_and_previous_receipts_verified": true,
+  "actual_CPU_and_GPU_summaries_consumed": true,
+  "real_production_formal_gate": "passed",
+  "model_forwards": 0,
+  "GPU_initialized": false,
+  "formal_controller_started": false,
+  "production_READY_written": false,
+  "original_failed12step_hashes_unchanged": true,
+  "fixture_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_risk_formal_consumer_binding01"
+}

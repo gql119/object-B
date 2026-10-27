@@ -1,0 +1,151 @@
+{
+  "roots": {
+    "stage_root": {
+      "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/stage/s4_coco_experiment_a_seed0_20261027_risk_v1",
+      "exists": true,
+      "files": [
+        {
+          "name": "anchors",
+          "bytes": 4096,
+          "is_file": false
+        },
+        {
+          "name": "rrctl-worker.pyz",
+          "bytes": 41767,
+          "is_file": true
+        },
+        {
+          "name": "source.bundle",
+          "bytes": 3747912,
+          "is_file": true
+        },
+        {
+          "name": "stage_manifest.json",
+          "bytes": 970,
+          "is_file": true
+        },
+        {
+          "name": "run_spec.json",
+          "bytes": 6119,
+          "is_file": true
+        }
+      ]
+    },
+    "repo_root": {
+      "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/repos/s4_coco_experiment_a_seed0_20261027_risk_v1",
+      "exists": true,
+      "files": [
+        {
+          "name": "coco_s4",
+          "bytes": 4096,
+          "is_file": false
+        },
+        {
+          "name": "b2_frozen_source_manifest.json",
+          "bytes": 453,
+          "is_file": true
+        },
+        {
+          "name": "tests",
+          "bytes": 4096,
+          "is_file": false
+        },
+        {
+          "name": "research_workspace",
+          "bytes": 4096,
+          "is_file": false
+        },
+        {
+          "name": "scripts",
+          "bytes": 4096,
+          "is_file": false
+        },
+        {
+          "name": ".gitignore",
+          "bytes": 590,
+          "is_file": true
+        },
+        {
+          "name": "experiments",
+          "bytes": 4096,
+          "is_file": false
+        },
+        {
+          "name": "README.md",
+          "bytes": 2196,
+          "is_file": true
+        },
+        {
+          "name": "COCO_CONTINUE.md",
+          "bytes": 19234,
+          "is_file": true
+        },
+        {
+          "name": "ue_framework",
+          "bytes": 4096,
+          "is_file": false
+        },
+        {
+          "name": "configs",
+          "bytes": 4096,
+          "is_file": false
+        },
+        {
+          "name": ".gitattributes",
+          "bytes": 1446,
+          "is_file": true
+        },
+        {
+          "name": "docs",
+          "bytes": 4096,
+          "is_file": false
+        },
+        {
+          "name": ".git",
+          "bytes": 4096,
+          "is_file": false
+        }
+      ]
+    },
+    "control_root": {
+      "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/s4_coco_experiment_a_seed0_20261027_risk_v1",
+      "exists": true,
+      "files": [
+        {
+          "name": ".state.lock",
+          "bytes": 0,
+          "is_file": true
+        },
+        {
+          "name": "events.jsonl",
+          "bytes": 923,
+          "is_file": true
+        },
+        {
+          "name": "status.json",
+          "bytes": 446,
+          "is_file": true
+        }
+      ],
+      "status.json": {
+        "detail": {
+          "code": "anchor_collision",
+          "details": {},
+          "message": "remote anchor already exists: /project/guoqinglong/projects/s4_coco_experiment_a_20261025/recovery_bindings/s4_coco_experiment_a_seed0_20261027_risk_v1/source_release.json",
+          "phase": "worker"
+        },
+        "reason": "launch_failed",
+        "run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1",
+        "schema_version": "rrctl.status.v1",
+        "sequence": 3,
+        "state": "failed",
+        "updated_at": "2026-10-27T03:21:24.847236+00:00"
+      }
+    },
+    "output_root": {
+      "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1",
+      "exists": false
+    }
+  },
+  "own_processes": []
+}

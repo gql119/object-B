@@ -1,0 +1,142 @@
+{
+  "UTC": "2026-10-27T03:31:27.701964+00:00",
+  "state": {
+    "schema": "s4.coco.serial-recovery.v1",
+    "state": "RUNNING",
+    "run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1",
+    "source_commit": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+    "config_sha256": "6e395fb26f7f1f064d1857918cf0751c33a1a33be243c914266588f2cd6f447a",
+    "release_sha256": "d3b99e959732b2e4cf70d26328edda450b360086a25dcc7b8d9244841ce66ca6",
+    "controller": {
+      "pid": 2334114,
+      "start_ticks": 369629083,
+      "uid": 1014
+    },
+    "stages": {
+      "teacher200": {
+        "state": "ACCEPTED",
+        "receipt_sha256": "f06302c55aad6870c877aed3f79f1defb280a392d6bf96d4f40ca018245c3ade",
+        "reused": true
+      },
+      "teacher_eval": {
+        "state": "ACCEPTED",
+        "receipt_sha256": "69655e8c89aa282a5ace5eff89b45412d9631f76409d269d778728c1df868b51",
+        "reused": true
+      },
+      "calibration": {
+        "state": "ACCEPTED",
+        "receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+        "reused": true
+      }
+    },
+    "current_stage": "fourier24",
+    "active_job": "fourier24",
+    "active_child": {
+      "pid": 2336629,
+      "start_ticks": 369647553,
+      "uid": 1014,
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "coco_s4.phase_fourier",
+        "--release",
+        "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261027_risk_formal_gpu16a/source_release.json",
+        "--output",
+        "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/fourier24",
+        "--registration",
+        "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/receipts/fourier24_READY.json"
+      ],
+      "cwd": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261027_risk_formal_gpu16a",
+      "UTC": "2026-10-27T03:30:00.747187+00:00",
+      "memory_scope": {
+        "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4coco-job-af1a62b76706709ff6cff7c1.scope",
+        "memory.current": "10842112",
+        "memory.peak": "10842112",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+      }
+    },
+    "OP_enabled": false,
+    "phase_order": [
+      "teacher200",
+      "teacher_eval",
+      "calibration",
+      "fourier24",
+      "export25k",
+      "clean200",
+      "s4_200",
+      "official_eval",
+      "final_report"
+    ],
+    "dimension_protocol": "coco80-strict-tsfl-selected-dimension-v1",
+    "created_UTC": "2026-10-27T03:26:57.613755+00:00",
+    "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+    "strict_Original_S4_equivalence_claim": false,
+    "updated_UTC": "2026-10-27T03:31:20.793089+00:00"
+  },
+  "controller_live": {
+    "expected": {
+      "pid": 2334114,
+      "start_ticks": 369629083,
+      "uid": 1014
+    },
+    "live": true
+  },
+  "child_live": {
+    "expected": {
+      "pid": 2336629,
+      "start_ticks": 369647553,
+      "uid": 1014,
+      "argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-m",
+        "coco_s4.phase_fourier",
+        "--release",
+        "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261027_risk_formal_gpu16a/source_release.json",
+        "--output",
+        "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/fourier24",
+        "--registration",
+        "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/receipts/fourier24_READY.json"
+      ],
+      "cwd": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261027_risk_formal_gpu16a",
+      "UTC": "2026-10-27T03:30:00.747187+00:00",
+      "memory_scope": {
+        "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4coco-job-af1a62b76706709ff6cff7c1.scope",
+        "memory.current": "10842112",
+        "memory.peak": "10842112",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+      }
+    },
+    "live": true
+  },
+  "phase_status": {
+    "phase": "fourier24",
+    "source_commit": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+    "release_sha256": "d3b99e959732b2e4cf70d26328edda450b360086a25dcc7b8d9244841ce66ca6",
+    "phase_config_sha256": "054b04ac5ca0e20ae8b776d8428dcdbba135a18c0f8e8160c27c9d5e65776ecf",
+    "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+    "teacher_receipt_sha256": "f06302c55aad6870c877aed3f79f1defb280a392d6bf96d4f40ca018245c3ade",
+    "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+    "accepted_calibration_manifest_sha256": "181e9c203b2d5a147888aac7ded702673c2084994d722c9ca4633fad0210ee64",
+    "validation_used": false,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "cleanup_policy": "retain_all",
+    "deleted_paths": [],
+    "state": "RUNNING",
+    "started_UTC": "2026-10-27T03:30:02.370014+00:00",
+    "smoke": false,
+    "cpu_probe": false
+  },
+  "complete_CSV_rows": 14,
+  "last_row": {
+    "step": "13",
+    "epoch": "1",
+    "L_total": "1.3876291513442993",
+    "grad_norm_fourier": "0.06066170334815979",
+    "outside_support_max": "0.0"
+  }
+}

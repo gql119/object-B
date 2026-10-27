@@ -1,0 +1,5 @@
+{
+  "state": "READY_UPLOADED_AND_READBACK",
+  "ready_sha256": "96ad613e44cbd5e06340c92637def87a8acd2655ffff7575e350c21f384bb69d",
+  "controller_owns_formal_start": true
+}

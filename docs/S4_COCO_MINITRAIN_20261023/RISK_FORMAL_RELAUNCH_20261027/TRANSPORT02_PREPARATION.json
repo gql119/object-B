@@ -1,0 +1,28 @@
+{
+  "state": "TRANSPORT_PREPARED_ONLY",
+  "UTC": "2026-10-27T03:25:16.505335+00:00",
+  "source_commit": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+  "existing_anchors_verified": {
+    "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/recovery_bindings/s4_coco_experiment_a_seed0_20261027_risk_v1/source_release.json": "d3b99e959732b2e4cf70d26328edda450b360086a25dcc7b8d9244841ce66ca6",
+    "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/recovery_bindings/s4_coco_experiment_a_seed0_20261027_risk_v1/workflow.json": "6e395fb26f7f1f064d1857918cf0751c33a1a33be243c914266588f2cd6f447a",
+    "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/recovery_bindings/s4_coco_experiment_a_seed0_20261027_risk_v1/scientific_closure.json": "db1d58f541ef4bd23b462c356dbf188a274298f7bffa429c5e42f4f56f428048",
+    "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/recovery_bindings/s4_coco_experiment_a_seed0_20261027_risk_v1/formal_precheck.json": "ca653155ae123cfba25f88bb949807b3127ec4f7fe938112d69b292a6ac02192"
+  },
+  "prior_transport_failed_status": {
+    "detail": {
+      "code": "anchor_collision",
+      "details": {},
+      "message": "remote anchor already exists: /project/guoqinglong/projects/s4_coco_experiment_a_20261025/recovery_bindings/s4_coco_experiment_a_seed0_20261027_risk_v1/source_release.json",
+      "phase": "worker"
+    },
+    "reason": "launch_failed",
+    "run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1",
+    "schema_version": "rrctl.status.v1",
+    "sequence": 3,
+    "state": "failed",
+    "updated_at": "2026-10-27T03:21:24.847236+00:00"
+  },
+  "scientific_workflow_run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1",
+  "transport_run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1_transport02",
+  "science_changes": false
+}

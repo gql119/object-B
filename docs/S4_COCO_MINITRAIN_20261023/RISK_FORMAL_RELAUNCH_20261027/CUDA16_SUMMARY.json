@@ -1,0 +1,520 @@
+{
+  "phase": "fourier24",
+  "source_commit": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+  "release_sha256": "6dcdd7ba2473df14fb093d96257650f9baa9c5c057bbe9693bc9fa37b9d16e04",
+  "phase_config_sha256": "054b04ac5ca0e20ae8b776d8428dcdbba135a18c0f8e8160c27c9d5e65776ecf",
+  "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+  "teacher_receipt_sha256": "f06302c55aad6870c877aed3f79f1defb280a392d6bf96d4f40ca018245c3ade",
+  "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+  "accepted_calibration_manifest_sha256": "181e9c203b2d5a147888aac7ded702673c2084994d722c9ca4633fad0210ee64",
+  "validation_used": false,
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "cleanup_policy": "retain_all",
+  "deleted_paths": [],
+  "state": "passed",
+  "started_UTC": "2026-10-27T03:10:12.079133+00:00",
+  "smoke": true,
+  "cpu_probe": false,
+  "computation_kind": "fourier-gradient",
+  "production_entrypoint_reached": true,
+  "finite_outputs": true,
+  "frozen_teacher_unchanged": true,
+  "actual_device": "cuda:0",
+  "actual_training_images": 16,
+  "actual_native_batch_sizes": [
+    16,
+    16
+  ],
+  "sample_order_policy": "original_full_eligible_numpy_seed0",
+  "full_eligible_image_count": 13630,
+  "actual_training_image_ids": [
+    "000000168353",
+    "000000048204",
+    "000000394240",
+    "000000531061",
+    "000000234986",
+    "000000379914",
+    "000000122453",
+    "000000043248",
+    "000000027522",
+    "000000268941",
+    "000000426118",
+    "000000338745",
+    "000000286042",
+    "000000396611",
+    "000000218467",
+    "000000284680"
+  ],
+  "expected_training_image_ids": [
+    "000000168353",
+    "000000048204",
+    "000000394240",
+    "000000531061",
+    "000000234986",
+    "000000379914",
+    "000000122453",
+    "000000043248",
+    "000000027522",
+    "000000268941",
+    "000000426118",
+    "000000338745",
+    "000000286042",
+    "000000396611",
+    "000000218467",
+    "000000284680"
+  ],
+  "actual_forward_tensor_devices": [
+    "cuda:0"
+  ],
+  "actual_cuda_device_indices": [
+    0
+  ],
+  "selected_channel_count": 39,
+  "non_target_class_count": 79,
+  "independent_P3_selected_count": 48,
+  "SafeBG_loss_Fourier_gradient_norms": {
+    "L_BG": 0.022999508306384087,
+    "L_rel": 0.022870689630508423
+  },
+  "cache_memory": {
+    "selected_dim": 39,
+    "classes": 79,
+    "entries": 55,
+    "svd_precision_policy": "selected_dimension_float64_svd_v1",
+    "output_dtype": "torch.float32",
+    "max_entries": 8192,
+    "misses": 55,
+    "basis_bytes": 221052,
+    "entry_bytes": 73040,
+    "entry_upper_bound_bytes": 10878976
+  },
+  "per_loss_fourier_gradient_measurement": {
+    "measurement": "direct_autograd_fourier_coeff_v1",
+    "target": "trainer.fourier_coeff",
+    "parameter_shape": [
+      64,
+      3
+    ],
+    "parameter_device": "cuda:0",
+    "parameter_is_leaf": true,
+    "EOT_draws": 2,
+    "optimizer_gradient_accumulation_unchanged": true,
+    "per_draw_norms": [
+      {
+        "L_BG": 0.02572638913989067,
+        "L_rel": 0.02558278478682041
+      },
+      {
+        "L_BG": 0.021766824647784233,
+        "L_rel": 0.021663328632712364
+      }
+    ],
+    "mean_EOT_gradient_norms": {
+      "L_BG": 0.022999508306384087,
+      "L_rel": 0.022870689630508423
+    }
+  },
+  "per_loss_fourier_gradient_proof_sha256": "54a7669a200c5c1ad80a64d1d1e9c03b4e3cffcfa0661fc93ef090c884bdd0cb",
+  "poison_image_gradient_norms": {
+    "L_BG": 0.12035632878541946,
+    "L_rel": 0.12031465023756027
+  },
+  "baseline_equivalence_probe": {
+    "reference_id": "frozen original SafeBG weightless24D kernel 9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+    "reference_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+    "candidate_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261025_v3/teacher200/train/weights/last.pt",
+    "weights_usage": "checkpoint belongs to the production loss path; this isolated projection kernel has no learned weights",
+    "reference_source_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_calibration_20261025_0825z_detprobe/ue_framework/methods/safebg.py",
+    "reference_source_sha256": "9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5",
+    "candidate_source_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261027_risk_formal_gpu16a/ue_framework/methods/safebg.py",
+    "candidate_source_sha256": "e0bfe9a5c86591c91e2ac1b560923994f1a322e6d34ec567e44bbeb01b673043",
+    "metric_name": "24D projected output Frobenius norm",
+    "reference_metric": 9.589117050170898,
+    "candidate_metric": 9.589117050170898,
+    "absolute_difference": 0.0,
+    "tolerance": 0,
+    "all_outputs_and_diagnostics_exact": true,
+    "RNG_restored": true,
+    "actual_tensor_device": "cuda:0",
+    "evaluation_setting": {
+      "dataset": "fixed synthetic24D tensor fixture; no VOC/COCO AP",
+      "seed": 157,
+      "sample_count": 2,
+      "parameters": {
+        "rank": 8,
+        "removal_alpha": 0.5,
+        "active_k": 3
+      },
+      "post_processing": "none"
+    }
+  },
+  "tfss_training_proof": {
+    "contract": "canonical-original-S4-TFSS-U-v1",
+    "trainer": "ue_framework.methods.s4_tfss.S4Trainer",
+    "optimizer": "ue_framework.methods.s4_optimization.optimize_s4",
+    "TFSS_mode": "TFSS-U",
+    "eta": 0.85,
+    "canonical_lock_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+    "total_EOT_draws": 2,
+    "nonunit_weight_draws": 2,
+    "frozen_scaled_inputs": 2,
+    "adaptive_scaled_inputs": 2,
+    "retained_draws": [
+      {
+        "image_ids": [
+          "000000168353",
+          "000000048204",
+          "000000394240",
+          "000000531061",
+          "000000234986",
+          "000000379914",
+          "000000122453",
+          "000000043248",
+          "000000027522",
+          "000000268941",
+          "000000426118",
+          "000000338745",
+          "000000286042",
+          "000000396611",
+          "000000218467",
+          "000000284680"
+        ],
+        "W_min": 0.8500000238418579,
+        "W_max": 1.0,
+        "W_support_quantiles": [
+          0.8500000238418579,
+          0.9364244341850281,
+          0.9844526052474976,
+          1.0,
+          1.0
+        ],
+        "W_support_mean": 0.9753722548484802,
+        "W_detached": true,
+        "weighted_vs_base_delta_max": 0.0011823526583611965,
+        "weighted_vs_base_delta_support_l2": 0.40970760583877563,
+        "weighted_vs_base_coefficient_gradient_max": 4.704647064208984,
+        "weighted_delta_coefficient_gradient_finite": true,
+        "Frozen_sink": "shared EOT output -> unchanged native letterbox -> actual Frozen forward",
+        "Adaptive_sink": "actual TFSS weighted poison -> original selected inner batch",
+        "weighted_delta_exact": true,
+        "frozen_scaled_input_observed": true,
+        "adaptive_scaled_input_observed": true,
+        "map_records_sha256": "747693c57cf592c21fefe53c44b00c5523f35f5af7bc6e7e64bd00aebec5753a"
+      },
+      {
+        "image_ids": [
+          "000000168353",
+          "000000048204",
+          "000000394240",
+          "000000531061",
+          "000000234986",
+          "000000379914",
+          "000000122453",
+          "000000043248",
+          "000000027522",
+          "000000268941",
+          "000000426118",
+          "000000338745",
+          "000000286042",
+          "000000396611",
+          "000000218467",
+          "000000284680"
+        ],
+        "W_min": 0.8500000238418579,
+        "W_max": 1.0,
+        "W_support_quantiles": [
+          0.8500000238418579,
+          0.9364244341850281,
+          0.9844526052474976,
+          1.0,
+          1.0
+        ],
+        "W_support_mean": 0.9753722548484802,
+        "W_detached": true,
+        "weighted_vs_base_delta_max": 0.0011823526583611965,
+        "weighted_vs_base_delta_support_l2": 0.40970760583877563,
+        "weighted_vs_base_coefficient_gradient_max": 3.927251100540161,
+        "weighted_delta_coefficient_gradient_finite": true,
+        "Frozen_sink": "shared EOT output -> unchanged native letterbox -> actual Frozen forward",
+        "Adaptive_sink": "actual TFSS weighted poison -> original selected inner batch",
+        "weighted_delta_exact": true,
+        "frozen_scaled_input_observed": true,
+        "adaptive_scaled_input_observed": true,
+        "map_records_sha256": "747693c57cf592c21fefe53c44b00c5523f35f5af7bc6e7e64bd00aebec5753a"
+      }
+    ],
+    "cache_identity": {
+      "reference_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+      "maps_code_sha256": "11a4d7b330c63b5e8c7ef65182b5fb0c65adb017d21fcd908843b741fd912129",
+      "risk_code_sha256": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e",
+      "map_version": "masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-image-canonical-canvas-v2",
+      "canonical_lock_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+      "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+      "risk_estimator_code_sha256": "e8af240343a12bc22951c8a48e9c099d9abf1a2c3ffeebfd926c5c366e2b1e07",
+      "risk_policy_spec_sha256": "2dbd96e112f86359e97457c19a411e8c9f2a7fcce0f4535c50e59c58cedbba48",
+      "risk_cache_adapter_sha256": "94181da621708ffc4e2b191d02634edb1b5aeee24f1bb3ffb7f62331aa77a956",
+      "normal_native_estimator_sha256": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e"
+    },
+    "canonical_sources": {
+      "ue_framework/methods/s4_tfss.py": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d",
+      "ue_framework/methods/tfss_spatial.py": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd",
+      "ue_framework/methods/s4_optimization.py": "26fda46bddd9ac30a0386870ccef6074b06b916a25669afeb6b9d7abcedd8604"
+    }
+  },
+  "production_forward_calls": 44,
+  "actual_fourier_optimizer_updates": 1,
+  "actual_eot_samples": 2,
+  "parameter_updates": true,
+  "Fourier_gradient_norm": 0.04581703990697861,
+  "max_abs_delta": 0.00788235291838646,
+  "outside_support_max": 0.0,
+  "learned_fourier_max_abs_change": 0.0009999993490055203,
+  "native_rng_sha256": "959974c2aad88033a1271f92df382fb0ba99c15896e69fdaa8cec15d776d4dea",
+  "retained": [
+    "phase_spec.json",
+    "global_params.pt",
+    "diagnostics.csv",
+    "diagnostics.json",
+    "native_rng_state.pt",
+    "imported_calibration/"
+  ],
+  "completed_UTC": "2026-10-27T03:10:41.157116+00:00",
+  "projector_precision_validation": {
+    "all_native_cached_ranks_eight": true,
+    "maximum_native_cached_Gram": 2.384185791015625e-07,
+    "historical_failed_order": [
+      38,
+      24,
+      26
+    ],
+    "historical_failed_order_in_native_cache": true,
+    "historical_failed_order_Gram": 1.1920928955078125e-07,
+    "thresholds_unchanged": true
+  },
+  "native_export_link_validation": {
+    "state": "passed",
+    "scope": "one real training image; bounded learned coefficients; NOT formal export",
+    "image_id": "000000168353",
+    "source_label_sha256": "8307f7e6f5ce6970eae38eacc808fca5c14e1ea266c35b6717c28c37a2aa2619",
+    "output_label_sha256": "8307f7e6f5ce6970eae38eacc808fca5c14e1ea266c35b6717c28c37a2aa2619",
+    "native_parameter_schema_accepted": true,
+    "native_parameter_identity": {
+      "source_commit": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+      "release_sha256": "6dcdd7ba2473df14fb093d96257650f9baa9c5c057bbe9693bc9fa37b9d16e04",
+      "phase_config_sha256": "054b04ac5ca0e20ae8b776d8428dcdbba135a18c0f8e8160c27c9d5e65776ecf",
+      "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+      "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+      "training_contract": "canonical-original-S4-TFSS-U-v1",
+      "cache_identity": {
+        "reference_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+        "maps_code_sha256": "11a4d7b330c63b5e8c7ef65182b5fb0c65adb017d21fcd908843b741fd912129",
+        "risk_code_sha256": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e",
+        "map_version": "masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-image-canonical-canvas-v2",
+        "canonical_lock_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+        "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+        "risk_estimator_code_sha256": "e8af240343a12bc22951c8a48e9c099d9abf1a2c3ffeebfd926c5c366e2b1e07",
+        "risk_policy_spec_sha256": "2dbd96e112f86359e97457c19a411e8c9f2a7fcce0f4535c50e59c58cedbba48",
+        "risk_cache_adapter_sha256": "94181da621708ffc4e2b191d02634edb1b5aeee24f1bb3ffb7f62331aa77a956",
+        "normal_native_estimator_sha256": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e"
+      }
+    },
+    "selected_parameter_shape": [
+      16,
+      3
+    ],
+    "native_final_image_matches_export_exact": true,
+    "comparison_context": "original generation mode on both sides; stochastic training unchanged",
+    "decoded_PNG_roundtrip_exact": true,
+    "decoded_budget": {
+      "max_bytes": 2,
+      "outside_nonzero": 0,
+      "overlap_max_bytes": 1
+    },
+    "actual_composition_device": "cuda:0",
+    "TFSS_map_source": {
+      "image_shape_hwc": [
+        640,
+        426,
+        3
+      ],
+      "canvas_hw": [
+        640,
+        448
+      ],
+      "target_objects": [
+        {
+          "valid": true,
+          "q10": 0.0002788524725474417,
+          "q90": 0.002163324737921357,
+          "bbox": [
+            0.6804342723004695,
+            0.5047499999999999,
+            0.518755868544601,
+            0.748875
+          ],
+          "raw_norm": 0.8278367519378662
+        },
+        {
+          "valid": true,
+          "q10": 0.00019469097605906427,
+          "q90": 0.0019424555357545614,
+          "bbox": [
+            0.31495305164319254,
+            0.4565,
+            0.6231924882629108,
+            0.88340625
+          ],
+          "raw_norm": 0.5481656789779663
+        },
+        {
+          "valid": true,
+          "q10": 0.0020945947617292404,
+          "q90": 0.01950891688466072,
+          "bbox": [
+            0.8602816901408451,
+            0.24142187499999998,
+            0.27624413145539906,
+            0.26503125
+          ],
+          "raw_norm": 3.1467599868774414
+        },
+        {
+          "valid": true,
+          "q10": 0.0024212279822677374,
+          "q90": 0.011538363993167877,
+          "bbox": [
+            0.9586384976525821,
+            0.2117265625,
+            0.07854460093896713,
+            0.22473437500000001
+          ],
+          "raw_norm": 1.6384238004684448
+        }
+      ],
+      "risk_classes": [
+        {
+          "valid": true,
+          "q10": 0.0001689417113084346,
+          "q90": 0.02256404235959053,
+          "cls": 27
+        },
+        {
+          "valid": true,
+          "q10": 7.189089228631929e-05,
+          "q90": 0.011160493828356266,
+          "cls": 43
+        },
+        {
+          "valid": true,
+          "q10": 0.00018575564899947494,
+          "q90": 0.011522037908434868,
+          "cls": 55
+        },
+        {
+          "valid": true,
+          "q10": 9.504589684183884e-07,
+          "q90": 0.016779568046331406,
+          "cls": 60
+        }
+      ],
+      "nt_matching": [
+        {
+          "gt_index": 0,
+          "cls": 60,
+          "positive_count": 10,
+          "native_positive_count": 10,
+          "coverage_mode": "native_all_GT_competition",
+          "coverage_status": "COVERED",
+          "box": 0.20619326829910278,
+          "cls_bce79": 1.3292875289916992,
+          "dfl": 0.8682846426963806,
+          "gains": [
+            7.5,
+            0.5,
+            1.5
+          ],
+          "weighted_loss": 3.5135202407836914
+        },
+        {
+          "gt_index": 3,
+          "cls": 55,
+          "positive_count": 10,
+          "native_positive_count": 10,
+          "coverage_mode": "native_all_GT_competition",
+          "coverage_status": "COVERED",
+          "box": 0.14022034406661987,
+          "cls_bce79": 1.1168255805969238,
+          "dfl": 0.8373041749000549,
+          "gains": [
+            7.5,
+            0.5,
+            1.5
+          ],
+          "weighted_loss": 2.8660216331481934
+        },
+        {
+          "gt_index": 4,
+          "cls": 55,
+          "positive_count": 10,
+          "native_positive_count": 10,
+          "coverage_mode": "native_all_GT_competition",
+          "coverage_status": "COVERED",
+          "box": 0.1359107345342636,
+          "cls_bce79": 1.1760460138320923,
+          "dfl": 1.0028581619262695,
+          "gains": [
+            7.5,
+            0.5,
+            1.5
+          ],
+          "weighted_loss": 3.111640691757202
+        },
+        {
+          "gt_index": 6,
+          "cls": 27,
+          "positive_count": 10,
+          "native_positive_count": 10,
+          "coverage_mode": "native_all_GT_competition",
+          "coverage_status": "COVERED",
+          "box": 0.25886988639831543,
+          "cls_bce79": 2.315579652786255,
+          "dfl": 1.1577003002166748,
+          "gains": [
+            7.5,
+            0.5,
+            1.5
+          ],
+          "weighted_loss": 4.835864543914795
+        },
+        {
+          "gt_index": 8,
+          "cls": 43,
+          "positive_count": 10,
+          "native_positive_count": 10,
+          "coverage_mode": "native_all_GT_competition",
+          "coverage_status": "COVERED",
+          "box": 0.2779678702354431,
+          "cls_bce79": 4.25119686126709,
+          "dfl": 0.7203488945960999,
+          "gains": [
+            7.5,
+            0.5,
+            1.5
+          ],
+          "weighted_loss": 5.2908806800842285
+        }
+      ],
+      "no_nt_gt": false,
+      "q_target_seconds": 0.6439742837101221,
+      "extra_nt_risk_seconds": 0.3286806493997574
+    },
+    "W_min": 0.8773751258850098,
+    "W_max": 1.0,
+    "Teacher_unchanged": true,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "extra_model_forwards": 0,
+    "formal_receipt_written": false
+  }
+}

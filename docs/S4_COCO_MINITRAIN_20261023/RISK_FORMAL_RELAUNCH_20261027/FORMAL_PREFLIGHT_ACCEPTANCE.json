@@ -1,0 +1,67 @@
+{
+  "schema": "s4.coco.independent-risk.formal-precheck.v1",
+  "state": "ALL_FORMAL_PRECHECKS_PASSED",
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1",
+  "source_commit": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+  "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+  "human_authorization_sha256": "a57df356ac2da01b488e60d14d9ec292f6866d2006ef252283f79981e6be4f9f",
+  "native_CPU16": "passed",
+  "native_CUDA16": "passed",
+  "read_only_main_audits": "passed",
+  "consumer_simulation": "passed",
+  "full25K_risk_audit": "accepted",
+  "fresh_Fourier_initialization": true,
+  "old12step_resume_allowed": false,
+  "strict_Original_S4_equivalence_claim": false,
+  "original_independent_review_count": 1,
+  "risk_F01_closed": true,
+  "independent_risk_verdict_sha256": "8b53de8bc0d852d1ebb6d1a0510855d6121171be5d7c2b240316793fc63daec4",
+  "CPU": {
+    "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261027_risk_formal_cpu16b/result/cpu_probe_summary.json",
+    "sha256": "591d12981f42b0b71d4e032799aa4fc6e7fd83694ea146ea7d4538fb43b3e67b"
+  },
+  "GPU": {
+    "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261027_risk_formal_gpu16a/result/smoke_summary.json",
+    "sha256": "89d6e4fc3c43f9948592adc9cb4ee5e2bb57d32789d2ce8b98b32e4493ae3230"
+  },
+  "population": {
+    "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_dim_20261027_risk_population01/result/risk_population_summary.json",
+    "sha256": "64b5f5992a656fca0fec7153080c7944e22c562d411f1ebd66615a6448fda421"
+  },
+  "actual_audits": {
+    "CPU": {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_FORMAL_BATCH16_coco_dim_20261027_risk_formal_cpu16b_INDEPENDENT_AUDIT.json",
+      "sha256": "64d87ccdd03283d0eaf3e2fdf7e6d99dce933849be43c24f65374610c78d4867",
+      "native_forwards": 44,
+      "Fourier_gradient_norms": {
+        "L_BG": 0.023283958435058594,
+        "L_rel": 0.023184968158602715
+      }
+    },
+    "GPU": {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_RISK_FORMAL_BATCH16_coco_dim_20261027_risk_formal_gpu16a_INDEPENDENT_AUDIT.json",
+      "sha256": "4527352c9a57c0cf482baad9cadb8cf6e51830b085cec2e81a46db87ac095426",
+      "native_forwards": 44,
+      "Fourier_gradient_norms": {
+        "L_BG": 0.022999508306384087,
+        "L_rel": 0.022870689630508423
+      }
+    }
+  },
+  "consumer_simulation_summary_sha256": "08d3c50c0680e6d3c3c534684145a5761b51b3450cf4595ca4e0a7b9b83a7ee6",
+  "original_framework_and_scientific_YAML_files_byte_exact": 60,
+  "risk_math_AST_exact_to": "6f54647243e2a5c7bffe3b91ca2f734454fa30ab",
+  "perturbation_budget_bytes": {
+    "Person_exclusive": 8,
+    "GT_overlap": 4,
+    "outside_Person": 0
+  },
+  "selected_TSFL_channels": 39,
+  "NT_classes": 79,
+  "independent_P3_channels": 48,
+  "no_new_scientific_review": true,
+  "original_negative_verdict_preserved": true,
+  "old_failed_workflow_immutable": true,
+  "formal_controller_started": false,
+  "closed_UTC": "2026-10-27T03:16:14.584139+00:00"
+}

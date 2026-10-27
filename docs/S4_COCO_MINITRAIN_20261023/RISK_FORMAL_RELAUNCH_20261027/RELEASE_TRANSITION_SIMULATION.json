@@ -1,0 +1,33 @@
+{
+  "state": "passed",
+  "SIMULATION_ONLY": true,
+  "cases": [
+    {
+      "case": "metadata_only_transition",
+      "passed": true
+    },
+    {
+      "case": "teacher_drift",
+      "passed": true
+    },
+    {
+      "case": "source_drift",
+      "passed": true
+    },
+    {
+      "case": "file_drift",
+      "passed": true
+    },
+    {
+      "case": "hash_drift",
+      "passed": true
+    },
+    {
+      "case": "validation_mode",
+      "passed": true
+    }
+  ],
+  "model_forwards": 0,
+  "GPU_initialized": false,
+  "formal_started": false
+}
