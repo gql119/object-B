@@ -122,10 +122,34 @@ def read_dependency(transport):
     return json.loads(result.stdout)
 
 
-def build(tag, head, observation):
+def cpu_evidence(transport, tag, head, observation):
+    tag = candidate_name(tag)
+    spec=load(EX/(tag+'.json'))
+    if spec['source']['commit']!=head or spec['metadata'].get('expected_device')!='cpu':
+        raise ValueError('CPU export probe is not the current published CPU candidate')
+    remote=spec['remote']['output_root']+'/result/cpu_probe_summary.json'
+    raw=transport.download(remote)
+    if len(raw)>2**20:raise ValueError('CPU export receipt exceeds bounded size')
+    value=json.loads(raw)
+    expected=dict(state='passed',phase='export25k',source_commit=head,actual_device='cpu',cpu_probe=True,
+        Fourier_receipt_sha256=observation['fourier_dependency']['accepted_sha256'],
+        Fourier_params_sha256=observation['fourier_dependency']['params_sha256'],
+        teacher_checkpoint_sha256=observation['teacher_dependency']['checkpoint_sha256'],
+        phase_config_sha256=sha(ROOT/'coco_s4/configs/export25k.json'),
+        CUDA_initialized=False,actual_training_images=1,finite_outputs=True,
+        decoded_budget_passed=True,labels_byte_identical=True,parameter_updates=False,
+        validation_used=False,official_metrics_disabled=True,artifact_ingest_disabled=True)
+    if any(value.get(k)!=v for k,v in expected.items()) or not 1<=value.get('production_forward_calls',0)<=100:
+        raise ValueError('Actual CPU export evidence did not pass the exact current gate')
+    return dict(path=remote,sha256=hashlib.sha256(raw).hexdigest())
+
+
+def build(tag, head, observation, *, kind='gpu', cpu_validation=None):
     if observation['state'] != 'READY_FOR_ISOLATED_PHASE_VALIDATION':
         raise ValueError('Accepted Original S4 predecessor phases/fresh capacity are not ready')
     tag = candidate_name(tag)
+    if kind not in ('cpu','gpu') or (kind=='gpu' and not cpu_validation):
+        raise ValueError('GPU export validation requires a real current-source CPU probe')
     native = load(EX/'ACTUAL_TEACHER_NATIVE_SOURCE_AUDIT_20261025.json')
     names = subprocess.check_output(['git', '-C', str(ROOT), 'ls-files'], text=True).splitlines()
     selected = [name for name in names if name.startswith(('coco_s4/', 'ue_framework/', 'configs/')) or name in
@@ -161,6 +185,8 @@ def build(tag, head, observation):
                        params_sha256=fourier['params_sha256'], optimizer_steps=fourier['optimizer_steps'],
                        train_manifest_sha256=fourier['train_manifest_sha256'],
                        calibration_receipt_sha256=fourier['calibration_receipt_sha256']))
+    if cpu_validation is not None:
+        release['cpu_export_validation']=cpu_validation
     validate_phase_config(load(ROOT/'coco_s4/configs/export25k.json'))
     local = EX/tag/'source_release.json'
     from .workflow_admission import attach
@@ -178,25 +204,26 @@ def build(tag, head, observation):
     template['session']['name'] = tag
     unit = 's4coco-export-'+hashlib.sha256(tag.encode()).hexdigest()[:24]
     phase_args = [PYTHON, '-B', '-m', 'coco_s4.phase_export', '--release', remote_release,
-                  '--output', output+'/result', '--smoke-images', '1']
+                  '--output', output+'/result', '--cpu-probe-images' if kind=='cpu' else '--smoke-images', '1']
     template['workload'] = dict(cwd='.', argv=['systemd-run', '--user', '--scope', '--quiet', '--unit='+unit,
         PYTHON, '-B', '-m', 'coco_s4.process', '--job', output+'/supervision', '--cwd', repo, '--', *phase_args])
     template['anchors'] = [dict(name='phase_release', local_path=str(local), remote_path=remote_release,
                                  sha256=sha(local))]
-    adapter = "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'result/status.json';s=json.loads(p.read_text()) if p.exists() else {};print(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=s.get('state')!='FAILED',complete=s.get('state')=='passed',progress=s,artifacts=['result/status.json','result/smoke_summary.json'])))"
+    summary_name='cpu_probe_summary.json' if kind=='cpu' else 'smoke_summary.json'
+    adapter = "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'result/status.json';s=json.loads(p.read_text()) if p.exists() else {};print(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=s.get('state')!='FAILED',complete=s.get('state')=='passed',progress=s,artifacts=['result/status.json','result/"+summary_name+"'])))"
     for health in template['health'].values():
         health['adapter_argv'] = [PYTHON, '-B', '-c', adapter]
         health['gpu_utilization_policy'] = 'advisory'
         health['timeout_seconds'] = 900
     template['artifacts'] = [dict(path='result/'+name, required=True) for name in
-                             ('smoke_summary.json', 'phase_spec.json', 'status.json')]
+                             (summary_name, 'phase_spec.json', 'status.json')]
     template['local_pull_root'] = str(EX/'p')
     template['metadata'] = dict(execution_purpose='isolated_export25k_pre_review_smoke',
         computation_kind='poisoned-export', candidate_commit=head, cleanup_policy='retain_all',
         official_metrics_disabled=True, artifact_ingest_disabled=True, validation_used=False,
         parameter_updates=False, actual_training_images=1, raw_forward_maximum=100,
         no_formal_phase_registration=True, no_second_controller=True, no_parameter_or_AP_tuning=True,
-        expected_device='cuda:0')
+        expected_device='cpu' if kind=='cpu' else 'cuda:0',cpu_probe=kind=='cpu')
     from remote_run_control.models import RunSpec
     RunSpec.from_dict(template)
     spec = EX/(tag+'.json')
@@ -205,7 +232,7 @@ def build(tag, head, observation):
     return spec
 
 
-def prepare(tag):
+def prepare(tag, kind='gpu', cpu_tag=None):
     tag = candidate_name(tag)
     if (EX/(tag+'.json')).exists() or (EX/'rrctl_state'/tag).exists() or (EX/tag).exists():
         raise FileExistsError('Prepared/bound export candidate exists: inspect only')
@@ -213,7 +240,10 @@ def prepare(tag):
     observation = read_dependency(transport)
     if observation['state'] != 'READY_FOR_ISOLATED_PHASE_VALIDATION':
         print(json.dumps(observation)); return
-    spec = build(tag, current_source(), observation)
+    head=current_source()
+    if kind=='gpu' and not cpu_tag:raise ValueError('GPU export preparation requires --cpu-tag')
+    evidence=cpu_evidence(transport,cpu_tag,head,observation) if kind=='gpu' else None
+    spec = build(tag, head, observation, kind=kind, cpu_validation=evidence)
     print(json.dumps(dict(prepared=str(spec), candidate_commit=commit(), launched=False, formal_registered=False)))
 
 
@@ -256,6 +286,8 @@ def register(tag, review_path):
     if not spec_path.is_file() or not (EX/'rrctl_state'/tag).exists():
         raise ValueError('No RRCTL-bound export CUDA smoke')
     spec=load(spec_path)
+    if spec['metadata'].get('expected_device')!='cuda:0':
+        raise ValueError('Only an actual CUDA export smoke can register the formal phase')
     if current_source()!=spec['source']['commit']:
         raise ValueError('Export review source differs from the published candidate')
     summary_path=Path(spec['local_pull_root'])/tag/'result'/'smoke_summary.json'
@@ -287,6 +319,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('action', choices=('prepare', 'launch-smoke','register'))
     parser.add_argument('--tag', required=True);parser.add_argument('--review',type=Path)
+    parser.add_argument('--kind',choices=('cpu','gpu'),default='gpu');parser.add_argument('--cpu-tag')
     args = parser.parse_args()
     if args.action=='register' and args.review is None:parser.error('register requires --review JSON')
-    {'prepare': prepare, 'launch-smoke': launch_smoke,'register':register}[args.action](args.tag,*(([args.review] if args.action=='register' else [])))
+    if args.action=='prepare':prepare(args.tag,args.kind,args.cpu_tag)
+    elif args.action=='register':register(args.tag,args.review)
+    else:launch_smoke(args.tag)

@@ -41,6 +41,7 @@ def export_link(trainer,cfg,method_cfg,params_path,image_path,output):
             trainer.tfss_weight=old_weight
             trainer.is_universal_training=old_training_mode
     native=poison[0].permute(1,2,0).cpu().numpy()
+    max_abs_difference=float(np.max(np.abs(native.astype(np.float64)-candidate.astype(np.float64))))
     if not np.array_equal(native,candidate):raise ValueError('Native final-image S4/export construction differs')
     path=output/(Path(image_path).stem+'.png');_save_png(path,png,cv2)
     decoded=_decode_png(path,cv2);clean_u8=np.rint(clean*255).astype(np.uint8)
@@ -53,6 +54,7 @@ def export_link(trainer,cfg,method_cfg,params_path,image_path,output):
         image_id=Path(image_path).stem,source_label_sha256=sha(label),output_label_sha256=sha(target),
         native_parameter_schema_accepted=True,native_parameter_identity=identity,
         selected_parameter_shape=list(params['fourier_coeff'].shape),native_final_image_matches_export_exact=True,
+        native_vs_export_max_abs_difference=max_abs_difference,comparison_tolerance=0.,
         comparison_context='original generation mode on both sides; stochastic training unchanged',
         decoded_PNG_roundtrip_exact=True,decoded_budget=audit,actual_composition_device=str(delta.device),
         TFSS_map_source=records[0],W_min=float(weight.min()),W_max=float(weight.max()),

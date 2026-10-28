@@ -215,7 +215,30 @@ def formal_gate(registration, release_path, manifest, config_sha):
     return review, smoke
 
 
-def run(release_path, output, *, registration=None, smoke_images=0):
+def cpu_export_dependency(manifest):
+    """The GPU/export release must consume a real same-source CPU export probe."""
+    from .runtime import load, sha
+    from .phase_contract import OWNED
+    entry = manifest.get('cpu_export_validation', {})
+    path = Path(entry.get('path', '')).resolve()
+    if not path.is_relative_to((OWNED/'validation').resolve()) or not path.is_file() or sha(path)!=entry.get('sha256'):
+        raise ValueError('Export lacks an immutable real CPU export probe')
+    value = load(path)
+    expected = dict(state='passed', phase=PHASE, source_commit=manifest['source_commit'],
+        actual_device='cpu', cpu_probe=True, actual_training_images=1,
+        Fourier_receipt_sha256=manifest['fourier_dependency']['accepted_sha256'],
+        Fourier_params_sha256=manifest['fourier_dependency']['params_sha256'],
+        teacher_checkpoint_sha256=manifest['teacher_dependency']['checkpoint_sha256'],
+        phase_config_sha256=sha(Path(__file__).resolve().parents[1]/manifest['phase_config_path']),
+        production_entrypoint_reached=True, finite_outputs=True, decoded_budget_passed=True,
+        labels_byte_identical=True, parameter_updates=False, validation_used=False,
+        official_metrics_disabled=True, artifact_ingest_disabled=True, CUDA_initialized=False)
+    if any(value.get(k)!=v for k,v in expected.items()) or not 1<=value.get('production_forward_calls',0)<=100:
+        raise ValueError('CPU export evidence does not match current source/data/learned parameters')
+    return value
+
+
+def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_images=0):
     import copy
     import cv2
     import numpy as np
@@ -252,20 +275,25 @@ def run(release_path, output, *, registration=None, smoke_images=0):
             raise ValueError('Export TFSS/native pixel source is outside the immutable source release: '+relative)
     validate_fourier_source_config(yaml.safe_load((Path(__file__).resolve().parents[1]/MAIN_CONFIG).read_text(encoding='utf-8')))
     config_sha = sha(Path(__file__).resolve().parents[1]/manifest['phase_config_path'])
-    if smoke_images:
-        if smoke_images != 1 or not output.is_relative_to((OWNED/'validation').resolve()):
-            raise ValueError('Export smoke is exactly one real image under the owned validation root')
+    if cpu_probe_images not in (0,1) or (cpu_probe_images and smoke_images):
+        raise ValueError('CPU and CUDA export probes are separate one-image jobs')
+    bounded_images = smoke_images or cpu_probe_images
+    if bounded_images:
+        if bounded_images != 1 or registration is not None or not output.is_relative_to((OWNED/'validation').resolve()):
+            raise ValueError('Export probe is exactly one real image under the owned validation root')
     elif output != (WORKFLOW_OUTPUT/'export25k').resolve() or registration is None:
         raise ValueError('Formal poisoned export must use the existing serial stage output and READY gate')
     calibration_path, calibration, _ = __import__('coco_s4.phase_fourier', fromlist=['accepted_calibration_dependency']).accepted_calibration_dependency(manifest)
     fourier_path, fourier, params_path = accepted_fourier_dependency(manifest)
     validate_accepted_calibration(calibration)
     validate_accepted_fourier(fourier, calibration)
-    if smoke_images:
+    if bounded_images:
         review = smoke = None
     else:
         review, smoke = formal_gate(registration, release_path, manifest, config_sha)
-    if not torch.cuda.is_available():
+    if not cpu_probe_images:
+        cpu_export_dependency(manifest)
+    if not cpu_probe_images and not torch.cuda.is_available():
         raise ValueError('Original S4 export production path requires the admitted CUDA0 device')
     if output.exists():
         raise FileExistsError('Export output exists; preserve it and use a new diagnosed recovery identity')
@@ -274,7 +302,7 @@ def run(release_path, output, *, registration=None, smoke_images=0):
     os.environ['YOLO_CONFIG_DIR'] = str(output/'yolo_settings')
     os.environ['MPLCONFIGDIR'] = str(output/'mpl')
     torch.set_num_threads(1)
-    device = torch.device('cuda:0')
+    device = torch.device('cpu' if cpu_probe_images else 'cuda:0')
     common = dict(phase=PHASE, source_commit=manifest['source_commit'],
                   release_sha256=sha(release_path), phase_config_sha256=config_sha,
                   teacher_checkpoint_sha256=manifest['teacher_dependency']['checkpoint_sha256'],
@@ -284,7 +312,8 @@ def run(release_path, output, *, registration=None, smoke_images=0):
                   train_manifest_sha256=calibration['accepted_clean_train_manifest_sha256'],
                   TFSS_mode='TFSS-U', TFSS_map_version=TFSS_MAP_VERSION, TFSS_eta=.85,
                   validation_used=False, official_metrics_disabled=True, artifact_ingest_disabled=True,
-                  cleanup_policy='retain_all', deleted_paths=[])
+                  cleanup_policy='retain_all', deleted_paths=[], cpu_probe=bool(cpu_probe_images),
+                  risk_estimator_policy=manifest['risk_estimator_policy'], strict_Original_S4_equivalence_claim=False)
     status = dict(common, state='RUNNING', started_UTC=now(), smoke=bool(smoke_images))
     atomic(output/'status.json', status)
     write_once(output/'phase_spec.json', dict(common, phase_config=phase_cfg,
@@ -298,7 +327,7 @@ def run(release_path, output, *, registration=None, smoke_images=0):
         imported_root, imported = copy_calibration_consumer_artifacts(
             output, dict(manifest=manifest, receipt=calibration,
                          phase_spec=load(WORKFLOW_OUTPUT/'calibration'/'phase_spec.json')))
-        cfg, _ = runtime_config(phase_cfg, manifest, imported_root, smoke=bool(smoke_images))
+        cfg, _ = runtime_config(phase_cfg, manifest, imported_root, smoke=bool(bounded_images))
         method_cfg = cfg['methods']['legacy_kproto_ret']
         images, expected_hashes, expected_digest = train_manifest()
         if expected_digest != calibration['accepted_clean_train_manifest_sha256']:
@@ -306,7 +335,7 @@ def run(release_path, output, *, registration=None, smoke_images=0):
         if fourier['train_manifest_sha256'] != expected_digest:
             raise ValueError('Accepted Fourier phase used a different clean train manifest')
         eligible_document = load(imported_root/'collected'/'eligible_support_manifest.json')
-        if smoke_images:
+        if bounded_images:
             selected_path = _eligible_probe_path(eligible_document, DATA_ROOT/'images/train')
             selected = [selected_path]
         else:
@@ -342,8 +371,10 @@ def run(release_path, output, *, registration=None, smoke_images=0):
         def observe_forward(module,args,result):
             devices,indices=raw_tensor_device_details(result)
             signature=raw_signature(result)
-            if not signature or devices!=['cuda:0'] or indices!=[0]:
-                raise ValueError('Actual export TFSS native forward did not return finite CUDA0 tensors')
+            expected_devices=['cpu'] if cpu_probe_images else ['cuda:0']
+            expected_indices=[] if cpu_probe_images else [0]
+            if not signature or devices!=expected_devices or indices!=expected_indices:
+                raise ValueError('Actual export TFSS forward tensor device differs from the declared CPU/CUDA probe')
             forward_calls.append(dict(devices=devices,cuda_indices=indices,raw_tensors=signature))
         hook = teacher.register_forward_hook(observe_forward)
         images_out = output/'poisoned'/'images'/'train'
@@ -376,8 +407,10 @@ def run(release_path, output, *, registration=None, smoke_images=0):
                     if is_person:
                         if not np.any(support):
                             raise ValueError('Person GT has no original S4 support: '+stem)
-                        maps, map_records = trainer.s4_cache.get(
-                            trainer, [(clean, anns, support)], [str(image_path)])
+                        from .canonical_s4_training import cpu_rng_isolation
+                        with cpu_rng_isolation(device):
+                            maps, map_records = trainer.s4_cache.get(
+                                trainer, [(clean, anns, support)], [str(image_path)])
                         q, risk, _valid = maps[0]
                         result = generator.generate(image=clean, annotations=anns, seed=index,
                                                     steps=24, eps=8/255, support_type='mask',
@@ -447,12 +480,18 @@ def run(release_path, output, *, registration=None, smoke_images=0):
                                PSNR_db=psnr, tfss=tfss_evidence)
                     stream.write(json.dumps(row, sort_keys=True, allow_nan=False)+'\n')
                     row_count += 1
-                    if smoke_images and (len(anns) == 0 or target_pixels+overlap == 0):
+                    if bounded_images and (len(anns) == 0 or target_pixels+overlap == 0):
                         raise ValueError('Bounded exporter smoke image must contain a real eligible Person support')
+                    if bounded_images:
+                        from .repair_validation import export_link
+                        calls_before_link=len(forward_calls)
+                        native_export_link=export_link(trainer,cfg,method_cfg,params_path,image_path,output)
+                        if len(forward_calls)!=calls_before_link:
+                            raise ValueError('Cached final-generation equivalence probe unexpectedly ran extra model forwards')
         finally:
             hook.remove()
         manifest_sha = sha(manifest_path)
-        if smoke_images:
+        if bounded_images:
             if row_count != 1 or not 1 <= len(forward_calls) <= 100:
                 raise ValueError('Export smoke must process one real eligible image within 100 forwards')
         else:
@@ -463,19 +502,23 @@ def run(release_path, output, *, registration=None, smoke_images=0):
         if (model_hash(teacher) != frozen_sha or model_hash(trainer.adaptive.model) != adaptive_before
                 or sha(params_path) != params_hash_before):
             raise ValueError('Export modified a fixed Teacher copy or learned Fourier parameters')
-        if smoke_images:
+        if bounded_images:
             result = dict(common, state='passed', computation_kind='poisoned-export',
                           production_entrypoint_reached=True, finite_outputs=True,
                           decoded_budget_passed=True, labels_byte_identical=True,
-                          actual_device='cuda:0', actual_training_images=1,
+                          actual_device=str(device), actual_training_images=1,
                           production_forward_calls=len(forward_calls), parameter_updates=False,
+                          native_export_link_validation=native_export_link,
                           actual_forward_evidence=forward_calls,
                           validation_used=False, official_metrics_disabled=True,
                           artifact_ingest_disabled=True, row_count=row_count,
                           manifest_sha256=manifest_sha, max_decoded_byte_difference=max_bytes,
                           max_overlap_byte_difference=overlap_max, outside_nonzero_pixels=outside_pixels,
-                          cleanup_policy='retain_all', completed_UTC=__import__('coco_s4.runtime', fromlist=['now']).now())
-            write_once(output/'smoke_summary.json', result)
+                          cleanup_policy='retain_all', CUDA_initialized=torch.cuda.is_initialized(),
+                          completed_UTC=__import__('coco_s4.runtime', fromlist=['now']).now())
+            if cpu_probe_images and result['CUDA_initialized']:
+                raise ValueError('CPU export probe initialized CUDA')
+            write_once(output/('cpu_probe_summary.json' if cpu_probe_images else 'smoke_summary.json'), result)
             atomic(output/'status.json', result)
             return result
         accepted = dict(common, state='ACCEPTED', computation_kind='original-S4-poisoned-COCO25K',
@@ -511,5 +554,7 @@ if __name__ == '__main__':
     parser.add_argument('--output', required=True, type=Path)
     parser.add_argument('--registration', type=Path)
     parser.add_argument('--smoke-images', type=int, default=0)
+    parser.add_argument('--cpu-probe-images', type=int, default=0)
     args = parser.parse_args()
-    run(args.release, args.output, registration=args.registration, smoke_images=args.smoke_images)
+    run(args.release, args.output, registration=args.registration, smoke_images=args.smoke_images,
+        cpu_probe_images=args.cpu_probe_images)
