@@ -191,7 +191,11 @@ def cfg_predecessor(manifest, phase):
     return expected
 
 
-def _workflow_slot(phase, *, smoke):
+def _workflow_slot(phase, *, smoke, manifest):
+    from .workflow_admission import validate as validate_controller_admission
+    if manifest.get('phase') != phase:
+        raise ValueError('Victim phase differs from its immutable release')
+    admission = validate_controller_admission(manifest)
     pipeline_path = WORKFLOW_OUTPUT/'pipeline_state.json'
     pipeline = load(pipeline_path)
     controller = pipeline.get('controller', {})
@@ -204,7 +208,7 @@ def _workflow_slot(phase, *, smoke):
             or fields[0] == 'Z'):
         raise ValueError('Existing serial controller PID/start/owner identity changed')
     if (pipeline.get('run_id') != WORKFLOW
-            or pipeline.get('source_commit') != 'ee0b4256fdd344c5a275e6d15efc78cb7636d6e1'):
+            or pipeline.get('source_commit') != admission['source_commit']):
         raise ValueError('Wrong active serial workflow binding')
     if smoke:
         if (pipeline.get('state') != 'WAITING_PHASE_RELEASE' or pipeline.get('current_stage') != phase
@@ -337,11 +341,11 @@ def run(release_path, output, *, registration=None, smoke_batches=0):
     if smoke_batches:
         if registration is not None or not output.is_relative_to((OWNED/'validation').resolve()):
             raise ValueError('Victim smoke must use a fresh isolated owned validation root')
-        _workflow_slot(phase_hint, smoke=True)
+        _workflow_slot(phase_hint, smoke=True, manifest=manifest)
     else:
         if registration is None or output != (WORKFLOW_OUTPUT/phase_hint).resolve():
             raise ValueError('Formal victim must use its registered existing serial phase output')
-        _workflow_slot(phase_hint, smoke=False)
+        _workflow_slot(phase_hint, smoke=False, manifest=manifest)
         _phase_formal_gate(registration, release_path, manifest, config_sha, phase_hint)
     output.mkdir(parents=True, exist_ok=False)
     os.environ['YOLO_CONFIG_DIR'] = str(output/'yolo_settings')
