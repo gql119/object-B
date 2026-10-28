@@ -274,27 +274,38 @@ class COCOMatchedTrainOnlyVictim:
         return _Victim
 
 
+def _record_initial_state(trainer, output, phase):
+    """Record identity without consuming a loader, model forward or RNG draw."""
+    import torch
+    state = {k: v.detach().clone() for k, v in trainer.model.state_dict().items()}
+    weights = output/'baseline_preupdate_state.pt'
+    torch.save(state, weights)
+    proof = dict(phase=phase, initial_state_sha256=canonical_model_state_sha256(state),
+                 weights_path=str(weights), weights_sha256=sha(weights),
+                 scope='initial model identity only; no forward/equivalence inference',
+                 model_forwards=0, training_batches_consumed=0)
+    write_once(output/'initial_state.json', proof)
+    return state, proof
+
+
 def _baseline_probe(trainer, output, phase):
     import copy
     import torch
     from ultralytics.nn.tasks import DetectionModel
     from ue_framework.methods.s4_tfss import restore_rng, rng_state
 
+    state, initial = _record_initial_state(trainer, output, phase)
     batch = trainer.preprocess_batch(next(iter(trainer.train_loader)))
-    state = {k: v.detach().clone() for k, v in trainer.model.state_dict().items()}
-    weights = output/'baseline_preupdate_state.pt'
-    torch.save(state, weights)
-    initial_state_sha256 = canonical_model_state_sha256(state)
-    ref = DetectionModel(str(trainer.args.model), ch=3, nc=80, verbose=False).to(trainer.device)
-    candidate_conv = next(p for p in trainer.model.parameters() if p.ndim == 4)
-    if candidate_conv.is_contiguous(memory_format=torch.channels_last):
-        ref.to(memory_format=torch.channels_last)
-    ref.args = copy.deepcopy(trainer.model.args)
-    ref.names = copy.deepcopy(trainer.model.names)
-    ref.stride = trainer.model.stride
-    ref.load_state_dict(state)
     rng = rng_state()
     try:
+        ref = DetectionModel(str(trainer.args.model), ch=3, nc=80, verbose=False).to(trainer.device)
+        candidate_conv = next(p for p in trainer.model.parameters() if p.ndim == 4)
+        if candidate_conv.is_contiguous(memory_format=torch.channels_last):
+            ref.to(memory_format=torch.channels_last)
+        ref.args = copy.deepcopy(trainer.model.args)
+        ref.names = copy.deepcopy(trainer.model.names)
+        ref.stride = trainer.model.stride
+        ref.load_state_dict(state)
         trainer.model.train(); ref.train()
         restore_rng(rng)
         with torch.no_grad():
@@ -315,7 +326,7 @@ def _baseline_probe(trainer, output, phase):
                  candidate_id='COCOMatchedTrainOnlyVictim original native model.loss',
                  reference_metric=left, candidate_metric=right,
                  absolute_difference=abs(left-right), tolerance=0,
-                 weights_sha256=sha(weights), initial_state_sha256=initial_state_sha256,
+                 weights_sha256=initial['weights_sha256'], initial_state_sha256=initial['initial_state_sha256'],
                  official_metrics_disabled=True)
     write_once(output/'baseline_equivalence.json', proof)
     return proof
@@ -388,7 +399,8 @@ def run(release_path, output, *, registration=None, smoke_batches=0):
     trainer = victim_cls(overrides=overrides)
     holder = attach_safety_callbacks(trainer, amp_log_dir=output/'amp_audit', debug_hashes=False)
     def baseline(t):
-        proof = _baseline_probe(t, output, phase_hint)
+        proof = (_baseline_probe(t, output, phase_hint) if smoke_batches
+                 else _record_initial_state(t, output, phase_hint)[1])
         expected_initial = binding.get('matched_clean_initial_state_sha256')
         if expected_initial is not None and proof['initial_state_sha256'] != expected_initial:
             raise ValueError('Clean and poisoned victims do not share the same random initialization')
@@ -459,10 +471,10 @@ def run(release_path, output, *, registration=None, smoke_batches=0):
                         primary_checkpoint='last.pt@200', primary_checkpoint_sha256=sha(last),
                         best_secondary_checkpoint_sha256=sha(best),
                         full_state_sha256=sha(full),
-                        initial_state_sha256=load(output/'baseline_equivalence.json')['initial_state_sha256'],
+                        initial_state_sha256=load(output/'initial_state.json')['initial_state_sha256'],
                         initial_state_file_sha256=sha(output/'baseline_preupdate_state.pt'),
                         matched_clean_initial_state=(phase_hint == 'clean200' or
-                            load(output/'baseline_equivalence.json')['initial_state_sha256'] == binding.get('matched_clean_initial_state_sha256')),
+                            load(output/'initial_state.json')['initial_state_sha256'] == binding.get('matched_clean_initial_state_sha256')),
                         pretrained=False, actual_native_batches=observer.total_batches,
                         actual_native_updates=observer.updates, legal_amp_skips=observer.skips,
                         zero_validation_forwards=True, validation_forwards=0,

@@ -116,10 +116,12 @@ def read_dependency(transport, phase):
     return json.loads(return_code.stdout)
 
 
-def build(phase, tag, head, observation):
+def build(phase, tag, head, observation, *, smoke_batches=2):
     if observation.get('state') != 'READY_FOR_ISOLATED_PHASE_VALIDATION':
         raise ValueError('Serial predecessor chain/fresh no-conflict capacity is not ready')
     tag = candidate_name(phase, tag)
+    if isinstance(smoke_batches, bool) or not isinstance(smoke_batches, int) or not 1 <= smoke_batches <= 100:
+        raise ValueError('Victim probe budget must be 1..100 native batches')
     native = load(EX/'ACTUAL_TEACHER_NATIVE_SOURCE_AUDIT_20261025.json')
     names = subprocess.check_output(['git', '-C', str(ROOT), 'ls-files'], text=True).splitlines()
     selected = [n for n in names if n.startswith(('coco_s4/', 'ue_framework/', 'configs/')) or n in
@@ -165,7 +167,7 @@ def build(phase, tag, head, observation):
     template['workload'] = dict(cwd='.', argv=['systemd-run','--user','--scope','--quiet','--unit='+unit,
         PYTHON,'-B','-m','coco_s4.process','--job',output+'/supervision','--cwd',repo,'--',
         PYTHON,'-B','-m','coco_s4.phase_victim','--release',remote_release,'--output',output+'/result',
-        '--smoke-batches','2'])
+        '--smoke-batches',str(smoke_batches)])
     template['anchors'] = [dict(name='phase_release',local_path=str(local),remote_path=remote_release,sha256=sha(local))]
     adapter = "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'result/status.json';s=json.loads(p.read_text()) if p.exists() else {};print(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=s.get('state')!='FAILED',complete=s.get('state')=='passed',progress=s,artifacts=['result/status.json','result/smoke_summary.json'])))"
     for health in template['health'].values():
@@ -177,7 +179,7 @@ def build(phase, tag, head, observation):
     template['metadata'] = dict(execution_purpose='isolated_matched_victim_pre_review_smoke',
         computation_kind='native-train-only-victim',candidate_commit=head,cleanup_policy='retain_all',
         official_metrics_disabled=True,artifact_ingest_disabled=True,validation_used=False,
-        actual_native_batches=2,actual_updates_required=True,no_formal_phase_registration=True,
+        actual_native_batches=smoke_batches,actual_updates_required=True,no_formal_phase_registration=True,
         no_second_controller=True,checkpoint_selection_allowed=False)
     from remote_run_control.models import RunSpec
     RunSpec.from_dict(template)
@@ -186,14 +188,14 @@ def build(phase, tag, head, observation):
     return spec
 
 
-def prepare(phase, tag):
+def prepare(phase, tag, smoke_batches=2):
     candidate_name(phase, tag)
     if (EX/(tag+'.json')).exists() or (EX/'rrctl_state'/tag).exists() or (EX/tag).exists():
         raise FileExistsError('Prepared/bound victim smoke exists; inspect only')
     _,transport = services(); observation=read_dependency(transport,phase)
     if observation.get('state') != 'READY_FOR_ISOLATED_PHASE_VALIDATION':
         print(json.dumps(observation)); return
-    spec=build(phase,tag,current_source(),observation)
+    spec=build(phase,tag,current_source(),observation,smoke_batches=smoke_batches)
     print(json.dumps(dict(prepared=str(spec),candidate_commit=commit(),launched=False,formal_registered=False)))
 
 
@@ -277,9 +279,11 @@ def register(phase, tag, review_path):
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('action',choices=['prepare','launch-smoke','register']);p.add_argument('--phase',required=True,choices=sorted(PHASES));p.add_argument('--tag',required=True);p.add_argument('--review',type=Path)
+    p.add_argument('--smoke-batches',type=int,default=2)
     a=p.parse_args()
     if a.action=='register' and a.review is None: p.error('register requires --review JSON')
-    {'prepare':prepare,'launch-smoke':launch_smoke,'register':register}[a.action](a.phase,a.tag,*(([a.review] if a.action=='register' else [])))
+    if a.action=='prepare':prepare(a.phase,a.tag,a.smoke_batches)
+    else:{'launch-smoke':launch_smoke,'register':register}[a.action](a.phase,a.tag,*(([a.review] if a.action=='register' else [])))
 
 
 if __name__ == '__main__': main()
