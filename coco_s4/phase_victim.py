@@ -354,7 +354,8 @@ def run(release_path, output, *, registration=None, smoke_batches=0):
     (output/'yolo_settings').mkdir(); (output/'mpl').mkdir()
     import numpy as np
     import torch
-    from .teacher import attach_safety_callbacks, teacher_overrides
+    from .teacher import teacher_overrides
+    from ue_framework.s4_victim import attach_safety_callbacks
     from .phase_teacher import local_amp_check
 
     if not torch.cuda.is_available():

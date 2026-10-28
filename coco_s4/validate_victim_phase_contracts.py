@@ -1,5 +1,8 @@
 """CPU-only matched-victim protocol contracts; no dataset or training access."""
 import copy
+import ast
+import importlib
+import importlib.util
 import json
 from pathlib import Path
 
@@ -10,6 +13,17 @@ from .victim_release import READ_DEPENDENCY
 
 def main():
     root = Path(__file__).resolve().parents[1]
+    resolved_imports = []
+    tree = ast.parse((root/'coco_s4/phase_victim.py').read_text(encoding='utf-8'))
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.ImportFrom):
+            continue
+        module_name = importlib.util.resolve_name('.'*node.level+(node.module or ''), 'coco_s4') if node.level else node.module
+        module = importlib.import_module(module_name)
+        for item in node.names:
+            if item.name == '*' or not hasattr(module, item.name):
+                raise AssertionError('Production import cannot resolve: '+module_name+'.'+item.name)
+            resolved_imports.append(module_name+'.'+item.name)
     clean = json.loads((root/'coco_s4/configs/clean200.json').read_text(encoding='utf-8'))
     s4 = json.loads((root/'coco_s4/configs/s4_200.json').read_text(encoding='utf-8'))
     validate_phase_config(clean)
@@ -69,7 +83,10 @@ def main():
                 raise AssertionError(f'Invalid matched-victim contract accepted: {phase}/{group}/{key}')
     if len(invalid) != 13:
         raise AssertionError('Expected all 13 invalid protocol cases to be rejected')
+    if torch.cuda.is_initialized():
+        raise AssertionError('CPU contract/import validation initialized CUDA')
     print(json.dumps(dict(state='passed', phases=['clean200', 's4_200'],
+                          actual_production_imports_resolved=resolved_imports,
                           matched_training_protocol=True, invalid_contracts_rejected=len(invalid),
                           predecessor_bindings=2, canonical_state_hash_cases=3,
                           dataset_images_opened=0, GPU_units=0, official_metrics_enabled=False,
