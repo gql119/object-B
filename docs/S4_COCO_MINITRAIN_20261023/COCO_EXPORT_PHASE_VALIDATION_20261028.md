@@ -43,3 +43,11 @@ scientific review and main closure, and publish READY for the existing sole
 controller. All probe artifacts remain retained; no official metrics/ingest,
 parameter updates or cleanup are allowed. AT parallel-resource testing is
 deferred by the latest direct human instruction; no AT probe was launched.
+
+The first real CPU probe (`coco_export25k_20261028_cpu01`, source `cb028b4`)
+failed before output/model execution: the old export function imported
+`DATA_ROOT` from `phase_contract`, which does not export that name. The error
+and failed status are retained. This candidate imports the same unchanged
+constant from its canonical `runtime` module and checks every production
+relative import locally. It does not substitute a new dataset or relax any
+scientific check. The failed ID is not reused; a new CPU probe is required.

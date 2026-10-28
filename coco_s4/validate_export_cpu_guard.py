@@ -1,12 +1,22 @@
 """No-model simulation of the downstream CPU-evidence consumer; no formal receipt."""
 import copy
 import json
+import ast
+import importlib
+import inspect
 from unittest.mock import patch
 from .runtime import ROOT,sha,write_once,now
-from .phase_export import cpu_export_dependency
+from .phase_export import cpu_export_dependency,run
 
 
 def main():
+    imported=[]
+    for node in ast.walk(ast.parse(inspect.getsource(run))):
+        if isinstance(node,ast.ImportFrom) and node.level==1:
+            module=importlib.import_module('coco_s4.'+node.module)
+            for name in node.names:
+                if not hasattr(module,name.name):raise ImportError(node.module+'.'+name.name)
+                imported.append(node.module+'.'+name.name)
     out=ROOT/'execution'/('export_cpu_guard_'+now().replace(':','').replace('+','_'))
     path=out/'validation/cpu/result/cpu_probe_summary.json'
     source='a'*40
@@ -42,6 +52,7 @@ def main():
     report=dict(state='passed',scope='SIMULATION_ONLY CPU consumer guards',rejected=rejected,
         positive=1,negative=len(rejected),GPU_initialized=False,model_forwards=0,
         production_READY_written=False,fixture=str(out))
+    report['actual_production_relative_imports_resolved']=imported
     write_once(out/'report.json',report);print(json.dumps(report))
 
 

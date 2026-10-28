@@ -246,10 +246,10 @@ def run(release_path, output, *, registration=None, smoke_images=0, cpu_probe_im
     import yaml
     from .data import audit_pixels
     from .phase_calibration import FIXED_COUNTS, load_teacher, train_manifest
-    from .phase_contract import DATA_ROOT, OWNED, ROOT, WORKFLOW_OUTPUT, phase_release
+    from .phase_contract import OWNED, ROOT, WORKFLOW_OUTPUT, phase_release
     from .phase_fourier import (CALIBRATION_ARTIFACT_SUFFIXES, copy_calibration_consumer_artifacts,
                                 runtime_config, validate_fourier_source_config)
-    from .runtime import atomic, load, now, sha, write_once
+    from .runtime import DATA_ROOT, atomic, load, now, sha, write_once
     from ue_framework.data_utils import load_image_rgb_float, read_yolo_annotations
     from ue_framework.methods.legacy_kproto_ret import LegacyKProtoGenerator
     from ue_framework.methods.s4_tfss import CleanMapCache, S4Trainer, model_hash
