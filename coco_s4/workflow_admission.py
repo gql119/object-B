@@ -11,6 +11,17 @@ PREVIOUS={'export25k':'fourier24','clean200':'export25k','s4_200':'clean200',
           'official_eval':'s4_200','final_report':'official_eval'}
 
 
+def _same_live_controller(expected, actual):
+    """Match the stable process identity, ignoring snapshot-only status fields."""
+    from .serial import live
+    if not isinstance(expected,dict) or not isinstance(actual,dict):
+        return False
+    stable=('pid','uid','start_ticks')
+    if any(expected.get(key)!=actual.get(key) for key in stable):
+        return False
+    return live(actual)
+
+
 def local_controller_binding():
     """Read the real successful transport, never the failed first transport."""
     from .phase_contract import WORKFLOW,OWNED,WORKFLOW_OUTPUT
@@ -82,7 +93,7 @@ and its own production gate; no downstream scientific acceptance is inferred.
             or state.get('config_sha256')!=context['config']['sha256']
             or state.get('release_sha256')!=context['release']['sha256']
             or state.get('risk_estimator_policy')!=POLICY
-            or state.get('controller')!=context.get('controller_identity') or not live(state.get('controller'))):
+            or not _same_live_controller(context.get('controller_identity'),state.get('controller'))):
         raise ValueError('Expected sole controller is not alive with this immutable binding')
     if (state.get('current_stage')!=phase or state.get('state') not in ('WAITING_PHASE_RELEASE','RUNNING')
             or (state.get('state')=='RUNNING' and state.get('active_job')!=phase)):
