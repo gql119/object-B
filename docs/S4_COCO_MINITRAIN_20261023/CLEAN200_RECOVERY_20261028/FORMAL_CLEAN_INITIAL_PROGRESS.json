@@ -1,0 +1,36 @@
+{
+  "UTC": "2026-10-28T12:47:01.837780+00:00",
+  "state": "RUNNING",
+  "phase": "clean200",
+  "child": {
+    "pid": 3072365,
+    "start_ticks": 381613294,
+    "alive": true
+  },
+  "last_complete_native_batch": {
+    "epoch": "1",
+    "batch_index": "213",
+    "total_batches": "214",
+    "raw_loss": "451.418212890625",
+    "amp_scale_after": "1024.0",
+    "actual_updates_total": "208",
+    "skips_total": "6",
+    "model_finite": "True",
+    "EMA_finite": "True",
+    "optimizer_finite": "True",
+    "raw_loss_finite": "True",
+    "cuda_peak_memory_allocated": "4824744448"
+  },
+  "completed_epoch_rows": 0,
+  "latest_complete_epoch": null,
+  "initial_state": {
+    "phase": "clean200",
+    "initial_state_sha256": "73612936a770c79b1144b631f6aadaaa9b7b21b2dc01d292c9fee2ae2b6b14b7",
+    "weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/clean200/baseline_preupdate_state.pt",
+    "weights_sha256": "da3da67a43ca838ca36846a01bc03a289b16037808099b0016d84c7bcaa03efb",
+    "scope": "initial model identity only; no forward/equivalence inference",
+    "model_forwards": 0,
+    "training_batches_consumed": 0
+  },
+  "formal_log": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/jobs/clean200/console.log"
+}

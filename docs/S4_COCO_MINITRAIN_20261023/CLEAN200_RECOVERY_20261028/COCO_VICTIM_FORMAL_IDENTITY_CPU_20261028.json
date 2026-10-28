@@ -1,0 +1,20 @@
+{
+  "state": "passed",
+  "scope": "real native COCO80 CPU model; actual formal callback AST and initial identity function, not a complete training run",
+  "actual_model_class": "ultralytics.nn.tasks.DetectionModel",
+  "initial_state_sha256": "51085c973f1a3484733dc7cc3c6e401d4b1d09bee3fccd07926e2d0b64db83ac",
+  "callback_model_forwards": 0,
+  "callback_training_batches_consumed": 0,
+  "callback_RNG_unchanged": true,
+  "callback_model_and_BN_state_unchanged": true,
+  "reference_probe_not_called_on_formal_path": true,
+  "matched_initial_mismatch_rejected": true,
+  "invalid_probe_budgets_rejected": [
+    0,
+    101,
+    true,
+    -1
+  ],
+  "model_construction_scope": "native CPU model initialization occurred before measured callback; no training/data images",
+  "CUDA_initialized": false
+}

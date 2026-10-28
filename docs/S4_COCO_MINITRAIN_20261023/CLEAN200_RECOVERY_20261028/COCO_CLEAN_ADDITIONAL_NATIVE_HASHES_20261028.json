@@ -1,0 +1,21 @@
+{
+  "state": "passed",
+  "local_existing_root": "F:\\autodl-tmp - \u526f\u672c\\ue_project\\.venv-cfbdm\\Lib\\site-packages\\ultralytics",
+  "server_hashes": {
+    "nn/tasks.py": "c3896877977a1dca2ffaa1f4ad755ebd57342cae0ec80c78fa45edaa67f5823e",
+    "utils/loss.py": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d",
+    "data/dataset.py": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e",
+    "data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+    "data/base.py": "863018d66387a9904d61368c5058e2ce1cfe830b6fd99a399fe9df159d4b0555"
+  },
+  "local_hashes": {
+    "nn/tasks.py": "c3896877977a1dca2ffaa1f4ad755ebd57342cae0ec80c78fa45edaa67f5823e",
+    "utils/loss.py": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d",
+    "data/dataset.py": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e",
+    "data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+    "data/base.py": "863018d66387a9904d61368c5058e2ce1cfe830b6fd99a399fe9df159d4b0555"
+  },
+  "all_exact": true,
+  "source_contents_transferred": false,
+  "model_or_GPU_initialized": false
+}

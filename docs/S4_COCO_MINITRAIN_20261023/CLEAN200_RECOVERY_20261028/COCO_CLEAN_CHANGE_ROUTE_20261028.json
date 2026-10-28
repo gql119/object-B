@@ -1,0 +1,15 @@
+{
+  "schema_version": "prerun.change-route.v1",
+  "reviewed_commit": "2d1208d9a80c01b783e00ae3ffc6d60e0486bebd",
+  "candidate_commit": "89f4f72b380eabd46dc1992adfc195e58e15e9fa",
+  "changes": [
+    {
+      "path": "coco_s4/phase_victim.py",
+      "change_class": "entrypoint",
+      "production_reachable": true,
+      "dependency_closure_changed": true,
+      "blocker_ids": [],
+      "probes": []
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "schema_version": "prerun.scientific-review.v1",
+  "review_mode": "scientific_review",
+  "repo_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023",
+  "pre_run_code_commit": "89f4f72b380eabd46dc1992adfc195e58e15e9fa",
+  "review_diff_base_commit": "2d1208d9a80c01b783e00ae3ffc6d60e0486bebd",
+  "approved_basis": [
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\docs\\S4_COCO_MINITRAIN_20261023\\USER_RISK_FORMAL_RELAUNCH_AUTHORIZATION_20261027.md",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\docs\\S4_COCO_MINITRAIN_20261023\\COCO_EXPERIMENT_A_CONFIG.yaml",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\coco_s4\\configs\\clean200.json"
+  ],
+  "implementation_intent": "First scientific review of independent matched COCO80 Clean victim native YOLOv8n random YAML seed0 200epoch training. Review FULL current phase_victim/teacher/native callbacks, not only diff. Reuse accepted S4 export and all prerequisites; Teacher is not the clean denominator. Keep LevelC protocol distinct from strict Original S4. Formal path records initialization passively without extra batch/forward/RNG. Bounded probe alone runs independent native-loss equivalence. No AT, no method change, no final metrics. Previous GPU01 stale binding and GPU02 wrong callback import fixed; GPU03 two batches yielded zero SGD due nativeAMP skips and correctly failed. Current16-batch budget yielded10SGD without changing AMP scale or weakening gates. Exclude process/transport scaffolding from scientific review.",
+  "exact_command": "cd /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_victim_clean200_20261028_gpu04 && /project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.phase_victim --release /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_victim_clean200_20261028_gpu04/source_release.json --output /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/clean200 --registration /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/receipts/clean200_READY.json",
+  "output_collision_policy": "fail",
+  "local_validation": [
+    {
+      "command": "python -B -m coco_s4.validate_victim_phase_contracts",
+      "exit_code": 0,
+      "observation": "13 badconfig/3tensor hash/2predecessor and21 actual production imports passed; execution/COCO_CLEAN_IMPORT_FIX_CPU_20261028.json"
+    },
+    {
+      "command": "python -B execution/validate_victim_initial_identity_20261028.py",
+      "exit_code": 0,
+      "observation": "actual native COCO80 CPU formal callback: zero forwards/batches, RNG/modelBN unchanged, mismatched init rejected; COCO_VICTIM_FORMAL_IDENTITY_CPU_20261028.json"
+    },
+    {
+      "command": "python -B execution/audit_clean_gpu04_20261028.py",
+      "exit_code": 0,
+      "observation": "actual completed native GPU04:154source+7native hashes exact,16batches/10updates/6legalAMP skips/finite/zeroVal/checkpoint optimizer scaler EMA; execution/coco_victim_clean200_20261028_gpu04/main_readonly_audit.json"
+    }
+  ],
+  "pre_review_smoke": {
+    "schema_version": "prerun.pre-review-smoke.v1",
+    "computation_kind": "training",
+    "disposition": "passed",
+    "candidate_commit": "89f4f72b380eabd46dc1992adfc195e58e15e9fa",
+    "run_id": "coco_victim_clean200_20261028_gpu04",
+    "exact_command": "systemd-run --user --scope --quiet --unit=s4coco-victim-dd4438d91216df28e8bcbedd /project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.process --job /project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04/supervision --cwd /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_victim_clean200_20261028_gpu04 -- /project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.phase_victim --release /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/_anchors/coco_victim_clean200_20261028_gpu04/source_release.json --output /project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04/result --smoke-batches 16",
+    "exit_code": 0,
+    "step_budget": 16,
+    "completed_steps": 16,
+    "step_unit": "native training batches batch36;10actual SGD updates",
+    "finite_loss": true,
+    "production_entrypoint_reached": true,
+    "isolated_output": true,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "evidence_paths": [
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_victim_clean200_20261028_gpu04\\result\\smoke_summary.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_victim_clean200_20261028_gpu04\\result\\baseline_equivalence.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_victim_clean200_20261028_gpu04\\result\\phase_spec.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\coco_victim_clean200_20261028_gpu04\\main_readonly_audit.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\coco_victim_clean200_20261028_gpu04\\source_release.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_VICTIM_FORMAL_IDENTITY_CPU_20261028.json"
+    ],
+    "cleanup_policy": "retain_all",
+    "checkpoint_cleanup_completed": false,
+    "checkpoint_paths_remaining": [
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04/result/baseline_preupdate_state.pt",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04/result/train/weights/best.pt",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04/result/train/weights/epoch0.pt",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04/result/train/weights/last.pt",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04/result/train/retained_epoch_checkpoints/epoch_001.pt"
+    ],
+    "deleted_paths": [],
+    "retained_evidence_paths": [
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/coco_victim_clean200_20261028_gpu04/console.log",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04/result/smoke_summary.json",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04/result/status.json"
+    ],
+    "baseline_equivalence_required": true,
+    "baseline_equivalence_probe": {
+      "reference_id": "pinned ultralytics.nn.tasks.DetectionModel.loss",
+      "reference_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04/result/baseline_preupdate_state.pt",
+      "candidate_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04/result/baseline_preupdate_state.pt",
+      "metric_name": "native DetectionModel.loss sum before any parameter update",
+      "reference_metric": 487.11358642578125,
+      "candidate_metric": 487.11358642578125,
+      "absolute_difference": 0.0,
+      "tolerance": 0,
+      "evaluation_setting": {
+        "dataset": "fixed seed0 first native augmented COCO minitrain25K loader batch consumed by _baseline_probe; raw baseline IDs not separately retained; AMP row0 records the subsequent training batch",
+        "parameters": {
+          "batch": 36,
+          "imgsz": 640,
+          "nc": 80,
+          "train": true
+        },
+        "seed": 0,
+        "sample_count": 36,
+        "post_processing": "same raw native loss; no NMS or validation; same state/RNG/native implementation"
+      },
+      "evidence_paths": [
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_victim_clean200_20261028_gpu04\\result\\smoke_summary.json",
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_victim_clean200_20261028_gpu04\\result\\baseline_equivalence.json",
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_victim_clean200_20261028_gpu04\\result\\phase_spec.json",
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\coco_victim_clean200_20261028_gpu04\\main_readonly_audit.json",
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\coco_victim_clean200_20261028_gpu04\\source_release.json",
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_VICTIM_FORMAL_IDENTITY_CPU_20261028.json"
+      ]
+    }
+  },
+  "critical_values": [
+    {
+      "name": "Independent matched initialization",
+      "source": "frozen random YOLOv8n80 YAML seed0/pretrainedfalse/resumefalse",
+      "sink": "native Trainer model construction; formal callback passive identity; poisoned route rejects unequal initial hash",
+      "evidence": "phase_victim.py/_record_initial_state and current CPU zero-consumption report; actualGPU initial_stateSHA73612936a770c79b1144b631f6aadaaa9b7b21b2dc01d292c9fee2ae2b6b14b7"
+    },
+    {
+      "name": "Native losses SGD AMP and all GT",
+      "source": "frozen victim200 config, clean25K/80classes/Person0/full original GT",
+      "sink": "COCOMatchedTrainOnlyVictim extends COCOTrainOnlyTeacher with only dataset route validation; native DetectionModel.loss and native optimizer_step",
+      "evidence": "GPU04 baseline exact487.11358642578125/0tol0;16 AMP rows10updates6skips/all finite; phase_spec/native_train_args; unchanged ue_framework/configs since5c49"
+    },
+    {
+      "name": "No validation and checkpoint identity",
+      "source": "train-only valNone/valfalse/final_evalblocked/last200primary",
+      "sink": "COCOTrainOnlyTeacher.get_dataset/_NullValidator/final_eval and phase_victim formal receipt200contiguous epochs/fullstate",
+      "evidence": "actualGPU train-only audit25000/0val/0EMA inference; fullphase code and native snapshot callbacks"
+    },
+    {
+      "name": "Reuse accepted export and LevelC protocol",
+      "source": "export25K accepted7c156811; independent final25K hashlabelbudgetaudit",
+      "sink": "phase_victim.validate_phase_binding exact receipt chain; clean root fixed, later S4 root acceptedexport; no Fourier retraining",
+      "evidence": "COCO_EXPORT25K_FINAL_INDEPENDENT_AUDIT_20261028.json and source_release; RISK_FALLBACK_PROTOCOL.json falseOriginalequivalence"
+    }
+  ],
+  "experiment": {
+    "benchmark": "COCO80 minitrain25K independent victim",
+    "dataset": "fixed accepted clean train25K, allGT; cleanval2017 full5K only later",
+    "checkpoint": "fresh random YOLOv8n YAML; last.pt@200 primary, best secondary train-loss only",
+    "seed": 0,
+    "metric_policy": "no training validation/AP; later matched clean vs poisoned official COCOeval all80/NT79, signed PUS/null zero denominator",
+    "output_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/clean200"
+  }
+}

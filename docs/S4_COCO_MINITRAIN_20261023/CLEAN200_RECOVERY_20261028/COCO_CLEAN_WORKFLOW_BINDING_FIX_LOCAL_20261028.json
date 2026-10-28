@@ -1,0 +1,8 @@
+{
+  "state": "passed",
+  "scope": "local engineering binding validation; no models/GPU",
+  "only_workflow_slot_and_two_explicit_callsite_bindings_changed": true,
+  "remaining_scientific_module_AST_exact": true,
+  "syntax_compile": true,
+  "fix": "validate exact workflow_controller_admission; retain PID/start/owner/slot/child checks instead of obsolete fixedTeacher commit"
+}

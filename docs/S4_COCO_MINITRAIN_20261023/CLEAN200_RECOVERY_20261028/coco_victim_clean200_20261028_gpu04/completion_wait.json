@@ -1,0 +1,46 @@
+{
+  "binding": {
+    "branch": "codex/s4-coco-risk-fallback-20261027",
+    "bundle_sha256": "b4eefac11b598b0f10e823b3994ab9167dec72185ca1a5b4bbb5f4fd8959de47",
+    "commit": "89f4f72b380eabd46dc1992adfc195e58e15e9fa",
+    "control_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/coco_victim_clean200_20261028_gpu04",
+    "created_at": "2026-10-28T12:26:52.815522+00:00",
+    "executor_cmdline_sha256": "50ef7e13092b9e0d191307b6f26a759e6b4aa467f937278e01388b811a506ef6",
+    "executor_pid": 3066456,
+    "executor_process_group_id": 3066456,
+    "executor_start_ticks": 381508769,
+    "executor_started_at": "2026-10-28T12:26:52.954061+00:00",
+    "output_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04",
+    "project": "s4-coco-clean200-validation",
+    "repo_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_victim_clean200_20261028_gpu04",
+    "run_id": "coco_victim_clean200_20261028_gpu04",
+    "run_spec_sha256": "dfc8ef7f718b0c69c38956009fc669d9370d2598ebe3100cba8a26d1385b4343",
+    "schema_version": "rrctl.binding.v1",
+    "session": "coco_victim_clean200_20261028_gpu04",
+    "source_content_sha256": "3789da3aa653c7d8905c8c497a0567281aa1a4562a5c326bd7d29bbf9189929b",
+    "stage_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/stage/coco_victim_clean200_20261028_gpu04",
+    "transport_bundle_sha256": "b4eefac11b598b0f10e823b3994ab9167dec72185ca1a5b4bbb5f4fd8959de47",
+    "worker_sha256": "696cb314eb11784a9099728b117eac69cd2e01315d7732154d1ddeab609eff6a",
+    "workload_argv_sha256": "3af68a8c512ff8b7281027cd358602bc880d3147231e9aca1ab94bc5c77b320c",
+    "workload_cmdline_sha256": "3af68a8c512ff8b7281027cd358602bc880d3147231e9aca1ab94bc5c77b320c",
+    "workload_pid": 3066470,
+    "workload_process_group_id": 3066456,
+    "workload_start_ticks": 381508782,
+    "workload_started_at": "2026-10-28T12:26:53.471237+00:00"
+  },
+  "control_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/coco_victim_clean200_20261028_gpu04",
+  "run_id": "coco_victim_clean200_20261028_gpu04",
+  "status": {
+    "detail": {
+      "artifact_count": 4,
+      "exit_code": 0
+    },
+    "reason": "external_completion_and_artifact_contract_passed",
+    "run_id": "coco_victim_clean200_20261028_gpu04",
+    "schema_version": "rrctl.status.v1",
+    "sequence": 7,
+    "state": "completed",
+    "updated_at": "2026-10-28T12:29:26.354968+00:00"
+  },
+  "status_recovered": false
+}

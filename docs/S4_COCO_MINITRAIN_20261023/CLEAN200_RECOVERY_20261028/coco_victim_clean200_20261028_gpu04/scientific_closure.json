@@ -1,0 +1,19 @@
+{
+  "phase": "clean200",
+  "source_commit": "89f4f72b380eabd46dc1992adfc195e58e15e9fa",
+  "release_sha256": "1806139de4954889022c3ca96bd183d6a6830b91b8b78a4810065fb95de51193",
+  "phase_config_sha256": "7e53ecf579a066319c71474980a4fb3e748ca7e764148efe3cf61021b84f7f89",
+  "smoke_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04/result/smoke_summary.json",
+  "smoke_sha256": "6e4a1f0a0beea396ec9cbc970ce8c1469ef33c292a096920c9e2ca7c1362258d",
+  "review_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/receipts/clean200_SCIENTIFIC_REVIEW.json",
+  "review_sha256": "936c411f0794b14e1b7deb4d90b80a17beabd4335467833abd883e2e2c8901ae",
+  "reviewer_count": 1,
+  "reviewer_independence": true,
+  "pre_run_result": "pass",
+  "scientific_verdict": "allow_run",
+  "scientifically_correct": true,
+  "allow_run": true,
+  "blockers": [],
+  "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+  "closed_UTC": "2026-10-28T12:43:30.379117+00:00"
+}

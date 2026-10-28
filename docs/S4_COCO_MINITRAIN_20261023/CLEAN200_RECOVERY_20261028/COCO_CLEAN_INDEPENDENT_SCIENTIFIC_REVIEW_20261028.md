@@ -1,0 +1,82 @@
+## PRERUN-REVIEW-COCO-CLEAN-20261028
+
+- Review mode: scientific_review
+- Reviewer: /root/coco_clean_victim_scientific_review_20261028; independent read-only subagent; inherited current model (exact model identifier unavailable).
+- Result: scientifically_correct
+- Decision: allow_run
+- pre_run_result: pass
+- Code snapshot: codex/s4-coco-risk-fallback-20261027 / 89f4f72b380eabd46dc1992adfc195e58e15e9fa
+- Diff base: 2d1208d9a80c01b783e00ae3ffc6d60e0486bebd
+- Approved basis: human authorization USER_RISK_FORMAL_RELAUNCH_AUTHORIZATION_20261027.md:7-14, frozen COCO_EXPERIMENT_A_CONFIG.yaml:118-138 and coco_s4/configs/clean200.json.
+- Gated run: `cd /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_victim_clean200_20261028_gpu04 && /project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.phase_victim --release /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_victim_clean200_20261028_gpu04/source_release.json --output /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/clean200 --registration /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/receipts/clean200_READY.json`
+- Release SHA256: 1806139de4954889022c3ca96bd183d6a6830b91b8b78a4810065fb95de51193
+- Phase config SHA256: 7e53ecf579a066319c71474980a4fb3e748ca7e764148efe3cf61021b84f7f89
+- Smoke SHA256: 6e4a1f0a0beea396ec9cbc970ce8c1469ef33c292a096920c9e2ca7c1362258d
+- Final packet canonical SHA256: 89f60b9ec3d6e83358d68fafad900e6167a2a1dd100b5284aa9f6beda5840c06
+- Blockers: none.
+- Validation gaps preventing Clean200: none.
+
+### S01 — Intent alignment: correct
+
+Clean is an independent from-scratch all80 matched denominator; accepted Teacher is verified as prerequisite only and is never loaded into the victim. The authorized Level C risk protocol remains distinct from strict Original S4.
+
+Evidence: `docs/S4_COCO_MINITRAIN_20261023/USER_RISK_FORMAL_RELAUNCH_AUTHORIZATION_20261027.md:7-14`; `coco_s4/phase_victim.py:345-348,389-399`; `coco_s4/teacher.py:46-62`; `execution/actual_teacher_native_20261025/engine/trainer.py:838-871`; `coco_s4/configs/RISK_FALLBACK_PROTOCOL.json`; `execution/coco_victim_clean200_20261028_gpu04/source_release.json:269-270`.
+
+### S02 — Canonical code location: correct
+
+Production instantiates COCOMatchedTrainOnlyVictim -> COCOTrainOnlyTeacher -> S4VictimTrainer -> pinned native DetectionTrainer. Scientific loss, preprocessing and optimizer step remain native; safety callbacks observe or stop invalid state without editing updates.
+
+Evidence: `coco_s4/phase_victim.py:255-274,398-400,427-431`; `coco_s4/teacher.py:65-112`; `ue_framework/s4_victim.py:16-42,45-69`; `ue_framework/s4_amp_observer.py:99-110,121-164`; `execution/actual_teacher_native_20261025/engine/trainer.py:519-544,874-885`.
+
+### S03 — Critical data flow: correct
+
+Clean root is the accepted original train25K; later Poison root is accepted export25K/poisoned. The native dataset consumes images/train and matching labels/train, classes=None/single_cls=False/fraction=1.0, and native criterion receives every eligible supplied class/box. No Person-only or NT-only victim label path exists. All80 includes canonical native duplicate-row handling and standard augmentation, and excludes crowd/ignore according to the accepted conversion policy.
+
+Evidence: `coco_s4/phase_victim.py:59-64,67-132,377-388`; `coco_s4/teacher.py:60-62,114-146,163-171`; `F:/autodl-tmp - 副本/ue_project/.venv-cfbdm/Lib/site-packages/ultralytics/data/build.py:237-282`; `F:/autodl-tmp - 副本/ue_project/.venv-cfbdm/Lib/site-packages/ultralytics/data/dataset.py:150-202,274-302`; `F:/autodl-tmp - 副本/ue_project/.venv-cfbdm/Lib/site-packages/ultralytics/data/base.py:205-226`; `execution/actual_teacher_native_20261025/data/utils.py:103-106,339-384`; `F:/autodl-tmp - 副本/ue_project/.venv-cfbdm/Lib/site-packages/ultralytics/utils/loss.py:418-441`; `coco_s4/data.py:18-24,26-50`; `execution/INDEPENDENT_TRAIN25K_MANIFEST_AUDIT_20261025.json`; `execution/COCO_EXPORT25K_FINAL_INDEPENDENT_AUDIT_20261028.json:57-149`.
+
+### S04 — Computation sink effect: correct
+
+Frozen200 settings reach actual native training args and optimizer/schedule/loss sinks. Native nbs=64 means nominal configured weight_decay=.0005 is scaled by batch36*accumulate2/64; warmup then native accumulation and cosine scheduling are retained equally for both victims. No unrequested adversarial training, distillation or alternate loss is active.
+
+Evidence: `docs/S4_COCO_MINITRAIN_20261023/COCO_EXPERIMENT_A_CONFIG.yaml:118-138`; `coco_s4/phase_victim.py:21-24,44-55,389-397`; `execution/p/coco_victim_clean200_20261028_gpu04/result/phase_spec.json:59-90`; `execution/actual_teacher_native_20261025/engine/trainer.py:258-269,310-321,363-386,499-544,576-578,1148-1179`; `execution/actual_teacher_native_20261025/cfg/default.yaml:99-115`; `F:/autodl-tmp - 副本/ue_project/.venv-cfbdm/Lib/site-packages/ultralytics/nn/tasks.py:146-161,408-420,602-604`; `F:/autodl-tmp - 副本/ue_project/.venv-cfbdm/Lib/site-packages/ultralytics/utils/loss.py:337-373,402-489`.
+
+### S05 — Runtime scientific state: correct
+
+Current-commit native CUDA smoke completed16 batches,10 actual SGD updates and6 native AMP skips, with finite loss/model/EMA/optimizer and zero validation/EMA inference. Original AMP scaling/clipping/SGD ownership is preserved. This is a bounded reachability test, not a formal200-epoch result.
+
+Evidence: `execution/p/coco_victim_clean200_20261028_gpu04/result/smoke_summary.json:1-43`; `execution/coco_victim_clean200_20261028_gpu04/main_readonly_audit.json:8-424,426-474`; `execution/coco_victim_clean200_20261028_gpu04/completion_wait.json:status.detail.exit_code`; `ue_framework/s4_amp_observer.py:99-110,121-164`; `execution/actual_teacher_native_20261025/engine/trainer.py:874-885`.
+
+### S06 — Baseline/disabled path: correct
+
+Measured independently instantiated pinned native DetectionModel.loss versus production model.loss on identical pre-update state/batch gives487.11358642578125 on each side, absolute difference0 at tolerance0. This settles the bounded raw-loss equivalence claim only; it does not prove complete training-trajectory equivalence. Formal initialization callback only saves/hashes state; no loader consumption, RNG draw or model forward. Poison rejects a different clean initial-state hash.
+
+Evidence: `coco_s4/phase_victim.py:277-332,401-407`; `execution/p/coco_victim_clean200_20261028_gpu04/result/baseline_equivalence.json:1-12`; `execution/COCO_VICTIM_FORMAL_IDENTITY_CPU_20261028.json:2-19`; `execution/validate_victim_initial_identity_20261028.py:14-36`; `F:/autodl-tmp - 副本/ue_project/.venv-cfbdm/Lib/site-packages/ultralytics/data/build.py:70-85`.
+
+### S07 — Validation isolation and checkpoint: correct
+
+val=None and forbidden loaders/validator prevent val2017 entering victim training or selection, including native final-epoch dispatch. Main denominator is native EMA last.pt@200, not Teacher or best. Native last retains optimizer/scaler; separate snapshot retains raw FP32 model/optimizer/scheduler/scaler/RNG. Acceptance requires CSV epochs1..200, embedded native epoch199 and full-state epoch200. No interrupted auto-resume fidelity is claimed.
+
+Evidence: `coco_s4/teacher.py:17-43,114-175,177-219`; `coco_s4/phase_victim.py:433-483`; `ue_framework/s4_victim.py:34-42,51-68`; `execution/actual_teacher_native_20261025/engine/trainer.py:626-678,741-805`; `execution/coco_victim_clean200_20261028_gpu04/main_readonly_audit.json:426-474`.
+
+### S08 — Experiment identity: correct
+
+Reviewed command names exact candidate release/clean200 output and registration. Release bindings preserve accepted train manifest, accepted25K export and dependency receipts. Reviewer independently verified all154 local release sources,7 archived native sources and5 supplemental local/server-equal native sources, and recomputed smoke/packet hashes. Fail-on-collision and retained outputs are explicit. Later Poison and official evaluation still require their own applicable phase gates; this report authorizes Clean200 scientific implementation only.
+
+Evidence: `execution/COCO_CLEAN_SCIENTIFIC_REVIEW_PACKET_20261028.json:13`; `execution/coco_victim_clean200_20261028_gpu04/source_release.json`; `execution/COCO_CLEAN_ADDITIONAL_NATIVE_HASHES_20261028.json`; `coco_s4/runtime.py:64-94`; `coco_s4/phase_victim.py:335-361,417-426`.
+
+### Local validation and GPU smoke
+
+The supplied focused validation reports record literal exit0 for `python -B -m coco_s4.validate_victim_phase_contracts` (13invalid contracts,3tensor-hash cases,2predecessor bindings and21production imports); `python -B execution/validate_victim_initial_identity_20261028.py` records zero callback forwards/batches, unchanged RNG/model/BN and mismatch rejection; `python -B execution/audit_clean_gpu04_20261028.py` records exact source/native hashes, finite16batches,10SGD,6AMP skips and0validation. These are supplied executions inspected by this reviewer, not reruns. The reviewer independently rehashed local sources and recounted the raw AMP rows with a standard-library read-only check; all checks passed.
+
+GPU smoke: `coco_victim_clean200_20261028_gpu04`; command `systemd-run --user --scope --quiet --unit=s4coco-victim-dd4438d91216df28e8bcbedd /project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.process --job /project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04/supervision --cwd /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_victim_clean200_20261028_gpu04 -- /project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.phase_victim --release /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/_anchors/coco_victim_clean200_20261028_gpu04/source_release.json --output /project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_victim_clean200_20261028_gpu04/result --smoke-batches 16`; exit0,16native training batches,10SGD,6native AMP skips, finite loss/state, zero validation, official metrics/ingest disabled. All smoke artifacts retained; no checkpoint deletion.
+
+### Evidence boundaries and nonblocking observations
+
+- Baseline compared batch IDs were not separately retained. The fixed selection is the first augmented native loader batch under seed0. AMP row0 is a subsequent batch because the smoke-only probe advances the persistent InfiniteDataLoader. Packet wording was corrected before this verdict; no baseline IDs are inferred from AMP row0.
+- The supplied import-fix CPU report identifies an earlier phase_victim byte hash; it is historical focused validation. Current final source imports/runtime are covered by exact154-file GPU04 audit and the final callback is separately read and exercised by the supplied CPU formal-identity probe.
+- Only16 native smoke batches are observed; formal Clean200 has not started. Final200 completion, actual formal initialization hash, final checkpoint contents and later COCOeval metrics remain future outputs checked by the implemented acceptance gates.
+- The clean25K identity relies on accepted independent source manifest/label audit plus current source/metadata/dependency checks, rather than a new reviewer rescan of all server images. Export audit explicitly verifies all output hashes/per-file budget records without rereading all original images.
+- cache=True,16workers and native deterministic warn-only behavior are frozen protocol choices, not a guarantee of bitwise reproducible full trajectories; the directly enforced matched quantity is initial model state. Both victims retain the same settings.
+- Native last.pt serializes EMA in FP16 and optimizer state in native FP16 format; the separate full-state snapshot is raw-model state. These files are not interchangeable. No nonfinite live-model sanitization was observed; the wrapper rejects nonfinite live state before native saving.
+
+This is the one scientific implementation review of Clean200 at the cited commit. No production files, packet, remote state or experiment were modified by the reviewer. Only these original review JSON/Markdown artifacts are created with exclusive creation. No effect-size or outcome prediction is made.

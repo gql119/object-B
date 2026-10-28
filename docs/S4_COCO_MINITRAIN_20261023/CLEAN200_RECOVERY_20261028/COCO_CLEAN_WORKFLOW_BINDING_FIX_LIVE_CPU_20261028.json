@@ -1,0 +1,27 @@
+{
+  "state": "passed",
+  "scope": "actual live admission/slot CPU guard; changed function code only, not full scientific entrypoint",
+  "controller": {
+    "pid": 2334114,
+    "start_ticks": 369629083,
+    "uid": 1014
+  },
+  "controller_source": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+  "phase_source": "2d1208d9a80c01b783e00ae3ffc6d60e0486bebd",
+  "source_function_sha256": "bde20d156b7f58b7b2f0e92228200f1b79c32a7f4a8f8316c61183c5872852a1",
+  "positive_distinct_phase_source": true,
+  "rejected": [
+    "source",
+    "config_hash",
+    "controller_start",
+    "release_hash",
+    "phase",
+    "validation_bypass",
+    "formal_not_active"
+  ],
+  "model_forwards": 0,
+  "parameter_updates": 0,
+  "CUDA_initialized": false,
+  "formal_receipt_written": false,
+  "committed_fix_source": "96eb5f81bcd1b0b109fda74a32258b900b95d495"
+}

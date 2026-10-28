@@ -1,0 +1,110 @@
+{
+  "UTC": "2026-10-28T12:45:12.722917+00:00",
+  "run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1",
+  "state": "RUNNING",
+  "current_stage": "clean200",
+  "controller": {
+    "pid": 2334114,
+    "start_ticks": 369629083,
+    "uid": 1014,
+    "alive": true,
+    "actual_start_ticks": 369629083,
+    "process_state": "S"
+  },
+  "active_child": {
+    "pid": 3072365,
+    "start_ticks": 381613294,
+    "uid": 1014,
+    "argv": [
+      "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+      "-B",
+      "-m",
+      "coco_s4.phase_victim",
+      "--release",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_victim_clean200_20261028_gpu04/source_release.json",
+      "--output",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/clean200",
+      "--registration",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/receipts/clean200_READY.json"
+    ],
+    "cwd": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_victim_clean200_20261028_gpu04",
+    "UTC": "2026-10-28T12:44:18.199663+00:00",
+    "memory_scope": {
+      "path": "/user.slice/user-1014.slice/user@1014.service/app.slice/s4coco-job-f3b281082b591350d3bb06f7.scope",
+      "memory.current": "10842112",
+      "memory.peak": "10842112",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+    },
+    "alive": true,
+    "actual_start_ticks": 381613294,
+    "process_state": "S"
+  },
+  "active_job": "clean200",
+  "stages": {
+    "teacher200": {
+      "state": "ACCEPTED",
+      "receipt_sha256": "f06302c55aad6870c877aed3f79f1defb280a392d6bf96d4f40ca018245c3ade"
+    },
+    "teacher_eval": {
+      "state": "ACCEPTED",
+      "receipt_sha256": "69655e8c89aa282a5ace5eff89b45412d9631f76409d269d778728c1df868b51"
+    },
+    "calibration": {
+      "state": "ACCEPTED",
+      "receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a"
+    },
+    "fourier24": {
+      "state": "ACCEPTED",
+      "receipt_sha256": "4c6852a2ccac25f540034b619b1c7a5651ef2daffcf2862656fbe6d5b2754220"
+    },
+    "export25k": {
+      "state": "ACCEPTED",
+      "receipt_sha256": "7c156811ba3f422eee3dc5cab35d598b858d23cccabeb4d925bba9766360817f"
+    }
+  },
+  "stage_status": {
+    "phase": "clean200",
+    "source_commit": "89f4f72b380eabd46dc1992adfc195e58e15e9fa",
+    "release_sha256": "1806139de4954889022c3ca96bd183d6a6830b91b8b78a4810065fb95de51193",
+    "phase_config_sha256": "7e53ecf579a066319c71474980a4fb3e748ca7e764148efe3cf61021b84f7f89",
+    "previous_stage_receipt_sha256": "7c156811ba3f422eee3dc5cab35d598b858d23cccabeb4d925bba9766360817f",
+    "dataset_root": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023",
+    "dataset_manifest_sha256": "181e9c203b2d5a147888aac7ded702673c2084994d722c9ca4633fad0210ee64",
+    "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+    "computation_kind": "matched-victim-training",
+    "validation_used": false,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "automatic_resume_allowed": false,
+    "cleanup_policy": "retain_all",
+    "deleted_paths": [],
+    "state": "RUNNING",
+    "started_UTC": "2026-10-28T12:44:21.594950+00:00"
+  },
+  "export_progress": {
+    "complete_manifest_rows": 25000,
+    "last_complete_row": {
+      "PSNR_db": null,
+      "annotation_count": 2,
+      "changed_pixels": 0,
+      "decoded_max_byte_difference": 0,
+      "decoded_outside_nonzero_pixels": 0,
+      "decoded_overlap_max_byte_difference": 0,
+      "person_present": false,
+      "poisoned_image": "poisoned/images/train/000000581929.jpg",
+      "poisoned_image_sha256": "ddf07c79d321aa18e5c31429495eedf8c84b4405e6b8c3e579adbc2e018bbbe6",
+      "poisoned_label": "poisoned/labels/train/000000581929.txt",
+      "poisoned_label_sha256": "c4ff0d7e354d638166da07f0d54ba6c9e292985ef9e94c7370aaa7fea5e19dbf",
+      "source_image": "images/train/000000581929.jpg",
+      "source_image_sha256": "ddf07c79d321aa18e5c31429495eedf8c84b4405e6b8c3e579adbc2e018bbbe6",
+      "source_label": "labels/train/000000581929.txt",
+      "source_label_sha256": "c4ff0d7e354d638166da07f0d54ba6c9e292985ef9e94c7370aaa7fea5e19dbf",
+      "stem": "000000581929",
+      "support_overlap_pixels": 0,
+      "support_person_only_pixels": 0,
+      "tfss": null
+    },
+    "manifest_bytes": 66070667
+  }
+}

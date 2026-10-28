@@ -1,0 +1,12 @@
+{
+  "phase": "clean200",
+  "reference_id": "pinned ultralytics.nn.tasks.DetectionModel.loss",
+  "candidate_id": "COCOMatchedTrainOnlyVictim original native model.loss",
+  "reference_metric": 487.11358642578125,
+  "candidate_metric": 487.11358642578125,
+  "absolute_difference": 0.0,
+  "tolerance": 0,
+  "weights_sha256": "da3da67a43ca838ca36846a01bc03a289b16037808099b0016d84c7bcaa03efb",
+  "initial_state_sha256": "73612936a770c79b1144b631f6aadaaa9b7b21b2dc01d292c9fee2ae2b6b14b7",
+  "official_metrics_disabled": true
+}

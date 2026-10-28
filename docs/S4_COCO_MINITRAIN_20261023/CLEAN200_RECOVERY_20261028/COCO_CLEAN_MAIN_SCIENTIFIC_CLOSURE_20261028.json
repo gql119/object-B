@@ -1,0 +1,23 @@
+{
+  "phase": "clean200",
+  "source_commit": "89f4f72b380eabd46dc1992adfc195e58e15e9fa",
+  "release_sha256": "1806139de4954889022c3ca96bd183d6a6830b91b8b78a4810065fb95de51193",
+  "phase_config_sha256": "7e53ecf579a066319c71474980a4fb3e748ca7e764148efe3cf61021b84f7f89",
+  "smoke_sha256": "6e4a1f0a0beea396ec9cbc970ce8c1469ef33c292a096920c9e2ca7c1362258d",
+  "reviewer_count": 1,
+  "reviewer_independence": true,
+  "pre_run_result": "pass",
+  "scientific_verdict": "allow_run",
+  "blockers": [],
+  "scientifically_correct": true,
+  "allow_run": true,
+  "raw_review_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_CLEAN_INDEPENDENT_SCIENTIFIC_REVIEW_20261028.json",
+  "raw_review_sha256": "0ef9a0b7c25b19fddc44190560ad4e62590817b34ebef8f66fbfbbccae207b22",
+  "raw_review_immutable": true,
+  "main_closed_UTC": "2026-10-28T12:43:00.747869+00:00",
+  "scope": "independent clean200 only; future poisoned200/eval require own gates",
+  "baseline_raw_ID_limitation": "baseline raw IDs not retained; AMProw0 subsequent batch; formal has no probe batch",
+  "CPU_formal_passive_identity": "COCO_VICTIM_FORMAL_IDENTITY_CPU_20261028.json",
+  "main_GPU_audit": "coco_victim_clean200_20261028_gpu04/main_readonly_audit.json",
+  "additional_native_hash_evidence": "COCO_CLEAN_ADDITIONAL_NATIVE_HASHES_20261028.json"
+}

@@ -1,0 +1,13 @@
+{
+  "exit_code": 0,
+  "command": [
+    "F:\\autodl-tmp - \u526f\u672c\\ue_project\\.venv-cfbdm\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "coco_s4.validate_victim_phase_contracts"
+  ],
+  "stdout": "{\"GPU_units\": 0, \"actual_production_imports_resolved\": [\"pathlib.Path\", \"coco_s4.phase_contract.OWNED\", \"coco_s4.phase_contract.WORKFLOW\", \"coco_s4.phase_contract.WORKFLOW_OUTPUT\", \"coco_s4.phase_contract.phase_release\", \"coco_s4.runtime.DATA_ROOT\", \"coco_s4.runtime.atomic\", \"coco_s4.runtime.load\", \"coco_s4.runtime.now\", \"coco_s4.runtime.sha\", \"coco_s4.runtime.write_once\", \"coco_s4.dimension_protocol.validate_receipt_dimension\", \"coco_s4.runtime.assert_formal_launch_authorized\", \"coco_s4.workflow_admission.validate\", \"ultralytics.nn.tasks.DetectionModel\", \"ue_framework.methods.s4_tfss.restore_rng\", \"ue_framework.methods.s4_tfss.rng_state\", \"coco_s4.teacher.teacher_overrides\", \"ue_framework.s4_victim.attach_safety_callbacks\", \"coco_s4.phase_teacher.local_amp_check\", \"coco_s4.teacher.COCOTrainOnlyTeacher\"], \"canonical_state_hash_cases\": 3, \"dataset_images_opened\": 0, \"formal_registration\": false, \"invalid_contracts_rejected\": 13, \"matched_training_protocol\": true, \"official_metrics_enabled\": false, \"phases\": [\"clean200\", \"s4_200\"], \"predecessor_bindings\": 2, \"state\": \"passed\"}\n",
+  "stderr": "",
+  "scope": "actual production import resolution plus CPU protocol/native tensor identity guards; no models/GPU",
+  "phase_victim_sha256": "945928dc9188ddb7dd0a25b693c773d734f6968eda59d20432aed7f90bacf11e"
+}
