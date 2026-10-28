@@ -51,3 +51,7 @@ and failed status are retained. This candidate imports the same unchanged
 constant from its canonical `runtime` module and checks every production
 relative import locally. It does not substitute a new dataset or relax any
 scientific check. The failed ID is not reused; a new CPU probe is required.
+
+
+## Actual recovery and formal start 2026-10-28T10:12:11.244114+00:00
+CPU02 and CUDA01 passed on published f50a452; each actual2forwards/no parameter updates/strict decoded8-4-0/nativefloat generation EXACTtol0. CPU noCUDA. Mainhash audits155source+7native each, fullFourierCSV20448/24/852 and final64x3/selected16x3 Adam20448/scheduler24/RNG/source5c49 passed; realTFSSproof40896EOT/Frozen/Adaptive. RealnoPerson25 branch bytes/GT coordinates exact. CPUvsCUDA219pixels differ max1byte, Q/R/W differences explicitly disclosed; no globalhardware equivalence or addedtolerance. Exactlyone independent export scientificreview scientifically_correct/allow_run; mainclosure passed. SAMEcontroller started officialexport at10:06:44UTC/HK18:06:44 with child2999111/start380667941. Actual10:09:16UTC1341of25000 images; no victims/eval yet. Raw smallreports archived under EXPORT_RECOVERY_20261028. Active runtime is immutable f50a452, later publicationHEAD is an archive commit. No AT testing.

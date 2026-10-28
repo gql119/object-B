@@ -1,0 +1,187 @@
+{
+  "schema_version": "prerun.independent-scientific-review.v1",
+  "review_id": "COCO_EXPORT_INDEPENDENT_SCIENTIFIC_REVIEW_20261028",
+  "review_mode": "scientific_review",
+  "reviewer": {
+    "id": "/root/coco_export_scientific_review_20261028",
+    "independent": true,
+    "mode": "separate reviewer subagent; packet, approved sources, committed implementation and referenced evidence only; no implementation edits, experiments or second reviewer",
+    "model": "session model; concrete model identifier is not exposed to this reviewer"
+  },
+  "reviewed_UTC": "2026-10-28T09:58:00Z",
+  "repo_root": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023",
+  "source_commit": "f50a4526b39c7a96e4c017c7e0e0aec0b4bf2df1",
+  "pre_run_code_commit": "f50a4526b39c7a96e4c017c7e0e0aec0b4bf2df1",
+  "review_diff_base_commit": "c13e311b977a53dc1cfd5dce812665a460ee3338",
+  "packet": "execution/COCO_EXPORT_SCIENTIFIC_REVIEW_PACKET_20261028.json",
+  "packet_canonical_sha256_supplied": "b1ab4531532c65726902e10b833fa2813c702de919266d114137f76a6f7def35",
+  "result": "scientifically_correct",
+  "verdict": "scientifically_correct",
+  "decision": "allow_run",
+  "scientifically_correct": true,
+  "allow_run": true,
+  "pre_run_result": "pass",
+  "scope": "First export-stage scientific implementation review. Full scientific export computation and native reference inspected. Prior Fourier/risk review verdicts are neither replaced nor re-reviewed. Runtime supervision, transport, scheduling and controller bookkeeping excluded.",
+  "approved_basis": [
+    "docs/S4_COCO_MINITRAIN_20261023/USER_RISK_FORMAL_RELAUNCH_AUTHORIZATION_20261027.md",
+    "docs/S4_COCO_MINITRAIN_20261023/COCO_EXPERIMENT_A_CONFIG.yaml",
+    "docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json",
+    "coco_s4/configs/export25k.json",
+    "coco_s4/configs/RISK_FALLBACK_PROTOCOL.json"
+  ],
+  "exact_command": "cd /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_export25k_20261028_gpu01 && /project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.phase_export --release /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_export25k_20261028_gpu01/source_release.json --output /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/export25k --registration /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/receipts/export25k_READY.json",
+  "dimensions": {
+    "intent_alignment": "correct",
+    "canonical_code_location": "correct",
+    "critical_data_flow": "correct",
+    "computation_sink_effect": "correct",
+    "runtime_scientific_state": "correct",
+    "baseline_disabled_path": "correct",
+    "experiment_identity": "correct"
+  },
+  "findings": [
+    {
+      "id": "S1",
+      "status": "correct",
+      "subject": "Accepted learned parameters reach final generation",
+      "evidence": [
+        "coco_s4/phase_export.py:92",
+        "coco_s4/phase_export.py:347",
+        "coco_s4/phase_export.py:361",
+        "coco_s4/fourier_artifact.py",
+        "execution/COCO_FOURIER_CHECKPOINT_AND_NONPERSON_AUDIT_20261028.json"
+      ],
+      "assessment": "The accepted calibration/Fourier receipts and parameter SHA bind the final learned native selected16x3 coefficients, coordinates and suppress tensor. Actual artifact identity records source5c49, epoch24/20448 Adam steps, finite moments, scheduler24 and full RNG. Export uses that same hash a0afe86edc6d7b843673cb420ce7ade991e4e60a797b92af63d44ffe0b036691 in LegacyKProtoGenerator; it does not initialize fresh Fourier parameters or consume the obsolete12-step artifact. Native generator loads the saved selected coordinates/coefficients on the selected device and uses its final-generation path."
+    },
+    {
+      "id": "S2",
+      "status": "correct",
+      "subject": "Original TFSS-U computation and explicit COCO boundary extension",
+      "evidence": [
+        "coco_s4/phase_export.py:59",
+        "coco_s4/phase_export.py:347",
+        "coco_s4/phase_export.py:352",
+        "coco_s4/phase_export.py:412",
+        "coco_s4/phase_export.py:421",
+        "ue_framework/methods/s4_tfss.py",
+        "ue_framework/methods/tfss_clean_maps.py",
+        "ue_framework/methods/tfss_spatial.py",
+        "coco_s4/risk_fallback.py",
+        "coco_s4/risk_fallback_cache.py"
+      ],
+      "assessment": "Actual S4Trainer and accepted semantic artifacts provide COCO80 Person0, P5 model.21 channels and P3 model.15 reference. Clean-only per-image canonical canvas feeds original Qt, masked3x3/Q10Q90 normalization, per-GT target max and equal present-NT-class risk mean. The instance-local cache adapter binds the approved native-TAL-then-GT risk extension while preserving original map code and original successful estimator delegation. The computed detached W=1-(1-.85)R(1-Q) multiplies the native pre-image-clamp Fourier delta, followed by image clamp and original integer-safe PNG projection. No Full mode is selected. Invalid target attribution preserves strength; no NT gives R0/W1. Output explicitly records strict_Original_S4_equivalence_claim:false."
+    },
+    {
+      "id": "S3",
+      "status": "correct",
+      "subject": "Unchanged full GT, image identities and decoded8/4/0",
+      "evidence": [
+        "coco_s4/phase_calibration.py:train_manifest",
+        "coco_s4/phase_export.py:388",
+        "coco_s4/phase_export.py:444",
+        "coco_s4/phase_export.py:450",
+        "coco_s4/phase_export.py:498",
+        "ue_framework/methods/legacy_kproto_ret.py:_StrictTargetSupport",
+        "ue_framework/methods/s4_pixel_audit.py:png_project",
+        "coco_s4/data.py:audit_pixels",
+        "execution/COCO_FOURIER_CHECKPOINT_AND_NONPERSON_AUDIT_20261028.json"
+      ],
+      "assessment": "The accepted fixed25K train image/label manifest is checked per source file; every annotation class is retained in all-GT support/risk inputs, with Person0 and overlap of any other class producing original1/.5/0 support. Person PNGs preserve RGB/original dimensions, are round-trip decoded and audited against strict8/4/0 without a+1 tolerance. Labels are copied as original bytes and rehashed. The noPerson branch copies original JPG bytes without re-encoding and requires zero support. The actual noPerson000000000025 branch probe verifies byte/pixel/GT-coordinate identity, correctly labeled as a branch probe rather than a second full-phase smoke. Formal completion checks25000=13630 Person+11370 noPerson images."
+    },
+    {
+      "id": "S4",
+      "status": "correct",
+      "subject": "Actual CUDA smoke and no updates",
+      "evidence": [
+        "execution/p/coco_export25k_20261028_gpu01/result/smoke_summary.json",
+        "execution/coco_export25k_20261028_gpu01/main_readonly_audit.json",
+        "coco_s4/coco_eval.py:raw_signature",
+        "coco_s4/phase_export.py:502"
+      ],
+      "assessment": "Current f50 CUDA smoke processes real train image000000000036 with two actual frozen Teacher forwards. Hooks recursively inspect finite raw floating outputs before thresholding and confirm cuda:0/index0. Actual selected parameter shape is16x3, decoded maxima are8/4/outside0, and label hashes match. Teacher, Adaptive and learned parameter hashes remain unchanged. There is no optimizer update, AP evaluation or validation-data optimization in export. Smoke metrics/ingest remain disabled and evidence is retained."
+    },
+    {
+      "id": "S5",
+      "status": "correct",
+      "subject": "Measured native final-generation equivalence within each device",
+      "evidence": [
+        "coco_s4/repair_validation.py:4",
+        "coco_s4/repair_validation.py:36",
+        "coco_s4/repair_validation.py:38",
+        "coco_s4/repair_validation.py:45",
+        "execution/p/coco_export25k_20261028_gpu01/result/smoke_summary.json",
+        "execution/p/coco_export25k_20261028_cpu02/result/cpu_probe_summary.json"
+      ],
+      "assessment": "The reference invokes native S4Trainer._compose_delta_batched via its unchanged canonical inheritance and real saved parameters with is_universal_training:false, the same final-generation context as LegacyKProtoGenerator. It does not compare against stochastic training. Actual native/candidate float arrays are exactly equal on CUDA and independently exactly equal on CPU (max absolute difference0, tolerance0); PNG round-trip and strict budgets also pass. This supports the claimed bounded native composition reuse. The packet names a decoded-byte-error metric, while the retained proof directly measures the stronger float-array identity before common PNG projection; no nonzero tolerance is being hidden."
+    },
+    {
+      "id": "S6",
+      "status": "correct",
+      "subject": "CPU/CUDA differences constrain reproducibility but do not violate the CUDA export contract",
+      "evidence": [
+        "execution/COCO_EXPORT_CPU_CUDA_COMPARISON_20261028.json",
+        "execution/COCO_EXPORT_DEVICE_MAP_DIFFERENCE_ANALYSIS_20261028.json",
+        "coco_s4/phase_export.py:302",
+        "coco_s4/phase_export.py:352"
+      ],
+      "assessment": "CPU and CUDA are observably different computations: Qt max difference.3772905469, R.0636003017, W.05659359694 and219 pixels/355 channels differ by at most1 byte on this retained image. Equal cache/GT/canvas/TAL assignment identities do not establish equal tensors or isolate a backend cause. These are not dismissed using a tolerance. Approved export is explicitly CUDA, verified against CUDA native final generation at zero tolerance, with CUDA maps regenerated in its fresh output-local clean_maps cache. The CPU receipt is checked as a separate finite/budget/native-composition probe and no CPU maps are copied into official export. Thus no cross-device equivalence premise is needed for this run; CPU export cannot be substituted or represented as byte-identical, and neither measurement bounds untested images or establishes cross-hardware repeatability."
+    },
+    {
+      "id": "S7",
+      "status": "correct",
+      "subject": "Scientific snapshot and result attribution",
+      "evidence": [
+        "execution/coco_export25k_20261028_gpu01/source_release.json",
+        "execution/coco_export25k_20261028_gpu01/main_readonly_audit.json",
+        "coco_s4/phase_export.py",
+        "coco_s4/configs/export25k.json"
+      ],
+      "assessment": "Independent read-only hashing verified all155 release source files against the local current committed files with zero mismatches. Tracked scientific source has no diff from f50. Native ue_framework and the scientific YAML have no diff from accepted training source5c49. Release SHAe553688906d2f9f1d7a189ccf2d402016276e07e02044678ae45efb0479846fd and actual CPU/GPU summary hashes match the cited audit/bindings. Scientific receipt chain binds the fixed Teacher9749a7b6..., calibration4a960db7..., Fourier4c6852a2..., and fixed train manifest181e9c20.... Exact official command uses the reviewed export release, seed0 workflow, train-only dataset and a fail-on-collision output. Export approval is scoped to dataset generation, not future victim/evaluator acceptance or efficacy."
+    }
+  ],
+  "local_validation": {
+    "reported_commands": [
+      {
+        "command": "python -B -m coco_s4.validate_export_phase_contracts",
+        "exit_code": 0,
+        "evidence": "execution/COCO_EXPORT_LOCAL_COMPONENT_TESTS_20261028.json",
+        "limitation": "Record is cb028; f50 changes only import binding in scientific exporter. Current-source CPU/GPU production runs reach actual composition."
+      },
+      {
+        "command": "python -B -m coco_s4.validate_export_cpu_guard",
+        "exit_code": 0,
+        "evidence": "execution/export_cpu_guard_2026-10-28T071100.619515_0000/report.json",
+        "outcome": "1 positive/7 negative, actual production relative imports resolved; simulation-only guard not counted as a real CPU model run"
+      }
+    ],
+    "reviewer_readonly_checks": {
+      "release_files_checked": 155,
+      "release_hash_mismatches": [],
+      "tracked_scientific_diff_vs_f50": "empty",
+      "native_framework_and_scientific_yaml_diff_vs_5c49": "empty",
+      "experiments_run_by_reviewer": 0
+    }
+  },
+  "gpu_smoke": {
+    "run_id": "coco_export25k_20261028_gpu01",
+    "source_commit": "f50a4526b39c7a96e4c017c7e0e0aec0b4bf2df1",
+    "production_command": "python -B -m coco_s4.phase_export --release <GPU01/source_release.json> --output <validation/GPU01/result> --smoke-images 1",
+    "actual_training_images": 1,
+    "completed_forward_calls": 2,
+    "finite_outputs": true,
+    "actual_device": "cuda:0",
+    "result": "passed",
+    "evidence": "execution/p/coco_export25k_20261028_gpu01/result/smoke_summary.json",
+    "summary_sha256": "4241e59c256dd041ff8145b43be6243f30b535e3bec3ca67de290c826daf8eb9",
+    "cleanup_policy": "retain_all",
+    "deleted_paths": []
+  },
+  "blockers": [],
+  "validation_gaps": [],
+  "limitations": [
+    "One real Person-image smoke and one real noPerson branch probe do not constitute a completed25K export audit. Formal per-file checks and final counts must still execute.",
+    "CPU/CUDA backend cause is not experimentally isolated. No cross-device tolerance, equality, quality conclusion or all-image difference bound is inferred.",
+    "Native equivalence is a bounded fixed-sample generation comparison; no claim of equivalence to arbitrary padded/stochastic training or global strictOriginal protocol is made.",
+    "No final victim AP, selectivity, causal background-absorption, LPIPS or method-quality result is established by this review."
+  ]
+}

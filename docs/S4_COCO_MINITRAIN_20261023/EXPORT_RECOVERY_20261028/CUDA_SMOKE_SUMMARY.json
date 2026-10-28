@@ -1,0 +1,282 @@
+{
+  "phase": "export25k",
+  "source_commit": "f50a4526b39c7a96e4c017c7e0e0aec0b4bf2df1",
+  "release_sha256": "e553688906d2f9f1d7a189ccf2d402016276e07e02044678ae45efb0479846fd",
+  "phase_config_sha256": "ea016e22f77a13ac529121e5f2ec7ab329fcdde1c3ee82df96a355389c92c05d",
+  "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+  "teacher_receipt_sha256": "f06302c55aad6870c877aed3f79f1defb280a392d6bf96d4f40ca018245c3ade",
+  "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+  "Fourier_receipt_sha256": "4c6852a2ccac25f540034b619b1c7a5651ef2daffcf2862656fbe6d5b2754220",
+  "Fourier_params_sha256": "a0afe86edc6d7b843673cb420ce7ade991e4e60a797b92af63d44ffe0b036691",
+  "train_manifest_sha256": "181e9c203b2d5a147888aac7ded702673c2084994d722c9ca4633fad0210ee64",
+  "TFSS_mode": "TFSS-U",
+  "TFSS_map_version": "masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-image-canonical-canvas-v2",
+  "TFSS_eta": 0.85,
+  "validation_used": false,
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "cleanup_policy": "retain_all",
+  "deleted_paths": [],
+  "cpu_probe": false,
+  "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+  "strict_Original_S4_equivalence_claim": false,
+  "state": "passed",
+  "computation_kind": "poisoned-export",
+  "production_entrypoint_reached": true,
+  "finite_outputs": true,
+  "decoded_budget_passed": true,
+  "labels_byte_identical": true,
+  "actual_device": "cuda:0",
+  "actual_training_images": 1,
+  "production_forward_calls": 2,
+  "parameter_updates": false,
+  "native_export_link_validation": {
+    "state": "passed",
+    "scope": "one real training image; bounded learned coefficients; NOT formal export",
+    "image_id": "000000000036",
+    "source_label_sha256": "c82d07894d4cd3bde480747525b6ccde1b56dbc4ad8113d1244de4b6ee720c6a",
+    "output_label_sha256": "c82d07894d4cd3bde480747525b6ccde1b56dbc4ad8113d1244de4b6ee720c6a",
+    "native_parameter_schema_accepted": true,
+    "native_parameter_identity": {
+      "source_commit": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+      "release_sha256": "d3b99e959732b2e4cf70d26328edda450b360086a25dcc7b8d9244841ce66ca6",
+      "phase_config_sha256": "054b04ac5ca0e20ae8b776d8428dcdbba135a18c0f8e8160c27c9d5e65776ecf",
+      "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+      "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+      "training_contract": "canonical-original-S4-TFSS-U-v1",
+      "cache_identity": {
+        "reference_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+        "maps_code_sha256": "11a4d7b330c63b5e8c7ef65182b5fb0c65adb017d21fcd908843b741fd912129",
+        "risk_code_sha256": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e",
+        "map_version": "masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-image-canonical-canvas-v2",
+        "canonical_lock_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+        "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+        "risk_estimator_code_sha256": "e8af240343a12bc22951c8a48e9c099d9abf1a2c3ffeebfd926c5c366e2b1e07",
+        "risk_policy_spec_sha256": "2dbd96e112f86359e97457c19a411e8c9f2a7fcce0f4535c50e59c58cedbba48",
+        "risk_cache_adapter_sha256": "94181da621708ffc4e2b191d02634edb1b5aeee24f1bb3ffb7f62331aa77a956",
+        "normal_native_estimator_sha256": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e"
+      },
+      "ordered_images_sha256": "fe47a11fbdf9ce0da79a0e5bcefd6a3bfdd13fc735f78cbec2834b9bf42a243f"
+    },
+    "selected_parameter_shape": [
+      16,
+      3
+    ],
+    "native_final_image_matches_export_exact": true,
+    "native_vs_export_max_abs_difference": 0.0,
+    "comparison_tolerance": 0.0,
+    "comparison_context": "original generation mode on both sides; stochastic training unchanged",
+    "decoded_PNG_roundtrip_exact": true,
+    "decoded_budget": {
+      "max_bytes": 8,
+      "outside_nonzero": 0,
+      "overlap_max_bytes": 4
+    },
+    "actual_composition_device": "cuda:0",
+    "TFSS_map_source": {
+      "image_shape_hwc": [
+        640,
+        481,
+        3
+      ],
+      "canvas_hw": [
+        640,
+        512
+      ],
+      "target_objects": [
+        {
+          "valid": true,
+          "q10": 0.0001314168912358582,
+          "q90": 0.001092046732082963,
+          "bbox": [
+            0.6712785862785863,
+            0.6179453125000001,
+            0.6457588357588357,
+            0.726859375
+          ],
+          "raw_norm": 0.3386986553668976
+        }
+      ],
+      "risk_classes": [
+        {
+          "valid": true,
+          "q10": 0.00022135103063192219,
+          "q90": 0.004587000235915184,
+          "cls": 25
+        }
+      ],
+      "nt_matching": [
+        {
+          "gt_index": 0,
+          "cls": 25,
+          "positive_count": 10,
+          "native_positive_count": 10,
+          "coverage_mode": "native_all_GT_competition",
+          "coverage_status": "COVERED",
+          "box": 0.06628622114658356,
+          "cls_bce79": 0.550717830657959,
+          "dfl": 0.6630529165267944,
+          "gains": [
+            7.5,
+            0.5,
+            1.5
+          ],
+          "weighted_loss": 1.7670849561691284
+        }
+      ],
+      "no_nt_gt": false,
+      "q_target_seconds": 0.6176992319524288,
+      "extra_nt_risk_seconds": 0.16072070505470037
+    },
+    "W_min": 0.8500000238418579,
+    "W_max": 1.0,
+    "Teacher_unchanged": true,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "extra_model_forwards": 0,
+    "formal_receipt_written": false
+  },
+  "actual_forward_evidence": [
+    {
+      "devices": [
+        "cuda:0"
+      ],
+      "cuda_indices": [
+        0
+      ],
+      "raw_tensors": [
+        {
+          "shape": [
+            1,
+            84,
+            8400
+          ],
+          "dtype": "torch.float32",
+          "sha256": "4ec1fc07c6b678f2fe8078af8516525d122c87efceebedd3f9aa4fce918e6ba6"
+        },
+        {
+          "shape": [
+            1,
+            64,
+            8400
+          ],
+          "dtype": "torch.float32",
+          "sha256": "67e7ee8809d262ea5a727b00148aec314a621de6cdd7d379c7e04ea5fee0e89c"
+        },
+        {
+          "shape": [
+            1,
+            64,
+            80,
+            80
+          ],
+          "dtype": "torch.float32",
+          "sha256": "74c29a2aeabafaadb8ab731d0d8cf4631288646d9bf81df00d72f1eeef0b9444"
+        },
+        {
+          "shape": [
+            1,
+            128,
+            40,
+            40
+          ],
+          "dtype": "torch.float32",
+          "sha256": "1f5c8b3ebf1aec546c9fe373e474eda34103fc58778f301fd0a6a242ad6fa94b"
+        },
+        {
+          "shape": [
+            1,
+            256,
+            20,
+            20
+          ],
+          "dtype": "torch.float32",
+          "sha256": "053f35d98cba8db80aaa69834c9e23683adf285d353cf01e18e9c708fb9fe00f"
+        },
+        {
+          "shape": [
+            1,
+            80,
+            8400
+          ],
+          "dtype": "torch.float32",
+          "sha256": "8b7e5a3a59b5ffaa4d511648f4f6a4b1fc39bbbe6d5d33e06ccf59935d8d2ae6"
+        }
+      ]
+    },
+    {
+      "devices": [
+        "cuda:0"
+      ],
+      "cuda_indices": [
+        0
+      ],
+      "raw_tensors": [
+        {
+          "shape": [
+            1,
+            84,
+            8400
+          ],
+          "dtype": "torch.float32",
+          "sha256": "9853e93c5f956b08318584ff14c91efa6ed68216b71b3a284187a50646522b02"
+        },
+        {
+          "shape": [
+            1,
+            64,
+            8400
+          ],
+          "dtype": "torch.float32",
+          "sha256": "9e8c3c5775fb4add6d1b569664dc6f352e1f4ff7a162beab83ad209d4a69ac72"
+        },
+        {
+          "shape": [
+            1,
+            64,
+            80,
+            80
+          ],
+          "dtype": "torch.float32",
+          "sha256": "33a2fc1bdf43da20068c4bfa303d8dca0ce2aa2661368d96559f3acb9599c077"
+        },
+        {
+          "shape": [
+            1,
+            128,
+            40,
+            40
+          ],
+          "dtype": "torch.float32",
+          "sha256": "9d818bef6815e7a544d6fa09291490f036dfd4260f76533b573eaf800bae4820"
+        },
+        {
+          "shape": [
+            1,
+            256,
+            20,
+            20
+          ],
+          "dtype": "torch.float32",
+          "sha256": "72f79fd60cb0d06269cd6a8f95d636cc4f8181fe2db2ab00b3486b31c9ba27fc"
+        },
+        {
+          "shape": [
+            1,
+            80,
+            8400
+          ],
+          "dtype": "torch.float32",
+          "sha256": "9bfe06aa84cdef86fe495fb8adf921796b91ef72e430ced50d255f12b9a5b46c"
+        }
+      ]
+    }
+  ],
+  "row_count": 1,
+  "manifest_sha256": "b1b4003532ec77b2675e63922f10614fb4fdbc8d1569e3a83b0fdcc03877fe81",
+  "max_decoded_byte_difference": 8,
+  "max_overlap_byte_difference": 4,
+  "outside_nonzero_pixels": 0,
+  "CUDA_initialized": true,
+  "completed_UTC": "2026-10-28T09:09:24.761373+00:00"
+}

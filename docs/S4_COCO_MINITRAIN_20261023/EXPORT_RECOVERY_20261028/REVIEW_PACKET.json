@@ -1,0 +1,143 @@
+{
+  "schema_version": "prerun.scientific-review.v1",
+  "review_mode": "scientific_review",
+  "repo_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023",
+  "pre_run_code_commit": "f50a4526b39c7a96e4c017c7e0e0aec0b4bf2df1",
+  "review_diff_base_commit": "c13e311b977a53dc1cfd5dce812665a460ee3338",
+  "approved_basis": [
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\docs\\S4_COCO_MINITRAIN_20261023\\USER_RISK_FORMAL_RELAUNCH_AUTHORIZATION_20261027.md",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\docs\\S4_COCO_MINITRAIN_20261023\\COCO_EXPERIMENT_A_CONFIG.yaml",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\docs\\S4_TFSS_UTILITY\\S4_CONFIG_LOCK.json",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\coco_s4\\configs\\export25k.json",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\coco_s4\\configs\\RISK_FALLBACK_PROTOCOL.json"
+  ],
+  "implementation_intent": "Export exact accepted learned Original S4 COCO80 Dimension-Compatible Implementation + NT-risk Boundary Extension parameters to fixed25K, with original TFSS-U/8-4-0 and unchanged labels. First scientific review of export stage, not a second Fourier/risk review. Inspect full current export scientific computation and native reference, not only diff. Preserve false global strictOriginal equivalence. Operational scaffolding is outside scientific review. CPU/CUDA differences fully disclosed; do not assume equality or invent tolerance.",
+  "exact_command": "cd /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_export25k_20261028_gpu01 && /project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.phase_export --release /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_export25k_20261028_gpu01/source_release.json --output /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/export25k --registration /project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/receipts/export25k_READY.json",
+  "output_collision_policy": "fail",
+  "local_validation": [
+    {
+      "command": "python -B -m coco_s4.validate_export_phase_contracts",
+      "exit_code": 0,
+      "observation": "actual composition/calibration3/Fourier2 contracts passed; code unchanged by f50 import-only fix; execution/COCO_EXPORT_LOCAL_COMPONENT_TESTS_20261028.json"
+    },
+    {
+      "command": "python -B -m coco_s4.validate_export_cpu_guard",
+      "exit_code": 0,
+      "observation": "actual current production25relative imports resolved,1positive7negative CPU evidence guards,0models; execution/export_cpu_guard_2026-10-28T071100.619515_0000/report.json"
+    },
+    {
+      "command": "git diff 5c49 --name-only -- ue_framework configs docs/S4_COCO_MINITRAIN_20261023/COCO_EXPERIMENT_A_CONFIG.yaml",
+      "exit_code": 0,
+      "observation": "empty diff: original59 framework and scientific config files unchanged"
+    }
+  ],
+  "pre_review_smoke": {
+    "schema_version": "prerun.pre-review-smoke.v1",
+    "computation_kind": "inference",
+    "disposition": "passed",
+    "candidate_commit": "f50a4526b39c7a96e4c017c7e0e0aec0b4bf2df1",
+    "run_id": "coco_export25k_20261028_gpu01",
+    "exact_command": "systemd-run --user --scope --quiet --unit=s4coco-export-36ba2ef8497262c07d1035ec /project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.process --job /project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_export25k_20261028_gpu01/supervision --cwd /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_export25k_20261028_gpu01 -- /project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B -m coco_s4.phase_export --release /project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/_anchors/coco_export25k_20261028_gpu01/source_release.json --output /project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_export25k_20261028_gpu01/result --smoke-images 1",
+    "exit_code": 0,
+    "step_budget": 100,
+    "completed_steps": 2,
+    "step_unit": "actual frozen Teacher forward calls; one real train image",
+    "finite_outputs": true,
+    "production_entrypoint_reached": true,
+    "isolated_output": true,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "evidence_paths": [
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_export25k_20261028_gpu01\\result\\smoke_summary.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\coco_export25k_20261028_gpu01\\source_release.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\coco_export25k_20261028_gpu01\\main_readonly_audit.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_export25k_20261028_cpu02\\result\\cpu_probe_summary.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\coco_export25k_20261028_cpu02\\main_readonly_audit.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_FOURIER_CHECKPOINT_AND_NONPERSON_AUDIT_20261028.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_EXPORT_CPU_CUDA_COMPARISON_20261028.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_EXPORT_DEVICE_MAP_DIFFERENCE_ANALYSIS_20261028.json"
+    ],
+    "cleanup_policy": "retain_all",
+    "checkpoint_cleanup_completed": false,
+    "checkpoint_paths_remaining": [],
+    "deleted_paths": [],
+    "retained_evidence_paths": [
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/coco_export25k_20261028_gpu01/console.log",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_export25k_20261028_gpu01/result/status.json",
+      "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_export25k_20261028_gpu01/result/smoke_summary.json"
+    ],
+    "baseline_equivalence_required": true,
+    "baseline_equivalence_probe": {
+      "reference_id": "ue_framework.methods.s4_tfss.S4Trainer native final-generation composition, training mode disabled for both sides; same real learned params",
+      "reference_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/fourier24/global_params.pt",
+      "candidate_weights_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/fourier24/global_params.pt",
+      "metric_name": "maximum absolute decoded byte error against native final generation",
+      "reference_metric": 0.0,
+      "candidate_metric": 0.0,
+      "absolute_difference": 0.0,
+      "tolerance": 0.0,
+      "evaluation_setting": {
+        "dataset": "fixed official minitrain25K train image000000000036",
+        "parameters": {
+          "device": "cuda:0",
+          "eps": 0.03137254901960784,
+          "eta": 0.85,
+          "target_class": 0,
+          "classes": 80,
+          "selected_frequencies": 16,
+          "clean_map_canvas": [
+            640,
+            512
+          ]
+        },
+        "seed": 0,
+        "sample_count": 1,
+        "post_processing": "identical original PNG integer-budget projection; compare decoded RGB uint8"
+      },
+      "evidence_paths": [
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\p\\coco_export25k_20261028_gpu01\\result\\smoke_summary.json",
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\coco_s4\\repair_validation.py"
+      ]
+    }
+  },
+  "critical_values": [
+    {
+      "name": "Learned parameters and original S4 computation",
+      "source": "accepted 24epoch20448step source5c49 native S4Trainer/optimize_s4; paramsSHAa0afe86e, full Adam/RNG snapshot a95ec48f",
+      "sink": "phase_export validates native16x3 params identity then LegacyKProtoGenerator; not old12step B2 artifact",
+      "evidence": "COCO_FOURIER_CHECKPOINT_AND_NONPERSON_AUDIT_20261028.json plus current GPU summary native_export_link_validation; CPU fullCSV main audit"
+    },
+    {
+      "name": "Original TFSS W and COCO risk boundary",
+      "source": "canonical map cache/Qt/native+independentTAL then explicit policy coco80-ntgt-native-tal-then-gt-risk-v1; accepted39D/all79/K8/P348",
+      "sink": "compose_tfss_utility_png applies W=1-.15R(1-Q) to native pre-clamp delta, same original PNG projection; no Full",
+      "evidence": "current source coco_s4/phase_export.py and actual GPU/CPU summaries; source manifests all155+7 verified; original59core/YAML unchanged5c49"
+    },
+    {
+      "name": "Data identity GT and support budgets",
+      "source": "fixed official minitrain25K accepted image/label manifest and original class0Person mapping",
+      "sink": "unchanged full train labels, original dims RGB PNG for Person<=8/overlap<=4/outside0; noPerson original JPG bytes copied",
+      "evidence": "CPU02/GPU01 one actualPerson image / allGT exact; native image maxdiff0/tol0 on each device; COCO_FOURIER_CHECKPOINT_AND_NONPERSON_AUDIT_20261028.json actual noPerson000000000025 branch bytes/coords exact (branch probe, not full phase)"
+    },
+    {
+      "name": "Actual computation device and no updates/evaluation",
+      "source": "published exact f50a452 current-source real CPU02 and CUDA01",
+      "sink": "actual raw Teacher tensors CPU versus cuda0/index0; Teacher/adaptive/learnedparams hash invariance; no val/optimizer/AP",
+      "evidence": "current CPU/GPU summaries and main_readonly_audit.json"
+    },
+    {
+      "name": "CPU versus CUDA numerical disclosure",
+      "source": "same actual sample/GT/cache identity/canvas/weights, measured retained PNG and Q/R/W",
+      "sink": "each device exact native reference tol0 and strict8/4/0; no assumed cross-device equality or new tolerance",
+      "evidence": "COCO_EXPORT_CPU_CUDA_COMPARISON_20261028.json:219pixels355channels differ by<=1byte; Qmaxdiff.37729/R.06360; DEVICE_MAP_DIFFERENCE_ANALYSIS: cache/GT/TAL assignments exact, Wmaxdiff.0565936. CPU/CUDA backend cause not experimentally isolated; official export uses native CUDA maps in its own cache, never imports CPU maps. Assess scientific implications explicitly."
+    }
+  ],
+  "experiment": {
+    "benchmark": "COCO Experiment A / Original S4 Dimension-Compatible + Level C NT-risk Boundary Extension v1",
+    "dataset": "official fixed HoughNet minitrain25K train; no validation use",
+    "checkpoint": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/fourier24/global_params.pt SHA256=a0afe86edc6d7b843673cb420ce7ade991e4e60a797b92af63d44ffe0b036691",
+    "seed": 0,
+    "metric_policy": "export only, no AP/effect claims. Last200 matched victims and full cleanval5K are later independently gated stages. LPIPS null unless measured.",
+    "output_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/export25k"
+  }
+}

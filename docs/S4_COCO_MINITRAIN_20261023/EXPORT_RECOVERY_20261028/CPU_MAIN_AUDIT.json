@@ -1,0 +1,86 @@
+{
+  "state": "passed",
+  "scope": "read-only CPU audit; zero model forwards/parameter updates",
+  "source_commit": "f50a4526b39c7a96e4c017c7e0e0aec0b4bf2df1",
+  "source_files_verified": 155,
+  "native_files_verified": 7,
+  "summary_sha256": "a97e864cb48c68658f133cfb7850a72afc536e165f97b9db187c4ea0a46ff7c3",
+  "actual_device": "cpu",
+  "production_forward_calls": 2,
+  "native_export_exact": true,
+  "decoded_max": 8,
+  "decoded_overlap": 4,
+  "outside_nonzero": 0,
+  "teacher_and_full_state_and_Fourier_hashes_exact": true,
+  "parameter_updates": false,
+  "model_forwards": 0,
+  "full_Fourier_CSV": {
+    "state": "passed",
+    "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/fourier24/native_s4/diagnostics.csv",
+    "sha256": "128c6503deecbd225781e0d0d7dbc1f2862f34d7d05b872a14ccbcf014b732c9",
+    "rows": 20448,
+    "epochs": {
+      "1": 852,
+      "2": 852,
+      "3": 852,
+      "4": 852,
+      "5": 852,
+      "6": 852,
+      "7": 852,
+      "8": 852,
+      "9": 852,
+      "10": 852,
+      "11": 852,
+      "12": 852,
+      "13": 852,
+      "14": 852,
+      "15": 852,
+      "16": 852,
+      "17": 852,
+      "18": 852,
+      "19": 852,
+      "20": 852,
+      "21": 852,
+      "22": 852,
+      "23": 852,
+      "24": 852
+    },
+    "sequential_steps": true,
+    "critical_values_finite": true,
+    "outside_support_all_zero": true,
+    "TFSS_W_range_valid": true,
+    "nonzero_Fourier_gradient_rows": 20448,
+    "ranges": {
+      "L_total": [
+        1.2010946869850159,
+        1.6834164261817932
+      ],
+      "grad_norm_fourier": [
+        0.01959652453660965,
+        1.5629969835281372
+      ],
+      "outside_support_max": [
+        0.0,
+        0.0
+      ],
+      "s4_W_min": [
+        0.8507248498499393,
+        0.9185013584792614
+      ],
+      "s4_W_max": [
+        1.0,
+        1.0
+      ],
+      "s4_actual_linf": [
+        0.007882356643676758,
+        0.03137257695198059
+      ],
+      "s4_overlap_linf": [
+        0.003941178321838379,
+        0.01568630337715149
+      ]
+    },
+    "read_policy": "one server-side streaming pass; CSV contents not transferred"
+  },
+  "local_summary_sha256": "a97e864cb48c68658f133cfb7850a72afc536e165f97b9db187c4ea0a46ff7c3"
+}

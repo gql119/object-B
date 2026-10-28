@@ -1,0 +1,351 @@
+{
+  "schema": "s4.coco.release.v1",
+  "phase": "export25k",
+  "workflow_run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1",
+  "source_commit": "f50a4526b39c7a96e4c017c7e0e0aec0b4bf2df1",
+  "scientific_parent": "b1e29510e7b1ed5fa0fe361a27132d8790e65c14",
+  "victim_parent": "ab626917f20917e58cf30033ac99df00938cb561",
+  "files": {
+    "coco_s4/__init__.py": "7287d2720917368ec9196f2a7bf2bf0eef065de09c3566d8f1823e6ec337a002",
+    "coco_s4/acquire.py": "d5066c1fbb5e81e1c5fafeed534855dc6b092fad250f8e26197a612311aca87a",
+    "coco_s4/cache.py": "4e990445bea46fc6741d8f31177c694de4e1273657d5b17abfb499ba520e9dc8",
+    "coco_s4/calibration.py": "1f7540ad99ed349f87d41e24355f15b9cf605a25045aa6492d4bfc9c6711e85f",
+    "coco_s4/calibration_release.py": "9eedaa25f237585ba604f8bf4441b1964f67d1dd0793d109dbb76f00592a184f",
+    "coco_s4/canonical_s4_training.py": "12709b623c3e225d5ce9f4d92ecbb265b870ddb674aa68506f1e3efb0220e1c3",
+    "coco_s4/coco_eval.py": "e8ebd05bdba3362de7dfaf84bcdf9420b90fa89b33cd346e932f185554341640",
+    "coco_s4/configs/EMERGENCY_REPAIR_SCOPE.json": "41020b9a285e9274fb1704ef668f80e9424b1474b7091b1588b099d740b16be1",
+    "coco_s4/configs/QUEUE.json": "a090a2ad5ebfdd75a73c02306260e20ef09d9d727cf6fe0c4e88ad6bb03d02eb",
+    "coco_s4/configs/RISK_FALLBACK_PROTOCOL.json": "2dbd96e112f86359e97457c19a411e8c9f2a7fcce0f4535c50e59c58cedbba48",
+    "coco_s4/configs/calibration.json": "383f6eca90944f2994dbf1ca5eeef8a577725e78d2131056e3808efe041c3496",
+    "coco_s4/configs/clean200.json": "7e53ecf579a066319c71474980a4fb3e748ca7e764148efe3cf61021b84f7f89",
+    "coco_s4/configs/export25k.json": "ea016e22f77a13ac529121e5f2ec7ab329fcdde1c3ee82df96a355389c92c05d",
+    "coco_s4/configs/final_report.json": "d01141e408c612f20c06d587795cc932309d7af63b701d91379f307b42170dd7",
+    "coco_s4/configs/fourier24.json": "054b04ac5ca0e20ae8b776d8428dcdbba135a18c0f8e8160c27c9d5e65776ecf",
+    "coco_s4/configs/official_eval.json": "e644195e20c8744103139b3a97670a2c338e66f2616ddacb094e373585f78a67",
+    "coco_s4/configs/s4_200.json": "90114b6949f2f68ebe1a0bd47b661ece850ec14b793ab42b58aff0be976ace7c",
+    "coco_s4/configs/teacher_eval.json": "7120168ccaac4e1d88978c7acca505208354e64967a6b1de3c0754b831f77e69",
+    "coco_s4/control.py": "7e37c72db8e0c3ec7bdba224c27a78743863e8a993534ea9097e85fcc1dd1943",
+    "coco_s4/data.py": "e0fbdf4a5a68b1546647c22a50df106390ed57272dc2bcfd5a146c3323e6aa0d",
+    "coco_s4/dimension_equivalence.py": "3f3b84c11e8803385f5b1491014bdfe7b3e1ae2b4b007ba04dbf905e66c49b9c",
+    "coco_s4/dimension_protocol.py": "77e1ab6cf71be36b275486ff7fa48e52eff2d56717ff53448517df9bed15138c",
+    "coco_s4/dimension_rebuild.py": "bd42aff20d1f85b5e095c10d01af0f81336ebd999def3635279cd67f8cc9790c",
+    "coco_s4/dimension_release.py": "1c1c53fe7d081ef774b14d573eeb9ea991893a9e38a21b26e377c6ae1a9fee04",
+    "coco_s4/eval_release.py": "83714659aceee87e7ccbc04022b4c09581809036ba566e8e4a19f96fcccdbb3f",
+    "coco_s4/evaluation.py": "2ce9cca325f2b9632b8617d9c07d530bebfdfa7f7df628453b7d3130bbda78d1",
+    "coco_s4/export_release.py": "0c0c4017219358c188feef15d8a9e86be786b53141080f1ada0aa202b7946e1d",
+    "coco_s4/final_report_release.py": "c58c5d6a45b7196b9cfb8deb4fa145c0efe608c3ea0d0ea36747036c82cdf0ec",
+    "coco_s4/fourier_artifact.py": "e816006228d6aed3d8c707115151ea924823bac9a4516cb4dde015017d72fc14",
+    "coco_s4/fourier_gradient_audit.py": "c8b38a3bae3f92c07705cfe1d8f10911e409779d2ac664c09a7db6c30f30b7c3",
+    "coco_s4/fourier_release.py": "9700aaf26c5a6302df893d0ca69a55b905f49dbbfa4f91960330ccf5f1ba52ea",
+    "coco_s4/official_eval_release.py": "499abf43d3ab283c3ad4c8e682cb490d54ed6bb2c2f6086762b3ccc02de00ecb",
+    "coco_s4/phase_calibration.py": "fe18c83a2a2657ff5a26a0ff41d3461283abf6635c06723c7591f448edb2c003",
+    "coco_s4/phase_contract.py": "3b0fd5244ac0f7274150a35dc72365e482589824ecb99e6d2ecaeba35335c615",
+    "coco_s4/phase_export.py": "7c03b75394f1b050cc222bdc700cd717592469862ce4bb976928cbc9c2b2a2f5",
+    "coco_s4/phase_final_report.py": "95fcc841daa7465c9c4e6208b950fb0ace85514f311c91f775758c24de867204",
+    "coco_s4/phase_fourier.py": "32214fbc61ff8e8fcd5ec17edcb5b79cbe38db75fac967ddd111984d4bfe020a",
+    "coco_s4/phase_official_eval.py": "cc7f9bef7a78620e3787320ab68499a5c4e9d11dd6f230d992a58351113cd0ea",
+    "coco_s4/phase_teacher.py": "1b84e73a03e17f15fbf5e63bbecd0e88ea945e26f4f77c989ac23d9ffa6d72a3",
+    "coco_s4/phase_teacher_eval.py": "017ae6752a0308e6baca09c0d8cdea934e9cbdc201d6741fe1729fb4f1ad54a8",
+    "coco_s4/phase_victim.py": "067ae91810d080cab6a3d645f2612fcaba236e6dfb97e018671627f88e02b985",
+    "coco_s4/process.py": "af328836f1dfb01d36201361b8533e13df732459f94ce1c680f9dbc0d025bdd1",
+    "coco_s4/protocol.py": "9ca818d14609d4fc88d0438f846695869055081c0db053fe40d74513694d147d",
+    "coco_s4/recovery_control.py": "7de614c2c82a20b731d0a3e2cb2fe2a10284a575b38c934021f56d7a15c1b072",
+    "coco_s4/relaunch_binding.py": "70ec1e11d358e9ed76286a2ff08725847c94753b5e0da67275fa9cc9550d0c5b",
+    "coco_s4/release_transport.py": "e4305747b4c7228bba69f6e2dbde23939280f762f112b4b5d498905748e7a689",
+    "coco_s4/repair_validation.py": "22b0f1cf86f2da410f18700d8f40834ea4affbc62d84e00e116669f7ee7c2115",
+    "coco_s4/risk_fallback.py": "e8af240343a12bc22951c8a48e9c099d9abf1a2c3ffeebfd926c5c366e2b1e07",
+    "coco_s4/risk_fallback_cache.py": "94181da621708ffc4e2b191d02634edb1b5aeee24f1bb3ffb7f62331aa77a956",
+    "coco_s4/risk_formal_contract.py": "c0713909ef6e365ff0f9c4d3f2604596c04182f6ab9c60e81fab495aeca57fa4",
+    "coco_s4/risk_population.py": "30906789ff90ef1dd5a6a5e9404f695dc830a441a4204dc5e58dcecceb97146a",
+    "coco_s4/runtime.py": "7f6f8e18d8fc23639c99351b205b17ae61a48ea5f7f20c092e42713acdfbd436",
+    "coco_s4/serial.py": "2ae896fe9fdb8657b86e23869a701ec2b225010ba8ebd88094bbcc3946e264dc",
+    "coco_s4/serial_recovery.py": "04db20c3b3126edde2ba99d7688a5f44cd0c1c766bef33a33a15e03cc8d719ad",
+    "coco_s4/teacher.py": "e3954d420ffcf430aa672f58aebfb4f7c5043958f8bc1f88ddf3b5435327b024",
+    "coco_s4/tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "coco_s4/tests/reference_tfss_nt_sensitivity_voc.py": "e1fa911ea651259926972125a71565d3fe0080fe508f68f1f13b2f670d85a73d",
+    "coco_s4/tests/test_compatibility.py": "71f8e9864cd0f47a5906e1a191f865915cb1db5954ef202c8fb28d25095f05fc",
+    "coco_s4/tests/test_native_sensitivity.py": "00a6110ec257bb5cf8801ed96d9e2589eb458e8fce2a5954731c536e4010e641",
+    "coco_s4/tests/test_release_transport.py": "d33ee65bb36800207eaee151dcdb7caaec5f60a093269453ffb78332a83cba44",
+    "coco_s4/validate_cache_precision_cpu.py": "c02e38f18672e7eaf3b54cc84132abf2274d545a95cf115c907e3d72fadf3caa",
+    "coco_s4/validate_calibration_cpu.py": "7580c21655e770f48ffb16f5abd5144b323b6322f84290109e1bf1765e15966a",
+    "coco_s4/validate_calibration_loader_cpu.py": "044a9165fa65a4fd66cef16846dc85639643ee0946951a868c75e46d1a1ea4f8",
+    "coco_s4/validate_calibration_phase_contracts.py": "f66b50fa5d08485a8594fae35219ba69442d2f3e50dbbe490d65551510903033",
+    "coco_s4/validate_calibration_reference_cpu.py": "2d4452d8c2c6c27505d425596fb951f3b7c53f3b0a03a2c9eadd633d8e423ad4",
+    "coco_s4/validate_canonical_s4_training_cpu.py": "5c5f8251343c2b81b1e19a5c09f14498aeb5d740a2fc4fd5b918b78db16dbe44",
+    "coco_s4/validate_cpu.py": "20ebab519d70b38b71465ed370b61fdedace7ceac9abd52cb9cde1fce03f9b1a",
+    "coco_s4/validate_dimension_contracts.py": "09958078cd5978e1fcf1d529ac26cae351764be55658e8231afc85e622f1c258",
+    "coco_s4/validate_dimension_cpu.py": "4af3ce728570d7a0b93c736056d82470660fed1bbdff8c4681757700aeab1730",
+    "coco_s4/validate_emergency_contracts.py": "de037a81bbce6668738b301d07eb3b32f38b6a158d9db43f28373d098a6f0186",
+    "coco_s4/validate_export_cpu_guard.py": "0a710c2926596a1fc376f6ae09c96ea28844db2e35d2a1d1f76e46f689777163",
+    "coco_s4/validate_export_phase_contracts.py": "5c0ae72f064fd0c01349bdf046c2ff8e852b4b52c77719f377c95fe7cadf4c35",
+    "coco_s4/validate_fourier_phase_contracts.py": "c8182c50b485eb0e99b297c22bc22c37e39fc4fadea50566e374679326486f67",
+    "coco_s4/validate_phase_cpu.py": "9edecb6e0f2f17a97f91bd76d02902ea193c35d890fd49eb31a10733a81f58f0",
+    "coco_s4/validate_post_eval_contracts.py": "7995822266d648e3f559c31f71d1aad5495ffc46f088f621dc7f813458aeabab",
+    "coco_s4/validate_recovery_contracts.py": "c13198116daa90037595fb3e954889bdd4ac3e6ab8597c71d3621c0d92b9b070",
+    "coco_s4/validate_risk_fallback.py": "8893a22b59f3dca5a75f55f0f44962985ddc3f6fc5734021dc755eee96e54346",
+    "coco_s4/validate_risk_formal_binding.py": "5f49b6096cc0a803fee165d37d82ea56a2bd6d1e33cdae2f5765e4ac5a59c71b",
+    "coco_s4/validate_risk_mixed.py": "085aa30ac980dec3e5c82d424a399a69f715d68f1c730b0c2e7f17e43450d6ea",
+    "coco_s4/validate_risk_selection_precision.py": "2c7993916f5cc25333f454b142af4e7182d6dcc28f758523a766805c183d4a5c",
+    "coco_s4/validate_teacher_contracts.py": "fb0d38920f3dbc86beca349f36e87c62e5f6f9f38924365a7e5f5284593ebcae",
+    "coco_s4/validate_teacher_cpu.py": "cb946aeefb5b86fb6af5cb4d50aa68a8a528f88ac6366024b0ce248e1763ee66",
+    "coco_s4/validate_teacher_eval_contracts.py": "2dfc1acf9d90f7bf9f50f9df6bbfcb7b77c69a858ff1ee14a53f96dab79b6389",
+    "coco_s4/validate_teacher_eval_cpu.py": "cac4ef2484e6e2f87eca8145b8bed98ca74dbcd7dc0da2350006d0dbd7161048",
+    "coco_s4/validate_victim_phase_contracts.py": "13bc6e994d5e3ba8ab11d4690e76476dbf92af008c833e30155c7d2312ad2ecf",
+    "coco_s4/victim_release.py": "2a0348819b920691d9f2034973239da7eddc6775bb6db76f8dcbb7b4e18f8e36",
+    "coco_s4/workflow_admission.py": "4c90b4d1cfcb9154c0f65c669f053359bf643f0b5ce49e87665f542a8c66610e",
+    "configs/coco_yolov8n_80cls.yaml": "bd4225bb7492c2db0a983de228896025b05fbba7f233f6c1f9a8ac309c667a74",
+    "configs/tfss_short_probe.json": "c49b3e13e653c10d806c4e2f1076e0a2147a5186383b0d47e576f2c7aa3f3a5d",
+    "configs/tfss_utility_static_control_20261017.json": "22b7e4deb79713c8fb8d79148000dfbf06e0f2658d989511380a47dfe26d8f4e",
+    "configs/voc_yolov8n_20cls.yaml": "ce7ae30a91e838a1d53fd4773afc3b56454591701e3f83d37f404cc946af10a2",
+    "docs/S4_COCO_MINITRAIN_20261023/COCO_CATEGORY_MAPPING.json": "72d8e90134dade3cc3dc6f7a2b51df2c5758a60e315165a255f15258d26a8814",
+    "docs/S4_COCO_MINITRAIN_20261023/COCO_EXPERIMENT_A_CONFIG.yaml": "63cfa2b61d6d0fdb8d346772badb5fb5547c09536a2b4ef733bfafc020e108be",
+    "docs/S4_TFSS_UTILITY/S4_CONFIG_LOCK.json": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+    "ue_framework/__init__.py": "9e4f749459a68091dec7693f946c26ba9aa4733b4645d2f5fa3c5a098fd5fc68",
+    "ue_framework/config.py": "f11f37287afece94a71864b3ade15889760aed054baa75b0d31b5e332e4e6970",
+    "ue_framework/configs/exp_voc_person_b2_t.yaml": "511507187a0dfe00c6e80385b98948be50c6dec940278203f4d48fa7add07946",
+    "ue_framework/configs/exp_voc_person_b2_to.yaml": "eea41939e9fc04d24575bbfb8fcd56051d74dd46abe9c290bd29b3e30b70915f",
+    "ue_framework/configs/exp_voc_person_b2_to_lr001_orth0005_20260927.yaml": "890c3524d23639624df0a542e25212ab5046a7d48e936bcd15fa5418e4df19b6",
+    "ue_framework/configs/exp_voc_person_b2_to_safe_lr_p5_rank8_eps8_seed0_20261002.yaml": "8a926b2962d68957215a942c32f9c53cce233e2d3b4958b781f3b3c8c3a9ebfb",
+    "ue_framework/configs/exp_voc_person_b2_to_safe_ls_p5_eps8_seed0_20261002.yaml": "7a92fbcb629043cbb08ec2faf9991cdb7b92ee5f51b36edf70635e1bd4469671",
+    "ue_framework/configs/exp_voc_person_b2_to_safe_r4_eps8_seed0_20261004.yaml": "aa3dcefe85bdc30513a474e05c9a0295c8b7b343d58a76c1b1bdeb183773cb54",
+    "ue_framework/configs/exp_voc_person_b2_to_safe_soft05_eps8_seed0_20261004.yaml": "80cffe012aa6bfefcbe66f7c8e880e680da1c1885f5d0a7fcb01a77be6697894",
+    "ue_framework/configs/exp_voc_person_b2_to_strict_tsfl_safebg_eps8_person_seed0_20261002.yaml": "4b3996b7b86a20fa8903b529cdd03a345917125106f5e5812635a87fc5b8c818",
+    "ue_framework/configs/exp_voc_person_legacy_kproto_ret_b2.yaml": "b0865f9fe9f5959607fdf1c2014f8cfc1a41e39de3a0cd4f7248b581c3559d0b",
+    "ue_framework/configs/exp_voc_person_legacy_kproto_ret_bbox_half.yaml": "441370245442a67193119a40d59aee8428262fc04e70400a066f28a29a6cf471",
+    "ue_framework/data_utils.py": "aa260a5e65195a2f8b2ebb2725377810301984fdc13c33e91b89206a84551688",
+    "ue_framework/env_utils.py": "9ccb067e1a345d1021b1b2ad369c0fce4782c0d878b57778f314c66c1ef9243e",
+    "ue_framework/io_utils.py": "40ce021b2b99998444a3dae7d7b118541379bffcc8477b399378e355276134cb",
+    "ue_framework/launch_one.py": "9b8d3b76831089b3ae8dd3bd3a4323c93fea15b5fe9ebc882b16778f9139f5cc",
+    "ue_framework/methods/__init__.py": "cff976374a3ce375a8bf05d008dc3acde8c28ad778ed602908c6aa1d2abd5b90",
+    "ue_framework/methods/adaptive_learner.py": "02cd607b8c3e389c639bbf82859952dfb5c9528524e6ebc18a373860e7954518",
+    "ue_framework/methods/alce_acgt.py": "58fb51fad7810cb5a39570c0943f43674fe202e5fc07e81ac08f0f1419f76552",
+    "ue_framework/methods/alce_losses.py": "59cdf7177a72b19289aeff1b5ec17f749ec47b17b26f0c0053bc0fe96ede2752",
+    "ue_framework/methods/alce_metrics.py": "3ef71d71df9107588bdca9e08dd4b55b9aa3907e8f44a597d6a46f51d678f9b1",
+    "ue_framework/methods/b2_adaptive.py": "429348b91ec4909b8806aa1b25daa81dc6adbb4318462f42b82167e5639ae145",
+    "ue_framework/methods/b2_semantic.py": "121902603a6536889b867db63e866450cffa0c98f799c969a661a8fadee45679",
+    "ue_framework/methods/base.py": "ed267de51c401e9b4b6206fcd335c2afcffba1bd738f5e3fc7fbb791892801c0",
+    "ue_framework/methods/em.py": "e32a40e26ac2fa7c1c07194f82892291b47eda3ebf1ddc2484dba9e1dda9db3c",
+    "ue_framework/methods/factory.py": "ea477b8628d304b48895510a601ee2f90d62b68d4b5f229595c236a6c2da9340",
+    "ue_framework/methods/fourier.py": "a349b0b0b24fe92b34018fcd12fad0d4e95bb611f2dbf8549b8dfd7765da5884",
+    "ue_framework/methods/legacy_kproto_ret.py": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb",
+    "ue_framework/methods/orth_reference_design.py": "a41be2a269f40ef868bdfb978494e1acdff5efb4572a341721ceba25fb864e42",
+    "ue_framework/methods/ours.py": "c3bb9c89e14456f82d023d191a2f37887090ed70b5f2e6d266c7b0545786be87",
+    "ue_framework/methods/rem.py": "95c8ce13d04ee541441cdd392ad6c8ad8b4fdd6596af909a626f23447269fd06",
+    "ue_framework/methods/s4_optimization.py": "26fda46bddd9ac30a0386870ccef6074b06b916a25669afeb6b9d7abcedd8604",
+    "ue_framework/methods/s4_pixel_audit.py": "1fead6b1bac11ad7d4d2c03217ebb5c1baf359e8b5e9647d8ff256cbd72b3d7e",
+    "ue_framework/methods/s4_tfss.py": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d",
+    "ue_framework/methods/safebg.py": "e0bfe9a5c86591c91e2ac1b560923994f1a322e6d34ec567e44bbeb01b673043",
+    "ue_framework/methods/semantic_coordinates.py": "54798bb76dec96a6e160690ecbb3729e574169b00dd8439a5a4ae5c37cd38e05",
+    "ue_framework/methods/shadow_tal.py": "b7240e2149c6a1b486e53aa65b74be6aceb189e721961448918bad8bf02f1a82",
+    "ue_framework/methods/tausb_universal.py": "d62757e31c5832c675a525889d71589e1bb2621c2c7d05693eb39f0f5dff000a",
+    "ue_framework/methods/tfss_clean_maps.py": "11a4d7b330c63b5e8c7ef65182b5fb0c65adb017d21fcd908843b741fd912129",
+    "ue_framework/methods/tfss_nt_sensitivity.py": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e",
+    "ue_framework/methods/tfss_probe_metrics.py": "dbf43d1e367d3d1dfa2ba4f437d0321e7ee36b1518267edac7d6c08cd04a27ba",
+    "ue_framework/methods/tfss_spatial.py": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd",
+    "ue_framework/methods/tfss_static_diagnostics.py": "9e704c10debf934db68b56700806aabbe99778ad8e9c56ce6c8b2b0c8091797e",
+    "ue_framework/metrics_utils.py": "b1e35af4fbc055dfe7193d72162e09e0d3289e0e5f24ae5182761f36c2b8504b",
+    "ue_framework/pack.py": "20bae0d2f42b738d6fd1ef7f25a9d736e908025c28cac6f32ede9a95a80b0e97",
+    "ue_framework/paths.py": "39de91d8b7172cb88d1d0421f0b62e1f31d4fdbb911f64510a00e534d4184542",
+    "ue_framework/runtime.py": "bfe42dbdb8b37a1fafc5eb01e29a28851fda4e291f286a80ba7e86013418b5e9",
+    "ue_framework/s4_amp_observer.py": "8f0fd915eb6ba4d99840916f3e325f147cb6073566effc2492063abba39f2cca",
+    "ue_framework/s4_victim.py": "378dbfdfd0271414339ebbf096f71c16e93fb358831df6ae83ec3d38c6c9f81a",
+    "ue_framework/stages/__init__.py": "87bb08911f3ecf7b39f3bdf1c0cc3d094100fe5bdafcff5707b1a75ed862647e",
+    "ue_framework/stages/aggregate.py": "a63968f0100269be3afb8344810034d46d14927a6bc4e487912556df7f5d8f3a",
+    "ue_framework/stages/evaluate.py": "632a30efaee07d9803d3b3da011b0f1105d906ad4c0cafaa5e8ec9c744d2641b",
+    "ue_framework/stages/generate.py": "ed4395879b604a5e8cf69f8210e57903d0db07a0216ee690fec13b47df9666ea",
+    "ue_framework/stages/train_victim.py": "09526de72e5f2a19fd9a024acce22de78e2c13a8d12500bb79adbdd6cf31454a",
+    "ue_framework/status.py": "cbe2887d9ca572d9d945163c80d13706d28a6dc201f4f7a9c818e6f215a69b0c",
+    "ue_framework/support.py": "e0b9813177c10d76ebaedf76bf56c9e2e9e2c9bb7bdeb4c3ac71e17b2d22dca0",
+    "ue_framework/train_utils.py": "c7434e675840d699e7d92f843a723e055af405f9d60b1aa32cb01492788f01ae",
+    "ue_framework/ultra/__init__.py": "87150a0a52566f183120bee1caf5385d7b6dbd4a75ba06a6634ffd0bc055dfdb",
+    "ue_framework/ultra/hijacked_loss.py": "dbb7673a5e4918b0116e2d6d8de464d6882921439926817981a56c1bb1eb4ae3",
+    "docs/S4_COCO_MINITRAIN_20261023/USER_RISK_FORMAL_RELAUNCH_AUTHORIZATION_20261027.md": "a57df356ac2da01b488e60d14d9ec292f6866d2006ef252283f79981e6be4f9f",
+    "docs/S4_COCO_MINITRAIN_20261023/COCO_RISK_FORMAL_PRECHECK_REQUIREMENTS_20261027.json": "db12d58be927501255ad9fabbe2f0671a148a20b715a1ccd8b04071c3bf8fa46"
+  },
+  "data_root": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023",
+  "data_files": {
+    "metadata/instances_minitrain2017.json": "5682389c3bb0a356912771811f7836659cc6de5a588413752922ccb94a6df1a8",
+    "metadata/instances_val2017.json": "e8c7f7908f1d7278341fae127d0da654f102f11bd7b21d8aeefa635b8c810b6f",
+    "metadata/TRAIN25K_KAGGLE_IMAGE_MANIFEST_20261024.jsonl": "a8bd9bd336685bba1573d0401ad686f76e156daf35ea9867499a34c2fb31a343",
+    "metadata/VAL2017_IMAGE_MANIFEST_20261025.jsonl": "6fef2d07ef94fbc190519f44959eacdca0139d551514c671bf42843d33b18f67"
+  },
+  "native_sources": {
+    "engine/trainer.py": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+    "engine/model.py": "7cb2135d1a5199ec7286b01ac61b67213da044d815a3325e320b752f36b74f64",
+    "models/yolo/detect/train.py": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f",
+    "utils/checks.py": "392fb131292638fad608786ff58f50868a0a16739a66fbc3d8c88de0e0e8ee4a",
+    "utils/torch_utils.py": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5",
+    "data/utils.py": "6135197e734e4dba2b85caca69a7757979f5ac4c8cb08223feb22888fe9c0ade",
+    "cfg/default.yaml": "27d6c46184efc16d404f8b3bd1e12069f3ba10379adbbc415ffc10cc41088d7a"
+  },
+  "versions": {
+    "ultralytics": "8.4.150",
+    "torch": "2.7.1+cu128",
+    "torchvision": "0.22.1+cu128",
+    "numpy": "2.4.6"
+  },
+  "config_path": "docs/S4_COCO_MINITRAIN_20261023/COCO_EXPERIMENT_A_CONFIG.yaml",
+  "phase_config_path": "coco_s4/configs/export25k.json",
+  "teacher_dependency": {
+    "accepted_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/teacher200/accepted.json",
+    "accepted_sha256": "f06302c55aad6870c877aed3f79f1defb280a392d6bf96d4f40ca018245c3ade",
+    "checkpoint_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/teacher200/train/weights/last.pt",
+    "checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+    "full_state_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/teacher200/train/state_snapshots/epoch_200_full_state.pt",
+    "full_state_sha256": "2c0d008722e78e826fd2380954970e5d881cc8cd9c6c0136e284ad8567448dfd"
+  },
+  "teacher_eval_dependency": {
+    "accepted_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/teacher_eval/accepted.json",
+    "accepted_sha256": "69655e8c89aa282a5ace5eff89b45412d9631f76409d269d778728c1df868b51",
+    "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+    "image_count": 5000,
+    "classes": 80
+  },
+  "calibration_dependency": {
+    "accepted_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/calibration/accepted.json",
+    "accepted_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+    "release_sha256": "d675a6d9a2458b15f80511440a43866ee5160ccb24fd279afdaaa296b16c5773",
+    "source_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema",
+    "artifact_files": {
+      "execution/generated_calibration/coco_dimension_template/prototype_bank.pt": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/prototype_bank.pt",
+        "sha256": "9aa1a3d75f1b8d76737fb18ddea4af4849cfa7886a443750f9f58ea874560a06",
+        "bytes": 9946
+      },
+      "execution/generated_calibration/coco_dimension_template/fixed_p5_identity.json": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/fixed_p5_identity.json",
+        "sha256": "3a80301f832cbe7496b39f6692961a4986701611d87eaa2fba5fe37bdd8131c4",
+        "bytes": 713
+      },
+      "execution/generated_calibration/coco_dimension_template/collected/eligible_support_manifest.json": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/collected/eligible_support_manifest.json",
+        "sha256": "c7ef1f83682428a38bf1ab63bc3c4b96ece6a88d51a8080d91f79cf5979440bf",
+        "bytes": 1295017
+      },
+      "execution/generated_calibration/coco_dimension_template/method/coordinates/target_specific_channels.pt": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/target_specific_channels.pt",
+        "sha256": "5380af6448b4848c8e65258bb8fc106f02fdbb74f0354c929ed0fbbd0e6ee142",
+        "bytes": 362621
+      },
+      "execution/generated_calibration/coco_dimension_template/method/coordinates/non_target_subspaces.pt": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/non_target_subspaces.pt",
+        "sha256": "ba4dd5d42585fa3d93514ee740e06b52e0abcde7b4aca916408ebe4a31e2b6e7",
+        "bytes": 5301655
+      },
+      "execution/generated_calibration/coco_dimension_template/method/coordinates/coordinates_identity.json": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/coordinates_identity.json",
+        "sha256": "3cc7618a645b7f37146a2954f6313cc83e8918c00b70111d453aa0a08b0de2ae",
+        "bytes": 3292
+      },
+      "execution/generated_calibration/coco_dimension_template/method/coordinates/tsfl_summary.json": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/tsfl_summary.json",
+        "sha256": "7a3491283e86db921e3c33af6e8b28a42fb11b1aa1801ce4f01ba2e847dc97c1",
+        "bytes": 996
+      },
+      "execution/generated_calibration/coco_dimension_template/method/coordinates/subspace_summary.json": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/subspace_summary.json",
+        "sha256": "ba8059c9fe2cda3005a34c5ff32f72553034efafb430ab7f26fb2f3aca3ec4a3",
+        "bytes": 14150
+      },
+      "execution/generated_calibration/coco_dimension_template/method/coordinates/strict_tsfl_channels.pt": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/strict_tsfl_channels.pt",
+        "sha256": "bbb2b6b295e1786d2c4b3ed1239b8abab5cac0e926de5848d0254c09e43db0d5",
+        "bytes": 6404
+      },
+      "execution/generated_calibration/coco_dimension_template/method/coordinates/safe_bg_selected_subspaces.pt": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/safe_bg_selected_subspaces.pt",
+        "sha256": "07f06b89d2a507076a810a97eb21020023f15615b0c43154ca102db2d15c65e2",
+        "bytes": 282287
+      },
+      "execution/generated_calibration/coco_dimension_template/method/coordinates/strict_tsfl_summary.json": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/strict_tsfl_summary.json",
+        "sha256": "c73600cd7f9924774e77cc8a02c11442b0f9ae6398095cfacb036d86ba120663",
+        "bytes": 8011
+      },
+      "execution/generated_calibration/coco_dimension_template/method/coordinates/tsfl_sensitivity_stats.json": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/tsfl_sensitivity_stats.json",
+        "sha256": "c0c18375fd720a2b545f84a753c8ef31fca8e7cecaf3ea1014933589ce507a27",
+        "bytes": 651942
+      },
+      "execution/generated_calibration/coco_dimension_template/method/coordinates/orth_target_specific_channels.pt": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/orth_target_specific_channels.pt",
+        "sha256": "ef573aadada40fb6c657ef23a143d21465dc61b744bb8c94970b9b65cf228be3",
+        "bytes": 7201
+      },
+      "execution/generated_calibration/coco_dimension_template/method/coordinates/orth_non_target_subspaces.pt": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/orth_non_target_subspaces.pt",
+        "sha256": "ff5d706869ce8b1bed84f1fcb703b67d37006b4cd13e18ad95f2b0300e4ee187",
+        "bytes": 533271
+      },
+      "execution/generated_calibration/coco_dimension_template/method/coordinates/strict_tsfl_selected_layer.pt": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/strict_tsfl_selected_layer.pt",
+        "sha256": "3e648fa3dbe718fc09e5345a68b0cb20d65575eab27bd70e9f48fb1294d97c6e",
+        "bytes": 2286
+      },
+      "execution/generated_calibration/coco_dimension_template/method/coordinates/strict_tsfl_selected_layer_summary.json": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/coordinates/strict_tsfl_selected_layer_summary.json",
+        "sha256": "3df4899a1406a9d0df6f212095e105e4c4faebc4f79645b2c373a2e5243eb89b",
+        "bytes": 399
+      },
+      "execution/generated_calibration/coco_dimension_template/method/reference/target_specific_channels.pt": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/reference/target_specific_channels.pt",
+        "sha256": "ef573aadada40fb6c657ef23a143d21465dc61b744bb8c94970b9b65cf228be3",
+        "bytes": 7201
+      },
+      "execution/generated_calibration/coco_dimension_template/method/reference/non_target_subspaces.pt": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/reference/non_target_subspaces.pt",
+        "sha256": "ff5d706869ce8b1bed84f1fcb703b67d37006b4cd13e18ad95f2b0300e4ee187",
+        "bytes": 533271
+      },
+      "execution/generated_calibration/coco_dimension_template/method/reference/coordinates_identity.json": {
+        "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_dim_20261025_1340z_schema/execution/generated_calibration/coco_dimension_template/method/reference/coordinates_identity.json",
+        "sha256": "d8344e08ad9d3f53383af5c3cd0cc4e95da729baae68a96afde6d8cf6499dfb5",
+        "bytes": 1025
+      }
+    },
+    "eligible_person_image_count": 13630,
+    "optimizer_steps": 20448,
+    "clean_train_manifest_sha256": "181e9c203b2d5a147888aac7ded702673c2084994d722c9ca4633fad0210ee64"
+  },
+  "fourier_dependency": {
+    "accepted_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/fourier24/accepted.json",
+    "accepted_sha256": "4c6852a2ccac25f540034b619b1c7a5651ef2daffcf2862656fbe6d5b2754220",
+    "params_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/fourier24/global_params.pt",
+    "params_sha256": "a0afe86edc6d7b843673cb420ce7ade991e4e60a797b92af63d44ffe0b036691",
+    "optimizer_steps": 20448,
+    "train_manifest_sha256": "181e9c203b2d5a147888aac7ded702673c2084994d722c9ca4633fad0210ee64",
+    "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a"
+  },
+  "cpu_export_validation": {
+    "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_export25k_20261028_cpu02/result/cpu_probe_summary.json",
+    "sha256": "a97e864cb48c68658f133cfb7850a72afc536e165f97b9db187c4ea0a46ff7c3"
+  },
+  "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+  "strict_Original_S4_equivalence_claim": false,
+  "formal_precheck_receipt": {
+    "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/recovery_bindings/s4_coco_experiment_a_seed0_20261027_risk_v1/formal_precheck.json",
+    "sha256": "ca653155ae123cfba25f88bb949807b3127ec4f7fe938112d69b292a6ac02192"
+  },
+  "workflow_controller_admission": {
+    "source_commit": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+    "controller_identity": {
+      "pid": 2334114,
+      "start_ticks": 369629083,
+      "uid": 1014
+    },
+    "config": {
+      "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/recovery_bindings/s4_coco_experiment_a_seed0_20261027_risk_v1/workflow.json",
+      "sha256": "6e395fb26f7f1f064d1857918cf0751c33a1a33be243c914266588f2cd6f447a"
+    },
+    "release": {
+      "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/recovery_bindings/s4_coco_experiment_a_seed0_20261027_risk_v1/source_release.json",
+      "sha256": "d3b99e959732b2e4cf70d26328edda450b360086a25dcc7b8d9244841ce66ca6"
+    },
+    "formal_precheck_receipt": {
+      "path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/recovery_bindings/s4_coco_experiment_a_seed0_20261027_risk_v1/formal_precheck.json",
+      "sha256": "ca653155ae123cfba25f88bb949807b3127ec4f7fe938112d69b292a6ac02192"
+    },
+    "remote_repo_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/repos/s4_coco_experiment_a_seed0_20261027_risk_v1_transport02",
+    "transport_run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1_transport02"
+  }
+}

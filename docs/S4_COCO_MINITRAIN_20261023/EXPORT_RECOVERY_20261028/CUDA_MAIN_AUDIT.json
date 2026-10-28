@@ -1,0 +1,18 @@
+{
+  "state": "passed",
+  "scope": "read-only CPU audit; zero model forwards/parameter updates",
+  "source_commit": "f50a4526b39c7a96e4c017c7e0e0aec0b4bf2df1",
+  "source_files_verified": 155,
+  "native_files_verified": 7,
+  "summary_sha256": "4241e59c256dd041ff8145b43be6243f30b535e3bec3ca67de290c826daf8eb9",
+  "actual_device": "cuda:0",
+  "production_forward_calls": 2,
+  "native_export_exact": true,
+  "decoded_max": 8,
+  "decoded_overlap": 4,
+  "outside_nonzero": 0,
+  "teacher_and_full_state_and_Fourier_hashes_exact": true,
+  "parameter_updates": false,
+  "model_forwards": 0,
+  "local_summary_sha256": "4241e59c256dd041ff8145b43be6243f30b535e3bec3ca67de290c826daf8eb9"
+}

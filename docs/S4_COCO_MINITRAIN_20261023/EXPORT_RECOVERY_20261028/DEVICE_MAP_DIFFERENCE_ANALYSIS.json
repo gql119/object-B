@@ -1,0 +1,184 @@
+{
+  "state": "measured",
+  "scope": "read-only retained map identities and numerical/GT checks; no new hardware tolerance",
+  "cache_identity_exact": true,
+  "cache_identity": {
+    "reference_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+    "maps_code_sha256": "11a4d7b330c63b5e8c7ef65182b5fb0c65adb017d21fcd908843b741fd912129",
+    "risk_code_sha256": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e",
+    "map_version": "masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-image-canonical-canvas-v2",
+    "canonical_lock_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+    "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+    "risk_estimator_code_sha256": "e8af240343a12bc22951c8a48e9c099d9abf1a2c3ffeebfd926c5c366e2b1e07",
+    "risk_policy_spec_sha256": "2dbd96e112f86359e97457c19a411e8c9f2a7fcce0f4535c50e59c58cedbba48",
+    "risk_cache_adapter_sha256": "94181da621708ffc4e2b191d02634edb1b5aeee24f1bb3ffb7f62331aa77a956",
+    "normal_native_estimator_sha256": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e",
+    "path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/images/train/000000000036.jpg",
+    "image_sha256": "7b04d9d0a1ea8b930e11f293a832bdfe8d43892fdb96f1038219196d41a86b95",
+    "annotations": [
+      {
+        "cls": 25,
+        "bbox": [
+          0.47575883575883576,
+          0.41452343750000004,
+          0.9515176715176715,
+          0.6724218750000001
+        ]
+      },
+      {
+        "cls": 0,
+        "bbox": [
+          0.6712785862785863,
+          0.6179453125000001,
+          0.6457588357588357,
+          0.726859375
+        ]
+      }
+    ],
+    "canvas": [
+      640,
+      512
+    ],
+    "shape": [
+      640,
+      481,
+      3
+    ]
+  },
+  "canvas_and_GT_and_TAL_assignment_exact": true,
+  "Qt_object_records": [
+    {
+      "CPU": {
+        "bbox": [
+          0.6712785862785863,
+          0.6179453125000001,
+          0.6457588357588357,
+          0.726859375
+        ],
+        "q10": 0.0001307870988966897,
+        "q90": 0.0010921972570940852,
+        "raw_norm": 0.3377535939216614,
+        "valid": true
+      },
+      "CUDA": {
+        "bbox": [
+          0.6712785862785863,
+          0.6179453125000001,
+          0.6457588357588357,
+          0.726859375
+        ],
+        "q10": 0.0001314168912358582,
+        "q90": 0.001092046732082963,
+        "raw_norm": 0.3386986553668976,
+        "valid": true
+      }
+    }
+  ],
+  "NT_records": [
+    {
+      "CPU": {
+        "box": 0.06622312217950821,
+        "cls": 25,
+        "cls_bce79": 0.5509358644485474,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "dfl": 0.6628003120422363,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "gt_index": 0,
+        "native_positive_count": 10,
+        "positive_count": 10,
+        "weighted_loss": 1.7663418054580688
+      },
+      "CUDA": {
+        "box": 0.06628622114658356,
+        "cls": 25,
+        "cls_bce79": 0.550717830657959,
+        "coverage_mode": "native_all_GT_competition",
+        "coverage_status": "COVERED",
+        "dfl": 0.6630529165267944,
+        "gains": [
+          7.5,
+          0.5,
+          1.5
+        ],
+        "gt_index": 0,
+        "native_positive_count": 10,
+        "positive_count": 10,
+        "weighted_loss": 1.7670849561691284
+      }
+    }
+  ],
+  "map_distribution_differences": {
+    "q": {
+      "mean_abs": 0.0013829906597303812,
+      "rms": 0.006877395700225531,
+      "max_abs": 0.3772905468940735,
+      "abs_quantiles": [
+        0.0,
+        0.0,
+        0.0020544979721307793,
+        0.025669167041778435,
+        0.09507468515634787,
+        0.3772905468940735
+      ],
+      "correlation": 0.9996944465925318
+    },
+    "risk": {
+      "mean_abs": 0.0005343576874052434,
+      "rms": 0.0021910458937396305,
+      "max_abs": 0.06360030174255371,
+      "abs_quantiles": [
+        0.0,
+        0.0,
+        0.0010900586843490632,
+        0.009430749416351275,
+        0.029171069145203482,
+        0.06360030174255371
+      ],
+      "correlation": 0.9999714841369909
+    },
+    "valid": {
+      "mean_abs": 0.0,
+      "rms": 0.0,
+      "max_abs": 0.0,
+      "abs_quantiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "correlation": 0.9999999999999999
+    }
+  },
+  "W_difference": {
+    "max_abs": 0.05659359693527222,
+    "mean_abs": 0.00011717249346962838,
+    "quantiles": [
+      0.0,
+      0.0,
+      0.0001881718635559082,
+      0.002170767784118649,
+      0.008066652178764351,
+      0.05659359693527222
+    ]
+  },
+  "source_export_sha256": "7c03b75394f1b050cc222bdc700cd717592469862ce4bb976928cbc9c2b2a2f5",
+  "python_executable": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+  "module_paths": {
+    "export": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_export25k_20261028_gpu01/coco_s4/phase_export.py",
+    "phase_contract": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_export25k_20261028_gpu01/coco_s4/phase_contract.py",
+    "runtime": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_export25k_20261028_gpu01/coco_s4/runtime.py"
+  },
+  "DATA_ROOT_owner": "coco_s4.runtime",
+  "phase_contract_has_DATA_ROOT": false,
+  "DATA_ROOT": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023",
+  "model_forwards": 0,
+  "parameter_updates": 0,
+  "CUDA_initialized": false
+}

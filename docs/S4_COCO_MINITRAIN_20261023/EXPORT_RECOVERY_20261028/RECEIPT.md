@@ -1,0 +1,15 @@
+# COCO export recovery receipt (in progress)
+
+Fourier: controller ACCEPTED24epochs/20448Adam steps. Independent streaming fullCSV audit passed20448 sequential rows,852 per epoch, finite/nonzero gradients and outside0. Snapshot audit passed final complete optimizer boundary: full64x3/selected16x3 exact, Adam20448, scheduler24, full Python/NumPy/Torch/CUDA RNG states and source5c49 identity. Actual training TFSS/EOT/Frozen/Adaptive counts each40896. No old12step checkpoint used.
+
+Import root cause: phase_export incorrectly requested DATA_ROOT from phase_contract, which has no such exported symbol (git -S history contains no deletion/rename). It belongs to the existing coco_s4.runtime contract. f50a452 changes only that import ownership plus import validation/documentation. No new data path hardcoding. OldCPU01 immutable failed source cb028b4 retained; actual CPU02/GPU01 both execute published f50a452 and export sourceSHA7c03b75394f1b050cc222bdc700cd717592469862ce4bb976928cbc9c2b2a2f5. Actual Python /project/guoqinglong/miniconda3/envs/cfbdm/bin/python and all module paths resolve inside GPU01 isolated release.
+
+CPU02 PASS2forwards/one realPerson image36/noCUDA/no updates. CUDA01 PASS2forwards/rawcuda0/index0/no updates. Both native16x3 finalgeneration comparisons EXACT/tolerance0; decoded byte budgets8/4/out0; labels identical. Actual real noPerson25 branch probe PASS: byte-identical JPG and labels/GT coordinates, no perturbation. This supplement executes the actual AST branch, not the complete phase entrypoint.
+
+CPU/CUDA comparison:219of307840pixels differ,355channels,max1byte,mean channel difference0.0003843988218988219. Both use identical GT/canvas/cacheidentity/TALassignment, but normalizedQ/R/W differ; maxQ.3772905469,R.06360030174,W.05659359694. No cross-device tolerance invented and no cross-device exactness claimed. Each device native parity is exact. Independent scientific review explicitly receives these facts.
+
+Source f50a4526b39c7a96e4c017c7e0e0aec0b4bf2df1; CPU release602f901d8c46a94f0e3c7b925b8c6b77c3e97c0be2d5341e8100d96c8334863b; CUDA releasee553688906d2f9f1d7a189ccf2d402016276e07e02044678ae45efb0479846fd.
+
+Current: exactlyone independent export scientific review scientifically_correct/allow_run and mainclosure passed. Same originalcontroller2334114/start369629083 started FORMALexport25K child2999111/start380667941 at10:06:44UTC (HK18:06:44). Actual10:09:16UTC complete1341/25000 manifestrows, controller/childalive. Clean200/Poison200/official5K not started. ProbeCPU02executor2969377/workload2969390; GPU01executor2984720/workload2984735 are completed/dead. Remote logs: owned/control/<probeTag>/console.log; owned/validation/<probeTag>/result/status.json. Owned=/project/guoqinglong/projects/s4_coco_experiment_a_20261025.
+
+Next: process that review -> reproducible main closure -> publishREADY via export_release.register -> existing solecontroller formal25K -> complete counts/labels/hash/decoded-budget audit -> independently matched fresh Clean/S4 victims200 seed0 -> clean officialval2017 5K all80 last200 primary. AT deferred.

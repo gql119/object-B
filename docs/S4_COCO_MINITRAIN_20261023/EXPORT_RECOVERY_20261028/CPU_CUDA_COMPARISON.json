@@ -1,0 +1,44 @@
+{
+  "state": "measured",
+  "scope": "retained one-image CPU/CUDA numerical comparison; no hardware tolerance invented",
+  "image_id": "000000000036",
+  "shape": [
+    640,
+    481,
+    3
+  ],
+  "CPU_image_sha256": "5966a4ed7f0dbeb324575c83ff5048c7b096f849ff4556073b4daa2fd01645df",
+  "CUDA_image_sha256": "223c7ac480104947d1992d02f4280da15c56f41d09faaa12f0f77a57b0e27ea9",
+  "pixels_exact": false,
+  "maximum_channel_difference_bytes": 1,
+  "mean_channel_difference_bytes": 0.0003843988218988219,
+  "different_channels": 355,
+  "different_pixels": 219,
+  "total_pixels": 307840,
+  "labels_and_all_GT_exact": true,
+  "map_differences": {
+    "q": {
+      "max_abs_difference": 0.3772905468940735,
+      "equal": false
+    },
+    "risk": {
+      "max_abs_difference": 0.06360030174255371,
+      "equal": false
+    }
+  },
+  "CPU_own_decoded_budget": {
+    "max": 8,
+    "overlap": 4,
+    "outside": 0
+  },
+  "CUDA_own_decoded_budget": {
+    "max": 8,
+    "overlap": 4,
+    "outside": 0
+  },
+  "production_native_equivalence_tolerance": 0.0,
+  "cross_device_tolerance": null,
+  "model_forwards": 0,
+  "parameter_updates": 0,
+  "CUDA_initialized": false
+}

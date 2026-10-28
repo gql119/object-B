@@ -1,0 +1,33 @@
+{
+  "phase": "export25k",
+  "source_commit": "f50a4526b39c7a96e4c017c7e0e0aec0b4bf2df1",
+  "release_sha256": "e553688906d2f9f1d7a189ccf2d402016276e07e02044678ae45efb0479846fd",
+  "phase_config_sha256": "ea016e22f77a13ac529121e5f2ec7ab329fcdde1c3ee82df96a355389c92c05d",
+  "smoke_sha256": "4241e59c256dd041ff8145b43be6243f30b535e3bec3ca67de290c826daf8eb9",
+  "Fourier_receipt_sha256": "4c6852a2ccac25f540034b619b1c7a5651ef2daffcf2862656fbe6d5b2754220",
+  "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+  "reviewer_count": 1,
+  "reviewer_independence": true,
+  "reviewer": "/root/coco_export_scientific_review_20261028",
+  "scientific_result": "scientifically_correct",
+  "scientific_verdict": "allow_run",
+  "pre_run_result": "pass",
+  "scientifically_correct": true,
+  "allow_run": true,
+  "blockers": [],
+  "validation_gaps": [],
+  "raw_review_path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_coco_minitrain25k_20261023\\execution\\COCO_EXPORT_INDEPENDENT_SCIENTIFIC_REVIEW_20261028.json",
+  "raw_review_sha256": "d5d5a821d0db3d39cafd3e8cca53922e1c9da666d8332e58861313afea5a45f6",
+  "raw_review_immutable": true,
+  "main_closed_UTC": "2026-10-28T10:01:46.867585+00:00",
+  "scope": "reviewed native CUDA export only; no CPU/CUDA global equivalence; no future victim/evaluation acceptance",
+  "cross_device_equality_claim": false,
+  "cross_device_tolerance": null,
+  "native_within_device_tolerance": 0.0,
+  "native_comparison_metric_clarification": "Measured native float-array equality before identical PNG projection, plus PNG roundtrip exact; both CPU and CUDA separately. Original packet byte-error wording implies the verified byte equality and does not change tolerance.",
+  "evidence": {
+    "COCO_EXPORT_CPU_CUDA_COMPARISON_20261028.json": "6b991e983406fb0dc179e0d23a9d0819614d2bdb549ff136ea7fd20348c98d63",
+    "COCO_EXPORT_DEVICE_MAP_DIFFERENCE_ANALYSIS_20261028.json": "c7e4cc50bbcc17aec2444f50d10e302b7d28573cd57babb43d410c56fae4afa2",
+    "COCO_FOURIER_CHECKPOINT_AND_NONPERSON_AUDIT_20261028.json": "ef382a96a54b53e5b87c7582569e9de5a9c71e08021fbb4bdcb371c2f364a7ca"
+  }
+}

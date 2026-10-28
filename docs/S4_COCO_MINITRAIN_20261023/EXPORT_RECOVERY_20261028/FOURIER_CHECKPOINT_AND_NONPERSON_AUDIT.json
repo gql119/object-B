@@ -1,0 +1,106 @@
+{
+  "checkpoint": {
+    "state": "passed",
+    "source_commit": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+    "source_files_verified": 159,
+    "params_sha256": "a0afe86edc6d7b843673cb420ce7ade991e4e60a797b92af63d44ffe0b036691",
+    "full_snapshot_sha256": "a95ec48fac20819e13425cf85b08a6237e7176f2d9196247a383301288ac10ed",
+    "full_snapshot_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/fourier24/native_s4/latest_continuation.pt",
+    "params_identity": {
+      "source_commit": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+      "release_sha256": "d3b99e959732b2e4cf70d26328edda450b360086a25dcc7b8d9244841ce66ca6",
+      "phase_config_sha256": "054b04ac5ca0e20ae8b776d8428dcdbba135a18c0f8e8160c27c9d5e65776ecf",
+      "teacher_checkpoint_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+      "calibration_receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+      "training_contract": "canonical-original-S4-TFSS-U-v1",
+      "cache_identity": {
+        "reference_sha256": "9749a7b6ceeb7b322316bdd97dfdde68f11641eef59fe6ba620a5e76a9521e3f",
+        "maps_code_sha256": "11a4d7b330c63b5e8c7ef65182b5fb0c65adb017d21fcd908843b741fd912129",
+        "risk_code_sha256": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e",
+        "map_version": "masked3x3-Q10Q90-clean-input-perGT-max-person-equalNTclass-image-canonical-canvas-v2",
+        "canonical_lock_sha256": "33d3d7af6c76c2c881db0dfc7d6fc66dafa9b5655026c07332701143ed52d6ec",
+        "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+        "risk_estimator_code_sha256": "e8af240343a12bc22951c8a48e9c099d9abf1a2c3ffeebfd926c5c366e2b1e07",
+        "risk_policy_spec_sha256": "2dbd96e112f86359e97457c19a411e8c9f2a7fcce0f4535c50e59c58cedbba48",
+        "risk_cache_adapter_sha256": "94181da621708ffc4e2b191d02634edb1b5aeee24f1bb3ffb7f62331aa77a956",
+        "normal_native_estimator_sha256": "e25118c6c8cbd5b2d7b852b0ed9481b8bcbfbd1e3995e268454df5b21cd2d58e"
+      },
+      "ordered_images_sha256": "fe47a11fbdf9ce0da79a0e5bcefd6a3bfdd13fc735f78cbec2834b9bf42a243f"
+    },
+    "selected_parameter_shape": [
+      16,
+      3
+    ],
+    "full_parameter_shape": [
+      64,
+      3
+    ],
+    "cursor": {
+      "epoch": 24,
+      "cursor": 0,
+      "order": null,
+      "step": 20448,
+      "diagnostics": []
+    },
+    "Adam_steps": [
+      20448
+    ],
+    "Adam_moments_finite": true,
+    "scheduler_last_epoch": 24,
+    "RNG_keys": [
+      "cuda",
+      "numpy",
+      "python",
+      "torch"
+    ],
+    "TFSS_EOT_draws": 40896,
+    "TFSS_nonunit_draws": 40896,
+    "TFSS_Frozen_inputs": 40896,
+    "TFSS_Adaptive_inputs": 40896,
+    "retained_sink_draws": 2,
+    "TFSS_proof_sha256": "a8b1ebede90c69f1ea1d7cc9c1f7583f1307553a7af9d2b8f5c8b57f99c79cce",
+    "controller": {
+      "pid": 2334114,
+      "start_ticks": 369629083,
+      "uid": 1014
+    },
+    "pipeline_state": "WAITING_PHASE_RELEASE",
+    "active_child": null,
+    "model_forwards": 0,
+    "parameter_updates": 0,
+    "CUDA_initialized": false
+  },
+  "nonperson": {
+    "state": "passed",
+    "scope": "actual production AST non-Person branch and label-writing code; not full phase entrypoint",
+    "source_commit": "f50a4526b39c7a96e4c017c7e0e0aec0b4bf2df1",
+    "source_file_sha256": "7c03b75394f1b050cc222bdc700cd717592469862ce4bb976928cbc9c2b2a2f5",
+    "source_lines": [
+      407,
+      454
+    ],
+    "image_id": "000000000025",
+    "annotation_count": 2,
+    "classes": [
+      23
+    ],
+    "image_bytes_exact": true,
+    "label_bytes_exact": true,
+    "GT_coordinates_exact": true,
+    "decoded_pixels_exact": true,
+    "zero_support": true,
+    "decoded_audit": {
+      "max_bytes": 0,
+      "outside_nonzero": 0,
+      "overlap_max_bytes": 0
+    },
+    "image_sha256": "d8f12a26d8803701cabac80494b080f998e5ed9bafaf61a2825ce6212c85487a",
+    "label_sha256": "37a13c650a710ac89df42c9c4a290345961f199f8669812fff81e24f6c9d9061",
+    "output_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_export25k_20261028_nonperson02",
+    "model_forwards": 0,
+    "parameter_updates": 0,
+    "CUDA_initialized": false,
+    "cleanup_policy": "retain_all",
+    "deleted_paths": []
+  }
+}

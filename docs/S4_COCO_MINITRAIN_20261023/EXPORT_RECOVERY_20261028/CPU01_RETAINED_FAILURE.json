@@ -1,0 +1,21 @@
+{
+  "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/coco_export25k_20261028_cpu01": [
+    "health.jsonl",
+    ".state.lock",
+    "events.jsonl",
+    "binding.json",
+    "console.log",
+    "status.json",
+    "recovery.json",
+    "run_spec.json"
+  ],
+  "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_export25k_20261028_cpu01": [
+    "supervision"
+  ],
+  "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_export25k_20261028_cpu01/supervision": [
+    "child.json"
+  ],
+  "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/coco_export25k_20261028_cpu01/console.log": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_export25k_20261028_cpu01/coco_s4/phase_export.py\", line 559, in <module>\n    run(args.release, args.output, registration=args.registration, smoke_images=args.smoke_images,\n  File \"/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_export25k_20261028_cpu01/coco_s4/phase_export.py\", line 249, in run\n    from .phase_contract import DATA_ROOT, OWNED, ROOT, WORKFLOW_OUTPUT, phase_release\nImportError: cannot import name 'DATA_ROOT' from 'coco_s4.phase_contract' (/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_export25k_20261028_cpu01/coco_s4/phase_contract.py)\n",
+  "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/coco_export25k_20261028_cpu01/status.json": "{\"detail\":{\"exit_code\":1},\"reason\":\"workload_exit_nonzero\",\"run_id\":\"coco_export25k_20261028_cpu01\",\"schema_version\":\"rrctl.status.v1\",\"sequence\":6,\"state\":\"failed\",\"updated_at\":\"2026-10-28T06:58:56.377549+00:00\"}\n",
+  "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_export25k_20261028_cpu01/supervision/child.json": "{\n  \"pid\": 2951709,\n  \"start_ticks\": 379540771,\n  \"uid\": 1014,\n  \"argv\": [\n    \"/project/guoqinglong/miniconda3/envs/cfbdm/bin/python\",\n    \"-B\",\n    \"-m\",\n    \"coco_s4.phase_export\",\n    \"--release\",\n    \"/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/_anchors/coco_export25k_20261028_cpu01/source_release.json\",\n    \"--output\",\n    \"/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_export25k_20261028_cpu01/result\",\n    \"--cpu-probe-images\",\n    \"1\"\n  ],\n  \"cwd\": \"/project/guoqinglong/projects/s4_coco_experiment_a_20261025/releases/coco_export25k_20261028_cpu01\",\n  \"UTC\": \"2026-10-28T06:58:53.619828+00:00\",\n  \"memory_scope\": {\n    \"path\": \"/user.slice/user-1014.slice/user@1014.service/app.slice/s4coco-export-f98878dbc42679888738d90c.scope\",\n    \"memory.current\": \"10838016\",\n    \"memory.peak\": \"10838016\",\n    \"memory.events\": \"low 0\\nhigh 0\\nmax 0\\noom 0\\noom_kill 0\\noom_group_kill 0\",\n    \"memory.pressure\": \"some avg10=0.00 avg60=0.00 avg300=0.00 total=0\\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\"\n  }\n}"
+}
