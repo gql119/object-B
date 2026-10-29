@@ -2,6 +2,11 @@
 import math
 import numpy as np
 
+PAIRED_METRIC_KEYS = ("P", "U", "S", "WCD", "TCD3", "absolute_clean_harm")
+PAIRED_METADATA_KEYS = ("damage_by_class", "raw_signed_no_clip", "zero_denominator",
+                        "absolute_clean_harm_formula")
+ABSOLUTE_CLEAN_HARM_FORMULA = "clean Person AP50 - S4 Person AP50 (unclipped AP fraction)"
+
 def mean_valid(values):
     v=np.asarray(values);v=v[v>=0]
     return float(v.mean()) if v.size else None
@@ -29,4 +34,32 @@ def paired_metrics(clean,poison,target=0):
     damage={c:1-b[c]['AP50']/a[c]['AP50'] if a[c]['AP50']>0 else None for c in nt}
     ranked=sorted((v,c) for c,v in damage.items() if v is not None)[::-1]
     complete=len(ranked)==len(nt)
-    return {'P':P,'U':U,'S':S,'WCD':ranked[0][0] if complete else None,'TCD3':sum(v for v,c in ranked[:3])/3 if complete else None,'damage_by_class':damage,'raw_signed_no_clip':True,'zero_denominator':'null'}
+    absolute_clean_harm = a[target]['AP50'] - b[target]['AP50']
+    return {'P':P,'U':U,'S':S,'WCD':ranked[0][0] if complete else None,
+            'TCD3':sum(v for v,c in ranked[:3])/3 if complete else None,
+            'absolute_clean_harm':absolute_clean_harm,'damage_by_class':damage,
+            'raw_signed_no_clip':True,'zero_denominator':'null',
+            'absolute_clean_harm_formula':'clean Person AP50 - S4 Person AP50 (unclipped AP fraction)'}
+
+
+def validate_paired_metric_payload(metrics, declared_keys):
+    """Require the frozen paired metric declaration to match emitted metric fields."""
+    if (not isinstance(metrics, dict) or len(declared_keys) != len(set(declared_keys))
+            or set(declared_keys) != set(PAIRED_METRIC_KEYS)):
+        raise ValueError('Frozen paired metric declaration differs from the approved schema')
+    emitted_metrics = set(metrics) & set(PAIRED_METRIC_KEYS)
+    if emitted_metrics != set(declared_keys):
+        missing = sorted(set(declared_keys) - emitted_metrics)
+        extra = sorted(emitted_metrics - set(declared_keys))
+        raise ValueError(f'Paired metric sink mismatch: missing={missing}, extra={extra}')
+    if set(metrics) - set(PAIRED_METRIC_KEYS) != set(PAIRED_METADATA_KEYS):
+        raise ValueError('Paired metric metadata differs from the approved schema')
+    if (metrics.get('absolute_clean_harm_formula') != ABSOLUTE_CLEAN_HARM_FORMULA
+            or metrics.get('raw_signed_no_clip') is not True
+            or metrics.get('zero_denominator') != 'null'):
+        raise ValueError('Paired metric formula/sign/zero-denominator metadata changed')
+    for key in declared_keys:
+        value = metrics[key]
+        if value is not None and not math.isfinite(value):
+            raise ValueError('Nonfinite paired metric: ' + key)
+    return metrics

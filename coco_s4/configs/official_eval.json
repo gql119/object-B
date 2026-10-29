@@ -38,6 +38,9 @@
     "TCD3",
     "absolute_clean_harm"
   ],
+  "paired_metric_formulas": {
+    "absolute_clean_harm": "clean Person AP50 - S4 Person AP50 (unclipped AP fraction)"
+  },
   "parameter_updates": false,
   "checkpoint_selection_allowed": false,
   "method_statistics_allowed": false,

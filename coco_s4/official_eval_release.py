@@ -12,12 +12,18 @@ import re
 import subprocess
 
 from .phase_contract import OWNED, WORKFLOW, WORKFLOW_OUTPUT
+from .dimension_protocol import PROTOCOL as DIMENSION_PROTOCOL
 from .release_transport import anchor_path, ensure_remote_exact, validate_anchor_outside_lifecycle
 from .runtime import DATA_FILES, DATA_ROOT, ROOT, load, now, sha, write_once
 
 EX = ROOT / "execution"
 PYTHON = "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python"
 PREDECESSORS = ("teacher200", "teacher_eval", "calibration", "fourier24", "export25k", "clean200", "s4_200")
+CPU_BLOCKER_EVIDENCE = EX / "COCO_OFFICIAL_EVAL_BLOCKER_FIX_CPU_20261029.json"
+BLOCKER_SOURCE_PATHS = {
+    "B1": ("coco_s4/evaluation.py", "coco_s4/phase_official_eval.py", "coco_s4/configs/official_eval.json"),
+    "B2": ("coco_s4/coco_eval.py", "coco_s4/phase_official_eval.py"),
+}
 
 READ_DEPENDENCY = r'''
 from pathlib import Path
@@ -116,6 +122,7 @@ def build(tag, head, observation):
                    phase_config_path="coco_s4/configs/official_eval.json",
                    teacher_dependency=observation["teacher_dependency"], phase_dependencies=observation["dependencies"],
                    evaluator=dict(directory=addon["addon"], files=addon["files"], wheel_sha256=addon["wheel_sha256"]))
+    release["dimension_protocol"] = DIMENSION_PROTOCOL
     local_release = EX / tag / "source_release.json"
     from .workflow_admission import attach
     attach(release)
@@ -145,12 +152,13 @@ def build(tag, head, observation):
         health["gpu_utilization_policy"] = "advisory"
         health["timeout_seconds"] = 900
     template["artifacts"] = [dict(path="result/" + name, required=True) for name in
-        ("smoke_summary.json", "phase_spec.json", "status.json")]
+        ("smoke_summary.json", "phase_spec.json", "status.json", "val2017_image_identity.json")]
     template["local_pull_root"] = str(EX / "p")
     template["metadata"] = dict(execution_purpose="isolated_paired_official_eval_pre_review_smoke",
         computation_kind="inference", candidate_commit=head, cleanup_policy="retain_all",
         official_metrics_disabled=True, artifact_ingest_disabled=True,
-        selected_inputs="first 36 sorted val2017 IDs per matched checkpoint", batches_per_checkpoint=1,
+        selected_inputs="first 36 sorted val2017 IDs per matched checkpoint; all 5000 image bytes identity-checked",
+        batches_per_checkpoint=1,
         max_total_raw_forwards=100, one_shot_no_scheduler=True, no_formal_phase_registration=True)
     from remote_run_control.models import RunSpec
     RunSpec.from_dict(template)
@@ -213,6 +221,17 @@ def register(tag, review_path):
         raise ValueError("RRCTL has not pulled the isolated smoke result")
     smoke = load(summary_path); release_path = EX / tag / "source_release.json"
     release = load(release_path); cfg_sha = sha(ROOT / release["phase_config_path"])
+    identity_path = summary_path.parent / "val2017_image_identity.json"
+    if not identity_path.is_file():
+        raise ValueError("Bounded smoke did not retain the full val2017 per-image identity receipt")
+    image_identity = load(identity_path)
+    expected_manifest_sha = DATA_FILES["metadata/VAL2017_IMAGE_MANIFEST_20261025.jsonl"]
+    if (image_identity.get("state") != "passed" or image_identity.get("image_count") != 5000
+            or image_identity.get("expected_image_count") != 5000
+            or image_identity.get("manifest_sha256") != expected_manifest_sha
+            or len(image_identity.get("verified_images", [])) != 5000
+            or smoke.get("val2017_image_identity_receipt_sha256") != sha(identity_path)):
+        raise ValueError("Bounded smoke val2017 identity receipt is incomplete or mismatched")
     if (smoke.get("state") != "passed" or smoke.get("phase") != "official_eval"
             or smoke.get("source_commit") != spec["source"]["commit"]
             or smoke.get("release_sha256") != sha(release_path)
@@ -221,6 +240,11 @@ def register(tag, review_path):
             or smoke.get("artifact_ingest_disabled") is not True
             or smoke.get("parameter_updates") is not False
             or smoke.get("checkpoint_selection_allowed") is not False
+            or smoke.get("risk_estimator_policy") != release.get("risk_estimator_policy")
+            or smoke.get("dimension_protocol") != release.get("dimension_protocol")
+            or smoke.get("strict_Original_S4_equivalence_claim") is not False
+            or smoke.get("val2017_image_manifest_sha256") != expected_manifest_sha
+            or smoke.get("val2017_image_count") != 5000
             or set(smoke.get("victim_probes", {})) != {"clean200", "s4_200"}
             or not 1 <= smoke.get("total_raw_forwards_including_warmups", 0) <= 100):
         raise ValueError("Paired official-evaluation candidate smoke failed its current-release contract")
@@ -232,31 +256,95 @@ def register(tag, review_path):
                 or not eq.get("raw_outputs_exact") or not eq.get("decoded_predictions_exact")
                 or eq.get("tolerance") != 0):
             raise ValueError("Candidate differs from independent native YOLO inference")
+    from .phase_official_eval import (ORIGINAL_BLOCKER_IDS, RESOLVED_FINDING_IDS,
+                                      validate_original_review)
     review = load(review_path)
-    if (review.get("phase") != "official_eval" or review.get("source_commit") != spec["source"]["commit"]
-            or review.get("release_sha256") != sha(release_path)
-            or review.get("phase_config_sha256") != cfg_sha or review.get("smoke_sha256") != sha(summary_path)
-            or review.get("reviewer_count") != 1 or review.get("reviewer_independence") is not True
-            or review.get("pre_run_result") != "pass" or review.get("scientific_verdict") != "allow_run"
-            or review.get("blockers") not in ([], None)):
-        raise ValueError("One independent, blocker-free current-candidate review is required")
+    if validate_original_review(review) != ORIGINAL_BLOCKER_IDS:
+        raise ValueError("The retained original independent review is not the expected blocking review")
+    if not CPU_BLOCKER_EVIDENCE.is_file():
+        raise ValueError("CPU blocker-closure evidence must pass on the current source before registration")
+    cpu_validation = load(CPU_BLOCKER_EVIDENCE)
+    required_source_paths = sorted({path for paths in BLOCKER_SOURCE_PATHS.values() for path in paths})
+    source_file_sha256 = {path: release.get("files", {}).get(path) for path in required_source_paths}
+    if (cpu_validation.get("schema") != "s4.coco.official-eval-blocker-fix-cpu.v1"
+            or cpu_validation.get("state") != "passed"
+            or cpu_validation.get("source_commit") != spec["source"]["commit"]
+            or cpu_validation.get("source_file_sha256") != source_file_sha256
+            or cpu_validation.get("result", {}).get("state") != "passed"
+            or cpu_validation.get("result", {}).get("same_name_same_size_substitution_rejected") is not True
+            or cpu_validation.get("result", {}).get("missing_metric_rejected") is not True
+            or cpu_validation.get("result", {}).get("protocol_identity_contract_passed") is not True
+            or cpu_validation.get("GPU_units") != 0
+            or cpu_validation.get("official_metrics_generated") != 0
+            or cpu_validation.get("formal_registration") is not False):
+        raise ValueError("CPU blocker-fix evidence is not bound to this current source candidate")
     _, transport = services(); observation = read_dependency(transport)
     if (observation.get("state") != "READY_FOR_ISOLATED_PHASE_VALIDATION"
             or observation.get("dependencies") != release["phase_dependencies"]):
         raise ValueError("Existing serial phase gate/dependencies/capacity changed; no registration")
     reviewer_local = Path(review_path).resolve()
     receipt_root = WORKFLOW_OUTPUT / "receipts"
-    remote_review = (receipt_root / "official_eval_SCIENTIFIC_REVIEW.json").as_posix()
+    remote_review = (receipt_root / "official_eval_ORIGINAL_NEGATIVE_REVIEW.json").as_posix()
+    remote_cpu = (receipt_root / "official_eval_BLOCKER_FIX_CPU.json").as_posix()
+    remote_blocker = (receipt_root / "official_eval_BLOCKER_CLOSURE.json").as_posix()
     remote_closure = (receipt_root / "official_eval_SCIENTIFIC_CLOSURE.json").as_posix()
     remote_ready = (receipt_root / "official_eval_READY.json").as_posix()
+    blocker_path = EX / tag / "blocker_closure.json"
     closure_path = EX / tag / "scientific_closure.json"
     registration_path = EX / tag / "phase_registration.json"
     remote_smoke = spec["remote"]["output_root"] + "/result/smoke_summary.json"
+    remote_identity = spec["remote"]["output_root"] + "/result/val2017_image_identity.json"
+    cpu_file_sha256 = sha(CPU_BLOCKER_EVIDENCE)
+    blocker_core = dict(
+        schema="s4.coco.official-eval-blocker-closure.v1", state="closed", phase="official_eval",
+        original_review_id=review["review_id"], original_reviewed_source_commit=review["pre_run_code_commit"],
+        original_review_sha256=sha(reviewer_local), candidate_source_commit=spec["source"]["commit"],
+        release_sha256=sha(release_path), phase_config_sha256=cfg_sha,
+        smoke_sha256=sha(summary_path), cpu_validation_path=remote_cpu,
+        cpu_validation_sha256=cpu_file_sha256,
+        val2017_image_manifest_sha256=expected_manifest_sha,
+        val2017_image_identity_receipt_sha256=sha(identity_path),
+        closed_blocker_ids=list(ORIGINAL_BLOCKER_IDS), closed_attribution_gap_ids=["G1"],
+        unresolved_blocker_ids=[], source_file_sha256=source_file_sha256,
+        findings={
+            "B1": dict(state="closed", metric="absolute_clean_harm",
+                       formula="clean Person AP50 - S4 Person AP50 (unclipped AP fraction)",
+                       cpu_contract_passed=True, paired_metric_config_declared=True,
+                       bounded_smoke_current_source_passed=True),
+            "B2": dict(state="closed", identity_image_count=5000,
+                       image_manifest_sha256=expected_manifest_sha,
+                       cpu_same_name_same_size_substitution_rejected=True,
+                       smoke_identity_receipt_sha256=sha(identity_path)),
+            "G1": dict(state="closed", risk_estimator_policy=release["risk_estimator_policy"],
+                       dimension_protocol=release["dimension_protocol"],
+                       strict_Original_S4_equivalence_claim=False,
+                       smoke_attribution_validated=True),
+        })
+    if blocker_path.exists():
+        blocker_closure = load(blocker_path)
+        if any(blocker_closure.get(k) != v for k, v in blocker_core.items()) or not blocker_closure.get("closed_UTC"):
+            raise ValueError("Retained blocker closure differs from current source/smoke/evidence")
+    else:
+        blocker_closure = dict(blocker_core, closed_UTC=now(), closure_authority="main_agent_after_evidence")
+        write_once(blocker_path, blocker_closure)
     closure_core = dict(phase="official_eval", source_commit=spec["source"]["commit"],
         release_sha256=sha(release_path), phase_config_sha256=cfg_sha,
         smoke_path=remote_smoke, smoke_sha256=sha(summary_path),
+        blocker_closure_path=remote_blocker, blocker_closure_sha256=sha(blocker_path),
+        cpu_validation_path=remote_cpu, cpu_validation_sha256=cpu_file_sha256,
+        original_review_id=review["review_id"], original_reviewed_source_commit=review["pre_run_code_commit"],
+        original_review_sha256=sha(reviewer_local),
+        risk_estimator_policy=release["risk_estimator_policy"],
+        dimension_protocol=release["dimension_protocol"],
+        strict_Original_S4_equivalence_claim=False,
+        val2017_image_manifest_sha256=expected_manifest_sha,
+        val2017_image_identity_receipt_sha256=sha(identity_path), val2017_image_count=5000,
         review_path=remote_review, review_sha256=sha(reviewer_local), reviewer_count=1,
-        pre_run_result="pass", reviewer_independence=True, scientific_verdict="allow_run", blockers=[])
+        pre_run_result="pass", reviewer_independence=True,
+        independent_scientific_verdict="scientifically_incorrect",
+        closure_verdict="blockers_resolved_by_main_agent",
+        resolved_blocker_ids=list(ORIGINAL_BLOCKER_IDS), resolved_attribution_gap_ids=["G1"],
+        unresolved_blockers=[])
     if closure_path.exists():
         closure = load(closure_path)
         if any(closure.get(k) != v for k, v in closure_core.items()) or not closure.get("closed_UTC"):
@@ -269,7 +357,19 @@ def register(tag, review_path):
         release_relative="source_release.json", module="coco_s4.phase_official_eval",
         previous_stage_receipt_sha256=release["phase_dependencies"]["s4_200"]["accepted_sha256"],
         scientific_closure_path=remote_closure, scientific_closure_sha256=sha(closure_path),
-        smoke_path=remote_smoke, smoke_sha256=sha(summary_path))
+        smoke_path=remote_smoke, smoke_sha256=sha(summary_path),
+        blocker_closure_path=remote_blocker, blocker_closure_sha256=sha(blocker_path),
+        cpu_validation_path=remote_cpu, cpu_validation_sha256=cpu_file_sha256,
+        original_review_path=remote_review, original_review_sha256=sha(reviewer_local),
+        reviewer_count=1, reviewer_independence=True,
+        independent_scientific_verdict="scientifically_incorrect",
+        closure_verdict="blockers_resolved_by_main_agent",
+        resolved_blocker_ids=list(ORIGINAL_BLOCKER_IDS), resolved_attribution_gap_ids=["G1"],
+        risk_estimator_policy=release["risk_estimator_policy"],
+        dimension_protocol=release["dimension_protocol"],
+        strict_Original_S4_equivalence_claim=False,
+        val2017_image_manifest_sha256=expected_manifest_sha,
+        val2017_image_identity_receipt_sha256=sha(identity_path), val2017_image_count=5000)
     if registration_path.exists():
         ready = load(registration_path)
         if any(ready.get(k) != v for k, v in ready_core.items()) or not ready.get("registered_UTC"):
@@ -289,24 +389,33 @@ for name in sys.argv[1:]:
   out[name]=h.hexdigest()
  else:out[name]=None
 print(json.dumps(out,sort_keys=True))'''
-    remote_state = transport.run([PYTHON, "-B", "-c", inspector, remote_smoke, remote_review, remote_closure, remote_ready])
+    remote_state = transport.run([PYTHON, "-B", "-c", inspector, remote_smoke, remote_identity,
+                                  remote_review, remote_cpu, remote_blocker, remote_closure, remote_ready])
     if remote_state.returncode:
         raise ValueError("Could not inspect existing official-evaluation receipts")
     existing = json.loads(remote_state.stdout)
     if existing.get(remote_smoke) != sha(summary_path):
         raise ValueError("RRCTL smoke pull does not match the retained remote smoke bytes")
-    wanted = {remote_review: sha(reviewer_local), remote_closure: sha(closure_path), remote_ready: sha(registration_path)}
+    if existing.get(remote_identity) != sha(identity_path):
+        raise ValueError("RRCTL val2017 identity receipt differs from the retained local artifact")
+    wanted = {remote_review: sha(reviewer_local), remote_cpu: cpu_file_sha256,
+              remote_blocker: sha(blocker_path), remote_closure: sha(closure_path),
+              remote_ready: sha(registration_path)}
     if any(existing.get(p) not in (None, digest) for p, digest in wanted.items()):
         raise ValueError("Conflicting serial phase receipt exists; no overwrite or duplicate registration")
     ensure_remote_exact(transport, release_path, spec["remote"]["repo_root"] + "/source_release.json")
-    local_uploads = {remote_review: reviewer_local, remote_closure: closure_path, remote_ready: registration_path}
+    local_uploads = {remote_review: reviewer_local, remote_cpu: CPU_BLOCKER_EVIDENCE,
+                     remote_blocker: blocker_path, remote_closure: closure_path,
+                     remote_ready: registration_path}
     for remote_path, local_path in local_uploads.items():
         if existing.get(remote_path) is None:
             transport.upload(local_path, remote_path, wanted[remote_path])
         check = transport.run([PYTHON, "-B", "-c", inspector, remote_path])
         if check.returncode or json.loads(check.stdout).get(remote_path) != wanted[remote_path]:
             raise ValueError("Official-evaluation receipt upload failed exact readback: " + remote_path)
-    print(json.dumps(dict(phase="official_eval", reviewer_count=1, registered_existing_controller=True,
+    print(json.dumps(dict(phase="official_eval", reviewer_count=1,
+                          independent_scientific_verdict="scientifically_incorrect",
+                          closure_verdict="blockers_resolved_by_main_agent", registered_existing_controller=True,
                           READY_uploaded_and_readback=True, serial_controller_owns_formal_start=True,
                           no_new_controller=True)))
 

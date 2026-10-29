@@ -8,6 +8,7 @@ import csv
 import hashlib
 import json
 import math
+import re
 import sys
 
 from .runtime import atomic, load, now, sha, write_once
@@ -75,7 +76,90 @@ def load_evaluator(directory, expected):
     return COCO,COCOeval
 
 
-def official_metrics(annotation_json, predictions, mapping, output, evaluator_dir, evaluator_files):
+def validate_val2017_image_identity(annotation_json, images_dir, image_manifest,
+                                    expected_manifest_sha256, *, expected_count=5000):
+    """Bind every evaluated val image to the accepted ID/name/geometry/byte manifest."""
+    manifest_path = Path(image_manifest).resolve()
+    if sha(manifest_path) != expected_manifest_sha256:
+        raise ValueError('Pinned val2017 image manifest bytes changed')
+    annotation_path = Path(annotation_json).resolve()
+    metadata = load(annotation_path)
+    annotation_rows = metadata.get('images')
+    if not isinstance(annotation_rows, list) or len(annotation_rows) != expected_count:
+        raise ValueError('Official val2017 annotation image count differs from the frozen contract')
+    annotations = {}
+    for row in annotation_rows:
+        image_id = row.get('id')
+        if isinstance(image_id, bool) or not isinstance(image_id, int) or image_id in annotations:
+            raise ValueError('Official val2017 annotation IDs are invalid or duplicated')
+        annotations[image_id] = row
+    if len(annotations) != expected_count:
+        raise ValueError('Official val2017 annotation IDs are incomplete')
+
+    root = Path(images_dir).resolve()
+    manifest_rows = {}
+    with manifest_path.open('r', encoding='utf-8') as stream:
+        for line_number, line in enumerate(stream, 1):
+            if not line.strip():
+                raise ValueError(f'Blank val2017 image-manifest row at line {line_number}')
+            try:
+                row = json.loads(line)
+            except json.JSONDecodeError as exc:
+                raise ValueError(f'Invalid val2017 image-manifest JSON at line {line_number}') from exc
+            if not isinstance(row, dict):
+                raise ValueError(f'Invalid val2017 image-manifest record at line {line_number}')
+            raw_id = row.get('id', row.get('image_id'))
+            if 'id' in row and 'image_id' in row and row['id'] != row['image_id']:
+                raise ValueError(f'Conflicting val2017 image IDs at line {line_number}')
+            if (isinstance(raw_id, bool)
+                    or not (isinstance(raw_id, int)
+                            or isinstance(raw_id, str) and raw_id.isdecimal())):
+                raise ValueError(f'Invalid val2017 image ID at line {line_number}')
+            image_id = int(raw_id)
+            if image_id in manifest_rows:
+                raise ValueError('Duplicate val2017 image ID in pinned manifest')
+            annotation = annotations.get(image_id)
+            if annotation is None:
+                raise ValueError('Pinned image manifest contains an ID absent from official val2017')
+            filename = row.get('file_name')
+            if (not isinstance(filename, str) or not filename or Path(filename).name != filename
+                    or '/' in filename or '\\' in filename or ':' in filename):
+                raise ValueError('Unsafe or missing val2017 manifest filename')
+            dimensions = (row.get('width'), row.get('height'))
+            if (any(isinstance(value, bool) or not isinstance(value, int) or value <= 0 for value in dimensions)
+                    or dimensions != (annotation.get('width'), annotation.get('height'))
+                    or filename != annotation.get('file_name')):
+                raise ValueError('Pinned val2017 ID/name/dimensions differ from official annotations')
+            byte_count = row.get('image_bytes')
+            image_digest = row.get('image_sha256')
+            if (isinstance(byte_count, bool) or not isinstance(byte_count, int) or byte_count <= 0
+                    or not isinstance(image_digest, str) or not re.fullmatch(r'[0-9a-f]{64}', image_digest)):
+                raise ValueError('Pinned val2017 image byte-count/SHA fields are invalid')
+            image_path = (root / filename).resolve()
+            if not image_path.is_relative_to(root) or not image_path.is_file():
+                raise ValueError('Pinned val2017 image is missing or escapes its accepted root')
+            actual_bytes = image_path.stat().st_size
+            actual_sha256 = sha(image_path)
+            if actual_bytes != byte_count or actual_sha256 != image_digest:
+                raise ValueError('Actual val2017 image bytes differ from the pinned per-image identity')
+            manifest_rows[image_id] = dict(id=image_id, file_name=filename,
+                width=int(dimensions[0]), height=int(dimensions[1]),
+                image_bytes=byte_count, image_sha256=image_digest)
+    if len(manifest_rows) != expected_count or set(manifest_rows) != set(annotations):
+        raise ValueError('Pinned val2017 manifest does not cover the exact official image-ID set')
+    rows = [manifest_rows[image_id] for image_id in sorted(manifest_rows)]
+    canonical = json.dumps(rows, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode('utf-8')
+    return dict(state='passed', expected_image_count=expected_count, image_count=len(rows),
+        annotation_sha256=sha(annotation_path), manifest_path=str(manifest_path),
+        manifest_sha256=sha(manifest_path), expected_manifest_sha256=expected_manifest_sha256,
+        images_root=str(root), total_image_bytes=sum(row['image_bytes'] for row in rows),
+        verified_image_records_sha256=hashlib.sha256(canonical).hexdigest(),
+        identity_check='annotation IDs/names/dimensions + actual per-image byte count/SHA256',
+        verified_images=rows)
+
+
+def official_metrics(annotation_json, predictions, mapping, output, evaluator_dir, evaluator_files,
+                     *, image_identity_receipt_sha256=None, protocol_identity=None):
     """Official crowd/ignore handling and standard all-area maxDets100 arrays."""
     COCO,COCOeval=load_evaluator(evaluator_dir,evaluator_files)
     from .evaluation import per_class
@@ -117,6 +201,8 @@ def official_metrics(annotation_json, predictions, mapping, output, evaluator_di
         writer=csv.DictWriter(f,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
     write_once(Path(output)/'official_metrics.json',dict(state='complete',UTC=now(),classes=rows,
                image_count=len(ev.params.imgIds),annotation_sha256=sha(annotation_json),predictions_sha256=sha(predictions),
+               image_identity_receipt_sha256=image_identity_receipt_sha256,
+               protocol_identity=protocol_identity,
                official_COCOeval=True,IoU_thresholds=ev.params.iouThrs.tolist(),maxDets=ev.params.maxDets,
                Precision50_definition='TP/(TP+FP), IoU0.5, all area, maxDets100, conf>=0.001; official dtIgnore applied',
                crowd_ignore_policy='unchanged official COCO annotations and evaluator',
@@ -124,12 +210,16 @@ def official_metrics(annotation_json, predictions, mapping, output, evaluator_di
     return rows
 
 
-def predict(checkpoint, images_dir, annotation_json, mapping, output, *, smoke_batches=0):
+def predict(checkpoint, images_dir, annotation_json, mapping, output, *, smoke_batches=0,
+            image_identity_receipt_sha256=None):
     """Raw-output finiteness is checked before NMS; boxes use original dimensions."""
     import torch
     from ultralytics import YOLO
     if not isinstance(smoke_batches,int) or not 0<=smoke_batches<=100:
         raise ValueError('Invalid inference smoke budget')
+    if (image_identity_receipt_sha256 is not None
+            and not re.fullmatch(r'[0-9a-f]{64}', image_identity_receipt_sha256)):
+        raise ValueError('Invalid pinned val2017 image-identity receipt hash')
     meta=load(annotation_json)
     entries=sorted(meta['images'],key=lambda im:im['id'])
     if len(entries)!=5000 or len({x['id'] for x in entries})!=5000:
@@ -207,6 +297,7 @@ def predict(checkpoint, images_dir, annotation_json, mapping, output, *, smoke_b
                  forward_input_batch_sizes=input_batch_sizes,observed_max_input_batch=max(input_batch_sizes),
                  planned_input_batch_sizes=[min(PREDICT_ARGS['batch'],len(paths)-i) for i in range(0,len(paths),PREDICT_ARGS['batch'])],
                  native_source_kind='LoadImagesAndVideos text manifest',input_manifest_sha256=sha(source),
+                 image_identity_receipt_sha256=image_identity_receipt_sha256,
                  actual_cuda_device_index=(next(iter(forward_cuda_indices)) if len(forward_cuda_indices)==1 else None),
                  actual_cuda_device_indices=sorted(forward_cuda_indices),
                  actual_device=(next(iter(forward_devices)) if len(forward_devices)==1 else 'mixed'),
