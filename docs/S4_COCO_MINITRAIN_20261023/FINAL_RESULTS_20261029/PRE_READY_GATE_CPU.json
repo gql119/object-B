@@ -1,0 +1,12 @@
+{
+  "state": "passed",
+  "phase": "official_eval",
+  "source_commit": "349720570a8f388acb7358cc689f375728dd6c3e",
+  "release_sha256": "ea728c42c2cf12eb7c32aa9f4baf83e8da1b4c9399f8d27fcc56915059252e48",
+  "registration_only_in_memory": true,
+  "production_READY_written": false,
+  "GPU_units": 0,
+  "models_loaded": 0,
+  "independent_scientific_verdict": "scientifically_incorrect",
+  "closure_verdict": "blockers_resolved_by_main_agent"
+}

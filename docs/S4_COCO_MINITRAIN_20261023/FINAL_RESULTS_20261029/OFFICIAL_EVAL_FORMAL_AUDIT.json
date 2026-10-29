@@ -1,0 +1,57 @@
+{
+  "state": "passed",
+  "UTC": "2026-10-29T06:14:29.853431+00:00",
+  "remote": {
+    "state": "passed",
+    "controller": {
+      "pid": 2334114,
+      "start_ticks": 369629083,
+      "uid": 1014
+    },
+    "source_commit": "349720570a8f388acb7358cc689f375728dd6c3e",
+    "accepted_sha256": "4a147e702ae7d44848ec7ed2c35d028f84adc75a8fabdfb78250fc063b09f6c3",
+    "victims": {
+      "clean200": {
+        "image_count": 5000,
+        "raw_forward_calls": 140,
+        "metrics_sha256": "0fbadc8197abc7c197a263c4563eafa1774da483a5c6406cf4fbdc5841f753d1",
+        "per_class_csv_sha256": "593b42b713e55320c2a6a16c8cffe3d31bbcc269f1c4cb3d6956bcea65b13b78",
+        "predictions_sha256": "5eee28e4110b833eea3a76321664927aa0c7c7066c9f68a8aed66edbd78152d4",
+        "checkpoint_sha256": "c09c5493551de98c5ba74b1199b9bdd3a343cb8dde39a84184de0e23f004931f"
+      },
+      "s4_200": {
+        "image_count": 5000,
+        "raw_forward_calls": 140,
+        "metrics_sha256": "f0224a5a79543f78ff8038a27548e895cd35097a3cac32f87588dc219502ea49",
+        "per_class_csv_sha256": "ca423aa47d8829c1bb6ffaa4e70d402c1a6d38bfa8cdacec8f99329e8dc824b4",
+        "predictions_sha256": "dc679261c552ce60b763d6a29500c53b77f1116229679a13ca2c8f479c62a935",
+        "checkpoint_sha256": "7b1ba6d8922274856035483d8b9cd843a7e6cb1175be27436f3b6bd6150e3a6e"
+      }
+    },
+    "paired_reduction_exact_on_actual_runtime": true,
+    "python_version": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+    "models_loaded": 0,
+    "GPU_units": 0,
+    "original_images_opened": 0
+  },
+  "full_80_class_rows": true,
+  "paired_metrics_recomputed_exact_on_actual_runtime": true,
+  "local_python312_reduction_differences": {
+    "U": {
+      "actual_runtime": 0.7889296464142012,
+      "local": 0.7889296464142009,
+      "difference": -2.220446049250313e-16
+    },
+    "S": {
+      "actual_runtime": 0.8204003489328877,
+      "local": 0.8204003489328875,
+      "difference": -2.220446049250313e-16
+    }
+  },
+  "zero_denominator_class_ids": [
+    78
+  ],
+  "official_inference_executed": 0,
+  "source_commit": "349720570a8f388acb7358cc689f375728dd6c3e",
+  "primary": "last.pt@200"
+}

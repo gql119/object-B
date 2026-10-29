@@ -1,0 +1,134 @@
+{
+  "state": "passed",
+  "UTC": "2026-10-29T06:21:23.453712+00:00",
+  "actual_pipeline_state": {
+    "schema": "s4.coco.serial-recovery.v1",
+    "state": "COMPLETED_AND_ACCEPTED",
+    "run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1",
+    "source_commit": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+    "config_sha256": "6e395fb26f7f1f064d1857918cf0751c33a1a33be243c914266588f2cd6f447a",
+    "release_sha256": "d3b99e959732b2e4cf70d26328edda450b360086a25dcc7b8d9244841ce66ca6",
+    "controller": {
+      "pid": 2334114,
+      "start_ticks": 369629083,
+      "uid": 1014
+    },
+    "stages": {
+      "teacher200": {
+        "state": "ACCEPTED",
+        "receipt_sha256": "f06302c55aad6870c877aed3f79f1defb280a392d6bf96d4f40ca018245c3ade",
+        "reused": true
+      },
+      "teacher_eval": {
+        "state": "ACCEPTED",
+        "receipt_sha256": "69655e8c89aa282a5ace5eff89b45412d9631f76409d269d778728c1df868b51",
+        "reused": true
+      },
+      "calibration": {
+        "state": "ACCEPTED",
+        "receipt_sha256": "4a960db796add5e82729ed4cf5898ce0b6ca99b0334cdb6228648c194abab75a",
+        "reused": true
+      },
+      "fourier24": {
+        "state": "ACCEPTED",
+        "receipt_sha256": "4c6852a2ccac25f540034b619b1c7a5651ef2daffcf2862656fbe6d5b2754220"
+      },
+      "export25k": {
+        "state": "ACCEPTED",
+        "receipt_sha256": "7c156811ba3f422eee3dc5cab35d598b858d23cccabeb4d925bba9766360817f"
+      },
+      "clean200": {
+        "state": "ACCEPTED",
+        "receipt_sha256": "996f2132f28e7d82a7f493847c52780ffe5e08346a1a77efb222c149f63fc7a5"
+      },
+      "s4_200": {
+        "state": "ACCEPTED",
+        "receipt_sha256": "4b51ce2faca2f07a7d4e0ac3938807dc1eeca7fb5367a8e3fa71737118066c05"
+      },
+      "official_eval": {
+        "state": "ACCEPTED",
+        "receipt_sha256": "4a147e702ae7d44848ec7ed2c35d028f84adc75a8fabdfb78250fc063b09f6c3"
+      },
+      "final_report": {
+        "state": "ACCEPTED",
+        "receipt_sha256": "016f4889cc1375ee970259dbdb4a68560ce367dfc1a13e346931b0a0f0ca6d89"
+      }
+    },
+    "current_stage": null,
+    "active_job": null,
+    "active_child": null,
+    "OP_enabled": false,
+    "phase_order": [
+      "teacher200",
+      "teacher_eval",
+      "calibration",
+      "fourier24",
+      "export25k",
+      "clean200",
+      "s4_200",
+      "official_eval",
+      "final_report"
+    ],
+    "dimension_protocol": "coco80-strict-tsfl-selected-dimension-v1",
+    "created_UTC": "2026-10-27T03:26:57.613755+00:00",
+    "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+    "strict_Original_S4_equivalence_claim": false,
+    "updated_UTC": "2026-10-29T06:16:32.160908+00:00"
+  },
+  "files": {
+    "final_report/accepted.json": {
+      "sha256": "016f4889cc1375ee970259dbdb4a68560ce367dfc1a13e346931b0a0f0ca6d89",
+      "bytes": 940
+    },
+    "final_report/final_report.json": {
+      "sha256": "119ab329e18b11d33d5aad3ded3d8babeb94f0b96bf87d376a675d2dd74b63bb",
+      "bytes": 87502
+    },
+    "final_report/COCO_EXPERIMENT_A_PER_CLASS.csv": {
+      "sha256": "870f0b999b86753f2d3ab88f289f93995c03ac8e4fd9dc744ea690af0d9519c5",
+      "bytes": 26057
+    },
+    "final_report/FINAL_REPORT.md": {
+      "sha256": "c9dcec6a6b95f6c59641490cae75cf33f2de58b4835bc63d8e224db91fae0bf2",
+      "bytes": 633
+    },
+    "official_eval/accepted.json": {
+      "sha256": "4a147e702ae7d44848ec7ed2c35d028f84adc75a8fabdfb78250fc063b09f6c3",
+      "bytes": 5321
+    },
+    "official_eval/paired_metrics.json": {
+      "sha256": "a1fda483e734c09a2267d73b6c6d62ff542a2c84ee8c929ea014037df7a2aaac",
+      "bytes": 2750
+    },
+    "official_eval/clean200/official_metrics.json": {
+      "sha256": "0fbadc8197abc7c197a263c4563eafa1774da483a5c6406cf4fbdc5841f753d1",
+      "bytes": 22940
+    },
+    "official_eval/clean200/COCO_PER_CLASS_AP.csv": {
+      "sha256": "593b42b713e55320c2a6a16c8cffe3d31bbcc269f1c4cb3d6956bcea65b13b78",
+      "bytes": 8883
+    },
+    "official_eval/s4_200/official_metrics.json": {
+      "sha256": "f0224a5a79543f78ff8038a27548e895cd35097a3cac32f87588dc219502ea49",
+      "bytes": 23032
+    },
+    "official_eval/s4_200/COCO_PER_CLASS_AP.csv": {
+      "sha256": "ca423aa47d8829c1bb6ffaa4e70d402c1a6d38bfa8cdacec8f99329e8dc824b4",
+      "bytes": 8975
+    },
+    "clean200/accepted.json": {
+      "sha256": "996f2132f28e7d82a7f493847c52780ffe5e08346a1a77efb222c149f63fc7a5",
+      "bytes": 1917
+    },
+    "s4_200/accepted.json": {
+      "sha256": "4b51ce2faca2f07a7d4e0ac3938807dc1eeca7fb5367a8e3fa71737118066c05",
+      "bytes": 1926
+    }
+  },
+  "all_downloaded_bytes_exact": true,
+  "final_report_sha256": "119ab329e18b11d33d5aad3ded3d8babeb94f0b96bf87d376a675d2dd74b63bb",
+  "full80_rows": true,
+  "paired_summary_matches_accepted_evaluation": true,
+  "GPU_units": 0,
+  "images_or_weights_transferred": 0
+}

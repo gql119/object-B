@@ -1,0 +1,17 @@
+{
+  "state": "LOCAL_EXACT_COMPARISON_REJECTED",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "differences": {
+    "U": {
+      "actual_runtime": 0.7889296464142012,
+      "local": 0.7889296464142009,
+      "difference": -2.220446049250313e-16
+    },
+    "S": {
+      "actual_runtime": 0.8204003489328877,
+      "local": 0.8204003489328875,
+      "difference": -2.220446049250313e-16
+    }
+  },
+  "next": "Require exact recomputation on actual published server Python runtime; no tolerance added"
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "s4.coco.final-report-acceptance.v1",
+  "state": "ACCEPTED",
+  "phase": "final_report",
+  "source_commit": "349720570a8f388acb7358cc689f375728dd6c3e",
+  "release_sha256": "289036b4f55db2a4fdcd396deb449d9fa28edc15acf7d7f4b71774e6caa19ce9",
+  "config_sha256": "d01141e408c612f20c06d587795cc932309d7af63b701d91379f307b42170dd7",
+  "predecessor_receipt_sha256": "4a147e702ae7d44848ec7ed2c35d028f84adc75a8fabdfb78250fc063b09f6c3",
+  "report_sha256": "119ab329e18b11d33d5aad3ded3d8babeb94f0b96bf87d376a675d2dd74b63bb",
+  "per_class_csv_sha256": "870f0b999b86753f2d3ab88f289f93995c03ac8e4fd9dc744ea690af0d9519c5",
+  "markdown_sha256": "c9dcec6a6b95f6c59641490cae75cf33f2de58b4835bc63d8e224db91fae0bf2",
+  "seed_count": 1,
+  "causal_claims": false,
+  "significance_claims": false,
+  "parameter_updates": false,
+  "checkpoint_selection_allowed": false,
+  "LPIPS_measured": false,
+  "completed_UTC": "2026-10-29T06:16:24.155639+00:00"
+}

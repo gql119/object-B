@@ -1,0 +1,32 @@
+{
+  "state": "passed",
+  "UTC": "2026-10-29T06:02:16.773505+00:00",
+  "source_commit": "349720570a8f388acb7358cc689f375728dd6c3e",
+  "release_sha256": "ea728c42c2cf12eb7c32aa9f4baf83e8da1b4c9399f8d27fcc56915059252e48",
+  "smoke_sha256": "f1fc895dd07b805d913dfcdc3403d50089c88ff31e22ecee0b4b6e055cf34f33",
+  "identity_sha256": "e2a56fb7b60718c3d38b6fa441abe86ba2a36c7792f51c3015dda71bc5d84571",
+  "verified_images": 5000,
+  "matched_checkpoints": [
+    "clean200",
+    "s4_200"
+  ],
+  "images_per_checkpoint": 36,
+  "total_raw_forwards": 8,
+  "exact_native_reference": true,
+  "CPU_blocker_evidence_sha256": "321bae421daf24d0cface89dbbea237d74fee397d784ba0b8733de2ac20ea8c5",
+  "remote_audit": {
+    "state": "passed",
+    "source_commit": "349720570a8f388acb7358cc689f375728dd6c3e",
+    "release_sha256": "ea728c42c2cf12eb7c32aa9f4baf83e8da1b4c9399f8d27fcc56915059252e48",
+    "source_files_checked": 154,
+    "native_files_checked": 7,
+    "evaluator_files_checked": 9,
+    "remote_smoke_sha256": "f1fc895dd07b805d913dfcdc3403d50089c88ff31e22ecee0b4b6e055cf34f33",
+    "remote_identity_sha256": "e2a56fb7b60718c3d38b6fa441abe86ba2a36c7792f51c3015dda71bc5d84571",
+    "models_loaded": 0,
+    "GPU_units": 0,
+    "original_images_opened": 0
+  },
+  "official_metrics_generated": 0,
+  "formal_registered": false
+}

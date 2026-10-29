@@ -1,0 +1,47 @@
+{
+  "GPU_units": 0,
+  "UTC": "2026-10-29T05:53:39.372011+00:00",
+  "accepted_manifest_schema_records": 5000,
+  "accepted_manifest_sha256": "6fef2d07ef94fbc190519f44959eacdca0139d551514c671bf42843d33b18f67",
+  "command": [
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\five_method_fidelity_20261013\\.venv-five\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "coco_s4.validate_post_eval_contracts"
+  ],
+  "correction": "Consume accepted image path field images/val/<filename>; V2 fixture uses actual image_id/image schema",
+  "failed_GPU_run_preserved": "coco_official_eval_20261029_gpu02",
+  "formal_registration": false,
+  "official_metrics_generated": 0,
+  "original_images_opened": 0,
+  "result": {
+    "GPU_units": 0,
+    "dataset_images_opened": 0,
+    "formal_registration": false,
+    "image_identity_fixture": "passed",
+    "invalid_official_eval_contracts_rejected": 4,
+    "missing_metric_rejected": true,
+    "official_metrics_generated": 0,
+    "paired_metric_cases": 1,
+    "phases": [
+      "official_eval",
+      "final_report"
+    ],
+    "protocol_identity_contract_passed": true,
+    "report_rows": 80,
+    "same_name_same_size_substitution_rejected": true,
+    "shared_voc_names": 20,
+    "state": "passed"
+  },
+  "schema": "s4.coco.official-eval-blocker-fix-cpu.v1",
+  "source_commit": "349720570a8f388acb7358cc689f375728dd6c3e",
+  "source_file_sha256": {
+    "coco_s4/coco_eval.py": "ba3002fa0d2884966cf1155f0400ead1b230196f0ef10edca247fab98e49d3ef",
+    "coco_s4/configs/official_eval.json": "9d46981eae83180bc2939df1d0012281618441a5a320db1c9d0c0a1e02bb3ad2",
+    "coco_s4/evaluation.py": "2ad1478659ab77797f8dfd15d65e66c318ac4117df1797f0f681b2d58db21611",
+    "coco_s4/phase_official_eval.py": "eff24d3fc298a037aa8517a0b627283c537adb0c5c3740f08775e3b51ea3925d"
+  },
+  "state": "passed",
+  "stderr_empty": true,
+  "stdout_sha256": "20a9cf98d3cc4137131cde9619d376b7e4dd8d322fc4c9c50c7c45211ca2d0ec"
+}

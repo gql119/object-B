@@ -1,0 +1,78 @@
+{
+  "schema_version": "coco.official-eval-independent-scientific-review.v1",
+  "review_id": "COCO_OFFICIAL_EVAL_INDEPENDENT_SCIENTIFIC_REVIEW_20261029",
+  "review_mode": "scientific_review",
+  "reviewer": {
+    "id": "/root/coco_official_eval_scientific_review_20261029",
+    "mode": "independent delegated read-only review",
+    "parent_conclusions_used": false,
+    "model_identity": "not exposed by review runtime"
+  },
+  "reviewed_packet": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023/execution/COCO_OFFICIAL_EVAL_SCIENTIFIC_REVIEW_PACKET_20261029.json",
+  "repo_root": "C:/Users/20272/.codex/visualizations/2026/09/17/01a0afba-bca4-7582-815c-b2a5241bad4a/s4_coco_minitrain25k_20261023",
+  "pre_run_code_commit": "ed192435cd3bd30cbf412c731288dae472af43ce",
+  "review_diff_base_commit": "55ad8e80fdf5a24b676dc9b1ea117c3c0987b7e6",
+  "approved_scope": "Paired read-only full clean val2017 evaluation for accepted Clean200/S4_200 last.pt@200 checkpoints; COCO80 dimension-compatible S4 plus Level C NT-risk extension; strict_Original_S4_equivalence_claim=false. This is not approval of efficacy, causal, or future final-report claims.",
+  "scientific_verdict": "scientifically_incorrect",
+  "decision": "do_not_run",
+  "review_dimensions": {
+    "approved_intent": "correct",
+    "canonical_implementation_location": "correct",
+    "checkpoint_pair_and_category_mapping": "correct by static code and packet evidence",
+    "paired_metric_sink": "incorrect",
+    "validation_image_identity_at_sink": "not established",
+    "read_only_no_selection_controls": "correct by static code",
+    "bounded_native_inference_smoke": "passed according to packet; not full evaluation",
+    "protocol_attribution": "indirect through release SHA256; fields not copied into accepted result"
+  },
+  "blockers": [
+    {
+      "id": "B1",
+      "severity": "blocking",
+      "title": "Declared paired absolute_clean_harm metric is not emitted",
+      "source": [
+        "coco_s4/configs/official_eval.json:33-40",
+        "coco_s4/evaluation.py:18-32",
+        "coco_s4/phase_official_eval.py:276-289"
+      ],
+      "evidence": "The frozen config and packet declare absolute_clean_harm in the paired summary. evaluation.paired_metrics returns P/U/S/WCD/TCD3 and metadata but no absolute_clean_harm. phase_official_eval stores that return value without checking keys against the config, so a full run can be accepted with a predeclared output missing. The later report's per-class clean-minus-S4 AP50 does not satisfy this official paired sink.",
+      "required_closure": "Compute the approved absolute_clean_harm paired output, or revise the approved config/packet before the run; enforce emitted metric keys against the frozen declaration."
+    },
+    {
+      "id": "B2",
+      "severity": "blocking",
+      "title": "Actual clean val2017 image bytes are not bound to the pinned per-image manifest",
+      "source": [
+        "coco_s4/runtime.py:15-20, 91-93",
+        "coco_s4/coco_eval.py:133-142, 171-181",
+        "execution/VAL2017_IMAGE_MANIFEST_20261025.jsonl"
+      ],
+      "evidence": "The release pins and hashes the manifest file, but evaluation never reads its per-image image_sha256/image_bytes entries. It derives paths from annotation names, checks existence and dimensions, then evaluates current bytes. A same-name, same-dimension substituted JPEG can reach COCOeval undetected. The bounded smoke/reference comparison uses the same current bytes and cannot detect substitution.",
+      "required_closure": "Verify the 5,000 annotation IDs/names/dimensions against the pinned manifest, verify every input image's byte count and SHA256, and retain a verification receipt in official output."
+    }
+  ],
+  "evidence_gaps": [
+    {
+      "id": "G1",
+      "severity": "attribution",
+      "title": "Protocol identity is linked but not explicit in official result fields",
+      "source": [
+        "coco_s4/phase_official_eval.py:230-240, 279-289",
+        "execution/coco_official_eval_20261029_gpu01/source_release.json"
+      ],
+      "evidence": "The immutable source release carries risk_estimator_policy and strict_Original_S4_equivalence_claim=false, and the result records its release SHA256. phase_spec/status/accepted do not copy those fields directly. Values are recoverable by the bound hash, so this is an attribution gap, not a primary blocker.",
+      "recommended_closure": "Copy the exact verified protocol fields into phase_spec and accepted/status metadata and validate them at acceptance."
+    }
+  ],
+  "review_evidence": {
+    "candidate_head_matches_packet": true,
+    "source_release_sha256_matches_smoke_binding": "c2ef7a33d1ca0f0084b0b0afdd30f802bc5d4278b681969c559d9e0cdd5ce9a7",
+    "local_manifest_sha256_matches_runtime_pin": "6fef2d07ef94fbc190519f44959eacdca0139d551514c671bf42843d33b18f67",
+    "packet_smoke": "passed; two checkpoints, CUDA 0, 36 images each, finite pre-NMS tensors, exact native-reference outputs, 8 total raw forwards",
+    "packet_local_validation": "contract validator and py_compile reported passed",
+    "reviewer_reran_tests_metrics_experiments_or_registration": false,
+    "official_metrics_produced_during_review": false,
+    "full_official_evaluation_performed_during_review": false,
+    "future_metric_claims_approved": false
+  }
+}

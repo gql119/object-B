@@ -1,0 +1,37 @@
+{
+  "phase": "official_eval",
+  "source_commit": "349720570a8f388acb7358cc689f375728dd6c3e",
+  "release_sha256": "ea728c42c2cf12eb7c32aa9f4baf83e8da1b4c9399f8d27fcc56915059252e48",
+  "phase_config_sha256": "9d46981eae83180bc2939df1d0012281618441a5a320db1c9d0c0a1e02bb3ad2",
+  "smoke_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/validation/coco_official_eval_20261029_gpu03/result/smoke_summary.json",
+  "smoke_sha256": "f1fc895dd07b805d913dfcdc3403d50089c88ff31e22ecee0b4b6e055cf34f33",
+  "blocker_closure_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/receipts/official_eval_BLOCKER_CLOSURE.json",
+  "blocker_closure_sha256": "4c8964deb3e6fffd851f84879f400d7d00b1e757a36bc5ad60ce1c63f8e0b1e2",
+  "cpu_validation_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/receipts/official_eval_BLOCKER_FIX_CPU.json",
+  "cpu_validation_sha256": "321bae421daf24d0cface89dbbea237d74fee397d784ba0b8733de2ac20ea8c5",
+  "original_review_id": "COCO_OFFICIAL_EVAL_INDEPENDENT_SCIENTIFIC_REVIEW_20261029",
+  "original_reviewed_source_commit": "ed192435cd3bd30cbf412c731288dae472af43ce",
+  "original_review_sha256": "ffe7b2de869ce7fd18f8199d691a96e9ef0df251d8c75ef0b657ab519a69a20b",
+  "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+  "dimension_protocol": "coco80-strict-tsfl-selected-dimension-v1",
+  "strict_Original_S4_equivalence_claim": false,
+  "val2017_image_manifest_sha256": "6fef2d07ef94fbc190519f44959eacdca0139d551514c671bf42843d33b18f67",
+  "val2017_image_identity_receipt_sha256": "e2a56fb7b60718c3d38b6fa441abe86ba2a36c7792f51c3015dda71bc5d84571",
+  "val2017_image_count": 5000,
+  "review_path": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1/receipts/official_eval_ORIGINAL_NEGATIVE_REVIEW.json",
+  "review_sha256": "ffe7b2de869ce7fd18f8199d691a96e9ef0df251d8c75ef0b657ab519a69a20b",
+  "reviewer_count": 1,
+  "pre_run_result": "pass",
+  "reviewer_independence": true,
+  "independent_scientific_verdict": "scientifically_incorrect",
+  "closure_verdict": "blockers_resolved_by_main_agent",
+  "resolved_blocker_ids": [
+    "B1",
+    "B2"
+  ],
+  "resolved_attribution_gap_ids": [
+    "G1"
+  ],
+  "unresolved_blockers": [],
+  "closed_UTC": "2026-10-29T06:03:56.062715+00:00"
+}

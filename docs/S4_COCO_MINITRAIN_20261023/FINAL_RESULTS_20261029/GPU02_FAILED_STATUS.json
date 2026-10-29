@@ -1,0 +1,30 @@
+{
+  "phase": "official_eval",
+  "source_commit": "26035ea1d52326016ee6a8154b19cbf2d451b622",
+  "release_sha256": "4d61d8644eaf972a3e4f4f5060d470b042912c9df0f025727fac5d9d9a4beb92",
+  "phase_config_sha256": "9d46981eae83180bc2939df1d0012281618441a5a320db1c9d0c0a1e02bb3ad2",
+  "risk_estimator_policy": "coco80-ntgt-native-tal-then-gt-risk-v1",
+  "dimension_protocol": "coco80-strict-tsfl-selected-dimension-v1",
+  "strict_Original_S4_equivalence_claim": false,
+  "previous_stage_receipt_sha256": "4b51ce2faca2f07a7d4e0ac3938807dc1eeca7fb5367a8e3fa71737118066c05",
+  "victim_checkpoint_sha256s": {
+    "clean200": "c09c5493551de98c5ba74b1199b9bdd3a343cb8dde39a84184de0e23f004931f",
+    "s4_200": "7b1ba6d8922274856035483d8b9cd843a7e6cb1175be27436f3b6bd6150e3a6e"
+  },
+  "val2017_image_manifest_path": "/data/guoqinglong/datasets/COCO_MINITRAIN_25K_S4_20261023/metadata/VAL2017_IMAGE_MANIFEST_20261025.jsonl",
+  "val2017_image_manifest_sha256": "6fef2d07ef94fbc190519f44959eacdca0139d551514c671bf42843d33b18f67",
+  "val2017_image_count": 5000,
+  "computation_kind": "paired-read-only-official-COCOeval",
+  "parameter_updates": false,
+  "checkpoint_selection_allowed": false,
+  "method_statistics_allowed": false,
+  "metric_driven_tuning_allowed": false,
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "cleanup_policy": "retain_all",
+  "deleted_paths": [],
+  "state": "FAILED",
+  "started_UTC": "2026-10-29T05:48:44.367259+00:00",
+  "error": "ValueError('Unsafe or missing val2017 manifest filename')",
+  "ended_UTC": "2026-10-29T05:48:44.741984+00:00"
+}

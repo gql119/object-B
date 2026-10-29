@@ -1,0 +1,44 @@
+{
+  "binding": {
+    "branch": "codex/s4-coco-risk-fallback-20261027",
+    "bundle_sha256": "92d44571ce34f7d9629f300d4c1d8a69692545399005dc7eac9d08625f51e0a5",
+    "commit": "5c49dc8a65eef8c89a9aa0f53aca19bf1f9d15e9",
+    "control_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/s4_coco_experiment_a_seed0_20261027_risk_v1_transport02",
+    "created_at": "2026-10-27T03:26:55.867486+00:00",
+    "executor_cmdline_sha256": "1531218912c219a3f8d24f8a7233decdc0ffd6a093af9dcfbb0d6996e3c3a93b",
+    "executor_pid": 2334096,
+    "executor_process_group_id": 2334096,
+    "executor_start_ticks": 369629074,
+    "executor_started_at": "2026-10-27T03:26:55.973913+00:00",
+    "output_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/outputs/s4_coco_experiment_a_seed0_20261027_risk_v1",
+    "project": "s4-coco-independent-risk-recovery",
+    "repo_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/repos/s4_coco_experiment_a_seed0_20261027_risk_v1_transport02",
+    "run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1_transport02",
+    "run_spec_sha256": "f57b7ce7b20ef5fc9c7232e8aab771a6bae63af5de89119789fae58a4dd78f47",
+    "schema_version": "rrctl.binding.v1",
+    "session": "s4_coco_experiment_a_seed0_20261027_risk_v1_transport02",
+    "source_content_sha256": "c0ca87e3b639376b9cfde255b2a8a7f025d20fc529f6a096ecd6656e6d3ae6b7",
+    "stage_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/stage/s4_coco_experiment_a_seed0_20261027_risk_v1_transport02",
+    "transport_bundle_sha256": "92d44571ce34f7d9629f300d4c1d8a69692545399005dc7eac9d08625f51e0a5",
+    "worker_sha256": "696cb314eb11784a9099728b117eac69cd2e01315d7732154d1ddeab609eff6a",
+    "workload_argv_sha256": "0149503b90f182b283a8b7390023c6d3e7058eff6dd67b93e5fe6f3b16cdf58b",
+    "workload_pid": 2334114,
+    "workload_process_group_id": 2334096,
+    "workload_started_at": "2026-10-27T03:26:55.985671+00:00"
+  },
+  "control_root": "/project/guoqinglong/projects/s4_coco_experiment_a_20261025/control/s4_coco_experiment_a_seed0_20261027_risk_v1_transport02",
+  "run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1_transport02",
+  "status": {
+    "detail": {
+      "artifact_count": 2,
+      "exit_code": 0
+    },
+    "reason": "external_completion_and_artifact_contract_passed",
+    "run_id": "s4_coco_experiment_a_seed0_20261027_risk_v1_transport02",
+    "schema_version": "rrctl.status.v1",
+    "sequence": 7,
+    "state": "completed",
+    "updated_at": "2026-10-29T06:17:49.395324+00:00"
+  },
+  "status_recovered": false
+}
