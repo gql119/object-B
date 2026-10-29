@@ -121,7 +121,10 @@ def validate_val2017_image_identity(annotation_json, images_dir, image_manifest,
             annotation = annotations.get(image_id)
             if annotation is None:
                 raise ValueError('Pinned image manifest contains an ID absent from official val2017')
-            filename = row.get('file_name')
+            relative_image = row.get('image')
+            if not isinstance(relative_image, str) or not relative_image.startswith('images/val/'):
+                raise ValueError('Pinned val2017 image path is not in the accepted images/val view')
+            filename = relative_image[len('images/val/'):]
             if (not isinstance(filename, str) or not filename or Path(filename).name != filename
                     or '/' in filename or '\\' in filename or ':' in filename):
                 raise ValueError('Unsafe or missing val2017 manifest filename')

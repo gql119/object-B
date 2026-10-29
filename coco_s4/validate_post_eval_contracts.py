@@ -61,14 +61,14 @@ def main():
     try: validate_protocol_identity(bad_protocol)
     except ValueError: pass
     else: raise AssertionError("Strict Original S4 equivalence was incorrectly accepted")
-    fixture_root = ROOT / "execution/COCO_POST_EVAL_IDENTITY_FIXTURE_20261029"
+    fixture_root = ROOT / "execution/COCO_POST_EVAL_IDENTITY_FIXTURE_20261029_V2"
     annotation_rows = []; manifest_rows = []; payloads = {}
     for image_id, filename, width, height, payload in (
             (1, "000000000001.jpg", 2, 3, b"fixture-image-one"),
             (2, "000000000002.jpg", 4, 5, b"fixture-image-two")):
         payloads[filename] = payload
         annotation_rows.append(dict(id=image_id, file_name=filename, width=width, height=height))
-        manifest_rows.append(dict(id=image_id, file_name=filename, width=width, height=height,
+        manifest_rows.append(dict(image_id=image_id, image="images/val/" + filename, width=width, height=height,
                                   image_bytes=len(payload), image_sha256=hashlib.sha256(payload).hexdigest()))
     images = fixture_root / "val"
     annotation_path = fixture_root / "instances.json"

@@ -19,7 +19,7 @@ from .runtime import DATA_FILES, DATA_ROOT, ROOT, load, now, sha, write_once
 EX = ROOT / "execution"
 PYTHON = "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python"
 PREDECESSORS = ("teacher200", "teacher_eval", "calibration", "fourier24", "export25k", "clean200", "s4_200")
-CPU_BLOCKER_EVIDENCE = EX / "COCO_OFFICIAL_EVAL_BLOCKER_FIX_CPU_20261029.json"
+CPU_BLOCKER_EVIDENCE = EX / "COCO_OFFICIAL_EVAL_BLOCKER_FIX_CPU_20261029_V2.json"
 BLOCKER_SOURCE_PATHS = {
     "B1": ("coco_s4/evaluation.py", "coco_s4/phase_official_eval.py", "coco_s4/configs/official_eval.json"),
     "B2": ("coco_s4/coco_eval.py", "coco_s4/phase_official_eval.py"),
