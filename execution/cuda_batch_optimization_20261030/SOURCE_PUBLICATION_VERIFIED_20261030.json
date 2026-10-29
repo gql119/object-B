@@ -1,0 +1,297 @@
+{
+  "state": "PUBLISHED_RUNTIME_ENTRIES_EXACT_METADATA_JSON_LINE_ENDINGS_DISCLOSED",
+  "UTC": "2026-10-29T19:50:10.889806+00:00",
+  "source_commit": "dbdc05f938d1e553fbd62af32b2fa36f908c68d0",
+  "remote_branch_SHA_readback_verified": true,
+  "publication_method": "normal non-force git push then explicit git ls-remote exact branch SHA",
+  "code_and_human_authorization_raw_bytes_exact": true,
+  "metadata_JSON_line_ending_normalization": [
+    "execution/cuda_batch_optimization_20261030/NATURAL_BOUNDARY_WINDOW_PLAN.json",
+    "execution/cuda_batch_optimization_20261030/PENDING_BATCH_CUDA_CONTRACT.json",
+    "execution/cuda_batch_optimization_20261030/FROZEN_BOUNDED_EXECUTION_ORDER.json",
+    "execution/cuda_batch_optimization_20261030/RETAINED_GPU_FIXTURE_BINDING.json",
+    "execution/cuda_batch_optimization_20261030/CPU_BATCH_POLICY_AUDIT.json",
+    "execution/cuda_batch_optimization_20261030/BOUNDED_ENTRY_CPU_CLOSURE.json",
+    "execution/cuda_batch_optimization_20261030/LOCAL_BOUNDED_ENTRY_VALIDATION_20261030.json",
+    "execution/cuda_batch_optimization_20261030/s4_at_queue_window_20261030_cpu04/MAIN_CONTROL_CLOSURE.json",
+    "execution/cuda_batch_optimization_20261030/cpu_entry04/summary.json",
+    "execution/cuda_batch_optimization_20261030/cpu_benchmark_entry03/summary.json",
+    "execution/cuda_batch_optimization_20261030/cpu_benchmark_entry04/summary.json",
+    "execution/cuda_batch_optimization_20261030/cpu_entry_contracts02/summary.json",
+    "execution/cuda_batch_optimization_20261030/PROPOSED_TEST_PROTOCOL_B36.json",
+    "execution/cuda_batch_optimization_20261030/PROPOSED_TEST_PROTOCOL_B48.json",
+    "execution/cuda_batch_optimization_20261030/PROPOSED_TEST_PROTOCOL_B64.json",
+    "execution/cuda_batch_optimization_20261030/PROPOSED_TEST_PROTOCOL_B72.json"
+  ],
+  "metadata_JSON_values_exact": true,
+  "remote_independent_per_blob_API_download_performed": false,
+  "local_commit_scoped_blob_manifest": [
+    {
+      "path": "execution/cuda_batch_optimization_20261030/bounded_common.py",
+      "local_raw_sha256": "53019725799bc07680598898cf93e8efef799a714c93623f92648e107672d7e0",
+      "committed_blob_sha256": "53019725799bc07680598898cf93e8efef799a714c93623f92648e107672d7e0",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 5093
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/cuda_equivalence.py",
+      "local_raw_sha256": "16fb360fb9abb47b0299d26cfcc3504e7f7096508b44bd5df524d95d3bea4ed8",
+      "committed_blob_sha256": "16fb360fb9abb47b0299d26cfcc3504e7f7096508b44bd5df524d95d3bea4ed8",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 15898
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/cuda_benchmark.py",
+      "local_raw_sha256": "559da5220acf9242c6af97ea47b9fbd68b0a1d672bf58e136179c09420fce3a5",
+      "committed_blob_sha256": "559da5220acf9242c6af97ea47b9fbd68b0a1d672bf58e136179c09420fce3a5",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 14232
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/cuda_resume.py",
+      "local_raw_sha256": "a4ab9146d74bafb6afeaf08b51adadfe42cfac09c915bcbffd45a3a88daabf38",
+      "committed_blob_sha256": "a4ab9146d74bafb6afeaf08b51adadfe42cfac09c915bcbffd45a3a88daabf38",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 8399
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/gpu_telemetry.py",
+      "local_raw_sha256": "8e6fb43861c38e6ad1cc3d08b4e24c61856c823dffd243a543a15c83db4bc75f",
+      "committed_blob_sha256": "8e6fb43861c38e6ad1cc3d08b4e24c61856c823dffd243a543a15c83db4bc75f",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 2483
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/assess_benchmarks.py",
+      "local_raw_sha256": "e7ba2dd7602ca443f8b645e0ff9833b9ba29b18df882cc50b9079f7738284d7a",
+      "committed_blob_sha256": "e7ba2dd7602ca443f8b645e0ff9833b9ba29b18df882cc50b9079f7738284d7a",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 6803
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/prepare_specs.py",
+      "local_raw_sha256": "9cc7b307d209af883f2a599a737018e6985cce7e05252cde3a98900176958a26",
+      "committed_blob_sha256": "9cc7b307d209af883f2a599a737018e6985cce7e05252cde3a98900176958a26",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 6630
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/validate_entry_contracts.py",
+      "local_raw_sha256": "e25616091bc828852e2b0c79f28e69b55f5cf5275979bff5cdc709ce3f43a9f9",
+      "committed_blob_sha256": "e25616091bc828852e2b0c79f28e69b55f5cf5275979bff5cdc709ce3f43a9f9",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 6045
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/boundary_window.py",
+      "local_raw_sha256": "5496e2dbe6459688d89ae8d564d7c5c9f511da4d359d265d1cd189055c74424e",
+      "committed_blob_sha256": "5496e2dbe6459688d89ae8d564d7c5c9f511da4d359d265d1cd189055c74424e",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 5647
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/queue_window_control.py",
+      "local_raw_sha256": "9d3835e66df16a90423fa37eaf3757b1af67882a70564478694b64046e011c6f",
+      "committed_blob_sha256": "9d3835e66df16a90423fa37eaf3757b1af67882a70564478694b64046e011c6f",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 14280
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/NATURAL_BOUNDARY_WINDOW_PLAN.json",
+      "local_raw_sha256": "392a7a63082b653ca3f418891e5b8c8fdd872401e73098368ba71e4104ec99a1",
+      "committed_blob_sha256": "7e76689035693bfecbad45369ec8ddea39ebdbac354f729ae97060a0799a4462",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 2021
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/PENDING_BATCH_CUDA_CONTRACT.json",
+      "local_raw_sha256": "830527f65e52fa6c713b5617f578350be0faf172cde1623bc9e5a5448f85ffed",
+      "committed_blob_sha256": "19f74db5aefd1582681fd0433c447023a6bbbfb124e56b4686bf0e2ef4a36064",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 4931
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/FROZEN_BOUNDED_EXECUTION_ORDER.json",
+      "local_raw_sha256": "5faab4b8f7bbd15d11dfbc62651b86361143693654a7d5a66d78cb69815fd4d1",
+      "committed_blob_sha256": "b5aea78e29c5801c51dc60b05691bbbb0aaef5668e4ed71bda71ca8afd86e001",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 1980
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/RETAINED_GPU_FIXTURE_BINDING.json",
+      "local_raw_sha256": "aa670ad16acc3473b18fae084494ccbe293755b9517f5ec418bdff3687fdb5dc",
+      "committed_blob_sha256": "b8f50c9b4ec6d6ae3d0b3bb39e2d400fb0500f1e6c1b007b75267b4a23898ee9",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 473
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/CPU_BATCH_POLICY_AUDIT.json",
+      "local_raw_sha256": "43915fcae64c51fbc4090b72eef054ce387ef86a441c6d631ea4fd396be5174b",
+      "committed_blob_sha256": "f9ba7e60e31218258acdfcfb2fdbc7c27e2f25f7e16457e4f4e0d3b79926164b",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 10254
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/BOUNDED_ENTRY_CPU_CLOSURE.json",
+      "local_raw_sha256": "f192f433911975c790e7b02be5551e163613803fc413b4df53d7ca2a92de8755",
+      "committed_blob_sha256": "9e52cca89dbed83b893210c40393e90017bebc635d33141f859b559ed1e118a8",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 2297
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/LOCAL_BOUNDED_ENTRY_VALIDATION_20261030.json",
+      "local_raw_sha256": "504e2c119bcb19f3ea3e75f0d131689aa925b39663823a6daf704384f2d16a9b",
+      "committed_blob_sha256": "4524ec3a3862ea0d15897a436452f39771ffcdb2e7809cb793a172493365b9a5",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 2670
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/s4_at_queue_window_20261030_cpu04/MAIN_CONTROL_CLOSURE.json",
+      "local_raw_sha256": "563fa4228f3c42d9393232305a85641805b329fa84b3d2439181ac9f4261ec50",
+      "committed_blob_sha256": "e1cd5a0447b5dd499ec9b71296c919bc433e22abb6b911b016ba065d881522ee",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 777
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/cpu_entry04/summary.json",
+      "local_raw_sha256": "f0466235472c0f885cb4f0fe77e704c711bf9150805dcb790430f776ea74d796",
+      "committed_blob_sha256": "1991a4a57af42fbd9435bbf14f2cc54881ddc6ae81bee0d3e07fd66ad8073cf3",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 31179
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/cpu_benchmark_entry03/summary.json",
+      "local_raw_sha256": "0e3ed8ef0ad9fcac01aa860cf86e05ec072156f25e7af719dd31ad892207b729",
+      "committed_blob_sha256": "75e6e891497173468fbe94475bdfde11349b55c337a9085ba0568cda2b50e6aa",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 30630
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/cpu_benchmark_entry04/summary.json",
+      "local_raw_sha256": "7d8cad76ab42631380f2a4ebdc5ce6e535b86e033b9e2ef39c0c69af66818230",
+      "committed_blob_sha256": "bc94f0428d31e3c23feb0bd840417c8a99a8f63804713381c2089af56df63316",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 30848
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/cpu_entry_contracts02/summary.json",
+      "local_raw_sha256": "1715a953ece5ad9ffda8d74678d5ebc17107aca3263457416c102a8870304d58",
+      "committed_blob_sha256": "d13957999742de78a5cf541d3296b2b8726fd8d030c0e3be4df9917025ca77a5",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 3015
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/PROPOSED_TEST_PROTOCOL_B36.json",
+      "local_raw_sha256": "ac457d05f72da86e45c762dc4844940578c844c116964f6cfd3227b366ce3957",
+      "committed_blob_sha256": "aeda75f667df138ffdafd714519bcd57b1ca4056585db8cd29547db077b21a04",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 3348
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/PROPOSED_TEST_PROTOCOL_B48.json",
+      "local_raw_sha256": "1ef0ca26ba1239a5b84b64996ca5a0eff9912b98b1c070e46e94c41f41a02540",
+      "committed_blob_sha256": "fc5f2ed00d6a69dcccba61fecf3b9f501d75c102115065ec98991a8f7b14c15b",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 3361
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/PROPOSED_TEST_PROTOCOL_B64.json",
+      "local_raw_sha256": "fe1c901d2348354e9ffaa69c2ff0161235c7bf1b55efc3012f0c90a12193b268",
+      "committed_blob_sha256": "43857bf2b7384b7c9c3e040229437fa9c6b54f29bb03aacb13d9061e6f930623",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 3361
+    },
+    {
+      "path": "execution/cuda_batch_optimization_20261030/PROPOSED_TEST_PROTOCOL_B72.json",
+      "local_raw_sha256": "b29d5e9c52422d02f394fac16c7f1828110ce3d8eb614a9926159b03becba8af",
+      "committed_blob_sha256": "208278fa5531c96a66b3afc04bbda58ea7f300ba63e0119294592fd2ced19f25",
+      "local_bytes_equal_committed": false,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 3346
+    },
+    {
+      "path": "execution/speed_audit_20261029/candidate_scalar_readback.py",
+      "local_raw_sha256": "2cb96cdcd7bc12dacd8d2502522d4b4739e485f8fa4c2e884479a2bf32e0151f",
+      "committed_blob_sha256": "2cb96cdcd7bc12dacd8d2502522d4b4739e485f8fa4c2e884479a2bf32e0151f",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 3233
+    },
+    {
+      "path": "execution/at_cuda_rrctl_20261029.py",
+      "local_raw_sha256": "1ffbca9d469dc5c8548e790a561d9dd9e1ef9af4fe65163468fbae3f88ea765b",
+      "committed_blob_sha256": "1ffbca9d469dc5c8548e790a561d9dd9e1ef9af4fe65163468fbae3f88ea765b",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": true,
+      "bytes": 8208
+    },
+    {
+      "path": "docs/S4_AT_ROBUSTNESS_20261027/USER_CUDA_BATCH_OPTIMIZATION_AUTHORIZATION_20261030.md",
+      "local_raw_sha256": "96fd4eae66bf9105e92f32fa609470942c0a8be78b56576f67b06cd50c44af77",
+      "committed_blob_sha256": "96fd4eae66bf9105e92f32fa609470942c0a8be78b56576f67b06cd50c44af77",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": false,
+      "bytes": 20360
+    },
+    {
+      "path": "docs/S4_AT_ROBUSTNESS_20261027/USER_AT_SCIENTIFIC_SPEEDUP_AUTHORIZATION_20261029.md",
+      "local_raw_sha256": "91199b1ea8b5d39dd66ca1f52b68a122233349889a548ee82efde35f62bb5197",
+      "committed_blob_sha256": "91199b1ea8b5d39dd66ca1f52b68a122233349889a548ee82efde35f62bb5197",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": false,
+      "bytes": 17296
+    },
+    {
+      "path": "docs/S4_AT_ROBUSTNESS_20261027/S4_AT_SPEED_OPTIMIZATION_AUDIT.md",
+      "local_raw_sha256": "d7ba8820ad5d63f64928870e1ce88f003345fba8282f0b16a6b1cf258495a1f7",
+      "committed_blob_sha256": "d7ba8820ad5d63f64928870e1ce88f003345fba8282f0b16a6b1cf258495a1f7",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": false,
+      "bytes": 14707
+    },
+    {
+      "path": "docs/S4_AT_ROBUSTNESS_20261027/S4_AT_SCIENTIFIC_SPEEDUP_AND_RESTART_REPORT.md",
+      "local_raw_sha256": "849aab480fe159488f64bf1f258441178f097efb2cbf447c0144ec805ea0f406",
+      "committed_blob_sha256": "849aab480fe159488f64bf1f258441178f097efb2cbf447c0144ec805ea0f406",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": false,
+      "bytes": 7945
+    },
+    {
+      "path": "docs/S4_AT_ROBUSTNESS_20261027/S4_AT_CUDA_BATCH_OPTIMIZATION_AND_RESTART_REPORT.md",
+      "local_raw_sha256": "582dc94b41e35796705a96a4e31d4839dde08e94f357555896c8590d08d6fc8d",
+      "committed_blob_sha256": "582dc94b41e35796705a96a4e31d4839dde08e94f357555896c8590d08d6fc8d",
+      "local_bytes_equal_committed": true,
+      "only_CRLF_to_LF_if_different": false,
+      "bytes": 16707
+    }
+  ],
+  "active_original_runtime_unchanged": "51ce790b7de30ea032c7c4bf7c85a8f530f3fcfb",
+  "original_training_modified": false,
+  "formal_or_GPU_runs_launched": 0
+}

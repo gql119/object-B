@@ -1,0 +1,2083 @@
+{
+  "state": "PREPARED_UNLAUNCHED",
+  "source_commit": "dbdc05f938d1e553fbd62af32b2fa36f908c68d0",
+  "source_publication_verified": true,
+  "count": 143,
+  "RunSpecs": [
+    {
+      "run_id": "s4_at_speed_eq_c02_clean4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_eq_c02_clean4_20261030_gpu01.json",
+      "sha256": "e22b202073d13847a02198439a87e2039e3ce4dea853083f6131f26e417b3eae",
+      "case": {
+        "kind": "eq",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "budget": 32
+      }
+    },
+    {
+      "run_id": "s4_at_speed_eq_c02_clean8_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_eq_c02_clean8_20261030_gpu01.json",
+      "sha256": "afd5e3f972b1ab86de80d2052cfcef50946b90fbec295467c0f5df74d4ec51e4",
+      "case": {
+        "kind": "eq",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 8,
+        "budget": 32
+      }
+    },
+    {
+      "run_id": "s4_at_speed_eq_c02_poison4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_eq_c02_poison4_20261030_gpu01.json",
+      "sha256": "e203f11b0860bfc369dd8e093117650a1c871f66d251193824e0be6e58c5d6f6",
+      "case": {
+        "kind": "eq",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 4,
+        "budget": 32
+      }
+    },
+    {
+      "run_id": "s4_at_speed_eq_c02_poison8_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_eq_c02_poison8_20261030_gpu01.json",
+      "sha256": "74dfe5901f4d51bc18b04bcc523be6f3318f512dceee522e202c6a62fef7983b",
+      "case": {
+        "kind": "eq",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 8,
+        "budget": 32
+      }
+    },
+    {
+      "run_id": "s4_at_speed_eq_c03_clean4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_eq_c03_clean4_20261030_gpu01.json",
+      "sha256": "c0688241e357aed8c7d8875b6f66701f0cc5f53b6954ca09485de6718ed9885f",
+      "case": {
+        "kind": "eq",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "budget": 32
+      }
+    },
+    {
+      "run_id": "s4_at_speed_eq_c03_clean8_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_eq_c03_clean8_20261030_gpu01.json",
+      "sha256": "171859df43b30767a7e26654e6815df283721b036e8f7b1bad8d3bc0aefb4fbc",
+      "case": {
+        "kind": "eq",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 8,
+        "budget": 32
+      }
+    },
+    {
+      "run_id": "s4_at_speed_eq_c03_poison4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_eq_c03_poison4_20261030_gpu01.json",
+      "sha256": "bfd479d291175f1ecb9c412de67a53fdb8923dd949087ee04f6681f9c080d7e6",
+      "case": {
+        "kind": "eq",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 4,
+        "budget": 32
+      }
+    },
+    {
+      "run_id": "s4_at_speed_eq_c03_poison8_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_eq_c03_poison8_20261030_gpu01.json",
+      "sha256": "5db0df35ae7a5139291756d82cf4159413e3284cd5bd15657b768ba985593481",
+      "case": {
+        "kind": "eq",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 8,
+        "budget": 32
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_clean4_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_clean4_b36_r1_20261030_gpu01.json",
+      "sha256": "f6ca43b338dcb0314f78dcae6d9543e53237144d5463ecfb738a2f9d3be7fbfc",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_clean8_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_clean8_b36_r1_20261030_gpu01.json",
+      "sha256": "6059a6e7c3e8bfceae437ea12023c3440cd65e6e5a97e7d34e45b2217c1b14f7",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 36,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_poison4_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_poison4_b36_r1_20261030_gpu01.json",
+      "sha256": "bc3bdab855b2a96f0433cba5c1b3aced76e8f18a2ee33bd82448d83715019eac",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_poison8_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_poison8_b36_r1_20261030_gpu01.json",
+      "sha256": "4030af34348d62fac8e9faac3f32459266f6f42b122a91fa746253e465b842a3",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 36,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b36_r1_20261030_gpu01.json",
+      "sha256": "b35b9efcce9f8aa15f69aea298df97e3a814a40d84972b9667bb97b43f79b159",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b36_r2_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b36_r2_20261030_gpu01.json",
+      "sha256": "1351f02341635b9c9c16a978da8a569f58b385bfd7469ca6c560fb8a8a183e9e",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 2,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b36_r3_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b36_r3_20261030_gpu01.json",
+      "sha256": "6d5fdfcf7855b202ee91169a0b906f0a89c2c2d33b79b57964a357c77ea071c3",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 3,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b36_r4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b36_r4_20261030_gpu01.json",
+      "sha256": "61a612e1976b94d8865c9b0b6af91facb4eb195589868272e45563e2c30b264f",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 4,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_clean4_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_clean4_b48_r1_20261030_gpu01.json",
+      "sha256": "6b088bd8a8f6bcb32bde96f4b1b97b4d53316d3250c31194c828bdebac93d5c6",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_clean8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_clean8_b48_r1_20261030_gpu01.json",
+      "sha256": "1ffc60453208d5fea13b17bc61a4487dc7ab41fbbd7234fc37fc6e5e24b8a07f",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_poison4_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_poison4_b48_r1_20261030_gpu01.json",
+      "sha256": "0a9362ec381d548d1bd2179f4d49349e39aeb15115bd0e4587375cd98ce4a894",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_poison8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_poison8_b48_r1_20261030_gpu01.json",
+      "sha256": "1f91034352e9e36633fa19bff170834bd4a38c4a8e1b9bc5ffa35750707ee12f",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b48_r1_20261030_gpu01.json",
+      "sha256": "ca03e30019d8102f5086dc0365265d018982bc9cb19a306daec5357a30724f98",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b48_r2_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b48_r2_20261030_gpu01.json",
+      "sha256": "dddad84892131c60566e0cb4008e82ef370265a1caa9b7715f07b889213269ca",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 2,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b48_r3_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b48_r3_20261030_gpu01.json",
+      "sha256": "d5d6d6fc56debf754ab5980c9c2b1cdfa5ee4a9f3ff6644428e53137e89e6863",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 3,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b48_r4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b48_r4_20261030_gpu01.json",
+      "sha256": "5fc1cdb06de5beae7780d67fdc388aa621548a4408f7e10606dad76dc53c1b65",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 4,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_tail_coriginal_poison8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_tail_coriginal_poison8_b48_r1_20261030_gpu01.json",
+      "sha256": "500bd55e032f669159821fb11b7db8c1d26f381a88271dd020ec8ede49678b18",
+      "case": {
+        "kind": "tail",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "formal-tail",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_coriginal_clean8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_coriginal_clean8_b48_r1_20261030_gpu01.json",
+      "sha256": "a331553af017e8d73d714e406beba00ac7efd853c44d2b9b3382c16ec03929f0",
+      "case": {
+        "kind": "correctness",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_coriginal_poison4_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_coriginal_poison4_b48_r1_20261030_gpu01.json",
+      "sha256": "dceccd1bb9d05476741403168127b09aa9fe2cd597743a0e207006ab179f7e69",
+      "case": {
+        "kind": "correctness",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_coriginal_poison8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_coriginal_poison8_b48_r1_20261030_gpu01.json",
+      "sha256": "aa0339539325985e993cc7ae0e1b542cea38882cfd76e16df67a7a2f44291ad6",
+      "case": {
+        "kind": "correctness",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_clean4_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_clean4_b64_r1_20261030_gpu01.json",
+      "sha256": "74d318c485fd03fb0dafb1e62510cc3b82e632add4033fcf04160e1c93896663",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_clean8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_clean8_b64_r1_20261030_gpu01.json",
+      "sha256": "a600498f3db1ddd54484a1c5af8258e59f7ea22bf26f8b4c3b263eccdb539da8",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_poison4_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_poison4_b64_r1_20261030_gpu01.json",
+      "sha256": "f4858941f17055a32c945dcc77d3f81841e4e0987b2c256ee8952fdb61e320b8",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_poison8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_poison8_b64_r1_20261030_gpu01.json",
+      "sha256": "0743618841eaddcf9e215221e784562d08cf14f962b816128b2639c8c870076a",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b64_r1_20261030_gpu01.json",
+      "sha256": "c1db4d21c7d6608f0cd97bdeda6abf1d0485d804dce4c92e459476ad2a930020",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b64_r2_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b64_r2_20261030_gpu01.json",
+      "sha256": "7cf2040ac1c0a33452c7c9aa056c0c3b95b499c997dd85660714b76a3fe91179",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 2,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b64_r3_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b64_r3_20261030_gpu01.json",
+      "sha256": "e3d8939deef0d1051d2a4714a3cff0ae3444621833d1ecea977b924d2ebc1f1a",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 3,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b64_r4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b64_r4_20261030_gpu01.json",
+      "sha256": "d96891185ec627d9257d111c820b43f2fb315d0183da572620ab50c4bb6dc3c3",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 4,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_tail_coriginal_poison8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_tail_coriginal_poison8_b64_r1_20261030_gpu01.json",
+      "sha256": "ba0391904d496fa73375b149cd566b6cd44a845732e380765b5b11b1f91aa433",
+      "case": {
+        "kind": "tail",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "formal-tail",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_coriginal_clean8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_coriginal_clean8_b64_r1_20261030_gpu01.json",
+      "sha256": "b455af82afb238a0e1886be079a57b6484d0dae74dee48e172bcbac71343f6ae",
+      "case": {
+        "kind": "correctness",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_coriginal_poison4_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_coriginal_poison4_b64_r1_20261030_gpu01.json",
+      "sha256": "10f84f4da878abc26c9e5a3bab84125cecde25ca650a623c87ec3063a711b41b",
+      "case": {
+        "kind": "correctness",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_coriginal_poison8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_coriginal_poison8_b64_r1_20261030_gpu01.json",
+      "sha256": "d4438df0ee73e44f4dbc7e0129f7ad3d1fd2109e62113ea3284733362c674354",
+      "case": {
+        "kind": "correctness",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_clean4_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_clean4_b72_r1_20261030_gpu01.json",
+      "sha256": "29a03dbb70e037630bb6f31b81d97d7945d7fa14432d3621d7a2e3302d2142b8",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_clean8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_clean8_b72_r1_20261030_gpu01.json",
+      "sha256": "bbe3cf40ffd8d654c95925c2d4253195193362b70ce1e4012de8df0054d17ebd",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_poison4_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_poison4_b72_r1_20261030_gpu01.json",
+      "sha256": "60acc0a4cf9ce191d0fcbd6a2a9c32d734934bccf1129953e206c19673ced2cb",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_coriginal_poison8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_coriginal_poison8_b72_r1_20261030_gpu01.json",
+      "sha256": "e98e3db8abb96230171d3d7dff981b56678e915338b1f525bc90a3f54301973e",
+      "case": {
+        "kind": "resume",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b72_r1_20261030_gpu01.json",
+      "sha256": "49f4d9964d699271baf062a7dd72f2f36ebaa47751b129142a1d3ba9dc49cbff",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b72_r2_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b72_r2_20261030_gpu01.json",
+      "sha256": "3ed6714dca1ff91198b8f4e6b40668e914cf97b96063108301347ed17dd8f05a",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 2,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b72_r3_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b72_r3_20261030_gpu01.json",
+      "sha256": "0e95a68897f274bf78be1d08a9f4a5215173070f26923333a25f94aa3c271b65",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 3,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_coriginal_clean4_b72_r4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_coriginal_clean4_b72_r4_20261030_gpu01.json",
+      "sha256": "2a13a9fda3b7ec0b6c51f525e93199e2be5d69a28f11f92efc30a8188ae4fd30",
+      "case": {
+        "kind": "bench",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 4,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_tail_coriginal_poison8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_tail_coriginal_poison8_b72_r1_20261030_gpu01.json",
+      "sha256": "3a244fbc8e9571581a458cdc8ed486f0b96d25a24669ee0e7c7386ff50aa048b",
+      "case": {
+        "kind": "tail",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "formal-tail",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_coriginal_clean8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_coriginal_clean8_b72_r1_20261030_gpu01.json",
+      "sha256": "e3e4552ea72fc8bae258938601a3a1601281dc5ce16d37e1d133e11de8cd2b8d",
+      "case": {
+        "kind": "correctness",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_coriginal_poison4_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_coriginal_poison4_b72_r1_20261030_gpu01.json",
+      "sha256": "179d0007a34b99c78cd0e36d916ee0134db0ec3c0b8703515608c919b56c4706",
+      "case": {
+        "kind": "correctness",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_coriginal_poison8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_coriginal_poison8_b72_r1_20261030_gpu01.json",
+      "sha256": "6f449eb9080d566d6e9dda1d096e74abd91d19e6e73c69ef31eee3ac8c2c2226",
+      "case": {
+        "kind": "correctness",
+        "implementation": "original",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_profile_coriginal_clean4_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_profile_coriginal_clean4_b36_r1_20261030_gpu01.json",
+      "sha256": "dbaab88e59728e158c0b331f7eed74fdabe11ba4d42ad9f66d13fc7029c6cea2",
+      "case": {
+        "kind": "profile",
+        "implementation": "original",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_clean4_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_clean4_b36_r1_20261030_gpu01.json",
+      "sha256": "76e2c4905d1c55c2da4adf1ebca5ebdaaa0367c5ed5cec1ea9ded8dff4facd28",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_clean8_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_clean8_b36_r1_20261030_gpu01.json",
+      "sha256": "5314336bc01e3bb7a422ddfb2eb31fe0439a0c20d9ddebef13896b5c1ec1844c",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 36,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_poison4_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_poison4_b36_r1_20261030_gpu01.json",
+      "sha256": "7db96f76bfd8b0dee917e93d9bc0f06b84010681f7fbf9532b48a61a44912323",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_poison8_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_poison8_b36_r1_20261030_gpu01.json",
+      "sha256": "4e736bcd6aed86f5ffad80d13b54e7051d2d1cb28f96cb69dccdb87c0be260b0",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 36,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b36_r1_20261030_gpu01.json",
+      "sha256": "2c27e6c835645a6cae906172b9e6a99d2139e5b3a7b24d9bf24c772d072af0b2",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b36_r2_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b36_r2_20261030_gpu01.json",
+      "sha256": "10b90320f832040d8e5411e4ad142eab903c2e19bc0f23263d4d761437d6b88e",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 2,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b36_r3_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b36_r3_20261030_gpu01.json",
+      "sha256": "f382c9f73e3d0ea95940b0d9b2ff65a15822107e5c3ba698bb244ed75c6fc50b",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 3,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b36_r4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b36_r4_20261030_gpu01.json",
+      "sha256": "7d2526a2af62918474abbfd525a398f14f6a6147f9fd738c106fd468558a905b",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 4,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_clean4_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_clean4_b48_r1_20261030_gpu01.json",
+      "sha256": "0de8eadd9dc9deb976e9ba818963523d98b3531a2048cfe13c68898a31cc6ddf",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_clean8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_clean8_b48_r1_20261030_gpu01.json",
+      "sha256": "e086c3d556b3fef3e2149726726b6bd01d9fbf16294a889d45e16d6606a21560",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_poison4_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_poison4_b48_r1_20261030_gpu01.json",
+      "sha256": "af70b3e082ff60b9e5bb524a95cbf4c39b49f927281ea18efa38eb70a873106c",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_poison8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_poison8_b48_r1_20261030_gpu01.json",
+      "sha256": "5271e15219aac3fdaec34002372c82a9309316f18c9b407de91cc321fd5986e2",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b48_r1_20261030_gpu01.json",
+      "sha256": "2eed05db4e930dc29703342416757c4c2ce1ac9904bd7bbb0a7de5fbb57a5cb7",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b48_r2_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b48_r2_20261030_gpu01.json",
+      "sha256": "02ebfab59af935e0803d753f56789b5f33478751dcbfc83a172ee096966dbee6",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 2,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b48_r3_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b48_r3_20261030_gpu01.json",
+      "sha256": "d67712923832f7f491946de89123c02d5f715da330e176b4748d945eb30188db",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 3,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b48_r4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b48_r4_20261030_gpu01.json",
+      "sha256": "2161f4a217fc470eccce22957b49cbeee78dc2718c903d3265f1cc8b2d96853c",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 4,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_tail_c02_poison8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_tail_c02_poison8_b48_r1_20261030_gpu01.json",
+      "sha256": "3b18a052ff7022d5223060bc2614431cc7a16705d672f06bee4f13213211c923",
+      "case": {
+        "kind": "tail",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "formal-tail",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c02_clean8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c02_clean8_b48_r1_20261030_gpu01.json",
+      "sha256": "c1d4e3e02c506c8bbe1c8cdca833c26379d5417eec529ba021683bc23b5c9cf0",
+      "case": {
+        "kind": "correctness",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c02_poison4_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c02_poison4_b48_r1_20261030_gpu01.json",
+      "sha256": "7db1d7e69521a983164926766f04ba2b1c7adeaefb0aa4d671321474ee710ec2",
+      "case": {
+        "kind": "correctness",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c02_poison8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c02_poison8_b48_r1_20261030_gpu01.json",
+      "sha256": "97741e78547b5ac576915c2a19bc8ab3dd70ded056668d265c4ee03eae7bee36",
+      "case": {
+        "kind": "correctness",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_clean4_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_clean4_b64_r1_20261030_gpu01.json",
+      "sha256": "0e03064010b41e28c99d4a6c5eeda54e9073c53a10673888dab6e96b495419e5",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_clean8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_clean8_b64_r1_20261030_gpu01.json",
+      "sha256": "5f83de7e1eb80ea230598e0d2ac71006ead3efc92e7eca51df9631832a0c1c8a",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_poison4_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_poison4_b64_r1_20261030_gpu01.json",
+      "sha256": "48157d1b176d66ec600b6c35c19627321e214eda36a2d5a4a4e4bc6fa17ea736",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_poison8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_poison8_b64_r1_20261030_gpu01.json",
+      "sha256": "2639db09d9befe45051f8ec8ea316879c1169ba7f3cfef763b002d9276a8841b",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b64_r1_20261030_gpu01.json",
+      "sha256": "47134e3c67071e99710d916df3762cd241125396e6211cab992cfe31cf97adf0",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b64_r2_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b64_r2_20261030_gpu01.json",
+      "sha256": "d9de4a3bdda7749c4b078963cdde308630a044b0b22a18dbda689d76539b872c",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 2,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b64_r3_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b64_r3_20261030_gpu01.json",
+      "sha256": "588b79caa4bc9d2ef19a0c2447057b24d80a838ef517d372459f3415a52938f2",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 3,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b64_r4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b64_r4_20261030_gpu01.json",
+      "sha256": "15d15e0f1c5646c037bea321208a4e5724233e88a27e3c56941e01139b24cd8c",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 4,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_tail_c02_poison8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_tail_c02_poison8_b64_r1_20261030_gpu01.json",
+      "sha256": "74de5bcf67f1bd07ea99ba092827c4997731cb9f1e8f0b8614552cf2d1fa3291",
+      "case": {
+        "kind": "tail",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "formal-tail",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c02_clean8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c02_clean8_b64_r1_20261030_gpu01.json",
+      "sha256": "2fd9f574159af16777ea4eac981bb01d496b4c1c413c026335568b5f7dfe20b8",
+      "case": {
+        "kind": "correctness",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c02_poison4_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c02_poison4_b64_r1_20261030_gpu01.json",
+      "sha256": "0424d6a2da072052891ac7ca2d8a00b88b2dcbd023da52f95db41c72eaf794b2",
+      "case": {
+        "kind": "correctness",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c02_poison8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c02_poison8_b64_r1_20261030_gpu01.json",
+      "sha256": "eb6d03581379d98287f29dec7af9a01308534cdb2813a33deead3ce062c25988",
+      "case": {
+        "kind": "correctness",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_clean4_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_clean4_b72_r1_20261030_gpu01.json",
+      "sha256": "aa1f267eeb149df83615e96c51f94aa6f9287681fc4a47c272363c0371842714",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_clean8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_clean8_b72_r1_20261030_gpu01.json",
+      "sha256": "9814980cde8277a53ed87d38074d9b391cb17eb6dcd4a41c654c74b78112c5c9",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_poison4_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_poison4_b72_r1_20261030_gpu01.json",
+      "sha256": "0d8d96000e5673e6885707021f4de7cc5cb69db583b5b65bcb50497eee80a2da",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c02_poison8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c02_poison8_b72_r1_20261030_gpu01.json",
+      "sha256": "1a47ebc2c1b8e8083499f9810a7684684f3b69f8953853ba19934481eb983954",
+      "case": {
+        "kind": "resume",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b72_r1_20261030_gpu01.json",
+      "sha256": "029f80ec3b6e19ea82f9121c46b355cf72d0daeea429b6e5a8a260885cc6f9ab",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b72_r2_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b72_r2_20261030_gpu01.json",
+      "sha256": "47bbae104f0254cb21fef1248da66eeb9c56878888de8580c3803d468fd6df7c",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 2,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b72_r3_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b72_r3_20261030_gpu01.json",
+      "sha256": "3039b6fef6242f7794cacd45a0f1992effb897a829ea5018feaad12b65dd736a",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 3,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c02_clean4_b72_r4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c02_clean4_b72_r4_20261030_gpu01.json",
+      "sha256": "c36db35357389eb2d4ef7698878a2f3485a099d10b82269df2d5b5e4045b10df",
+      "case": {
+        "kind": "bench",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 4,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_tail_c02_poison8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_tail_c02_poison8_b72_r1_20261030_gpu01.json",
+      "sha256": "9757180ee93e5e0f3c86ca8efc39934c7d629f64f71068138dbbf9dbf5e21b88",
+      "case": {
+        "kind": "tail",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "formal-tail",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c02_clean8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c02_clean8_b72_r1_20261030_gpu01.json",
+      "sha256": "1984a7cffc0bf20cafc183dbc4e69430eecac7a8f0f2b552c43e00f546b9b2bb",
+      "case": {
+        "kind": "correctness",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c02_poison4_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c02_poison4_b72_r1_20261030_gpu01.json",
+      "sha256": "a3c1087e6bfc777ecf6c5da8e5ef05f25aca27d858623f440b9baffee56bd2d5",
+      "case": {
+        "kind": "correctness",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c02_poison8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c02_poison8_b72_r1_20261030_gpu01.json",
+      "sha256": "8357d626e3d3a24c0ae499b75b5a462aaade4b9e0e6fced52c8293ef71c16564",
+      "case": {
+        "kind": "correctness",
+        "implementation": "02",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_profile_c02_clean4_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_profile_c02_clean4_b36_r1_20261030_gpu01.json",
+      "sha256": "913ba7225766c8fe30fc21b8b9b22eb0b785ab61246d63c8be9f26918ec414f9",
+      "case": {
+        "kind": "profile",
+        "implementation": "02",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_clean4_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_clean4_b36_r1_20261030_gpu01.json",
+      "sha256": "530b2d81badc2c2478f9202e7db6233ae8ddc1af070763544bedbb63a54c1db1",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_clean8_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_clean8_b36_r1_20261030_gpu01.json",
+      "sha256": "d3bfc6ccdd9234854dbf0b07ea63a32481a27a7d79732219dedfaa3939861ec0",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 36,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_poison4_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_poison4_b36_r1_20261030_gpu01.json",
+      "sha256": "d5422e09851ebbc1e74f6709e3574a6993f336bd1a41a0b0569a7d9359bd756b",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_poison8_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_poison8_b36_r1_20261030_gpu01.json",
+      "sha256": "ae02cd2c9a4899d6ffe92d296e0e6cff9e34257f1c80c1150e97d3549dbc342d",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 36,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b36_r1_20261030_gpu01.json",
+      "sha256": "ebc1a5bfcf72b9b03599b4bd1ac38e3366b20cc1e0353f8ee5ceaee3afae5d26",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b36_r2_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b36_r2_20261030_gpu01.json",
+      "sha256": "85bc39f72266870efadaae03ba7626ce9f826b623d41980eeb49dc35e91c584e",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 2,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b36_r3_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b36_r3_20261030_gpu01.json",
+      "sha256": "675cd43bf32c679a2890093614c7b5ad56e9daa67c15a9ec0ddfeecd8445fdb1",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 3,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b36_r4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b36_r4_20261030_gpu01.json",
+      "sha256": "66f635a4e8b1125610f5031e1812034ded2963bae5e90e906499e110c04b3c68",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 4,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_clean4_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_clean4_b48_r1_20261030_gpu01.json",
+      "sha256": "3735918f26d222d70a65231bb76da2b38dcd69712d69724424da6fba78c344b2",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_clean8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_clean8_b48_r1_20261030_gpu01.json",
+      "sha256": "653dee4d0d928d19038a4edf85e6a51a36486af83c7b0b03c79938e8dc3a3065",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_poison4_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_poison4_b48_r1_20261030_gpu01.json",
+      "sha256": "ff3d8cbcfcacaa77fdd37a6b2ea80a7964679b5cd58d48003e9282747c7b4d3c",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_poison8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_poison8_b48_r1_20261030_gpu01.json",
+      "sha256": "0b4d8e947121c0cb22a3249d5810b2681a2cfea7705572e565d6b57054744efc",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b48_r1_20261030_gpu01.json",
+      "sha256": "ab6974a275d7ce3827ea534b72c0cc830bc6228febf7051f4c7ab143e31265a7",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b48_r2_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b48_r2_20261030_gpu01.json",
+      "sha256": "bbff2bf236e287b3ace331958bfd6302e093ac34eaa9ca820403e206f4529004",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 2,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b48_r3_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b48_r3_20261030_gpu01.json",
+      "sha256": "02ccfa9497a27ea824ca04fab0abad08cde378758cf246d449bf604160f5c438",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 3,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b48_r4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b48_r4_20261030_gpu01.json",
+      "sha256": "fa98549455c3aadcd6848e77579b45e0f333a4c7c31aec8aef6125bedbbe8d15",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 4,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_tail_c03_poison8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_tail_c03_poison8_b48_r1_20261030_gpu01.json",
+      "sha256": "3d18fc488886db221e8e2c6901556d07b920b8c86e5d8586ad488f9091acd96a",
+      "case": {
+        "kind": "tail",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "formal-tail",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c03_clean8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c03_clean8_b48_r1_20261030_gpu01.json",
+      "sha256": "4a2c2fefa5922c30290330abb20b73791cfe737ac068663c5d844497adf75b5d",
+      "case": {
+        "kind": "correctness",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c03_poison4_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c03_poison4_b48_r1_20261030_gpu01.json",
+      "sha256": "f46d7cec06df0e97b54b1c1299e6dbf291f11fdf09ba07e00c41afca7c783920",
+      "case": {
+        "kind": "correctness",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c03_poison8_b48_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c03_poison8_b48_r1_20261030_gpu01.json",
+      "sha256": "fcf9e212b33621002aa7ded42c7a34b55686503b95216e48521073ce8d1a302a",
+      "case": {
+        "kind": "correctness",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 48,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_clean4_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_clean4_b64_r1_20261030_gpu01.json",
+      "sha256": "ae0031f39c595af747e4abd054ad05eefb5bd9acd190ea1da51567348ed857b3",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_clean8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_clean8_b64_r1_20261030_gpu01.json",
+      "sha256": "b4b5a402d2d3d8d68d3fae4b0018c73539c5240da3b3ab2348e6c01586a35a9c",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_poison4_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_poison4_b64_r1_20261030_gpu01.json",
+      "sha256": "540d0e5c9f913dcebf0b2d39497ca428638161f90f40cd82a1485a2273493707",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_poison8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_poison8_b64_r1_20261030_gpu01.json",
+      "sha256": "c7a155486fec19e198adcf28dbb48064505999b79557ac00468c5621aeace2dc",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b64_r1_20261030_gpu01.json",
+      "sha256": "6c9155fda350f21e13470131efcc0d730db26b16bedea3fd7536dca70cc610d2",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b64_r2_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b64_r2_20261030_gpu01.json",
+      "sha256": "adea22c98c549ea78f6717b9e31d72e7da52626964ae85e60a49f962e1faada7",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 2,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b64_r3_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b64_r3_20261030_gpu01.json",
+      "sha256": "f88d38bcfdfafeb2a6a84d1b5aa7f30518038ca2a31a4a5614069583c67fa9f4",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 3,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b64_r4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b64_r4_20261030_gpu01.json",
+      "sha256": "485e96e1d1c7258b2eb54790b7094f433cc7867d7cc27c47216e7ee463d11bda",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 4,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_tail_c03_poison8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_tail_c03_poison8_b64_r1_20261030_gpu01.json",
+      "sha256": "a5bacbe29cc51b577ec576ec31cdc2d677bc6bf6e51c95f89072653327a37755",
+      "case": {
+        "kind": "tail",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "formal-tail",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c03_clean8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c03_clean8_b64_r1_20261030_gpu01.json",
+      "sha256": "0ebaff275c03aede76d803c830de3a00cdeb8476d5479f1502c1a83ea937dbd0",
+      "case": {
+        "kind": "correctness",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c03_poison4_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c03_poison4_b64_r1_20261030_gpu01.json",
+      "sha256": "4f3f9e761ccc5967dc4d30752506eb6eaa864c83f7f7bbb11da788a38d8c5ef2",
+      "case": {
+        "kind": "correctness",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c03_poison8_b64_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c03_poison8_b64_r1_20261030_gpu01.json",
+      "sha256": "57d29a93d4d2ad23d4e3006b66e6bcb4102f245d02eff7ad551e5d3a000c46b6",
+      "case": {
+        "kind": "correctness",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 64,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_clean4_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_clean4_b72_r1_20261030_gpu01.json",
+      "sha256": "2b6c826c92cef2be232d363f5cd26e20083228beedce295f069d1435e2db3ab8",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_clean8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_clean8_b72_r1_20261030_gpu01.json",
+      "sha256": "987f6243b0c5a3fbd7be92d8c2a6f60ebd4a441f8854dac5fc959476cb32f08a",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_poison4_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_poison4_b72_r1_20261030_gpu01.json",
+      "sha256": "b752b968904c7bb002362fb18b8f283924772aedf20fc858354bc95df2080bac",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_resume_c03_poison8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_resume_c03_poison8_b72_r1_20261030_gpu01.json",
+      "sha256": "4671189f90661f06171e01922fd7eae24c1fc61c96bc9656142a2d8dc20ef6aa",
+      "case": {
+        "kind": "resume",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "budget": 64
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b72_r1_20261030_gpu01.json",
+      "sha256": "4995df7d9c7d4037c72694dafdd5dfe7c2cd713366e070055b487a3b74f78a36",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b72_r2_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b72_r2_20261030_gpu01.json",
+      "sha256": "208baba23bd19662b88db239afbf4907786d7d665991af0aa346eb343e4dddba",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 2,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b72_r3_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b72_r3_20261030_gpu01.json",
+      "sha256": "b673a479a21204125a3713d406833b69b55e514e26b3f9cbbc83956f81099c3b",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 3,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_bench_c03_clean4_b72_r4_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_bench_c03_clean4_b72_r4_20261030_gpu01.json",
+      "sha256": "765ebe24d902a235bd33a5fef071b300604af83fbace5c089cad8652809ea532",
+      "case": {
+        "kind": "bench",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 4,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_tail_c03_poison8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_tail_c03_poison8_b72_r1_20261030_gpu01.json",
+      "sha256": "e2b4cd01685408a096e9e383a56e4aa8990f7f931c51063c5b980ee07ddbb051",
+      "case": {
+        "kind": "tail",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "formal-tail",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c03_clean8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c03_clean8_b72_r1_20261030_gpu01.json",
+      "sha256": "76e0fd31617e1c3302f2ba8753c61a1b71faaa1dde57a6ab6c9538a646e5d7a2",
+      "case": {
+        "kind": "correctness",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c03_poison4_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c03_poison4_b72_r1_20261030_gpu01.json",
+      "sha256": "1d72e95ad54c33234e5e4685530d43cb39e66ecfc9cfa70fd0065d6bc60fe53c",
+      "case": {
+        "kind": "correctness",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 4,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_correctness_c03_poison8_b72_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_correctness_c03_poison8_b72_r1_20261030_gpu01.json",
+      "sha256": "10a02acd09bf088f1c82e2b74c1d03a5e14370438d14646b0e2c3aeab843ce0b",
+      "case": {
+        "kind": "correctness",
+        "implementation": "03",
+        "arm": "poison",
+        "epsilon": 8,
+        "batch": 72,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    },
+    {
+      "run_id": "s4_at_speed_profile_c03_clean4_b36_r1_20261030_gpu01",
+      "path": "execution\\cuda_batch_optimization_20261030\\prepared_specs\\s4_at_speed_profile_c03_clean4_b36_r1_20261030_gpu01.json",
+      "sha256": "98c6acf3cf960b65fcacc26880869d1008f03a377148dc8be9fa828a810b6abe",
+      "case": {
+        "kind": "profile",
+        "implementation": "03",
+        "arm": "clean",
+        "epsilon": 4,
+        "batch": 36,
+        "repeat": 1,
+        "pool": "common720",
+        "budget": 100
+      }
+    }
+  ],
+  "not_all_cases_should_run": true,
+  "one_hour_window_limit_remains_mandatory": true
+}

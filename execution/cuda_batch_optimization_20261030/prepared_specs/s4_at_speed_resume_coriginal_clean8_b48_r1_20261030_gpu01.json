@@ -1,0 +1,135 @@
+{
+  "schema_version": "rrctl.run.v1",
+  "run_id": "s4_at_speed_resume_coriginal_clean8_b48_r1_20261030_gpu01",
+  "project": "original-s4-bounded-speed-validation",
+  "source": {
+    "repo_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027",
+    "branch": "codex/s4-at-robustness-20261027",
+    "commit": "dbdc05f938d1e553fbd62af32b2fa36f908c68d0",
+    "allowed_post_commit_paths": [
+      "execution/",
+      "docs/S4_AT_ROBUSTNESS_20261027/"
+    ]
+  },
+  "remote": {
+    "profile": "school-s1",
+    "stage_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/stage/s4_at_speed_resume_coriginal_clean8_b48_r1_20261030_gpu01",
+    "repo_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/releases/s4_at_speed_resume_coriginal_clean8_b48_r1_20261030_gpu01",
+    "control_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/control/s4_at_speed_resume_coriginal_clean8_b48_r1_20261030_gpu01",
+    "output_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_speed_resume_coriginal_clean8_b48_r1_20261030_gpu01",
+    "python": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python"
+  },
+  "session": {
+    "backend": "tmux",
+    "name": "s4_at_speed_resume_coriginal_clean8_b48_r1_20261030_gpu01"
+  },
+  "environment": {
+    "kind": "conda",
+    "name": "cfbdm",
+    "conda_sh": "/project/guoqinglong/miniconda3/etc/profile.d/conda.sh"
+  },
+  "workload": {
+    "cwd": ".",
+    "argv": [
+      "systemd-run",
+      "--user",
+      "--scope",
+      "--quiet",
+      "--unit=s4at-speed-cf888e897870ccf7cbaf",
+      "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+      "-B",
+      "execution/cuda_batch_optimization_20261030/cuda_resume.py",
+      "--out",
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_speed_resume_coriginal_clean8_b48_r1_20261030_gpu01/result",
+      "--source-commit",
+      "dbdc05f938d1e553fbd62af32b2fa36f908c68d0",
+      "--implementation",
+      "original",
+      "--arm",
+      "clean",
+      "--epsilon",
+      "8",
+      "--device",
+      "0",
+      "--fixture-root",
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_cuda_native_20261029_gpu03/result/fixtures/clean",
+      "--fixture-manifest",
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_cuda_native_20261029_gpu03/result/fixtures/selected_train_identity.json",
+      "--fixture-manifest-sha256",
+      "ac31138cd158e5888317ff7cc7023c21565b8090b780f3ff6ef962e934c98ed6",
+      "--batch",
+      "48"
+    ]
+  },
+  "health": {
+    "first_step": {
+      "timeout_seconds": 900,
+      "poll_interval_seconds": 5,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'result/status.json';s=json.loads(p.read_text()) if p.exists() else {};z=s.get('state','');print(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=z!='FAILED',complete=z=='passed' or z.startswith('PASS_'),progress={k:s.get(k) for k in ('state','implementation','arm','epsilon_pixels','actual_outer_batches','error')},artifacts=['result/status.json','result/summary.json','result/candidate_resume_summary.json'])))"
+      ]
+    },
+    "periodic": {
+      "timeout_seconds": 900,
+      "poll_interval_seconds": 30,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'result/status.json';s=json.loads(p.read_text()) if p.exists() else {};z=s.get('state','');print(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=z!='FAILED',complete=z=='passed' or z.startswith('PASS_'),progress={k:s.get(k) for k in ('state','implementation','arm','epsilon_pixels','actual_outer_batches','error')},artifacts=['result/status.json','result/summary.json','result/candidate_resume_summary.json'])))"
+      ]
+    },
+    "completion": {
+      "timeout_seconds": 900,
+      "poll_interval_seconds": 5,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'result/status.json';s=json.loads(p.read_text()) if p.exists() else {};z=s.get('state','');print(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=z!='FAILED',complete=z=='passed' or z.startswith('PASS_'),progress={k:s.get(k) for k in ('state','implementation','arm','epsilon_pixels','actual_outer_batches','error')},artifacts=['result/status.json','result/summary.json','result/candidate_resume_summary.json'])))"
+      ]
+    }
+  },
+  "artifacts": [
+    {
+      "path": "result/status.json",
+      "required": true
+    },
+    {
+      "path": "result/candidate_resume_summary.json",
+      "required": true
+    }
+  ],
+  "local_pull_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\cuda_batch_optimization_20261030\\pull",
+  "metadata": {
+    "execution_purpose": "bounded_scientific_speed_validation_not_formal",
+    "candidate_commit": "dbdc05f938d1e553fbd62af32b2fa36f908c68d0",
+    "case": {
+      "kind": "resume",
+      "implementation": "original",
+      "arm": "clean",
+      "epsilon": 8,
+      "batch": 48,
+      "repeat": 1,
+      "budget": 64
+    },
+    "computation_kind": "training",
+    "max_total_native_outer_batches": 64,
+    "PGD_steps_per_batch": 10,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "cleanup_policy": "retain_all",
+    "requires_natural_boundary_hold_and_accepted_CleanAT4": true,
+    "requires_fresh_exclusive_GPU": true,
+    "no_own_concurrent_GPU": true,
+    "original_formal_run_unchanged": true,
+    "not_a_launch_authorization_now": true
+  },
+  "anchors": []
+}
