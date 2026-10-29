@@ -1,0 +1,16 @@
+{
+  "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_cuda_native_20261029_gpu03/result/fixtures/selected_train_identity.json",
+  "sha256": "ac31138cd158e5888317ff7cc7023c21565b8090b780f3ff6ef962e934c98ed6",
+  "count_per_arm": 720,
+  "selection": "first 720 sorted accepted training IDs",
+  "arms": [
+    "clean",
+    "poison"
+  ],
+  "unique_by_arm": {
+    "clean": 720,
+    "poison": 720
+  },
+  "read_only": true,
+  "models_loaded": false
+}

@@ -1,0 +1,91 @@
+{
+  "schema": "s4.at.pending-batch-cuda-contract.v1",
+  "state": "LOCAL_ENTRIES_CPU_VALIDATED_PUBLICATION_AND_RUNSPECS_PENDING",
+  "authorization_sha256": "96fd4eae66bf9105e92f32fa609470942c0a8be78b56576f67b06cd50c44af77",
+  "phase_order": [
+    "candidate02_vs_original_at36_CUDA_equality",
+    "candidate03_vs_original_at36_CUDA_equality",
+    "warmed_implementation_ABBA_at36",
+    "best_validated_implementation_batch36_48_64_72",
+    "one_scientific_review_main_closure",
+    "updated_total_time_decision"
+  ],
+  "engineering_equality_tolerance": {
+    "atol": 0,
+    "rtol": 0
+  },
+  "posthoc_tolerance_relaxation_allowed": false,
+  "cross_batch_numerical_equivalence_required": false,
+  "all_full_GT_and_PGD10_and_original_guards_required": true,
+  "all_four_training_arms_required": true,
+  "representative_train_inputs": [
+    "Person_and_NT_mixed",
+    "overlapping_boxes",
+    "real_small_objects",
+    "legal_empty_GT_boundary"
+  ],
+  "native_warmup_and_steady_state_must_be_measured_separately": true,
+  "no_manual_accumulation_or_scaler_override_to_fake_steady_state": true,
+  "timing": [
+    "isolated CUDA events for inner/outer decomposition",
+    "uninstrumented complete native batch and DataLoader wall-clock",
+    "actual new-config epoch or new-config throughput plus separately measured validation/checkpoint costs"
+  ],
+  "order": "alternating predeclared ABBA on common hash-bound input pools and controlled state; no comparison to old thermally different logs as if paired",
+  "no_definitive_winner_with_uncontrolled_thermal_or_other_job_competition": true,
+  "max_native_outer_batches_per_bounded_smoke_RunID": 100,
+  "source_publication_verified": false,
+  "bounded_RRCTL_RunSpecs": [],
+  "GPU_executed": false,
+  "Old_New_throughput_gain": null,
+  "batch_performance": null,
+  "proposed_protocol_files": [
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\cuda_batch_optimization_20261030\\PROPOSED_TEST_PROTOCOL_B36.json",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\cuda_batch_optimization_20261030\\PROPOSED_TEST_PROTOCOL_B48.json",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\cuda_batch_optimization_20261030\\PROPOSED_TEST_PROTOCOL_B64.json",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\cuda_batch_optimization_20261030\\PROPOSED_TEST_PROTOCOL_B72.json"
+  ],
+  "natural_window": {
+    "control_primitive_CPU_smoke": "s4_at_queue_window_20261030_cpu04",
+    "scope": "original queue supervisor only",
+    "earliest_hold_completed_epoch": 195,
+    "latest_hold_completed_epoch": 199,
+    "wait_for": "CleanAT4 natural 200epoch completion plus final evaluations and actual GPU child exit",
+    "accepted_receipt_and_source_audit_required_before_GPU": true,
+    "no_own_concurrent_GPU": true,
+    "no_other_GPU_job_competition": true,
+    "existing_RAM_GPU_disk_IO_guards_preserved": true,
+    "max_test_window_seconds": 3600,
+    "release_same_supervisor_after_all_test_GPU_processes_exit": true,
+    "no_current_hold_executed": true,
+    "no_second_monitor": true
+  },
+  "restart_thresholds": {
+    "measured_throughput_gain": 0.15,
+    "net_total_remaining_time_saving": 0.1
+  },
+  "restart_executed": false,
+  "implemented_component": {
+    "entry": "execution\\cuda_batch_optimization_20261030\\cuda_equivalence.py",
+    "entry_sha256": "16fb360fb9abb47b0299d26cfcc3504e7f7096508b44bd5df524d95d3bea4ed8",
+    "CPU_plumbing": "PASS_COMPONENT_ONLY",
+    "evidence": "execution/cuda_batch_optimization_20261030/BOUNDED_ENTRY_CPU_CLOSURE.json",
+    "GPU_executed": false,
+    "resume_and_performance_entries_complete": false
+  },
+  "prepared_entry_files": {
+    "bounded_common.py": "53019725799bc07680598898cf93e8efef799a714c93623f92648e107672d7e0",
+    "cuda_equivalence.py": "16fb360fb9abb47b0299d26cfcc3504e7f7096508b44bd5df524d95d3bea4ed8",
+    "cuda_benchmark.py": "559da5220acf9242c6af97ea47b9fbd68b0a1d672bf58e136179c09420fce3a5",
+    "cuda_resume.py": "a4ab9146d74bafb6afeaf08b51adadfe42cfac09c915bcbffd45a3a88daabf38",
+    "gpu_telemetry.py": "8e6fb43861c38e6ad1cc3d08b4e24c61856c823dffd243a543a15c83db4bc75f",
+    "assess_benchmarks.py": "e7ba2dd7602ca443f8b645e0ff9833b9ba29b18df882cc50b9079f7738284d7a",
+    "prepare_specs.py": "9cc7b307d209af883f2a599a737018e6985cce7e05252cde3a98900176958a26"
+  },
+  "CPU_native_benchmark_plumbing": "PASS_ORIGINAL_AND_CANDIDATE03",
+  "actual_GPU_resume_validation": false,
+  "actual_GPU_performance": null,
+  "virtual_RRCTL_schemas_checked": 143,
+  "actual_RunSpecs_prepared": false,
+  "frozen_order": "execution/cuda_batch_optimization_20261030/FROZEN_BOUNDED_EXECUTION_ORDER.json"
+}

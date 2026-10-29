@@ -1,0 +1,121 @@
+{
+  "state": "PASS_CPU_CONTRACT_AND_SCHEMA_ONLY",
+  "simulation_only": true,
+  "actual_GPU_jobs": 0,
+  "actual_model_forwards": 0,
+  "actual_throughput_measurements": 0,
+  "torch_imported": false,
+  "CUDA_initialized": false,
+  "source_files": {
+    "bounded_common.py": "53019725799bc07680598898cf93e8efef799a714c93623f92648e107672d7e0",
+    "cuda_equivalence.py": "16fb360fb9abb47b0299d26cfcc3504e7f7096508b44bd5df524d95d3bea4ed8",
+    "cuda_benchmark.py": "559da5220acf9242c6af97ea47b9fbd68b0a1d672bf58e136179c09420fce3a5",
+    "cuda_resume.py": "a4ab9146d74bafb6afeaf08b51adadfe42cfac09c915bcbffd45a3a88daabf38",
+    "gpu_telemetry.py": "8e6fb43861c38e6ad1cc3d08b4e24c61856c823dffd243a543a15c83db4bc75f",
+    "assess_benchmarks.py": "e7ba2dd7602ca443f8b645e0ff9833b9ba29b18df882cc50b9079f7738284d7a",
+    "prepare_specs.py": "9cc7b307d209af883f2a599a737018e6985cce7e05252cde3a98900176958a26"
+  },
+  "resume_AST_sites": {
+    "resources": 1,
+    "fixture": 1,
+    "fixture_create": 1,
+    "data": 1,
+    "attack": 2,
+    "identity": 1,
+    "batch": 1,
+    "phase": 1,
+    "steps": 2,
+    "updates": 1,
+    "decay": 1
+  },
+  "real_RRCTL_schema_checked": 143,
+  "unique_RunIDs": 143,
+  "numerical_tolerance_changed": false,
+  "actual_RunSpecs_prepared": false,
+  "actual_GPU_readiness": false,
+  "synthetic_guard_cases": [
+    {
+      "case": "SIMULATED_MATCHED",
+      "accepted_by_guard": true,
+      "actual_GPU_evidence": false
+    },
+    {
+      "case": "CPU_not_CUDA",
+      "rejected": true,
+      "reasons": [
+        "NOT_ACTUAL_CUDA"
+      ]
+    },
+    {
+      "case": "wrong_order",
+      "rejected": true,
+      "reasons": [
+        "ORDER_MUST_BE_ORIGINAL_CANDIDATE_CANDIDATE_ORIGINAL"
+      ]
+    },
+    {
+      "case": "different_TAL_GT",
+      "rejected": true,
+      "reasons": [
+        "UNMATCHED_augmented_GT_sequence"
+      ]
+    },
+    {
+      "case": "different_model_update",
+      "rejected": true,
+      "reasons": [
+        "UNMATCHED_final_model"
+      ]
+    },
+    {
+      "case": "extra_AMP_skips",
+      "rejected": true,
+      "reasons": [
+        "UNMATCHED_actual_AMP_skips"
+      ]
+    },
+    {
+      "case": "profile_instrumented",
+      "rejected": true,
+      "reasons": [
+        "INSTRUMENTED_SAMPLE_CANNOT_PROVE_SPEEDUP"
+      ]
+    },
+    {
+      "case": "GPU_competitor",
+      "rejected": true,
+      "reasons": [
+        "RESOURCE_ERROR_OR_COMPETING_GPU"
+      ]
+    },
+    {
+      "case": "thermal_drift",
+      "rejected": true,
+      "reasons": [
+        "THERMAL_RANGE_EXCEEDS_PRELOCKED_2C"
+      ]
+    },
+    {
+      "case": "clock_drift",
+      "rejected": true,
+      "reasons": [
+        "CLOCK_VARIATION_EXCEEDS_PRELOCKED_5PERCENT"
+      ]
+    },
+    {
+      "case": "CPU_load_drift",
+      "rejected": true,
+      "reasons": [
+        "UNCONTROLLED_HOST_CPU_LOAD"
+      ]
+    },
+    {
+      "case": "missing_telemetry",
+      "rejected": true,
+      "reasons": [
+        "INSUFFICIENT_THERMAL_SAMPLING",
+        "MISSING_HOST_CPU_CONTROL"
+      ]
+    }
+  ]
+}

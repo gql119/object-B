@@ -1,0 +1,336 @@
+{
+  "state": "PASS_PINNED_NATIVE_CPU_CONFIGURATION_AUDIT_ONLY",
+  "native_trainer_sha256": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+  "extracted_native_expressions": {
+    "stable_accumulate": "max(round(self.args.nbs / self.batch_size), 1)",
+    "weight_decay": "self.args.weight_decay * self.batch_size * self.accumulate / self.args.nbs",
+    "warmup_accumulate": "max(1, int(np.interp(ni, xi, [1, self.args.nbs / self.batch_size]).round()))",
+    "optimizer_attempt": "ni - last_opt_step >= self.accumulate"
+  },
+  "old_actual_weight_decay": 0.0005625000000000001,
+  "rows": [
+    {
+      "batch": 36,
+      "nbs": 64,
+      "stable_accumulate": 2,
+      "stable_full_batch_effective_images": 72,
+      "batches_per_epoch": 460,
+      "last_batch_images": 27,
+      "drop_last": false,
+      "images_covered_per_epoch": 16551,
+      "original_nominal_weight_decay": 0.0005,
+      "native_actual_weight_decay": 0.0005625000000000001,
+      "actual_weight_decay_relative_to_old": 0.0,
+      "explicit_nominal_to_preserve_old_actual_weight_decay": 0.0005,
+      "proposed_held_actual_weight_decay": 0.0005625000000000001,
+      "held_actual_decay_bit_equal": true,
+      "native_SGD_parameter_groups": [
+        {
+          "n_params": 64,
+          "weight_decay": 0.0005625000000000001,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 57,
+          "weight_decay": 0.0,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 63,
+          "weight_decay": 0,
+          "lr": 0.01,
+          "momentum": 0.937
+        }
+      ],
+      "held_decay_parameter_groups": [
+        {
+          "n_params": 64,
+          "weight_decay": 0.0005625000000000001,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 57,
+          "weight_decay": 0.0,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 63,
+          "weight_decay": 0,
+          "lr": 0.01,
+          "momentum": 0.937
+        }
+      ],
+      "warmup_native_batches": 1380,
+      "warmup_accumulate_histogram": {
+        "1": 888,
+        "2": 492
+      },
+      "optimizer_attempts_first_4_epochs": [
+        460,
+        444,
+        230,
+        230
+      ],
+      "optimizer_attempts_per_epoch_after_warmup": [
+        230
+      ],
+      "optimizer_attempts_200epochs": 46444,
+      "actual_SGD_updates_200epochs": null,
+      "actual_AMP_skips": null,
+      "safe_optimizer_phase_at_all_completed_epoch_boundaries": true,
+      "scheduler_step_unit": "one step at each epoch start; original cosine 200-epoch schedule",
+      "formal_runtime_support": "batch36 accepted; new batch requires explicit isolated protocol/guard changes and CUDA gates",
+      "GPU_seconds_per_batch": null,
+      "GPU_images_per_second": null,
+      "GPU_peak_MiB": null,
+      "science_label": "ENGINEERING_BASELINE"
+    },
+    {
+      "batch": 48,
+      "nbs": 64,
+      "stable_accumulate": 1,
+      "stable_full_batch_effective_images": 48,
+      "batches_per_epoch": 345,
+      "last_batch_images": 39,
+      "drop_last": false,
+      "images_covered_per_epoch": 16551,
+      "original_nominal_weight_decay": 0.0005,
+      "native_actual_weight_decay": 0.000375,
+      "actual_weight_decay_relative_to_old": -0.33333333333333337,
+      "explicit_nominal_to_preserve_old_actual_weight_decay": 0.0007500000000000001,
+      "proposed_held_actual_weight_decay": 0.0005625000000000001,
+      "held_actual_decay_bit_equal": true,
+      "native_SGD_parameter_groups": [
+        {
+          "n_params": 64,
+          "weight_decay": 0.000375,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 57,
+          "weight_decay": 0.0,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 63,
+          "weight_decay": 0,
+          "lr": 0.01,
+          "momentum": 0.937
+        }
+      ],
+      "held_decay_parameter_groups": [
+        {
+          "n_params": 64,
+          "weight_decay": 0.0005625000000000001,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 57,
+          "weight_decay": 0.0,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 63,
+          "weight_decay": 0,
+          "lr": 0.01,
+          "momentum": 0.937
+        }
+      ],
+      "warmup_native_batches": 1035,
+      "warmup_accumulate_histogram": {
+        "1": 1035
+      },
+      "optimizer_attempts_first_4_epochs": [
+        345,
+        345,
+        345,
+        345
+      ],
+      "optimizer_attempts_per_epoch_after_warmup": [
+        345
+      ],
+      "optimizer_attempts_200epochs": 69000,
+      "actual_SGD_updates_200epochs": null,
+      "actual_AMP_skips": null,
+      "safe_optimizer_phase_at_all_completed_epoch_boundaries": true,
+      "scheduler_step_unit": "one step at each epoch start; original cosine 200-epoch schedule",
+      "formal_runtime_support": "batch36 accepted; new batch requires explicit isolated protocol/guard changes and CUDA gates",
+      "GPU_seconds_per_batch": null,
+      "GPU_images_per_second": null,
+      "GPU_peak_MiB": null,
+      "science_label": "NEW_TRAINING_PROTOCOL_NOT_YET_VALIDATED"
+    },
+    {
+      "batch": 64,
+      "nbs": 64,
+      "stable_accumulate": 1,
+      "stable_full_batch_effective_images": 64,
+      "batches_per_epoch": 259,
+      "last_batch_images": 39,
+      "drop_last": false,
+      "images_covered_per_epoch": 16551,
+      "original_nominal_weight_decay": 0.0005,
+      "native_actual_weight_decay": 0.0005,
+      "actual_weight_decay_relative_to_old": -0.11111111111111116,
+      "explicit_nominal_to_preserve_old_actual_weight_decay": 0.0005625000000000001,
+      "proposed_held_actual_weight_decay": 0.0005625000000000001,
+      "held_actual_decay_bit_equal": true,
+      "native_SGD_parameter_groups": [
+        {
+          "n_params": 64,
+          "weight_decay": 0.0005,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 57,
+          "weight_decay": 0.0,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 63,
+          "weight_decay": 0,
+          "lr": 0.01,
+          "momentum": 0.937
+        }
+      ],
+      "held_decay_parameter_groups": [
+        {
+          "n_params": 64,
+          "weight_decay": 0.0005625000000000001,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 57,
+          "weight_decay": 0.0,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 63,
+          "weight_decay": 0,
+          "lr": 0.01,
+          "momentum": 0.937
+        }
+      ],
+      "warmup_native_batches": 777,
+      "warmup_accumulate_histogram": {
+        "1": 777
+      },
+      "optimizer_attempts_first_4_epochs": [
+        259,
+        259,
+        259,
+        259
+      ],
+      "optimizer_attempts_per_epoch_after_warmup": [
+        259
+      ],
+      "optimizer_attempts_200epochs": 51800,
+      "actual_SGD_updates_200epochs": null,
+      "actual_AMP_skips": null,
+      "safe_optimizer_phase_at_all_completed_epoch_boundaries": true,
+      "scheduler_step_unit": "one step at each epoch start; original cosine 200-epoch schedule",
+      "formal_runtime_support": "batch36 accepted; new batch requires explicit isolated protocol/guard changes and CUDA gates",
+      "GPU_seconds_per_batch": null,
+      "GPU_images_per_second": null,
+      "GPU_peak_MiB": null,
+      "science_label": "NEW_TRAINING_PROTOCOL_NOT_YET_VALIDATED"
+    },
+    {
+      "batch": 72,
+      "nbs": 64,
+      "stable_accumulate": 1,
+      "stable_full_batch_effective_images": 72,
+      "batches_per_epoch": 230,
+      "last_batch_images": 63,
+      "drop_last": false,
+      "images_covered_per_epoch": 16551,
+      "original_nominal_weight_decay": 0.0005,
+      "native_actual_weight_decay": 0.0005625000000000001,
+      "actual_weight_decay_relative_to_old": 0.0,
+      "explicit_nominal_to_preserve_old_actual_weight_decay": 0.0005,
+      "proposed_held_actual_weight_decay": 0.0005625000000000001,
+      "held_actual_decay_bit_equal": true,
+      "native_SGD_parameter_groups": [
+        {
+          "n_params": 64,
+          "weight_decay": 0.0005625000000000001,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 57,
+          "weight_decay": 0.0,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 63,
+          "weight_decay": 0,
+          "lr": 0.01,
+          "momentum": 0.937
+        }
+      ],
+      "held_decay_parameter_groups": [
+        {
+          "n_params": 64,
+          "weight_decay": 0.0005625000000000001,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 57,
+          "weight_decay": 0.0,
+          "lr": 0.01,
+          "momentum": 0.937
+        },
+        {
+          "n_params": 63,
+          "weight_decay": 0,
+          "lr": 0.01,
+          "momentum": 0.937
+        }
+      ],
+      "warmup_native_batches": 690,
+      "warmup_accumulate_histogram": {
+        "1": 690
+      },
+      "optimizer_attempts_first_4_epochs": [
+        230,
+        230,
+        230,
+        230
+      ],
+      "optimizer_attempts_per_epoch_after_warmup": [
+        230
+      ],
+      "optimizer_attempts_200epochs": 46000,
+      "actual_SGD_updates_200epochs": null,
+      "actual_AMP_skips": null,
+      "safe_optimizer_phase_at_all_completed_epoch_boundaries": true,
+      "scheduler_step_unit": "one step at each epoch start; original cosine 200-epoch schedule",
+      "formal_runtime_support": "batch36 accepted; new batch requires explicit isolated protocol/guard changes and CUDA gates",
+      "GPU_seconds_per_batch": null,
+      "GPU_images_per_second": null,
+      "GPU_peak_MiB": null,
+      "science_label": "NEW_TRAINING_PROTOCOL_NOT_YET_VALIDATED"
+    }
+  ],
+  "CUDA_initialized": false,
+  "actual_model_forwards": 0,
+  "actual_optimizer_updates": 0,
+  "GPU_performance_measured": false,
+  "formal_configuration_changed": false,
+  "BN_and_augmentation_equivalence_across_batches_claimed": false
+}

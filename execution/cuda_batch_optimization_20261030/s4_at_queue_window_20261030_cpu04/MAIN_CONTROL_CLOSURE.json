@@ -1,0 +1,21 @@
+{
+  "state": "PASS_REAL_RRCTL_CPU_QUEUE_BOUNDARY_SMOKE",
+  "RunID": "s4_at_queue_window_20261030_cpu04",
+  "identity_rejections": [
+    "uid",
+    "start_ticks",
+    "argv",
+    "pid"
+  ],
+  "supervisor_hold_did_not_stop_child": true,
+  "child_finished_naturally_before_stage2": true,
+  "same_supervisor_released": true,
+  "GPU_contexts": 0,
+  "scientific_model_forwards": 0,
+  "original_AT_signals_sent": 0,
+  "TERM_or_KILL_used": false,
+  "original_AT_control_ready": false,
+  "control_source_sha256": "aeea7e352c6cc473db36510ee4ba352abfe1f1d04a15e9188a2470e78191ff4f",
+  "rrctl_worker_sha256": "988d9754961300cad97280dc06b260039ebdf95ad80977a124dfb77860af7522",
+  "note": "Original AT remains untouched. Production policy and near-boundary identity checks still required."
+}

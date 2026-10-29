@@ -1,0 +1,44 @@
+{
+  "state": "CONTROL_CORE_VALIDATED_WAITING_FOR_NATURAL_BOUNDARY",
+  "original_formal_signals_sent": 0,
+  "original_AT_held": false,
+  "CPU_smoke": {
+    "state": "PASS_REAL_RRCTL_CPU_QUEUE_BOUNDARY_SMOKE",
+    "RunID": "s4_at_queue_window_20261030_cpu04",
+    "identity_rejections": [
+      "uid",
+      "start_ticks",
+      "argv",
+      "pid"
+    ],
+    "supervisor_hold_did_not_stop_child": true,
+    "child_finished_naturally_before_stage2": true,
+    "same_supervisor_released": true,
+    "GPU_contexts": 0,
+    "scientific_model_forwards": 0,
+    "original_AT_signals_sent": 0,
+    "TERM_or_KILL_used": false,
+    "original_AT_control_ready": false,
+    "control_source_sha256": "aeea7e352c6cc473db36510ee4ba352abfe1f1d04a15e9188a2470e78191ff4f",
+    "rrctl_worker_sha256": "988d9754961300cad97280dc06b260039ebdf95ad80977a124dfb77860af7522",
+    "note": "Original AT remains untouched. Production policy and near-boundary identity checks still required."
+  },
+  "original_readonly_identity_assessment": "boundary_window_journal/",
+  "actual_GPU_window_available_now": false,
+  "only_configured_profile": "school-s1",
+  "GPU_count": 1,
+  "GPU_name": "RTX A6000",
+  "driver_visible_memory_MiB": 46068,
+  "action_now": "continue original training; finish bounded CUDA entry before near-boundary reservation",
+  "polling": {
+    "default_rrule": "FREQ=DAILY;BYHOUR=1,3,5,7,9,11,13,15,17,18,19,21,23;BYMINUTE=20;BYSECOND=0",
+    "use_same_automation_only": true,
+    "near_boundary_threshold_completed_epoch": 185,
+    "temporary_near_boundary_rrule": "FREQ=MINUTELY;INTERVAL=5",
+    "restore_default_after_window": true,
+    "quiet_on_ordinary_progress": true
+  },
+  "reservation_requires": "ready current published bounded benchmark entry plus exact control closure and original health; never hold an unprepared window",
+  "no_forced_training_stop_or_checkpoint_resume_required": true,
+  "caveat": "next arm starts later by the bounded validation-window duration; include that wall-clock cost in net-time decision"
+}

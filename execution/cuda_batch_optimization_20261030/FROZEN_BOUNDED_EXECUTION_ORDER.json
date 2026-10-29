@@ -1,0 +1,25 @@
+{
+  "schema": "s4.at.frozen-bounded-execution-order.v1",
+  "state": "FROZEN_LOCAL_PLAN_PUBLICATION_PENDING",
+  "active_original_unchanged": true,
+  "max_maintenance_window_seconds": 3600,
+  "window_only_after_original_CleanAT4_accepted_and_GPU_child_natural_exit": true,
+  "current_GPU_admission": false,
+  "controller_hold_not_executed": true,
+  "order": [
+    "candidate02 and03 cleanAT4 batch36 exact per-step CUDA equality first",
+    "uninstrumented ABBA at36: original r1,02 r1,02 r2,original r2; then original r3,03 r1,03 r2,original r4",
+    "choose only a numerically valid measured implementation; original remains eligible if no engineering gain",
+    "complete chosen implementation remaining arm CUDA equality at36 and actual resume",
+    "chosen implementation batch36/48/64/72 common-pool measurements in predeclared alternating ABBA order; classify every batch change as a new protocol",
+    "chosen final batch remaining three arm native correctness, actual formal-tail cases, and four arm actual production resume",
+    "one separate CUDA-event decomposition, excluded from primary gain estimate",
+    "exactly one candidate scientific review after actual complete GPU evidence, then main closure",
+    "updated actual 600-vs800 epoch net-time audit including uncertainty and every validation/startup/window cost; no retirement without separately proved safe lifecycle"
+  ],
+  "execution_rule": "143 schemas represent mutually conditional choices, never run-all. Before each new finite job use remaining window minus conservative runtime and release margin; stop dispatching on any failure/resource issue or insufficient time.",
+  "review_and_restart_if_incomplete": false,
+  "no_automatic_retirement_or_restart_from_benchmark_assessor": true,
+  "old_queue_release_after_all_benchmark_GPU_contexts_exit": true,
+  "fallback": "Release same held supervisor and continue original protocol when any required evidence is missing. No new GPU at current early epoch."
+}
