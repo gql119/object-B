@@ -121,6 +121,7 @@ def run(args):
                           amp=args.device != 'cpu')
     random.seed(0); np.random.seed(0); torch.manual_seed(0)
     if args.device != 'cpu':
+        torch.cuda.set_device(0)
         torch.cuda.manual_seed_all(0)
         torch.cuda.reset_peak_memory_stats(0)
     torch.set_num_threads(1)
