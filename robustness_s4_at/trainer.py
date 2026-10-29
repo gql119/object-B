@@ -8,6 +8,7 @@ from ue_framework.s4_amp_observer import attach_amp_observer
 from .pgd import PGDAttack
 from .checkpoint import capture, restore, save_once
 from .common import atomic, sha, write_once, now
+from .native_loop import phase_preserving_loop
 
 
 def native_amp_check(model):
@@ -30,12 +31,15 @@ def native_amp_check(model):
 
 
 class ATTrainer(S4VictimTrainer):
+    _do_train = phase_preserving_loop()
+
     def __init__(self, *, at_config, identity, audit_root, validation_only=False,
                  resume_fullstate=None, **kwargs):
         self.at_identity, self.at_root = identity, Path(audit_root)
         self.validation_only = validation_only
         self.resume_fullstate = Path(resume_fullstate) if resume_fullstate else None
         self.at_batches = self.prior_updates = self.prior_skips = 0
+        self.at_last_opt_step = -1
         super().__init__(**kwargs)
         self.attack = PGDAttack(at_config, self.device, seed=0)
         self.at_holder = attach_amp_observer(self, self.at_root / 'amp', enforce=True,
@@ -100,7 +104,12 @@ class ATTrainer(S4VictimTrainer):
         payload.update(best_fitness=self.best_fitness, at_batches=self.at_batches,
                        actual_updates=self.prior_updates + observer.updates,
                        legal_amp_skips=self.prior_skips + observer.skips,
-                       native_epoch_checkpoint_sha256=sha(self.last))
+                       native_epoch_checkpoint_sha256=sha(self.last),
+                       native_loop_phase=dict(last_opt_step=self.at_last_opt_step,
+                           accumulate=int(self.accumulate), batches_per_epoch=len(self.train_loader)))
+        # A cleared buffer alone is insufficient: retain only a phase whose
+        # latest attempt was the last completed batch as a safe resume boundary.
+        payload['resume_safe_optimizer_boundary'] &= self.at_last_opt_step == epoch * len(self.train_loader) - 1
         save_once(Path(self.save_dir) / 'full_state' / f'epoch_{epoch:03d}.pt', payload)
 
     def resume_training(self, ckpt):
@@ -111,11 +120,17 @@ class ATTrainer(S4VictimTrainer):
         # Keep RNG ByteTensors on CPU; state_dict loaders move model/optimizer
         # tensors to the existing devices without corrupting RNG restoration.
         payload = torch.load(self.resume_fullstate, map_location='cpu', weights_only=False)
+        phase = payload.get('native_loop_phase', {})
+        nb = len(self.train_loader)
+        if phase.get('batches_per_epoch') != nb or phase.get('last_opt_step') != payload['completed_epochs'] * nb - 1:
+            raise ValueError('Missing or incompatible native optimizer-attempt phase')
         epoch = restore(payload, self.model, self.optimizer, self.scheduler, self.scaler,
                         self.attack, self.at_identity, self.ema, self.train_loader)
         if not 0 < epoch < self.epochs:
             raise ValueError('AT checkpoint is complete or invalid for resume')
         self.start_epoch = epoch
+        self.at_last_opt_step = phase['last_opt_step']
+        self.accumulate = phase['accumulate']
         self.at_batches, self.best_fitness = payload['at_batches'], payload['best_fitness']
         self.prior_updates, self.prior_skips = payload['actual_updates'], payload['legal_amp_skips']
         if epoch >= self.epochs - self.args.close_mosaic:
