@@ -1,0 +1,59 @@
+{
+  "schema": "s4_ue_purification.readiness.v1",
+  "project": "SMIC-Det Original S4 VOC20 Person-14 defense audit",
+  "audit_only": true,
+  "formal_launch_authorized": false,
+  "common_contract": {
+    "path": "defenses/common/pair_contract.py",
+    "scope": "metadata-only identity, dimension, label-byte, and decoded-box invariants for pixel-only sanitizers",
+    "semantic_equivalence_proven": false,
+    "integrated_into_existing_robustness_pipeline": false
+  },
+  "methods": {
+    "OP": {
+      "status": "SCIENTIFIC_ADAPTATION_REQUIRED",
+      "implementation_present": false,
+      "detector_adapter_present": false,
+      "verified_checkpoint": false,
+      "frozen_config": false,
+      "cpu_method_test": false,
+      "cuda_probe": false,
+      "formal_clean_poison_runs": false,
+      "blocking_reason": "The source estimates one class-wise linear direction per classifier class; no principled mapping to multi-instance VOC detection GT has been defined."
+    },
+    "AVATAR": {
+      "status": "BLOCKED_DEPENDENCY",
+      "implementation_present": false,
+      "detector_adapter_present": false,
+      "verified_checkpoint": false,
+      "frozen_config": false,
+      "cpu_method_test": false,
+      "cuda_probe": false,
+      "formal_clean_poison_runs": false,
+      "blocking_reason": "Official pretrained checkpoints/configs are dataset- and resolution-specific; no verified VOC-compatible model/checkpoint is staged."
+    },
+    "D-VAE": {
+      "status": "SCIENTIFIC_ADAPTATION_REQUIRED",
+      "implementation_present": false,
+      "detector_adapter_present": false,
+      "verified_checkpoint": false,
+      "frozen_config": false,
+      "cpu_method_test": false,
+      "cuda_probe": false,
+      "formal_clean_poison_runs": false,
+      "blocking_reason": "The method uses class-conditioned disentangling and two purification stages; a multi-instance condition and VOC-resolution training/evaluation protocol remain undefined."
+    },
+    "LE": {
+      "status": "BLOCKED_DEPENDENCY",
+      "implementation_present": false,
+      "detector_adapter_present": false,
+      "verified_checkpoint": false,
+      "frozen_config": false,
+      "cpu_method_test": false,
+      "cuda_probe": false,
+      "formal_clean_poison_runs": false,
+      "blocking_reason": "The pinned repo is CIFAR-oriented and depends on diffusion checkpoints plus unprotected training data; no authorized non-validation VOC-compatible data/checkpoint is available."
+    }
+  },
+  "ready_for_gpu": false
+}

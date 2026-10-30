@@ -1,0 +1,315 @@
+{
+  "schema": "s4_ue_purification.upstream_source_index.v1",
+  "created_date": "2026-10-30",
+  "repositories": {
+    "hala64/mi-ue": "No root LICENSE found at pinned commit; check inherited notices before any code reuse.",
+    "psandovalsegura/learn-from-unlearnable": "No root LICENSE found at pinned commit; do not copy implementation code into this project without license clarification.",
+    "hmdolatabadi/AVATAR": "LICENSE and LICENSE_DIFFPURE are both present; review component-specific license terms before reuse.",
+    "yuyi-sd/D-VAE": "MIT LICENSE present at pinned commit.",
+    "jiangw-0/LE_JCDP": "No root LICENSE found at pinned commit; do not copy implementation code into this project without license clarification."
+  },
+  "files": [
+    {
+      "repository": "hala64/mi-ue",
+      "commit": "4cd387978c08b0c85eed9afc0b849d0b8777691c",
+      "path": "README.md",
+      "github_blob_sha": "c8c5bb65442e69397c426d790cd8fc4a342194dc",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "hala64/mi-ue",
+      "commit": "4cd387978c08b0c85eed9afc0b849d0b8777691c",
+      "path": "evaluation_sl.py",
+      "github_blob_sha": "0699d42d3f61913861bc598252753c5480acd853",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "hala64/mi-ue",
+      "commit": "4cd387978c08b0c85eed9afc0b849d0b8777691c",
+      "path": "dataloaders.py",
+      "github_blob_sha": "4bc2434d2fa20db0798c44286df40e45152ba0e8",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "psandovalsegura/learn-from-unlearnable",
+      "commit": "866d1dab6420bb1ea99796c8a263f3b0562e23e9",
+      "path": "README.md",
+      "github_blob_sha": "f54cf68e4e08afe78b2c8d0e84d28048ac0da4b1",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "psandovalsegura/learn-from-unlearnable",
+      "commit": "866d1dab6420bb1ea99796c8a263f3b0562e23e9",
+      "path": "orthogonal_projection_step_1.py",
+      "github_blob_sha": "69a22bafd10d4a881d4ff6667d86364028a54525",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "psandovalsegura/learn-from-unlearnable",
+      "commit": "866d1dab6420bb1ea99796c8a263f3b0562e23e9",
+      "path": "orthogonal_projection_step_2.py",
+      "github_blob_sha": "645368bd7588ab770527988389077913042d24e8",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "psandovalsegura/learn-from-unlearnable",
+      "commit": "866d1dab6420bb1ea99796c8a263f3b0562e23e9",
+      "path": "utils_projection.py",
+      "github_blob_sha": "0eeaa2605f85e882f842f9105a629c67d7a0ef2a",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "psandovalsegura/learn-from-unlearnable",
+      "commit": "866d1dab6420bb1ea99796c8a263f3b0562e23e9",
+      "path": "datasets.py",
+      "github_blob_sha": "c67e778876032a5b8b08c504276a9f857ae8239b",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "psandovalsegura/learn-from-unlearnable",
+      "commit": "866d1dab6420bb1ea99796c8a263f3b0562e23e9",
+      "path": "constants.py",
+      "github_blob_sha": "18dda32aef472ebfaf6bf28db9a67b67b05ddf58",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "psandovalsegura/learn-from-unlearnable",
+      "commit": "866d1dab6420bb1ea99796c8a263f3b0562e23e9",
+      "path": "utils_models.py",
+      "github_blob_sha": "c05e31dd075afcbdd75197bfd56dac54c3fd27e1",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "psandovalsegura/learn-from-unlearnable",
+      "commit": "866d1dab6420bb1ea99796c8a263f3b0562e23e9",
+      "path": "requirements.txt",
+      "github_blob_sha": "0efaee8eff0d098e3685adc2cc39e11ed9dd76d0",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "hmdolatabadi/AVATAR",
+      "commit": "978df2e1e4fef6ea0456b12a7fc44f052010f182",
+      "path": "README.md",
+      "github_blob_sha": "201bed3bcdb74906f5e02b15c4037c1a01a058c6",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "hmdolatabadi/AVATAR",
+      "commit": "978df2e1e4fef6ea0456b12a7fc44f052010f182",
+      "path": "AVATAR_sanitization.py",
+      "github_blob_sha": "5d7af683ac6f27ebc3cd87507ac81a03450d4171",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "hmdolatabadi/AVATAR",
+      "commit": "978df2e1e4fef6ea0456b12a7fc44f052010f182",
+      "path": "AVATAR_evaluation.py",
+      "github_blob_sha": "b02f5be50bf559765b516edf014f8fa6775d277f",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "hmdolatabadi/AVATAR",
+      "commit": "978df2e1e4fef6ea0456b12a7fc44f052010f182",
+      "path": "runners/diffpure_ddpm.py",
+      "github_blob_sha": "fc597561e83a3612133158bf7af7132757e02f91",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "hmdolatabadi/AVATAR",
+      "commit": "978df2e1e4fef6ea0456b12a7fc44f052010f182",
+      "path": "runners/diffpure_guided.py",
+      "github_blob_sha": "e55a6881a7ae22dec510416244b8a80abd124511",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "hmdolatabadi/AVATAR",
+      "commit": "978df2e1e4fef6ea0456b12a7fc44f052010f182",
+      "path": "runners/diffpure_sde.py",
+      "github_blob_sha": "ca2dd94d1795f3c5e727fe8cb3bf87d8cef50522",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "hmdolatabadi/AVATAR",
+      "commit": "978df2e1e4fef6ea0456b12a7fc44f052010f182",
+      "path": "runners/diffpure_ode.py",
+      "github_blob_sha": "4ddbebd2b6919bf6994a47b064b6e04ef3a8bd75",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "hmdolatabadi/AVATAR",
+      "commit": "978df2e1e4fef6ea0456b12a7fc44f052010f182",
+      "path": "configs/cifar10.yml",
+      "github_blob_sha": "9c9e10824c80293790587ee3a6c8946cebb8f945",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "hmdolatabadi/AVATAR",
+      "commit": "978df2e1e4fef6ea0456b12a7fc44f052010f182",
+      "path": "configs/imagenet.yml",
+      "github_blob_sha": "022579e10d01a753257c9c68b7a29c611401f4ad",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "hmdolatabadi/AVATAR",
+      "commit": "978df2e1e4fef6ea0456b12a7fc44f052010f182",
+      "path": "requirements.txt",
+      "github_blob_sha": "09f2a0a28aab10dfe903da5cbf0c5b356215f36f",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "hmdolatabadi/AVATAR",
+      "commit": "978df2e1e4fef6ea0456b12a7fc44f052010f182",
+      "path": "LICENSE",
+      "github_blob_sha": "f95d649a5f4935dfad62c1bd62fff38be64133f3",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "hmdolatabadi/AVATAR",
+      "commit": "978df2e1e4fef6ea0456b12a7fc44f052010f182",
+      "path": "LICENSE_DIFFPURE",
+      "github_blob_sha": "bda414b641cb7a3da74281fae09e0b8d20dc9dab",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "yuyi-sd/D-VAE",
+      "commit": "50b9ca08135301f47e678eddfcb04fea47a850b9",
+      "path": "README.md",
+      "github_blob_sha": "8526bdc619c9e4c7263068562248e968ee05839a",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "yuyi-sd/D-VAE",
+      "commit": "50b9ca08135301f47e678eddfcb04fea47a850b9",
+      "path": "main_vae_disentangle.py",
+      "github_blob_sha": "5a77a6e07934ceefbc6c4af91b85ab2feba40766",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "yuyi-sd/D-VAE",
+      "commit": "50b9ca08135301f47e678eddfcb04fea47a850b9",
+      "path": "main.py",
+      "github_blob_sha": "af7fd3928b28ca86b25ab36062cb22e342938571",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "yuyi-sd/D-VAE",
+      "commit": "50b9ca08135301f47e678eddfcb04fea47a850b9",
+      "path": "some_scripts.sh",
+      "github_blob_sha": "5064007c1f2edf8c29dac1531dbe07e4fabda3fd",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "yuyi-sd/D-VAE",
+      "commit": "50b9ca08135301f47e678eddfcb04fea47a850b9",
+      "path": "models/ResNet.py",
+      "github_blob_sha": "bb00a4c3c61f65772d1be58cc894466ea1a3aa60",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "yuyi-sd/D-VAE",
+      "commit": "50b9ca08135301f47e678eddfcb04fea47a850b9",
+      "path": "models/__init__.py",
+      "github_blob_sha": "0ad1a8b774e3db805f59c62b80ab0ce820badf61",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "yuyi-sd/D-VAE",
+      "commit": "50b9ca08135301f47e678eddfcb04fea47a850b9",
+      "path": "dataset.py",
+      "github_blob_sha": "80cf1b0ab3fa401195d91beefcee5659d2519315",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "yuyi-sd/D-VAE",
+      "commit": "50b9ca08135301f47e678eddfcb04fea47a850b9",
+      "path": "trainer.py",
+      "github_blob_sha": "1f63737fee1e1c2b5ff06db759c6a553aaf647e3",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "yuyi-sd/D-VAE",
+      "commit": "50b9ca08135301f47e678eddfcb04fea47a850b9",
+      "path": "evaluator.py",
+      "github_blob_sha": "2cb34c9dd33889729f5ede4a1b196a2740a1cf52",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "yuyi-sd/D-VAE",
+      "commit": "50b9ca08135301f47e678eddfcb04fea47a850b9",
+      "path": "configs/cifar10/resnet18DVAE.yaml",
+      "github_blob_sha": "5e49240096e3a652f599e5d9cba3e7fc43d3ec4b",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "yuyi-sd/D-VAE",
+      "commit": "50b9ca08135301f47e678eddfcb04fea47a850b9",
+      "path": "configs/imagenet-mini/resnet18DVAE.yaml",
+      "github_blob_sha": "b28f66a3e027c88373be7b1a3c9b120d8736a6f3",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "yuyi-sd/D-VAE",
+      "commit": "50b9ca08135301f47e678eddfcb04fea47a850b9",
+      "path": "LICENSE",
+      "github_blob_sha": "ad225f58f17d05ca038001be5be24ab3aecb56cc",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "jiangw-0/LE_JCDP",
+      "commit": "52febef27e6657d3991da7263c38f3277a81e018",
+      "path": "README.md",
+      "github_blob_sha": "507604880b4852136d3c391f4edd1647dafbd294",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "jiangw-0/LE_JCDP",
+      "commit": "52febef27e6657d3991da7263c38f3277a81e018",
+      "path": "main_Un.py",
+      "github_blob_sha": "c20a542950162b3070d3ca5b5eb80098fd70fb94",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "jiangw-0/LE_JCDP",
+      "commit": "52febef27e6657d3991da7263c38f3277a81e018",
+      "path": "runners/empirical_unlearnable_c.py",
+      "github_blob_sha": "63e30898cc7ccd4566b6f8032625e16ece93cd0d",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "jiangw-0/LE_JCDP",
+      "commit": "52febef27e6657d3991da7263c38f3277a81e018",
+      "path": "runners/empirical_unlearnable.py",
+      "github_blob_sha": "841632107aa06da1d02765a5cb4bf4c17b55dcfc",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "jiangw-0/LE_JCDP",
+      "commit": "52febef27e6657d3991da7263c38f3277a81e018",
+      "path": "purification/diff_purify.py",
+      "github_blob_sha": "85e7aff19d9f4ae6726453ab8538977272ac9680",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "jiangw-0/LE_JCDP",
+      "commit": "52febef27e6657d3991da7263c38f3277a81e018",
+      "path": "purification/diff_purify_gendata.py",
+      "github_blob_sha": "d16f01538a3197e49d2d6c6ec1ebd2f986bebe27",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "jiangw-0/LE_JCDP",
+      "commit": "52febef27e6657d3991da7263c38f3277a81e018",
+      "path": "configs/cifar10_Un.yml",
+      "github_blob_sha": "22a340ca4259de92e1473740b5ebd110b8a74236",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    },
+    {
+      "repository": "jiangw-0/LE_JCDP",
+      "commit": "52febef27e6657d3991da7263c38f3277a81e018",
+      "path": "pytorch_diffusion/diffusion.py",
+      "github_blob_sha": "54e919986a0972a8897c77380179013467672958",
+      "local_analysis_copy_encoding": "UTF-8 text; CRLF normalized to LF when applicable; upstream blob SHA is authoritative"
+    }
+  ],
+  "note": "Read-only source copies were used only for analysis. No upstream implementation, weights, checkpoints, datasets, or model files were copied into the adaptation branch."
+}
