@@ -1,0 +1,12 @@
+{
+  "state": "PASS_REAL_QUEUE_CONTROL_ONLY",
+  "source_commit": "84178ce01db3a3ec5dce64d5a97363df8c144aa2",
+  "queue_entry_sha256": "c0d9de52d0f19167a5e384aa43be82c6e2219103a46002dcbfc18c3cfc6b681a",
+  "duplicate_controller_rejected": true,
+  "three_stages_serial": true,
+  "old_global_lock_SHA_unchanged": true,
+  "models": 0,
+  "GPU_work": false,
+  "terminal": "CPU_CONTROL_PASSED",
+  "deleted_paths": []
+}

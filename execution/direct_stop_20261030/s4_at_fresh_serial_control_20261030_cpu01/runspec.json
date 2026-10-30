@@ -1,0 +1,108 @@
+{
+  "schema_version": "rrctl.run.v1",
+  "run_id": "s4_at_fresh_serial_control_20261030_cpu01",
+  "project": "s4-at-fresh-serial-control-CPU-smoke",
+  "source": {
+    "repo_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027",
+    "branch": "codex/s4-at-robustness-20261027",
+    "commit": "84178ce01db3a3ec5dce64d5a97363df8c144aa2",
+    "allowed_post_commit_paths": [
+      "execution/",
+      "docs/S4_AT_ROBUSTNESS_20261027/"
+    ]
+  },
+  "remote": {
+    "profile": "school-s1",
+    "stage_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/stage/s4_at_fresh_serial_control_20261030_cpu01",
+    "repo_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/releases/s4_at_fresh_serial_control_20261030_cpu01",
+    "control_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/control/s4_at_fresh_serial_control_20261030_cpu01",
+    "output_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_fresh_serial_control_20261030_cpu01",
+    "python": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python"
+  },
+  "session": {
+    "backend": "tmux",
+    "name": "s4_at_fresh_serial_control_20261030_cpu01"
+  },
+  "environment": {
+    "kind": "conda",
+    "name": "cfbdm",
+    "conda_sh": "/project/guoqinglong/miniconda3/etc/profile.d/conda.sh"
+  },
+  "workload": {
+    "cwd": ".",
+    "argv": [
+      "systemd-run",
+      "--user",
+      "--scope",
+      "--quiet",
+      "--unit=s4at-fresh-cpu01",
+      "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+      "-B",
+      "-c",
+      "import runpy,sys,time;time.sleep(3);sys.argv=['execution/direct_stop_20261030/fresh_serial_queue.py']+sys.argv[1:];runpy.run_path(sys.argv[0],run_name='__main__')",
+      "--out",
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_fresh_serial_control_20261030_cpu01/result",
+      "--run-id",
+      "s4_at_fresh_serial_control_20261030_cpu01",
+      "--source-commit",
+      "84178ce01db3a3ec5dce64d5a97363df8c144aa2",
+      "--cpu-control-smoke"
+    ]
+  },
+  "health": {
+    "first_step": {
+      "timeout_seconds": 120,
+      "poll_interval_seconds": 5,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'result/pipeline_state.json';s=json.loads(p.read_text()) if p.exists() else {};print(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=s.get('state')!='FAILED',complete=s.get('state')=='CPU_CONTROL_PASSED',progress=s,artifacts=['result/pipeline_state.json','result/CPU_SERIAL_CONTROL_PROOF.json'])))"
+      ]
+    },
+    "periodic": {
+      "timeout_seconds": 120,
+      "poll_interval_seconds": 30,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'result/pipeline_state.json';s=json.loads(p.read_text()) if p.exists() else {};print(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=s.get('state')!='FAILED',complete=s.get('state')=='CPU_CONTROL_PASSED',progress=s,artifacts=['result/pipeline_state.json','result/CPU_SERIAL_CONTROL_PROOF.json'])))"
+      ]
+    },
+    "completion": {
+      "timeout_seconds": 120,
+      "poll_interval_seconds": 5,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'result/pipeline_state.json';s=json.loads(p.read_text()) if p.exists() else {};print(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=s.get('state')!='FAILED',complete=s.get('state')=='CPU_CONTROL_PASSED',progress=s,artifacts=['result/pipeline_state.json','result/CPU_SERIAL_CONTROL_PROOF.json'])))"
+      ]
+    }
+  },
+  "artifacts": [
+    {
+      "path": "result/pipeline_state.json",
+      "required": true
+    },
+    {
+      "path": "result/CPU_SERIAL_CONTROL_PROOF.json",
+      "required": true
+    }
+  ],
+  "local_pull_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\d30p",
+  "metadata": {
+    "execution_purpose": "finite_fresh_queue_lifecycle_CPU_only",
+    "GPU_work": false,
+    "scientific_model_forwards": 0,
+    "formal_experiment": false,
+    "cleanup_policy": "retain_all",
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true
+  },
+  "anchors": []
+}
