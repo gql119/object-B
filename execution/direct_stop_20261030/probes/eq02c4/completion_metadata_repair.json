@@ -1,0 +1,20 @@
+{
+  "state": "TRANSPORT_COMPLETION_METADATA_REPAIRED",
+  "result": {
+    "detail": {
+      "artifact_count": 2,
+      "exit_code": 0
+    },
+    "reason": "external_completion_and_artifact_contract_passed",
+    "run_id": "s4_at_eq02_clean4_20261030_direct01",
+    "schema_version": "rrctl.status.v1",
+    "sequence": 7,
+    "state": "completed",
+    "updated_at": "2026-10-30T05:33:43.341002+00:00"
+  },
+  "science_rerun": false,
+  "original_spec_binding_source_unchanged": true,
+  "required_scientific_status_and_summary_preserved": true,
+  "removed_inapplicable_adapter_union_path": "result/candidate_resume_summary.json",
+  "summary_sha256": "c84451ad2cd20fc91df7da444271b035ff9e8240a6dcfc4438aa0c28e137d073"
+}

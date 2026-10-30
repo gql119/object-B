@@ -1,0 +1,58 @@
+{
+  "state": "OLD_AT_TERMINATED",
+  "UTC": "2026-10-30T05:23:57.889233+00:00",
+  "run_id": "s4_at_serial_seed0_20261029_v2",
+  "old_completed": false,
+  "old_accepted": false,
+  "old_progress_abandoned_by_human": true,
+  "prestate": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\20261030T052322Z_REPAIRED_ABORT_PRESTATE.json",
+  "RRCTL": {
+    "detail": {
+      "cleanup": "reaped",
+      "pgid": 3338788,
+      "pid": 3338796,
+      "remaining_owned_pids": [],
+      "session": "s4_at_serial_seed0_20261029_v2"
+    },
+    "reason": "ownership_verified_abort",
+    "run_id": "s4_at_serial_seed0_20261029_v2",
+    "schema_version": "rrctl.status.v1",
+    "sequence": 6,
+    "state": "aborted",
+    "updated_at": "2026-10-30T05:23:23.872787+00:00"
+  },
+  "verification": {
+    "UTC": "2026-10-30T05:23:57.822768+00:00",
+    "original_live_processes": [],
+    "own_GPU_pids": [],
+    "checkpoint_SHA_unchanged": true,
+    "logs_retained": [
+      {
+        "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/control/s4_at_serial_seed0_20261029_v2/console.log",
+        "exists": true,
+        "bytes": 0
+      },
+      {
+        "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/outputs/s4_at_serial_seed0_20261029_v2/result/S4AT4_Clean_seed0.console.log",
+        "exists": true,
+        "bytes": 7066430
+      }
+    ],
+    "next_arms_not_started": {
+      "S4AT4_Poison_seed0": true,
+      "S4AT8_Clean_seed0": true,
+      "S4AT8_Poison_seed0": true
+    },
+    "old_science_completed": false,
+    "old_science_accepted": false,
+    "deleted_paths": []
+  },
+  "control_source_sha256": "887cbda4aea935c9acba14ae13534144b600b5050b9bcdaa20e6d5453b929f8d",
+  "binding_unmodified": true,
+  "checkpoint_retained": {
+    "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/outputs/s4_at_serial_seed0_20261029_v2/result/S4AT4_Clean_seed0/training/full_state/epoch_086.pt",
+    "sha256": "925dcaf995a6880d987e218b1e28a72c6008a93bbcf0cb26e10001167ea8e3ee",
+    "bytes": 36583293
+  },
+  "postcheck_transport_recovery": "First postcheck exceeded Windows argv limit before remote execution; minimal identity/checkpoint/log payload used. Abort was not repeated."
+}

@@ -45,7 +45,9 @@ def main():
     req['action']='abort';result=invoke(t,PYTHON,req);save(stamp+'_REPAIRED_ABORT_RESULT.json',result)
     assert not result['returncode'],result
     terminal=ctl.inspect(OLD_TAG);assert terminal['status']['state']=='aborted'
-    check=t.run([PYTHON,'-B','-c',VERIFY,json.dumps(record)])
+    compact=dict(binding=b,before=dict(process_group=[dict(pid=v['pid'],start_ticks=v['start_ticks']) for v in before['process_group']],
+        checkpoint=before['checkpoint'],logs=before['logs']))
+    check=t.run([PYTHON,'-B','-c',VERIFY,json.dumps(compact)])
     save(stamp+'_POST_ABORT_VERIFICATION_RAW.json',dict(returncode=check.returncode,
         stdout=check.stdout.decode() if isinstance(check.stdout,bytes) else check.stdout,
         stderr=check.stderr.decode() if isinstance(check.stderr,bytes) else check.stderr))
