@@ -222,7 +222,7 @@
     "ue_framework/paths.py": "39de91d8b7172cb88d1d0421f0b62e1f31d4fdbb911f64510a00e534d4184542",
     "ue_framework/runtime.py": "bfe42dbdb8b37a1fafc5eb01e29a28851fda4e291f286a80ba7e86013418b5e9",
     "ue_framework/s4_amp_observer.py": "8f0fd915eb6ba4d99840916f3e325f147cb6073566effc2492063abba39f2cca",
-    "ue_framework/s4_victim.py": "378dbfdfd0271414339ebbf096f71c16e93fb358831df6ae83ec3d38c6c9f81a",
+    "ue_framework/s4_victim.py": "f0aae9f4db32ae9274f01e8e104c6f30a8ae4bb2c4582432f29d4dbaa08c60b6",
     "ue_framework/stages/__init__.py": "87bb08911f3ecf7b39f3bdf1c0cc3d094100fe5bdafcff5707b1a75ed862647e",
     "ue_framework/stages/aggregate.py": "a63968f0100269be3afb8344810034d46d14927a6bc4e487912556df7f5d8f3a",
     "ue_framework/stages/evaluate.py": "632a30efaee07d9803d3b3da011b0f1105d906ad4c0cafaa5e8ec9c744d2641b",
@@ -257,7 +257,10 @@
   "resources": {
     "RAM_available_GiB": 32,
     "GPU_free_MiB": 24000,
-    "disk_free_GiB": 150,
+    "disk_policy": "per_filesystem_dynamic_v1",
+    "disk_output_budget_GiB": 3,
+    "disk_safety_reserve_GiB": 5,
+    "disk_dataset_reserve_GiB": 2,
     "all_three_IOwait_percent_at_least": 20,
     "own_concurrent_GPU_allowed": false
   },

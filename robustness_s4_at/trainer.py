@@ -1,12 +1,14 @@
 """Native detection training with PGD only at the normalized input sink."""
 import json
+import os
+import time
 from pathlib import Path
 import torch
 from ultralytics.engine import trainer as native
 from ue_framework.s4_victim import S4VictimTrainer
 from ue_framework.s4_amp_observer import attach_amp_observer
 from .pgd import PGDAttack
-from .checkpoint import capture, restore, save_once
+from .checkpoint import capture, restore, save_once, save_retained
 from .common import atomic, sha, write_once, now
 from .native_loop import phase_preserving_loop
 
@@ -40,6 +42,7 @@ class ATTrainer(S4VictimTrainer):
         self.resume_fullstate = Path(resume_fullstate) if resume_fullstate else None
         self.at_batches = self.prior_updates = self.prior_skips = 0
         self.at_last_opt_step = -1
+        self._next_cloud_disk_sample = 0.0
         super().__init__(**kwargs)
         self.attack = PGDAttack(at_config, self.device, seed=0)
         self.at_holder = attach_amp_observer(self, self.at_root / 'amp', enforce=True,
@@ -82,6 +85,15 @@ class ATTrainer(S4VictimTrainer):
 
     def _at_progress(self, trainer):
         observer = self.at_holder['observer']
+        if os.environ.get('S4_AT_STORAGE_PROFILE') == 'autodl_30g50g_v1':
+            now_mono = time.monotonic()
+            if now_mono >= self._next_cloud_disk_sample:
+                from .cloud_storage import storage_status
+                disk = storage_status('monitor')
+                atomic(self.at_root / 'storage_headroom.json', dict(UTC=now(), **disk))
+                self._next_cloud_disk_sample = now_mono + 60.0
+                if not disk['admitted']:
+                    raise OSError('Cloud disk safety reserve breached; stopping before disk exhaustion')
         atomic(self.at_root / 'progress.json', dict(run_id=self.at_identity['run_id'],
                epoch=self.epoch + 1, completed_epochs=self.epoch, at_batches=self.at_batches,
                actual_updates=self.prior_updates + observer.updates,
@@ -110,7 +122,10 @@ class ATTrainer(S4VictimTrainer):
         # A cleared buffer alone is insufficient: retain only a phase whose
         # latest attempt was the last completed batch as a safe resume boundary.
         payload['resume_safe_optimizer_boundary'] &= self.at_last_opt_step == epoch * len(self.train_loader) - 1
-        save_once(Path(self.save_dir) / 'full_state' / f'epoch_{epoch:03d}.pt', payload)
+        if __import__('os').environ.get('S4_AT_STORAGE_PROFILE') == 'autodl_30g50g_v1':
+            save_retained(Path(self.save_dir) / 'full_state', payload)
+        else:
+            save_once(Path(self.save_dir) / 'full_state' / f'epoch_{epoch:03d}.pt', payload)
 
     def resume_training(self, ckpt):
         if self.resume_fullstate is None:

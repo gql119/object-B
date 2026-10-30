@@ -9,7 +9,7 @@ import torch
 from .common import ROOT, PROTOCOL, load, protocol, run_config, sha, commit, atomic, write_once, native_identity, scientific_source, now
 from .data import data_view
 from .trainer import ATTrainer
-from .checkpoint import capture, save_once
+from .checkpoint import capture, save_once, retained_checkpoint_epochs
 
 
 class BoundedComplete(Exception):
@@ -94,8 +94,8 @@ def run(args):
             raise ValueError('Resume identity mismatch')
         payload = torch.load(args.resume_fullstate, map_location='cpu', weights_only=False)
         epoch = payload['completed_epochs']
-        later = [v for v in (args.out / 'training/full_state').glob('epoch_*.pt')
-                 if int(v.stem.split('_')[1]) > epoch]
+        later = [value for value in retained_checkpoint_epochs(args.out / 'training/full_state')
+                 if value > epoch]
         results_csv = args.out / 'training/results.csv'
         if (args.out / 'accepted.json').exists() or later or (results_csv.exists() and
                 len(list(csv.DictReader(results_csv.open()))) > epoch):

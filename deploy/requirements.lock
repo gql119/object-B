@@ -1,0 +1,11 @@
+# Direct runtime pins observed in the active school environment (Python 3.11.16).
+# This is not a complete transitive lock and contains no wheel hashes.
+# torch/torchvision CUDA 12.8 wheels are selected from the PyTorch extra index.
+--extra-index-url https://download.pytorch.org/whl/cu128
+torch==2.7.1+cu128
+torchvision==0.22.1+cu128
+ultralytics==8.4.150
+numpy==2.4.6
+Pillow==12.3.0
+opencv-python==5.0.0.93
+PyYAML==6.0.3

@@ -56,7 +56,7 @@ def resume_probe(out, fixture_root, expected_initial):
     import numpy as np
     import torch
     from ue_framework.s4_amp_observer import tree_hash
-    from .checkpoint import restore
+    from .checkpoint import restore, find_retained_checkpoint
     from .common import run_config
     from .data import data_view
     from .trainer import ATTrainer
@@ -96,7 +96,7 @@ def resume_probe(out, fixture_root, expected_initial):
         pass
     finally:
         close_loaders(first)
-    checkpoint=Path(first.save_dir)/'full_state/epoch_001.pt'
+    checkpoint=find_retained_checkpoint(Path(first.save_dir)/'full_state',1)
     payload=torch.load(checkpoint,map_location='cpu',weights_only=False)
     if payload['completed_epochs'] != 1 or not payload['resume_safe_optimizer_boundary']:
         raise ValueError('Native epoch checkpoint is not a safe cleared optimizer boundary')

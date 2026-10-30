@@ -68,7 +68,8 @@ def run(args):
         try:first.train()
         except Complete:pass
         finally:close_loaders(first)
-        checkpoint=Path(first.save_dir)/'full_state/epoch_003.pt'
+        from .checkpoint import find_retained_checkpoint
+        checkpoint=find_retained_checkpoint(Path(first.save_dir)/'full_state',3)
         payload=torch.load(checkpoint,map_location='cpu',weights_only=False)
         if not payload['resume_safe_optimizer_boundary'] or payload['native_loop_phase']!=dict(last_opt_step=56,accumulate=2,batches_per_epoch=19):
             raise ValueError('Probe did not reach the real safe post-warmup accumulation2 boundary')

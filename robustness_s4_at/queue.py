@@ -32,8 +32,15 @@ def resource_status():
             blockers.append('EXISTING_COCO_SCIENTIFIC_CHILD_LIVE')
     mem = int(next(v.split()[1] for v in Path('/proc/meminfo').read_text().splitlines()
                    if v.startswith('MemAvailable:'))) / 2**20
-    owned = Path(p['remote_owned_root'])
-    disk = shutil.disk_usage(owned if owned.exists() else owned.parent).free / 2**30
+    storage = None
+    if p['resources'].get('disk_policy') == 'per_filesystem_dynamic_v1':
+        from .cloud_storage import storage_status
+        storage = storage_status('run')
+        blockers.extend(storage['blockers'])
+        disk = min((row['free_GiB'] for row in storage['filesystems']), default=0.0)
+    else:
+        owned = Path(p['remote_owned_root'])
+        disk = shutil.disk_usage(owned if owned.exists() else owned.parent).free / 2**30
     def ticks():
         return list(map(int, Path('/proc/stat').read_text().splitlines()[0].split()[1:9]))
     io = []
@@ -58,11 +65,12 @@ def resource_status():
     if owned_gpu:
         blockers.append('OWN_GPU_JOB_ALREADY_ACTIVE')
     if mem < 32: blockers.append('RAM_AVAILABLE_BELOW_32GiB')
-    if disk < 150: blockers.append('DISK_FREE_BELOW_150GiB')
+    if p['resources'].get('disk_policy') != 'per_filesystem_dynamic_v1' and disk < 150:
+        blockers.append('DISK_FREE_BELOW_150GiB')
     if free < 24000: blockers.append('GPU_FREE_BELOW_24000MiB')
     if all(v >= 20 for v in io): blockers.append('SUSTAINED_IOWAIT_THREE_WINDOWS')
     return dict(admitted=not blockers, blockers=blockers, RAM_available_GiB=mem,
-                disk_free_GiB=disk, GPU_free_MiB=free, IOwait_percent=io,
+                disk_free_GiB=disk, disk_storage_status=storage, GPU_free_MiB=free, IOwait_percent=io,
                 own_GPU_pids=owned_gpu, other_user_processes_not_modified=True,
                 CPU_load_and_GPU_utilization_are_advisory=True, UTC=now())
 
