@@ -23,7 +23,7 @@ def main():
         s['remote'][k]=owned+'/'+folder+'/'+tag
     s['session']['name']=tag;s['anchors']=[]
     code="import json,subprocess,sys,time;from pathlib import Path;o=Path(sys.argv[1]);o.mkdir(parents=True,exist_ok=False);(o/'result').mkdir();(o/'result/status.json').write_text(json.dumps(dict(state='RUNNING',CPU_only=True)));p=subprocess.Popen([sys.executable,'-B','-c','import time;time.sleep(180)',sys.argv[2]]);time.sleep(180);p.wait()"
-    s['workload']=dict(cwd='.',argv=['systemd-run','--user','--scope','--quiet','--unit=s4at-abort-cpu02',PYTHON,'-B','-c',code,s['remote']['output_root'],tag])
+    s['workload']=dict(cwd='.',argv=['systemd-run','--user','--scope','--quiet','--unit=s4at-abort-cpu03',PYTHON,'-B','-c',code,s['remote']['output_root'],tag])
     adapter="import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'result/status.json';s=json.loads(p.read_text()) if p.exists() else {};print(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=s.get('state')=='RUNNING',complete=False,progress=s,artifacts=['result/status.json'])))"
     for h in s['health'].values():h.update(adapter_argv=[PYTHON,'-B','-c',adapter],timeout_seconds=120)
     s['artifacts']=[dict(path='result/status.json',required=True)]

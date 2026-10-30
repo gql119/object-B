@@ -1,0 +1,20 @@
+{
+  "state": "PASS_REAL_RRCTL_CPU_ABORT_WITH_POSTEXEC_GUARD",
+  "UTC": "2026-10-30T05:22:17.121096+00:00",
+  "RunID": "s4_at_abort_exec_guard_20261030_cpu03",
+  "rejected_before_signals": [
+    "uid",
+    "workload_start_ticks",
+    "spec_sha256",
+    "binding_sha256"
+  ],
+  "control_source_sha256": "887cbda4aea935c9acba14ae13534144b600b5050b9bcdaa20e6d5453b929f8d",
+  "real_owned_CPU_process_group_terminated": true,
+  "terminal": "aborted",
+  "original_AT_healthy": true,
+  "original_AT_signals_sent": 0,
+  "GPU_work": false,
+  "models": 0,
+  "capture_branch": "bootstrap capture modeled explicitly in CPU fixture; actual original live binding independently exhibits this transition",
+  "production_stop_allowed": false
+}

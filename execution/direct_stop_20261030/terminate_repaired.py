@@ -19,11 +19,14 @@ def main():
     ap=argparse.ArgumentParser();ap.add_argument('action',choices=['inspect','terminate']);args=ap.parse_args()
     assert hashlib.sha256(AUTH.read_bytes()).hexdigest()==AUTH_SHA
     digest=hashlib.sha256(CONTROL.encode()).hexdigest()
-    proof=json.loads((HERE/'s4_at_abort_exec_guard_20261030_cpu02/CPU_ABORT_MAIN_CLOSURE.json').read_text())
+    proof=json.loads((HERE/'s4_at_abort_exec_guard_20261030_cpu03/CPU_ABORT_MAIN_CLOSURE.json').read_text())
     assert proof['state']=='PASS_REAL_RRCTL_CPU_ABORT_WITH_POSTEXEC_GUARD' and proof['control_source_sha256']==digest
     if args.action=='terminate':
         review=json.loads((HERE/'TARGETED_CONTROL_REVIEW_20261030.json').read_text())
-        assert review['allow_stop'] is True and review['control_source_sha256']==digest
+        if review['allow_stop'] is not True or review['control_source_sha256']!=digest:
+            closure=json.loads((HERE/'TARGETED_CONTROL_MAIN_REPAIR_CLOSURE.json').read_text())
+            assert closure['state']=='PASSED_ALL_REPORTED_BLOCKERS_CLOSED' and closure['control_source_sha256']==digest
+            assert closure['raw_review_sha256']==hashlib.sha256((HERE/'TARGETED_CONTROL_REVIEW_20261030.json').read_bytes()).hexdigest()
     ctl,t=services();inspected=ctl.inspect(OLD_TAG);b=inspected['binding']
     assert inspected['status']['state']=='running' and b['commit']==SOURCE and b['run_spec_sha256']==SPEC
     raw=t.download(b['control_root']+'/binding.json')

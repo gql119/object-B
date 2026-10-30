@@ -1,0 +1,14 @@
+{
+  "state": "PASS_ACTUAL_GUARD_PURE_CASES",
+  "simulation_only": true,
+  "control_source_sha256": "887cbda4aea935c9acba14ae13534144b600b5050b9bcdaa20e6d5453b929f8d",
+  "valid_single_pane_passed": true,
+  "rejected": [
+    "extra_pane",
+    "other_window_pane",
+    "wrong_single_pane",
+    "wrong_session"
+  ],
+  "signals_sent": 0,
+  "GPU_work": false
+}

@@ -1,0 +1,93 @@
+{
+  "allow_stop": false,
+  "verdict": "lifecycle_safety_incorrect",
+  "review_mode": "targeted_review",
+  "reviewer": "independent delegated reviewer /root/at_abort_lifecycle_targeted_review_20261030",
+  "reviewed_commit": "7e6d1008c229ca2f91cd7ca63a9579918b4db0b7",
+  "review_diff_base_commit": "64daca67003b3eab2321c7bc22775a90a95d9842",
+  "control_source_sha256": "71f446902103d47c59f1efabeb5ec930474264fc89039465ff6d441ff7da1542",
+  "authorization_sha256": "e46fc5aa728c294a4ce803a8ba23cacf5e80191173b411579bb3325d39581db8",
+  "gated_command": "python -B execution/direct_stop_20261030/terminate_repaired.py terminate",
+  "scope": "Termination identity, signal scope, immutable bindings and worker, retained outputs, and serial queue lifecycle only. No AT scientific/model review.",
+  "remote_commands_executed_by_reviewer": 0,
+  "real_signals_sent_by_reviewer": 0,
+  "findings": [
+    {
+      "id": "LIFECYCLE-01",
+      "severity": "P1",
+      "status": "blocker",
+      "title": "Session-wide termination is broader than the checked ownership scope",
+      "source": "Production bound remote_run_control.worker.abort, included in 20261030T051614Z_REPAIRED_ABORT_PRESTATE.json before.bound_abort_sources.abort; guarded_abort_repair.py CONTROL calls the transformed function unchanged apart from workload cmdline comparison.",
+      "finding": "abort lists panes with tmux list-panes -t spec.session.name -F #{pane_pid}, accepts any pane whose ancestry contains the bound executor, and then calls tmux kill-session for the entire session. It neither rejects additional unrelated panes nor enumerates every window using session-wide pane listing. The new CONTROL process-group scan cannot cover unrelated pane process groups. The actual production diagnostic's one returned pane therefore does not establish that killing the whole session cannot affect another task.",
+      "reproduction": "Executed the actual bound abort source with the one reviewed comparison substitution in a pure local stub environment. tmux list-panes returned the bound executor and unrelated PID 999999. The ancestry predicate returned false for the unrelated PID. abort nevertheless called the fake tmux kill-session and fake killpg TERM and returned aborted. No real process-control operation occurred.",
+      "production_evidence": "20261030T050905Z_ABORT_DIAGNOSTIC.json shows tmux pane_pids [3338788], but its producing command is the same non-session-wide list-panes query; 20261030T051614Z_PRODUCTION_READONLY_GUARD.json checks process-group members, not every session pane.",
+      "fix_target": "Add a fail-closed ownership guard before the bound abort: resolve the exact intended session, enumerate every pane in every window of that session, verify each pane/process scope belongs to the bound AT executor/run, and reject any unrelated pane. Preserve bound abort checks and original binding/worker bytes. Record fresh production read-only evidence and a local rejection probe for an extra unrelated pane and another window. No second formal reviewer is required; main-agent blocker closure should supply evidence.",
+      "qualification": "This finding does not claim that a foreign pane currently exists. It identifies a reproducible missing guard at a session-wide destructive operation and an evidence gap for the actual session-wide scope."
+    },
+    {
+      "id": "LIFECYCLE-02",
+      "severity": "info",
+      "status": "pass",
+      "title": "Explicit human authorization is sufficient and hash-bound",
+      "finding": "Committed authorization explicitly permits immediate termination of the original AT queue, abandoning unfinished progress, using existing RRCTL escalation, engineering repair without weaker identity checks, retaining checkpoints/logs, and avoiding repeated confirmation. Its bytes hash to the expected authorization digest. This review does not require renewed human approval."
+    },
+    {
+      "id": "LIFECYCLE-03",
+      "severity": "info",
+      "status": "pass",
+      "title": "One canonical post-exec fingerprint substitution preserves the checked process identity",
+      "finding": "The CONTROL digest was independently recomputed from committed source. Production branch pins RunID, source commit 51ce790b7de30ea032c7c4bf7c85a8f530f3fcfb, spec digest e9f80f82d4288a9b08ed9877b900911f813854e390479eb6a453176c907c87b3, bound worker digest, raw binding bytes, UID 1014, both start ticks, exact canonical queue argv suffix, executor ancestry and equal group IDs. It accepts only recorded bootstrap/canonical fingerprints, verifies live canonical argv, AST-pins the original abort function, and changes exactly one NotEq comparison. The production read-only guard observes unchanged PID/start across bootstrap-to-canonical fingerprint difference. Replacing this expected comparison is itself justified; session scope remains the separate blocker."
+    },
+    {
+      "id": "LIFECYCLE-04",
+      "severity": "info",
+      "status": "pass",
+      "title": "Original executor and process-group guards remain active",
+      "finding": "Transformed abort retains run markers, spec argv digest, workload PID/start/group, executor PID/start/cmdline/group, workload ancestry, tmux ownership relationship, and unsafe-group rejection. CONTROL additionally verifies every observed group member is UID 1014 and a descendant of the bound executor. Production evidence records executor 3338788/start389474995, queue3338796/start389475008 and scientific child3339007, all in PGID3338788. Only that verified group is passed to TERM/KILL. Session collateral is not covered by this group check, as described in LIFECYCLE-01."
+    },
+    {
+      "id": "LIFECYCLE-05",
+      "severity": "info",
+      "status": "pass",
+      "title": "Binding and worker remain unmodified and retention is preserved",
+      "finding": "CONTROL reads original binding bytes and worker zip, verifies their digests, imports that bound worker, creates a separately named guard receipt, and compiles the narrow repair in memory. It does not rewrite binding.json or the worker. Both initial guard and bound abort reload the RunSpec. The pinned production spec has output_cleanup null; bound cleanup_output returns immediately in that case. No checkpoint/log deletion path is introduced. Prestate preserves epoch085 checkpoint digest65775c9bfbcf9cfbe640c07903b4af75c9555f33f59cf30f63d4e0bb89570a71, 85 retained epoch files and existing log sizes. Actual post-stop checkpoint/hash and log retention remain to be measured by VERIFY after any authorized stop."
+    },
+    {
+      "id": "LIFECYCLE-06",
+      "severity": "info",
+      "status": "pass",
+      "title": "Queue-wide group stop addresses next-arm startup",
+      "finding": "The actual original queue code at 51ce790b7de30ea032c7c4bf7c85a8f530f3fcfb waits for the scientific worker and requires zero return plus an ACCEPTED receipt before advancing. It has no TERM handler/restart mechanism. The verified queue supervisor and scientific worker share the stopped group, so the command targets the queue itself as well as the current arm. At recorded prestate Clean-AT4 is epoch86 with no accepted stages. VERIFY rejects surviving original processes, any own GPU process and any output directory for the remaining three arms. No scientific-child-only stop path is introduced."
+    },
+    {
+      "id": "LIFECYCLE-07",
+      "severity": "info",
+      "status": "pass_with_limitations",
+      "title": "Real CPU02 evidence proves bounded lifecycle execution, not every scope invariant",
+      "finding": "CPU02 invoked the real bound RRCTL abort, terminated only the recorded fixture group, reached aborted with no remaining marker PIDs, and left original AT healthy. Four raw rejected requests fail before signals for UID, workload start ticks, spec digest and binding digest. CPU02's bootstrap capture was explicitly simulated because its actual binding captured canonical argv. Actual original production evidence independently demonstrates the bootstrap mismatch. This smoke does not exercise extra tmux panes/windows, an executor/session rejection case, or production checkpoint retention, and is not used to infer those guarantees. CPU01 failure is retained rather than represented as a pass."
+    },
+    {
+      "id": "LIFECYCLE-08",
+      "severity": "info",
+      "status": "limitation",
+      "title": "Review is bounded to observed and freshly revalidated lifecycle identity",
+      "finding": "No remote action was executed during this review. Existing actual production evidence is read-only and historical; the terminate command re-runs its checks before invoking abort. Review permission cannot substitute for those checks or for post-stop verification. AT model validity, CUDA optimization and future restarted experiments are outside scope."
+    }
+  ],
+  "local_stub_probe_raw_result": {
+    "control_source_sha256": "71f446902103d47c59f1efabeb5ec930474264fc89039465ff6d441ff7da1542",
+    "auth_source_sha256": "e46fc5aa728c294a4ce803a8ba23cacf5e80191173b411579bb3325d39581db8",
+    "transformed_comparisons": 1,
+    "pure_stub_probe": true,
+    "real_signals_sent": 0,
+    "unrelated_pane_pid": 999999,
+    "unrelated_pane_is_descendant": false,
+    "abort_rejected_unrelated_pane": false,
+    "events": [
+      ["tmux", "list-panes", "-t", "s4_at_serial_seed0_20261029_v2", "-F", "#{pane_pid}"],
+      ["tmux", "kill-session", "-t", "s4_at_serial_seed0_20261029_v2"],
+      ["FAKE-killpg", 3338788, 15]
+    ],
+    "result": {"state": "aborted"}
+  }
+}

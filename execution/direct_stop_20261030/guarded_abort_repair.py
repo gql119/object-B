@@ -3,14 +3,14 @@ import hashlib
 import json
 
 OLD_TAG='s4_at_serial_seed0_20261029_v2'
-CPU_TAG='s4_at_abort_exec_guard_20261030_cpu02'
+CPU_TAG='s4_at_abort_exec_guard_20261030_cpu03'
 AUTH_SHA='e46fc5aa728c294a4ce803a8ba23cacf5e80191173b411579bb3325d39581db8'
 
 CONTROL=r'''
 import ast,datetime,hashlib,json,os,subprocess,sys,zipfile
 from pathlib import Path
 q=json.loads(sys.argv[1]);assert os.getuid()==q['uid']==1014
-OLD='s4_at_serial_seed0_20261029_v2';CPU='s4_at_abort_exec_guard_20261030_cpu02'
+OLD='s4_at_serial_seed0_20261029_v2';CPU='s4_at_abort_exec_guard_20261030_cpu03'
 assert q['run_id'] in (OLD,CPU) and q['action'] in ('inspect','abort')
 assert q['authorization_sha256']=='e46fc5aa728c294a4ce803a8ba23cacf5e80191173b411579bb3325d39581db8'
 owned=Path('/project/guoqinglong/projects/s4_at_robustness_20261027')
@@ -61,19 +61,45 @@ for d in Path('/proc').iterdir():
     group.append(pid)
   except (FileNotFoundError,ProcessLookupError):pass
 assert b['workload_pid'] in group and b['executor_pid'] in group
+def _session_guard(text,session,executor_pid):
+ rows=[line.split('\t') for line in text.splitlines() if line.strip()]
+ assert len(rows)==1,'All-windows session must contain exactly one owned pane'
+ sid,name,pid=rows[0]
+ assert sid.startswith('$') and sid[1:].isdigit()
+ assert name==session and int(pid)==executor_pid,'Unrelated session/pane rejected'
+ return sid
+def _all_session_identity(spec,binding):
+ panes=subprocess.run(['tmux','list-panes','-s','-t','='+spec.session.name,'-F','#{session_id}\t#{session_name}\t#{pane_pid}'],check=True,capture_output=True,text=True)
+ return _session_guard(panes.stdout,spec.session.name,binding['executor_pid'])
+def _checked_session_kill(spec,binding):
+ # Re-check every window/pane immediately at the original termination sink.
+ sid=_all_session_identity(spec,binding)
+ current=w._process_identity(binding['executor_pid'])
+ assert (Path('/proc')/str(binding['executor_pid'])).stat().st_uid==1014
+ for key,bkey in [('start_ticks','executor_start_ticks'),('cmdline_sha256','executor_cmdline_sha256'),('process_group_id','executor_process_group_id')]:
+  assert current[key]==binding[bkey]
+ return subprocess.run(['tmux','kill-session','-t',sid],check=True)
+session_id=_all_session_identity(spec,b)
 with zipfile.ZipFile(zip_path) as z:raw=z.read('remote_run_control/worker.py').decode()
 tree=ast.parse(raw);f=next(x for x in tree.body if isinstance(x,ast.FunctionDef) and x.name=='abort')
 assert hashlib.sha256(ast.dump(f,include_attributes=False).encode()).hexdigest()=='fef1252d98a2d0b0b5aa4c473924f20a5e3a3108c82f98553629cfd6dae20a2d'
 needle=ast.dump(ast.parse('binding.get("workload_cmdline_sha256")',mode='eval').body,include_attributes=False)
 class PostExec(ast.NodeTransformer):
- def __init__(self):self.changes=0
+ def __init__(self):self.changes=0;self.session_changes=0
  def visit_Compare(self,node):
   if ast.unparse(node.left)=='workload_identity[\'cmdline_sha256\']' and len(node.comparators)==1 and ast.dump(node.comparators[0],include_attributes=False)==needle:
    assert len(node.ops)==1 and isinstance(node.ops[0],ast.NotEq)
    node.comparators[0]=ast.Name(id='expected_postexec_cmdline_sha256',ctx=ast.Load());self.changes+=1
   return self.generic_visit(node)
-fix=PostExec();f=fix.visit(f);assert fix.changes==1;ast.fix_missing_locations(f)
-scope=dict(vars(w),expected_postexec_cmdline_sha256=expected_cmdline)
+ def visit_Expr(self,node):
+  if isinstance(node.value,ast.Call) and ast.unparse(node.value.func)=='subprocess.run' and node.value.args:
+   first=node.value.args[0]
+   if isinstance(first,ast.List) and len(first.elts)>=2 and isinstance(first.elts[0],ast.Constant) and first.elts[0].value=='tmux' and isinstance(first.elts[1],ast.Constant) and first.elts[1].value=='kill-session':
+    self.session_changes+=1
+    return ast.parse('_checked_session_kill(spec,binding)').body[0]
+  return self.generic_visit(node)
+fix=PostExec();f=fix.visit(f);assert fix.changes==1 and fix.session_changes==1;ast.fix_missing_locations(f)
+scope=dict(vars(w),expected_postexec_cmdline_sha256=expected_cmdline,_checked_session_kill=_checked_session_kill)
 exec(compile(ast.Module(body=[f],type_ignores=[]),'<scoped RRCTL postexec abort guard>','exec'),scope)
 receipt=dict(UTC=datetime.datetime.now(datetime.timezone.utc).isoformat(),run_id=q['run_id'],action=q['action'],
  binding_sha256=q['binding_sha256'],binding_unmodified=True,recorded_bootstrap_or_canonical=recorded,
@@ -81,6 +107,8 @@ receipt=dict(UTC=datetime.datetime.now(datetime.timezone.utc).isoformat(),run_id
  workload_pid=b['workload_pid'],workload_start_ticks=work['start_ticks'],executor_pid=b['executor_pid'],
  executor_start_ticks=ex['start_ticks'],UID=1014,verified_group=group,only_one_cmdline_comparison_repaired=True,
  all_original_abort_guards_and_retention_preserved=True,fixture_bootstrap_capture_simulated=simulated,signals_sent=False)
+receipt.update(all_windows_exactly_one_owned_pane_verified=True,exact_tmux_session_id=session_id,
+ session_ownership_revalidated_at_termination_sink=True)
 if q['action']=='inspect':print(json.dumps(receipt));sys.exit(0)
 path=control/('postexec_abort_guard_'+datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'.json')
 with path.open('x') as out:json.dump(receipt,out,indent=2)
