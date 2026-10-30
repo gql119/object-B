@@ -30,6 +30,12 @@ def main():
         else:
             s['workload']['argv']=[unit if x.startswith('--unit=') else source if x==oldsource else x.replace(oldroot,s['remote']['output_root']) for x in s['workload']['argv']]
             if a.kind=='baseline':
+                # Diagnostic setting follows the actual frozen batch; the
+                # reference/candidate computation and zero tolerance are exact.
+                index=s['workload']['argv'].index('-c')+1
+                inline=s['workload']['argv'][index]
+                if inline.count('parameters=dict(batch=36')!=1 or inline.count('sample_count=36')!=1:raise ValueError('Unexpected baseline setting schema')
+                s['workload']['argv'][index]=inline.replace('parameters=dict(batch=36',"parameters=dict(batch=load(PROTOCOL)['train_args']['batch']").replace('sample_count=36',"sample_count=load(PROTOCOL)['train_args']['batch']")
                 files=['status.json','smoke_summary.json','baseline_equivalence.json'];summary='smoke_summary.json';budget=16
             else:files=['status.json','candidate_resume_summary.json'];summary='candidate_resume_summary.json';budget=64
         artifacts=['result/'+x for x in files]

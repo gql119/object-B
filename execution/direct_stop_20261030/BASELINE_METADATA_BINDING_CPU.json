@@ -1,0 +1,10 @@
+{
+  "state": "PASS_METADATA_BINDING_ONLY",
+  "changed_sites": 2,
+  "computation_changed": false,
+  "tolerance_changed": false,
+  "models": 0,
+  "GPU_work": false,
+  "prior_shell_compile_command_failed_before_test_execution": true,
+  "prior_failure_reason": "PowerShell inline quoting; this saved UTF8 script avoids shell nesting"
+}
