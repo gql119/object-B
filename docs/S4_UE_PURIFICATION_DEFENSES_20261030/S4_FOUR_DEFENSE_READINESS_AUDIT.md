@@ -27,7 +27,7 @@ The adaptation worktree is isolated from the F: research checkout and the active
 
 This branch adds `defenses/common/pair_contract.py`. It checks that input and output records retain the same sample-ID set, dimensions, label-byte SHA, and decoded VOC20 `xyxy` GT while allowing image pixels to change. It rejects duplicate IDs, invalid hashes, out-of-range classes/coordinates, empty-area boxes, missing samples, and changed labels/geometry. This is a metadata contract for pixel-only purification, not a detector wrapper. It does not inspect image bytes, establish visual semantics, run inference, or prove that object boundaries remain recognizable.
 
-Ten standard-library unit cases pass. They use synthetic metadata records to exercise Person+non-target coexistence, Person-only, Person-free, small boxes, and explicit failure modes. They are **not real-image or method tests**. No actual VOC image path test could be credited because none of the four purifier/checkpoint paths is available. Thus per-method `cpu_method_test=false`, CUDA probes are all `false`, and `READY_VERIFIED` is not assigned.
+Ten standard-library pair-contract unit cases and one readiness-registry guard pass (11 tests total). They use synthetic metadata records to exercise Person+non-target coexistence, Person-only, Person-free, small boxes, and explicit failure modes. They are **not real-image or method tests**. No actual VOC image path test could be credited because none of the four purifier/checkpoint paths is available. Thus per-method `cpu_method_test=false`, CUDA probes are all `false`, and `READY_VERIFIED` is not assigned.
 
 ## End-to-end readiness checklist
 
