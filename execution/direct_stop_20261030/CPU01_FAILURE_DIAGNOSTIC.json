@@ -1,0 +1,51 @@
+{
+  "inspect": {
+    "binding": {
+      "branch": "codex/s4-at-robustness-20261027",
+      "bundle_sha256": "cf12c0d6051ba4ae49f6043c2b414b52caf89491a68b71d5bb590df1e3d63a02",
+      "commit": "51ce790b7de30ea032c7c4bf7c85a8f530f3fcfb",
+      "control_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/control/s4_at_abort_exec_guard_20261030_cpu01",
+      "created_at": "2026-10-30T05:13:55.248636+00:00",
+      "executor_cmdline_sha256": "d2fad9b49343068ed0ef07282542d4aea85cde36dba1c91f56e75a59ff3189b3",
+      "executor_pid": 3532155,
+      "executor_process_group_id": 3532155,
+      "executor_start_ticks": 396191013,
+      "executor_started_at": "2026-10-30T05:13:55.396650+00:00",
+      "output_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_abort_exec_guard_20261030_cpu01",
+      "project": "s4-at-guarded-abort-CPU-smoke",
+      "repo_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/releases/s4_at_abort_exec_guard_20261030_cpu01",
+      "run_id": "s4_at_abort_exec_guard_20261030_cpu01",
+      "run_spec_sha256": "5904c295c6b28acb653895afa6b84fcf8212db36f72a323a3ddc743adb4c1fb4",
+      "schema_version": "rrctl.binding.v1",
+      "session": "s4_at_abort_exec_guard_20261030_cpu01",
+      "source_content_sha256": "4c8e6a21640807d98b0b39b96bc15b078dcd86dbac4dfc8b8da561f26f04cdfc",
+      "stage_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/stage/s4_at_abort_exec_guard_20261030_cpu01",
+      "transport_bundle_sha256": "cf12c0d6051ba4ae49f6043c2b414b52caf89491a68b71d5bb590df1e3d63a02",
+      "worker_sha256": "696cb314eb11784a9099728b117eac69cd2e01315d7732154d1ddeab609eff6a",
+      "workload_argv_sha256": "f8b6381122f0e1cf30db02a439a4e7faa096abc3d967f53c068acdf883cb1227",
+      "workload_cmdline_sha256": "f8b6381122f0e1cf30db02a439a4e7faa096abc3d967f53c068acdf883cb1227",
+      "workload_pid": 3532157,
+      "workload_process_group_id": 3532155,
+      "workload_start_ticks": 396191026,
+      "workload_started_at": "2026-10-30T05:13:55.963482+00:00"
+    },
+    "control_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/control/s4_at_abort_exec_guard_20261030_cpu01",
+    "run_id": "s4_at_abort_exec_guard_20261030_cpu01",
+    "status": {
+      "detail": {
+        "exit_code": 1
+      },
+      "reason": "workload_exit_nonzero",
+      "run_id": "s4_at_abort_exec_guard_20261030_cpu01",
+      "schema_version": "rrctl.status.v1",
+      "sequence": 4,
+      "state": "failed",
+      "updated_at": "2026-10-30T05:13:56.017241+00:00"
+    },
+    "status_recovered": false
+  },
+  "control": {
+    "console.log": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nAssertionError\n",
+    "status.json": "{\"detail\":{\"exit_code\":1},\"reason\":\"workload_exit_nonzero\",\"run_id\":\"s4_at_abort_exec_guard_20261030_cpu01\",\"schema_version\":\"rrctl.status.v1\",\"sequence\":4,\"state\":\"failed\",\"updated_at\":\"2026-10-30T05:13:56.017241+00:00\"}\n"
+  }
+}

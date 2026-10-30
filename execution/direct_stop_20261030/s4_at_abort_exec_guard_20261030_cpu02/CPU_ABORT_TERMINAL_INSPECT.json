@@ -1,0 +1,49 @@
+{
+  "binding": {
+    "branch": "codex/s4-at-robustness-20261027",
+    "bundle_sha256": "7c075ec96ca981fd1f8be5ae0e1be136735c3fcc0267ac492118b7b8745de7d7",
+    "commit": "51ce790b7de30ea032c7c4bf7c85a8f530f3fcfb",
+    "control_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/control/s4_at_abort_exec_guard_20261030_cpu02",
+    "created_at": "2026-10-30T05:14:54.348201+00:00",
+    "executor_cmdline_sha256": "11d90de7278beed5081bdf365a44f5a98fab9c24c48f144938217c07afc9310c",
+    "executor_pid": 3533058,
+    "executor_process_group_id": 3533058,
+    "executor_start_ticks": 396196922,
+    "executor_started_at": "2026-10-30T05:14:54.439652+00:00",
+    "output_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_abort_exec_guard_20261030_cpu02",
+    "project": "s4-at-guarded-abort-CPU-smoke",
+    "repo_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/releases/s4_at_abort_exec_guard_20261030_cpu02",
+    "run_id": "s4_at_abort_exec_guard_20261030_cpu02",
+    "run_spec_sha256": "2957033788b9e176e7ea1d2cf219195d1d30d0d766e961e1ad129c72e89b5e6f",
+    "schema_version": "rrctl.binding.v1",
+    "session": "s4_at_abort_exec_guard_20261030_cpu02",
+    "source_content_sha256": "4c8e6a21640807d98b0b39b96bc15b078dcd86dbac4dfc8b8da561f26f04cdfc",
+    "stage_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/stage/s4_at_abort_exec_guard_20261030_cpu02",
+    "transport_bundle_sha256": "7c075ec96ca981fd1f8be5ae0e1be136735c3fcc0267ac492118b7b8745de7d7",
+    "worker_sha256": "696cb314eb11784a9099728b117eac69cd2e01315d7732154d1ddeab609eff6a",
+    "workload_argv_sha256": "4a897c3c307e48963a8081b8767f8dda53c0b6fbd79aee76d1dd76d79b7e43da",
+    "workload_cmdline_sha256": "0253dc473ec3ece1036350f24096c3efa1f18433e2593103829ae09825bb9967",
+    "workload_pid": 3533066,
+    "workload_process_group_id": 3533058,
+    "workload_start_ticks": 396196930,
+    "workload_started_at": "2026-10-30T05:14:54.805342+00:00"
+  },
+  "control_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/control/s4_at_abort_exec_guard_20261030_cpu02",
+  "run_id": "s4_at_abort_exec_guard_20261030_cpu02",
+  "status": {
+    "detail": {
+      "cleanup": "reaped",
+      "pgid": 3533058,
+      "pid": 3533066,
+      "remaining_owned_pids": [],
+      "session": "s4_at_abort_exec_guard_20261030_cpu02"
+    },
+    "reason": "ownership_verified_abort",
+    "run_id": "s4_at_abort_exec_guard_20261030_cpu02",
+    "schema_version": "rrctl.status.v1",
+    "sequence": 6,
+    "state": "aborted",
+    "updated_at": "2026-10-30T05:14:58.748408+00:00"
+  },
+  "status_recovered": false
+}
