@@ -1,0 +1,79 @@
+{
+  "UTC": "2026-10-30T10:49:19.972912+00:00",
+  "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+  "pipeline_state": "RUNNING",
+  "current_arm": "S4AT4_Clean_seed0",
+  "progress": {
+    "run_id": "S4AT4_Clean_seed0",
+    "epoch": 1,
+    "completed_epochs": 0,
+    "at_batches": 44,
+    "actual_updates": 38,
+    "legal_amp_skips": 6,
+    "loss": 455.87371826171875,
+    "UTC": "2026-10-30T10:49:19.364254+00:00",
+    "actual_shape": [
+      36,
+      3,
+      640,
+      640
+    ],
+    "actual_PGD_steps": 10,
+    "raw_devices": [
+      [
+        "cuda:0",
+        0
+      ]
+    ]
+  },
+  "AMP": {
+    "epoch": 1,
+    "batch_index": 43,
+    "total_batches": 44,
+    "actual_updates_total": 38,
+    "skips_total": 6,
+    "consecutive_skips": 0,
+    "amp_scale_after": 1024.0,
+    "model_finite": true,
+    "EMA_finite": true,
+    "optimizer_finite": true,
+    "elapsed_seconds": 77.45496842218563
+  },
+  "initial_model_sha256": "0ff81f5755379765bfb1c7080b73178b88da200c1cdd2fd9f551cadd2e3b9eb6",
+  "identities": {
+    "executor": {
+      "pid": 3656364,
+      "start_ticks": 398177890,
+      "uid": 1014,
+      "alive": true,
+      "expected_start_matches": true,
+      "ppid": 617924
+    },
+    "queue": {
+      "pid": 3656393,
+      "start_ticks": 398177903,
+      "uid": 1014,
+      "alive": true,
+      "expected_start_matches": true,
+      "ppid": 3656364
+    },
+    "scientific_GPU": [
+      {
+        "pid": 3656582,
+        "start_ticks": 398178502,
+        "uid": 1014,
+        "alive": true,
+        "expected_start_matches": true,
+        "ppid": 3656393,
+        "cwd_matches_release": true,
+        "parent_matches_queue": true,
+        "run_id": "S4AT4_Clean_seed0"
+      }
+    ]
+  },
+  "initialization_console_tail": null,
+  "run_id": "s4_at_serial_seed0_20261030_fresh_v1",
+  "healthy": true,
+  "RRCTL_state": "running",
+  "run_spec_sha256": "4a67b79ebd5a59eb9c47fa72b5049fde7ed01e51168580e8fe85b06e31898f3d"
+}

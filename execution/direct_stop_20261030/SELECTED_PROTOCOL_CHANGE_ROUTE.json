@@ -1,0 +1,10 @@
+{
+  "schema_version": "prerun.change-route.v1",
+  "reviewed_commit": "51ce790b7de30ea032c7c4bf7c85a8f530f3fcfb",
+  "candidate_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+  "changes": [
+    {"path":"docs/S4_AT_ROBUSTNESS_20261027/USER_DIRECT_TERMINATION_AND_RESTART_20261030.md","change_class":"documentation","production_reachable":false,"dependency_closure_changed":false,"blocker_ids":[],"probes":[]},
+    {"path":"execution/direct_stop_20261030/validate_selected.py","change_class":"entrypoint","production_reachable":true,"dependency_closure_changed":false,"blocker_ids":[],"probes":[]},
+    {"path":"execution/direct_stop_20261030/fresh_serial_queue.py","change_class":"process_supervision","production_reachable":true,"dependency_closure_changed":false,"blocker_ids":[],"probes":[{"command":"queue_cpu_smoke.py","exit_code":0,"observation":"Real RRCTL CPU control: three stages serial, duplicate rejected, old lock unchanged; no models/GPU","reaches_production":true}]}
+  ]
+}

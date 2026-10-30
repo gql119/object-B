@@ -1,0 +1,58 @@
+{
+  "schema": "s4.at.engineering-abba-assessment.v1",
+  "state": "INCONCLUSIVE",
+  "reasons": [
+    "CLOCK_VARIATION_EXCEEDS_PRELOCKED_5PERCENT",
+    "UNCONTROLLED_HOST_CPU_LOAD",
+    "UNCONTROLLED_POWER_CAP_FRACTION",
+    "UNCONTROLLED_THERMAL_THROTTLE_FRACTION"
+  ],
+  "simulation_only": false,
+  "inputs": [
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\probes\\bo1v2\\summary.json",
+      "sha256": "30708fb190856af8cfac3849e8c9cb2e69f22672de916789621981f5ebbea305"
+    },
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\probes\\b21\\summary.json",
+      "sha256": "f8f18428d33842a8113d5673047164a3b6ade6028d610274017795959edf77fa"
+    },
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\probes\\b22\\summary.json",
+      "sha256": "7aa57b10c8c42867c4db61338c0e8163f5b43db68e3e5ad5c46c08cd1de7c5cc"
+    },
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\probes\\bo2\\summary.json",
+      "sha256": "0e446283b33242f2cdd79b09a13474262205ce8dbcd92289b52c2f81ca3e725b"
+    }
+  ],
+  "prelocked_thermal_range_C": 2.0,
+  "prelocked_relative_clock_range": 0.05,
+  "prelocked_host_CPU_range_percent": 10.0,
+  "minimum_ROI_samples": 3,
+  "prelocked_throttle_fraction_range": 0.25,
+  "observed_throttle_fractions": [
+    [
+      0.8888888888888888,
+      0.5555555555555556
+    ],
+    [
+      0.7777777777777778,
+      0.1111111111111111
+    ],
+    [
+      0.7,
+      0.2
+    ],
+    [
+      1,
+      0
+    ]
+  ],
+  "Old_New_GPU_gain": null,
+  "lower95_GPU_gain": null,
+  "net_total_time_saving": null,
+  "restart_allowed": false,
+  "scientific_review_complete": false,
+  "production_control_retirement_proved": false
+}

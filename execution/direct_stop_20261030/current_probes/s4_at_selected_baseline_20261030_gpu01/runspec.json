@@ -1,0 +1,110 @@
+{
+  "schema_version": "rrctl.run.v1",
+  "run_id": "s4_at_selected_baseline_20261030_gpu01",
+  "project": "original-s4-at-scientific-blocker-closure",
+  "source": {
+    "repo_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027",
+    "branch": "codex/s4-at-robustness-20261027",
+    "commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+    "allowed_post_commit_paths": [
+      "execution/",
+      "docs/S4_AT_ROBUSTNESS_20261027/"
+    ]
+  },
+  "remote": {
+    "profile": "school-s1",
+    "stage_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/stage/s4_at_selected_baseline_20261030_gpu01",
+    "repo_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/releases/s4_at_selected_baseline_20261030_gpu01",
+    "control_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/control/s4_at_selected_baseline_20261030_gpu01",
+    "output_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_baseline_20261030_gpu01",
+    "python": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python"
+  },
+  "session": {
+    "backend": "tmux",
+    "name": "s4_at_selected_baseline_20261030_gpu01"
+  },
+  "environment": {
+    "kind": "conda",
+    "name": "cfbdm",
+    "conda_sh": "/project/guoqinglong/miniconda3/etc/profile.d/conda.sh"
+  },
+  "workload": {
+    "cwd": ".",
+    "argv": [
+      "systemd-run",
+      "--user",
+      "--scope",
+      "--quiet",
+      "--unit=s4at-current-65c9a765cec2fa85dbf4",
+      "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+      "-B",
+      "-c",
+      "\nimport argparse,copy,json,os,random,sys,traceback\nfrom pathlib import Path\nroot=Path(sys.argv[1]);fixture=Path(sys.argv[2]);root.mkdir(parents=True,exist_ok=False)\nos.environ['YOLO_CONFIG_DIR']=str(root/'settings');os.environ['MPLCONFIGDIR']=str(root/'mpl');os.environ['WANDB_MODE']='disabled'\nimport numpy as np\nimport torch\nfrom ultralytics.nn.tasks import DetectionModel\nfrom robustness_s4_at import worker\nfrom robustness_s4_at.common import PROTOCOL,ROOT,atomic,commit,load,now,sha,write_once\nfrom robustness_s4_at.pgd import gt_identity\nfrom ue_framework.s4_amp_observer import tree_hash\nbase=worker.ATTrainer;proof={};handles=[]\nstatus=dict(state='RUNNING',source_commit=commit(),official_metrics_disabled=True,artifact_ingest_disabled=True,cleanup_policy='retain_all',deleted_paths=[])\natomic(root/'status.json',status)\nclass Instrumented(base):\n def __init__(self,*a,**kw):\n  super().__init__(*a,**kw);self.add_callback('on_train_start',attach_reference)\ndef attach_reference(t):\n def before(model,args):\n  if proof or not args or not isinstance(args[0],dict) or not any(p.requires_grad for p in model.parameters()):return\n  if t.at_batches!=1 or t.at_holder['observer'].updates!=0:raise ValueError('Reference must run on first actual PGD input before updates')\n  batch=args[0];gt=gt_identity(batch)\n  rng=(random.getstate(),np.random.get_state(),torch.get_rng_state(),torch.cuda.get_rng_state(0))\n  snapshot={k:v.detach().cpu().clone() for k,v in model.state_dict().items()};path=root/'random_initial_state.pt'\n  with path.open('xb') as f:torch.save(snapshot,f)\n  with torch.autocast(device_type='cuda',enabled=False):\n   reference=DetectionModel(str(ROOT/'configs/voc_yolov8n_20cls.yaml'),nc=20,verbose=False).to(t.device)\n   channels_last=any(p.ndim==4 and p.is_contiguous(memory_format=torch.channels_last) and not p.is_contiguous() for p in model.parameters())\n   if channels_last:reference=reference.to(memory_format=torch.channels_last)\n   reference.args=copy.deepcopy(model.args);reference.load_state_dict(snapshot,strict=True)\n   reference.nc=model.nc;reference.names=copy.deepcopy(model.names)\n   if getattr(model,'class_weights',None) is not None:reference.class_weights=model.class_weights.detach().clone()\n   required={n:p.requires_grad for n,p in model.named_parameters()}\n   for n,p in reference.named_parameters():p.requires_grad_(required[n])\n   reference.criterion=reference.init_criterion()\n  for name,value in model.state_dict().items():\n   if value.stride()!=reference.state_dict()[name].stride():raise ValueError('Native reference memory layout differs: '+name)\n  flags={n:m.training for n,m in model.named_modules()}\n  for n,m in reference.named_modules():m.training=flags[n]\n  expected=tree_hash(model.state_dict());assert tree_hash(reference.state_dict())==expected\n  result=reference(batch)\n  proof.update(reference_loss=float(result[0].sum().detach()),reference_parts={k:float(v) for k,v in result[1].items()},initial_parameter_sha256=tree_hash(dict(model.named_parameters())),weights_sha256=sha(path),weights_path=str(path),reference_state_sha256=expected,input_sha256=tree_hash(batch['img']),GT_sha256=gt,reference_actual_device=str(next(reference.parameters()).device),reference_model_class=type(reference).__module__+'.'+type(reference).__name__,native_channels_last=channels_last,all_state_tensor_strides_match=True,actual_outer_autocast_enabled=torch.is_autocast_enabled())\n  if gt_identity(batch)!=gt:raise ValueError('Native reference changed GT')\n  random.setstate(rng[0]);np.random.set_state(rng[1]);torch.set_rng_state(rng[2]);torch.cuda.set_rng_state(rng[3],0)\n  del reference,result\n def after(model,args,result):\n  if not proof or proof.get('comparison_complete') or not any(p.requires_grad for p in model.parameters()):return\n  actual=float(result[0].sum().detach());parts={k:float(v) for k,v in result[1].items()}\n  difference=abs(actual-proof['reference_loss'])\n  if difference!=0 or parts!=proof['reference_parts']:\n   write_once(root/'baseline_equivalence_FAILED.json',dict(proof,candidate_metric=actual,candidate_parts=parts,absolute_difference=difference,tolerance=0))\n   raise ValueError('Actual native AT outer loss differs from independent DetectionModel reference: '+str(difference))\n  proof.update(comparison_complete=True,state='passed',source_commit=commit(),protocol_sha256=sha(PROTOCOL),reference_id='pinned unmodified ultralytics.nn.tasks.DetectionModel directly instantiated',candidate_route='actual worker.run -> ATTrainer.preprocess_batch PGD10 -> native training loop model(batch)',metric_name='full GT box+cls+DFL native training loss on the same actual PGD10 adversarial batch',reference_metric=proof['reference_loss'],candidate_metric=actual,absolute_difference=difference,tolerance=0,reference_weights_path=proof['weights_path'],candidate_weights_path=proof['weights_path'],evaluation_setting=dict(dataset='first 720 sorted accepted VOC train IDs; native seed0 shuffled first batch',parameters=dict(batch=load(PROTOCOL)['train_args']['batch'],imgsz=640,workers=16,AMP=True,PGD10=True,epsilon_pixels=4),seed=0,sample_count=load(PROTOCOL)['train_args']['batch'],post_processing='same native full GT loss; no detection metrics'),actual_device=str(t.device),parameter_updates_before_comparison=0,official_metrics_disabled=True,artifact_ingest_disabled=True)\n  write_once(root/'baseline_equivalence.json',proof)\n  for h in handles:h.remove()\n handles.extend([t.model.register_forward_pre_hook(before),t.model.register_forward_hook(after)])\nworker.ATTrainer=Instrumented\nargs=argparse.Namespace(run_id='S4AT4_Clean_seed0',out=root/'arm',formal=False,source_commit=None,preflight=None,fixture_root=fixture,device='0',max_batches=16,resume_fullstate=None)\ntry:\n worker.run(args)\n if not proof.get('comparison_complete'):raise ValueError('Production outer-loss reference probe was not reached')\n summary=load(root/'arm/smoke_summary.json')\n if summary['actual_updates']<1 or summary['outer_batches']>16:raise ValueError('Native bounded reference run failed')\n status.update(state='passed',baseline_equivalence_probe=proof,actual_outer_batches=summary['outer_batches'],actual_PGD_forwards=summary['actual_PGD_forwards'],actual_updates=summary['actual_updates'],parameter_updates_before_comparison=0,finite_loss=summary['finite_loss'],completed_UTC=now())\n write_once(root/'smoke_summary.json',status);atomic(root/'status.json',status)\nexcept BaseException as exc:\n status.update(state='FAILED',error=repr(exc),traceback=traceback.format_exc(),ended_UTC=now());atomic(root/'status.json',status);raise\n",
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_baseline_20261030_gpu01/result",
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_cuda_native_20261029_gpu02/result/fixtures/clean"
+    ]
+  },
+  "health": {
+    "first_step": {
+      "timeout_seconds": 900,
+      "poll_interval_seconds": 5,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'result/status.json';s=json.loads(p.read_text()) if p.exists() else {};z=s.get('state','');print(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=z!='FAILED',complete=z=='passed',progress={k:s.get(k) for k in ('state','source_commit','current_run','completed_bounded_arms','actual_outer_batches','error')},artifacts=['result/status.json', 'result/smoke_summary.json', 'result/baseline_equivalence.json'])))"
+      ]
+    },
+    "periodic": {
+      "timeout_seconds": 900,
+      "poll_interval_seconds": 30,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'result/status.json';s=json.loads(p.read_text()) if p.exists() else {};z=s.get('state','');print(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=z!='FAILED',complete=z=='passed',progress={k:s.get(k) for k in ('state','source_commit','current_run','completed_bounded_arms','actual_outer_batches','error')},artifacts=['result/status.json', 'result/smoke_summary.json', 'result/baseline_equivalence.json'])))"
+      ]
+    },
+    "completion": {
+      "timeout_seconds": 900,
+      "poll_interval_seconds": 5,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;c=json.load(sys.stdin);p=Path(c['output_root'])/'result/status.json';s=json.loads(p.read_text()) if p.exists() else {};z=s.get('state','');print(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=z!='FAILED',complete=z=='passed',progress={k:s.get(k) for k in ('state','source_commit','current_run','completed_bounded_arms','actual_outer_batches','error')},artifacts=['result/status.json', 'result/smoke_summary.json', 'result/baseline_equivalence.json'])))"
+      ]
+    }
+  },
+  "artifacts": [
+    {
+      "path": "result/status.json",
+      "required": true
+    },
+    {
+      "path": "result/smoke_summary.json",
+      "required": true
+    },
+    {
+      "path": "result/baseline_equivalence.json",
+      "required": true
+    }
+  ],
+  "local_pull_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\d30p",
+  "metadata": {
+    "execution_purpose": "current_selected_production_source_finite_baseline",
+    "candidate_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+    "actual_selected_batch": 36,
+    "arm": "clean",
+    "epsilon": 4,
+    "max_total_native_outer_batches": 16,
+    "summary_filename": "smoke_summary.json",
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "cleanup_policy": "retain_all"
+  },
+  "anchors": []
+}

@@ -1,0 +1,8 @@
+{
+  "state": "PREPARATION_CONNECTION_FAILURE_NO_RUNSPEC_OR_LAUNCH",
+  "error": "git ls-remote TLS unexpected eof while reading",
+  "source_unchanged": true,
+  "normal_connection_retry_only": true,
+  "TLS_settings_changed": false,
+  "scientific_failure": false
+}

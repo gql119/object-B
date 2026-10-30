@@ -1,0 +1,68 @@
+{
+  "state": "passed",
+  "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "cleanup_policy": "retain_all",
+  "deleted_paths": [],
+  "baseline_equivalence_probe": {
+    "reference_loss": 453.893798828125,
+    "reference_parts": {
+      "box_loss": 3.2714967727661133,
+      "cls_loss": 5.059849739074707,
+      "dfl_loss": 4.2768144607543945
+    },
+    "initial_parameter_sha256": "0ff81f5755379765bfb1c7080b73178b88da200c1cdd2fd9f551cadd2e3b9eb6",
+    "weights_sha256": "38a49e8c5503e73f9b38e06084eb3ba4c581a0c9af658dc20c06a90caa59c976",
+    "weights_path": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_baseline_20261030_gpu01/result/random_initial_state.pt",
+    "reference_state_sha256": "659a9372f534972ba194ca40aec527f09aa29f036b370654c06168d72e66689b",
+    "input_sha256": "200e2cda32af571d80c8536d354038c9d9b51811bfa9f53f83dc29924896f8ca",
+    "GT_sha256": {
+      "batch_idx": "c96bee9ea4562ef0143688dddac74117bb95592764ed9e4cf1b481a0e7f81d4b",
+      "cls": "1f6b7c43e00ca223ab2eae856e7787f9810555776807068417ca64d93d9d3980",
+      "bboxes": "d37071928d8cadcd996addb41147f2028a8a1ed5f8b15d65d5ecaa514e2b28ff"
+    },
+    "reference_actual_device": "cuda:0",
+    "reference_model_class": "ultralytics.nn.tasks.DetectionModel",
+    "native_channels_last": true,
+    "all_state_tensor_strides_match": true,
+    "actual_outer_autocast_enabled": true,
+    "comparison_complete": true,
+    "state": "passed",
+    "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+    "protocol_sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+    "reference_id": "pinned unmodified ultralytics.nn.tasks.DetectionModel directly instantiated",
+    "candidate_route": "actual worker.run -> ATTrainer.preprocess_batch PGD10 -> native training loop model(batch)",
+    "metric_name": "full GT box+cls+DFL native training loss on the same actual PGD10 adversarial batch",
+    "reference_metric": 453.893798828125,
+    "candidate_metric": 453.893798828125,
+    "absolute_difference": 0.0,
+    "tolerance": 0,
+    "reference_weights_path": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_baseline_20261030_gpu01/result/random_initial_state.pt",
+    "candidate_weights_path": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_baseline_20261030_gpu01/result/random_initial_state.pt",
+    "evaluation_setting": {
+      "dataset": "first 720 sorted accepted VOC train IDs; native seed0 shuffled first batch",
+      "parameters": {
+        "batch": 36,
+        "imgsz": 640,
+        "workers": 16,
+        "AMP": true,
+        "PGD10": true,
+        "epsilon_pixels": 4
+      },
+      "seed": 0,
+      "sample_count": 36,
+      "post_processing": "same native full GT loss; no detection metrics"
+    },
+    "actual_device": "cuda:0",
+    "parameter_updates_before_comparison": 0,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true
+  },
+  "actual_outer_batches": 7,
+  "actual_PGD_forwards": 70,
+  "actual_updates": 1,
+  "parameter_updates_before_comparison": 0,
+  "finite_loss": true,
+  "completed_UTC": "2026-10-30T10:29:48.602535+00:00"
+}

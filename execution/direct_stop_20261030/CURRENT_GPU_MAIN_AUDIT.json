@@ -1,0 +1,31 @@
+{
+  "state": "PASS_CURRENT_GPU_MAIN_AUDIT",
+  "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+  "scientific_files_byte_exact": true,
+  "native_steps": 26,
+  "four_actual_SGD": {
+    "S4AT4_Clean_seed0": 1,
+    "S4AT4_Poison_seed0": 1,
+    "S4AT8_Clean_seed0": 1,
+    "S4AT8_Poison_seed0": 1
+  },
+  "initial_sha256": "0ff81f5755379765bfb1c7080b73178b88da200c1cdd2fd9f551cadd2e3b9eb6",
+  "baseline_diff": 0.0,
+  "baseline_tolerance": 0,
+  "phase_resume_exact": true,
+  "old_checkpoint_continuation": false,
+  "evidence": [
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_native_20261030_gpu01\\summary.json",
+      "sha256": "4a5efe63e5a10253ec1a3204c3feca06fc9110b6a9bcedfad3bc187c3dd3c6ab"
+    },
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_baseline_20261030_gpu01\\summary.json",
+      "sha256": "3d76d5486ffa1cd2b23e2c066a7221b363b20a792106445f2768483246607918"
+    },
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_phase_20261030_gpu01\\summary.json",
+      "sha256": "1478a92dd5132e3254dac65a1858bf4f1221bc136f12eaf278b3bd036e3a9f18"
+    }
+  ]
+}

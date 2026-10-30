@@ -1,0 +1,104 @@
+{
+  "raw_samples": [
+    {
+      "label": "b21",
+      "implementation": "02",
+      "batch": 36,
+      "images_per_second": 20.9655287205691,
+      "seconds_per_batch": 1.7171043229966678,
+      "peak_allocated_MiB": 8088.79248046875
+    },
+    {
+      "label": "b22",
+      "implementation": "02",
+      "batch": 36,
+      "images_per_second": 22.347332433977165,
+      "seconds_per_batch": 1.6109305263327605,
+      "peak_allocated_MiB": 8088.791015625
+    },
+    {
+      "label": "b31",
+      "implementation": "03",
+      "batch": 36,
+      "images_per_second": 22.879516414811476,
+      "seconds_per_batch": 1.573459829627113,
+      "peak_allocated_MiB": 8067.11279296875
+    },
+    {
+      "label": "b32",
+      "implementation": "03",
+      "batch": 36,
+      "images_per_second": 22.924793609793102,
+      "seconds_per_batch": 1.570352196524089,
+      "peak_allocated_MiB": 8088.791015625
+    },
+    {
+      "label": "bcoriginal_72_b36r1",
+      "implementation": "original",
+      "batch": 36,
+      "images_per_second": 22.561653665707663,
+      "seconds_per_batch": 1.5956277200867506,
+      "peak_allocated_MiB": 8100.45751953125
+    },
+    {
+      "label": "bcoriginal_72_b36r2",
+      "implementation": "original",
+      "batch": 36,
+      "images_per_second": 22.321142996627493,
+      "seconds_per_batch": 1.6128206340257416,
+      "peak_allocated_MiB": 8100.45751953125
+    },
+    {
+      "label": "bcoriginal_72_b72r1",
+      "implementation": "original",
+      "batch": 72,
+      "images_per_second": 22.8970089948493,
+      "seconds_per_batch": 3.144515513628721,
+      "peak_allocated_MiB": 16192.6708984375
+    },
+    {
+      "label": "bcoriginal_72_b72r2",
+      "implementation": "original",
+      "batch": 72,
+      "images_per_second": 23.09893398732411,
+      "seconds_per_batch": 3.1170269606169314,
+      "peak_allocated_MiB": 16192.6708984375
+    },
+    {
+      "label": "bo1v2",
+      "implementation": "original",
+      "batch": 36,
+      "images_per_second": 22.360142018862668,
+      "seconds_per_batch": 1.6100076631727545,
+      "peak_allocated_MiB": 8129.85791015625
+    },
+    {
+      "label": "bo2",
+      "implementation": "original",
+      "batch": 36,
+      "images_per_second": 22.25727490864939,
+      "seconds_per_batch": 1.6174486835317856,
+      "peak_allocated_MiB": 8088.78759765625
+    },
+    {
+      "label": "bo3",
+      "implementation": "original",
+      "batch": 36,
+      "images_per_second": 22.528286245933067,
+      "seconds_per_batch": 1.597991059195589,
+      "peak_allocated_MiB": 8100.45751953125
+    },
+    {
+      "label": "bo4",
+      "implementation": "original",
+      "batch": 36,
+      "images_per_second": 21.055187866899956,
+      "seconds_per_batch": 1.7097923907197334,
+      "peak_allocated_MiB": 8129.85791015625
+    }
+  ],
+  "validated_speedup_percent": null,
+  "selected": "OriginalBatch36 fallback",
+  "batch48": "NOT_RUN",
+  "batch64": "NOT_RUN"
+}

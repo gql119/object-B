@@ -1,0 +1,18 @@
+{
+  "state": "passed",
+  "retained_full_16551_4952_evidence": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_cuda_native_20261029_gpu03/result/GT_and_budget.json",
+  "retained_full_evidence_sha256": "a26066386002176abab08bb30e2f17f0a8d06473a82c9460c41034425103f5e1",
+  "retained_fixture_manifest_sha256": "ac31138cd158e5888317ff7cc7023c21565b8090b780f3ff6ef962e934c98ed6",
+  "actual_fixture_byte_checks": {
+    "clean": {
+      "count": 720,
+      "selected_identity_sha256": "25b43f2fcc4ee8d3355461ca174bba39b4dedc43d6a960046aca8c36536f1c4f"
+    },
+    "poison": {
+      "count": 720,
+      "selected_identity_sha256": "baf73606c9432ef3b66df26c32ec9366791424f0d67793fd66942edf787ef6ef"
+    }
+  },
+  "full_accepted_census_repeated": false,
+  "original_S4_and_labels_changed": false
+}

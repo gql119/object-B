@@ -1,0 +1,14 @@
+{
+  "state": "passed",
+  "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+  "UTC": "2026-10-30T10:44:18.624688+00:00",
+  "single_scientific_review_sha256": "732df111548637fca504ca3a5bab3fa4019a437244445e438ff25ee40a454ef0",
+  "GPU_main_audit_sha256": "62af216183a90d2334446579d6bb1120139c6ad6ace7aad4b44a2c73eceecf90",
+  "all_reported_blockers_closed": true,
+  "scientific_math_and_OriginalS4_source_unchanged": true,
+  "selected_implementation": "original",
+  "selected_batch": 36,
+  "reliable_speedup_claim": null,
+  "old_checkpoint_resume": false,
+  "fresh_epoch0_four_arms": true
+}

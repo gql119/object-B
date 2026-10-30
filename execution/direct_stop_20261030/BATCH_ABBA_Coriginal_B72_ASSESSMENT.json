@@ -1,0 +1,176 @@
+{
+  "state": "INCONCLUSIVE",
+  "reasons": [
+    "CLOCK_VARIATION_EXCEEDS_PRELOCKED_5PERCENT",
+    "INSUFFICIENT_ROI_SAMPLES",
+    "MISSING_HOST_CPU_CONTROL"
+  ],
+  "new_training_protocol": true,
+  "cross_batch_trajectory_equivalent": false,
+  "batches": [
+    36,
+    72,
+    72,
+    36
+  ],
+  "images_per_second": [
+    22.561653665707663,
+    22.8970089948493,
+    23.09893398732411,
+    22.321142996627493
+  ],
+  "gain": null,
+  "lower95_gain": null,
+  "scientific_ready": false,
+  "formal_ready": false,
+  "inputs": [
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\probes\\bcoriginal_72_b36r1\\summary.json",
+      "sha256": "9e16a0839b9eba33c116fe3bb25e072bbca13e72af392ce0ac2c7c17c3d795cd"
+    },
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\probes\\bcoriginal_72_b72r1\\summary.json",
+      "sha256": "50144446ec70969ef36012b0b9ad8973c270a12969b836f485fb86111b602829"
+    },
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\probes\\bcoriginal_72_b72r2\\summary.json",
+      "sha256": "e4c99dbbb08d9dc09d0d819a3e80bbb5a6305932b6948b9345aa2c570bc9b80e"
+    },
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\probes\\bcoriginal_72_b36r2\\summary.json",
+      "sha256": "4b87e7015d31c754996b61c81a325eb1e97ca028190aa4b7b4ae8f09bba9c18f"
+    }
+  ],
+  "protocols": [
+    {
+      "native_batch": 36,
+      "native_batches_per_epoch": 20,
+      "native_warmup_batches": 60,
+      "native_post_warmup_accumulate": 2,
+      "nominal_weight_decay": 0.0005,
+      "actual_weight_decay": [
+        0.0005625000000000001
+      ],
+      "actual_SGD": 50,
+      "actual_AMP_skips": 7,
+      "cuda_peak_allocated_MiB": 8100.45751953125,
+      "epoch_checkpoint_costs": [
+        {
+          "epoch": 1,
+          "post_training_checkpoint_callback_seconds": 0.29411381715908647,
+          "native_checkpoint_sha256": "477da298b8b1df34d5d8eb14babc8b71d8372c5ad054233e557bd2ab6355d416"
+        },
+        {
+          "epoch": 2,
+          "post_training_checkpoint_callback_seconds": 0.443339082878083,
+          "native_checkpoint_sha256": "0f23dd9972266db5777c7812643f4ebf8885f9c010bbd6e1d10c5cce9cd9efc7"
+        },
+        {
+          "epoch": 3,
+          "post_training_checkpoint_callback_seconds": 0.22531402204185724,
+          "native_checkpoint_sha256": "f90a8cba9c7aab053547578f779727bf7ea5f0cc71214736980c826409cd6352"
+        }
+      ]
+    },
+    {
+      "native_batch": 72,
+      "native_batches_per_epoch": 10,
+      "native_warmup_batches": 30,
+      "native_post_warmup_accumulate": 1,
+      "nominal_weight_decay": 0.0005,
+      "actual_weight_decay": [
+        0.0005625000000000001
+      ],
+      "actual_SGD": 39,
+      "actual_AMP_skips": 7,
+      "cuda_peak_allocated_MiB": 16192.6708984375,
+      "epoch_checkpoint_costs": [
+        {
+          "epoch": 1,
+          "post_training_checkpoint_callback_seconds": 0.726510239765048,
+          "native_checkpoint_sha256": "5e470e5ea0cf2b3acc4138cb1e2c1457bf36d6c9ee1d6634732c4abcd10b876e"
+        },
+        {
+          "epoch": 2,
+          "post_training_checkpoint_callback_seconds": 0.2294545196928084,
+          "native_checkpoint_sha256": "3dba836b5baa49853598cadc74d266c5632515d068ba446d8c4fb906af96a553"
+        },
+        {
+          "epoch": 3,
+          "post_training_checkpoint_callback_seconds": 0.22605268890038133,
+          "native_checkpoint_sha256": "82998942c841a0965b6a57ea3f36b098897d97e399ae228d4603d6ebd36622de"
+        },
+        {
+          "epoch": 4,
+          "post_training_checkpoint_callback_seconds": 0.228035650216043,
+          "native_checkpoint_sha256": "035cd2357380f87546d7d941b8286081316a9607c6610338882922d030a0c4ed"
+        }
+      ]
+    },
+    {
+      "native_batch": 72,
+      "native_batches_per_epoch": 10,
+      "native_warmup_batches": 30,
+      "native_post_warmup_accumulate": 1,
+      "nominal_weight_decay": 0.0005,
+      "actual_weight_decay": [
+        0.0005625000000000001
+      ],
+      "actual_SGD": 39,
+      "actual_AMP_skips": 7,
+      "cuda_peak_allocated_MiB": 16192.6708984375,
+      "epoch_checkpoint_costs": [
+        {
+          "epoch": 1,
+          "post_training_checkpoint_callback_seconds": 0.39790645195171237,
+          "native_checkpoint_sha256": "2e3eb94b9653b0e1bf82128d35a03032c83578ea46ba9c832375fb6d505a27c8"
+        },
+        {
+          "epoch": 2,
+          "post_training_checkpoint_callback_seconds": 0.3856834601610899,
+          "native_checkpoint_sha256": "1b45ce3bb0feaee139ad58d38d30aeab40a4d9076aa0c1eff3889f05648ba680"
+        },
+        {
+          "epoch": 3,
+          "post_training_checkpoint_callback_seconds": 0.43153943587094545,
+          "native_checkpoint_sha256": "b00fbddbb54c9f577416b6b164dd16cc2754ddfc555cdfe6e6418b9b17587b66"
+        },
+        {
+          "epoch": 4,
+          "post_training_checkpoint_callback_seconds": 0.22770816693082452,
+          "native_checkpoint_sha256": "7c4be3ffb63b34de87114ebcf6fb5a0ce8330ebb1977235549065c848d4e3323"
+        }
+      ]
+    },
+    {
+      "native_batch": 36,
+      "native_batches_per_epoch": 20,
+      "native_warmup_batches": 60,
+      "native_post_warmup_accumulate": 2,
+      "nominal_weight_decay": 0.0005,
+      "actual_weight_decay": [
+        0.0005625000000000001
+      ],
+      "actual_SGD": 50,
+      "actual_AMP_skips": 7,
+      "cuda_peak_allocated_MiB": 8100.45751953125,
+      "epoch_checkpoint_costs": [
+        {
+          "epoch": 1,
+          "post_training_checkpoint_callback_seconds": 0.6095629092305899,
+          "native_checkpoint_sha256": "b66b0bcf64a016bc008df3acdc8f8b5803b6fd87bd1aa226b591c0cc264b3101"
+        },
+        {
+          "epoch": 2,
+          "post_training_checkpoint_callback_seconds": 0.23322405479848385,
+          "native_checkpoint_sha256": "0e25ec2d78338f5b7fed248ae8274faabc68fead0806abb4594aa75b3f4fcf12"
+        },
+        {
+          "epoch": 3,
+          "post_training_checkpoint_callback_seconds": 0.22988251317292452,
+          "native_checkpoint_sha256": "882e626998a51ba91ecdc5004244c1169f7a520292c20a0153eafd7d91e0566d"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "admitted": true,
+  "blockers": [],
+  "UTC": "2026-10-30T10:44:42.774614+00:00",
+  "COCO_completed": true,
+  "COCO_controller_alive": false,
+  "own_GPU_pids": [],
+  "RAM_available_GiB": 116.47935485839844,
+  "disk_free_GiB": 876.095890045166,
+  "GPU_free_MiB": 45166,
+  "IOwait_percent": [
+    0.0,
+    0.0,
+    0.0
+  ]
+}

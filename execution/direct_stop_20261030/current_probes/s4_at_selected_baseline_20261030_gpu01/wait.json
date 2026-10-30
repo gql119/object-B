@@ -1,0 +1,44 @@
+{
+  "binding": {
+    "branch": "codex/s4-at-robustness-20261027",
+    "bundle_sha256": "86c02a5a2ef15eff9636869d7788cf22b41a43213c3d41b6d55779d3fe138f67",
+    "commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+    "control_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/control/s4_at_selected_baseline_20261030_gpu01",
+    "created_at": "2026-10-30T10:29:07.473798+00:00",
+    "executor_cmdline_sha256": "6771d10057f5d99decd38e23adaef82a13231b4aba88a620dd0b98e9a4da6afe",
+    "executor_pid": 3648143,
+    "executor_process_group_id": 3648143,
+    "executor_start_ticks": 398082235,
+    "executor_started_at": "2026-10-30T10:29:07.582931+00:00",
+    "output_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_baseline_20261030_gpu01",
+    "project": "original-s4-at-scientific-blocker-closure",
+    "repo_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/releases/s4_at_selected_baseline_20261030_gpu01",
+    "run_id": "s4_at_selected_baseline_20261030_gpu01",
+    "run_spec_sha256": "4f336e2349f814b0b74266907a6845f85605f638987f320a6181d6db7f972008",
+    "schema_version": "rrctl.binding.v1",
+    "session": "s4_at_selected_baseline_20261030_gpu01",
+    "source_content_sha256": "15024a10cb397d147f9c9749a2a8ae39b60027ec8088508cc2521be3138670a6",
+    "stage_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/stage/s4_at_selected_baseline_20261030_gpu01",
+    "transport_bundle_sha256": "86c02a5a2ef15eff9636869d7788cf22b41a43213c3d41b6d55779d3fe138f67",
+    "worker_sha256": "696cb314eb11784a9099728b117eac69cd2e01315d7732154d1ddeab609eff6a",
+    "workload_argv_sha256": "04137195adc60cf03dcdba869a6b2ef5811d69def251072af4b767ff1d8ba952",
+    "workload_pid": 3648151,
+    "workload_process_group_id": 3648143,
+    "workload_started_at": "2026-10-30T10:29:07.596363+00:00"
+  },
+  "control_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/control/s4_at_selected_baseline_20261030_gpu01",
+  "run_id": "s4_at_selected_baseline_20261030_gpu01",
+  "status": {
+    "detail": {
+      "artifact_count": 3,
+      "exit_code": 0
+    },
+    "reason": "external_completion_and_artifact_contract_passed",
+    "run_id": "s4_at_selected_baseline_20261030_gpu01",
+    "schema_version": "rrctl.status.v1",
+    "sequence": 7,
+    "state": "completed",
+    "updated_at": "2026-10-30T10:29:52.580287+00:00"
+  },
+  "status_recovered": false
+}

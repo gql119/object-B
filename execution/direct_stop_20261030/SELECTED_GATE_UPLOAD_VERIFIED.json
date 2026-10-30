@@ -1,0 +1,27 @@
+{
+  "state": "passed",
+  "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+  "UTC": "2026-10-30T10:44:23.714623+00:00",
+  "files": [
+    {
+      "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/preflight_20261030_fresh_v1/CPU_native.json",
+      "sha256": "768377a04a452b885cfdba6cf499e54f6223276e5db65ff9e14359ab2c397c3d",
+      "bytes": 16578
+    },
+    {
+      "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/preflight_20261030_fresh_v1/scientific_main_closure.json",
+      "sha256": "3e9113a458cf702fc92a0a67eac031c05efc194919640a63c13d6414a1dd8546",
+      "bytes": 612
+    },
+    {
+      "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/preflight_20261030_fresh_v1/independent_scientific_review.json",
+      "sha256": "732df111548637fca504ca3a5bab3fa4019a437244445e438ff25ee40a454ef0",
+      "bytes": 11688
+    },
+    {
+      "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/preflight_20261030_fresh_v1/accepted.json",
+      "sha256": "b5b78bd31c687d0d9aba7488cf58f9400bbbca74ab946933136140d8930211db",
+      "bytes": 2498
+    }
+  ]
+}

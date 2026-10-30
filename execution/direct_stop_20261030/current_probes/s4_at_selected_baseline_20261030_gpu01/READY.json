@@ -1,0 +1,11 @@
+{
+  "ready": true,
+  "errors": [],
+  "warnings": [],
+  "run_spec_sha256": "4f336e2349f814b0b74266907a6845f85605f638987f320a6181d6db7f972008",
+  "source_content_sha256": "15024a10cb397d147f9c9749a2a8ae39b60027ec8088508cc2521be3138670a6",
+  "profile": "school-s1",
+  "remote_preflight": {
+    "stdout": "Python 3.11.16\n/usr/bin/tmux"
+  }
+}

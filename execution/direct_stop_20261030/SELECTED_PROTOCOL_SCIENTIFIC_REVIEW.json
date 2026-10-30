@@ -1,0 +1,87 @@
+{
+  "review_mode": "scientific_review",
+  "reviewer": "/root/at_fresh_fallback_scientific_review_20261030",
+  "independent_mode": "Separate read-only Codex/GPT agent; inherited model configuration; no implementation edits, models loaded, new GPU work, external thread contact or additional reviewer.",
+  "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+  "diff_base_commit": "51ce790b7de30ea032c7c4bf7c85a8f530f3fcfb",
+  "packet_sha256": "cb630f7ea0854708e8d8572f35f28afb7f9101f204ec36285798358d8ebc296c",
+  "packet_hash_representation": "SHA256 of raw packet file bytes, independently calculated twice. prerun_ready.py hashes canonical JSON instead; its f8dbd15fa44ea250b8088dceac80ef494955ee50c9084d662724d958208626b1 is a different representation, not source drift.",
+  "result": "scientifically_correct",
+  "decision": "allow_run",
+  "blockers": [],
+  "validation_gaps": [],
+  "reason": "The authorized fresh OriginalBatch36 fallback implements four independent epoch0 seed0 YOLOv8n AT4/AT8 arms using unchanged accepted scientific computation, full transformed GT, strict full-image PGD10, native AMP/SGD/EMA, clean validation and same-budget paired attribution. Current-source CUDA production evidence, measured independent native-loss equivalence and post-warmup checkpoint-phase evidence support the reviewed computation. No currently evaluable scientific blocker remains. This verdict permits the exact reviewed scientific run through its actual gates and makes no speedup, efficacy or completed-experiment claim.",
+  "approved_basis": [
+    "docs/S4_AT_ROBUSTNESS_20261027/USER_AT_TASK_20261027.md",
+    "docs/S4_AT_ROBUSTNESS_20261027/USER_DIRECT_TERMINATION_AND_RESTART_20261030.md"
+  ],
+  "exact_official_command": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B execution/direct_stop_20261030/fresh_serial_queue.py --out /project/guoqinglong/projects/s4_at_robustness_20261027/outputs/s4_at_serial_seed0_20261030_fresh_v1/result --run-id s4_at_serial_seed0_20261030_fresh_v1 --source-commit 87456fa7a57206551b0e3be0253cc4866f0cdcf1 --preflight /project/guoqinglong/projects/s4_at_robustness_20261027/preflight_20261030_fresh_v1/accepted.json",
+  "dimensions": {
+    "intent_alignment": "correct",
+    "canonical_code_location": "correct",
+    "critical_data_flow": "correct",
+    "computation_sink_effect": "correct",
+    "runtime_scientific_state": "correct",
+    "baseline_disabled_path": "correct",
+    "experiment_identity": "correct"
+  },
+  "evidence": [
+    {
+      "area": "Committed computation and fresh experiment identity",
+      "finding": "HEAD equals the candidate. git diff --exit-code between base and candidate over robustness_s4_at, ue_framework and the model YAML exits zero. Working scientific sources and fresh_serial_queue.py have no tracked diff. All 19 actual current package/protocol file hashes independently match the current CUDA source closure. The serial scientific command emits worker --formal --device 0 for each fixed arm with no fixture or resume argument, isolated fresh output, current source and preflight. Each worker instantiates ATTrainer -> S4VictimTrainer -> native DetectionTrainer; random YAML/pretrained=false, seed0, epochs200, batch36, workers16, imgsz640, original augmentation/SGD/cosine and close_mosaic100 remain frozen. No Candidate02/03, batch proposal, ST fine-tuning or old checkpoint is consumed.",
+      "paths": ["execution/direct_stop_20261030/CURRENT_RUNTIME_CPU_REUSE.json", "execution/direct_stop_20261030/fresh_serial_queue.py", "robustness_s4_at/common.py", "robustness_s4_at/configs/PROTOCOL.json", "robustness_s4_at/worker.py", "robustness_s4_at/trainer.py", "ue_framework/s4_victim.py"]
+    },
+    {
+      "area": "Static OriginalS4 and full GT flow",
+      "finding": "Formal data_view checks retained materialization/integrity/noise identities, disjoint16551/4952 split stems and all train label byte identities, links the selected clean or unchanged static protected train and clean validation into a separate view, and does not regenerate S4. Current smoke hashes accepted720-image fixtures per arm and binds the retained full label/split audit. Independently read retained GT evidence contains16551 label records, train16551/val4952 and decoded samples with8/4/0 or unchanged no-person pixels; raw SHA equals a26066386002176abab08bb30e2f17f0a8d06473a82c9460c41034425103f5e1. All transformed batch_idx/cls/bboxes enter the native20-class loss; input and GT checks reject malformed data, compare GT hashes and count every submitted GT at TAL. Native unmatched GT are reported, not silently filtered or incorrectly claimed all matched.",
+      "paths": ["robustness_s4_at/data.py", "robustness_s4_at/pgd.py", "execution/d30p/s4_at_selected_native_20261030_gpu01/result/GT_and_budget.json", "execution/p/s4_at_cuda_native_20261029_gpu03/result/GT_and_budget.json", "docs/S4_AT_ROBUSTNESS_20261027/CPU_INDEPENDENT_AUDIT.json"]
+    },
+    {
+      "area": "PGD and native outer training sink",
+      "finding": "The actual native augmentation/LetterBox/FP32 normalization precedes PGD. Budget4/step1 and budget8/step2 in pixel/255 units reach a dedicated seed0 uniform generator, ten detached input-gradient ascent steps on complete native weighted box+cls+DFL loss, inward-rounded strict L-inf endpoints and[0,1] clipping over the full actual input. The PGD context disables parameter differentiation and BN running-stat updates, restores flags, checks buffers/gradient objects and forks global RNG; it never calls optimizer, scheduler or EMA. Outer forward runs after restoration using inherited native autocast/GradScaler/accumulation/clippedSGD/EMA. Current CUDA smoke reaches all four real batch36/640/workers16 arms: outer batches7,7,6,6, tenPGD forwards each, one actualSGD per arm, legalAMP skips6,6,5,5, finite losses and no validator forwards. Final L-inf is exactly4/255 or8/255. All four initial parameter hashes equal0ff81f5755379765bfb1c7080b73178b88da200c1cdd2fd9f551cadd2e3b9eb6.",
+      "paths": ["robustness_s4_at/pgd.py", "robustness_s4_at/trainer.py", "ue_framework/s4_amp_observer.py", "execution/direct_stop_20261030/current_probes/s4_at_selected_native_20261030_gpu01/summary.json"]
+    },
+    {
+      "area": "Measured baseline equivalence",
+      "finding": "Read the actual current baseline production invocation and numerical summary. Reference is a separately and directly instantiated pinned ultralytics.nn.tasks.DetectionModel, not another ATTrainer candidate. It loads the same frozen random initial state, full GT, actual first PGD10 batch, memory strides, module flags and outer AMP setting before any parameter update. Both native full detection losses are453.893798828125, all three loss parts match, absolute difference0 at tolerance0. This settles the bounded native outer-loss reuse claim numerically. The two diagnostic batch labels follow frozen batch36; they do not alter computation or tolerance.",
+      "paths": ["execution/direct_stop_20261030/current_probes/s4_at_selected_baseline_20261030_gpu01/runspec.json#workload.argv", "execution/direct_stop_20261030/current_probes/s4_at_selected_baseline_20261030_gpu01/summary.json", "execution/direct_stop_20261030/BASELINE_METADATA_BINDING_CPU.json"]
+    },
+    {
+      "area": "Checkpoint phase",
+      "finding": "The pinned native-loop AST adapter changes only initialization/persistence of optimizer-attempt phase. Fresh last_opt_step remains-1; same-run restore consumes saved phase and accumulation, requires the exact run/source/protocol/data identity and a completed-epoch cleared safe boundary. Current-source CUDA production-reaching fixed-input proof crosses post-warmup accumulation2 after3epochs/19batches: stored last_opt_step56, next two uninterrupted and resumed phases[56,58], first batch no attempt, second batch one actualSGD. Model/optimizer/scaler/scheduler/EMA/gradients/PGD-RNG fingerprints match exactly at tolerance0;61 total outer batches fit the64 budget. This closes the historical phase defect while explicitly retaining the workers16 prefetch limitation.",
+      "paths": ["robustness_s4_at/checkpoint.py", "robustness_s4_at/native_loop.py", "robustness_s4_at/trainer.py", "robustness_s4_at/validate_resume_phase.py", "execution/direct_stop_20261030/current_probes/s4_at_selected_phase_20261030_gpu01/summary.json"]
+    },
+    {
+      "area": "Clean evaluation, metrics and pairing",
+      "finding": "After actual200rows and native last checkpoint epoch199, worker.evaluate uses a separate plain validator on clean4952 VOC IDs, all20classes, imgsz640, conf.001/iou.7/max_det300, half=false/augment=false and no PGD. It verifies4952unique expected IDs and unchanged checkpoint hash; last@200 is primary, best secondary. Native20x10 AP extraction uses columns0/5 forAP50/AP75 and per-row ten-IoU mean forAP50:95. NT is the19 classes excluding14. Pair scores use same-budget CleanAT denominator with explicit null invalid denominators, signed unclippedP/U/S, percentage-point changes and WCD/TCD3. Aggregation requires accepted200epoch arms and matching source/protocol/attack/model/initialization; ST exact fractions remain independent references, never Teacher orST denominators for pairedAT scores.",
+      "paths": ["robustness_s4_at/worker.py#evaluate", "robustness_s4_at/metrics.py", "robustness_s4_at/report.py", "robustness_s4_at/trainer.py#final_eval"]
+    }
+  ],
+  "preserved_negative_findings": [
+    {
+      "id": "AT-SCI-001",
+      "original_result": "scientifically_incorrect",
+      "original_decision": "do_not_run",
+      "original_problem": "Cleared-gradient completed-epoch resume reset the loop-local optimizer-attempt phase; at accumulation2 it could update after one new mini-batch instead of two.",
+      "original_evidence": "execution/AT_SCIENTIFIC_REVIEW_20261029.json",
+      "prior_main_closure": "execution/AT_SCIENTIFIC_MAIN_CLOSURE_20261029.json",
+      "current_disposition": "Closed by retained accepted code and fresh current-source fixed-input CUDA production phase proof; original negative verdict is not overwritten or reclassified.",
+      "current_evidence": "execution/direct_stop_20261030/current_probes/s4_at_selected_phase_20261030_gpu01/summary.json"
+    }
+  ],
+  "limitations": [
+    "The baseline equivalence number is one pre-update full-GT native-loss cell, not AT versusST metric or trajectory equivalence.",
+    "workers16 prefetch bitwise trajectory equivalence remains unverified and is not claimed. Resume is restricted to identity-bound safe completed-epoch boundaries.",
+    "No new full all-image pixel/byte census was run by this reviewer or current smoke. Current720-image-per-arm byte binding, retained full label/split/acceptance evidence and sampled decoded8/4/0 budgets are distinguished.",
+    "No official AP or200epoch result exists in the smoke. Formal clean-validation execution and final efficacy remain future measurements, not missing prerequisites for starting this reviewed run.",
+    "RRCTL, transport, tmux, process ownership, locks, monitoring and schedulers were excluded from this scientific verdict; no second control review was performed."
+  ],
+  "review_activity": {
+    "new_tests_run": 0,
+    "new_models_loaded": 0,
+    "new_GPU_work": 0,
+    "implementation_files_modified": 0,
+    "scientific_reviews_performed_for_this_packet": 1,
+    "read_only_verifications": ["Candidate HEAD and committed scientific diff", "Current working scientific file hashes against all19 current-source closure entries", "Raw packet SHA256", "Retained fullGT evidence SHA256", "Actual production reference invocation and current numerical summaries", "Canonical-json checker hash representation"]
+  }
+}

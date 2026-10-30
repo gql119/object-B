@@ -1,0 +1,1230 @@
+{
+  "state": "passed",
+  "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+  "started_UTC": "2026-10-30T10:23:07.153357+00:00",
+  "native_batch": 36,
+  "production_entrypoint": "robustness_s4_at.worker.run -> ATTrainer -> native loop",
+  "official_metrics_disabled": true,
+  "artifact_ingest_disabled": true,
+  "cleanup_policy": "retain_all",
+  "deleted_paths": [],
+  "current_run": "S4AT8_Poison_seed0",
+  "completed_bounded_arms": [
+    "S4AT4_Clean_seed0",
+    "S4AT4_Poison_seed0",
+    "S4AT8_Clean_seed0",
+    "S4AT8_Poison_seed0"
+  ],
+  "completed_UTC": "2026-10-30T10:26:19.335211+00:00",
+  "arms": {
+    "S4AT4_Clean_seed0": {
+      "state": "PASSED_BOUNDED_NATIVE_TRAINING",
+      "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+      "protocol_sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+      "identity": {
+        "run_id": "S4AT4_Clean_seed0",
+        "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+        "protocol_sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+        "data_audit_sha256": "686440af0146c4d39d3f4405aa4aa04ec238cd4f7f29b65439f72dadb5cc3910",
+        "arm": "clean",
+        "attack": {
+          "epsilon_pixels": 4,
+          "step_pixels": 1,
+          "steps": 10,
+          "random_start": true
+        },
+        "model_yaml_sha256": "ce7ae30a91e838a1d53fd4773afc3b56454591701e3f83d37f404cc946af10a2",
+        "source_closure": {
+          "commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+          "files": {
+            "robustness_s4_at/__init__.py": "d48fffa595ea34504406773a1c946703cbf08ec190465cc79ac4fca3e502b912",
+            "robustness_s4_at/audit_reuse.py": "3e99e2c4e76c4c8b03202d8765a0a7c79e0c791ba29999160a527c4c6954b5b6",
+            "robustness_s4_at/bootstrap.py": "185a4eb5ebce54fa6b5e3719d31983a2edb65529d79828453fcce2ad8b4c04c0",
+            "robustness_s4_at/checkpoint.py": "b91bcc0b4caf25eacab87b01ceb0d760455f5f5b28952af7f6694818de6a34a2",
+            "robustness_s4_at/common.py": "1e67e74df5754ade934e5152d47a5fc41f4441bba08ffad595c01466ebbb2b63",
+            "robustness_s4_at/data.py": "30074a90a2951204b7c4c90521e5b1880cd14f676a540a8993bf94e352d9a2c6",
+            "robustness_s4_at/fetch_cpu_fixtures.py": "ea39671caa5f94b755f0b25d2f2886c38400e35eb9fdf2ecde959c0b61d4aafe",
+            "robustness_s4_at/metrics.py": "ba5f338727f69ddf473be9a6758e7df3084ac332c9d866b311da4bf454a36150",
+            "robustness_s4_at/native_loop.py": "977a44befe3d2a4ac7c19c3436f667f9759a1c4ec40ff8641b69d91ddb1d46ef",
+            "robustness_s4_at/pgd.py": "63bfa27086953566efb771e8bddf4aba5cc7363b8198dd3d73a28ba93df08578",
+            "robustness_s4_at/prepare.py": "86408c127ba45934643e2dfaa0a01c30b80c1f2fe81f652441766018e5562788",
+            "robustness_s4_at/queue.py": "c718e81653b75cd8a0fdd0ad04975ab280844681f2d526c1e1125fb3f0034950",
+            "robustness_s4_at/report.py": "0f64debcb677e83cf75b11da52bae43224b488a0897739c12336a1cf694e7608",
+            "robustness_s4_at/trainer.py": "0eb14e4e82f62aef2a7e8a779fa0b6fd8c32f0ce5ff86ad06a06e859eb7b7127",
+            "robustness_s4_at/validate_cpu.py": "f69259a186fa8716c0943ca2c9b7d266526e17cf00a86faa0a0cf512f02f2514",
+            "robustness_s4_at/validate_cuda.py": "30e96a4ee5c126575a233b9bfa59c2cd445848611497fb3b577c942cd312ca9e",
+            "robustness_s4_at/validate_resume_phase.py": "57f4afb59dce5e7fef9af1fbebef7905c3103a4bf1d4117e1bc735c3a7816f3c",
+            "robustness_s4_at/worker.py": "7326b45628165b9adef5a48da62ac470da8ec9e4ed38d878ed60703ec65d5d3b",
+            "robustness_s4_at/configs/PROTOCOL.json": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d"
+          },
+          "uncommitted_files": []
+        }
+      },
+      "native_sources": {
+        "version": "8.4.150",
+        "sources": {
+          "data/augment.py": "3631af29958e17bc442cbaa49a6bd32b660615b1bb1171a4e8e8692bace1f428",
+          "data/dataset.py": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e",
+          "data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+          "engine/trainer.py": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+          "cfg/default.yaml": "27d6c46184efc16d404f8b3bd1e12069f3ba10379adbbc415ffc10cc41088d7a",
+          "models/yolo/detect/train.py": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f",
+          "utils/instance.py": "609e24de399439afe3eeb453334d1e700afa53047c07701e3f25c3e97bdd2b98",
+          "nn/tasks.py": "c3896877977a1dca2ffaa1f4ad755ebd57342cae0ec80c78fa45edaa67f5823e",
+          "utils/loss.py": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d",
+          "utils/tal.py": "9468fb73df7805a4d297302aa221e0d7a6e46e224d0a0768e5abf3f4d2cf2861",
+          "utils/metrics.py": "a2125a0e9269fbb2e186e0a972d35465a9a81049b0cd6b568448abb784587869",
+          "utils/torch_utils.py": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5"
+        },
+        "differing_from_reference": []
+      },
+      "source_closure": {
+        "commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+        "files": {
+          "robustness_s4_at/__init__.py": "d48fffa595ea34504406773a1c946703cbf08ec190465cc79ac4fca3e502b912",
+          "robustness_s4_at/audit_reuse.py": "3e99e2c4e76c4c8b03202d8765a0a7c79e0c791ba29999160a527c4c6954b5b6",
+          "robustness_s4_at/bootstrap.py": "185a4eb5ebce54fa6b5e3719d31983a2edb65529d79828453fcce2ad8b4c04c0",
+          "robustness_s4_at/checkpoint.py": "b91bcc0b4caf25eacab87b01ceb0d760455f5f5b28952af7f6694818de6a34a2",
+          "robustness_s4_at/common.py": "1e67e74df5754ade934e5152d47a5fc41f4441bba08ffad595c01466ebbb2b63",
+          "robustness_s4_at/data.py": "30074a90a2951204b7c4c90521e5b1880cd14f676a540a8993bf94e352d9a2c6",
+          "robustness_s4_at/fetch_cpu_fixtures.py": "ea39671caa5f94b755f0b25d2f2886c38400e35eb9fdf2ecde959c0b61d4aafe",
+          "robustness_s4_at/metrics.py": "ba5f338727f69ddf473be9a6758e7df3084ac332c9d866b311da4bf454a36150",
+          "robustness_s4_at/native_loop.py": "977a44befe3d2a4ac7c19c3436f667f9759a1c4ec40ff8641b69d91ddb1d46ef",
+          "robustness_s4_at/pgd.py": "63bfa27086953566efb771e8bddf4aba5cc7363b8198dd3d73a28ba93df08578",
+          "robustness_s4_at/prepare.py": "86408c127ba45934643e2dfaa0a01c30b80c1f2fe81f652441766018e5562788",
+          "robustness_s4_at/queue.py": "c718e81653b75cd8a0fdd0ad04975ab280844681f2d526c1e1125fb3f0034950",
+          "robustness_s4_at/report.py": "0f64debcb677e83cf75b11da52bae43224b488a0897739c12336a1cf694e7608",
+          "robustness_s4_at/trainer.py": "0eb14e4e82f62aef2a7e8a779fa0b6fd8c32f0ce5ff86ad06a06e859eb7b7127",
+          "robustness_s4_at/validate_cpu.py": "f69259a186fa8716c0943ca2c9b7d266526e17cf00a86faa0a0cf512f02f2514",
+          "robustness_s4_at/validate_cuda.py": "30e96a4ee5c126575a233b9bfa59c2cd445848611497fb3b577c942cd312ca9e",
+          "robustness_s4_at/validate_resume_phase.py": "57f4afb59dce5e7fef9af1fbebef7905c3103a4bf1d4117e1bc735c3a7816f3c",
+          "robustness_s4_at/worker.py": "7326b45628165b9adef5a48da62ac470da8ec9e4ed38d878ed60703ec65d5d3b",
+          "robustness_s4_at/configs/PROTOCOL.json": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d"
+        },
+        "uncommitted_files": []
+      },
+      "initial_model_sha256": "0ff81f5755379765bfb1c7080b73178b88da200c1cdd2fd9f551cadd2e3b9eb6",
+      "actual_updates": 1,
+      "legal_AMP_skips": 6,
+      "outer_batches": 7,
+      "actual_PGD_forwards": 70,
+      "actual_outer_forwards": 7,
+      "latest_PGD": {
+        "pgd_steps": [
+          {
+            "step": 0,
+            "loss": 450.59161376953125,
+            "loss_parts": {
+              "box_loss": 3.340808629989624,
+              "cls_loss": 5.016842842102051,
+              "dfl_loss": 4.158782958984375
+            },
+            "input_grad_norm": 5.367173798731528e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 1,
+            "loss": 450.5917053222656,
+            "loss_parts": {
+              "box_loss": 3.3408093452453613,
+              "cls_loss": 5.016843318939209,
+              "dfl_loss": 4.158783435821533
+            },
+            "input_grad_norm": 5.368732445276692e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 2,
+            "loss": 450.5917053222656,
+            "loss_parts": {
+              "box_loss": 3.3408093452453613,
+              "cls_loss": 5.016843318939209,
+              "dfl_loss": 4.158783435821533
+            },
+            "input_grad_norm": 5.370080202737881e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 3,
+            "loss": 450.5916748046875,
+            "loss_parts": {
+              "box_loss": 3.340808629989624,
+              "cls_loss": 5.016842842102051,
+              "dfl_loss": 4.158783435821533
+            },
+            "input_grad_norm": 5.371289830691239e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 4,
+            "loss": 450.5916748046875,
+            "loss_parts": {
+              "box_loss": 3.340808868408203,
+              "cls_loss": 5.016843318939209,
+              "dfl_loss": 4.158783435821533
+            },
+            "input_grad_norm": 5.372327223085449e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 5,
+            "loss": 450.59161376953125,
+            "loss_parts": {
+              "box_loss": 3.340808629989624,
+              "cls_loss": 5.016842842102051,
+              "dfl_loss": 4.158782958984375
+            },
+            "input_grad_norm": 5.373260592023144e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 6,
+            "loss": 450.5916748046875,
+            "loss_parts": {
+              "box_loss": 3.340808868408203,
+              "cls_loss": 5.016843318939209,
+              "dfl_loss": 4.158783435821533
+            },
+            "input_grad_norm": 5.373902354222082e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 7,
+            "loss": 450.59173583984375,
+            "loss_parts": {
+              "box_loss": 3.3408091068267822,
+              "cls_loss": 5.016843795776367,
+              "dfl_loss": 4.158783912658691
+            },
+            "input_grad_norm": 5.374290026338713e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 8,
+            "loss": 450.59161376953125,
+            "loss_parts": {
+              "box_loss": 3.340808868408203,
+              "cls_loss": 5.016842842102051,
+              "dfl_loss": 4.158782958984375
+            },
+            "input_grad_norm": 5.37446283033205e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 9,
+            "loss": 450.5916748046875,
+            "loss_parts": {
+              "box_loss": 3.340808868408203,
+              "cls_loss": 5.016843318939209,
+              "dfl_loss": 4.158783435821533
+            },
+            "input_grad_norm": 5.374563443183433e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          }
+        ],
+        "actual_inner_forwards": 10,
+        "epsilon": 0.01568627450980392,
+        "alpha": 0.00392156862745098,
+        "linf": 0.01568627450980392,
+        "actual_raw_devices": [
+          [
+            "cuda:0",
+            0
+          ]
+        ],
+        "GT_sha256": {
+          "batch_idx": "4d337aca3721217fefcec787a9cf0bbc715bf5219098cab367c1dc23bd7fe033",
+          "cls": "433c8555ba58fe530621ae96774f910d1f15ff1b4b31242fce55f005328714be",
+          "bboxes": "e8065e4b23c6d2f8fc2694a2e72aa7cb9e5cc65c1198aee660779ece34a8d5d3"
+        },
+        "GT_count": 154,
+        "class_histogram": [
+          8,
+          2,
+          32,
+          12,
+          1,
+          0,
+          3,
+          3,
+          0,
+          1,
+          0,
+          6,
+          4,
+          4,
+          61,
+          5,
+          3,
+          2,
+          7,
+          0
+        ],
+        "BN_running_state_unchanged": true,
+        "parameter_grad_accumulation_unchanged": true,
+        "attack_scope": "whole actual augmented normalized training input",
+        "TAL_definition": "unmodified native assignment; unmatched GT are reported",
+        "prediction_head_classes": 20,
+        "call": 7,
+        "batch": 7,
+        "epoch": 1,
+        "UTC": "2026-10-30T10:23:48.572084+00:00",
+        "run_id": "S4AT4_Clean_seed0",
+        "normalized_after_native_augmentation": true,
+        "actual_input_shape": [
+          36,
+          3,
+          640,
+          640
+        ],
+        "actual_input_device": "cuda:0"
+      },
+      "finite_loss": true,
+      "device": "cuda:0",
+      "actual_input_batch": 36,
+      "CUDA_peak_allocated_MiB": 7983.40576171875,
+      "validation_forwards": 0,
+      "official_metrics_disabled": true,
+      "artifact_ingest_disabled": true,
+      "cleanup_policy": "retain_all",
+      "deleted_paths": []
+    },
+    "S4AT4_Poison_seed0": {
+      "state": "PASSED_BOUNDED_NATIVE_TRAINING",
+      "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+      "protocol_sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+      "identity": {
+        "run_id": "S4AT4_Poison_seed0",
+        "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+        "protocol_sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+        "data_audit_sha256": "686440af0146c4d39d3f4405aa4aa04ec238cd4f7f29b65439f72dadb5cc3910",
+        "arm": "poison",
+        "attack": {
+          "epsilon_pixels": 4,
+          "step_pixels": 1,
+          "steps": 10,
+          "random_start": true
+        },
+        "model_yaml_sha256": "ce7ae30a91e838a1d53fd4773afc3b56454591701e3f83d37f404cc946af10a2",
+        "source_closure": {
+          "commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+          "files": {
+            "robustness_s4_at/__init__.py": "d48fffa595ea34504406773a1c946703cbf08ec190465cc79ac4fca3e502b912",
+            "robustness_s4_at/audit_reuse.py": "3e99e2c4e76c4c8b03202d8765a0a7c79e0c791ba29999160a527c4c6954b5b6",
+            "robustness_s4_at/bootstrap.py": "185a4eb5ebce54fa6b5e3719d31983a2edb65529d79828453fcce2ad8b4c04c0",
+            "robustness_s4_at/checkpoint.py": "b91bcc0b4caf25eacab87b01ceb0d760455f5f5b28952af7f6694818de6a34a2",
+            "robustness_s4_at/common.py": "1e67e74df5754ade934e5152d47a5fc41f4441bba08ffad595c01466ebbb2b63",
+            "robustness_s4_at/data.py": "30074a90a2951204b7c4c90521e5b1880cd14f676a540a8993bf94e352d9a2c6",
+            "robustness_s4_at/fetch_cpu_fixtures.py": "ea39671caa5f94b755f0b25d2f2886c38400e35eb9fdf2ecde959c0b61d4aafe",
+            "robustness_s4_at/metrics.py": "ba5f338727f69ddf473be9a6758e7df3084ac332c9d866b311da4bf454a36150",
+            "robustness_s4_at/native_loop.py": "977a44befe3d2a4ac7c19c3436f667f9759a1c4ec40ff8641b69d91ddb1d46ef",
+            "robustness_s4_at/pgd.py": "63bfa27086953566efb771e8bddf4aba5cc7363b8198dd3d73a28ba93df08578",
+            "robustness_s4_at/prepare.py": "86408c127ba45934643e2dfaa0a01c30b80c1f2fe81f652441766018e5562788",
+            "robustness_s4_at/queue.py": "c718e81653b75cd8a0fdd0ad04975ab280844681f2d526c1e1125fb3f0034950",
+            "robustness_s4_at/report.py": "0f64debcb677e83cf75b11da52bae43224b488a0897739c12336a1cf694e7608",
+            "robustness_s4_at/trainer.py": "0eb14e4e82f62aef2a7e8a779fa0b6fd8c32f0ce5ff86ad06a06e859eb7b7127",
+            "robustness_s4_at/validate_cpu.py": "f69259a186fa8716c0943ca2c9b7d266526e17cf00a86faa0a0cf512f02f2514",
+            "robustness_s4_at/validate_cuda.py": "30e96a4ee5c126575a233b9bfa59c2cd445848611497fb3b577c942cd312ca9e",
+            "robustness_s4_at/validate_resume_phase.py": "57f4afb59dce5e7fef9af1fbebef7905c3103a4bf1d4117e1bc735c3a7816f3c",
+            "robustness_s4_at/worker.py": "7326b45628165b9adef5a48da62ac470da8ec9e4ed38d878ed60703ec65d5d3b",
+            "robustness_s4_at/configs/PROTOCOL.json": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d"
+          },
+          "uncommitted_files": []
+        }
+      },
+      "native_sources": {
+        "version": "8.4.150",
+        "sources": {
+          "data/augment.py": "3631af29958e17bc442cbaa49a6bd32b660615b1bb1171a4e8e8692bace1f428",
+          "data/dataset.py": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e",
+          "data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+          "engine/trainer.py": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+          "cfg/default.yaml": "27d6c46184efc16d404f8b3bd1e12069f3ba10379adbbc415ffc10cc41088d7a",
+          "models/yolo/detect/train.py": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f",
+          "utils/instance.py": "609e24de399439afe3eeb453334d1e700afa53047c07701e3f25c3e97bdd2b98",
+          "nn/tasks.py": "c3896877977a1dca2ffaa1f4ad755ebd57342cae0ec80c78fa45edaa67f5823e",
+          "utils/loss.py": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d",
+          "utils/tal.py": "9468fb73df7805a4d297302aa221e0d7a6e46e224d0a0768e5abf3f4d2cf2861",
+          "utils/metrics.py": "a2125a0e9269fbb2e186e0a972d35465a9a81049b0cd6b568448abb784587869",
+          "utils/torch_utils.py": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5"
+        },
+        "differing_from_reference": []
+      },
+      "source_closure": {
+        "commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+        "files": {
+          "robustness_s4_at/__init__.py": "d48fffa595ea34504406773a1c946703cbf08ec190465cc79ac4fca3e502b912",
+          "robustness_s4_at/audit_reuse.py": "3e99e2c4e76c4c8b03202d8765a0a7c79e0c791ba29999160a527c4c6954b5b6",
+          "robustness_s4_at/bootstrap.py": "185a4eb5ebce54fa6b5e3719d31983a2edb65529d79828453fcce2ad8b4c04c0",
+          "robustness_s4_at/checkpoint.py": "b91bcc0b4caf25eacab87b01ceb0d760455f5f5b28952af7f6694818de6a34a2",
+          "robustness_s4_at/common.py": "1e67e74df5754ade934e5152d47a5fc41f4441bba08ffad595c01466ebbb2b63",
+          "robustness_s4_at/data.py": "30074a90a2951204b7c4c90521e5b1880cd14f676a540a8993bf94e352d9a2c6",
+          "robustness_s4_at/fetch_cpu_fixtures.py": "ea39671caa5f94b755f0b25d2f2886c38400e35eb9fdf2ecde959c0b61d4aafe",
+          "robustness_s4_at/metrics.py": "ba5f338727f69ddf473be9a6758e7df3084ac332c9d866b311da4bf454a36150",
+          "robustness_s4_at/native_loop.py": "977a44befe3d2a4ac7c19c3436f667f9759a1c4ec40ff8641b69d91ddb1d46ef",
+          "robustness_s4_at/pgd.py": "63bfa27086953566efb771e8bddf4aba5cc7363b8198dd3d73a28ba93df08578",
+          "robustness_s4_at/prepare.py": "86408c127ba45934643e2dfaa0a01c30b80c1f2fe81f652441766018e5562788",
+          "robustness_s4_at/queue.py": "c718e81653b75cd8a0fdd0ad04975ab280844681f2d526c1e1125fb3f0034950",
+          "robustness_s4_at/report.py": "0f64debcb677e83cf75b11da52bae43224b488a0897739c12336a1cf694e7608",
+          "robustness_s4_at/trainer.py": "0eb14e4e82f62aef2a7e8a779fa0b6fd8c32f0ce5ff86ad06a06e859eb7b7127",
+          "robustness_s4_at/validate_cpu.py": "f69259a186fa8716c0943ca2c9b7d266526e17cf00a86faa0a0cf512f02f2514",
+          "robustness_s4_at/validate_cuda.py": "30e96a4ee5c126575a233b9bfa59c2cd445848611497fb3b577c942cd312ca9e",
+          "robustness_s4_at/validate_resume_phase.py": "57f4afb59dce5e7fef9af1fbebef7905c3103a4bf1d4117e1bc735c3a7816f3c",
+          "robustness_s4_at/worker.py": "7326b45628165b9adef5a48da62ac470da8ec9e4ed38d878ed60703ec65d5d3b",
+          "robustness_s4_at/configs/PROTOCOL.json": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d"
+        },
+        "uncommitted_files": []
+      },
+      "initial_model_sha256": "0ff81f5755379765bfb1c7080b73178b88da200c1cdd2fd9f551cadd2e3b9eb6",
+      "actual_updates": 1,
+      "legal_AMP_skips": 6,
+      "outer_batches": 7,
+      "actual_PGD_forwards": 70,
+      "actual_outer_forwards": 7,
+      "latest_PGD": {
+        "pgd_steps": [
+          {
+            "step": 0,
+            "loss": 450.591552734375,
+            "loss_parts": {
+              "box_loss": 3.3408093452453613,
+              "cls_loss": 5.016839504241943,
+              "dfl_loss": 4.158782958984375
+            },
+            "input_grad_norm": 5.368135020944464e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 1,
+            "loss": 450.59149169921875,
+            "loss_parts": {
+              "box_loss": 3.3408091068267822,
+              "cls_loss": 5.016839027404785,
+              "dfl_loss": 4.158782482147217
+            },
+            "input_grad_norm": 5.36958680186217e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 2,
+            "loss": 450.591552734375,
+            "loss_parts": {
+              "box_loss": 3.3408091068267822,
+              "cls_loss": 5.016839504241943,
+              "dfl_loss": 4.158782958984375
+            },
+            "input_grad_norm": 5.370967528506299e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 3,
+            "loss": 450.591552734375,
+            "loss_parts": {
+              "box_loss": 3.3408093452453613,
+              "cls_loss": 5.016839504241943,
+              "dfl_loss": 4.158783435821533
+            },
+            "input_grad_norm": 5.372208988774219e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 4,
+            "loss": 450.591552734375,
+            "loss_parts": {
+              "box_loss": 3.3408093452453613,
+              "cls_loss": 5.016839504241943,
+              "dfl_loss": 4.158782958984375
+            },
+            "input_grad_norm": 5.373288445298385e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 5,
+            "loss": 450.591552734375,
+            "loss_parts": {
+              "box_loss": 3.3408093452453613,
+              "cls_loss": 5.016839504241943,
+              "dfl_loss": 4.158782958984375
+            },
+            "input_grad_norm": 5.374191118789895e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 6,
+            "loss": 450.591552734375,
+            "loss_parts": {
+              "box_loss": 3.3408093452453613,
+              "cls_loss": 5.016839504241943,
+              "dfl_loss": 4.158782958984375
+            },
+            "input_grad_norm": 5.374780016609293e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 7,
+            "loss": 450.591552734375,
+            "loss_parts": {
+              "box_loss": 3.3408093452453613,
+              "cls_loss": 5.016839504241943,
+              "dfl_loss": 4.158782958984375
+            },
+            "input_grad_norm": 5.375198952606297e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 8,
+            "loss": 450.591552734375,
+            "loss_parts": {
+              "box_loss": 3.3408093452453613,
+              "cls_loss": 5.016839504241943,
+              "dfl_loss": 4.158782958984375
+            },
+            "input_grad_norm": 5.375450200517662e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          },
+          {
+            "step": 9,
+            "loss": 450.59149169921875,
+            "loss_parts": {
+              "box_loss": 3.3408093452453613,
+              "cls_loss": 5.016839504241943,
+              "dfl_loss": 4.158782482147217
+            },
+            "input_grad_norm": 5.375463274504e-07,
+            "submitted_GT": 154,
+            "matched_GT": 154,
+            "foreground_anchors": 1517
+          }
+        ],
+        "actual_inner_forwards": 10,
+        "epsilon": 0.01568627450980392,
+        "alpha": 0.00392156862745098,
+        "linf": 0.01568627450980392,
+        "actual_raw_devices": [
+          [
+            "cuda:0",
+            0
+          ]
+        ],
+        "GT_sha256": {
+          "batch_idx": "4d337aca3721217fefcec787a9cf0bbc715bf5219098cab367c1dc23bd7fe033",
+          "cls": "433c8555ba58fe530621ae96774f910d1f15ff1b4b31242fce55f005328714be",
+          "bboxes": "e8065e4b23c6d2f8fc2694a2e72aa7cb9e5cc65c1198aee660779ece34a8d5d3"
+        },
+        "GT_count": 154,
+        "class_histogram": [
+          8,
+          2,
+          32,
+          12,
+          1,
+          0,
+          3,
+          3,
+          0,
+          1,
+          0,
+          6,
+          4,
+          4,
+          61,
+          5,
+          3,
+          2,
+          7,
+          0
+        ],
+        "BN_running_state_unchanged": true,
+        "parameter_grad_accumulation_unchanged": true,
+        "attack_scope": "whole actual augmented normalized training input",
+        "TAL_definition": "unmodified native assignment; unmatched GT are reported",
+        "prediction_head_classes": 20,
+        "call": 7,
+        "batch": 7,
+        "epoch": 1,
+        "UTC": "2026-10-30T10:24:32.219262+00:00",
+        "run_id": "S4AT4_Poison_seed0",
+        "normalized_after_native_augmentation": true,
+        "actual_input_shape": [
+          36,
+          3,
+          640,
+          640
+        ],
+        "actual_input_device": "cuda:0"
+      },
+      "finite_loss": true,
+      "device": "cuda:0",
+      "actual_input_batch": 36,
+      "CUDA_peak_allocated_MiB": 7983.40576171875,
+      "validation_forwards": 0,
+      "official_metrics_disabled": true,
+      "artifact_ingest_disabled": true,
+      "cleanup_policy": "retain_all",
+      "deleted_paths": []
+    },
+    "S4AT8_Clean_seed0": {
+      "state": "PASSED_BOUNDED_NATIVE_TRAINING",
+      "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+      "protocol_sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+      "identity": {
+        "run_id": "S4AT8_Clean_seed0",
+        "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+        "protocol_sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+        "data_audit_sha256": "686440af0146c4d39d3f4405aa4aa04ec238cd4f7f29b65439f72dadb5cc3910",
+        "arm": "clean",
+        "attack": {
+          "epsilon_pixels": 8,
+          "step_pixels": 2,
+          "steps": 10,
+          "random_start": true
+        },
+        "model_yaml_sha256": "ce7ae30a91e838a1d53fd4773afc3b56454591701e3f83d37f404cc946af10a2",
+        "source_closure": {
+          "commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+          "files": {
+            "robustness_s4_at/__init__.py": "d48fffa595ea34504406773a1c946703cbf08ec190465cc79ac4fca3e502b912",
+            "robustness_s4_at/audit_reuse.py": "3e99e2c4e76c4c8b03202d8765a0a7c79e0c791ba29999160a527c4c6954b5b6",
+            "robustness_s4_at/bootstrap.py": "185a4eb5ebce54fa6b5e3719d31983a2edb65529d79828453fcce2ad8b4c04c0",
+            "robustness_s4_at/checkpoint.py": "b91bcc0b4caf25eacab87b01ceb0d760455f5f5b28952af7f6694818de6a34a2",
+            "robustness_s4_at/common.py": "1e67e74df5754ade934e5152d47a5fc41f4441bba08ffad595c01466ebbb2b63",
+            "robustness_s4_at/data.py": "30074a90a2951204b7c4c90521e5b1880cd14f676a540a8993bf94e352d9a2c6",
+            "robustness_s4_at/fetch_cpu_fixtures.py": "ea39671caa5f94b755f0b25d2f2886c38400e35eb9fdf2ecde959c0b61d4aafe",
+            "robustness_s4_at/metrics.py": "ba5f338727f69ddf473be9a6758e7df3084ac332c9d866b311da4bf454a36150",
+            "robustness_s4_at/native_loop.py": "977a44befe3d2a4ac7c19c3436f667f9759a1c4ec40ff8641b69d91ddb1d46ef",
+            "robustness_s4_at/pgd.py": "63bfa27086953566efb771e8bddf4aba5cc7363b8198dd3d73a28ba93df08578",
+            "robustness_s4_at/prepare.py": "86408c127ba45934643e2dfaa0a01c30b80c1f2fe81f652441766018e5562788",
+            "robustness_s4_at/queue.py": "c718e81653b75cd8a0fdd0ad04975ab280844681f2d526c1e1125fb3f0034950",
+            "robustness_s4_at/report.py": "0f64debcb677e83cf75b11da52bae43224b488a0897739c12336a1cf694e7608",
+            "robustness_s4_at/trainer.py": "0eb14e4e82f62aef2a7e8a779fa0b6fd8c32f0ce5ff86ad06a06e859eb7b7127",
+            "robustness_s4_at/validate_cpu.py": "f69259a186fa8716c0943ca2c9b7d266526e17cf00a86faa0a0cf512f02f2514",
+            "robustness_s4_at/validate_cuda.py": "30e96a4ee5c126575a233b9bfa59c2cd445848611497fb3b577c942cd312ca9e",
+            "robustness_s4_at/validate_resume_phase.py": "57f4afb59dce5e7fef9af1fbebef7905c3103a4bf1d4117e1bc735c3a7816f3c",
+            "robustness_s4_at/worker.py": "7326b45628165b9adef5a48da62ac470da8ec9e4ed38d878ed60703ec65d5d3b",
+            "robustness_s4_at/configs/PROTOCOL.json": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d"
+          },
+          "uncommitted_files": []
+        }
+      },
+      "native_sources": {
+        "version": "8.4.150",
+        "sources": {
+          "data/augment.py": "3631af29958e17bc442cbaa49a6bd32b660615b1bb1171a4e8e8692bace1f428",
+          "data/dataset.py": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e",
+          "data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+          "engine/trainer.py": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+          "cfg/default.yaml": "27d6c46184efc16d404f8b3bd1e12069f3ba10379adbbc415ffc10cc41088d7a",
+          "models/yolo/detect/train.py": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f",
+          "utils/instance.py": "609e24de399439afe3eeb453334d1e700afa53047c07701e3f25c3e97bdd2b98",
+          "nn/tasks.py": "c3896877977a1dca2ffaa1f4ad755ebd57342cae0ec80c78fa45edaa67f5823e",
+          "utils/loss.py": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d",
+          "utils/tal.py": "9468fb73df7805a4d297302aa221e0d7a6e46e224d0a0768e5abf3f4d2cf2861",
+          "utils/metrics.py": "a2125a0e9269fbb2e186e0a972d35465a9a81049b0cd6b568448abb784587869",
+          "utils/torch_utils.py": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5"
+        },
+        "differing_from_reference": []
+      },
+      "source_closure": {
+        "commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+        "files": {
+          "robustness_s4_at/__init__.py": "d48fffa595ea34504406773a1c946703cbf08ec190465cc79ac4fca3e502b912",
+          "robustness_s4_at/audit_reuse.py": "3e99e2c4e76c4c8b03202d8765a0a7c79e0c791ba29999160a527c4c6954b5b6",
+          "robustness_s4_at/bootstrap.py": "185a4eb5ebce54fa6b5e3719d31983a2edb65529d79828453fcce2ad8b4c04c0",
+          "robustness_s4_at/checkpoint.py": "b91bcc0b4caf25eacab87b01ceb0d760455f5f5b28952af7f6694818de6a34a2",
+          "robustness_s4_at/common.py": "1e67e74df5754ade934e5152d47a5fc41f4441bba08ffad595c01466ebbb2b63",
+          "robustness_s4_at/data.py": "30074a90a2951204b7c4c90521e5b1880cd14f676a540a8993bf94e352d9a2c6",
+          "robustness_s4_at/fetch_cpu_fixtures.py": "ea39671caa5f94b755f0b25d2f2886c38400e35eb9fdf2ecde959c0b61d4aafe",
+          "robustness_s4_at/metrics.py": "ba5f338727f69ddf473be9a6758e7df3084ac332c9d866b311da4bf454a36150",
+          "robustness_s4_at/native_loop.py": "977a44befe3d2a4ac7c19c3436f667f9759a1c4ec40ff8641b69d91ddb1d46ef",
+          "robustness_s4_at/pgd.py": "63bfa27086953566efb771e8bddf4aba5cc7363b8198dd3d73a28ba93df08578",
+          "robustness_s4_at/prepare.py": "86408c127ba45934643e2dfaa0a01c30b80c1f2fe81f652441766018e5562788",
+          "robustness_s4_at/queue.py": "c718e81653b75cd8a0fdd0ad04975ab280844681f2d526c1e1125fb3f0034950",
+          "robustness_s4_at/report.py": "0f64debcb677e83cf75b11da52bae43224b488a0897739c12336a1cf694e7608",
+          "robustness_s4_at/trainer.py": "0eb14e4e82f62aef2a7e8a779fa0b6fd8c32f0ce5ff86ad06a06e859eb7b7127",
+          "robustness_s4_at/validate_cpu.py": "f69259a186fa8716c0943ca2c9b7d266526e17cf00a86faa0a0cf512f02f2514",
+          "robustness_s4_at/validate_cuda.py": "30e96a4ee5c126575a233b9bfa59c2cd445848611497fb3b577c942cd312ca9e",
+          "robustness_s4_at/validate_resume_phase.py": "57f4afb59dce5e7fef9af1fbebef7905c3103a4bf1d4117e1bc735c3a7816f3c",
+          "robustness_s4_at/worker.py": "7326b45628165b9adef5a48da62ac470da8ec9e4ed38d878ed60703ec65d5d3b",
+          "robustness_s4_at/configs/PROTOCOL.json": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d"
+        },
+        "uncommitted_files": []
+      },
+      "initial_model_sha256": "0ff81f5755379765bfb1c7080b73178b88da200c1cdd2fd9f551cadd2e3b9eb6",
+      "actual_updates": 1,
+      "legal_AMP_skips": 5,
+      "outer_batches": 6,
+      "actual_PGD_forwards": 60,
+      "actual_outer_forwards": 6,
+      "latest_PGD": {
+        "pgd_steps": [
+          {
+            "step": 0,
+            "loss": 441.001953125,
+            "loss_parts": {
+              "box_loss": 3.158282518386841,
+              "cls_loss": 4.933014392852783,
+              "dfl_loss": 4.158757209777832
+            },
+            "input_grad_norm": 3.810879718457727e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 1,
+            "loss": 441.0019226074219,
+            "loss_parts": {
+              "box_loss": 3.1582822799682617,
+              "cls_loss": 4.933013916015625,
+              "dfl_loss": 4.158757209777832
+            },
+            "input_grad_norm": 3.8116010614430706e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 2,
+            "loss": 441.00189208984375,
+            "loss_parts": {
+              "box_loss": 3.1582820415496826,
+              "cls_loss": 4.933013916015625,
+              "dfl_loss": 4.158757209777832
+            },
+            "input_grad_norm": 3.8124056800370454e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 3,
+            "loss": 441.00189208984375,
+            "loss_parts": {
+              "box_loss": 3.1582820415496826,
+              "cls_loss": 4.933013916015625,
+              "dfl_loss": 4.158757209777832
+            },
+            "input_grad_norm": 3.8132844792926335e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 4,
+            "loss": 441.00189208984375,
+            "loss_parts": {
+              "box_loss": 3.1582818031311035,
+              "cls_loss": 4.933013439178467,
+              "dfl_loss": 4.158756732940674
+            },
+            "input_grad_norm": 3.8141490676935064e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 5,
+            "loss": 441.00189208984375,
+            "loss_parts": {
+              "box_loss": 3.1582822799682617,
+              "cls_loss": 4.933013916015625,
+              "dfl_loss": 4.158756732940674
+            },
+            "input_grad_norm": 3.8149053693814494e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 6,
+            "loss": 441.0019226074219,
+            "loss_parts": {
+              "box_loss": 3.1582822799682617,
+              "cls_loss": 4.933013916015625,
+              "dfl_loss": 4.158757209777832
+            },
+            "input_grad_norm": 3.8155084780555626e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 7,
+            "loss": 441.00189208984375,
+            "loss_parts": {
+              "box_loss": 3.1582822799682617,
+              "cls_loss": 4.933013439178467,
+              "dfl_loss": 4.158757209777832
+            },
+            "input_grad_norm": 3.815990226030408e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 8,
+            "loss": 441.0019226074219,
+            "loss_parts": {
+              "box_loss": 3.1582822799682617,
+              "cls_loss": 4.933013916015625,
+              "dfl_loss": 4.158757209777832
+            },
+            "input_grad_norm": 3.816256821664865e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 9,
+            "loss": 441.0019226074219,
+            "loss_parts": {
+              "box_loss": 3.1582822799682617,
+              "cls_loss": 4.933013916015625,
+              "dfl_loss": 4.158757209777832
+            },
+            "input_grad_norm": 3.816419109625713e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          }
+        ],
+        "actual_inner_forwards": 10,
+        "epsilon": 0.03137254901960784,
+        "alpha": 0.00784313725490196,
+        "linf": 0.03137254901960784,
+        "actual_raw_devices": [
+          [
+            "cuda:0",
+            0
+          ]
+        ],
+        "GT_sha256": {
+          "batch_idx": "d1c7d60699b8c3bd6046585331735bd189b1a801e84d49d633eb4ebdb9d1ba68",
+          "cls": "a359d0c244bbd8aea4e33de671ddb31757e11a2057cd627ea0d5eede4224c862",
+          "bboxes": "96d89b180db4e55f082234efd6cc760b137b1f9b735374f3d3d4bf61bd709e1e"
+        },
+        "GT_count": 126,
+        "class_histogram": [
+          7,
+          4,
+          4,
+          1,
+          2,
+          13,
+          6,
+          2,
+          12,
+          3,
+          2,
+          23,
+          0,
+          0,
+          30,
+          1,
+          0,
+          6,
+          5,
+          5
+        ],
+        "BN_running_state_unchanged": true,
+        "parameter_grad_accumulation_unchanged": true,
+        "attack_scope": "whole actual augmented normalized training input",
+        "TAL_definition": "unmodified native assignment; unmatched GT are reported",
+        "prediction_head_classes": 20,
+        "call": 6,
+        "batch": 6,
+        "epoch": 1,
+        "UTC": "2026-10-30T10:25:24.981835+00:00",
+        "run_id": "S4AT8_Clean_seed0",
+        "normalized_after_native_augmentation": true,
+        "actual_input_shape": [
+          36,
+          3,
+          640,
+          640
+        ],
+        "actual_input_device": "cuda:0"
+      },
+      "finite_loss": true,
+      "device": "cuda:0",
+      "actual_input_batch": 36,
+      "CUDA_peak_allocated_MiB": 7983.40576171875,
+      "validation_forwards": 0,
+      "official_metrics_disabled": true,
+      "artifact_ingest_disabled": true,
+      "cleanup_policy": "retain_all",
+      "deleted_paths": []
+    },
+    "S4AT8_Poison_seed0": {
+      "state": "PASSED_BOUNDED_NATIVE_TRAINING",
+      "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+      "protocol_sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+      "identity": {
+        "run_id": "S4AT8_Poison_seed0",
+        "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+        "protocol_sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+        "data_audit_sha256": "686440af0146c4d39d3f4405aa4aa04ec238cd4f7f29b65439f72dadb5cc3910",
+        "arm": "poison",
+        "attack": {
+          "epsilon_pixels": 8,
+          "step_pixels": 2,
+          "steps": 10,
+          "random_start": true
+        },
+        "model_yaml_sha256": "ce7ae30a91e838a1d53fd4773afc3b56454591701e3f83d37f404cc946af10a2",
+        "source_closure": {
+          "commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+          "files": {
+            "robustness_s4_at/__init__.py": "d48fffa595ea34504406773a1c946703cbf08ec190465cc79ac4fca3e502b912",
+            "robustness_s4_at/audit_reuse.py": "3e99e2c4e76c4c8b03202d8765a0a7c79e0c791ba29999160a527c4c6954b5b6",
+            "robustness_s4_at/bootstrap.py": "185a4eb5ebce54fa6b5e3719d31983a2edb65529d79828453fcce2ad8b4c04c0",
+            "robustness_s4_at/checkpoint.py": "b91bcc0b4caf25eacab87b01ceb0d760455f5f5b28952af7f6694818de6a34a2",
+            "robustness_s4_at/common.py": "1e67e74df5754ade934e5152d47a5fc41f4441bba08ffad595c01466ebbb2b63",
+            "robustness_s4_at/data.py": "30074a90a2951204b7c4c90521e5b1880cd14f676a540a8993bf94e352d9a2c6",
+            "robustness_s4_at/fetch_cpu_fixtures.py": "ea39671caa5f94b755f0b25d2f2886c38400e35eb9fdf2ecde959c0b61d4aafe",
+            "robustness_s4_at/metrics.py": "ba5f338727f69ddf473be9a6758e7df3084ac332c9d866b311da4bf454a36150",
+            "robustness_s4_at/native_loop.py": "977a44befe3d2a4ac7c19c3436f667f9759a1c4ec40ff8641b69d91ddb1d46ef",
+            "robustness_s4_at/pgd.py": "63bfa27086953566efb771e8bddf4aba5cc7363b8198dd3d73a28ba93df08578",
+            "robustness_s4_at/prepare.py": "86408c127ba45934643e2dfaa0a01c30b80c1f2fe81f652441766018e5562788",
+            "robustness_s4_at/queue.py": "c718e81653b75cd8a0fdd0ad04975ab280844681f2d526c1e1125fb3f0034950",
+            "robustness_s4_at/report.py": "0f64debcb677e83cf75b11da52bae43224b488a0897739c12336a1cf694e7608",
+            "robustness_s4_at/trainer.py": "0eb14e4e82f62aef2a7e8a779fa0b6fd8c32f0ce5ff86ad06a06e859eb7b7127",
+            "robustness_s4_at/validate_cpu.py": "f69259a186fa8716c0943ca2c9b7d266526e17cf00a86faa0a0cf512f02f2514",
+            "robustness_s4_at/validate_cuda.py": "30e96a4ee5c126575a233b9bfa59c2cd445848611497fb3b577c942cd312ca9e",
+            "robustness_s4_at/validate_resume_phase.py": "57f4afb59dce5e7fef9af1fbebef7905c3103a4bf1d4117e1bc735c3a7816f3c",
+            "robustness_s4_at/worker.py": "7326b45628165b9adef5a48da62ac470da8ec9e4ed38d878ed60703ec65d5d3b",
+            "robustness_s4_at/configs/PROTOCOL.json": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d"
+          },
+          "uncommitted_files": []
+        }
+      },
+      "native_sources": {
+        "version": "8.4.150",
+        "sources": {
+          "data/augment.py": "3631af29958e17bc442cbaa49a6bd32b660615b1bb1171a4e8e8692bace1f428",
+          "data/dataset.py": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e",
+          "data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+          "engine/trainer.py": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+          "cfg/default.yaml": "27d6c46184efc16d404f8b3bd1e12069f3ba10379adbbc415ffc10cc41088d7a",
+          "models/yolo/detect/train.py": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f",
+          "utils/instance.py": "609e24de399439afe3eeb453334d1e700afa53047c07701e3f25c3e97bdd2b98",
+          "nn/tasks.py": "c3896877977a1dca2ffaa1f4ad755ebd57342cae0ec80c78fa45edaa67f5823e",
+          "utils/loss.py": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d",
+          "utils/tal.py": "9468fb73df7805a4d297302aa221e0d7a6e46e224d0a0768e5abf3f4d2cf2861",
+          "utils/metrics.py": "a2125a0e9269fbb2e186e0a972d35465a9a81049b0cd6b568448abb784587869",
+          "utils/torch_utils.py": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5"
+        },
+        "differing_from_reference": []
+      },
+      "source_closure": {
+        "commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+        "files": {
+          "robustness_s4_at/__init__.py": "d48fffa595ea34504406773a1c946703cbf08ec190465cc79ac4fca3e502b912",
+          "robustness_s4_at/audit_reuse.py": "3e99e2c4e76c4c8b03202d8765a0a7c79e0c791ba29999160a527c4c6954b5b6",
+          "robustness_s4_at/bootstrap.py": "185a4eb5ebce54fa6b5e3719d31983a2edb65529d79828453fcce2ad8b4c04c0",
+          "robustness_s4_at/checkpoint.py": "b91bcc0b4caf25eacab87b01ceb0d760455f5f5b28952af7f6694818de6a34a2",
+          "robustness_s4_at/common.py": "1e67e74df5754ade934e5152d47a5fc41f4441bba08ffad595c01466ebbb2b63",
+          "robustness_s4_at/data.py": "30074a90a2951204b7c4c90521e5b1880cd14f676a540a8993bf94e352d9a2c6",
+          "robustness_s4_at/fetch_cpu_fixtures.py": "ea39671caa5f94b755f0b25d2f2886c38400e35eb9fdf2ecde959c0b61d4aafe",
+          "robustness_s4_at/metrics.py": "ba5f338727f69ddf473be9a6758e7df3084ac332c9d866b311da4bf454a36150",
+          "robustness_s4_at/native_loop.py": "977a44befe3d2a4ac7c19c3436f667f9759a1c4ec40ff8641b69d91ddb1d46ef",
+          "robustness_s4_at/pgd.py": "63bfa27086953566efb771e8bddf4aba5cc7363b8198dd3d73a28ba93df08578",
+          "robustness_s4_at/prepare.py": "86408c127ba45934643e2dfaa0a01c30b80c1f2fe81f652441766018e5562788",
+          "robustness_s4_at/queue.py": "c718e81653b75cd8a0fdd0ad04975ab280844681f2d526c1e1125fb3f0034950",
+          "robustness_s4_at/report.py": "0f64debcb677e83cf75b11da52bae43224b488a0897739c12336a1cf694e7608",
+          "robustness_s4_at/trainer.py": "0eb14e4e82f62aef2a7e8a779fa0b6fd8c32f0ce5ff86ad06a06e859eb7b7127",
+          "robustness_s4_at/validate_cpu.py": "f69259a186fa8716c0943ca2c9b7d266526e17cf00a86faa0a0cf512f02f2514",
+          "robustness_s4_at/validate_cuda.py": "30e96a4ee5c126575a233b9bfa59c2cd445848611497fb3b577c942cd312ca9e",
+          "robustness_s4_at/validate_resume_phase.py": "57f4afb59dce5e7fef9af1fbebef7905c3103a4bf1d4117e1bc735c3a7816f3c",
+          "robustness_s4_at/worker.py": "7326b45628165b9adef5a48da62ac470da8ec9e4ed38d878ed60703ec65d5d3b",
+          "robustness_s4_at/configs/PROTOCOL.json": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d"
+        },
+        "uncommitted_files": []
+      },
+      "initial_model_sha256": "0ff81f5755379765bfb1c7080b73178b88da200c1cdd2fd9f551cadd2e3b9eb6",
+      "actual_updates": 1,
+      "legal_AMP_skips": 5,
+      "outer_batches": 6,
+      "actual_PGD_forwards": 60,
+      "actual_outer_forwards": 6,
+      "latest_PGD": {
+        "pgd_steps": [
+          {
+            "step": 0,
+            "loss": 441.002197265625,
+            "loss_parts": {
+              "box_loss": 3.1582844257354736,
+              "cls_loss": 4.933016777038574,
+              "dfl_loss": 4.158759593963623
+            },
+            "input_grad_norm": 3.810773989698646e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 1,
+            "loss": 441.00213623046875,
+            "loss_parts": {
+              "box_loss": 3.1582839488983154,
+              "cls_loss": 4.933016777038574,
+              "dfl_loss": 4.158759117126465
+            },
+            "input_grad_norm": 3.8114933431643294e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 2,
+            "loss": 441.002197265625,
+            "loss_parts": {
+              "box_loss": 3.1582844257354736,
+              "cls_loss": 4.933016777038574,
+              "dfl_loss": 4.158759593963623
+            },
+            "input_grad_norm": 3.812316435869434e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 3,
+            "loss": 441.002197265625,
+            "loss_parts": {
+              "box_loss": 3.1582841873168945,
+              "cls_loss": 4.933016777038574,
+              "dfl_loss": 4.158759593963623
+            },
+            "input_grad_norm": 3.813210014413926e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 4,
+            "loss": 441.002197265625,
+            "loss_parts": {
+              "box_loss": 3.1582841873168945,
+              "cls_loss": 4.933016777038574,
+              "dfl_loss": 4.158759593963623
+            },
+            "input_grad_norm": 3.8140780134199304e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 5,
+            "loss": 441.002197265625,
+            "loss_parts": {
+              "box_loss": 3.1582841873168945,
+              "cls_loss": 4.933016777038574,
+              "dfl_loss": 4.158760070800781
+            },
+            "input_grad_norm": 3.814791114109539e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 6,
+            "loss": 441.002197265625,
+            "loss_parts": {
+              "box_loss": 3.1582841873168945,
+              "cls_loss": 4.933016777038574,
+              "dfl_loss": 4.158759117126465
+            },
+            "input_grad_norm": 3.815476361523906e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 7,
+            "loss": 441.002197265625,
+            "loss_parts": {
+              "box_loss": 3.1582841873168945,
+              "cls_loss": 4.933016777038574,
+              "dfl_loss": 4.158759593963623
+            },
+            "input_grad_norm": 3.8159188875397376e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 8,
+            "loss": 441.002197265625,
+            "loss_parts": {
+              "box_loss": 3.1582839488983154,
+              "cls_loss": 4.933016777038574,
+              "dfl_loss": 4.158759593963623
+            },
+            "input_grad_norm": 3.8161786619639315e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          },
+          {
+            "step": 9,
+            "loss": 441.002197265625,
+            "loss_parts": {
+              "box_loss": 3.1582846641540527,
+              "cls_loss": 4.933016777038574,
+              "dfl_loss": 4.158759593963623
+            },
+            "input_grad_norm": 3.816380171883793e-07,
+            "submitted_GT": 126,
+            "matched_GT": 126,
+            "foreground_anchors": 1252
+          }
+        ],
+        "actual_inner_forwards": 10,
+        "epsilon": 0.03137254901960784,
+        "alpha": 0.00784313725490196,
+        "linf": 0.03137254901960784,
+        "actual_raw_devices": [
+          [
+            "cuda:0",
+            0
+          ]
+        ],
+        "GT_sha256": {
+          "batch_idx": "d1c7d60699b8c3bd6046585331735bd189b1a801e84d49d633eb4ebdb9d1ba68",
+          "cls": "a359d0c244bbd8aea4e33de671ddb31757e11a2057cd627ea0d5eede4224c862",
+          "bboxes": "96d89b180db4e55f082234efd6cc760b137b1f9b735374f3d3d4bf61bd709e1e"
+        },
+        "GT_count": 126,
+        "class_histogram": [
+          7,
+          4,
+          4,
+          1,
+          2,
+          13,
+          6,
+          2,
+          12,
+          3,
+          2,
+          23,
+          0,
+          0,
+          30,
+          1,
+          0,
+          6,
+          5,
+          5
+        ],
+        "BN_running_state_unchanged": true,
+        "parameter_grad_accumulation_unchanged": true,
+        "attack_scope": "whole actual augmented normalized training input",
+        "TAL_definition": "unmodified native assignment; unmatched GT are reported",
+        "prediction_head_classes": 20,
+        "call": 6,
+        "batch": 6,
+        "epoch": 1,
+        "UTC": "2026-10-30T10:26:17.427184+00:00",
+        "run_id": "S4AT8_Poison_seed0",
+        "normalized_after_native_augmentation": true,
+        "actual_input_shape": [
+          36,
+          3,
+          640,
+          640
+        ],
+        "actual_input_device": "cuda:0"
+      },
+      "finite_loss": true,
+      "device": "cuda:0",
+      "actual_input_batch": 36,
+      "CUDA_peak_allocated_MiB": 7983.40576171875,
+      "validation_forwards": 0,
+      "official_metrics_disabled": true,
+      "artifact_ingest_disabled": true,
+      "cleanup_policy": "retain_all",
+      "deleted_paths": []
+    }
+  },
+  "initial_model_sha256": "0ff81f5755379765bfb1c7080b73178b88da200c1cdd2fd9f551cadd2e3b9eb6",
+  "actual_outer_batches": 26,
+  "step_budget": 64,
+  "actual_device": "cuda:0",
+  "finite_loss": true,
+  "source_closure": {
+    "commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+    "files": {
+      "robustness_s4_at/__init__.py": "d48fffa595ea34504406773a1c946703cbf08ec190465cc79ac4fca3e502b912",
+      "robustness_s4_at/audit_reuse.py": "3e99e2c4e76c4c8b03202d8765a0a7c79e0c791ba29999160a527c4c6954b5b6",
+      "robustness_s4_at/bootstrap.py": "185a4eb5ebce54fa6b5e3719d31983a2edb65529d79828453fcce2ad8b4c04c0",
+      "robustness_s4_at/checkpoint.py": "b91bcc0b4caf25eacab87b01ceb0d760455f5f5b28952af7f6694818de6a34a2",
+      "robustness_s4_at/common.py": "1e67e74df5754ade934e5152d47a5fc41f4441bba08ffad595c01466ebbb2b63",
+      "robustness_s4_at/data.py": "30074a90a2951204b7c4c90521e5b1880cd14f676a540a8993bf94e352d9a2c6",
+      "robustness_s4_at/fetch_cpu_fixtures.py": "ea39671caa5f94b755f0b25d2f2886c38400e35eb9fdf2ecde959c0b61d4aafe",
+      "robustness_s4_at/metrics.py": "ba5f338727f69ddf473be9a6758e7df3084ac332c9d866b311da4bf454a36150",
+      "robustness_s4_at/native_loop.py": "977a44befe3d2a4ac7c19c3436f667f9759a1c4ec40ff8641b69d91ddb1d46ef",
+      "robustness_s4_at/pgd.py": "63bfa27086953566efb771e8bddf4aba5cc7363b8198dd3d73a28ba93df08578",
+      "robustness_s4_at/prepare.py": "86408c127ba45934643e2dfaa0a01c30b80c1f2fe81f652441766018e5562788",
+      "robustness_s4_at/queue.py": "c718e81653b75cd8a0fdd0ad04975ab280844681f2d526c1e1125fb3f0034950",
+      "robustness_s4_at/report.py": "0f64debcb677e83cf75b11da52bae43224b488a0897739c12336a1cf694e7608",
+      "robustness_s4_at/trainer.py": "0eb14e4e82f62aef2a7e8a779fa0b6fd8c32f0ce5ff86ad06a06e859eb7b7127",
+      "robustness_s4_at/validate_cpu.py": "f69259a186fa8716c0943ca2c9b7d266526e17cf00a86faa0a0cf512f02f2514",
+      "robustness_s4_at/validate_cuda.py": "30e96a4ee5c126575a233b9bfa59c2cd445848611497fb3b577c942cd312ca9e",
+      "robustness_s4_at/validate_resume_phase.py": "57f4afb59dce5e7fef9af1fbebef7905c3103a4bf1d4117e1bc735c3a7816f3c",
+      "robustness_s4_at/worker.py": "7326b45628165b9adef5a48da62ac470da8ec9e4ed38d878ed60703ec65d5d3b",
+      "robustness_s4_at/configs/PROTOCOL.json": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d"
+    },
+    "uncommitted_files": []
+  },
+  "production_entrypoint_reached": true,
+  "formal_queue_launched": false,
+  "full_GT_and_static_budget_passed": true,
+  "resume_evidence_is_separate": true,
+  "checkpoint_cleanup_completed": false,
+  "checkpoint_paths_remaining": [
+    "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_native_20261030_gpu01/result/arms/S4AT4_Clean_seed0/retained_bounded_state.pt",
+    "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_native_20261030_gpu01/result/arms/S4AT4_Poison_seed0/retained_bounded_state.pt",
+    "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_native_20261030_gpu01/result/arms/S4AT8_Clean_seed0/retained_bounded_state.pt",
+    "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_native_20261030_gpu01/result/arms/S4AT8_Poison_seed0/retained_bounded_state.pt"
+  ]
+}

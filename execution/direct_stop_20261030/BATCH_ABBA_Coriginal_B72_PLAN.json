@@ -1,0 +1,28 @@
+{
+  "UTC": "2026-10-30T06:15:13.382576+00:00",
+  "source": "dbdc05f938d1e553fbd62af32b2fa36f908c68d0",
+  "implementation": "original",
+  "batch": 72,
+  "order": [
+    [
+      36,
+      1
+    ],
+    [
+      72,
+      1
+    ],
+    [
+      72,
+      2
+    ],
+    [
+      36,
+      2
+    ]
+  ],
+  "formal": false,
+  "old_AT": "ABORTED",
+  "deadline_UTC": "2026-10-30T07:25:17.243900+00:00",
+  "new_protocol_not_trajectory_equivalence": true
+}

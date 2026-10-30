@@ -1,0 +1,58 @@
+{
+  "schema": "s4.at.engineering-abba-assessment.v1",
+  "state": "INCONCLUSIVE",
+  "reasons": [
+    "CLOCK_VARIATION_EXCEEDS_PRELOCKED_5PERCENT",
+    "UNCONTROLLED_HOST_CPU_LOAD",
+    "UNCONTROLLED_POWER_CAP_FRACTION",
+    "UNCONTROLLED_THERMAL_THROTTLE_FRACTION"
+  ],
+  "simulation_only": false,
+  "inputs": [
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\probes\\bo3\\summary.json",
+      "sha256": "c1b52fe1ccfe1657fce6025b410a9b5aed38a23e47d7e06f2d1ec83177e177e1"
+    },
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\probes\\b31\\summary.json",
+      "sha256": "d5c1e2f06c1878f5b50ce36a09032d0ca73600d79661c5a08167897536a5a572"
+    },
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\probes\\b32\\summary.json",
+      "sha256": "69adebd792d91610dfcee9de19c437546f3d8c3b5873fa90e48d7a905a4e0a9b"
+    },
+    {
+      "path": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\probes\\bo4\\summary.json",
+      "sha256": "a1ccbb5975c659a778eaea690e1661e6817c5c3e9b3b693d6b9422e01486fa97"
+    }
+  ],
+  "prelocked_thermal_range_C": 2.0,
+  "prelocked_relative_clock_range": 0.05,
+  "prelocked_host_CPU_range_percent": 10.0,
+  "minimum_ROI_samples": 3,
+  "prelocked_throttle_fraction_range": 0.25,
+  "observed_throttle_fractions": [
+    [
+      0.9,
+      0.1
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      0.7,
+      0.3
+    ]
+  ],
+  "Old_New_GPU_gain": null,
+  "lower95_GPU_gain": null,
+  "net_total_time_saving": null,
+  "restart_allowed": false,
+  "scientific_review_complete": false,
+  "production_control_retirement_proved": false
+}

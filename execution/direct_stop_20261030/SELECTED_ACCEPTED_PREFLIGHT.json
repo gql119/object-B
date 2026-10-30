@@ -1,0 +1,49 @@
+{
+  "state": "PREFLIGHT_ACCEPTED",
+  "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+  "protocol_sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+  "UTC": "2026-10-30T10:44:19.455202+00:00",
+  "CPU_native": {
+    "passed": true,
+    "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/preflight_20261030_fresh_v1/CPU_native.json",
+    "sha256": "768377a04a452b885cfdba6cf499e54f6223276e5db65ff9e14359ab2c397c3d"
+  },
+  "CUDA_native": {
+    "passed": true,
+    "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_native_20261030_gpu01/result/smoke_summary.json",
+    "sha256": "4a5efe63e5a10253ec1a3204c3feca06fc9110b6a9bcedfad3bc187c3dd3c6ab"
+  },
+  "GT_and_budget": {
+    "passed": true,
+    "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_native_20261030_gpu01/result/GT_and_budget.json",
+    "sha256": "ab9b6801c64753d1bedcbc632d193c419512effaf68fb9145ec1e65edf359ecb"
+  },
+  "resume": {
+    "passed": true,
+    "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_phase_20261030_gpu01/result/candidate_resume_summary.json",
+    "sha256": "1478a92dd5132e3254dac65a1858bf4f1221bc136f12eaf278b3bd036e3a9f18"
+  },
+  "phase_resume": {
+    "passed": true,
+    "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_phase_20261030_gpu01/result/candidate_resume_summary.json",
+    "sha256": "1478a92dd5132e3254dac65a1858bf4f1221bc136f12eaf278b3bd036e3a9f18"
+  },
+  "baseline": {
+    "passed": true,
+    "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_baseline_20261030_gpu01/result/smoke_summary.json",
+    "sha256": "3d76d5486ffa1cd2b23e2c066a7221b363b20a792106445f2768483246607918"
+  },
+  "scientific_main_closure": {
+    "passed": true,
+    "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/preflight_20261030_fresh_v1/scientific_main_closure.json",
+    "sha256": "3e9113a458cf702fc92a0a67eac031c05efc194919640a63c13d6414a1dd8546"
+  },
+  "CUDA_actual_device": "cuda:0",
+  "original_S4_source_unchanged": true,
+  "selected_implementation": "original",
+  "selected_batch": 36,
+  "latest_authorization_sha256": "e46fc5aa728c294a4ce803a8ba23cacf5e80191173b411579bb3325d39581db8",
+  "old_original_terminal": "aborted",
+  "old_checkpoint_resume": false,
+  "fresh_all_four_epoch0": true
+}

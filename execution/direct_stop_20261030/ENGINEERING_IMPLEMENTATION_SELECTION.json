@@ -1,0 +1,32 @@
+{
+  "state": "KEEP_ORIGINAL_FOR_BATCH_TESTS_NO_RELIABLE_ENGINEERING_GAIN",
+  "UTC": "2026-10-30T06:17:16.883952+00:00",
+  "selected_implementation": "original",
+  "candidate_scientific_components_only": true,
+  "adoption_requires_reliable_actual_evidence": true,
+  "candidate_assessments": {
+    "02": {
+      "state": "INCONCLUSIVE",
+      "reasons": [
+        "CLOCK_VARIATION_EXCEEDS_PRELOCKED_5PERCENT",
+        "UNCONTROLLED_HOST_CPU_LOAD",
+        "UNCONTROLLED_POWER_CAP_FRACTION",
+        "UNCONTROLLED_THERMAL_THROTTLE_FRACTION"
+      ],
+      "Old_New_GPU_gain": null,
+      "lower95_GPU_gain": null
+    },
+    "03": {
+      "state": "INCONCLUSIVE",
+      "reasons": [
+        "CLOCK_VARIATION_EXCEEDS_PRELOCKED_5PERCENT",
+        "UNCONTROLLED_HOST_CPU_LOAD",
+        "UNCONTROLLED_POWER_CAP_FRACTION",
+        "UNCONTROLLED_THERMAL_THROTTLE_FRACTION"
+      ],
+      "Old_New_GPU_gain": null,
+      "lower95_GPU_gain": null
+    }
+  },
+  "formal_started": false
+}

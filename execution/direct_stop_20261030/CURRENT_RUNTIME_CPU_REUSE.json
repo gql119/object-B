@@ -1,0 +1,479 @@
+{
+  "state": "PASS_COMMITTED_SOURCE_AND_CPU_REUSE_NOT_GPU",
+  "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+  "prior_accepted_source": "51ce790b7de30ea032c7c4bf7c85a8f530f3fcfb",
+  "scientific_files": [
+    {
+      "path": "robustness_s4_at/__init__.py",
+      "sha256": "d48fffa595ea34504406773a1c946703cbf08ec190465cc79ac4fca3e502b912",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/audit_reuse.py",
+      "sha256": "3e99e2c4e76c4c8b03202d8765a0a7c79e0c791ba29999160a527c4c6954b5b6",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/bootstrap.py",
+      "sha256": "185a4eb5ebce54fa6b5e3719d31983a2edb65529d79828453fcce2ad8b4c04c0",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/checkpoint.py",
+      "sha256": "b91bcc0b4caf25eacab87b01ceb0d760455f5f5b28952af7f6694818de6a34a2",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/common.py",
+      "sha256": "1e67e74df5754ade934e5152d47a5fc41f4441bba08ffad595c01466ebbb2b63",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/data.py",
+      "sha256": "30074a90a2951204b7c4c90521e5b1880cd14f676a540a8993bf94e352d9a2c6",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/fetch_cpu_fixtures.py",
+      "sha256": "ea39671caa5f94b755f0b25d2f2886c38400e35eb9fdf2ecde959c0b61d4aafe",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/metrics.py",
+      "sha256": "ba5f338727f69ddf473be9a6758e7df3084ac332c9d866b311da4bf454a36150",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/native_loop.py",
+      "sha256": "977a44befe3d2a4ac7c19c3436f667f9759a1c4ec40ff8641b69d91ddb1d46ef",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/pgd.py",
+      "sha256": "63bfa27086953566efb771e8bddf4aba5cc7363b8198dd3d73a28ba93df08578",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/prepare.py",
+      "sha256": "86408c127ba45934643e2dfaa0a01c30b80c1f2fe81f652441766018e5562788",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/queue.py",
+      "sha256": "c718e81653b75cd8a0fdd0ad04975ab280844681f2d526c1e1125fb3f0034950",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/report.py",
+      "sha256": "0f64debcb677e83cf75b11da52bae43224b488a0897739c12336a1cf694e7608",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/trainer.py",
+      "sha256": "0eb14e4e82f62aef2a7e8a779fa0b6fd8c32f0ce5ff86ad06a06e859eb7b7127",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/validate_cpu.py",
+      "sha256": "f69259a186fa8716c0943ca2c9b7d266526e17cf00a86faa0a0cf512f02f2514",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/validate_cuda.py",
+      "sha256": "30e96a4ee5c126575a233b9bfa59c2cd445848611497fb3b577c942cd312ca9e",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/validate_resume_phase.py",
+      "sha256": "57f4afb59dce5e7fef9af1fbebef7905c3103a4bf1d4117e1bc735c3a7816f3c",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/worker.py",
+      "sha256": "7326b45628165b9adef5a48da62ac470da8ec9e4ed38d878ed60703ec65d5d3b",
+      "byte_exact_original_accepted_runtime": true
+    },
+    {
+      "path": "robustness_s4_at/configs/PROTOCOL.json",
+      "sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+      "byte_exact_original_accepted_runtime": true
+    }
+  ],
+  "intentionally_changed_scientific_files": [],
+  "OriginalS4_sources": [
+    {
+      "path": "configs/voc_yolov8n_20cls.yaml",
+      "sha256": "ce7ae30a91e838a1d53fd4773afc3b56454591701e3f83d37f404cc946af10a2"
+    },
+    {
+      "path": "ue_framework/__init__.py",
+      "sha256": "9e4f749459a68091dec7693f946c26ba9aa4733b4645d2f5fa3c5a098fd5fc68"
+    },
+    {
+      "path": "ue_framework/config.py",
+      "sha256": "f11f37287afece94a71864b3ade15889760aed054baa75b0d31b5e332e4e6970"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_t.yaml",
+      "sha256": "511507187a0dfe00c6e80385b98948be50c6dec940278203f4d48fa7add07946"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to.yaml",
+      "sha256": "eea41939e9fc04d24575bbfb8fcd56051d74dd46abe9c290bd29b3e30b70915f"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to_lr001_orth0005_20260927.yaml",
+      "sha256": "890c3524d23639624df0a542e25212ab5046a7d48e936bcd15fa5418e4df19b6"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to_safe_lr_p5_rank8_eps8_seed0_20261002.yaml",
+      "sha256": "8a926b2962d68957215a942c32f9c53cce233e2d3b4958b781f3b3c8c3a9ebfb"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to_safe_ls_p5_eps8_seed0_20261002.yaml",
+      "sha256": "7a92fbcb629043cbb08ec2faf9991cdb7b92ee5f51b36edf70635e1bd4469671"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to_safe_r4_eps8_seed0_20261004.yaml",
+      "sha256": "aa3dcefe85bdc30513a474e05c9a0295c8b7b343d58a76c1b1bdeb183773cb54"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to_safe_soft05_eps8_seed0_20261004.yaml",
+      "sha256": "80cffe012aa6bfefcbe66f7c8e880e680da1c1885f5d0a7fcb01a77be6697894"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_b2_to_strict_tsfl_safebg_eps8_person_seed0_20261002.yaml",
+      "sha256": "4b3996b7b86a20fa8903b529cdd03a345917125106f5e5812635a87fc5b8c818"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_legacy_kproto_ret_b2.yaml",
+      "sha256": "b0865f9fe9f5959607fdf1c2014f8cfc1a41e39de3a0cd4f7248b581c3559d0b"
+    },
+    {
+      "path": "ue_framework/configs/exp_voc_person_legacy_kproto_ret_bbox_half.yaml",
+      "sha256": "441370245442a67193119a40d59aee8428262fc04e70400a066f28a29a6cf471"
+    },
+    {
+      "path": "ue_framework/data_utils.py",
+      "sha256": "aa260a5e65195a2f8b2ebb2725377810301984fdc13c33e91b89206a84551688"
+    },
+    {
+      "path": "ue_framework/env_utils.py",
+      "sha256": "9ccb067e1a345d1021b1b2ad369c0fce4782c0d878b57778f314c66c1ef9243e"
+    },
+    {
+      "path": "ue_framework/io_utils.py",
+      "sha256": "40ce021b2b99998444a3dae7d7b118541379bffcc8477b399378e355276134cb"
+    },
+    {
+      "path": "ue_framework/launch_one.py",
+      "sha256": "9b8d3b76831089b3ae8dd3bd3a4323c93fea15b5fe9ebc882b16778f9139f5cc"
+    },
+    {
+      "path": "ue_framework/methods/__init__.py",
+      "sha256": "cff976374a3ce375a8bf05d008dc3acde8c28ad778ed602908c6aa1d2abd5b90"
+    },
+    {
+      "path": "ue_framework/methods/adaptive_learner.py",
+      "sha256": "02cd607b8c3e389c639bbf82859952dfb5c9528524e6ebc18a373860e7954518"
+    },
+    {
+      "path": "ue_framework/methods/alce_acgt.py",
+      "sha256": "58fb51fad7810cb5a39570c0943f43674fe202e5fc07e81ac08f0f1419f76552"
+    },
+    {
+      "path": "ue_framework/methods/alce_losses.py",
+      "sha256": "59cdf7177a72b19289aeff1b5ec17f749ec47b17b26f0c0053bc0fe96ede2752"
+    },
+    {
+      "path": "ue_framework/methods/alce_metrics.py",
+      "sha256": "3ef71d71df9107588bdca9e08dd4b55b9aa3907e8f44a597d6a46f51d678f9b1"
+    },
+    {
+      "path": "ue_framework/methods/b2_adaptive.py",
+      "sha256": "429348b91ec4909b8806aa1b25daa81dc6adbb4318462f42b82167e5639ae145"
+    },
+    {
+      "path": "ue_framework/methods/b2_semantic.py",
+      "sha256": "f890a83c71164e570535508a553dc683b016bc0a4c519335f9e202c1d7ec28e8"
+    },
+    {
+      "path": "ue_framework/methods/base.py",
+      "sha256": "ed267de51c401e9b4b6206fcd335c2afcffba1bd738f5e3fc7fbb791892801c0"
+    },
+    {
+      "path": "ue_framework/methods/em.py",
+      "sha256": "e32a40e26ac2fa7c1c07194f82892291b47eda3ebf1ddc2484dba9e1dda9db3c"
+    },
+    {
+      "path": "ue_framework/methods/factory.py",
+      "sha256": "ea477b8628d304b48895510a601ee2f90d62b68d4b5f229595c236a6c2da9340"
+    },
+    {
+      "path": "ue_framework/methods/fourier.py",
+      "sha256": "a349b0b0b24fe92b34018fcd12fad0d4e95bb611f2dbf8549b8dfd7765da5884"
+    },
+    {
+      "path": "ue_framework/methods/legacy_kproto_ret.py",
+      "sha256": "6bfd9155ea4ed4aa90dba655d835407c0bfad92737b153adc0060215c0020ccb"
+    },
+    {
+      "path": "ue_framework/methods/orth_reference_design.py",
+      "sha256": "a41be2a269f40ef868bdfb978494e1acdff5efb4572a341721ceba25fb864e42"
+    },
+    {
+      "path": "ue_framework/methods/ours.py",
+      "sha256": "c3bb9c89e14456f82d023d191a2f37887090ed70b5f2e6d266c7b0545786be87"
+    },
+    {
+      "path": "ue_framework/methods/rem.py",
+      "sha256": "95c8ce13d04ee541441cdd392ad6c8ad8b4fdd6596af909a626f23447269fd06"
+    },
+    {
+      "path": "ue_framework/methods/s4_optimization.py",
+      "sha256": "6cca2abb795109467ea13632834f607c0e32653aa6a1459fdd0dfaf116e9323d"
+    },
+    {
+      "path": "ue_framework/methods/s4_pixel_audit.py",
+      "sha256": "b96d6cd0d5937ed67d50681681234061014aff7a0f4786c6b00fe5563cb1988b"
+    },
+    {
+      "path": "ue_framework/methods/s4_tfss.py",
+      "sha256": "1af80e53d81f3328424dc182946fea688ac40a307cc1124e76d4cfd44c16013d"
+    },
+    {
+      "path": "ue_framework/methods/safebg.py",
+      "sha256": "9c6dca9eedfd3623f88a70cbfe38edcd32310ac20fe22240871f926d9aeaeaa5"
+    },
+    {
+      "path": "ue_framework/methods/semantic_coordinates.py",
+      "sha256": "54798bb76dec96a6e160690ecbb3729e574169b00dd8439a5a4ae5c37cd38e05"
+    },
+    {
+      "path": "ue_framework/methods/shadow_tal.py",
+      "sha256": "b7240e2149c6a1b486e53aa65b74be6aceb189e721961448918bad8bf02f1a82"
+    },
+    {
+      "path": "ue_framework/methods/tausb_universal.py",
+      "sha256": "d62757e31c5832c675a525889d71589e1bb2621c2c7d05693eb39f0f5dff000a"
+    },
+    {
+      "path": "ue_framework/methods/tfss_clean_maps.py",
+      "sha256": "6730d44911a4e698862c5c73e03e9d4487c335ace71b960b7fc79bd450132f39"
+    },
+    {
+      "path": "ue_framework/methods/tfss_nt_sensitivity.py",
+      "sha256": "e1fa911ea651259926972125a71565d3fe0080fe508f68f1f13b2f670d85a73d"
+    },
+    {
+      "path": "ue_framework/methods/tfss_probe_metrics.py",
+      "sha256": "dbf43d1e367d3d1dfa2ba4f437d0321e7ee36b1518267edac7d6c08cd04a27ba"
+    },
+    {
+      "path": "ue_framework/methods/tfss_spatial.py",
+      "sha256": "d98b1830897297a373978aa6ce58d55b4c433c38618145b7138de5bc81a296cd"
+    },
+    {
+      "path": "ue_framework/methods/tfss_static_diagnostics.py",
+      "sha256": "9e704c10debf934db68b56700806aabbe99778ad8e9c56ce6c8b2b0c8091797e"
+    },
+    {
+      "path": "ue_framework/metrics_utils.py",
+      "sha256": "b1e35af4fbc055dfe7193d72162e09e0d3289e0e5f24ae5182761f36c2b8504b"
+    },
+    {
+      "path": "ue_framework/pack.py",
+      "sha256": "20bae0d2f42b738d6fd1ef7f25a9d736e908025c28cac6f32ede9a95a80b0e97"
+    },
+    {
+      "path": "ue_framework/paths.py",
+      "sha256": "39de91d8b7172cb88d1d0421f0b62e1f31d4fdbb911f64510a00e534d4184542"
+    },
+    {
+      "path": "ue_framework/runtime.py",
+      "sha256": "bfe42dbdb8b37a1fafc5eb01e29a28851fda4e291f286a80ba7e86013418b5e9"
+    },
+    {
+      "path": "ue_framework/s4_amp_observer.py",
+      "sha256": "8f0fd915eb6ba4d99840916f3e325f147cb6073566effc2492063abba39f2cca"
+    },
+    {
+      "path": "ue_framework/s4_victim.py",
+      "sha256": "378dbfdfd0271414339ebbf096f71c16e93fb358831df6ae83ec3d38c6c9f81a"
+    },
+    {
+      "path": "ue_framework/stages/__init__.py",
+      "sha256": "87bb08911f3ecf7b39f3bdf1c0cc3d094100fe5bdafcff5707b1a75ed862647e"
+    },
+    {
+      "path": "ue_framework/stages/aggregate.py",
+      "sha256": "a63968f0100269be3afb8344810034d46d14927a6bc4e487912556df7f5d8f3a"
+    },
+    {
+      "path": "ue_framework/stages/evaluate.py",
+      "sha256": "632a30efaee07d9803d3b3da011b0f1105d906ad4c0cafaa5e8ec9c744d2641b"
+    },
+    {
+      "path": "ue_framework/stages/generate.py",
+      "sha256": "ed4395879b604a5e8cf69f8210e57903d0db07a0216ee690fec13b47df9666ea"
+    },
+    {
+      "path": "ue_framework/stages/train_victim.py",
+      "sha256": "09526de72e5f2a19fd9a024acce22de78e2c13a8d12500bb79adbdd6cf31454a"
+    },
+    {
+      "path": "ue_framework/status.py",
+      "sha256": "cbe2887d9ca572d9d945163c80d13706d28a6dc201f4f7a9c818e6f215a69b0c"
+    },
+    {
+      "path": "ue_framework/support.py",
+      "sha256": "e0b9813177c10d76ebaedf76bf56c9e2e9e2c9bb7bdeb4c3ac71e17b2d22dca0"
+    },
+    {
+      "path": "ue_framework/train_utils.py",
+      "sha256": "c7434e675840d699e7d92f843a723e055af405f9d60b1aa32cb01492788f01ae"
+    },
+    {
+      "path": "ue_framework/ultra/__init__.py",
+      "sha256": "87150a0a52566f183120bee1caf5385d7b6dbd4a75ba06a6634ffd0bc055dfdb"
+    },
+    {
+      "path": "ue_framework/ultra/hijacked_loss.py",
+      "sha256": "dbb7673a5e4918b0116e2d6d8de464d6882921439926817981a56c1bb1eb4ae3"
+    }
+  ],
+  "source_only_not_models": true,
+  "models": 0,
+  "GPU_work": false,
+  "CPU_native_evidence_reused": "accepted CPU contracts and native loops; unchanged computation only",
+  "current_GPU_evidence_still_required": true,
+  "train_args": {
+    "task": "detect",
+    "mode": "train",
+    "model": "configs/voc_yolov8n_20cls.yaml",
+    "epochs": 200,
+    "time": null,
+    "patience": 0,
+    "batch": 36,
+    "imgsz": 640,
+    "save": true,
+    "save_period": 10,
+    "cache": true,
+    "workers": 16,
+    "exist_ok": true,
+    "pretrained": false,
+    "cls_remap": true,
+    "optimizer": "SGD",
+    "verbose": true,
+    "seed": 0,
+    "deterministic": true,
+    "single_cls": false,
+    "rect": false,
+    "cos_lr": true,
+    "close_mosaic": 100,
+    "resume": false,
+    "amp": true,
+    "fraction": 1.0,
+    "profile": false,
+    "freeze": null,
+    "multi_scale": 0.0,
+    "compile": false,
+    "channels_last": null,
+    "overlap_mask": true,
+    "mask_ratio": 4,
+    "dropout": 0.0,
+    "val": true,
+    "split": "val",
+    "save_json": false,
+    "conf": null,
+    "iou": 0.7,
+    "max_det": 300,
+    "quantize": null,
+    "dnn": false,
+    "plots": true,
+    "nms": null,
+    "source": null,
+    "vid_stride": 1,
+    "stream_buffer": false,
+    "visualize": false,
+    "augment": false,
+    "agnostic_nms": false,
+    "classes": null,
+    "retina_masks": false,
+    "embed": null,
+    "show": false,
+    "save_frames": false,
+    "save_txt": false,
+    "save_conf": false,
+    "save_crop": false,
+    "show_labels": true,
+    "show_conf": true,
+    "show_boxes": true,
+    "line_width": null,
+    "format": "torchscript",
+    "keras": false,
+    "optimize": false,
+    "dynamic": false,
+    "simplify": true,
+    "opset": null,
+    "workspace": null,
+    "lr0": 0.01,
+    "lrf": 0.01,
+    "momentum": 0.937,
+    "weight_decay": 0.0005,
+    "warmup_epochs": 3.0,
+    "warmup_momentum": 0.8,
+    "warmup_bias_lr": 0.1,
+    "distill_model": null,
+    "dis": 6.0,
+    "box": 7.5,
+    "cls": 0.5,
+    "cls_pw": 0.0,
+    "dfl": 1.5,
+    "pose": 12.0,
+    "kobj": 1.0,
+    "rle": 1.0,
+    "angle": 1.0,
+    "dlog": 1.0,
+    "dgrad": 0.5,
+    "dlam": 1.0,
+    "nbs": 64,
+    "hsv_h": 0.015,
+    "hsv_s": 0.7,
+    "hsv_v": 0.4,
+    "degrees": 0.0,
+    "translate": 0.1,
+    "scale": 0.5,
+    "shear": 0.0,
+    "perspective": 0.0,
+    "flipud": 0.0,
+    "fliplr": 0.5,
+    "bgr": 0.0,
+    "mosaic": 1.0,
+    "mixup": 0.0,
+    "cutmix": 0.0,
+    "copy_paste": 0.0,
+    "copy_paste_mode": "flip",
+    "auto_augment": "randaugment",
+    "erasing": 0.4,
+    "cfg": null,
+    "tracker": "tracktrack.yaml"
+  },
+  "native_actual_weight_decay": 0.0005625000000000001,
+  "nominal_postwarmup_accumulate": 2,
+  "PGD": {
+    "4": {
+      "epsilon_pixels": 4,
+      "step_pixels": 1,
+      "steps": 10,
+      "random_start": true
+    },
+    "8": {
+      "epsilon_pixels": 8,
+      "step_pixels": 2,
+      "steps": 10,
+      "random_start": true
+    }
+  },
+  "formal_ready": false
+}

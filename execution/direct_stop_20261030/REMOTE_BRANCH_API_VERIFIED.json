@@ -1,0 +1,18 @@
+{
+  "state": "VERIFIED_AUTHENTICATED_GITHUB_API_BRANCH_REF",
+  "observed_UTC": "2026-10-30 10:28:30 UTC",
+  "url": "https://api.github.com/repos/gql119/object-B/git/ref/heads/codex/s4-at-robustness-20261027",
+  "raw_ref": {
+    "ref": "refs/heads/codex/s4-at-robustness-20261027",
+    "node_id": "REF_kwDOUreWIdoAKnJlZnMvaGVhZHMvY29kZXgvczQtYXQtcm9idXN0bmVzcy0yMDI2MTAyNw",
+    "url": "https://api.github.com/repos/gql119/object-B/git/refs/heads/codex/s4-at-robustness-20261027",
+    "object": {
+      "sha": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+      "type": "commit",
+      "url": "https://api.github.com/repos/gql119/object-B/git/commits/87456fa7a57206551b0e3be0253cc4866f0cdcf1"
+    }
+  },
+  "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+  "git_TLS_failures_retained": true,
+  "TLS_settings_changed": false
+}

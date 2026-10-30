@@ -1,0 +1,50 @@
+{
+  "launch": {
+    "control_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/control/s4_at_serial_seed0_20261030_fresh_v1",
+    "run_id": "s4_at_serial_seed0_20261030_fresh_v1",
+    "session": "s4_at_serial_seed0_20261030_fresh_v1",
+    "state": "launched"
+  },
+  "first_step": {
+    "adapter": {
+      "artifacts": [
+        "result/pipeline_state.json",
+        "result/AT_MAIN_RESULTS.csv",
+        "result/AT_PER_CLASS_RESULTS.csv",
+        "result/AT_PAIRED_SCORES.json",
+        "result/ST_REFERENCE_ONLY.json"
+      ],
+      "complete": false,
+      "healthy": true,
+      "observations": {},
+      "progress": {
+        "current_run": null,
+        "error": null,
+        "source_commit": null,
+        "stages": null,
+        "state": null,
+        "training": {}
+      },
+      "protocol": "rrctl.adapter.v1"
+    },
+    "complete": false,
+    "degraded_reasons": [],
+    "errors": [],
+    "healthy": true,
+    "observations": {
+      "console_age_seconds": 1.1168856620788574,
+      "executor_alive": true,
+      "executor_pid": 3656364,
+      "gpu_utilization_policy": "advisory",
+      "process_alive": true,
+      "process_pid": 3656393,
+      "session_alive": true,
+      "state": "launched",
+      "workload_alive": true,
+      "workload_pid": 3656393
+    },
+    "phase": "first_step",
+    "schema_version": "rrctl.health.v2",
+    "status": "healthy"
+  }
+}

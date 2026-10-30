@@ -1,0 +1,4 @@
+# Retained evidence SHA256 binds raw bytes, including line endings.
+*.json -text
+*.jsonl -text
+*.md -text

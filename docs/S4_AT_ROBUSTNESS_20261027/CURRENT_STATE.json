@@ -1,17 +1,17 @@
 {
   "schema": "s4.at.current-state.v1",
-  "state": "FORMAL_CLEAN_AT4_RUNNING_CUDA_BATCH_WINDOW_PREPARATION",
-  "UTC": "2026-10-29T19:24:06.780265+00:00",
+  "state": "FALLBACK_ORIGINAL_PROTOCOL_STARTED",
+  "UTC": "2026-10-30T10:50:43.605450+00:00",
   "branch": "codex/s4-at-robustness-20261027",
-  "candidate_runtime_commit": "51ce790b7de30ea032c7c4bf7c85a8f530f3fcfb",
+  "candidate_runtime_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
   "source_publication_API_verified": true,
-  "source_commit_url": "https://github.com/gql119/object-B/commit/51ce790b7de30ea032c7c4bf7c85a8f530f3fcfb",
+  "source_commit_url": "https://github.com/gql119/object-B/commit/87456fa7a57206551b0e3be0253cc4866f0cdcf1",
   "CPU_preflight": "PASS",
-  "CUDA_preflight": "CURRENT_SOURCE_NATIVE_PHASE_RESUME_BASELINE_PASSED",
-  "scientific_review": "AT-SCI-001_NEGATIVE_PRESERVED_MAIN_CLOSURE_PASSED",
-  "formal_preflight": "ACCEPTED_FOR_UNCHANGED_51ce790_RUNTIME",
+  "CUDA_preflight": "CURRENT_SOURCE_NATIVE26_BASELINE7_PHASE61_PASSED",
+  "scientific_review": "scientifically_correct",
+  "formal_preflight": "ACCEPTED",
   "formal_run_allowed": true,
-  "formal_runs_started": 1,
+  "formal_runs_started": 2,
   "AT_results": null,
   "existing_COCO_run": "s4_coco_experiment_a_seed0_20261027_risk_v1",
   "existing_COCO_last_actual_query_UTC": "2026-10-28T13:06:09.114470+00:00",
@@ -20,11 +20,9 @@
   "sole_monitor": "s4-robustness-existing-run-status",
   "AT_server_controller_started": true,
   "pending": [
-    "complete original four-arm AT or conditionally validate/restart all four under the newly authorized batch protocol",
-    "finish frozen bounded CUDA entry and RunSpecs before reserving a near-completion window",
-    "actual CUDA candidate equivalence, batch throughput, one review, and updated total-time decision"
+    "Complete four serial fresh200epoch arms and actual clean4952 evaluation/acceptance/publication"
   ],
-  "next": "Keep original CleanAT4 continuous; after verified plan archive, use same monitor at>=185complete to catch195..199 supervisor-only boundary reservation. No GPU candidate now.",
+  "next": "Inspect only the new formal binding and bounded progress; no more optimization probes",
   "parallel_resource_test": {
     "authorization": "docs\\S4_AT_ROBUSTNESS_20261027\\USER_AT_PARALLEL_RESOURCE_TEST_20261028_2056.md",
     "authorization_sha256": "f59edf5e96e6425e83c7879389ffbbb2418563389c0dc28760eb984b7d20acd7",
@@ -52,28 +50,43 @@
   "baseline_reference_run": "s4_at_cuda_baseline_20261029_gpu02",
   "formal_controllers_attempted": 2,
   "active_formal_controllers": 1,
-  "formal_RunID": "s4_at_serial_seed0_20261029_v2",
+  "formal_RunID": "s4_at_serial_seed0_20261030_fresh_v1",
   "current_arm": "S4AT4_Clean_seed0",
   "current_progress": {
-    "epoch": 41,
-    "completed_epochs": 40,
-    "at_batches": 18504,
-    "actual_updates": 9689,
-    "legal_amp_skips": 7,
-    "loss": 208.60675048828125,
-    "UTC": "2026-10-29T19:24:06.696928+00:00"
+    "run_id": "S4AT4_Clean_seed0",
+    "epoch": 1,
+    "completed_epochs": 0,
+    "at_batches": 44,
+    "actual_updates": 38,
+    "legal_amp_skips": 6,
+    "loss": 455.87371826171875,
+    "UTC": "2026-10-30T10:49:19.364254+00:00",
+    "actual_shape": [
+      36,
+      3,
+      640,
+      640
+    ],
+    "actual_PGD_steps": 10,
+    "raw_devices": [
+      [
+        "cuda:0",
+        0
+      ]
+    ]
   },
   "speed_optimization": {
-    "state": "CPU_CANDIDATES_PASS_CUDA_AND_SPEED_PENDING",
+    "state": "FALLBACK_ORIGINAL_PROTOCOL_STARTED",
     "conditional_restart_authorized": true,
     "report": "docs/S4_AT_ROBUSTNESS_20261027/S4_AT_SCIENTIFIC_SPEEDUP_AND_RESTART_REPORT.md",
     "active_source_changed": false,
     "GPU_speedup_percent": null,
-    "restart_executed": false,
-    "decision": "CONTINUE_ORIGINAL_AT"
+    "restart_executed": true,
+    "decision": "ORIGINAL_BATCH36_FRESH_FOUR_ARM_FALLBACK_NO_PROVEN_SPEEDUP",
+    "old_checkpoint_resume_forbidden": true
   },
   "last_monitor_health": "healthy",
-  "last_monitor_evidence": "execution/cuda_batch_optimization_20261030/heartbeat_20261029T192329Z.json",
+  "last_monitor_evidence": "execution/direct_stop_20261030/NEW_FORMAL_OBSERVATION.json",
   "cuda_batch_optimization": {
     "authorization_sha256": "96fd4eae66bf9105e92f32fa609470942c0a8be78b56576f67b06cd50c44af77",
     "allowed_test_batches": [
@@ -82,22 +95,237 @@
       64,
       72
     ],
-    "GPU_benchmark_executed": false,
-    "candidate_CUDA_equivalence": null,
-    "new_formal_run_started": false,
+    "GPU_benchmark_executed": true,
+    "candidate_CUDA_equivalence": "CLEAN_AT4_COMPONENTS_02_03_PASS_ZERO_TOLERANCE",
+    "new_formal_run_started": true,
     "control_core_CPU_smoke": "PASS_CPU04",
     "original_queue_held": false,
     "natural_window_plan": "execution/cuda_batch_optimization_20261030/NATURAL_BOUNDARY_WINDOW_PLAN.json",
     "report": "docs/S4_AT_ROBUSTNESS_20261027/S4_AT_CUDA_BATCH_OPTIMIZATION_AND_RESTART_REPORT.md",
-    "decision": "INCONCLUSIVE",
+    "decision": "FALLBACK_ORIGINAL36_NO_NEW_BATCH_ADOPTED",
     "bounded_entry_CPU_closure": "execution/cuda_batch_optimization_20261030/BOUNDED_ENTRY_CPU_CLOSURE.json",
     "bounded_GPU_entries_ready": true,
     "bounded_probe_source_commit": "dbdc05f938d1e553fbd62af32b2fa36f908c68d0",
     "bounded_probe_source_published": true,
     "bounded_RunSpecs_prepared": 143,
     "window_plan": "execution/cuda_batch_optimization_20261030/READY_BOUNDED_WINDOW_PLAN.json",
-    "window_usable_now": false,
-    "window_archive_publication_pending": true
+    "window_usable_now": true,
+    "window_archive_publication_pending": false,
+    "window_archive_commit": "64daca67003b3eab2321c7bc22775a90a95d9842",
+    "window_plan_publication_verified": true,
+    "representative_offline_readiness": "PASS_ALL_6_ENTRY_KINDS",
+    "actual_GPU_validation_started": true,
+    "scientific_ready": true,
+    "formal_ready": true
   },
-  "last_local_preparation_UTC": "2026-10-29T19:51:55.000401+00:00"
+  "last_local_preparation_UTC": "2026-10-29T19:51:55.000401+00:00",
+  "current_AMP_health": {
+    "model_finite": true,
+    "EMA_finite": true,
+    "optimizer_finite": true,
+    "consecutive_skips": 0,
+    "amp_scale_after": 8192.0
+  },
+  "current_amp_health_observation_UTC": "2026-10-30T01:16:36.031027+00:00",
+  "latest_live_rrctl": {
+    "observed_UTC": "2026-10-30T04:47:04.428459+00:00",
+    "health_UTC": "2026-10-30T04:47:02.469103+00:00",
+    "run_id": "s4_at_serial_seed0_20261029_v2",
+    "controller_state": "running",
+    "health": "healthy",
+    "current_arm": "S4AT4_Clean_seed0",
+    "source_commit": "51ce790b7de30ea032c7c4bf7c85a8f530f3fcfb",
+    "run_spec_sha256": "e9f80f82d4288a9b08ed9877b900911f813854e390479eb6a453176c907c87b3",
+    "executor_pid": 3338788,
+    "executor_start_ticks": 389474995,
+    "supervisor_pid": 3338796,
+    "supervisor_start_ticks": 389475008,
+    "uid": 1014,
+    "scientific_child_pid": 3339007,
+    "scientific_child_start_ticks": 389475899,
+    "completed_epochs": 83,
+    "epoch": 84,
+    "batches": 38407,
+    "actual_updates": 19635,
+    "cumulative_legal_amp_skips": 12,
+    "loss": 221.04721069335938,
+    "boundary_eligible_for_hold": false,
+    "minimum_completed_epochs_for_hold": 195,
+    "signal_sent": false,
+    "active_source_modified": false
+  },
+  "early_pause": {
+    "state": "EARLY_PAUSE_NOT_PROVEN_CONTINUE_ORIGINAL_NATURAL_BOUNDARY",
+    "audit": "execution/early_pause_20261030/EARLY_PAUSE_CAPABILITY_AUDIT.json",
+    "report": "docs/S4_AT_ROBUSTNESS_20261027/S4_AT_EARLY_PAUSE_AND_RECOVERY_AUDIT.md",
+    "authorized_conditionally": true,
+    "implemented": false,
+    "original_stopped": false,
+    "signals_sent": 0,
+    "GPU_tests_started": 0,
+    "fallback": "CONTINUE_ORIGINAL_NATURAL_BOUNDARY",
+    "superseded_by": "USER_DIRECT_TERMINATION_AND_RESTART_20261030.md"
+  },
+  "direct_stop": {
+    "state": "OLD_AT_TERMINATED",
+    "old_RunID": "s4_at_serial_seed0_20261029_v2",
+    "RRCTL_terminal": "aborted",
+    "evidence": "execution/direct_stop_20261030/20261030T052322Z_OLD_AT_TERMINATED.json",
+    "checkpoint": {
+      "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/outputs/s4_at_serial_seed0_20261029_v2/result/S4AT4_Clean_seed0/training/full_state/epoch_086.pt",
+      "sha256": "925dcaf995a6880d987e218b1e28a72c6008a93bbcf0cb26e10001167ea8e3ee",
+      "bytes": 36583293
+    },
+    "GPU_released": true,
+    "old_completed": false,
+    "old_accepted": false,
+    "authorization_sha256": "e46fc5aa728c294a4ce803a8ba23cacf5e80191173b411579bb3325d39581db8",
+    "previous_natural_boundary_wait_superseded": true,
+    "previous_pause_resume_gate_superseded": true,
+    "previous_net10_restart_gate_superseded": true
+  },
+  "active_CUDA_probe": null,
+  "completed_direct_CUDA_probes": {
+    "eq02c4": {
+      "run_id": "s4_at_eq02_clean4_20261030_direct01",
+      "state": "PASS_NATIVE_FIXED_INPUT_EQUALITY_COMPONENT",
+      "summary": "execution\\direct_stop_20261030\\probes\\eq02c4\\summary.json"
+    },
+    "eq03c4": {
+      "run_id": "s4_at_eq03_clean4_20261030_direct01",
+      "state": "PASS_NATIVE_FIXED_INPUT_EQUALITY_COMPONENT",
+      "summary": "execution\\direct_stop_20261030\\probes\\eq03c4\\summary.json"
+    },
+    "bo1v2": {
+      "run_id": "s4_at_b36_original_r1_20261030_direct02",
+      "state": "PASS_FINITE_NATIVE_BENCHMARK_SAMPLE",
+      "summary": "execution\\direct_stop_20261030\\probes\\bo1v2\\summary.json"
+    },
+    "b21": {
+      "run_id": "s4_at_b36_02_r1_20261030_direct01",
+      "state": "PASS_FINITE_NATIVE_BENCHMARK_SAMPLE",
+      "summary": "execution\\direct_stop_20261030\\probes\\b21\\summary.json"
+    },
+    "b22": {
+      "run_id": "s4_at_b36_02_r2_20261030_direct01",
+      "state": "PASS_FINITE_NATIVE_BENCHMARK_SAMPLE",
+      "summary": "execution\\direct_stop_20261030\\probes\\b22\\summary.json"
+    },
+    "bo2": {
+      "run_id": "s4_at_b36_original_r2_20261030_direct01",
+      "state": "PASS_FINITE_NATIVE_BENCHMARK_SAMPLE",
+      "summary": "execution\\direct_stop_20261030\\probes\\bo2\\summary.json"
+    },
+    "bo3": {
+      "run_id": "s4_at_b36_original_r3_20261030_direct01",
+      "state": "PASS_FINITE_NATIVE_BENCHMARK_SAMPLE",
+      "summary": "execution\\direct_stop_20261030\\probes\\bo3\\summary.json"
+    },
+    "b31": {
+      "run_id": "s4_at_b36_03_r1_20261030_direct01",
+      "state": "PASS_FINITE_NATIVE_BENCHMARK_SAMPLE",
+      "summary": "execution\\direct_stop_20261030\\probes\\b31\\summary.json"
+    },
+    "b32": {
+      "run_id": "s4_at_b36_03_r2_20261030_direct01",
+      "state": "PASS_FINITE_NATIVE_BENCHMARK_SAMPLE",
+      "summary": "execution\\direct_stop_20261030\\probes\\b32\\summary.json"
+    },
+    "bo4": {
+      "run_id": "s4_at_b36_original_r4_20261030_direct01",
+      "state": "PASS_FINITE_NATIVE_BENCHMARK_SAMPLE",
+      "summary": "execution\\direct_stop_20261030\\probes\\bo4\\summary.json"
+    },
+    "bcoriginal_72_b36r1": {
+      "run_id": "s4_at_bcoriginal_b72_sample36r1_20261030_direct01",
+      "state": "PASS_FINITE_NATIVE_BENCHMARK_SAMPLE",
+      "summary": "execution\\direct_stop_20261030\\probes\\bcoriginal_72_b36r1\\summary.json"
+    },
+    "bcoriginal_72_b72r1": {
+      "run_id": "s4_at_bcoriginal_b72_sample72r1_20261030_direct01",
+      "state": "PASS_FINITE_NATIVE_BENCHMARK_SAMPLE",
+      "summary": "execution\\direct_stop_20261030\\probes\\bcoriginal_72_b72r1\\summary.json"
+    },
+    "bcoriginal_72_b72r2": {
+      "run_id": "s4_at_bcoriginal_b72_sample72r2_20261030_direct01",
+      "state": "PASS_FINITE_NATIVE_BENCHMARK_SAMPLE",
+      "summary": "execution\\direct_stop_20261030\\probes\\bcoriginal_72_b72r2\\summary.json"
+    },
+    "bcoriginal_72_b36r2": {
+      "run_id": "s4_at_bcoriginal_b72_sample36r2_20261030_direct01",
+      "state": "PASS_FINITE_NATIVE_BENCHMARK_SAMPLE",
+      "summary": "execution\\direct_stop_20261030\\probes\\bcoriginal_72_b36r2\\summary.json"
+    }
+  },
+  "new_protocol_scientific_review": "scientifically_correct",
+  "historical_live_observations_are_not_current": true,
+  "fresh_serial_queue_CPU": {
+    "state": "PASS_REAL_QUEUE_CONTROL_ONLY",
+    "source": "84178ce01db3a3ec5dce64d5a97363df8c144aa2",
+    "proof": "execution/direct_stop_20261030/s4_at_fresh_serial_control_20261030_cpu01/MAIN_CLOSURE.json",
+    "formal_ready": false,
+    "formal_launched": false,
+    "old_lock_retained": true
+  },
+  "failed_direct_CUDA_probes": {
+    "bo1": {
+      "state": "INVALID_EXTERNAL_GPU_COMPETITION",
+      "run_id": "s4_at_b36_original_r1_20261030_direct01",
+      "evidence": "execution/direct_stop_20261030/probes/bo1/TELEMETRY_FAILURE_DIAGNOSIS.json",
+      "speedup_claim": null
+    }
+  },
+  "prior_accepted_runtime": {
+    "source": "51ce790b7de30ea032c7c4bf7c85a8f530f3fcfb",
+    "historical_CUDA_preflight": "NATIVE_PHASE_RESUME_BASELINE_PASSED",
+    "historical_review": "AT-SCI-001_NEGATIVE_PRESERVED_MAIN_CLOSURE_PASSED",
+    "old_formal_terminal": "aborted"
+  },
+  "new_formal_controller_started": true,
+  "existing_COCO_state": "COMPLETED_AND_ACCEPTED_PUBLISHED",
+  "source_publication_git_remote_SHA_verified": true,
+  "selected_batch": 36,
+  "selected_implementation": "original",
+  "current_source_CUDA_preflight": "PASSED_NATIVE26_BASELINE7_PHASE61",
+  "current_identities": {
+    "executor": {
+      "pid": 3656364,
+      "start_ticks": 398177890,
+      "uid": 1014,
+      "alive": true,
+      "expected_start_matches": true,
+      "ppid": 617924
+    },
+    "queue": {
+      "pid": 3656393,
+      "start_ticks": 398177903,
+      "uid": 1014,
+      "alive": true,
+      "expected_start_matches": true,
+      "ppid": 3656364
+    },
+    "scientific_GPU": [
+      {
+        "pid": 3656582,
+        "start_ticks": 398178502,
+        "uid": 1014,
+        "alive": true,
+        "expected_start_matches": true,
+        "ppid": 3656393,
+        "cwd_matches_release": true,
+        "parent_matches_queue": true,
+        "run_id": "S4AT4_Clean_seed0"
+      }
+    ]
+  },
+  "current_source_CUDA_probe_paths": [
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_native_20261030_gpu01\\summary.json",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_baseline_20261030_gpu01\\summary.json",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_phase_20261030_gpu01\\summary.json"
+  ],
+  "formal_generations_with_actual_scientific_training": 2,
+  "old_formal_aborted": true,
+  "preflight_sha256": "b5b78bd31c687d0d9aba7488cf58f9400bbbca74ab946933136140d8930211db",
+  "new_formal_run_spec_sha256": "4a67b79ebd5a59eb9c47fa72b5049fde7ed01e51168580e8fe85b06e31898f3d",
+  "source_runtime_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1"
 }

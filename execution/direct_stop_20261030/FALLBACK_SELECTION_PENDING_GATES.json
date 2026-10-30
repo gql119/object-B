@@ -1,0 +1,52 @@
+{
+  "state": "SELECTED_ORIGINAL_BATCH36_FALLBACK_PENDING_CURRENT_GPU_REVIEW",
+  "UTC": "2026-10-30T10:26:54.893236+00:00",
+  "selected_implementation": "original",
+  "selected_batch": 36,
+  "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+  "reason": "Neither engineering candidate nor batch72 established a reliable controlled speed gain; retain unchanged accepted scientific computation and use expressly authorized fresh fallback.",
+  "validated_speedup_percent": null,
+  "batch48": "NOT_RUN",
+  "batch64": "NOT_RUN",
+  "profile": "NOT_RUN",
+  "optional_cases_not_run_reason": "Published campaign dispatch deadline passed; avoid indefinite search. No batch48/64 speed or resource claim is made.",
+  "old_run": "ABORTED_NOT_ACCEPTED",
+  "old_checkpoint_resume": false,
+  "fresh_epoch0_all_four_arms": true,
+  "scientific_ready": false,
+  "formal_started": false,
+  "engineering_assessments": {
+    "02": {
+      "state": "INCONCLUSIVE",
+      "reasons": [
+        "CLOCK_VARIATION_EXCEEDS_PRELOCKED_5PERCENT",
+        "UNCONTROLLED_HOST_CPU_LOAD",
+        "UNCONTROLLED_POWER_CAP_FRACTION",
+        "UNCONTROLLED_THERMAL_THROTTLE_FRACTION"
+      ]
+    },
+    "03": {
+      "state": "INCONCLUSIVE",
+      "reasons": [
+        "CLOCK_VARIATION_EXCEEDS_PRELOCKED_5PERCENT",
+        "UNCONTROLLED_HOST_CPU_LOAD",
+        "UNCONTROLLED_POWER_CAP_FRACTION",
+        "UNCONTROLLED_THERMAL_THROTTLE_FRACTION"
+      ]
+    }
+  },
+  "batch72_assessment": {
+    "state": "INCONCLUSIVE",
+    "reasons": [
+      "CLOCK_VARIATION_EXCEEDS_PRELOCKED_5PERCENT",
+      "INSUFFICIENT_ROI_SAMPLES",
+      "MISSING_HOST_CPU_CONTROL"
+    ],
+    "raw_images_per_second": [
+      22.561653665707663,
+      22.8970089948493,
+      23.09893398732411,
+      22.321142996627493
+    ]
+  }
+}

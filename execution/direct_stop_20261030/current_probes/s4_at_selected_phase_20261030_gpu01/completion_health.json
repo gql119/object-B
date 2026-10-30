@@ -1,0 +1,39 @@
+{
+  "adapter": {
+    "artifacts": [
+      "result/status.json",
+      "result/candidate_resume_summary.json"
+    ],
+    "complete": true,
+    "healthy": true,
+    "observations": {},
+    "progress": {
+      "actual_outer_batches": 61,
+      "completed_bounded_arms": null,
+      "current_run": null,
+      "error": null,
+      "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+      "state": "passed"
+    },
+    "protocol": "rrctl.adapter.v1"
+  },
+  "complete": true,
+  "degraded_reasons": [],
+  "errors": [],
+  "healthy": true,
+  "observations": {
+    "console_age_seconds": 12.940087795257568,
+    "executor_alive": false,
+    "executor_pid": 3649878,
+    "gpu_utilization_policy": "advisory",
+    "process_alive": false,
+    "process_pid": 3649886,
+    "session_alive": false,
+    "state": "workload_complete",
+    "workload_alive": false,
+    "workload_pid": 3649886
+  },
+  "phase": "completion",
+  "schema_version": "rrctl.health.v2",
+  "status": "healthy"
+}

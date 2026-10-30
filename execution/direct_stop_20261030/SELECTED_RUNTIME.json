@@ -1,0 +1,12 @@
+{
+  "state": "CURRENT_SOURCE_SCIENTIFICALLY_ACCEPTED",
+  "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+  "new_formal_RunID": "s4_at_serial_seed0_20261030_fresh_v1",
+  "fresh_epoch0_all_four_arms": true,
+  "protocol_sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+  "preflight_local": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\SELECTED_ACCEPTED_PREFLIGHT.json",
+  "preflight_remote": "/project/guoqinglong/projects/s4_at_robustness_20261027/preflight_20261030_fresh_v1/accepted.json",
+  "selected_implementation": "original",
+  "selected_batch": 36,
+  "scientific_review_sha256": "732df111548637fca504ca3a5bab3fa4019a437244445e438ff25ee40a454ef0"
+}

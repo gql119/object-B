@@ -1,0 +1,213 @@
+{
+  "schema_version": "rrctl.run.v1",
+  "run_id": "s4_at_serial_seed0_20261030_fresh_v1",
+  "project": "original-s4-fresh-four-arm-AT-after-authorized-abandonment",
+  "source": {
+    "repo_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027",
+    "branch": "codex/s4-at-robustness-20261027",
+    "commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+    "allowed_post_commit_paths": [
+      "execution/",
+      "docs/S4_AT_ROBUSTNESS_20261027/"
+    ]
+  },
+  "remote": {
+    "profile": "school-s1",
+    "stage_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/stage/s4_at_serial_seed0_20261030_fresh_v1",
+    "repo_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/releases/s4_at_serial_seed0_20261030_fresh_v1",
+    "control_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/control/s4_at_serial_seed0_20261030_fresh_v1",
+    "output_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/outputs/s4_at_serial_seed0_20261030_fresh_v1",
+    "python": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python"
+  },
+  "session": {
+    "backend": "tmux",
+    "name": "s4_at_serial_seed0_20261030_fresh_v1"
+  },
+  "environment": {
+    "kind": "conda",
+    "name": "cfbdm",
+    "conda_sh": "/project/guoqinglong/miniconda3/etc/profile.d/conda.sh"
+  },
+  "workload": {
+    "cwd": ".",
+    "argv": [
+      "systemd-run",
+      "--user",
+      "--scope",
+      "--quiet",
+      "--unit=s4at-fresh-b512ccb92cca9ca42dfc",
+      "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+      "-B",
+      "execution/direct_stop_20261030/fresh_serial_queue.py",
+      "--out",
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/outputs/s4_at_serial_seed0_20261030_fresh_v1/result",
+      "--run-id",
+      "s4_at_serial_seed0_20261030_fresh_v1",
+      "--source-commit",
+      "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+      "--preflight",
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/preflight_20261030_fresh_v1/accepted.json"
+    ]
+  },
+  "health": {
+    "first_step": {
+      "timeout_seconds": 1800,
+      "poll_interval_seconds": 5,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "\nimport json,sys\nfrom pathlib import Path\nc=json.load(sys.stdin);o=Path(c['output_root'])/'result';f=o/'pipeline_state.json';s=json.loads(f.read_text()) if f.exists() else {};a=s.get('current_run');progress={}\nif a:\n p=o/a/'audit/progress.json'\n if p.exists():\n  v=json.loads(p.read_text());progress={k:v.get(k) for k in ('run_id','epoch','completed_epochs','at_batches','actual_updates','legal_amp_skips','loss','UTC')}\nprint(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=s.get('state')!='FAILED',complete=s.get('state')=='COMPLETED_AND_ACCEPTED',progress=dict(state=s.get('state'),source_commit=s.get('source_commit'),current_run=a,stages=s.get('stages'),training=progress,error=s.get('error')),artifacts=['result/pipeline_state.json','result/AT_MAIN_RESULTS.csv','result/AT_PER_CLASS_RESULTS.csv','result/AT_PAIRED_SCORES.json','result/ST_REFERENCE_ONLY.json'])))\n"
+      ]
+    },
+    "periodic": {
+      "timeout_seconds": 1800,
+      "poll_interval_seconds": 30,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "\nimport json,sys\nfrom pathlib import Path\nc=json.load(sys.stdin);o=Path(c['output_root'])/'result';f=o/'pipeline_state.json';s=json.loads(f.read_text()) if f.exists() else {};a=s.get('current_run');progress={}\nif a:\n p=o/a/'audit/progress.json'\n if p.exists():\n  v=json.loads(p.read_text());progress={k:v.get(k) for k in ('run_id','epoch','completed_epochs','at_batches','actual_updates','legal_amp_skips','loss','UTC')}\nprint(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=s.get('state')!='FAILED',complete=s.get('state')=='COMPLETED_AND_ACCEPTED',progress=dict(state=s.get('state'),source_commit=s.get('source_commit'),current_run=a,stages=s.get('stages'),training=progress,error=s.get('error')),artifacts=['result/pipeline_state.json','result/AT_MAIN_RESULTS.csv','result/AT_PER_CLASS_RESULTS.csv','result/AT_PAIRED_SCORES.json','result/ST_REFERENCE_ONLY.json'])))\n"
+      ]
+    },
+    "completion": {
+      "timeout_seconds": 1800,
+      "poll_interval_seconds": 5,
+      "gpu_utilization_policy": "advisory",
+      "adapter_argv": [
+        "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python",
+        "-B",
+        "-c",
+        "\nimport json,sys\nfrom pathlib import Path\nc=json.load(sys.stdin);o=Path(c['output_root'])/'result';f=o/'pipeline_state.json';s=json.loads(f.read_text()) if f.exists() else {};a=s.get('current_run');progress={}\nif a:\n p=o/a/'audit/progress.json'\n if p.exists():\n  v=json.loads(p.read_text());progress={k:v.get(k) for k in ('run_id','epoch','completed_epochs','at_batches','actual_updates','legal_amp_skips','loss','UTC')}\nprint(json.dumps(dict(protocol='rrctl.adapter.v1',healthy=s.get('state')!='FAILED',complete=s.get('state')=='COMPLETED_AND_ACCEPTED',progress=dict(state=s.get('state'),source_commit=s.get('source_commit'),current_run=a,stages=s.get('stages'),training=progress,error=s.get('error')),artifacts=['result/pipeline_state.json','result/AT_MAIN_RESULTS.csv','result/AT_PER_CLASS_RESULTS.csv','result/AT_PAIRED_SCORES.json','result/ST_REFERENCE_ONLY.json'])))\n"
+      ]
+    }
+  },
+  "artifacts": [
+    {
+      "path": "result/pipeline_state.json",
+      "required": true
+    },
+    {
+      "path": "result/CONTROLLER_LOCK.json",
+      "required": true
+    },
+    {
+      "path": "result/CONTROLLER_TERMINAL.json",
+      "required": true
+    },
+    {
+      "path": "result/AT_MAIN_RESULTS.csv",
+      "required": true
+    },
+    {
+      "path": "result/AT_PER_CLASS_RESULTS.csv",
+      "required": true
+    },
+    {
+      "path": "result/AT_PAIRED_SCORES.json",
+      "required": true
+    },
+    {
+      "path": "result/ST_REFERENCE_ONLY.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT4_Clean_seed0/accepted.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT4_Clean_seed0/identity.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT4_Clean_seed0/audit/initialization.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT4_Clean_seed0/last_primary/metrics.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT4_Clean_seed0/best_secondary/metrics.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT4_Poison_seed0/accepted.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT4_Poison_seed0/identity.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT4_Poison_seed0/audit/initialization.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT4_Poison_seed0/last_primary/metrics.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT4_Poison_seed0/best_secondary/metrics.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT8_Clean_seed0/accepted.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT8_Clean_seed0/identity.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT8_Clean_seed0/audit/initialization.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT8_Clean_seed0/last_primary/metrics.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT8_Clean_seed0/best_secondary/metrics.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT8_Poison_seed0/accepted.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT8_Poison_seed0/identity.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT8_Poison_seed0/audit/initialization.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT8_Poison_seed0/last_primary/metrics.json",
+      "required": true
+    },
+    {
+      "path": "result/S4AT8_Poison_seed0/best_secondary/metrics.json",
+      "required": true
+    }
+  ],
+  "local_pull_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\d30p",
+  "metadata": {
+    "execution_purpose": "authorized_fresh_epoch0_four_serial_200epoch_AT_arms",
+    "candidate_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+    "protocol_sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+    "preflight_sha256": "b5b78bd31c687d0d9aba7488cf58f9400bbbca74ab946933136140d8930211db",
+    "reviewed_once": true,
+    "cleanup_policy": "retain_all",
+    "old_original": "ABORTED_NOT_ACCEPTED",
+    "old_checkpoint_resume": false,
+    "no_own_concurrent_GPU": true,
+    "selection_sha256": "f3731d512366afa68798fe68a2069220bb763b97c9bb98e0b12615ffe12cbdb8",
+    "official_metrics_disabled": false,
+    "artifact_ingest_disabled": false
+  },
+  "anchors": []
+}

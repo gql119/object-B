@@ -1,0 +1,163 @@
+{
+  "schema_version": "prerun.scientific-review.v1",
+  "review_mode": "scientific_review",
+  "repo_root": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027",
+  "pre_run_code_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+  "review_diff_base_commit": "51ce790b7de30ea032c7c4bf7c85a8f530f3fcfb",
+  "approved_basis": [
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\docs\\S4_AT_ROBUSTNESS_20261027\\USER_AT_TASK_20261027.md",
+    "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\docs\\S4_AT_ROBUSTNESS_20261027\\USER_DIRECT_TERMINATION_AND_RESTART_20261030.md"
+  ],
+  "implementation_intent": "Fresh epoch0 four-arm OriginalBatch36 fallback after finite optimization tests did not establish reliable speed gains. All19 scientific package files and60 OriginalS4 files are byte-exact accepted51ce source; no Candidate02/03 or new batch is adopted. Review scientific protocol, source-to-sink, fresh result identity and reference equivalence, excluding already CPU-validated RRCTL/lifecycle scaffolding. Prior AT-SCI-001 negative and actual main phase repair remain retained. No old checkpoint continuation, no ST finetuning, no S4 regeneration or COCO change.",
+  "exact_command": "/project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B execution/direct_stop_20261030/fresh_serial_queue.py --out /project/guoqinglong/projects/s4_at_robustness_20261027/outputs/s4_at_serial_seed0_20261030_fresh_v1/result --run-id s4_at_serial_seed0_20261030_fresh_v1 --source-commit 87456fa7a57206551b0e3be0253cc4866f0cdcf1 --preflight /project/guoqinglong/projects/s4_at_robustness_20261027/preflight_20261030_fresh_v1/accepted.json",
+  "output_collision_policy": "fail",
+  "local_validation": [
+    {
+      "command": "audit_current_runtime.py --source 87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+      "exit_code": 0,
+      "observation": "CURRENT_RUNTIME_CPU_REUSE.json:19 committed scientific files unchanged;60 OriginalS4 SHA exact; accepted CPU native contracts reused; no models/GPU/data census."
+    },
+    {
+      "command": "check_baseline_metadata.py",
+      "exit_code": 0,
+      "observation": "Exactly two diagnostic batch-setting labels bound to actual frozen protocol; reference/candidate math and zero tolerance unchanged."
+    }
+  ],
+  "pre_review_smoke": {
+    "schema_version": "prerun.pre-review-smoke.v1",
+    "disposition": "passed",
+    "computation_kind": "training",
+    "candidate_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+    "run_id": "s4_at_selected_native_20261030_gpu01",
+    "exact_command": "systemd-run --user --scope --quiet --unit=s4at-current-980a405d9fc4c268489e /project/guoqinglong/miniconda3/envs/cfbdm/bin/python -B execution/direct_stop_20261030/validate_selected.py --out /project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_native_20261030_gpu01/result --source-commit 87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+    "exit_code": 0,
+    "step_budget": 64,
+    "completed_steps": 26,
+    "finite_loss": true,
+    "production_entrypoint_reached": true,
+    "isolated_output": true,
+    "official_metrics_disabled": true,
+    "artifact_ingest_disabled": true,
+    "cleanup_policy": "retain_all",
+    "checkpoint_cleanup_completed": false,
+    "checkpoint_paths_remaining": [
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_native_20261030_gpu01/result/arms/S4AT4_Clean_seed0/retained_bounded_state.pt",
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_native_20261030_gpu01/result/arms/S4AT4_Poison_seed0/retained_bounded_state.pt",
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_native_20261030_gpu01/result/arms/S4AT8_Clean_seed0/retained_bounded_state.pt",
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_native_20261030_gpu01/result/arms/S4AT8_Poison_seed0/retained_bounded_state.pt"
+    ],
+    "deleted_paths": [],
+    "evidence_paths": [
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_native_20261030_gpu01\\summary.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_baseline_20261030_gpu01\\summary.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_phase_20261030_gpu01\\summary.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\CURRENT_RUNTIME_CPU_REUSE.json"
+    ],
+    "retained_evidence_paths": [
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_native_20261030_gpu01\\summary.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_baseline_20261030_gpu01\\summary.json",
+      "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_phase_20261030_gpu01\\summary.json",
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/control/s4_at_selected_native_20261030_gpu01/console.log",
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_native_20261030_gpu01/result/status.json",
+      "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_native_20261030_gpu01/result/smoke_summary.json"
+    ],
+    "baseline_equivalence_required": true,
+    "baseline_equivalence_probe": {
+      "reference_loss": 453.893798828125,
+      "reference_parts": {
+        "box_loss": 3.2714967727661133,
+        "cls_loss": 5.059849739074707,
+        "dfl_loss": 4.2768144607543945
+      },
+      "initial_parameter_sha256": "0ff81f5755379765bfb1c7080b73178b88da200c1cdd2fd9f551cadd2e3b9eb6",
+      "weights_sha256": "38a49e8c5503e73f9b38e06084eb3ba4c581a0c9af658dc20c06a90caa59c976",
+      "weights_path": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_baseline_20261030_gpu01/result/random_initial_state.pt",
+      "reference_state_sha256": "659a9372f534972ba194ca40aec527f09aa29f036b370654c06168d72e66689b",
+      "input_sha256": "200e2cda32af571d80c8536d354038c9d9b51811bfa9f53f83dc29924896f8ca",
+      "GT_sha256": {
+        "batch_idx": "c96bee9ea4562ef0143688dddac74117bb95592764ed9e4cf1b481a0e7f81d4b",
+        "cls": "1f6b7c43e00ca223ab2eae856e7787f9810555776807068417ca64d93d9d3980",
+        "bboxes": "d37071928d8cadcd996addb41147f2028a8a1ed5f8b15d65d5ecaa514e2b28ff"
+      },
+      "reference_actual_device": "cuda:0",
+      "reference_model_class": "ultralytics.nn.tasks.DetectionModel",
+      "native_channels_last": true,
+      "all_state_tensor_strides_match": true,
+      "actual_outer_autocast_enabled": true,
+      "comparison_complete": true,
+      "state": "passed",
+      "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+      "protocol_sha256": "3bce32a3dc0d907f446535d3c92ca02c8ac04b98a79d342e866bcdba77690b3d",
+      "reference_id": "pinned unmodified ultralytics.nn.tasks.DetectionModel directly instantiated",
+      "candidate_route": "actual worker.run -> ATTrainer.preprocess_batch PGD10 -> native training loop model(batch)",
+      "metric_name": "full GT box+cls+DFL native training loss on the same actual PGD10 adversarial batch",
+      "reference_metric": 453.893798828125,
+      "candidate_metric": 453.893798828125,
+      "absolute_difference": 0.0,
+      "tolerance": 0,
+      "reference_weights_path": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_baseline_20261030_gpu01/result/random_initial_state.pt",
+      "candidate_weights_path": "/project/guoqinglong/projects/s4_at_robustness_20261027/validation/s4_at_selected_baseline_20261030_gpu01/result/random_initial_state.pt",
+      "evaluation_setting": {
+        "dataset": "first 720 sorted accepted VOC train IDs; native seed0 shuffled first batch",
+        "parameters": {
+          "batch": 36,
+          "imgsz": 640,
+          "workers": 16,
+          "AMP": true,
+          "PGD10": true,
+          "epsilon_pixels": 4
+        },
+        "seed": 0,
+        "sample_count": 36,
+        "post_processing": "same native full GT loss; no detection metrics"
+      },
+      "actual_device": "cuda:0",
+      "parameter_updates_before_comparison": 0,
+      "official_metrics_disabled": true,
+      "artifact_ingest_disabled": true,
+      "evidence_paths": [
+        "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_baseline_20261030_gpu01\\summary.json"
+      ]
+    }
+  },
+  "critical_values": [
+    {
+      "name": "Static OriginalS4 and full GT",
+      "source": "PROTOCOL/data.py/accepted materialization identities",
+      "sink": "formal worker data_view -> full16551 clean or static protected train; clean4952 val; labels unchanged",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_native_20261030_gpu01\\summary.json; CURRENT_RUNTIME_CPU_REUSE.json; retained original full-data audit referenced by current smoke"
+    },
+    {
+      "name": "Dynamic full-image PGD10",
+      "source": "PROTOCOL pgd4 eps4 step1 and pgd8 eps8 step2 /255, seed0 random start",
+      "sink": "ATTrainer.preprocess_batch -> unchanged PGDAttack -> native full-GT box/cls/DFL input gradients, FP32 inner and frozen BN stats",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_native_20261030_gpu01\\summary.json four actual640/batch36/workers16 CUDA arms with10 forwards per outer and strict budgets"
+    },
+    {
+      "name": "Native outer AMP SGD/EMA",
+      "source": "OriginalBatch36/nbs64/native warmup, optimizer and scaler",
+      "sink": "unchanged native_loop and ATTrainer; native accumulation2 and legal overflow skips; no changed precision/scaler/update math",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_native_20261030_gpu01\\summary.json actual SGD in all4; C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_baseline_20261030_gpu01\\summary.json independent native loss diff0"
+    },
+    {
+      "name": "Checkpoint phase and fresh identity",
+      "source": "Fresh seed0 YAML; checkpoint.py/native_loop.py accepted51ce repair",
+      "sink": "four fresh init hashes equal; production same-run completed-epoch resume preserves optimizer-attempt phase; old abandoned checkpoint never an input",
+      "evidence": "C:\\Users\\20272\\.codex\\visualizations\\2026\\09\\17\\01a0afba-bca4-7582-815c-b2a5241bad4a\\s4_at_robustness_20261027\\execution\\direct_stop_20261030\\current_probes\\s4_at_selected_phase_20261030_gpu01\\summary.json exact controlled transformed-input resume tolerance0; no worker-prefetch bitwise claim"
+    },
+    {
+      "name": "Evaluation and paired attribution",
+      "source": "worker.evaluate/metrics.py/report.py unchanged accepted source",
+      "sink": "cleanVOC4952/all20 last.pt@200 primary and best secondary; CleanAT4 vs PoisonAT4 and CleanAT8 vs PoisonAT8; no Teacher denominator",
+      "evidence": "Committed source byte audit; evaluation runs only after each real200epoch arm, no official metrics produced by smoke"
+    }
+  ],
+  "experiment": {
+    "benchmark": "VOC20 OriginalS4 AT4/AT8 four fresh200epoch arms",
+    "dataset": "acceptedVOC0712 train16551 cleanval4952 Person14",
+    "checkpoint": "fresh seed0 random-YAML epoch0, primary last.pt@200; no old checkpoint input",
+    "seed": 0,
+    "metric_policy": "matched-budget full20/perclass clean4952 last200primary/bestsecondary; null where unmeasured",
+    "output_path": "/project/guoqinglong/projects/s4_at_robustness_20261027/outputs/s4_at_serial_seed0_20261030_fresh_v1/result"
+  }
+}

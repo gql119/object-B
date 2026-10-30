@@ -1,0 +1,48 @@
+{
+  "launch": {
+    "control_root": "/project/guoqinglong/projects/s4_at_robustness_20261027/control/s4_at_selected_native_20261030_gpu01",
+    "run_id": "s4_at_selected_native_20261030_gpu01",
+    "session": "s4_at_selected_native_20261030_gpu01",
+    "state": "launched"
+  },
+  "first_step": {
+    "adapter": {
+      "artifacts": [
+        "result/status.json",
+        "result/smoke_summary.json",
+        "result/GT_and_budget.json"
+      ],
+      "complete": false,
+      "healthy": true,
+      "observations": {},
+      "progress": {
+        "actual_outer_batches": null,
+        "completed_bounded_arms": null,
+        "current_run": null,
+        "error": null,
+        "source_commit": "87456fa7a57206551b0e3be0253cc4866f0cdcf1",
+        "state": "RUNNING"
+      },
+      "protocol": "rrctl.adapter.v1"
+    },
+    "complete": false,
+    "degraded_reasons": [],
+    "errors": [],
+    "healthy": true,
+    "observations": {
+      "console_age_seconds": 0.7145495414733887,
+      "executor_alive": true,
+      "executor_pid": 3644501,
+      "gpu_utilization_policy": "advisory",
+      "process_alive": true,
+      "process_pid": 3644509,
+      "session_alive": true,
+      "state": "launched",
+      "workload_alive": true,
+      "workload_pid": 3644509
+    },
+    "phase": "first_step",
+    "schema_version": "rrctl.health.v2",
+    "status": "healthy"
+  }
+}
