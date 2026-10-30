@@ -1,0 +1,33 @@
+{
+  "schema": "s4.at.human-abandonment.v1",
+  "state": "ABORTED_BY_EXPLICIT_HUMAN_AUTHORIZATION",
+  "old_run_id": "s4_at_serial_seed0_20261029_v2",
+  "completed": false,
+  "accepted": false,
+  "old_checkpoint_continuation_forbidden": true,
+  "abandoned_completed_epochs": 86,
+  "checkpoint": {
+    "path": "/project/guoqinglong/projects/s4_at_robustness_20261027/outputs/s4_at_serial_seed0_20261029_v2/result/S4AT4_Clean_seed0/training/full_state/epoch_086.pt",
+    "sha256": "925dcaf995a6880d987e218b1e28a72c6008a93bbcf0cb26e10001167ea8e3ee",
+    "bytes": 36583293
+  },
+  "RRCTL_terminal": {
+    "detail": {
+      "cleanup": "reaped",
+      "pgid": 3338788,
+      "pid": 3338796,
+      "remaining_owned_pids": [],
+      "session": "s4_at_serial_seed0_20261029_v2"
+    },
+    "reason": "ownership_verified_abort",
+    "run_id": "s4_at_serial_seed0_20261029_v2",
+    "schema_version": "rrctl.status.v1",
+    "sequence": 6,
+    "state": "aborted",
+    "updated_at": "2026-10-30T05:23:23.872787+00:00"
+  },
+  "authorization_sha256": "e46fc5aa728c294a4ce803a8ba23cacf5e80191173b411579bb3325d39581db8",
+  "next": "Finite CUDA optimization then uniformly fresh four-arm epoch0 restart; chosen generation pending",
+  "original_pipeline_state_is_retained_pretermination_snapshot": true,
+  "original_binding_and_locks_preserved": true
+}

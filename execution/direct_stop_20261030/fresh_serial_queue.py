@@ -28,6 +28,8 @@ def live(pid,start):
 def old_terminal(owned):
     control=owned/'control'/OLD
     b=load(control/'binding.json');s=load(control/'status.json')
+    if sha(control/'binding.json')!='1da19b3c8b3aff122e21b2f3faf04755496737a283fe1caac726b15123d32284' or b['run_spec_sha256']!='e9f80f82d4288a9b08ed9877b900911f813854e390479eb6a453176c907c87b3':
+        raise ValueError('Abandoned original immutable binding/RunSpec changed')
     if s['state']!='aborted' or b['commit']!='51ce790b7de30ea032c7c4bf7c85a8f530f3fcfb':
         raise ValueError('Explicitly abandoned original must be genuinely aborted')
     if live(b['executor_pid'],b['executor_start_ticks']) or live(b['workload_pid'],b['workload_start_ticks']):
@@ -99,7 +101,8 @@ def main():
     fd=acquire(str(owned/'AT_FRESH_SERIAL_ACTIVE.flock'))
     try:
         args.out.mkdir(parents=True,exist_ok=False)
-        own=dict(run_id=args.run_id,pid=os.getpid(),uid=os.getuid(),source_commit=commit(),UTC=now(),
+        ticks=int((Path('/proc')/str(os.getpid())/'stat').read_text().rsplit(')',1)[1].split()[19])
+        own=dict(run_id=args.run_id,pid=os.getpid(),start_ticks=ticks,uid=os.getuid(),source_commit=commit(),UTC=now(),
                  old_superseded=old,old_global_lock_retained=True)
         write_once(args.out/'CONTROLLER_LOCK.json',own)
         if args.cpu_control_smoke:

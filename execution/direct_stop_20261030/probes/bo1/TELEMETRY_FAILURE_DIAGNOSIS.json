@@ -1,0 +1,497 @@
+{
+  "samples": 104,
+  "sampling_errors": [],
+  "other_GPU_rows": [
+    [
+      35,
+      [
+        3546352
+      ]
+    ],
+    [
+      36,
+      [
+        3546352
+      ]
+    ],
+    [
+      37,
+      [
+        3546352
+      ]
+    ],
+    [
+      38,
+      [
+        3546352
+      ]
+    ],
+    [
+      39,
+      [
+        3546352
+      ]
+    ],
+    [
+      40,
+      [
+        3546352
+      ]
+    ],
+    [
+      41,
+      [
+        3546352
+      ]
+    ],
+    [
+      42,
+      [
+        3546352
+      ]
+    ],
+    [
+      43,
+      [
+        3546352
+      ]
+    ],
+    [
+      44,
+      [
+        3546352
+      ]
+    ],
+    [
+      45,
+      [
+        3546352
+      ]
+    ],
+    [
+      46,
+      [
+        3546352
+      ]
+    ],
+    [
+      47,
+      [
+        3546352
+      ]
+    ],
+    [
+      48,
+      [
+        3546352
+      ]
+    ],
+    [
+      49,
+      [
+        3546352
+      ]
+    ],
+    [
+      50,
+      [
+        3546352
+      ]
+    ],
+    [
+      51,
+      [
+        3546352
+      ]
+    ],
+    [
+      52,
+      [
+        3546352
+      ]
+    ],
+    [
+      53,
+      [
+        3546352
+      ]
+    ],
+    [
+      54,
+      [
+        3546352
+      ]
+    ],
+    [
+      55,
+      [
+        3546352
+      ]
+    ],
+    [
+      56,
+      [
+        3546352
+      ]
+    ],
+    [
+      57,
+      [
+        3546352
+      ]
+    ],
+    [
+      58,
+      [
+        3546352
+      ]
+    ],
+    [
+      59,
+      [
+        3546352
+      ]
+    ],
+    [
+      60,
+      [
+        3546352
+      ]
+    ],
+    [
+      61,
+      [
+        3546352
+      ]
+    ],
+    [
+      62,
+      [
+        3546352
+      ]
+    ],
+    [
+      63,
+      [
+        3546352
+      ]
+    ],
+    [
+      64,
+      [
+        3546352
+      ]
+    ],
+    [
+      65,
+      [
+        3546352
+      ]
+    ],
+    [
+      66,
+      [
+        3546352
+      ]
+    ],
+    [
+      67,
+      [
+        3546352
+      ]
+    ],
+    [
+      68,
+      [
+        3546352
+      ]
+    ],
+    [
+      69,
+      [
+        3546352
+      ]
+    ],
+    [
+      70,
+      [
+        3546352
+      ]
+    ],
+    [
+      71,
+      [
+        3546352
+      ]
+    ],
+    [
+      72,
+      [
+        3546352
+      ]
+    ],
+    [
+      73,
+      [
+        3546352
+      ]
+    ],
+    [
+      74,
+      [
+        3546352
+      ]
+    ],
+    [
+      75,
+      [
+        3546352
+      ]
+    ],
+    [
+      76,
+      [
+        3546352
+      ]
+    ],
+    [
+      77,
+      [
+        3546352
+      ]
+    ],
+    [
+      78,
+      [
+        3546352
+      ]
+    ],
+    [
+      79,
+      [
+        3546352
+      ]
+    ],
+    [
+      80,
+      [
+        3546352
+      ]
+    ],
+    [
+      81,
+      [
+        3546352
+      ]
+    ],
+    [
+      82,
+      [
+        3546352
+      ]
+    ],
+    [
+      83,
+      [
+        3546352
+      ]
+    ],
+    [
+      84,
+      [
+        3546352
+      ]
+    ],
+    [
+      85,
+      [
+        3546352
+      ]
+    ],
+    [
+      86,
+      [
+        3546352
+      ]
+    ],
+    [
+      87,
+      [
+        3546352
+      ]
+    ],
+    [
+      88,
+      [
+        3546352
+      ]
+    ],
+    [
+      89,
+      [
+        3546352
+      ]
+    ],
+    [
+      90,
+      [
+        3546352
+      ]
+    ],
+    [
+      91,
+      [
+        3546352
+      ]
+    ],
+    [
+      92,
+      [
+        3546352
+      ]
+    ],
+    [
+      93,
+      [
+        3546352
+      ]
+    ],
+    [
+      94,
+      [
+        3546352
+      ]
+    ],
+    [
+      95,
+      [
+        3546352
+      ]
+    ],
+    [
+      96,
+      [
+        3546352
+      ]
+    ],
+    [
+      97,
+      [
+        3546352
+      ]
+    ],
+    [
+      98,
+      [
+        3546352
+      ]
+    ],
+    [
+      99,
+      [
+        3546352
+      ]
+    ],
+    [
+      100,
+      [
+        3546352
+      ]
+    ],
+    [
+      101,
+      [
+        3546352
+      ]
+    ],
+    [
+      102,
+      [
+        3546352
+      ]
+    ],
+    [
+      103,
+      [
+        3546352
+      ]
+    ]
+  ],
+  "current_GPU": {
+    "GPU": "3546352, 760\n"
+  },
+  "first": [
+    {
+      "monotonic": 3963569.028710474,
+      "gpu": {
+        "utilization.gpu": "0",
+        "memory.used": "301",
+        "temperature.gpu": "61",
+        "clocks.sm": "210",
+        "power.draw": "27.50",
+        "clocks_throttle_reasons.sw_thermal_slowdown": "Not Active",
+        "clocks_throttle_reasons.hw_thermal_slowdown": "Not Active",
+        "clocks_throttle_reasons.sw_power_cap": "Not Active"
+      },
+      "other_GPU_pids": [],
+      "RAM_available_GiB": 114.7241439819336
+    },
+    {
+      "monotonic": 3963571.104894367,
+      "gpu": {
+        "utilization.gpu": "0",
+        "memory.used": "665",
+        "temperature.gpu": "62",
+        "clocks.sm": "1800",
+        "power.draw": "83.86",
+        "clocks_throttle_reasons.sw_thermal_slowdown": "Not Active",
+        "clocks_throttle_reasons.hw_thermal_slowdown": "Not Active",
+        "clocks_throttle_reasons.sw_power_cap": "Not Active"
+      },
+      "other_GPU_pids": [],
+      "host_CPU_busy_percent": 100.0,
+      "host_IOwait_percent": 0.0,
+      "RAM_available_GiB": 113.33889389038086
+    }
+  ],
+  "last": [
+    {
+      "monotonic": 3963779.915668124,
+      "gpu": {
+        "utilization.gpu": "100",
+        "memory.used": "10370",
+        "temperature.gpu": "87",
+        "clocks.sm": "1740",
+        "power.draw": "276.35",
+        "clocks_throttle_reasons.sw_thermal_slowdown": "Active",
+        "clocks_throttle_reasons.hw_thermal_slowdown": "Not Active",
+        "clocks_throttle_reasons.sw_power_cap": "Not Active"
+      },
+      "other_GPU_pids": [
+        3546352
+      ],
+      "host_CPU_busy_percent": 100.0,
+      "host_IOwait_percent": 0.0,
+      "RAM_available_GiB": 103.48110961914062
+    },
+    {
+      "monotonic": 3963781.979062871,
+      "gpu": {
+        "utilization.gpu": "100",
+        "memory.used": "10370",
+        "temperature.gpu": "87",
+        "clocks.sm": "1740",
+        "power.draw": "273.35",
+        "clocks_throttle_reasons.sw_thermal_slowdown": "Active",
+        "clocks_throttle_reasons.hw_thermal_slowdown": "Not Active",
+        "clocks_throttle_reasons.sw_power_cap": "Not Active"
+      },
+      "other_GPU_pids": [
+        3546352
+      ],
+      "host_CPU_busy_percent": 100.0,
+      "host_IOwait_percent": 0.0,
+      "RAM_available_GiB": 103.52478408813477
+    }
+  ]
+}

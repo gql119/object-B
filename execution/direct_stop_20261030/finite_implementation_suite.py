@@ -62,6 +62,7 @@ def main():
         assert r.returncode==0
     event(state='FINITE_IMPLEMENTATION_ABBA_SUITE_FINISHED',formal_controller_started=False)
 
-try:main()
-except BaseException as exc:
-    event(state='FINITE_SUITE_STOPPED_NO_FURTHER_DISPATCH',error=repr(exc));raise
+if __name__=='__main__':
+    try:main()
+    except BaseException as exc:
+        event(state='FINITE_SUITE_STOPPED_NO_FURTHER_DISPATCH',error=repr(exc));raise
