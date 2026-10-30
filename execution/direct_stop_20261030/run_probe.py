@@ -2,7 +2,7 @@
 import argparse
 from copy import deepcopy
 from datetime import datetime,timezone
-import hashlib,json
+import hashlib,json,subprocess
 from pathlib import Path
 import sys
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
@@ -34,13 +34,23 @@ def termination():
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('action',choices=['launch','observe','collect','diagnose'])
-    ap.add_argument('--label',required=True);ap.add_argument('--prepared');ap.add_argument('--tag')
+    ap.add_argument('--label',required=True);ap.add_argument('--prepared');ap.add_argument('--tag');ap.add_argument('--source-commit')
     a=ap.parse_args();assert all(c.isalnum() or c in '_-' for c in a.label)
     d=HERE/'probes'/a.label;ctl,t=services()
     if a.action=='launch':
         proof,_=termination();assert ctl.inspect('s4_at_serial_seed0_20261029_v2')['status']['state']=='aborted'
         d.mkdir(parents=True,exist_ok=False)
         s=json.loads((ROOT/'execution/cuda_batch_optimization_20261030/prepared_specs'/a.prepared).read_text())
+        if a.source_commit:
+            if s['metadata']['case']['kind']!='resume':raise ValueError('Source override is only the isolated resume adapter repair')
+            oldsource=s['source']['commit']
+            changed=subprocess.check_output(['git','diff','--name-only',oldsource,a.source_commit],cwd=ROOT,text=True).splitlines()
+            if any(not p.startswith(('execution/','docs/S4_AT_ROBUSTNESS_20261027/')) for p in changed):
+                raise ValueError('Resume adapter source override cannot change scientific package')
+            s['source']['commit']=a.source_commit
+            s['workload']['argv']=[a.source_commit if v==oldsource else v for v in s['workload']['argv']]
+            s['metadata'].update(candidate_commit=a.source_commit,retained_original_prepared_source=oldsource,
+                source_rebinding_reason='Isolated batch-dependent restored-phase assertions; no scientific package change')
         old=s['remote']['output_root'];tag=a.tag;assert tag and tag!=s['run_id']
         owned='/project/guoqinglong/projects/s4_at_robustness_20261027'
         s['run_id']=tag;s['session']['name']=tag

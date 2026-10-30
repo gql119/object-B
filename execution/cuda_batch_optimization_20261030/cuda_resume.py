@@ -19,7 +19,7 @@ def adapted_run_source():
     if sha(path)!=RESUME_SOURCE_SHA:raise ValueError('Accepted native resume proof source drift')
     tree=ast.parse(path.read_text(encoding='utf8'))
     function=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='run')
-    counts=dict(resources=0,fixture=0,fixture_create=0,data=0,attack=0,identity=0,batch=0,phase=0,steps=0,updates=0,decay=0)
+    counts=dict(resources=0,fixture=0,fixture_create=0,data=0,attack=0,identity=0,batch=0,phase=0,steps=0,updates=0,decay=0,restored_phase=0)
     class Binding(ast.NodeTransformer):
         def visit_Assign(self,node):
             if len(node.targets)==1 and isinstance(node.targets[0],ast.Name):
@@ -57,6 +57,11 @@ def adapted_run_source():
                 counts['steps']+=1;return ast.Name(id='_expected_steps',ctx=ast.Load())
             return self.generic_visit(node)
         def visit_Compare(self,node):
+            for original,key in (('t.at_last_opt_step != 56','last_opt_step'),('t.accumulate != 2','accumulate')):
+                if ast.unparse(node)==original:
+                    counts['restored_phase']+=1
+                    left='t.at_last_opt_step' if key=='last_opt_step' else 't.accumulate'
+                    return ast.parse(left+" != _expected_phase['"+key+"']",mode='eval').body
             if ast.unparse(node)=="resumed.at_holder['observer'].updates != 1":
                 counts['updates']+=1
                 return ast.parse("resumed.at_holder['observer'].updates != _expected_resumed_updates",mode='eval').body
@@ -77,7 +82,7 @@ def adapted_run_source():
                 return ast.parse("'BOUNDED_CANDIDATE_PHASE_'+args.implementation+'_'+args.arm+'_'+str(args.epsilon)+'_B'+str(args.batch)",mode='eval').body
             return node
     function=Binding().visit(function);function.name='_bound_resume_run'
-    if counts!=dict(resources=1,fixture=1,fixture_create=1,data=1,attack=2,identity=1,batch=1,phase=1,steps=2,updates=1,decay=1):raise ValueError('Resume adapter did not bind exactly the declared sites: '+str(counts))
+    if counts!=dict(resources=1,fixture=1,fixture_create=1,data=1,attack=2,identity=1,batch=1,phase=1,steps=2,updates=1,decay=1,restored_phase=2):raise ValueError('Resume adapter did not bind exactly the declared sites: '+str(counts))
     ast.fix_missing_locations(function)
     return ast.unparse(function)+'\n',counts
 

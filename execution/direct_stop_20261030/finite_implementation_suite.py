@@ -32,7 +32,7 @@ def finish(label):
         if phase in ('workload_complete','completed'):
             if not (d/'collect.json').exists():cli('collect','--label',label)
             summary=json.loads((d/'summary.json').read_text())
-            assert summary['source_commit']==SOURCE and (summary['state'].startswith('PASS_') or summary['state']=='passed')
+            assert summary['source_commit']==s['source']['commit'] and (summary['state'].startswith('PASS_') or summary['state']=='passed')
             return summary
         if phase in ('failed','aborted'):
             cli('diagnose','--label',label)

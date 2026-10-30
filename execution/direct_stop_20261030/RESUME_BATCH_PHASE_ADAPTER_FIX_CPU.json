@@ -1,0 +1,22 @@
+{
+  "state": "PASS_AST_BINDING_ONLY_NOT_CUDA",
+  "sites": {
+    "resources": 1,
+    "fixture": 1,
+    "fixture_create": 1,
+    "data": 1,
+    "attack": 2,
+    "identity": 1,
+    "batch": 1,
+    "phase": 1,
+    "steps": 2,
+    "updates": 1,
+    "decay": 1,
+    "restored_phase": 2
+  },
+  "adapted_sha256": "b54e3af1d9748c39cd2563a8ba5efd259b0463d53531ed76fb406224208c0b70",
+  "GPU_work": false,
+  "models": 0,
+  "production_source_changed": false,
+  "actual_CUDA_required": true
+}
